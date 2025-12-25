@@ -1,0 +1,158 @@
+@import "tailwindcss";
+
+/* Custom theme configuration */
+@theme {
+  /* Lichenpunk Mode (Default) */
+  --color-lichenpunk-moss: #6F8F72;
+  --color-lichenpunk-lichen: #4F6F64;
+  --color-lichenpunk-teal: #4AAE9B;
+  --color-lichenpunk-offWhite: #F5F7F4;
+  --color-lichenpunk-warmGray: #D9DED8;
+  --color-lichenpunk-slateGray: #7A847F;
+
+  /* Solarpunk Mode */
+  --color-solarpunk-solar: #7CFFB2;
+  --color-solarpunk-leaf: #4DFF9A;
+  --color-solarpunk-sky: #6EC1FF;
+  --color-solarpunk-sun: #FFE066;
+  --color-solarpunk-orange: #FFB703;
+  --color-solarpunk-cloudWhite: #FBFDFB;
+  --color-solarpunk-lightStone: #E6EFE9;
+
+  /* Lunarpunk Mode */
+  --color-lunarpunk-midnight: #2D1E4F;
+  --color-lunarpunk-indigo: #1B1F3B;
+  --color-lunarpunk-dusk: #4B3F72;
+  --color-lunarpunk-lavender: #8E7CC3;
+  --color-lunarpunk-moonGray: #9CA3AF;
+  --color-lunarpunk-charcoal: #111827;
+  --color-lunarpunk-fogGray: #E5E7EB;
+
+  /* Gitcoin System Colors */
+  --color-gitcoin-green: #00EB88;
+  --color-gitcoin-cyan: #2DFFF5;
+  --color-gitcoin-softCyan: #6AE3C2;
+
+  /* System Accents */
+  --color-system-warning: #F59E0B;
+  --color-system-error: #EF4444;
+  --color-system-info: #3B82F6;
+
+  /* Text Colors */
+  --color-text-primary: #0F172A;
+  --color-text-secondary: #475569;
+  --color-text-light: #F8FAFC;
+  --color-text-muted: #CBD5E1;
+}
+
+:root {
+  /* CSS Variables for theme switching */
+  --color-primary: #6F8F72;
+  --color-primary-dark: #4F6F64;
+  --color-accent: #4AAE9B;
+  --color-bg: #F5F7F4;
+  --color-bg-secondary: #D9DED8;
+  --color-muted: #7A847F;
+  --color-cta: #00EB88;
+  --color-cta-secondary: #2DFFF5;
+  --color-warning: #F59E0B;
+  --color-error: #EF4444;
+  --color-info: #3B82F6;
+  --color-text: #0F172A;
+  --color-text-secondary: #475569;
+}
+
+[data-theme="solarpunk"] {
+  --color-primary: #7CFFB2;
+  --color-primary-dark: #4DFF9A;
+  --color-accent: #6EC1FF;
+  --color-bg: #FBFDFB;
+  --color-bg-secondary: #E6EFE9;
+  --color-muted: #7A847F;
+}
+
+[data-theme="lunarpunk"] {
+  --color-primary: #4B3F72;
+  --color-primary-dark: #2D1E4F;
+  --color-accent: #8E7CC3;
+  --color-bg: #1B1F3B;
+  --color-bg-secondary: #2D1E4F;
+  --color-muted: #9CA3AF;
+  --color-text: #F8FAFC;
+  --color-text-secondary: #CBD5E1;
+}
+
+@layer base {
+  body {
+    @apply bg-lichenpunk-offWhite text-text-primary antialiased;
+  }
+
+  h1, h2, h3, h4, h5, h6 {
+    @apply font-semibold tracking-tight;
+  }
+
+  h1 {
+    @apply text-4xl md:text-5xl lg:text-6xl;
+  }
+
+  h2 {
+    @apply text-3xl md:text-4xl;
+  }
+
+  h3 {
+    @apply text-2xl md:text-3xl;
+  }
+
+  h4 {
+    @apply text-xl md:text-2xl;
+  }
+}
+
+@layer components {
+  .btn-primary {
+    @apply inline-flex items-center justify-center px-6 py-3 bg-gitcoin-green text-text-primary font-medium rounded-lg hover:bg-gitcoin-softCyan transition-colors duration-200;
+  }
+
+  .btn-secondary {
+    @apply inline-flex items-center justify-center px-6 py-3 border-2 border-lichenpunk-lichen text-lichenpunk-lichen font-medium rounded-lg hover:bg-lichenpunk-lichen hover:text-white transition-colors duration-200;
+  }
+
+  .card {
+    @apply bg-white rounded-xl shadow-sm border border-lichenpunk-warmGray p-6 hover:shadow-md transition-shadow duration-200;
+  }
+
+  .card-featured {
+    @apply bg-white rounded-xl shadow-lg border-2 border-gitcoin-green p-6;
+  }
+
+  .tag {
+    @apply inline-flex items-center px-3 py-1 text-sm font-medium rounded-full bg-lichenpunk-warmGray text-lichenpunk-lichen;
+  }
+
+  .tag-active {
+    @apply bg-gitcoin-green text-text-primary;
+  }
+
+  .section {
+    @apply py-16 md:py-24;
+  }
+
+  .container-page {
+    @apply max-w-7xl mx-auto px-4 sm:px-6 lg:px-8;
+  }
+}
+
+/* Smooth scrolling */
+html {
+  scroll-behavior: smooth;
+}
+
+/* Focus styles for accessibility */
+:focus-visible {
+  @apply outline-2 outline-offset-2 outline-gitcoin-green;
+}
+
+/* Selection color */
+::selection {
+  background-color: rgb(0 235 136 / 0.3);
+}
