@@ -56,20 +56,68 @@ export default function Home() {
 
   return (
     <div className="bg-void-black">
-      {/* Hero Section */}
-      <section className="relative overflow-hidden bg-starfield">
-        <div className="container-page py-20 md:py-32">
-          <div className="max-w-4xl mx-auto text-center">
-            {/* Decorative stars */}
-            <div className="flex justify-center gap-3 mb-6 text-muted-gray">
-              <span className="animate-twinkle">☆</span>
-              <span className="animate-twinkle" style={{ animationDelay: '0.5s' }}>☆</span>
-              <span className="animate-twinkle" style={{ animationDelay: '1s' }}>☆</span>
-            </div>
+      {/* Hero Section - Quadratic Lands Style */}
+      <section className="relative overflow-hidden min-h-[80vh] flex items-center">
+        {/* Background: Stars, Moon, Hills */}
+        <div className="absolute inset-0 z-0 pointer-events-none">
+          {/* Crescent Moon */}
+          <svg
+            className="absolute top-[12%] left-[12%] w-10 opacity-90"
+            viewBox="0 0 50 50"
+          >
+            <defs>
+              <mask id="moonMask">
+                <circle cx="25" cy="25" r="20" fill="white" />
+                <circle cx="35" cy="22" r="17" fill="black" />
+              </mask>
+            </defs>
+            <circle cx="25" cy="25" r="20" fill="white" mask="url(#moonMask)" />
+          </svg>
 
-            <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold text-light-white mb-6">
+          {/* Rolling Hills with Hatching Pattern */}
+          <svg
+            className="absolute bottom-0 left-0 w-full h-[45%]"
+            viewBox="0 0 1440 400"
+            preserveAspectRatio="xMidYMax slice"
+          >
+            <defs>
+              <pattern id="hatch1" patternUnits="userSpaceOnUse" width="4" height="4" patternTransform="rotate(45)">
+                <line x1="0" y1="0" x2="0" y2="4" stroke="white" strokeWidth="0.8" />
+              </pattern>
+              <pattern id="hatch2" patternUnits="userSpaceOnUse" width="5" height="5" patternTransform="rotate(35)">
+                <line x1="0" y1="0" x2="0" y2="5" stroke="white" strokeWidth="0.6" />
+              </pattern>
+              <pattern id="hatch3" patternUnits="userSpaceOnUse" width="6" height="6" patternTransform="rotate(55)">
+                <line x1="0" y1="0" x2="0" y2="6" stroke="white" strokeWidth="0.5" />
+              </pattern>
+            </defs>
+            <path
+              d="M-50 400 L-50 280 Q200 220 500 260 Q800 300 1100 240 Q1300 200 1490 230 L1490 400 Z"
+              fill="url(#hatch3)"
+              opacity="0.2"
+            />
+            <path
+              d="M-50 400 L-50 310 Q150 260 400 290 Q650 320 900 270 Q1150 220 1490 270 L1490 400 Z"
+              fill="url(#hatch2)"
+              opacity="0.35"
+            />
+            <path
+              d="M-50 400 L-50 340 Q200 300 450 330 Q700 360 950 310 Q1200 260 1490 300 L1490 400 Z"
+              fill="url(#hatch1)"
+              opacity="0.5"
+            />
+          </svg>
+        </div>
+
+        {/* Content */}
+        <div className="container-page py-20 md:py-32 relative z-10">
+          <div className="max-w-4xl mx-auto text-center">
+            <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold text-light-white mb-4" style={{ letterSpacing: '-0.03em', lineHeight: 1.1 }}>
               Fund What Matters
             </h1>
+            <p className="font-serif italic text-lg text-light-white/60 mb-8">
+              Your home for discovering whats going on in funding in Ethereum
+            </p>
 
             <SearchBar size="lg" className="max-w-2xl mx-auto mb-10" />
           </div>
@@ -83,7 +131,7 @@ export default function Home() {
                 <div className="w-12 h-12 rounded-xl bg-light-white/10 border border-light-white/20 flex items-center justify-center mx-auto mb-4 group-hover:bg-light-white/20 transition-colors">
                   <category.icon className="w-6 h-6 text-light-white" />
                 </div>
-                <h3 className="font-semibold text-light-white mb-2 group-hover:text-light-white transition-colors">
+                <h3 className="font-semibold text-light-white mb-2 group-hover:text-muted-gray transition-colors">
                   {category.name}
                 </h3>
                 <p className="text-sm text-muted-gray">
