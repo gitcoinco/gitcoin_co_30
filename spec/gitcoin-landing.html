@@ -1,0 +1,1010 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Gitcoin | Fund What Matters</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;700&family=Inter:wght@400;500;600&family=Playfair+Display:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet">
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    :root {
+      --black: #000000;
+      --white: #FFFFFF;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      font-family: 'Inter', sans-serif;
+      background-color: var(--black);
+      color: var(--white);
+      line-height: 1.6;
+      overflow-x: hidden;
+    }
+
+    h1, h2, h3 {
+      font-family: 'Space Grotesk', sans-serif;
+      font-weight: 700;
+      line-height: 1.2;
+    }
+
+    /* Navigation */
+    nav {
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      z-index: 1000;
+      padding: 1.5rem 2rem;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      mix-blend-mode: difference;
+    }
+
+    .logo {
+      font-family: 'Space Grotesk', sans-serif;
+      font-size: 1.5rem;
+      font-weight: 700;
+      letter-spacing: -0.02em;
+      text-decoration: none;
+      color: var(--white);
+    }
+
+    .nav-links {
+      display: flex;
+      gap: 2.5rem;
+      list-style: none;
+    }
+
+    .nav-links a {
+      color: var(--white);
+      text-decoration: none;
+      font-size: 0.95rem;
+      opacity: 0.7;
+      transition: opacity 0.3s ease;
+    }
+
+    .nav-links a:hover {
+      opacity: 1;
+    }
+
+    .nav-cta {
+      background: var(--white);
+      color: var(--black);
+      padding: 0.75rem 1.5rem;
+      text-decoration: none;
+      font-weight: 500;
+      font-size: 0.95rem;
+      mix-blend-mode: normal;
+    }
+
+    /* Hero */
+    .hero {
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      text-align: center;
+      padding: 2rem;
+      position: relative;
+    }
+
+    .stars-container {
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      pointer-events: none;
+    }
+
+    .star {
+      position: absolute;
+      background: var(--white);
+      border-radius: 50%;
+      opacity: 0.4;
+      transition: transform 0.3s ease-out;
+    }
+
+    .hero-content {
+      position: relative;
+      z-index: 10;
+      max-width: 800px;
+    }
+
+    .hero h1 {
+      font-size: clamp(3rem, 10vw, 7rem);
+      margin-bottom: 1.5rem;
+      letter-spacing: -0.04em;
+      line-height: 0.95;
+    }
+
+    .hero .tagline {
+      font-family: 'Playfair Display', serif;
+      font-size: clamp(1.125rem, 2.5vw, 1.5rem);
+      font-style: italic;
+      opacity: 0.7;
+      margin-bottom: 3rem;
+    }
+
+    .cta-group {
+      display: flex;
+      gap: 1rem;
+      justify-content: center;
+      flex-wrap: wrap;
+    }
+
+    .btn-primary {
+      background: var(--white);
+      color: var(--black);
+      padding: 1rem 2rem;
+      text-decoration: none;
+      font-weight: 600;
+      font-size: 0.95rem;
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      transition: transform 0.3s ease;
+    }
+
+    .btn-primary:hover {
+      transform: translateY(-2px);
+    }
+
+    .btn-secondary {
+      border: 1px solid rgba(255,255,255,0.3);
+      color: var(--white);
+      padding: 1rem 2rem;
+      text-decoration: none;
+      font-weight: 500;
+      font-size: 0.95rem;
+      transition: all 0.3s ease;
+    }
+
+    .btn-secondary:hover {
+      background: var(--white);
+      color: var(--black);
+    }
+
+    .scroll-indicator {
+      position: absolute;
+      bottom: 2rem;
+      left: 50%;
+      transform: translateX(-50%);
+      opacity: 0.4;
+    }
+
+    /* Parallax elements */
+    .parallax-moon {
+      position: absolute;
+      transition: transform 0.1s ease-out;
+      will-change: transform;
+    }
+
+    .parallax-cloud {
+      position: absolute;
+      transition: transform 0.15s ease-out;
+      will-change: transform;
+    }
+
+    .parallax-hills {
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      width: 100%;
+      transition: transform 0.1s ease-out;
+      will-change: transform;
+    }
+
+    /* Scenic Sections */
+    .scenic-section {
+      position: relative;
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      overflow: hidden;
+    }
+
+    .scenic-bg {
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      z-index: 1;
+    }
+
+    .scenic-content {
+      position: relative;
+      z-index: 10;
+      max-width: 700px;
+      padding: 4rem 2rem;
+      text-align: center;
+    }
+
+    .scenic-content h2 {
+      font-size: clamp(2rem, 5vw, 3.5rem);
+      margin-bottom: 1.5rem;
+      letter-spacing: -0.02em;
+    }
+
+    .scenic-content p {
+      font-family: 'Playfair Display', serif;
+      font-style: italic;
+      font-size: clamp(1.125rem, 2.5vw, 1.375rem);
+      opacity: 0.8;
+      line-height: 1.7;
+    }
+
+    /* Stats */
+    .stats {
+      padding: 6rem 2rem;
+      background: var(--white);
+      color: var(--black);
+    }
+
+    .stats-grid {
+      max-width: 1000px;
+      margin: 0 auto;
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 2rem;
+      text-align: center;
+    }
+
+    .stat-item h3 {
+      font-size: clamp(2.5rem, 6vw, 4rem);
+      letter-spacing: -0.03em;
+      margin-bottom: 0.25rem;
+    }
+
+    .stat-item p {
+      font-size: 0.875rem;
+      opacity: 0.5;
+    }
+
+    /* How Section */
+    .how-section {
+      padding: 8rem 2rem;
+      background: var(--white);
+      color: var(--black);
+    }
+
+    .how-section h2 {
+      text-align: center;
+      font-size: clamp(2rem, 4vw, 2.5rem);
+      margin-bottom: 4rem;
+    }
+
+    .steps {
+      max-width: 900px;
+      margin: 0 auto;
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 3rem;
+    }
+
+    .step {
+      text-align: center;
+    }
+
+    .step-number {
+      font-family: 'Space Grotesk', sans-serif;
+      font-size: 3rem;
+      font-weight: 700;
+      opacity: 0.15;
+      margin-bottom: 1rem;
+    }
+
+    .step h3 {
+      font-size: 1.25rem;
+      margin-bottom: 0.75rem;
+    }
+
+    .step p {
+      opacity: 0.6;
+      font-size: 0.95rem;
+      line-height: 1.6;
+    }
+
+    /* Cards */
+    .cards-section {
+      padding: 8rem 2rem;
+    }
+
+    .cards-section h2 {
+      text-align: center;
+      font-size: clamp(2rem, 4vw, 2.5rem);
+      margin-bottom: 0.75rem;
+    }
+
+    .cards-section .subtitle {
+      text-align: center;
+      opacity: 0.5;
+      margin-bottom: 4rem;
+    }
+
+    .cards-grid {
+      max-width: 1100px;
+      margin: 0 auto;
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 1.5rem;
+    }
+
+    .card {
+      border: 1px solid rgba(255,255,255,0.15);
+      padding: 2rem;
+      transition: border-color 0.3s ease;
+    }
+
+    .card:hover {
+      border-color: rgba(255,255,255,0.4);
+    }
+
+    .card h3 {
+      font-size: 1.375rem;
+      margin-bottom: 0.25rem;
+    }
+
+    .card .meta {
+      font-size: 0.8rem;
+      opacity: 0.4;
+      margin-bottom: 1rem;
+    }
+
+    .card p {
+      opacity: 0.6;
+      font-size: 0.95rem;
+      line-height: 1.6;
+      margin-bottom: 1.5rem;
+    }
+
+    .card-stats {
+      display: flex;
+      gap: 2rem;
+      padding-top: 1.5rem;
+      border-top: 1px solid rgba(255,255,255,0.1);
+    }
+
+    .card-stat strong {
+      display: block;
+      font-family: 'Space Grotesk', sans-serif;
+      font-size: 1.25rem;
+    }
+
+    .card-stat span {
+      font-size: 0.75rem;
+      opacity: 0.4;
+    }
+
+    /* Community */
+    .community {
+      padding: 8rem 2rem;
+      background: var(--white);
+      color: var(--black);
+    }
+
+    .community-inner {
+      max-width: 600px;
+      margin: 0 auto;
+      text-align: center;
+    }
+
+    .community h2 {
+      font-size: clamp(2rem, 5vw, 3rem);
+      margin-bottom: 1.5rem;
+    }
+
+    .community p {
+      opacity: 0.6;
+      line-height: 1.8;
+      margin-bottom: 2.5rem;
+    }
+
+    .community-links {
+      display: flex;
+      gap: 1rem;
+      justify-content: center;
+      flex-wrap: wrap;
+    }
+
+    .community-link {
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      color: var(--black);
+      text-decoration: none;
+      font-weight: 500;
+      font-size: 0.9rem;
+      padding: 0.6rem 1rem;
+      border: 1px solid rgba(0,0,0,0.2);
+      transition: all 0.3s ease;
+    }
+
+    .community-link:hover {
+      background: var(--black);
+      color: var(--white);
+    }
+
+    /* CTA */
+    .cta-section {
+      padding: 10rem 2rem;
+      text-align: center;
+    }
+
+    .cta-section h2 {
+      font-size: clamp(2rem, 5vw, 3.5rem);
+      margin-bottom: 1rem;
+    }
+
+    .cta-section p {
+      opacity: 0.5;
+      margin-bottom: 2.5rem;
+      font-size: 1.125rem;
+    }
+
+    /* Footer */
+    footer {
+      padding: 4rem 2rem 2rem;
+      border-top: 1px solid rgba(255,255,255,0.1);
+    }
+
+    .footer-content {
+      max-width: 1000px;
+      margin: 0 auto;
+      display: grid;
+      grid-template-columns: 2fr repeat(3, 1fr);
+      gap: 3rem;
+    }
+
+    .footer-brand p {
+      opacity: 0.4;
+      font-size: 0.875rem;
+      line-height: 1.7;
+      max-width: 250px;
+      margin-top: 0.5rem;
+    }
+
+    .footer-links h4 {
+      font-size: 0.7rem;
+      text-transform: uppercase;
+      letter-spacing: 0.15em;
+      opacity: 0.3;
+      margin-bottom: 1rem;
+    }
+
+    .footer-links ul {
+      list-style: none;
+    }
+
+    .footer-links li {
+      margin-bottom: 0.5rem;
+    }
+
+    .footer-links a {
+      color: var(--white);
+      text-decoration: none;
+      opacity: 0.5;
+      font-size: 0.875rem;
+      transition: opacity 0.3s ease;
+    }
+
+    .footer-links a:hover {
+      opacity: 1;
+    }
+
+    .footer-bottom {
+      max-width: 1000px;
+      margin: 3rem auto 0;
+      padding-top: 2rem;
+      border-top: 1px solid rgba(255,255,255,0.1);
+      text-align: center;
+      font-size: 0.75rem;
+      opacity: 0.3;
+    }
+
+    /* Responsive */
+    @media (max-width: 768px) {
+      .nav-links { display: none; }
+      .stats-grid { grid-template-columns: repeat(2, 1fr); }
+      .steps { grid-template-columns: 1fr; gap: 2rem; }
+      .footer-content { grid-template-columns: 1fr 1fr; }
+    }
+
+    /* Reveal animations */
+    .reveal {
+      opacity: 0;
+      transform: translateY(30px);
+      transition: all 0.8s cubic-bezier(0.4, 0, 0.2, 1);
+    }
+
+    .reveal.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    .reveal-delay-1 { transition-delay: 0.1s; }
+    .reveal-delay-2 { transition-delay: 0.2s; }
+  </style>
+</head>
+<body>
+  <!-- Navigation -->
+  <nav>
+    <a href="/" class="logo">GITCOIN</a>
+    <ul class="nav-links">
+      <li><a href="#about">About</a></li>
+      <li><a href="#how">How It Works</a></li>
+      <li><a href="#grants">Grants</a></li>
+      <li><a href="https://gov.gitcoin.co" target="_blank">Governance</a></li>
+    </ul>
+    <a href="#grants" class="nav-cta">Explore Grants</a>
+  </nav>
+
+  <!-- Hero -->
+  <section class="hero">
+    <div class="stars-container" id="stars"></div>
+    
+    <!-- Moon -->
+    <svg class="parallax-moon" data-speed="0.05" style="top: 18%; right: 18%; width: 50px; opacity: 0.8;" viewBox="0 0 50 50">
+      <defs>
+        <mask id="moonMask">
+          <circle cx="25" cy="25" r="20" fill="white"/>
+          <circle cx="35" cy="22" r="17" fill="black"/>
+        </mask>
+      </defs>
+      <circle cx="25" cy="25" r="20" fill="white" mask="url(#moonMask)"/>
+    </svg>
+
+    <div class="hero-content">
+      <h1>Fund What<br>Matters</h1>
+      <p class="tagline">A constellation of contributors, building together</p>
+      <div class="cta-group">
+        <a href="#grants" class="btn-primary">
+          Explore Grants
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <path d="M5 12h14M12 5l7 7-7 7"/>
+          </svg>
+        </a>
+        <a href="#about" class="btn-secondary">Learn More</a>
+      </div>
+    </div>
+
+    <div class="scroll-indicator">
+      <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+        <path d="M12 5v14M5 12l7 7 7-7"/>
+      </svg>
+    </div>
+  </section>
+
+  <!-- Quadratic Lands -->
+  <section class="scenic-section" id="about">
+    <div class="scenic-bg">
+      <div class="stars-container" id="stars2"></div>
+      
+      <!-- Moon -->
+      <svg class="parallax-moon" data-speed="0.08" style="top: 12%; left: 12%; width: 40px; opacity: 0.9;" viewBox="0 0 50 50">
+        <defs>
+          <mask id="moonMask2">
+            <circle cx="25" cy="25" r="20" fill="white"/>
+            <circle cx="35" cy="22" r="17" fill="black"/>
+          </mask>
+        </defs>
+        <circle cx="25" cy="25" r="20" fill="white" mask="url(#moonMask2)"/>
+      </svg>
+
+      <!-- Rolling Hills -->
+      <svg class="parallax-hills" data-speed="0.02" style="height: 55%;" viewBox="0 0 1440 400" preserveAspectRatio="xMidYMax slice">
+        <defs>
+          <pattern id="hatch1" patternUnits="userSpaceOnUse" width="4" height="4" patternTransform="rotate(45)">
+            <line x1="0" y1="0" x2="0" y2="4" stroke="white" stroke-width="0.8"/>
+          </pattern>
+          <pattern id="hatch2" patternUnits="userSpaceOnUse" width="5" height="5" patternTransform="rotate(35)">
+            <line x1="0" y1="0" x2="0" y2="5" stroke="white" stroke-width="0.6"/>
+          </pattern>
+          <pattern id="hatch3" patternUnits="userSpaceOnUse" width="6" height="6" patternTransform="rotate(55)">
+            <line x1="0" y1="0" x2="0" y2="6" stroke="white" stroke-width="0.5"/>
+          </pattern>
+        </defs>
+        
+        <path d="M-50 400 L-50 280 Q200 220 500 260 Q800 300 1100 240 Q1300 200 1490 230 L1490 400 Z" fill="url(#hatch3)" opacity="0.25"/>
+        <path d="M-50 400 L-50 310 Q150 260 400 290 Q650 320 900 270 Q1150 220 1490 270 L1490 400 Z" fill="url(#hatch2)" opacity="0.4"/>
+        <path d="M-50 400 L-50 340 Q200 300 450 330 Q700 360 950 310 Q1200 260 1490 300 L1490 400 Z" fill="url(#hatch1)" opacity="0.6"/>
+      </svg>
+    </div>
+
+    <div class="scenic-content">
+      <h2 class="reveal">The Quadratic Lands</h2>
+      <p class="reveal reveal-delay-1">"In the Quadratic Lands, every voice matters. Not just the loudest, not just the richest—every voice."</p>
+    </div>
+  </section>
+
+  <!-- Stats -->
+  <section class="stats">
+    <div class="stats-grid">
+      <div class="stat-item reveal">
+        <h3>$60M+</h3>
+        <p>Distributed</p>
+      </div>
+      <div class="stat-item reveal reveal-delay-1">
+        <h3>5,000+</h3>
+        <p>Projects</p>
+      </div>
+      <div class="stat-item reveal reveal-delay-1">
+        <h3>500K+</h3>
+        <p>Contributors</p>
+      </div>
+      <div class="stat-item reveal reveal-delay-2">
+        <h3>20+</h3>
+        <p>Rounds</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Build From Anywhere -->
+  <section class="scenic-section">
+    <div class="scenic-bg">
+      <div class="stars-container" id="stars3"></div>
+      
+      <!-- Moon -->
+      <svg class="parallax-moon" data-speed="0.06" style="top: 20%; right: 25%; width: 35px; opacity: 0.8;" viewBox="0 0 50 50">
+        <defs>
+          <mask id="moonMask3">
+            <circle cx="25" cy="25" r="20" fill="white"/>
+            <circle cx="35" cy="22" r="17" fill="black"/>
+          </mask>
+        </defs>
+        <circle cx="25" cy="25" r="20" fill="white" mask="url(#moonMask3)"/>
+      </svg>
+
+      <!-- Cloud -->
+      <svg class="parallax-cloud" data-speed="0.03" style="top: 25%; right: 12%; width: 120px; opacity: 0.9;" viewBox="0 0 120 50">
+        <ellipse cx="35" cy="30" rx="30" ry="15" fill="white"/>
+        <ellipse cx="60" cy="25" rx="25" ry="13" fill="white"/>
+        <ellipse cx="85" cy="30" rx="28" ry="14" fill="white"/>
+      </svg>
+
+      <!-- Building -->
+      <svg class="parallax-element" data-speed="0.01" style="position: absolute; bottom: 0; left: 5%; width: 25%; max-width: 280px; height: 70%;" viewBox="0 0 200 400" preserveAspectRatio="xMinYMax meet">
+        <rect x="30" y="80" width="140" height="320" fill="none" stroke="white" stroke-width="1.5"/>
+        <g fill="none" stroke="white" stroke-width="1" opacity="0.6">
+          <rect x="50" y="110" width="25" height="35"/>
+          <rect x="90" y="110" width="25" height="35"/>
+          <rect x="130" y="110" width="25" height="35"/>
+          <rect x="50" y="170" width="25" height="35"/>
+          <rect x="90" y="170" width="25" height="35"/>
+          <rect x="130" y="170" width="25" height="35"/>
+          <rect x="50" y="230" width="25" height="35"/>
+          <rect x="90" y="230" width="25" height="35"/>
+          <rect x="130" y="230" width="25" height="35"/>
+          <rect x="50" y="290" width="25" height="35"/>
+          <rect x="90" y="290" width="25" height="35"/>
+          <rect x="130" y="290" width="25" height="35"/>
+          <rect x="50" y="350" width="25" height="35"/>
+          <rect x="90" y="350" width="25" height="35"/>
+          <rect x="130" y="350" width="25" height="35"/>
+        </g>
+      </svg>
+    </div>
+
+    <div class="scenic-content" style="margin-left: 15%;">
+      <h2 class="reveal">Build From Anywhere</h2>
+      <p class="reveal reveal-delay-1">Open source knows no borders. Your work can reach the world—and the world can support you back.</p>
+    </div>
+  </section>
+
+  <!-- How It Works -->
+  <section class="how-section" id="how">
+    <h2 class="reveal">How It Works</h2>
+    <div class="steps">
+      <div class="step reveal">
+        <div class="step-number">01</div>
+        <h3>Projects Apply</h3>
+        <p>Open source projects submit their work to grants rounds.</p>
+      </div>
+      <div class="step reveal reveal-delay-1">
+        <div class="step-number">02</div>
+        <h3>Community Donates</h3>
+        <p>Contributors support projects they believe in.</p>
+      </div>
+      <div class="step reveal reveal-delay-2">
+        <div class="step-number">03</div>
+        <h3>Matching Amplifies</h3>
+        <p>Quadratic Funding distributes the matching pool.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Pour Into the Commons -->
+  <section class="scenic-section" id="grants">
+    <div class="scenic-bg">
+      <div class="stars-container" id="stars4"></div>
+      
+      <!-- Moon -->
+      <svg class="parallax-moon" data-speed="0.07" style="top: 15%; left: 20%; width: 45px; opacity: 0.85;" viewBox="0 0 50 50">
+        <defs>
+          <mask id="moonMask4">
+            <circle cx="25" cy="25" r="20" fill="white"/>
+            <circle cx="35" cy="22" r="17" fill="black"/>
+          </mask>
+        </defs>
+        <circle cx="25" cy="25" r="20" fill="white" mask="url(#moonMask4)"/>
+      </svg>
+
+      <!-- Clouds -->
+      <svg class="parallax-cloud" data-speed="0.04" style="top: 22%; right: 10%; width: 100px; opacity: 0.9;" viewBox="0 0 100 40">
+        <ellipse cx="30" cy="25" rx="25" ry="12" fill="white"/>
+        <ellipse cx="50" cy="20" rx="20" ry="10" fill="white"/>
+        <ellipse cx="70" cy="25" rx="22" ry="11" fill="white"/>
+      </svg>
+
+      <svg class="parallax-cloud" data-speed="0.025" style="bottom: 35%; left: 8%; width: 90px; opacity: 0.9;" viewBox="0 0 100 40">
+        <ellipse cx="30" cy="25" rx="22" ry="11" fill="white"/>
+        <ellipse cx="55" cy="20" rx="18" ry="9" fill="white"/>
+        <ellipse cx="75" cy="25" rx="20" ry="10" fill="white"/>
+      </svg>
+    </div>
+
+    <div class="scenic-content">
+      <h2 class="reveal">Pour Into the Commons</h2>
+      <p class="reveal reveal-delay-1">When you contribute, you're adding to the shared universe we're building together.</p>
+    </div>
+  </section>
+
+  <!-- Cards -->
+  <section class="cards-section">
+    <h2 class="reveal">Active Rounds</h2>
+    <p class="subtitle reveal">Support projects building the future</p>
+    <div class="cards-grid">
+      <div class="card reveal">
+        <h3>Open Source Software</h3>
+        <p class="meta">GG24 · Ends Feb 15</p>
+        <p>Supporting critical open source infrastructure that powers the decentralized web.</p>
+        <div class="card-stats">
+          <div class="card-stat">
+            <strong>$250K</strong>
+            <span>Matching</span>
+          </div>
+          <div class="card-stat">
+            <strong>180+</strong>
+            <span>Projects</span>
+          </div>
+        </div>
+      </div>
+      <div class="card reveal reveal-delay-1">
+        <h3>Ethereum Infrastructure</h3>
+        <p class="meta">GG24 · Ends Feb 15</p>
+        <p>Funding builders maintaining Ethereum's core infrastructure.</p>
+        <div class="card-stats">
+          <div class="card-stat">
+            <strong>$150K</strong>
+            <span>Matching</span>
+          </div>
+          <div class="card-stat">
+            <strong>45+</strong>
+            <span>Projects</span>
+          </div>
+        </div>
+      </div>
+      <div class="card reveal reveal-delay-2">
+        <h3>Community Rounds</h3>
+        <p class="meta">Various · Ongoing</p>
+        <p>Ecosystem-specific rounds run by communities funding their own public goods.</p>
+        <div class="card-stats">
+          <div class="card-stat">
+            <strong>12</strong>
+            <span>Rounds</span>
+          </div>
+          <div class="card-stat">
+            <strong>300+</strong>
+            <span>Projects</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Community -->
+  <section class="community">
+    <div class="community-inner">
+      <h2 class="reveal">Join the Constellation</h2>
+      <p class="reveal reveal-delay-1">Gitcoin is a community of builders, dreamers, and believers in collective action.</p>
+      <div class="community-links reveal reveal-delay-2">
+        <a href="https://discord.gg/gitcoin" class="community-link" target="_blank">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor">
+            <path d="M20.317 4.37a19.791 19.791 0 0 0-4.885-1.515.074.074 0 0 0-.079.037c-.21.375-.444.864-.608 1.25a18.27 18.27 0 0 0-5.487 0 12.64 12.64 0 0 0-.617-1.25.077.077 0 0 0-.079-.037A19.736 19.736 0 0 0 3.677 4.37a.07.07 0 0 0-.032.027C.533 9.046-.32 13.58.099 18.057a.082.082 0 0 0 .031.057 19.9 19.9 0 0 0 5.993 3.03.078.078 0 0 0 .084-.028c.462-.63.874-1.295 1.226-1.994a.076.076 0 0 0-.041-.106 13.107 13.107 0 0 1-1.872-.892.077.077 0 0 1-.008-.128 10.2 10.2 0 0 0 .372-.292.074.074 0 0 1 .077-.01c3.928 1.793 8.18 1.793 12.062 0a.074.074 0 0 1 .078.01c.12.098.246.198.373.292a.077.077 0 0 1-.006.127 12.299 12.299 0 0 1-1.873.892.077.077 0 0 0-.041.107c.36.698.772 1.362 1.225 1.993a.076.076 0 0 0 .084.028 19.839 19.839 0 0 0 6.002-3.03.077.077 0 0 0 .032-.054c.5-5.177-.838-9.674-3.549-13.66a.061.061 0 0 0-.031-.03z"/>
+          </svg>
+          Discord
+        </a>
+        <a href="https://twitter.com/gitcoin" class="community-link" target="_blank">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor">
+            <path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/>
+          </svg>
+          Twitter
+        </a>
+        <a href="https://gov.gitcoin.co" class="community-link" target="_blank">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/>
+          </svg>
+          Forum
+        </a>
+        <a href="https://github.com/gitcoinco" class="community-link" target="_blank">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor">
+            <path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"/>
+          </svg>
+          GitHub
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA -->
+  <section class="cta-section">
+    <h2 class="reveal">Ready to Contribute?</h2>
+    <p class="reveal reveal-delay-1">Every contribution becomes part of something greater.</p>
+    <div class="cta-group reveal reveal-delay-2">
+      <a href="#grants" class="btn-primary">
+        Support Projects
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <path d="M5 12h14M12 5l7 7-7 7"/>
+        </svg>
+      </a>
+      <a href="#" class="btn-secondary">Apply for a Grant</a>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer>
+    <div class="footer-content">
+      <div class="footer-brand">
+        <div class="logo">GITCOIN</div>
+        <p>Empowering communities to fund what matters.</p>
+      </div>
+      <div class="footer-links">
+        <h4>Product</h4>
+        <ul>
+          <li><a href="#">Grants Explorer</a></li>
+          <li><a href="#">Grant Hub</a></li>
+          <li><a href="#">Documentation</a></li>
+        </ul>
+      </div>
+      <div class="footer-links">
+        <h4>Community</h4>
+        <ul>
+          <li><a href="#">Forum</a></li>
+          <li><a href="#">Discord</a></li>
+          <li><a href="#">Blog</a></li>
+        </ul>
+      </div>
+      <div class="footer-links">
+        <h4>Resources</h4>
+        <ul>
+          <li><a href="#">Brand</a></li>
+          <li><a href="#">Impact</a></li>
+          <li><a href="#">WTF is QF?</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <p>© 2017–∞ Gitcoin &nbsp;·&nbsp; ☆ &nbsp;·&nbsp; Terms &nbsp;·&nbsp; Privacy</p>
+    </div>
+  </footer>
+
+  <script>
+    // Create stars with subtle parallax data
+    function createStars(containerId, count = 50) {
+      const container = document.getElementById(containerId);
+      if (!container) return;
+      
+      for (let i = 0; i < count; i++) {
+        const star = document.createElement('div');
+        star.className = 'star';
+        star.style.left = Math.random() * 100 + '%';
+        star.style.top = Math.random() * 100 + '%';
+        const size = Math.random() * 2 + 1;
+        star.style.width = size + 'px';
+        star.style.height = size + 'px';
+        // Random parallax speed for each star
+        star.dataset.speed = (Math.random() * 0.05 + 0.01).toFixed(3);
+        container.appendChild(star);
+      }
+    }
+    
+    createStars('stars', 60);
+    createStars('stars2', 50);
+    createStars('stars3', 40);
+    createStars('stars4', 45);
+
+    // Smooth parallax scrolling
+    let ticking = false;
+    
+    function updateParallax() {
+      const scrollY = window.scrollY;
+      
+      // Parallax for moons
+      document.querySelectorAll('.parallax-moon').forEach(moon => {
+        const speed = parseFloat(moon.dataset.speed) || 0.05;
+        const rect = moon.closest('.scenic-section, .hero')?.getBoundingClientRect();
+        if (rect && rect.top < window.innerHeight && rect.bottom > 0) {
+          const yPos = scrollY * speed;
+          moon.style.transform = `translateY(${yPos}px)`;
+        }
+      });
+      
+      // Parallax for clouds
+      document.querySelectorAll('.parallax-cloud').forEach(cloud => {
+        const speed = parseFloat(cloud.dataset.speed) || 0.03;
+        const rect = cloud.closest('.scenic-section')?.getBoundingClientRect();
+        if (rect && rect.top < window.innerHeight && rect.bottom > 0) {
+          const xPos = scrollY * speed;
+          cloud.style.transform = `translateX(${xPos}px)`;
+        }
+      });
+      
+      // Parallax for hills
+      document.querySelectorAll('.parallax-hills').forEach(hills => {
+        const speed = parseFloat(hills.dataset.speed) || 0.02;
+        const rect = hills.closest('.scenic-section')?.getBoundingClientRect();
+        if (rect && rect.top < window.innerHeight && rect.bottom > 0) {
+          const yPos = scrollY * speed;
+          hills.style.transform = `translateY(${-yPos}px)`;
+        }
+      });
+      
+      // Subtle parallax for stars
+      document.querySelectorAll('.star').forEach(star => {
+        const speed = parseFloat(star.dataset.speed) || 0.02;
+        const container = star.closest('.scenic-section, .hero');
+        if (container) {
+          const rect = container.getBoundingClientRect();
+          if (rect.top < window.innerHeight && rect.bottom > 0) {
+            const yPos = scrollY * speed;
+            star.style.transform = `translateY(${yPos * 0.5}px)`;
+          }
+        }
+      });
+      
+      ticking = false;
+    }
+
+    window.addEventListener('scroll', () => {
+      if (!ticking) {
+        requestAnimationFrame(updateParallax);
+        ticking = true;
+      }
+    });
+
+    // Reveal on scroll
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('visible');
+        }
+      });
+    }, { threshold: 0.1 });
+
+    document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+
+    // Smooth scroll for anchor links
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+      anchor.addEventListener('click', function (e) {
+        e.preventDefault();
+        const target = document.querySelector(this.getAttribute('href'));
+        if (target) target.scrollIntoView({ behavior: 'smooth' });
+      });
+    });
+  </script>
+</body>
+</html>
