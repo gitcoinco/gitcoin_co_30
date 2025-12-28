@@ -125,7 +125,7 @@ export default function Footer() {
           </div>
 
           <p className="text-muted-gray text-sm italic font-serif">
-            &ldquo;Every contribution is a star. Together, we form constellations.&rdquo;
+            Fund What Matters
           </p>
 
           <div className="flex items-center gap-4">

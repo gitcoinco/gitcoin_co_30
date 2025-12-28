@@ -11,7 +11,7 @@ const inter = Inter({
 
 export const metadata: Metadata = {
   title: {
-    default: 'Gitcoin - Ethereum\'s Funding App Store',
+    default: 'Gitcoin - Fund What Matters',
     template: '%s | Gitcoin',
   },
   description: 'The trusted directory and reference library for Ethereum public goods funding. Discover funding mechanisms, platforms, and learn what works.',
@@ -22,12 +22,12 @@ export const metadata: Metadata = {
     locale: 'en_US',
     url: 'https://gitcoin.co',
     siteName: 'Gitcoin',
-    title: 'Gitcoin - Ethereum\'s Funding App Store',
+    title: 'Gitcoin - Fund What Matters',
     description: 'The trusted directory and reference library for Ethereum public goods funding.',
   },
   twitter: {
     card: 'summary_large_image',
-    title: 'Gitcoin - Ethereum\'s Funding App Store',
+    title: 'Gitcoin - Fund What Matters',
     description: 'The trusted directory and reference library for Ethereum public goods funding.',
   },
 }

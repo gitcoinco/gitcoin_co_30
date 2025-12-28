@@ -68,34 +68,31 @@ export default function Home() {
             </div>
 
             <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold text-light-white mb-6">
-              Ethereum&apos;s Funding<br />
-              <span className="text-light-white">App Store</span>
+              Fund What Matters
             </h1>
 
-            <p className="text-xl text-muted-gray mb-8 max-w-2xl mx-auto font-serif italic">
-              &ldquo;A constellation of contributors, funding the commons under infinite skies.&rdquo;
-            </p>
-
-            <p className="text-lg text-muted-gray mb-10 max-w-2xl mx-auto">
-              The trusted directory and reference library for public goods funding.
-              Discover what mechanisms exist, what works, and where capital should flow.
-            </p>
-
             <SearchBar size="lg" className="max-w-2xl mx-auto mb-10" />
-
-            <div className="flex flex-wrap justify-center gap-4">
-              <Button href="/apps" variant="primary">
-                Explore Apps
-              </Button>
-              <Button href="/mechanisms" variant="secondary">
-                Learn Mechanisms
-              </Button>
-            </div>
+          </div>
+          <div className="grid md:grid-cols-3 lg:grid-cols-5 gap-4">
+            {categories.map((category) => (
+              <Link
+                key={category.name}
+                href={category.href}
+                className="card group text-center hover:border-light-white"
+              >
+                <div className="w-12 h-12 rounded-xl bg-light-white/10 border border-light-white/20 flex items-center justify-center mx-auto mb-4 group-hover:bg-light-white/20 transition-colors">
+                  <category.icon className="w-6 h-6 text-light-white" />
+                </div>
+                <h3 className="font-semibold text-light-white mb-2 group-hover:text-light-white transition-colors">
+                  {category.name}
+                </h3>
+                <p className="text-sm text-muted-gray">
+                  {category.description}
+                </p>
+              </Link>
+            ))}
           </div>
         </div>
-
-        {/* Decorative horizon line */}
-        <div className="absolute bottom-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-dark-gray to-transparent" />
       </section>
 
       {/* Stats */}
@@ -104,6 +101,7 @@ export default function Home() {
           <Stats stats={stats} />
         </div>
       </section>
+
 
       {/* Featured Campaigns */}
       {(activeCampaigns.length > 0 || featuredCampaigns.length > 0) && (
@@ -141,44 +139,6 @@ export default function Home() {
           </div>
         </section>
       )}
-
-      {/* Categories */}
-      <section className="section bg-charcoal border-y border-dark-gray">
-        <div className="container-page">
-          <div className="text-center mb-12">
-            <div className="flex justify-center gap-2 mb-4">
-              <span className="text-muted-gray">☆</span>
-              <span className="text-muted-gray">☆</span>
-              <span className="text-muted-gray">☆</span>
-            </div>
-            <h2 className="text-2xl md:text-3xl font-bold text-light-white mb-4">
-              Explore the Funding Universe
-            </h2>
-            <p className="text-muted-gray max-w-2xl mx-auto">
-              Navigate the complete landscape of Ethereum public goods funding
-            </p>
-          </div>
-          <div className="grid md:grid-cols-3 lg:grid-cols-5 gap-4">
-            {categories.map((category) => (
-              <Link
-                key={category.name}
-                href={category.href}
-                className="card group text-center hover:border-light-white"
-              >
-                <div className="w-12 h-12 rounded-xl bg-light-white/10 border border-light-white/20 flex items-center justify-center mx-auto mb-4 group-hover:bg-light-white/20 transition-colors">
-                  <category.icon className="w-6 h-6 text-light-white" />
-                </div>
-                <h3 className="font-semibold text-light-white mb-2 group-hover:text-light-white transition-colors">
-                  {category.name}
-                </h3>
-                <p className="text-sm text-muted-gray">
-                  {category.description}
-                </p>
-              </Link>
-            ))}
-          </div>
-        </div>
-      </section>
 
       {/* Featured Apps */}
       <section className="section bg-void-black">
@@ -298,11 +258,10 @@ export default function Home() {
             Help Build the Funding Library
           </h2>
           <p className="text-muted-gray max-w-2xl mx-auto mb-8 font-serif italic">
-            &ldquo;Every contribution is a star. Together, we form constellations.&rdquo;
           </p>
           <p className="text-muted-gray max-w-2xl mx-auto mb-8">
             This is a community effort. Contribute case studies, document new mechanisms,
-            or add platforms we&apos;ve missed. Earn bounties for quality contributions.
+            or add platforms we&apos;ve missed. 
           </p>
           <div className="flex flex-wrap justify-center gap-4">
             <Button href="/submit" variant="primary">

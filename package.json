@@ -1,7 +1,7 @@
 {
   "name": "gitcoin.co",
   "version": "1.0.0",
-  "description": "Ethereum's Funding App Store and Reference Library",
+  "description": "Fund What Matters",
   "scripts": {
     "dev": "next dev",
     "build": "next build",
