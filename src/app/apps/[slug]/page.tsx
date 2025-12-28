@@ -50,13 +50,13 @@ export default async function AppDetailPage({ params }: PageProps) {
   const caseStudies = getCaseStudiesByPlatform(app.slug)
 
   return (
-    <div className="min-h-screen bg-lichenpunk-offWhite">
+    <div className="min-h-screen bg-void-black">
       {/* Breadcrumb */}
-      <div className="bg-white border-b border-lichenpunk-warmGray">
+      <div className="bg-charcoal border-b border-dark-gray">
         <div className="container-page py-4">
           <Link
             href="/apps"
-            className="inline-flex items-center gap-2 text-text-secondary hover:text-text-primary transition-colors"
+            className="inline-flex items-center gap-2 text-muted-gray hover:text-light-white transition-colors"
           >
             <ArrowLeft className="w-4 h-4" />
             Back to Apps
@@ -65,7 +65,7 @@ export default async function AppDetailPage({ params }: PageProps) {
       </div>
 
       {/* Header */}
-      <section className="bg-white border-b border-lichenpunk-warmGray">
+      <section className="bg-charcoal border-b border-dark-gray">
         <div className="container-page py-12">
           <div className="flex flex-col md:flex-row gap-8">
             {/* Logo & Basic Info */}
@@ -74,20 +74,20 @@ export default async function AppDetailPage({ params }: PageProps) {
                 <img
                   src={app.logo}
                   alt={`${app.name} logo`}
-                  className="w-20 h-20 rounded-2xl object-cover bg-lichenpunk-warmGray"
+                  className="w-20 h-20 rounded-2xl object-cover bg-dark-gray"
                 />
               ) : (
-                <div className="w-20 h-20 rounded-2xl bg-lichenpunk-warmGray flex items-center justify-center">
-                  <span className="text-3xl font-bold text-lichenpunk-lichen">
+                <div className="w-20 h-20 rounded-2xl bg-dark-gray flex items-center justify-center">
+                  <span className="text-3xl font-bold text-light-white">
                     {app.name.charAt(0)}
                   </span>
                 </div>
               )}
               <div>
-                <h1 className="text-3xl md:text-4xl font-bold text-text-primary mb-2">
+                <h1 className="text-3xl md:text-4xl font-bold text-light-white mb-2">
                   {app.name}
                 </h1>
-                <p className="text-lg text-text-secondary mb-4">{app.tagline}</p>
+                <p className="text-lg text-muted-gray mb-4">{app.tagline}</p>
                 <div className="flex flex-wrap gap-2">
                   <Badge>{categoryLabels[app.category]}</Badge>
                   <Badge variant={app.status === 'active' ? 'success' : 'default'}>
@@ -120,14 +120,14 @@ export default async function AppDetailPage({ params }: PageProps) {
             <div className="lg:col-span-2 space-y-8">
               {/* Description */}
               <div className="card">
-                <h2 className="text-xl font-semibold text-text-primary mb-4">About</h2>
-                <p className="text-text-secondary whitespace-pre-line">{app.description}</p>
+                <h2 className="text-xl font-semibold text-light-white mb-4">About</h2>
+                <p className="text-muted-gray whitespace-pre-line">{app.description}</p>
               </div>
 
               {/* Mechanisms */}
               {mechanisms.length > 0 && (
                 <div>
-                  <h2 className="text-xl font-semibold text-text-primary mb-4">
+                  <h2 className="text-xl font-semibold text-light-white mb-4">
                     Mechanisms Used
                   </h2>
                   <div className="grid md:grid-cols-2 gap-4">
@@ -141,7 +141,7 @@ export default async function AppDetailPage({ params }: PageProps) {
               {/* Case Studies */}
               {caseStudies.length > 0 && (
                 <div>
-                  <h2 className="text-xl font-semibold text-text-primary mb-4">
+                  <h2 className="text-xl font-semibold text-light-white mb-4">
                     Case Studies
                   </h2>
                   <div className="grid md:grid-cols-2 gap-4">
@@ -157,12 +157,12 @@ export default async function AppDetailPage({ params }: PageProps) {
             <div className="space-y-6">
               {/* Stats */}
               <div className="card">
-                <h3 className="font-semibold text-text-primary mb-4">Key Stats</h3>
+                <h3 className="font-semibold text-light-white mb-4">Key Stats</h3>
                 <dl className="space-y-4">
                   {app.fundingVolume && (
                     <div>
-                      <dt className="text-sm text-text-secondary">Total Funded</dt>
-                      <dd className="text-lg font-semibold text-gitcoin-green flex items-center gap-2">
+                      <dt className="text-sm text-muted-gray">Total Funded</dt>
+                      <dd className="text-lg font-semibold text-light-white flex items-center gap-2">
                         <Coins className="w-4 h-4" />
                         {app.fundingVolume}
                       </dd>
@@ -170,8 +170,8 @@ export default async function AppDetailPage({ params }: PageProps) {
                   )}
                   {app.launchDate && (
                     <div>
-                      <dt className="text-sm text-text-secondary">Launch Date</dt>
-                      <dd className="text-text-primary flex items-center gap-2">
+                      <dt className="text-sm text-muted-gray">Launch Date</dt>
+                      <dd className="text-light-white flex items-center gap-2">
                         <Calendar className="w-4 h-4" />
                         {new Date(app.launchDate).toLocaleDateString('en-US', {
                           month: 'long',
@@ -181,12 +181,12 @@ export default async function AppDetailPage({ params }: PageProps) {
                     </div>
                   )}
                   <div>
-                    <dt className="text-sm text-text-secondary">Blockchains</dt>
+                    <dt className="text-sm text-muted-gray">Blockchains</dt>
                     <dd className="flex flex-wrap gap-1 mt-1">
                       {app.blockchain.map((chain) => (
                         <span
                           key={chain}
-                          className="px-2 py-0.5 bg-lichenpunk-warmGray rounded text-sm text-text-secondary"
+                          className="px-2 py-0.5 bg-dark-gray rounded text-sm text-muted-gray"
                         >
                           {chain}
                         </span>
@@ -198,14 +198,14 @@ export default async function AppDetailPage({ params }: PageProps) {
 
               {/* Social Links */}
               <div className="card">
-                <h3 className="font-semibold text-text-primary mb-4">Links</h3>
+                <h3 className="font-semibold text-light-white mb-4">Links</h3>
                 <div className="space-y-3">
                   {app.socialLinks.twitter && (
                     <a
                       href={app.socialLinks.twitter}
                       target="_blank"
                       rel="noopener noreferrer"
-                      className="flex items-center gap-3 text-text-secondary hover:text-text-primary transition-colors"
+                      className="flex items-center gap-3 text-muted-gray hover:text-light-white transition-colors"
                     >
                       <Twitter className="w-5 h-5" />
                       Twitter
@@ -216,7 +216,7 @@ export default async function AppDetailPage({ params }: PageProps) {
                       href={app.socialLinks.github}
                       target="_blank"
                       rel="noopener noreferrer"
-                      className="flex items-center gap-3 text-text-secondary hover:text-text-primary transition-colors"
+                      className="flex items-center gap-3 text-muted-gray hover:text-light-white transition-colors"
                     >
                       <Github className="w-5 h-5" />
                       GitHub
@@ -227,7 +227,7 @@ export default async function AppDetailPage({ params }: PageProps) {
                       href={app.socialLinks.discord}
                       target="_blank"
                       rel="noopener noreferrer"
-                      className="flex items-center gap-3 text-text-secondary hover:text-text-primary transition-colors"
+                      className="flex items-center gap-3 text-muted-gray hover:text-light-white transition-colors"
                     >
                       <MessageCircle className="w-5 h-5" />
                       Discord
@@ -238,7 +238,7 @@ export default async function AppDetailPage({ params }: PageProps) {
 
               {/* Tags */}
               <div className="card">
-                <h3 className="font-semibold text-text-primary mb-4">Tags</h3>
+                <h3 className="font-semibold text-light-white mb-4">Tags</h3>
                 <div className="flex flex-wrap gap-2">
                   {app.tags.map((tag) => (
                     <Badge key={tag} size="sm">{tag}</Badge>
@@ -247,7 +247,7 @@ export default async function AppDetailPage({ params }: PageProps) {
               </div>
 
               {/* Last Updated */}
-              <p className="text-sm text-text-secondary text-center">
+              <p className="text-sm text-muted-gray text-center">
                 Last updated: {new Date(app.lastUpdated).toLocaleDateString()}
               </p>
             </div>

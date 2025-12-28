@@ -33,16 +33,16 @@ const values = [
 
 export default function AboutPage() {
   return (
-    <div className="min-h-screen bg-lichenpunk-offWhite">
+    <div className="min-h-screen bg-void-black">
       {/* Hero */}
-      <section className="bg-white border-b border-lichenpunk-warmGray">
+      <section className="bg-charcoal border-b border-dark-gray">
         <div className="container-page py-16 md:py-24">
           <div className="max-w-3xl">
-            <h1 className="text-4xl md:text-5xl font-bold text-text-primary mb-6">
+            <h1 className="text-4xl md:text-5xl font-bold text-light-white mb-6">
               The Map of the<br />
-              <span className="text-gitcoin-green">Funding Universe</span>
+              <span className="text-light-white">Funding Universe</span>
             </h1>
-            <p className="text-xl text-text-secondary mb-8">
+            <p className="text-xl text-muted-gray mb-8">
               Gitcoin.co is the trusted directory and reference library for Ethereum public goods funding.
               We document what exists, what works, and where capital should flow next.
             </p>
@@ -54,10 +54,10 @@ export default function AboutPage() {
       <section className="section">
         <div className="container-page">
           <div className="max-w-3xl">
-            <h2 className="text-2xl md:text-3xl font-bold text-text-primary mb-6">
+            <h2 className="text-2xl md:text-3xl font-bold text-light-white mb-6">
               Our Mission
             </h2>
-            <div className="prose prose-lg max-w-none text-text-secondary">
+            <div className="prose prose-lg max-w-none text-muted-gray">
               <p>
                 The Ethereum ecosystem has evolved dramatically since 2019. Funding mechanisms have multiplied.
                 New platforms, DAOs, funds, and experiments have emerged. What was once a simple landscape
@@ -79,20 +79,20 @@ export default function AboutPage() {
       </section>
 
       {/* Values */}
-      <section className="section bg-white">
+      <section className="section bg-charcoal">
         <div className="container-page">
-          <h2 className="text-2xl md:text-3xl font-bold text-text-primary mb-12 text-center">
+          <h2 className="text-2xl md:text-3xl font-bold text-light-white mb-12 text-center">
             What We Believe
           </h2>
           <div className="grid md:grid-cols-2 gap-8">
             {values.map((value) => (
               <div key={value.title} className="flex gap-4">
-                <div className="w-12 h-12 rounded-xl bg-gitcoin-green/10 flex items-center justify-center flex-shrink-0">
-                  <value.icon className="w-6 h-6 text-gitcoin-green" />
+                <div className="w-12 h-12 rounded-xl bg-light-white/10 flex items-center justify-center flex-shrink-0">
+                  <value.icon className="w-6 h-6 text-light-white" />
                 </div>
                 <div>
-                  <h3 className="text-lg font-semibold text-text-primary mb-2">{value.title}</h3>
-                  <p className="text-text-secondary">{value.description}</p>
+                  <h3 className="text-lg font-semibold text-light-white mb-2">{value.title}</h3>
+                  <p className="text-muted-gray">{value.description}</p>
                 </div>
               </div>
             ))}
@@ -104,10 +104,10 @@ export default function AboutPage() {
       <section className="section">
         <div className="container-page">
           <div className="max-w-3xl">
-            <h2 className="text-2xl md:text-3xl font-bold text-text-primary mb-6">
+            <h2 className="text-2xl md:text-3xl font-bold text-light-white mb-6">
               About Gitcoin
             </h2>
-            <div className="prose prose-lg max-w-none text-text-secondary">
+            <div className="prose prose-lg max-w-none text-muted-gray">
               <p>
                 Gitcoin was founded in 2017 with a mission to build and fund public goods. Since then,
                 we&apos;ve helped distribute over $60 million to open source developers and public goods
@@ -128,7 +128,7 @@ export default function AboutPage() {
       </section>
 
       {/* CTA */}
-      <section className="section bg-lichenpunk-lichen text-white">
+      <section className="section bg-charcoal text-light-white">
         <div className="container-page text-center">
           <h2 className="text-2xl md:text-3xl font-bold mb-4">
             Help Us Build This
@@ -138,10 +138,10 @@ export default function AboutPage() {
             or add platforms we&apos;ve missed. Earn bounties for quality contributions.
           </p>
           <div className="flex flex-wrap justify-center gap-4">
-            <Button href="/contribute" className="bg-gitcoin-green text-text-primary hover:bg-gitcoin-softCyan">
+            <Button href="/contribute" className="bg-light-white text-void-black hover:bg-muted-gray">
               Contribution Guide
             </Button>
-            <Button href="/submit" className="border-2 border-white text-white hover:bg-white/10">
+            <Button href="/submit" className="border-2 border-white text-white hover:bg-charcoal/10">
               Submit Content
             </Button>
           </div>

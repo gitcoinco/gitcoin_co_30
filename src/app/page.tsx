@@ -20,35 +20,30 @@ const categories = [
     description: 'Funding platforms, DAOs, and grant programs',
     href: '/apps',
     icon: Zap,
-    color: 'bg-gitcoin-green/10 text-gitcoin-green',
   },
   {
     name: 'Mechanisms',
     description: 'Quadratic funding, retro funding, and more',
     href: '/mechanisms',
     icon: Vote,
-    color: 'bg-solarpunk-sky/10 text-solarpunk-sky',
   },
   {
     name: 'Case Studies',
     description: 'What worked, what didn\'t, and lessons learned',
     href: '/case-studies',
     icon: BookOpen,
-    color: 'bg-solarpunk-orange/10 text-solarpunk-orange',
   },
   {
     name: 'Research',
     description: 'Analysis, trends, and ecosystem insights',
     href: '/research',
     icon: BarChart3,
-    color: 'bg-lunarpunk-lavender/10 text-lunarpunk-lavender',
   },
   {
     name: 'Campaigns',
     description: 'Active and upcoming funding rounds',
     href: '/campaigns',
     icon: Calendar,
-    color: 'bg-lichenpunk-moss/10 text-lichenpunk-moss',
   },
 ]
 
@@ -60,20 +55,34 @@ export default function Home() {
   const activeCampaigns = getActiveCampaigns()
 
   return (
-    <div>
+    <div className="bg-void-black">
       {/* Hero Section */}
-      <section className="bg-gradient-to-b from-lichenpunk-offWhite to-white">
-        <div className="container-page py-16 md:py-24">
+      <section className="relative overflow-hidden bg-starfield">
+        <div className="container-page py-20 md:py-32">
           <div className="max-w-4xl mx-auto text-center">
-            <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold text-text-primary mb-6">
+            {/* Decorative stars */}
+            <div className="flex justify-center gap-3 mb-6 text-muted-gray">
+              <span className="animate-twinkle">☆</span>
+              <span className="animate-twinkle" style={{ animationDelay: '0.5s' }}>☆</span>
+              <span className="animate-twinkle" style={{ animationDelay: '1s' }}>☆</span>
+            </div>
+
+            <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold text-light-white mb-6">
               Ethereum&apos;s Funding<br />
-              <span className="text-gitcoin-green">App Store</span>
+              <span className="text-light-white">App Store</span>
             </h1>
-            <p className="text-xl text-text-secondary mb-8 max-w-2xl mx-auto">
+
+            <p className="text-xl text-muted-gray mb-8 max-w-2xl mx-auto font-serif italic">
+              &ldquo;A constellation of contributors, funding the commons under infinite skies.&rdquo;
+            </p>
+
+            <p className="text-lg text-muted-gray mb-10 max-w-2xl mx-auto">
               The trusted directory and reference library for public goods funding.
               Discover what mechanisms exist, what works, and where capital should flow.
             </p>
-            <SearchBar size="lg" className="max-w-2xl mx-auto mb-8" />
+
+            <SearchBar size="lg" className="max-w-2xl mx-auto mb-10" />
+
             <div className="flex flex-wrap justify-center gap-4">
               <Button href="/apps" variant="primary">
                 Explore Apps
@@ -84,10 +93,13 @@ export default function Home() {
             </div>
           </div>
         </div>
+
+        {/* Decorative horizon line */}
+        <div className="absolute bottom-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-dark-gray to-transparent" />
       </section>
 
       {/* Stats */}
-      <section className="border-y border-lichenpunk-warmGray bg-white">
+      <section className="border-y border-dark-gray bg-charcoal">
         <div className="container-page py-12">
           <Stats stats={stats} />
         </div>
@@ -95,20 +107,20 @@ export default function Home() {
 
       {/* Featured Campaigns */}
       {(activeCampaigns.length > 0 || featuredCampaigns.length > 0) && (
-        <section className="section bg-lichenpunk-offWhite">
+        <section className="section bg-void-black">
           <div className="container-page">
             <div className="flex items-center justify-between mb-8">
               <div>
-                <h2 className="text-2xl md:text-3xl font-bold text-text-primary mb-2">
+                <h2 className="text-2xl md:text-3xl font-bold text-light-white mb-2">
                   {activeCampaigns.length > 0 ? 'Active Campaigns' : 'Upcoming Campaigns'}
                 </h2>
-                <p className="text-text-secondary">
+                <p className="text-muted-gray">
                   Funding rounds happening now and coming soon
                 </p>
               </div>
               <Link
                 href="/campaigns"
-                className="hidden md:flex items-center gap-2 text-lichenpunk-moss hover:text-lichenpunk-lichen transition-colors font-medium"
+                className="hidden md:flex items-center gap-2 text-light-white hover:text-muted-gray transition-colors font-medium"
               >
                 View all campaigns
                 <ArrowRight className="w-4 h-4" />
@@ -121,7 +133,7 @@ export default function Home() {
             </div>
             <Link
               href="/campaigns"
-              className="md:hidden flex items-center justify-center gap-2 mt-6 text-lichenpunk-moss hover:text-lichenpunk-lichen transition-colors font-medium"
+              className="md:hidden flex items-center justify-center gap-2 mt-6 text-light-white hover:text-muted-gray transition-colors font-medium"
             >
               View all campaigns
               <ArrowRight className="w-4 h-4" />
@@ -131,13 +143,18 @@ export default function Home() {
       )}
 
       {/* Categories */}
-      <section className="section bg-white">
+      <section className="section bg-charcoal border-y border-dark-gray">
         <div className="container-page">
           <div className="text-center mb-12">
-            <h2 className="text-2xl md:text-3xl font-bold text-text-primary mb-4">
+            <div className="flex justify-center gap-2 mb-4">
+              <span className="text-muted-gray">☆</span>
+              <span className="text-muted-gray">☆</span>
+              <span className="text-muted-gray">☆</span>
+            </div>
+            <h2 className="text-2xl md:text-3xl font-bold text-light-white mb-4">
               Explore the Funding Universe
             </h2>
-            <p className="text-text-secondary max-w-2xl mx-auto">
+            <p className="text-muted-gray max-w-2xl mx-auto">
               Navigate the complete landscape of Ethereum public goods funding
             </p>
           </div>
@@ -146,15 +163,15 @@ export default function Home() {
               <Link
                 key={category.name}
                 href={category.href}
-                className="card group text-center hover:border-gitcoin-green"
+                className="card group text-center hover:border-light-white"
               >
-                <div className={`w-12 h-12 rounded-xl ${category.color} flex items-center justify-center mx-auto mb-4`}>
-                  <category.icon className="w-6 h-6" />
+                <div className="w-12 h-12 rounded-xl bg-light-white/10 border border-light-white/20 flex items-center justify-center mx-auto mb-4 group-hover:bg-light-white/20 transition-colors">
+                  <category.icon className="w-6 h-6 text-light-white" />
                 </div>
-                <h3 className="font-semibold text-text-primary mb-2 group-hover:text-gitcoin-green transition-colors">
+                <h3 className="font-semibold text-light-white mb-2 group-hover:text-light-white transition-colors">
                   {category.name}
                 </h3>
-                <p className="text-sm text-text-secondary">
+                <p className="text-sm text-muted-gray">
                   {category.description}
                 </p>
               </Link>
@@ -164,20 +181,20 @@ export default function Home() {
       </section>
 
       {/* Featured Apps */}
-      <section className="section bg-lichenpunk-offWhite">
+      <section className="section bg-void-black">
         <div className="container-page">
           <div className="flex items-center justify-between mb-8">
             <div>
-              <h2 className="text-2xl md:text-3xl font-bold text-text-primary mb-2">
+              <h2 className="text-2xl md:text-3xl font-bold text-light-white mb-2">
                 Featured Apps
               </h2>
-              <p className="text-text-secondary">
+              <p className="text-muted-gray">
                 Leading platforms and programs in the ecosystem
               </p>
             </div>
             <Link
               href="/apps"
-              className="hidden md:flex items-center gap-2 text-lichenpunk-moss hover:text-lichenpunk-lichen transition-colors font-medium"
+              className="hidden md:flex items-center gap-2 text-light-white hover:text-muted-gray transition-colors font-medium"
             >
               View all apps
               <ArrowRight className="w-4 h-4" />
@@ -190,7 +207,7 @@ export default function Home() {
           </div>
           <Link
             href="/apps"
-            className="md:hidden flex items-center justify-center gap-2 mt-6 text-lichenpunk-moss hover:text-lichenpunk-lichen transition-colors font-medium"
+            className="md:hidden flex items-center justify-center gap-2 mt-6 text-light-white hover:text-muted-gray transition-colors font-medium"
           >
             View all apps
             <ArrowRight className="w-4 h-4" />
@@ -199,20 +216,20 @@ export default function Home() {
       </section>
 
       {/* Mechanisms */}
-      <section className="section bg-white">
+      <section className="section bg-charcoal border-y border-dark-gray">
         <div className="container-page">
           <div className="flex items-center justify-between mb-8">
             <div>
-              <h2 className="text-2xl md:text-3xl font-bold text-text-primary mb-2">
+              <h2 className="text-2xl md:text-3xl font-bold text-light-white mb-2">
                 Funding Mechanisms
               </h2>
-              <p className="text-text-secondary">
+              <p className="text-muted-gray">
                 Understand how different approaches to funding work
               </p>
             </div>
             <Link
               href="/mechanisms"
-              className="hidden md:flex items-center gap-2 text-lichenpunk-moss hover:text-lichenpunk-lichen transition-colors font-medium"
+              className="hidden md:flex items-center gap-2 text-light-white hover:text-muted-gray transition-colors font-medium"
             >
               View all mechanisms
               <ArrowRight className="w-4 h-4" />
@@ -225,7 +242,7 @@ export default function Home() {
           </div>
           <Link
             href="/mechanisms"
-            className="md:hidden flex items-center justify-center gap-2 mt-6 text-lichenpunk-moss hover:text-lichenpunk-lichen transition-colors font-medium"
+            className="md:hidden flex items-center justify-center gap-2 mt-6 text-light-white hover:text-muted-gray transition-colors font-medium"
           >
             View all mechanisms
             <ArrowRight className="w-4 h-4" />
@@ -234,20 +251,20 @@ export default function Home() {
       </section>
 
       {/* Case Studies */}
-      <section className="section bg-lichenpunk-offWhite">
+      <section className="section bg-void-black">
         <div className="container-page">
           <div className="flex items-center justify-between mb-8">
             <div>
-              <h2 className="text-2xl md:text-3xl font-bold text-text-primary mb-2">
+              <h2 className="text-2xl md:text-3xl font-bold text-light-white mb-2">
                 Case Studies
               </h2>
-              <p className="text-text-secondary">
+              <p className="text-muted-gray">
                 Learn from real funding experiments and their outcomes
               </p>
             </div>
             <Link
               href="/case-studies"
-              className="hidden md:flex items-center gap-2 text-lichenpunk-moss hover:text-lichenpunk-lichen transition-colors font-medium"
+              className="hidden md:flex items-center gap-2 text-light-white hover:text-muted-gray transition-colors font-medium"
             >
               View all case studies
               <ArrowRight className="w-4 h-4" />
@@ -260,7 +277,7 @@ export default function Home() {
           </div>
           <Link
             href="/case-studies"
-            className="md:hidden flex items-center justify-center gap-2 mt-6 text-lichenpunk-moss hover:text-lichenpunk-lichen transition-colors font-medium"
+            className="md:hidden flex items-center justify-center gap-2 mt-6 text-light-white hover:text-muted-gray transition-colors font-medium"
           >
             View all case studies
             <ArrowRight className="w-4 h-4" />
@@ -269,20 +286,29 @@ export default function Home() {
       </section>
 
       {/* CTA Section */}
-      <section className="section bg-lichenpunk-lichen text-white">
-        <div className="container-page text-center">
-          <h2 className="text-2xl md:text-3xl font-bold mb-4">
+      <section className="section bg-charcoal border-t border-dark-gray relative overflow-hidden">
+        <div className="absolute inset-0 bg-starfield opacity-50" />
+        <div className="container-page text-center relative z-10">
+          <div className="flex justify-center gap-2 mb-6">
+            <span className="text-light-white">★</span>
+            <span className="text-light-white">★</span>
+            <span className="text-light-white">★</span>
+          </div>
+          <h2 className="text-2xl md:text-3xl font-bold text-light-white mb-4">
             Help Build the Funding Library
           </h2>
-          <p className="text-white/80 max-w-2xl mx-auto mb-8">
+          <p className="text-muted-gray max-w-2xl mx-auto mb-8 font-serif italic">
+            &ldquo;Every contribution is a star. Together, we form constellations.&rdquo;
+          </p>
+          <p className="text-muted-gray max-w-2xl mx-auto mb-8">
             This is a community effort. Contribute case studies, document new mechanisms,
             or add platforms we&apos;ve missed. Earn bounties for quality contributions.
           </p>
           <div className="flex flex-wrap justify-center gap-4">
-            <Button href="/submit" className="bg-gitcoin-green text-text-primary hover:bg-gitcoin-softCyan">
+            <Button href="/submit" variant="primary">
               Submit Content
             </Button>
-            <Button href="/contribute" className="border-2 border-white text-white hover:bg-white/10">
+            <Button href="/contribute" variant="secondary">
               Contribution Guide
             </Button>
           </div>

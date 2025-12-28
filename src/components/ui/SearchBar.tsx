@@ -39,16 +39,17 @@ export default function SearchBar({
 
   return (
     <form onSubmit={handleSubmit} className={`relative ${className}`}>
-      <Search className={`absolute left-4 top-1/2 -translate-y-1/2 text-text-secondary ${iconSizes[size]}`} />
+      <Search className={`absolute left-4 top-1/2 -translate-y-1/2 text-muted-gray ${iconSizes[size]}`} />
       <input
         type="text"
         value={query}
         onChange={(e) => setQuery(e.target.value)}
         placeholder={placeholder}
         className={`
-          w-full rounded-xl border border-lichenpunk-warmGray bg-white
-          text-text-primary placeholder:text-text-secondary/60
-          focus:outline-none focus:ring-2 focus:ring-gitcoin-green focus:border-transparent
+          w-full rounded-xl border border-dark-gray bg-charcoal
+          text-light-white placeholder:text-muted-gray
+          focus:outline-none focus:ring-2 focus:ring-light-white focus:border-transparent
+          transition-all duration-200
           ${sizes[size]}
           pl-12
         `}

@@ -42,17 +42,17 @@ export default function CaseStudyCard({ caseStudy }: CaseStudyCardProps) {
               alt={caseStudy.title}
               className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
             />
-            <div className="absolute inset-0 bg-gradient-to-t from-black/40 to-transparent" />
+            <div className="absolute inset-0 bg-gradient-to-t from-void-black/60 to-transparent" />
           </div>
         )}
 
         {/* Title */}
-        <h3 className="text-lg font-semibold text-text-primary group-hover:text-gitcoin-green transition-colors mb-2 line-clamp-2">
+        <h3 className="text-lg font-semibold text-light-white group-hover:text-light-white transition-colors mb-2 line-clamp-2">
           {caseStudy.title}
         </h3>
 
         {/* Summary */}
-        <p className="text-text-secondary text-sm mb-4 line-clamp-2 flex-grow">
+        <p className="text-muted-gray text-sm mb-4 line-clamp-2 flex-grow">
           {caseStudy.summary}
         </p>
 
@@ -62,18 +62,18 @@ export default function CaseStudyCard({ caseStudy }: CaseStudyCardProps) {
             <StatusIcon className="w-3 h-3 mr-1" />
             {statusLabels[caseStudy.status]}
           </Badge>
-          <span className="text-sm font-medium text-lichenpunk-moss">
+          <span className="text-sm font-medium text-light-white">
             {caseStudy.fundingAmount}
           </span>
         </div>
 
         {/* Project Info */}
-        <div className="flex items-center justify-between pt-4 border-t border-lichenpunk-warmGray">
+        <div className="flex items-center justify-between pt-4 border-t border-dark-gray">
           <div>
-            <p className="text-xs text-text-secondary">Project</p>
-            <p className="text-sm font-medium text-text-primary">{caseStudy.project}</p>
+            <p className="text-xs text-muted-gray">Project</p>
+            <p className="text-sm font-medium text-light-white">{caseStudy.project}</p>
           </div>
-          <ArrowRight className="w-4 h-4 text-lichenpunk-moss group-hover:translate-x-1 transition-transform" />
+          <ArrowRight className="w-4 h-4 text-light-white group-hover:translate-x-1 transition-transform" />
         </div>
       </div>
     </Link>

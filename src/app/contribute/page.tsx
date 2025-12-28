@@ -26,14 +26,14 @@ const qualityStandards = [
 
 export default function ContributePage() {
   return (
-    <div className="min-h-screen bg-lichenpunk-offWhite">
+    <div className="min-h-screen bg-void-black">
       {/* Header */}
-      <section className="bg-white border-b border-lichenpunk-warmGray">
+      <section className="bg-charcoal border-b border-dark-gray">
         <div className="container-page py-12">
-          <h1 className="text-3xl md:text-4xl font-bold text-text-primary mb-4">
+          <h1 className="text-3xl md:text-4xl font-bold text-light-white mb-4">
             Contribution Guide
           </h1>
-          <p className="text-lg text-text-secondary max-w-3xl">
+          <p className="text-lg text-muted-gray max-w-3xl">
             Help build Ethereum&apos;s definitive funding resource. Quality contributions
             earn bounties and recognition in the community.
           </p>
@@ -45,10 +45,10 @@ export default function ContributePage() {
         <div className="container-page">
           <div className="max-w-4xl mx-auto">
             <div className="flex items-center gap-3 mb-8">
-              <div className="w-10 h-10 rounded-lg bg-gitcoin-green/10 flex items-center justify-center">
-                <DollarSign className="w-5 h-5 text-gitcoin-green" />
+              <div className="w-10 h-10 rounded-lg bg-light-white/10 flex items-center justify-center">
+                <DollarSign className="w-5 h-5 text-light-white" />
               </div>
-              <h2 className="text-2xl font-bold text-text-primary">
+              <h2 className="text-2xl font-bold text-light-white">
                 Bounty Rates
               </h2>
             </div>
@@ -56,16 +56,16 @@ export default function ContributePage() {
               {bounties.map((bounty) => (
                 <div key={bounty.type} className="card flex flex-col md:flex-row md:items-center gap-4">
                   <div className="flex-1">
-                    <h3 className="font-semibold text-text-primary">{bounty.type}</h3>
-                    <p className="text-sm text-text-secondary">{bounty.description}</p>
+                    <h3 className="font-semibold text-light-white">{bounty.type}</h3>
+                    <p className="text-sm text-muted-gray">{bounty.description}</p>
                   </div>
-                  <div className="text-2xl font-bold text-gitcoin-green">
+                  <div className="text-2xl font-bold text-light-white">
                     {bounty.amount}
                   </div>
                 </div>
               ))}
             </div>
-            <p className="text-sm text-text-secondary mt-4 text-center">
+            <p className="text-sm text-muted-gray mt-4 text-center">
               Bounties are paid in ETH or USDC to your provided wallet address upon approval.
             </p>
           </div>
@@ -73,57 +73,57 @@ export default function ContributePage() {
       </section>
 
       {/* What to Contribute */}
-      <section className="section bg-white">
+      <section className="section bg-charcoal">
         <div className="container-page">
           <div className="max-w-4xl mx-auto">
             <div className="flex items-center gap-3 mb-8">
-              <div className="w-10 h-10 rounded-lg bg-solarpunk-sky/10 flex items-center justify-center">
-                <FileText className="w-5 h-5 text-solarpunk-sky" />
+              <div className="w-10 h-10 rounded-lg bg-light-white/10 flex items-center justify-center">
+                <FileText className="w-5 h-5 text-light-white" />
               </div>
-              <h2 className="text-2xl font-bold text-text-primary">
+              <h2 className="text-2xl font-bold text-light-white">
                 What We&apos;re Looking For
               </h2>
             </div>
 
             <div className="grid md:grid-cols-2 gap-8">
               <div>
-                <h3 className="font-semibold text-text-primary mb-4">High Priority</h3>
+                <h3 className="font-semibold text-light-white mb-4">High Priority</h3>
                 <ul className="space-y-3">
-                  <li className="flex items-start gap-2 text-text-secondary">
-                    <Star className="w-4 h-4 text-solarpunk-orange mt-1 flex-shrink-0" />
+                  <li className="flex items-start gap-2 text-muted-gray">
+                    <Star className="w-4 h-4 text-light-white mt-1 flex-shrink-0" />
                     Case studies from recent funding rounds (GG24, RetroPGF4, etc.)
                   </li>
-                  <li className="flex items-start gap-2 text-text-secondary">
-                    <Star className="w-4 h-4 text-solarpunk-orange mt-1 flex-shrink-0" />
+                  <li className="flex items-start gap-2 text-muted-gray">
+                    <Star className="w-4 h-4 text-light-white mt-1 flex-shrink-0" />
                     Documentation of emerging mechanisms
                   </li>
-                  <li className="flex items-start gap-2 text-text-secondary">
-                    <Star className="w-4 h-4 text-solarpunk-orange mt-1 flex-shrink-0" />
+                  <li className="flex items-start gap-2 text-muted-gray">
+                    <Star className="w-4 h-4 text-light-white mt-1 flex-shrink-0" />
                     Profiles of DAOs with active grant programs
                   </li>
-                  <li className="flex items-start gap-2 text-text-secondary">
-                    <Star className="w-4 h-4 text-solarpunk-orange mt-1 flex-shrink-0" />
+                  <li className="flex items-start gap-2 text-muted-gray">
+                    <Star className="w-4 h-4 text-light-white mt-1 flex-shrink-0" />
                     Research on funding effectiveness and impact
                   </li>
                 </ul>
               </div>
               <div>
-                <h3 className="font-semibold text-text-primary mb-4">Always Welcome</h3>
+                <h3 className="font-semibold text-light-white mb-4">Always Welcome</h3>
                 <ul className="space-y-3">
-                  <li className="flex items-start gap-2 text-text-secondary">
-                    <CheckCircle className="w-4 h-4 text-gitcoin-green mt-1 flex-shrink-0" />
+                  <li className="flex items-start gap-2 text-muted-gray">
+                    <CheckCircle className="w-4 h-4 text-light-white mt-1 flex-shrink-0" />
                     Updates to outdated information
                   </li>
-                  <li className="flex items-start gap-2 text-text-secondary">
-                    <CheckCircle className="w-4 h-4 text-gitcoin-green mt-1 flex-shrink-0" />
+                  <li className="flex items-start gap-2 text-muted-gray">
+                    <CheckCircle className="w-4 h-4 text-light-white mt-1 flex-shrink-0" />
                     New platforms and tools we&apos;ve missed
                   </li>
-                  <li className="flex items-start gap-2 text-text-secondary">
-                    <CheckCircle className="w-4 h-4 text-gitcoin-green mt-1 flex-shrink-0" />
+                  <li className="flex items-start gap-2 text-muted-gray">
+                    <CheckCircle className="w-4 h-4 text-light-white mt-1 flex-shrink-0" />
                     Translations (coming soon)
                   </li>
-                  <li className="flex items-start gap-2 text-text-secondary">
-                    <CheckCircle className="w-4 h-4 text-gitcoin-green mt-1 flex-shrink-0" />
+                  <li className="flex items-start gap-2 text-muted-gray">
+                    <CheckCircle className="w-4 h-4 text-light-white mt-1 flex-shrink-0" />
                     Corrections and fact-checking
                   </li>
                 </ul>
@@ -138,24 +138,24 @@ export default function ContributePage() {
         <div className="container-page">
           <div className="max-w-4xl mx-auto">
             <div className="flex items-center gap-3 mb-8">
-              <div className="w-10 h-10 rounded-lg bg-lichenpunk-moss/10 flex items-center justify-center">
-                <CheckCircle className="w-5 h-5 text-lichenpunk-moss" />
+              <div className="w-10 h-10 rounded-lg bg-light-white/10 flex items-center justify-center">
+                <CheckCircle className="w-5 h-5 text-light-white" />
               </div>
-              <h2 className="text-2xl font-bold text-text-primary">
+              <h2 className="text-2xl font-bold text-light-white">
                 Quality Standards
               </h2>
             </div>
-            <p className="text-text-secondary mb-6">
+            <p className="text-muted-gray mb-6">
               To earn a bounty, your submission must meet these standards:
             </p>
             <div className="card">
               <ul className="space-y-4">
                 {qualityStandards.map((standard, i) => (
                   <li key={i} className="flex items-start gap-3">
-                    <span className="w-6 h-6 rounded-full bg-gitcoin-green/10 text-gitcoin-green text-sm font-bold flex items-center justify-center flex-shrink-0">
+                    <span className="w-6 h-6 rounded-full bg-light-white/10 text-light-white text-sm font-bold flex items-center justify-center flex-shrink-0">
                       {i + 1}
                     </span>
-                    <span className="text-text-secondary">{standard}</span>
+                    <span className="text-muted-gray">{standard}</span>
                   </li>
                 ))}
               </ul>
@@ -165,52 +165,52 @@ export default function ContributePage() {
       </section>
 
       {/* Process */}
-      <section className="section bg-white">
+      <section className="section bg-charcoal">
         <div className="container-page">
           <div className="max-w-4xl mx-auto">
             <div className="flex items-center gap-3 mb-8">
-              <div className="w-10 h-10 rounded-lg bg-lunarpunk-lavender/10 flex items-center justify-center">
-                <Edit className="w-5 h-5 text-lunarpunk-lavender" />
+              <div className="w-10 h-10 rounded-lg bg-light-white/10 flex items-center justify-center">
+                <Edit className="w-5 h-5 text-light-white" />
               </div>
-              <h2 className="text-2xl font-bold text-text-primary">
+              <h2 className="text-2xl font-bold text-light-white">
                 How It Works
               </h2>
             </div>
 
             <div className="grid md:grid-cols-4 gap-6">
               <div className="text-center">
-                <div className="w-12 h-12 rounded-full bg-lichenpunk-warmGray text-text-primary font-bold flex items-center justify-center mx-auto mb-4">
+                <div className="w-12 h-12 rounded-full bg-dark-gray text-light-white font-bold flex items-center justify-center mx-auto mb-4">
                   1
                 </div>
-                <h3 className="font-semibold text-text-primary mb-2">Submit</h3>
-                <p className="text-sm text-text-secondary">
+                <h3 className="font-semibold text-light-white mb-2">Submit</h3>
+                <p className="text-sm text-muted-gray">
                   Fill out the submission form with your content
                 </p>
               </div>
               <div className="text-center">
-                <div className="w-12 h-12 rounded-full bg-lichenpunk-warmGray text-text-primary font-bold flex items-center justify-center mx-auto mb-4">
+                <div className="w-12 h-12 rounded-full bg-dark-gray text-light-white font-bold flex items-center justify-center mx-auto mb-4">
                   2
                 </div>
-                <h3 className="font-semibold text-text-primary mb-2">Review</h3>
-                <p className="text-sm text-text-secondary">
+                <h3 className="font-semibold text-light-white mb-2">Review</h3>
+                <p className="text-sm text-muted-gray">
                   Our team reviews within 3-5 business days
                 </p>
               </div>
               <div className="text-center">
-                <div className="w-12 h-12 rounded-full bg-lichenpunk-warmGray text-text-primary font-bold flex items-center justify-center mx-auto mb-4">
+                <div className="w-12 h-12 rounded-full bg-dark-gray text-light-white font-bold flex items-center justify-center mx-auto mb-4">
                   3
                 </div>
-                <h3 className="font-semibold text-text-primary mb-2">Feedback</h3>
-                <p className="text-sm text-text-secondary">
+                <h3 className="font-semibold text-light-white mb-2">Feedback</h3>
+                <p className="text-sm text-muted-gray">
                   We may request revisions before approval
                 </p>
               </div>
               <div className="text-center">
-                <div className="w-12 h-12 rounded-full bg-gitcoin-green text-text-primary font-bold flex items-center justify-center mx-auto mb-4">
+                <div className="w-12 h-12 rounded-full bg-light-white text-void-black font-bold flex items-center justify-center mx-auto mb-4">
                   4
                 </div>
-                <h3 className="font-semibold text-text-primary mb-2">Publish & Pay</h3>
-                <p className="text-sm text-text-secondary">
+                <h3 className="font-semibold text-light-white mb-2">Publish & Pay</h3>
+                <p className="text-sm text-muted-gray">
                   Content goes live, bounty sent to your wallet
                 </p>
               </div>
@@ -220,7 +220,7 @@ export default function ContributePage() {
       </section>
 
       {/* CTA */}
-      <section className="section bg-lichenpunk-lichen text-white">
+      <section className="section bg-charcoal text-light-white">
         <div className="container-page text-center">
           <h2 className="text-2xl md:text-3xl font-bold mb-4">
             Ready to Contribute?
@@ -229,7 +229,7 @@ export default function ContributePage() {
             Start with something you know well. Share your expertise and help build
             the definitive resource for Ethereum funding.
           </p>
-          <Button href="/submit" className="bg-gitcoin-green text-text-primary hover:bg-gitcoin-softCyan">
+          <Button href="/submit" className="bg-light-white text-void-black hover:bg-muted-gray">
             Start Contributing
           </Button>
         </div>

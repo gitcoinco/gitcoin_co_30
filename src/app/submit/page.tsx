@@ -28,15 +28,15 @@ function SubmitContent() {
 
   if (submitted) {
     return (
-      <div className="min-h-screen bg-lichenpunk-offWhite flex items-center justify-center">
+      <div className="min-h-screen bg-void-black flex items-center justify-center">
         <div className="text-center max-w-md mx-auto px-4">
-          <div className="w-16 h-16 rounded-full bg-gitcoin-green/20 flex items-center justify-center mx-auto mb-6">
-            <CheckCircle className="w-8 h-8 text-gitcoin-green" />
+          <div className="w-16 h-16 rounded-full bg-light-white/20 flex items-center justify-center mx-auto mb-6">
+            <CheckCircle className="w-8 h-8 text-light-white" />
           </div>
-          <h1 className="text-2xl font-bold text-text-primary mb-4">
+          <h1 className="text-2xl font-bold text-light-white mb-4">
             Submission Received!
           </h1>
-          <p className="text-text-secondary mb-6">
+          <p className="text-muted-gray mb-6">
             Thank you for contributing to the Gitcoin Funding Directory. Our team will review your submission and get back to you within 3-5 business days.
           </p>
           <Button href="/" variant="primary">
@@ -50,12 +50,12 @@ function SubmitContent() {
   return (
     <>
       {/* Header */}
-      <section className="bg-white border-b border-lichenpunk-warmGray">
+      <section className="bg-charcoal border-b border-dark-gray">
         <div className="container-page py-12">
-          <h1 className="text-3xl md:text-4xl font-bold text-text-primary mb-4">
+          <h1 className="text-3xl md:text-4xl font-bold text-light-white mb-4">
             {editPath ? 'Suggest an Edit' : 'Submit Content'}
           </h1>
-          <p className="text-lg text-text-secondary max-w-3xl">
+          <p className="text-lg text-muted-gray max-w-3xl">
             {editPath
               ? 'Help us improve this content. Your edit will be reviewed by our team.'
               : 'Contribute to the Gitcoin Funding Directory. Quality submissions earn bounties up to $100.'}
@@ -69,8 +69,8 @@ function SubmitContent() {
             {/* Edit notice */}
             {editPath && (
               <div className="card bg-system-info/10 border-system-info mb-8">
-                <p className="text-sm text-text-primary">
-                  Editing: <code className="bg-white px-2 py-0.5 rounded">{editPath}</code>
+                <p className="text-sm text-light-white">
+                  Editing: <code className="bg-charcoal px-2 py-0.5 rounded">{editPath}</code>
                 </p>
               </div>
             )}
@@ -78,7 +78,7 @@ function SubmitContent() {
             {/* Content Type Selection */}
             {!editPath && !selectedType && (
               <div className="space-y-6">
-                <h2 className="text-xl font-semibold text-text-primary">
+                <h2 className="text-xl font-semibold text-light-white">
                   What would you like to submit?
                 </h2>
                 <div className="grid gap-4">
@@ -86,14 +86,14 @@ function SubmitContent() {
                     <button
                       key={type.value}
                       onClick={() => setSelectedType(type.value)}
-                      className="card text-left flex items-center gap-4 hover:border-gitcoin-green transition-colors"
+                      className="card text-left flex items-center gap-4 hover:border-light-white transition-colors"
                     >
-                      <div className="w-12 h-12 rounded-lg bg-gitcoin-green/10 flex items-center justify-center flex-shrink-0">
-                        <type.icon className="w-6 h-6 text-gitcoin-green" />
+                      <div className="w-12 h-12 rounded-lg bg-light-white/10 flex items-center justify-center flex-shrink-0">
+                        <type.icon className="w-6 h-6 text-light-white" />
                       </div>
                       <div>
-                        <h3 className="font-semibold text-text-primary">{type.label}</h3>
-                        <p className="text-sm text-text-secondary">{type.description}</p>
+                        <h3 className="font-semibold text-light-white">{type.label}</h3>
+                        <p className="text-sm text-muted-gray">{type.description}</p>
                       </div>
                     </button>
                   ))}
@@ -112,7 +112,7 @@ function SubmitContent() {
                     <button
                       type="button"
                       onClick={() => setSelectedType('')}
-                      className="text-sm text-text-secondary hover:text-text-primary"
+                      className="text-sm text-muted-gray hover:text-light-white"
                     >
                       Change type
                     </button>
@@ -120,7 +120,7 @@ function SubmitContent() {
                 )}
 
                 <div className="card space-y-6">
-                  <h2 className="text-xl font-semibold text-text-primary">
+                  <h2 className="text-xl font-semibold text-light-white">
                     Basic Information
                   </h2>
 
@@ -231,10 +231,10 @@ function SubmitContent() {
                 </div>
 
                 <div className="card space-y-6">
-                  <h2 className="text-xl font-semibold text-text-primary">
+                  <h2 className="text-xl font-semibold text-light-white">
                     Your Information
                   </h2>
-                  <p className="text-sm text-text-secondary -mt-4">
+                  <p className="text-sm text-muted-gray -mt-4">
                     Optional - for attribution and bounty payments
                   </p>
 
@@ -269,7 +269,7 @@ function SubmitContent() {
                   </Button>
                 </div>
 
-                <p className="text-sm text-text-secondary text-center">
+                <p className="text-sm text-muted-gray text-center">
                   By submitting, you agree that your contribution may be edited and published
                   under an open license. Quality submissions earn bounties up to $100.
                 </p>
@@ -284,10 +284,10 @@ function SubmitContent() {
 
 function SubmitLoading() {
   return (
-    <div className="min-h-screen bg-lichenpunk-offWhite flex items-center justify-center">
+    <div className="min-h-screen bg-void-black flex items-center justify-center">
       <div className="text-center">
-        <div className="w-8 h-8 border-4 border-gitcoin-green border-t-transparent rounded-full animate-spin mx-auto mb-4" />
-        <p className="text-text-secondary">Loading...</p>
+        <div className="w-8 h-8 border-4 border-light-white border-t-transparent rounded-full animate-spin mx-auto mb-4" />
+        <p className="text-muted-gray">Loading...</p>
       </div>
     </div>
   )
@@ -295,7 +295,7 @@ function SubmitLoading() {
 
 export default function SubmitPage() {
   return (
-    <div className="min-h-screen bg-lichenpunk-offWhite">
+    <div className="min-h-screen bg-void-black">
       <Suspense fallback={<SubmitLoading />}>
         <SubmitContent />
       </Suspense>

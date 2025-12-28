@@ -57,13 +57,13 @@ export default async function MechanismDetailPage({ params }: PageProps) {
   const caseStudies = getCaseStudiesByMechanism(mechanism.slug)
 
   return (
-    <div className="min-h-screen bg-lichenpunk-offWhite">
+    <div className="min-h-screen bg-void-black">
       {/* Breadcrumb */}
-      <div className="bg-white border-b border-lichenpunk-warmGray">
+      <div className="bg-charcoal border-b border-dark-gray">
         <div className="container-page py-4">
           <Link
             href="/mechanisms"
-            className="inline-flex items-center gap-2 text-text-secondary hover:text-text-primary transition-colors"
+            className="inline-flex items-center gap-2 text-muted-gray hover:text-light-white transition-colors"
           >
             <ArrowLeft className="w-4 h-4" />
             Back to Mechanisms
@@ -72,26 +72,26 @@ export default async function MechanismDetailPage({ params }: PageProps) {
       </div>
 
       {/* Header */}
-      <section className="bg-white border-b border-lichenpunk-warmGray">
+      <section className="bg-charcoal border-b border-dark-gray">
         <div className="container-page py-12">
           <div className="flex flex-col md:flex-row md:items-start md:justify-between gap-6">
             <div>
               <div className="flex items-center gap-3 mb-4">
                 <Badge>{categoryLabels[mechanism.category]}</Badge>
                 {mechanism.originYear && (
-                  <span className="text-sm text-text-secondary">
+                  <span className="text-sm text-muted-gray">
                     Since {mechanism.originYear}
                   </span>
                 )}
               </div>
-              <h1 className="text-3xl md:text-4xl font-bold text-text-primary mb-4">
+              <h1 className="text-3xl md:text-4xl font-bold text-light-white mb-4">
                 {mechanism.name}
               </h1>
-              <p className="text-lg text-text-secondary max-w-2xl">
+              <p className="text-lg text-muted-gray max-w-2xl">
                 {mechanism.shortDescription}
               </p>
               {mechanism.inventors && mechanism.inventors.length > 0 && (
-                <p className="mt-4 text-sm text-text-secondary">
+                <p className="mt-4 text-sm text-muted-gray">
                   Pioneered by: {mechanism.inventors.join(', ')}
                 </p>
               )}
@@ -112,49 +112,49 @@ export default async function MechanismDetailPage({ params }: PageProps) {
             <div className="lg:col-span-2 space-y-8">
               {/* How It Works */}
               <div className="card">
-                <h2 className="text-xl font-semibold text-text-primary mb-4 flex items-center gap-2">
-                  <Lightbulb className="w-5 h-5 text-solarpunk-orange" />
+                <h2 className="text-xl font-semibold text-light-white mb-4 flex items-center gap-2">
+                  <Lightbulb className="w-5 h-5 text-light-white" />
                   How It Works
                 </h2>
                 <div className="prose prose-slate max-w-none">
-                  <p className="text-text-secondary whitespace-pre-line">{mechanism.howItWorks}</p>
+                  <p className="text-muted-gray whitespace-pre-line">{mechanism.howItWorks}</p>
                 </div>
               </div>
 
               {/* Full Description */}
               <div className="card">
-                <h2 className="text-xl font-semibold text-text-primary mb-4">
+                <h2 className="text-xl font-semibold text-light-white mb-4">
                   Deep Dive
                 </h2>
                 <div className="prose prose-slate max-w-none">
-                  <p className="text-text-secondary whitespace-pre-line">{mechanism.fullDescription}</p>
+                  <p className="text-muted-gray whitespace-pre-line">{mechanism.fullDescription}</p>
                 </div>
               </div>
 
               {/* Pros & Cons */}
               <div className="grid md:grid-cols-2 gap-6">
                 <div className="card">
-                  <h3 className="font-semibold text-text-primary mb-4 flex items-center gap-2">
-                    <Check className="w-5 h-5 text-gitcoin-green" />
+                  <h3 className="font-semibold text-light-white mb-4 flex items-center gap-2">
+                    <Check className="w-5 h-5 text-light-white" />
                     Advantages
                   </h3>
                   <ul className="space-y-3">
                     {mechanism.advantages.map((advantage, i) => (
-                      <li key={i} className="flex items-start gap-2 text-text-secondary">
-                        <Check className="w-4 h-4 text-gitcoin-green mt-1 flex-shrink-0" />
+                      <li key={i} className="flex items-start gap-2 text-muted-gray">
+                        <Check className="w-4 h-4 text-light-white mt-1 flex-shrink-0" />
                         {advantage}
                       </li>
                     ))}
                   </ul>
                 </div>
                 <div className="card">
-                  <h3 className="font-semibold text-text-primary mb-4 flex items-center gap-2">
+                  <h3 className="font-semibold text-light-white mb-4 flex items-center gap-2">
                     <X className="w-5 h-5 text-system-error" />
                     Limitations
                   </h3>
                   <ul className="space-y-3">
                     {mechanism.limitations.map((limitation, i) => (
-                      <li key={i} className="flex items-start gap-2 text-text-secondary">
+                      <li key={i} className="flex items-start gap-2 text-muted-gray">
                         <X className="w-4 h-4 text-system-error mt-1 flex-shrink-0" />
                         {limitation}
                       </li>
@@ -166,7 +166,7 @@ export default async function MechanismDetailPage({ params }: PageProps) {
               {/* Implementations */}
               {implementations.length > 0 && (
                 <div>
-                  <h2 className="text-xl font-semibold text-text-primary mb-4">
+                  <h2 className="text-xl font-semibold text-light-white mb-4">
                     Apps Using This Mechanism
                   </h2>
                   <div className="grid md:grid-cols-2 gap-4">
@@ -180,7 +180,7 @@ export default async function MechanismDetailPage({ params }: PageProps) {
               {/* Case Studies */}
               {caseStudies.length > 0 && (
                 <div>
-                  <h2 className="text-xl font-semibold text-text-primary mb-4">
+                  <h2 className="text-xl font-semibold text-light-white mb-4">
                     Case Studies
                   </h2>
                   <div className="grid md:grid-cols-2 gap-4">
@@ -196,11 +196,11 @@ export default async function MechanismDetailPage({ params }: PageProps) {
             <div className="space-y-6">
               {/* Best Used For */}
               <div className="card">
-                <h3 className="font-semibold text-text-primary mb-4">Best Used For</h3>
+                <h3 className="font-semibold text-light-white mb-4">Best Used For</h3>
                 <ul className="space-y-2">
                   {mechanism.bestUsedFor.map((use, i) => (
-                    <li key={i} className="flex items-center gap-2 text-text-secondary">
-                      <span className="w-1.5 h-1.5 rounded-full bg-gitcoin-green" />
+                    <li key={i} className="flex items-center gap-2 text-muted-gray">
+                      <span className="w-1.5 h-1.5 rounded-full bg-light-white" />
                       {use}
                     </li>
                   ))}
@@ -210,7 +210,7 @@ export default async function MechanismDetailPage({ params }: PageProps) {
               {/* Technical Resources */}
               {mechanism.technicalResources.length > 0 && (
                 <div className="card">
-                  <h3 className="font-semibold text-text-primary mb-4">Resources</h3>
+                  <h3 className="font-semibold text-light-white mb-4">Resources</h3>
                   <div className="space-y-3">
                     {mechanism.technicalResources.map((resource, i) => {
                       const Icon = resourceIcons[resource.type] || BookOpen
@@ -220,7 +220,7 @@ export default async function MechanismDetailPage({ params }: PageProps) {
                           href={resource.url}
                           target="_blank"
                           rel="noopener noreferrer"
-                          className="flex items-center gap-3 text-text-secondary hover:text-text-primary transition-colors group"
+                          className="flex items-center gap-3 text-muted-gray hover:text-light-white transition-colors group"
                         >
                           <Icon className="w-4 h-4" />
                           <span className="flex-1">{resource.title}</span>
@@ -234,7 +234,7 @@ export default async function MechanismDetailPage({ params }: PageProps) {
 
               {/* Tags */}
               <div className="card">
-                <h3 className="font-semibold text-text-primary mb-4">Tags</h3>
+                <h3 className="font-semibold text-light-white mb-4">Tags</h3>
                 <div className="flex flex-wrap gap-2">
                   {mechanism.tags.map((tag) => (
                     <Badge key={tag} size="sm">{tag}</Badge>
@@ -243,7 +243,7 @@ export default async function MechanismDetailPage({ params }: PageProps) {
               </div>
 
               {/* Last Updated */}
-              <p className="text-sm text-text-secondary text-center">
+              <p className="text-sm text-muted-gray text-center">
                 Last updated: {new Date(mechanism.lastUpdated).toLocaleDateString()}
               </p>
             </div>

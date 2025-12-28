@@ -44,13 +44,13 @@ export default async function ResearchDetailPage({ params }: PageProps) {
   const TypeIcon = typeInfo.icon
 
   return (
-    <div className="min-h-screen bg-lichenpunk-offWhite">
+    <div className="min-h-screen bg-void-black">
       {/* Breadcrumb */}
-      <div className="bg-white border-b border-lichenpunk-warmGray">
+      <div className="bg-charcoal border-b border-dark-gray">
         <div className="container-page py-4">
           <Link
             href="/research"
-            className="inline-flex items-center gap-2 text-text-secondary hover:text-text-primary transition-colors"
+            className="inline-flex items-center gap-2 text-muted-gray hover:text-light-white transition-colors"
           >
             <ArrowLeft className="w-4 h-4" />
             Back to Research
@@ -59,7 +59,7 @@ export default async function ResearchDetailPage({ params }: PageProps) {
       </div>
 
       {/* Header */}
-      <section className="bg-white border-b border-lichenpunk-warmGray">
+      <section className="bg-charcoal border-b border-dark-gray">
         <div className="container-page py-12">
           <div className="max-w-4xl">
             <div className="flex items-center gap-3 mb-4">
@@ -68,16 +68,16 @@ export default async function ResearchDetailPage({ params }: PageProps) {
                 {typeInfo.label}
               </Badge>
               {r.timeframe && (
-                <span className="text-sm text-text-secondary">{r.timeframe}</span>
+                <span className="text-sm text-muted-gray">{r.timeframe}</span>
               )}
             </div>
-            <h1 className="text-3xl md:text-4xl font-bold text-text-primary mb-4">
+            <h1 className="text-3xl md:text-4xl font-bold text-light-white mb-4">
               {r.title}
             </h1>
-            <p className="text-lg text-text-secondary mb-6">
+            <p className="text-lg text-muted-gray mb-6">
               {r.abstract}
             </p>
-            <div className="flex flex-wrap items-center gap-4 text-sm text-text-secondary">
+            <div className="flex flex-wrap items-center gap-4 text-sm text-muted-gray">
               <div className="flex items-center gap-2">
                 <User className="w-4 h-4" />
                 {r.authors.join(', ')}
@@ -102,8 +102,8 @@ export default async function ResearchDetailPage({ params }: PageProps) {
             {/* Main Content */}
             <div className="lg:col-span-2">
               <article className="card">
-                <div className="prose prose-slate max-w-none prose-headings:text-text-primary prose-p:text-text-secondary prose-strong:text-text-primary prose-li:text-text-secondary">
-                  <div className="whitespace-pre-line text-text-secondary">
+                <div className="prose prose-slate max-w-none prose-headings:text-light-white prose-p:text-muted-gray prose-strong:text-light-white prose-li:text-muted-gray">
+                  <div className="whitespace-pre-line text-muted-gray">
                     {r.content}
                   </div>
                 </div>
@@ -115,16 +115,16 @@ export default async function ResearchDetailPage({ params }: PageProps) {
               {/* Related Topics */}
               {(r.relatedApps.length > 0 || r.relatedMechanisms.length > 0) && (
                 <div className="card">
-                  <h3 className="font-semibold text-text-primary mb-4">Related Topics</h3>
+                  <h3 className="font-semibold text-light-white mb-4">Related Topics</h3>
                   {r.relatedApps.length > 0 && (
                     <div className="mb-4">
-                      <p className="text-sm text-text-secondary mb-2">Apps</p>
+                      <p className="text-sm text-muted-gray mb-2">Apps</p>
                       <div className="flex flex-wrap gap-2">
                         {r.relatedApps.map((app) => (
                           <Link
                             key={app}
                             href={`/apps/${app}`}
-                            className="text-sm px-2 py-1 bg-lichenpunk-warmGray rounded hover:bg-lichenpunk-slateGray hover:text-white transition-colors"
+                            className="text-sm px-2 py-1 bg-dark-gray rounded hover:bg-muted-gray hover:text-light-white transition-colors"
                           >
                             {app}
                           </Link>
@@ -134,13 +134,13 @@ export default async function ResearchDetailPage({ params }: PageProps) {
                   )}
                   {r.relatedMechanisms.length > 0 && (
                     <div>
-                      <p className="text-sm text-text-secondary mb-2">Mechanisms</p>
+                      <p className="text-sm text-muted-gray mb-2">Mechanisms</p>
                       <div className="flex flex-wrap gap-2">
                         {r.relatedMechanisms.map((mech) => (
                           <Link
                             key={mech}
                             href={`/mechanisms/${mech}`}
-                            className="text-sm px-2 py-1 bg-lichenpunk-warmGray rounded hover:bg-lichenpunk-slateGray hover:text-white transition-colors"
+                            className="text-sm px-2 py-1 bg-dark-gray rounded hover:bg-muted-gray hover:text-light-white transition-colors"
                           >
                             {mech}
                           </Link>
@@ -154,7 +154,7 @@ export default async function ResearchDetailPage({ params }: PageProps) {
               {/* Sources */}
               {r.sources.length > 0 && (
                 <div className="card">
-                  <h3 className="font-semibold text-text-primary mb-4">Sources</h3>
+                  <h3 className="font-semibold text-light-white mb-4">Sources</h3>
                   <ul className="space-y-2">
                     {r.sources.map((source, i) => (
                       <li key={i}>
@@ -162,7 +162,7 @@ export default async function ResearchDetailPage({ params }: PageProps) {
                           href={source.url}
                           target="_blank"
                           rel="noopener noreferrer"
-                          className="text-sm text-text-secondary hover:text-text-primary transition-colors flex items-center gap-2 group"
+                          className="text-sm text-muted-gray hover:text-light-white transition-colors flex items-center gap-2 group"
                         >
                           {source.title}
                           <ExternalLink className="w-3 h-3 opacity-0 group-hover:opacity-100" />
@@ -175,7 +175,7 @@ export default async function ResearchDetailPage({ params }: PageProps) {
 
               {/* Tags */}
               <div className="card">
-                <h3 className="font-semibold text-text-primary mb-4">Tags</h3>
+                <h3 className="font-semibold text-light-white mb-4">Tags</h3>
                 <div className="flex flex-wrap gap-2">
                   {r.tags.map((tag) => (
                     <Badge key={tag} size="sm">{tag}</Badge>
@@ -192,7 +192,7 @@ export default async function ResearchDetailPage({ params }: PageProps) {
               </div>
 
               {/* Metadata */}
-              <p className="text-sm text-text-secondary text-center">
+              <p className="text-sm text-muted-gray text-center">
                 Published: {new Date(r.publishDate).toLocaleDateString()}<br />
                 Updated: {new Date(r.lastUpdated).toLocaleDateString()}
               </p>

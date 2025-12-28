@@ -4,13 +4,13 @@ import { Button } from '@/components/ui'
 
 export default function NotFound() {
   return (
-    <div className="min-h-screen bg-lichenpunk-offWhite flex items-center justify-center">
+    <div className="min-h-screen bg-void-black flex items-center justify-center">
       <div className="text-center max-w-md mx-auto px-4">
-        <div className="text-8xl font-bold text-lichenpunk-warmGray mb-4">404</div>
-        <h1 className="text-2xl font-bold text-text-primary mb-4">
+        <div className="text-8xl font-bold text-dark-gray mb-4">404</div>
+        <h1 className="text-2xl font-bold text-light-white mb-4">
           Page Not Found
         </h1>
-        <p className="text-text-secondary mb-8">
+        <p className="text-muted-gray mb-8">
           The page you&apos;re looking for doesn&apos;t exist or has been moved.
           Try searching or head back to the homepage.
         </p>

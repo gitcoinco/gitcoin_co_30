@@ -1,5 +1,5 @@
 import Link from 'next/link'
-import { ArrowRight, Calendar, Users, Coins } from 'lucide-react'
+import { ArrowRight, Calendar, Coins } from 'lucide-react'
 import Badge from '../ui/Badge'
 import type { Campaign } from '@/lib/types'
 
@@ -50,13 +50,14 @@ export default function CampaignCard({ campaign, featured = false }: CampaignCar
               alt={campaign.name}
               className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
             />
+            <div className="absolute inset-0 bg-gradient-to-t from-void-black/70 to-transparent" />
             <div className="absolute top-4 left-4">
               <Badge variant={statusVariants[campaign.status]}>
                 {statusLabels[campaign.status]}
               </Badge>
             </div>
             {campaign.status === 'active' && (
-              <div className="absolute bottom-4 right-4 bg-black/70 text-white px-3 py-1 rounded-full text-sm">
+              <div className="absolute bottom-4 right-4 bg-void-black/80 text-light-white px-3 py-1 rounded-full text-sm border border-dark-gray">
                 {getTimeRemaining()}
               </div>
             )}
@@ -65,14 +66,14 @@ export default function CampaignCard({ campaign, featured = false }: CampaignCar
 
         {/* Title & Tagline */}
         <div className="mb-4">
-          <h3 className="text-xl font-semibold text-text-primary group-hover:text-gitcoin-green transition-colors mb-1">
+          <h3 className="text-xl font-semibold text-light-white group-hover:text-light-white transition-colors mb-1">
             {campaign.name}
           </h3>
-          <p className="text-text-secondary">{campaign.tagline}</p>
+          <p className="text-muted-gray">{campaign.tagline}</p>
         </div>
 
         {/* Description */}
-        <p className="text-text-secondary text-sm mb-4 line-clamp-2 flex-grow">
+        <p className="text-muted-gray text-sm mb-4 line-clamp-2 flex-grow">
           {campaign.description}
         </p>
 
@@ -80,18 +81,18 @@ export default function CampaignCard({ campaign, featured = false }: CampaignCar
         <div className="grid grid-cols-2 gap-4 mb-4">
           {campaign.matchingPool && (
             <div className="flex items-center gap-2">
-              <Coins className="w-4 h-4 text-lichenpunk-moss" />
+              <Coins className="w-4 h-4 text-light-white" />
               <div>
-                <p className="text-xs text-text-secondary">Matching Pool</p>
-                <p className="text-sm font-medium text-text-primary">{campaign.matchingPool}</p>
+                <p className="text-xs text-muted-gray">Matching Pool</p>
+                <p className="text-sm font-medium text-light-white">{campaign.matchingPool}</p>
               </div>
             </div>
           )}
           <div className="flex items-center gap-2">
-            <Calendar className="w-4 h-4 text-lichenpunk-moss" />
+            <Calendar className="w-4 h-4 text-light-white" />
             <div>
-              <p className="text-xs text-text-secondary">Dates</p>
-              <p className="text-sm font-medium text-text-primary">
+              <p className="text-xs text-muted-gray">Dates</p>
+              <p className="text-sm font-medium text-light-white">
                 {formatDate(campaign.startDate)} - {formatDate(campaign.endDate)}
               </p>
             </div>
@@ -100,24 +101,24 @@ export default function CampaignCard({ campaign, featured = false }: CampaignCar
 
         {/* Results (for completed campaigns) */}
         {campaign.results && (
-          <div className="bg-lichenpunk-offWhite -mx-6 px-6 py-3 mb-4">
+          <div className="bg-charcoal border border-dark-gray rounded-lg -mx-2 px-4 py-3 mb-4">
             <div className="flex justify-between text-sm">
-              <span className="text-text-secondary">Projects funded</span>
-              <span className="font-medium text-text-primary">{campaign.results.projectsFunded}</span>
+              <span className="text-muted-gray">Projects funded</span>
+              <span className="font-medium text-light-white">{campaign.results.projectsFunded}</span>
             </div>
             <div className="flex justify-between text-sm">
-              <span className="text-text-secondary">Total distributed</span>
-              <span className="font-medium text-gitcoin-green">{campaign.results.totalDistributed}</span>
+              <span className="text-muted-gray">Total distributed</span>
+              <span className="font-medium text-light-white">{campaign.results.totalDistributed}</span>
             </div>
           </div>
         )}
 
         {/* Footer */}
-        <div className="flex items-center justify-between pt-4 border-t border-lichenpunk-warmGray">
-          <span className="text-sm text-text-secondary">
+        <div className="flex items-center justify-between pt-4 border-t border-dark-gray">
+          <span className="text-sm text-muted-gray">
             {campaign.organizer}
           </span>
-          <ArrowRight className="w-4 h-4 text-lichenpunk-moss group-hover:translate-x-1 transition-transform" />
+          <ArrowRight className="w-4 h-4 text-light-white group-hover:translate-x-1 transition-transform" />
         </div>
       </div>
     </Link>

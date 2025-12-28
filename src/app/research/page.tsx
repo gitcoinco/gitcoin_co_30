@@ -19,14 +19,14 @@ const typeFilters = [
 
 export default function ResearchPage() {
   return (
-    <div className="min-h-screen bg-lichenpunk-offWhite">
+    <div className="min-h-screen bg-void-black">
       {/* Header */}
-      <section className="bg-white border-b border-lichenpunk-warmGray">
+      <section className="bg-charcoal border-b border-dark-gray">
         <div className="container-page py-12">
-          <h1 className="text-3xl md:text-4xl font-bold text-text-primary mb-4">
+          <h1 className="text-3xl md:text-4xl font-bold text-light-white mb-4">
             Research & Trends
           </h1>
-          <p className="text-lg text-text-secondary max-w-3xl mb-8">
+          <p className="text-lg text-muted-gray max-w-3xl mb-8">
             Deep dives into the funding ecosystem. Analysis of capital flows, mechanism performance,
             and emerging trends shaping the future of public goods funding.
           </p>
@@ -35,7 +35,7 @@ export default function ResearchPage() {
       </section>
 
       {/* Filters */}
-      <section className="bg-white border-b border-lichenpunk-warmGray sticky top-16 z-40">
+      <section className="bg-charcoal border-b border-dark-gray sticky top-16 z-40">
         <div className="container-page py-4">
           <div className="flex flex-wrap gap-2">
             {typeFilters.map((filter) => (
@@ -43,8 +43,8 @@ export default function ResearchPage() {
                 key={filter.value}
                 className={`px-4 py-2 rounded-full text-sm font-medium transition-colors ${
                   filter.value === 'all'
-                    ? 'bg-gitcoin-green text-text-primary'
-                    : 'bg-lichenpunk-warmGray text-text-secondary hover:bg-lichenpunk-slateGray hover:text-white'
+                    ? 'bg-light-white text-void-black'
+                    : 'bg-dark-gray text-muted-gray hover:bg-muted-gray hover:text-light-white'
                 }`}
               >
                 {filter.label}
@@ -58,10 +58,10 @@ export default function ResearchPage() {
       <section className="section">
         <div className="container-page">
           <div className="flex items-center justify-between mb-6">
-            <p className="text-text-secondary">
-              Showing <span className="font-medium text-text-primary">{research.length}</span> articles
+            <p className="text-muted-gray">
+              Showing <span className="font-medium text-light-white">{research.length}</span> articles
             </p>
-            <select className="px-4 py-2 rounded-lg border border-lichenpunk-warmGray bg-white text-text-primary text-sm">
+            <select className="px-4 py-2 rounded-lg border border-dark-gray bg-charcoal text-light-white text-sm">
               <option>Sort by newest</option>
               <option>Sort by title</option>
             </select>
@@ -75,12 +75,12 @@ export default function ResearchPage() {
       </section>
 
       {/* CTA */}
-      <section className="section bg-white">
+      <section className="section bg-charcoal">
         <div className="container-page text-center">
-          <h2 className="text-2xl font-bold text-text-primary mb-4">
+          <h2 className="text-2xl font-bold text-light-white mb-4">
             Contribute Research
           </h2>
-          <p className="text-text-secondary mb-6 max-w-xl mx-auto">
+          <p className="text-muted-gray mb-6 max-w-xl mx-auto">
             Have insights to share? Submit analysis, reports, or trend pieces.
             Quality research earns bounties and recognition.
           </p>

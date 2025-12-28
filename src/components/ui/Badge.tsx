@@ -5,15 +5,15 @@ interface BadgeProps {
 }
 
 export default function Badge({ children, variant = 'default', size = 'md' }: BadgeProps) {
-  const baseStyles = 'inline-flex items-center font-medium rounded-full'
+  const baseStyles = 'inline-flex items-center font-medium rounded-full border'
 
   const variants = {
-    default: 'bg-lichenpunk-warmGray text-lichenpunk-lichen',
-    success: 'bg-gitcoin-green/20 text-lichenpunk-lichen',
-    warning: 'bg-system-warning/20 text-system-warning',
-    error: 'bg-system-error/20 text-system-error',
-    info: 'bg-system-info/20 text-system-info',
-    active: 'bg-gitcoin-green text-text-primary',
+    default: 'bg-dark-gray border-dark-gray text-muted-gray',
+    success: 'bg-light-white/10 border-light-white/30 text-light-white',
+    warning: 'bg-system-warning/20 border-system-warning/30 text-system-warning',
+    error: 'bg-system-error/20 border-system-error/30 text-system-error',
+    info: 'bg-light-white/10 border-light-white/30 text-light-white',
+    active: 'bg-light-white border-light-white text-void-black',
   }
 
   const sizes = {

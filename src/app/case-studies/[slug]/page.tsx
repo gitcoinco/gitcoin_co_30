@@ -27,7 +27,7 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
 }
 
 const statusConfig = {
-  success: { icon: CheckCircle, label: 'Success', color: 'text-gitcoin-green' },
+  success: { icon: CheckCircle, label: 'Success', color: 'text-light-white' },
   partial: { icon: AlertCircle, label: 'Partial Success', color: 'text-system-warning' },
   ongoing: { icon: Clock, label: 'Ongoing', color: 'text-system-info' },
   failed: { icon: XCircle, label: 'Failed', color: 'text-system-error' },
@@ -47,13 +47,13 @@ export default async function CaseStudyDetailPage({ params }: PageProps) {
   const StatusIcon = status.icon
 
   return (
-    <div className="min-h-screen bg-lichenpunk-offWhite">
+    <div className="min-h-screen bg-void-black">
       {/* Breadcrumb */}
-      <div className="bg-white border-b border-lichenpunk-warmGray">
+      <div className="bg-charcoal border-b border-dark-gray">
         <div className="container-page py-4">
           <Link
             href="/case-studies"
-            className="inline-flex items-center gap-2 text-text-secondary hover:text-text-primary transition-colors"
+            className="inline-flex items-center gap-2 text-muted-gray hover:text-light-white transition-colors"
           >
             <ArrowLeft className="w-4 h-4" />
             Back to Case Studies
@@ -62,7 +62,7 @@ export default async function CaseStudyDetailPage({ params }: PageProps) {
       </div>
 
       {/* Header */}
-      <section className="bg-white border-b border-lichenpunk-warmGray">
+      <section className="bg-charcoal border-b border-dark-gray">
         <div className="container-page py-12">
           <div className="max-w-4xl">
             <div className="flex items-center gap-3 mb-4">
@@ -70,31 +70,31 @@ export default async function CaseStudyDetailPage({ params }: PageProps) {
                 <StatusIcon className="w-3 h-3 mr-1" />
                 {status.label}
               </Badge>
-              <span className="text-sm text-text-secondary">
+              <span className="text-sm text-muted-gray">
                 {new Date(caseStudy.fundingDate).toLocaleDateString('en-US', {
                   month: 'long',
                   year: 'numeric',
                 })}
               </span>
             </div>
-            <h1 className="text-3xl md:text-4xl font-bold text-text-primary mb-4">
+            <h1 className="text-3xl md:text-4xl font-bold text-light-white mb-4">
               {caseStudy.title}
             </h1>
-            <p className="text-lg text-text-secondary mb-6">
+            <p className="text-lg text-muted-gray mb-6">
               {caseStudy.summary}
             </p>
             <div className="flex flex-wrap gap-4 text-sm">
               <div>
-                <span className="text-text-secondary">Project:</span>{' '}
-                <span className="font-medium text-text-primary">{caseStudy.project}</span>
+                <span className="text-muted-gray">Project:</span>{' '}
+                <span className="font-medium text-light-white">{caseStudy.project}</span>
               </div>
               <div>
-                <span className="text-text-secondary">Funding:</span>{' '}
-                <span className="font-medium text-gitcoin-green">{caseStudy.fundingAmount}</span>
+                <span className="text-muted-gray">Funding:</span>{' '}
+                <span className="font-medium text-light-white">{caseStudy.fundingAmount}</span>
               </div>
               <div>
-                <span className="text-text-secondary">By:</span>{' '}
-                <span className="font-medium text-text-primary">{caseStudy.author}</span>
+                <span className="text-muted-gray">By:</span>{' '}
+                <span className="font-medium text-light-white">{caseStudy.author}</span>
               </div>
             </div>
           </div>
@@ -110,7 +110,7 @@ export default async function CaseStudyDetailPage({ params }: PageProps) {
               {/* Article */}
               <div className="card">
                 <div className="prose prose-slate max-w-none">
-                  <div className="text-text-secondary whitespace-pre-line">
+                  <div className="text-muted-gray whitespace-pre-line">
                     {caseStudy.content}
                   </div>
                 </div>
@@ -118,17 +118,17 @@ export default async function CaseStudyDetailPage({ params }: PageProps) {
 
               {/* Outcomes */}
               <div className="card">
-                <h2 className="text-xl font-semibold text-text-primary mb-6 flex items-center gap-2">
-                  <CheckCircle className="w-5 h-5 text-gitcoin-green" />
+                <h2 className="text-xl font-semibold text-light-white mb-6 flex items-center gap-2">
+                  <CheckCircle className="w-5 h-5 text-light-white" />
                   Outcomes
                 </h2>
                 <div className="space-y-6">
                   {caseStudy.outcomes.map((outcome, i) => (
-                    <div key={i} className="border-l-2 border-gitcoin-green pl-4">
-                      <h3 className="font-semibold text-text-primary mb-1">{outcome.title}</h3>
-                      <p className="text-text-secondary">{outcome.description}</p>
+                    <div key={i} className="border-l-2 border-light-white pl-4">
+                      <h3 className="font-semibold text-light-white mb-1">{outcome.title}</h3>
+                      <p className="text-muted-gray">{outcome.description}</p>
                       {outcome.metrics && (
-                        <p className="mt-2 text-lg font-semibold text-gitcoin-green">
+                        <p className="mt-2 text-lg font-semibold text-light-white">
                           {outcome.metrics}
                         </p>
                       )}
@@ -138,18 +138,18 @@ export default async function CaseStudyDetailPage({ params }: PageProps) {
               </div>
 
               {/* Lessons Learned */}
-              <div className="card bg-solarpunk-lightStone border-none">
-                <h2 className="text-xl font-semibold text-text-primary mb-6 flex items-center gap-2">
-                  <Lightbulb className="w-5 h-5 text-solarpunk-orange" />
+              <div className="card bg-charcoal border border-light-white">
+                <h2 className="text-xl font-semibold text-light-white mb-6 flex items-center gap-2">
+                  <Lightbulb className="w-5 h-5 text-light-white" />
                   Lessons Learned
                 </h2>
                 <ul className="space-y-4">
                   {caseStudy.lessonsLearned.map((lesson, i) => (
                     <li key={i} className="flex items-start gap-3">
-                      <span className="w-6 h-6 rounded-full bg-solarpunk-orange text-white text-sm font-bold flex items-center justify-center flex-shrink-0">
+                      <span className="w-6 h-6 rounded-full bg-charcoal text-light-white text-sm font-bold flex items-center justify-center flex-shrink-0">
                         {i + 1}
                       </span>
-                      <span className="text-text-secondary">{lesson}</span>
+                      <span className="text-muted-gray">{lesson}</span>
                     </li>
                   ))}
                 </ul>
@@ -160,15 +160,15 @@ export default async function CaseStudyDetailPage({ params }: PageProps) {
             <div className="space-y-6">
               {/* Context */}
               <div className="card">
-                <h3 className="font-semibold text-text-primary mb-4">Context</h3>
+                <h3 className="font-semibold text-light-white mb-4">Context</h3>
                 <dl className="space-y-4">
                   {platform && (
                     <div>
-                      <dt className="text-sm text-text-secondary">Platform</dt>
+                      <dt className="text-sm text-muted-gray">Platform</dt>
                       <dd>
                         <Link
                           href={`/apps/${platform.slug}`}
-                          className="font-medium text-text-primary hover:text-gitcoin-green transition-colors"
+                          className="font-medium text-light-white hover:text-light-white transition-colors"
                         >
                           {platform.name}
                         </Link>
@@ -177,11 +177,11 @@ export default async function CaseStudyDetailPage({ params }: PageProps) {
                   )}
                   {mechanism && (
                     <div>
-                      <dt className="text-sm text-text-secondary">Mechanism</dt>
+                      <dt className="text-sm text-muted-gray">Mechanism</dt>
                       <dd>
                         <Link
                           href={`/mechanisms/${mechanism.slug}`}
-                          className="font-medium text-text-primary hover:text-gitcoin-green transition-colors"
+                          className="font-medium text-light-white hover:text-light-white transition-colors"
                         >
                           {mechanism.name}
                         </Link>
@@ -189,12 +189,12 @@ export default async function CaseStudyDetailPage({ params }: PageProps) {
                     </div>
                   )}
                   <div>
-                    <dt className="text-sm text-text-secondary">Funding Amount</dt>
-                    <dd className="font-medium text-gitcoin-green">{caseStudy.fundingAmount}</dd>
+                    <dt className="text-sm text-muted-gray">Funding Amount</dt>
+                    <dd className="font-medium text-light-white">{caseStudy.fundingAmount}</dd>
                   </div>
                   <div>
-                    <dt className="text-sm text-text-secondary">Date</dt>
-                    <dd className="font-medium text-text-primary">
+                    <dt className="text-sm text-muted-gray">Date</dt>
+                    <dd className="font-medium text-light-white">
                       {new Date(caseStudy.fundingDate).toLocaleDateString('en-US', {
                         month: 'long',
                         day: 'numeric',
@@ -208,7 +208,7 @@ export default async function CaseStudyDetailPage({ params }: PageProps) {
               {/* Sources */}
               {caseStudy.sources.length > 0 && (
                 <div className="card">
-                  <h3 className="font-semibold text-text-primary mb-4 flex items-center gap-2">
+                  <h3 className="font-semibold text-light-white mb-4 flex items-center gap-2">
                     <BookOpen className="w-4 h-4" />
                     Sources
                   </h3>
@@ -219,7 +219,7 @@ export default async function CaseStudyDetailPage({ params }: PageProps) {
                           href={source.url}
                           target="_blank"
                           rel="noopener noreferrer"
-                          className="text-text-secondary hover:text-text-primary transition-colors flex items-center gap-2 group"
+                          className="text-muted-gray hover:text-light-white transition-colors flex items-center gap-2 group"
                         >
                           {source.title}
                           <ExternalLink className="w-3 h-3 opacity-0 group-hover:opacity-100" />
@@ -232,7 +232,7 @@ export default async function CaseStudyDetailPage({ params }: PageProps) {
 
               {/* Tags */}
               <div className="card">
-                <h3 className="font-semibold text-text-primary mb-4">Tags</h3>
+                <h3 className="font-semibold text-light-white mb-4">Tags</h3>
                 <div className="flex flex-wrap gap-2">
                   {caseStudy.tags.map((tag) => (
                     <Badge key={tag} size="sm">{tag}</Badge>
@@ -249,7 +249,7 @@ export default async function CaseStudyDetailPage({ params }: PageProps) {
               </div>
 
               {/* Metadata */}
-              <p className="text-sm text-text-secondary text-center">
+              <p className="text-sm text-muted-gray text-center">
                 Published: {new Date(caseStudy.publishDate).toLocaleDateString()}<br />
                 Updated: {new Date(caseStudy.lastUpdated).toLocaleDateString()}
               </p>

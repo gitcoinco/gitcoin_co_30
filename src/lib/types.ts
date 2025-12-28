@@ -1,6 +1,6 @@
 // Content Types for Gitcoin.co Funding Directory
 
-export type ThemeMode = 'lichenpunk' | 'solarpunk' | 'lunarpunk'
+export type ThemeMode = 'dark' | 'light'
 
 export type AppCategory = 'platform' | 'dao' | 'grant-program' | 'fund' | 'primitive'
 export type AppStatus = 'active' | 'deprecated' | 'upcoming'

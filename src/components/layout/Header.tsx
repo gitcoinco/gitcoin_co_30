@@ -2,7 +2,7 @@
 
 import Link from 'next/link'
 import { useState } from 'react'
-import { Menu, X, Search, ChevronDown } from 'lucide-react'
+import { Menu, X, Search } from 'lucide-react'
 
 const navigation = [
   { name: 'Apps', href: '/apps' },
@@ -16,16 +16,17 @@ export default function Header() {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false)
 
   return (
-    <header className="bg-white border-b border-lichenpunk-warmGray sticky top-0 z-50">
+    <header className="bg-void-black border-b border-dark-gray sticky top-0 z-50">
       <nav className="container-page" aria-label="Global">
         <div className="flex items-center justify-between h-16">
           {/* Logo */}
           <div className="flex items-center">
-            <Link href="/" className="flex items-center gap-2">
-              <div className="w-8 h-8 rounded-lg bg-gitcoin-green flex items-center justify-center">
-                <span className="text-text-primary font-bold text-lg">G</span>
-              </div>
-              <span className="text-xl font-semibold text-text-primary">Gitcoin</span>
+            <Link href="/" className="flex items-center gap-2 group">
+              <img
+                src="/gitcoin-logo.png"
+                alt="Gitcoin"
+                className="h-8 w-auto invert brightness-0 invert"
+              />
             </Link>
           </div>
 
@@ -35,7 +36,7 @@ export default function Header() {
               <Link
                 key={item.name}
                 href={item.href}
-                className="text-text-secondary hover:text-text-primary transition-colors font-medium"
+                className="text-muted-gray hover:text-light-white transition-colors duration-300 font-medium"
               >
                 {item.name}
               </Link>
@@ -44,10 +45,16 @@ export default function Header() {
 
           {/* Desktop Actions */}
           <div className="hidden md:flex md:items-center md:gap-4">
-            <Link href="/search" className="p-2 text-text-secondary hover:text-text-primary transition-colors">
+            <Link
+              href="/search"
+              className="p-2 text-muted-gray hover:text-light-white transition-colors duration-300"
+            >
               <Search className="w-5 h-5" />
             </Link>
-            <Link href="/submit" className="btn-primary text-sm">
+            <Link
+              href="/submit"
+              className="btn-primary text-sm"
+            >
               Submit Content
             </Link>
           </div>
@@ -56,7 +63,7 @@ export default function Header() {
           <div className="flex md:hidden">
             <button
               type="button"
-              className="p-2 text-text-secondary"
+              className="p-2 text-muted-gray hover:text-light-white transition-colors"
               onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
             >
               <span className="sr-only">Open menu</span>
@@ -71,22 +78,22 @@ export default function Header() {
 
         {/* Mobile Navigation */}
         {mobileMenuOpen && (
-          <div className="md:hidden py-4 border-t border-lichenpunk-warmGray">
+          <div className="md:hidden py-4 border-t border-dark-gray">
             <div className="flex flex-col gap-4">
               {navigation.map((item) => (
                 <Link
                   key={item.name}
                   href={item.href}
-                  className="text-text-secondary hover:text-text-primary transition-colors font-medium py-2"
+                  className="text-muted-gray hover:text-light-white transition-colors font-medium py-2"
                   onClick={() => setMobileMenuOpen(false)}
                 >
                   {item.name}
                 </Link>
               ))}
-              <hr className="border-lichenpunk-warmGray" />
+              <hr className="border-dark-gray" />
               <Link
                 href="/search"
-                className="flex items-center gap-2 text-text-secondary hover:text-text-primary transition-colors font-medium py-2"
+                className="flex items-center gap-2 text-muted-gray hover:text-light-white transition-colors font-medium py-2"
                 onClick={() => setMobileMenuOpen(false)}
               >
                 <Search className="w-5 h-5" />

@@ -13,7 +13,6 @@ const navigation = {
     { name: 'Submit Content', href: '/submit' },
     { name: 'Contribution Guide', href: '/contribute' },
     { name: 'About', href: '/about' },
-    { name: 'Contact', href: '/contact' },
   ],
   ecosystem: [
     { name: 'Grants Stack', href: 'https://grants.gitcoin.co' },
@@ -30,18 +29,18 @@ const navigation = {
 
 export default function Footer() {
   return (
-    <footer className="bg-lichenpunk-lichen text-white">
+    <footer className="bg-charcoal border-t border-dark-gray">
       <div className="container-page py-12 md:py-16">
         <div className="grid grid-cols-2 md:grid-cols-4 gap-8 mb-12">
           {/* Directory */}
           <div>
-            <h3 className="font-semibold text-lg mb-4">Directory</h3>
+            <h3 className="font-semibold text-lg mb-4 text-light-white">Directory</h3>
             <ul className="space-y-3">
               {navigation.directory.map((item) => (
                 <li key={item.name}>
                   <Link
                     href={item.href}
-                    className="text-white/80 hover:text-white transition-colors"
+                    className="text-muted-gray hover:text-light-white transition-colors duration-300"
                   >
                     {item.name}
                   </Link>
@@ -52,13 +51,13 @@ export default function Footer() {
 
           {/* Resources */}
           <div>
-            <h3 className="font-semibold text-lg mb-4">Resources</h3>
+            <h3 className="font-semibold text-lg mb-4 text-light-white">Resources</h3>
             <ul className="space-y-3">
               {navigation.resources.map((item) => (
                 <li key={item.name}>
                   <Link
                     href={item.href}
-                    className="text-white/80 hover:text-white transition-colors"
+                    className="text-muted-gray hover:text-light-white transition-colors duration-300"
                   >
                     {item.name}
                   </Link>
@@ -69,7 +68,7 @@ export default function Footer() {
 
           {/* Ecosystem */}
           <div>
-            <h3 className="font-semibold text-lg mb-4">Ecosystem</h3>
+            <h3 className="font-semibold text-lg mb-4 text-light-white">Ecosystem</h3>
             <ul className="space-y-3">
               {navigation.ecosystem.map((item) => (
                 <li key={item.name}>
@@ -77,7 +76,7 @@ export default function Footer() {
                     href={item.href}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="text-white/80 hover:text-white transition-colors"
+                    className="text-muted-gray hover:text-light-white transition-colors duration-300"
                   >
                     {item.name}
                   </a>
@@ -88,19 +87,19 @@ export default function Footer() {
 
           {/* Newsletter */}
           <div>
-            <h3 className="font-semibold text-lg mb-4">Stay Updated</h3>
-            <p className="text-white/80 text-sm mb-4">
+            <h3 className="font-semibold text-lg mb-4 text-light-white">Stay Updated</h3>
+            <p className="text-muted-gray text-sm mb-4">
               Get the latest on Ethereum funding mechanisms and ecosystem updates.
             </p>
             <form className="flex flex-col gap-2">
               <input
                 type="email"
                 placeholder="Enter your email"
-                className="px-4 py-2 rounded-lg bg-white/10 border border-white/20 text-white placeholder:text-white/50 focus:outline-none focus:border-gitcoin-green"
+                className="px-4 py-2 rounded-lg bg-dark-gray border border-muted-gray/30 text-light-white placeholder:text-muted-gray focus:outline-none focus:ring-2 focus:ring-light-white focus:border-transparent transition-all duration-200"
               />
               <button
                 type="submit"
-                className="px-4 py-2 bg-gitcoin-green text-text-primary font-medium rounded-lg hover:bg-gitcoin-softCyan transition-colors"
+                className="px-4 py-2 bg-light-white text-void-black font-medium rounded-lg hover:bg-muted-gray transition-colors duration-300"
               >
                 Subscribe
               </button>
@@ -108,17 +107,25 @@ export default function Footer() {
           </div>
         </div>
 
+        {/* Divider with stars */}
+        <div className="flex items-center gap-4 mb-8">
+          <div className="flex-1 h-px bg-dark-gray"></div>
+          <span className="text-muted-gray text-sm">☆ &nbsp; ☆ &nbsp; ☆</span>
+          <div className="flex-1 h-px bg-dark-gray"></div>
+        </div>
+
         {/* Bottom */}
-        <div className="pt-8 border-t border-white/20 flex flex-col md:flex-row justify-between items-center gap-4">
-          <div className="flex items-center gap-2">
-            <div className="w-8 h-8 rounded-lg bg-gitcoin-green flex items-center justify-center">
-              <span className="text-text-primary font-bold text-lg">G</span>
-            </div>
-            <span className="text-lg font-semibold">Gitcoin</span>
+        <div className="flex flex-col md:flex-row justify-between items-center gap-4">
+          <div className="flex items-center">
+            <img
+              src="/gitcoin-logo.png"
+              alt="Gitcoin"
+              className="h-6 w-auto invert brightness-0 invert"
+            />
           </div>
 
-          <p className="text-white/60 text-sm">
-            Ethereum&apos;s Funding App Store. Building public goods since 2017.
+          <p className="text-muted-gray text-sm italic font-serif">
+            &ldquo;Every contribution is a star. Together, we form constellations.&rdquo;
           </p>
 
           <div className="flex items-center gap-4">
@@ -128,7 +135,7 @@ export default function Footer() {
                 href={item.href}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="text-white/80 hover:text-white transition-colors"
+                className="text-muted-gray hover:text-light-white transition-colors duration-300"
               >
                 <span className="sr-only">{item.name}</span>
                 <item.icon className="w-5 h-5" />

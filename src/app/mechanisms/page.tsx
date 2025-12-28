@@ -19,14 +19,14 @@ const categories = [
 
 export default function MechanismsPage() {
   return (
-    <div className="min-h-screen bg-lichenpunk-offWhite">
+    <div className="min-h-screen bg-void-black">
       {/* Header */}
-      <section className="bg-white border-b border-lichenpunk-warmGray">
+      <section className="bg-charcoal border-b border-dark-gray">
         <div className="container-page py-12">
-          <h1 className="text-3xl md:text-4xl font-bold text-text-primary mb-4">
+          <h1 className="text-3xl md:text-4xl font-bold text-light-white mb-4">
             Funding Mechanisms
           </h1>
-          <p className="text-lg text-text-secondary max-w-3xl mb-8">
+          <p className="text-lg text-muted-gray max-w-3xl mb-8">
             Understand the different approaches to capital allocation. From quadratic funding
             to retroactive rewards, explore how each mechanism works and when to use it.
           </p>
@@ -35,7 +35,7 @@ export default function MechanismsPage() {
       </section>
 
       {/* Filters */}
-      <section className="bg-white border-b border-lichenpunk-warmGray sticky top-16 z-40">
+      <section className="bg-charcoal border-b border-dark-gray sticky top-16 z-40">
         <div className="container-page py-4">
           <div className="flex flex-wrap gap-2">
             {categories.map((category) => (
@@ -43,8 +43,8 @@ export default function MechanismsPage() {
                 key={category.value}
                 className={`px-4 py-2 rounded-full text-sm font-medium transition-colors ${
                   category.value === 'all'
-                    ? 'bg-gitcoin-green text-text-primary'
-                    : 'bg-lichenpunk-warmGray text-text-secondary hover:bg-lichenpunk-slateGray hover:text-white'
+                    ? 'bg-light-white text-void-black'
+                    : 'bg-dark-gray text-muted-gray hover:bg-muted-gray hover:text-light-white'
                 }`}
               >
                 {category.label}
@@ -58,8 +58,8 @@ export default function MechanismsPage() {
       <section className="section">
         <div className="container-page">
           <div className="flex items-center justify-between mb-6">
-            <p className="text-text-secondary">
-              Showing <span className="font-medium text-text-primary">{mechanisms.length}</span> mechanisms
+            <p className="text-muted-gray">
+              Showing <span className="font-medium text-light-white">{mechanisms.length}</span> mechanisms
             </p>
           </div>
           <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
@@ -71,12 +71,12 @@ export default function MechanismsPage() {
       </section>
 
       {/* CTA */}
-      <section className="section bg-white">
+      <section className="section bg-charcoal">
         <div className="container-page text-center">
-          <h2 className="text-2xl font-bold text-text-primary mb-4">
+          <h2 className="text-2xl font-bold text-light-white mb-4">
             Know a mechanism we&apos;re missing?
           </h2>
-          <p className="text-text-secondary mb-6 max-w-xl mx-auto">
+          <p className="text-muted-gray mb-6 max-w-xl mx-auto">
             Help us document the full landscape of funding mechanisms. Submit new mechanisms
             or suggest improvements to existing documentation.
           </p>

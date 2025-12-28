@@ -13,14 +13,14 @@ export default function CampaignsPage() {
   const completedCampaigns = getCompletedCampaigns()
 
   return (
-    <div className="min-h-screen bg-lichenpunk-offWhite">
+    <div className="min-h-screen bg-void-black">
       {/* Header */}
-      <section className="bg-white border-b border-lichenpunk-warmGray">
+      <section className="bg-charcoal border-b border-dark-gray">
         <div className="container-page py-12">
-          <h1 className="text-3xl md:text-4xl font-bold text-text-primary mb-4">
+          <h1 className="text-3xl md:text-4xl font-bold text-light-white mb-4">
             Funding Campaigns
           </h1>
-          <p className="text-lg text-text-secondary max-w-3xl">
+          <p className="text-lg text-muted-gray max-w-3xl">
             Discover active and upcoming funding rounds. Apply for grants, participate
             in quadratic funding, or learn from past campaigns.
           </p>
@@ -29,11 +29,11 @@ export default function CampaignsPage() {
 
       {/* Active Campaigns */}
       {activeCampaigns.length > 0 && (
-        <section className="section bg-gitcoin-green/5">
+        <section className="section bg-charcoal">
           <div className="container-page">
             <div className="flex items-center gap-3 mb-8">
-              <span className="w-3 h-3 bg-gitcoin-green rounded-full animate-pulse" />
-              <h2 className="text-2xl font-bold text-text-primary">
+              <span className="w-3 h-3 bg-light-white rounded-full animate-pulse" />
+              <h2 className="text-2xl font-bold text-light-white">
                 Live Now
               </h2>
             </div>
@@ -50,7 +50,7 @@ export default function CampaignsPage() {
       {upcomingCampaigns.length > 0 && (
         <section className="section">
           <div className="container-page">
-            <h2 className="text-2xl font-bold text-text-primary mb-8">
+            <h2 className="text-2xl font-bold text-light-white mb-8">
               Upcoming
             </h2>
             <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
@@ -64,9 +64,9 @@ export default function CampaignsPage() {
 
       {/* Completed Campaigns */}
       {completedCampaigns.length > 0 && (
-        <section className="section bg-white">
+        <section className="section bg-charcoal">
           <div className="container-page">
-            <h2 className="text-2xl font-bold text-text-primary mb-8">
+            <h2 className="text-2xl font-bold text-light-white mb-8">
               Past Campaigns
             </h2>
             <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
@@ -79,7 +79,7 @@ export default function CampaignsPage() {
       )}
 
       {/* CTA */}
-      <section className="section bg-lichenpunk-lichen text-white">
+      <section className="section bg-charcoal text-light-white">
         <div className="container-page text-center">
           <h2 className="text-2xl font-bold mb-4">
             Running a Funding Round?
@@ -90,7 +90,7 @@ export default function CampaignsPage() {
           </p>
           <a
             href="/submit?type=campaign"
-            className="inline-flex items-center px-6 py-3 bg-gitcoin-green text-text-primary font-medium rounded-lg hover:bg-gitcoin-softCyan transition-colors"
+            className="inline-flex items-center px-6 py-3 bg-light-white text-void-black font-medium rounded-lg hover:bg-muted-gray transition-colors"
           >
             Submit a Campaign
           </a>

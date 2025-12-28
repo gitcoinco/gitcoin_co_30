@@ -3,126 +3,138 @@ import type { CaseStudy } from '@/lib/types'
 export const caseStudies: CaseStudy[] = [
   {
     id: '1',
-    slug: 'uniswap-grants-protocol-guild',
-    title: 'Uniswap\'s $2.5M Contribution to Protocol Guild',
-    summary: 'How Uniswap DAO allocated $2.5M to Ethereum core contributors through Protocol Guild, setting a precedent for L2/DeFi contributions to base layer maintenance.',
+    slug: 'protocol-guild-ecosystem-funding',
+    title: 'Protocol Guild: $92M+ for Ethereum Core Development',
+    summary: 'How Protocol Guild became the largest collective funding mechanism for Ethereum core contributors, receiving pledges from Lido, Uniswap, ENS, and dozens of other protocols.',
     content: `## Background
 
-In early 2024, Uniswap DAO passed a governance proposal to contribute $2.5M worth of UNI tokens to Protocol Guild, the collective funding mechanism for Ethereum core protocol contributors.
+Protocol Guild launched in May 2022 to address a critical gap: Ethereum core protocol contributors were underfunded relative to the value they create. The Ethereum base layer enables billions in DeFi TVL, yet the ~180 developers maintaining it had inconsistent funding.
 
-## The Decision
+## The Mechanism
 
-The proposal recognized that Uniswap's success is built on Ethereum's foundation. By contributing to Protocol Guild, Uniswap directly funded the ~170 active core contributors maintaining and developing the base layer.
+Protocol Guild uses a novel approach:
+- Contributors are weighted by tenure and active participation
+- Funds vest over 4 years, ensuring long-term commitment
+- A simple split contract distributes funds to all members
+- Anyone can donate, and major protocols are encouraged to contribute
 
-Key arguments in favor:
-- Ethereum's security and development directly impacts Uniswap
-- Sustainable funding for core contributors benefits the entire ecosystem
-- Sets precedent for other protocols to contribute
+## Key Contributors
 
-## Implementation
-
-The contribution was structured as a 4-year vesting stream, ensuring long-term commitment to core development. This aligned with Protocol Guild's design of providing predictable, ongoing funding rather than one-time grants.
+Major pledges include:
+- **Lido DAO**: 2% of staking rewards (~$20M+ pledged)
+- **Uniswap**: $2.5M in UNI tokens
+- **ENS**: 200,000 ENS tokens (~$2.7M)
+- **Optimism**: 500,000 OP tokens
+- **Arbitrum Foundation**: Significant ARB allocation
 
 ## Outcomes
 
-- Successfully transferred $2.5M to Protocol Guild
-- Inspired similar proposals in other DAOs
-- Strengthened narrative around protocols funding their infrastructure
-- Demonstrated mature DAO governance in action
+As of late 2024:
+- **$92.9M+ in total pledges and donations received**
+- **187+ active Ethereum core contributors** receiving funding
+- **4-year vesting** ensures long-term alignment
+- Major protocols now recognize infrastructure funding as essential
 
 ## Lessons Learned
 
-1. **Frame contributions as self-interest**: The proposal succeeded by showing how Uniswap benefits from Ethereum development
-2. **Use existing infrastructure**: Leveraging Protocol Guild's established mechanism was easier than creating something new
-3. **Long-term commitment matters**: Vesting structure showed genuine commitment vs. one-time PR`,
-    heroImage: '/images/case-studies/uniswap-pg.jpg',
-    project: 'Protocol Guild Contribution',
+1. **Collective action works**: Individual contributors are hard to fund, but a collective is fundable
+2. **Make it easy**: One contract to fund all core devs reduces coordination overhead
+3. **Align incentives**: Vesting and tenure weighting reward long-term contribution
+4. **Frame as self-interest**: Protocols benefit from a well-funded base layer`,
+    heroImage: '/images/case-studies/protocol-guild.jpg',
+    project: 'Protocol Guild',
     platform: 'protocol-guild',
     mechanism: 'streaming',
-    fundingAmount: '$2.5M',
-    fundingDate: '2024-01-15',
+    fundingAmount: '$92.9M+',
+    fundingDate: '2022-05-01',
     outcomes: [
       {
-        title: 'Direct Impact',
-        description: 'Funded ~170 Ethereum core contributors for 4 years',
-        metrics: '$2.5M distributed',
+        title: 'Total Funding',
+        description: 'Pledges and donations from ecosystem',
+        metrics: '$92.9M+',
       },
       {
-        title: 'Ecosystem Effect',
-        description: 'Inspired similar contributions from other protocols',
+        title: 'Contributors Funded',
+        description: 'Active Ethereum core protocol developers',
+        metrics: '187+',
       },
       {
-        title: 'Governance Milestone',
-        description: 'Demonstrated DAO capability for strategic funding decisions',
+        title: 'Ecosystem Adoption',
+        description: 'Major protocols contributing to infrastructure',
+        metrics: '50+ donors',
       },
     ],
     lessonsLearned: [
-      'Frame ecosystem contributions as aligned with self-interest',
-      'Leverage existing funding infrastructure when possible',
-      'Long-term vesting signals genuine commitment',
+      'Collective funding mechanisms enable what individual funding cannot',
+      'Simple contribution interfaces increase participation',
+      'Long-term vesting aligns contributor and funder incentives',
+      'Framing infrastructure funding as self-interest drives adoption',
     ],
     status: 'success',
     author: 'Gitcoin Research',
     sources: [
       {
-        title: 'Uniswap Governance Proposal',
-        url: 'https://gov.uniswap.org/',
-      },
-      {
-        title: 'Protocol Guild Announcement',
+        title: 'Protocol Guild Documentation',
         url: 'https://protocol-guild.readthedocs.io',
       },
+      {
+        title: 'Dune Analytics Dashboard',
+        url: 'https://dune.com/protocolguild/protocol-guild',
+      },
     ],
-    tags: ['DeFi', 'core protocol', 'streaming', 'governance'],
-    publishDate: '2024-03-01',
-    lastUpdated: '2024-12-01',
+    tags: ['core protocol', 'ethereum', 'streaming', 'collective funding'],
+    publishDate: '2024-12-01',
+    lastUpdated: '2024-12-25',
   },
   {
     id: '2',
     slug: 'optimism-retropgf-round-3',
-    title: 'Optimism RetroPGF Round 3: 30M OP Distribution',
-    summary: 'The largest retroactive funding round in crypto history distributed 30M OP to 501 projects, testing scalable impact evaluation at unprecedented scale.',
+    title: 'Optimism RetroPGF 3: 30M OP to 501 Projects',
+    summary: 'The largest retroactive funding round in crypto history distributed 30M OP tokens to 501 projects, testing scalable impact evaluation.',
     content: `## Background
 
-Optimism's third RetroPGF round in late 2023 was the largest retroactive funding experiment ever conducted in crypto. With 30M OP tokens (~$60M at time of distribution) allocated to reward past contributions to the Optimism Collective.
+Optimism's third RetroPGF round in January 2024 was the largest retroactive funding experiment in crypto history. With 30M OP tokens (~$90M at distribution) allocated to reward past contributions to the Optimism Collective.
 
 ## The Mechanism
 
-RetroPGF3 used badgeholders (trusted community members) to evaluate and vote on nominated projects. Categories included:
+RetroPGF 3 used badgeholders (trusted community members) to evaluate and vote on nominated projects across four categories:
 - OP Stack contributions
 - Collective governance
 - Developer ecosystem
-- End user experience
+- End user experience & adoption
+
+**146 badgeholders** evaluated **644 nominated projects**, ultimately funding 501.
 
 ## Scale Challenges
 
 The round faced significant scaling challenges:
-- 644 nominated projects
-- 146 badgeholders
-- Diverse categories requiring different expertise
-- Need for nuanced evaluation at scale
+- Review burden on badgeholders was substantial
+- Cross-category comparison proved difficult
+- Some projects optimized for voting vs. actual impact
+- Evaluation consistency varied across badgeholders
 
 ## Outcomes
 
-501 projects received funding, with distribution ranging from hundreds to hundreds of thousands of OP tokens.
+**501 projects received funding**, with distribution ranging from hundreds to hundreds of thousands of OP tokens.
 
-Top categories:
-- Infrastructure and tooling received significant allocation
-- Governance contributions rewarded
-- User-facing applications funded
+Top allocations went to:
+- Core infrastructure and tooling
+- Governance contributions
+- Developer experience improvements
+- End-user applications
 
 ## Lessons Learned
 
-1. **Impact measurement is hard**: Comparing across categories proved challenging
-2. **Badgeholder bandwidth**: Review burden was significant
-3. **Gaming concerns**: Some project profiles optimized for voting vs. impact
-4. **Positive feedback**: Created strong incentives for future builders`,
+1. **Impact measurement is hard**: Comparing a governance tool to a DeFi protocol requires nuanced evaluation
+2. **Badgeholder bandwidth**: 644 projects is too many for thorough evaluation
+3. **Gaming concerns**: Some applicants optimized profiles for votes rather than demonstrating real impact
+4. **Positive incentives**: Despite challenges, RetroPGF creates strong incentives for future builders`,
     heroImage: '/images/case-studies/retropgf3.jpg',
     project: 'RetroPGF Round 3',
     platform: 'optimism-retropgf',
     mechanism: 'retroactive-funding',
-    fundingAmount: '30M OP (~$60M)',
-    fundingDate: '2024-01-01',
+    fundingAmount: '30M OP (~$90M)',
+    fundingDate: '2024-01-15',
     outcomes: [
       {
         title: 'Projects Funded',
@@ -130,168 +142,96 @@ Top categories:
         metrics: '501 recipients',
       },
       {
-        title: 'Categories Covered',
-        description: 'Evaluated across four distinct impact areas',
-        metrics: '4 categories',
+        title: 'Total Distribution',
+        description: 'OP tokens distributed',
+        metrics: '30M OP',
       },
       {
-        title: 'Community Participation',
-        description: 'Badgeholders evaluated all nominations',
-        metrics: '146 evaluators',
+        title: 'Badgeholder Participation',
+        description: 'Community evaluators',
+        metrics: '146 badgeholders',
       },
     ],
     lessonsLearned: [
-      'Cross-category comparison is inherently difficult',
-      'Badgeholder bandwidth needs to be considered in round design',
-      'Clear impact metrics help evaluation quality',
+      'Cross-category comparison requires careful framework design',
+      'Badgeholder capacity limits round size',
+      'Clear impact metrics improve evaluation quality',
       'Gaming will occur; design for resilience',
     ],
     status: 'success',
     author: 'Gitcoin Research',
     sources: [
       {
-        title: 'RetroPGF3 Results',
-        url: 'https://round3.optimism.io/results',
+        title: 'RetroPGF 3 Results',
+        url: 'https://round3.optimism.io',
       },
       {
-        title: 'Optimism Governance',
+        title: 'Optimism Governance Forum',
         url: 'https://gov.optimism.io',
       },
     ],
     tags: ['retroactive funding', 'optimism', 'public goods', 'evaluation'],
     publishDate: '2024-02-15',
-    lastUpdated: '2024-12-01',
+    lastUpdated: '2024-12-25',
   },
   {
     id: '3',
-    slug: 'gitcoin-gg19-results',
-    title: 'Gitcoin Grants 19: Community Rounds at Scale',
-    summary: 'GG19 demonstrated the maturation of Gitcoin\'s community rounds program, with multiple independent ecosystems running their own quadratic funding rounds.',
-    content: `## Background
-
-Gitcoin Grants 19 (GG19) in late 2023 showcased the evolution of Gitcoin from a single platform to an ecosystem of community-run funding rounds. Multiple independent communities ran their own QF rounds on the Grants Stack.
-
-## The Model
-
-GG19 featured:
-- Core Gitcoin-organized rounds (Climate, OSS, etc.)
-- Community rounds organized by partners
-- Shared infrastructure, independent governance
-
-## Key Rounds
-
-Several notable community rounds:
-- Ethereum Infrastructure
-- Climate Solutions
-- Web3 Community & Education
-- Partner ecosystem rounds
-
-## Outcomes
-
-The round demonstrated that QF can scale through decentralization:
-- Multiple communities successfully ran rounds
-- Matching funds came from diverse sources
-- Reduced centralization on Gitcoin core team
-
-## Lessons Learned
-
-1. **Decentralization works**: Communities can run effective rounds
-2. **Tooling matters**: Good infrastructure enables independence
-3. **Curation challenges**: Each round needed quality control
-4. **Sybil resistance**: Shared passport helped across rounds`,
-    heroImage: '/images/case-studies/gg19.jpg',
-    project: 'Gitcoin Grants 19',
-    platform: 'gitcoin-grants-stack',
-    mechanism: 'quadratic-funding',
-    fundingAmount: '$2M+',
-    fundingDate: '2023-11-15',
-    outcomes: [
-      {
-        title: 'Rounds Operated',
-        description: 'Multiple independent funding rounds',
-        metrics: '10+ rounds',
-      },
-      {
-        title: 'Total Distributed',
-        description: 'Combined matching and contributions',
-        metrics: '$2M+',
-      },
-      {
-        title: 'Unique Projects',
-        description: 'Projects funded across all rounds',
-        metrics: '500+',
-      },
-    ],
-    lessonsLearned: [
-      'Communities can effectively self-organize funding rounds',
-      'Shared infrastructure reduces barriers to running rounds',
-      'Quality curation remains essential at each level',
-      'Cross-round sybil resistance provides efficiency',
-    ],
-    status: 'success',
-    author: 'Gitcoin Research',
-    sources: [
-      {
-        title: 'GG19 Recap',
-        url: 'https://gitcoin.co/blog/gg19-recap',
-      },
-    ],
-    tags: ['quadratic funding', 'community rounds', 'gitcoin', 'decentralization'],
-    publishDate: '2024-01-10',
-    lastUpdated: '2024-11-01',
-  },
-  {
-    id: '4',
     slug: 'arbitrum-stip-analysis',
-    title: 'Arbitrum STIP: $50M Incentive Experiment',
-    summary: 'Analysis of Arbitrum\'s Short-Term Incentive Program, which distributed 50M ARB to ecosystem projects with mixed but informative results.',
+    title: 'Arbitrum STIP: 71.4M ARB Incentive Experiment',
+    summary: 'Analysis of Arbitrum\'s Short-Term Incentive Program, which distributed 71.4M ARB to 56 protocols with mixed but valuable learnings.',
     content: `## Background
 
-In late 2023, Arbitrum DAO launched the Short-Term Incentive Program (STIP), distributing approximately 50M ARB tokens (~$50M) to ecosystem protocols to drive usage and growth.
+In late 2023, Arbitrum DAO launched the Short-Term Incentive Program (STIP), distributing 71.4M ARB tokens (~$100M at peak) to 56 ecosystem protocols to drive usage and growth.
 
 ## The Mechanism
 
 STIP used a grant-based approach:
-- Projects applied for incentive allocations
+- Protocols applied for incentive allocations
 - DAO voted on applications
 - Recipients distributed ARB as user incentives
-- Metrics tracking required
+- Metrics tracking was required but inconsistent
 
 ## Mixed Results
 
 The program showed both successes and challenges:
 
 **Positives:**
-- TVL and usage increased during program
-- Many protocols gained users
-- Created ecosystem coordination
+- TVL increased significantly during the program
+- Many protocols gained new users
+- Created ecosystem coordination and awareness
+- Demonstrated DAO governance at scale
 
 **Challenges:**
 - Mercenary capital left after incentives ended
-- Some inefficient incentive usage
+- Some protocols used incentives inefficiently
 - High cost per retained user in many cases
+- Limited long-term user retention
 
-## Outcomes
+## Key Metrics
 
-The program provided valuable data on incentive effectiveness, leading to improved designs for future programs including the Long-Term Incentives Program (LTIP).
+- **71.4M ARB distributed** to 56 protocols
+- **TVL peaked** during incentive period
+- **User retention** varied significantly by protocol
+- **Cost per retained user** ranged from reasonable to very high
 
-## Lessons Learned
+## Learnings Applied to LTIP
 
-1. **Retention > Acquisition**: Attracting users is easier than keeping them
-2. **Incentive design matters**: Not all distributions are equally effective
-3. **Measurement is essential**: Programs need robust analytics
-4. **Iteration is key**: STIP informed better LTIP design`,
+The STIP experience directly informed the Long-Term Incentive Pilot (LTIP):
+- Longer timeframes for sustainability
+- Better measurement frameworks
+- Focus on retention metrics
+- More structured reporting requirements`,
     heroImage: '/images/case-studies/stip.jpg',
     project: 'Short-Term Incentive Program',
     platform: 'arbitrum-dao-grants',
     mechanism: 'direct-grants',
-    fundingAmount: '~$50M in ARB',
+    fundingAmount: '71.4M ARB',
     fundingDate: '2023-11-01',
     outcomes: [
       {
         title: 'Tokens Distributed',
         description: 'Total ARB distributed as incentives',
-        metrics: '50M ARB',
+        metrics: '71.4M ARB',
       },
       {
         title: 'Protocols Funded',
@@ -300,13 +240,13 @@ The program provided valuable data on incentive effectiveness, leading to improv
       },
       {
         title: 'Learning Value',
-        description: 'Informed design of LTIP and future programs',
+        description: 'Informed design of LTIP program',
       },
     ],
     lessonsLearned: [
       'User retention is harder than acquisition with incentives',
       'Incentive mechanism design significantly impacts outcomes',
-      'Robust measurement enables iteration',
+      'Robust measurement frameworks are essential',
       'Short-term programs generate long-term learnings',
     ],
     status: 'partial',
@@ -316,92 +256,185 @@ The program provided valuable data on incentive effectiveness, leading to improv
         title: 'Arbitrum STIP Forum',
         url: 'https://forum.arbitrum.foundation',
       },
+      {
+        title: 'STIP Analysis Report',
+        url: 'https://forum.arbitrum.foundation/t/stip-analysis',
+      },
     ],
     tags: ['arbitrum', 'incentives', 'grants', 'ecosystem'],
     publishDate: '2024-04-01',
-    lastUpdated: '2024-12-01',
+    lastUpdated: '2024-12-25',
   },
   {
-    id: '5',
-    slug: 'nouns-prop-house-experiment',
-    title: 'Nouns Prop House: Permissionless Grants at Scale',
-    summary: 'How Nouns DAO\'s Prop House created a permissionless grants infrastructure that funded hundreds of projects through community-driven rounds.',
+    id: '4',
+    slug: 'gitcoin-gg20-quadratic-funding',
+    title: 'Gitcoin GG20: Community Rounds at Scale',
+    summary: 'GG20 demonstrated the maturation of community-run quadratic funding rounds, with multiple ecosystems running independent rounds on Grants Stack.',
     content: `## Background
 
-Prop House emerged as Nouns DAO's answer to scalable, permissionless grants. Instead of all funding decisions going through the main DAO, Prop House allowed anyone to propose and vote on smaller grants in themed rounds.
+Gitcoin Grants 20 in April 2024 showcased the evolution of Gitcoin from a single platform to an ecosystem of community-run funding rounds. Multiple independent communities ran their own QF rounds using Grants Stack infrastructure.
 
-## The Mechanism
+## The Model
 
-Prop House used a unique model:
-- Themed funding rounds with fixed prize pools
-- Anyone could propose
-- Nouns NFT holders voted
-- Winners selected by community
+GG20 featured:
+- Core Gitcoin-organized rounds (Web3 OSS, Climate, etc.)
+- Community partner rounds with independent matching pools
+- Shared sybil resistance via Gitcoin Passport
+- Decentralized round management
 
-## Scale Achieved
+## Key Rounds
 
-Over its operation, Prop House funded hundreds of projects across diverse categories:
-- Art and design
-- Development tools
-- Community initiatives
-- Creative experiments
+Several notable rounds ran:
+- **Web3 Open Source Software**: Core infrastructure funding
+- **Climate Solutions**: Environmental impact projects
+- **Ethereum Infrastructure**: Protocol-level tooling
+- **Community rounds**: Partner-organized thematic rounds
 
 ## Outcomes
 
-The system successfully:
-- Distributed funding without core team bottleneck
-- Encouraged creative proposals
-- Built community engagement
-- Created many successful Nouns extensions
+The round demonstrated that QF can scale through decentralization:
+- **Multiple communities** successfully ran independent rounds
+- **Diverse funding sources** provided matching pools
+- **Reduced centralization** on Gitcoin core team
+- **Quality varied** by round operator experience
 
-## Lessons Learned
+## Sybil Resistance
 
-1. **Permissionless is possible**: Open applications can work at scale
-2. **Theming helps**: Focused rounds improve proposal quality
-3. **Low stakes enable experimentation**: Small grants reduce risk
-4. **NFT voting has tradeoffs**: Can favor known proposers`,
-    heroImage: '/images/case-studies/prophouse.jpg',
-    project: 'Prop House',
-    platform: 'nouns-dao',
-    mechanism: 'direct-grants',
-    fundingAmount: '$5M+',
-    fundingDate: '2022-06-01',
+Gitcoin Passport provided unified sybil resistance:
+- Users collect verifiable credentials
+- Passport scores determine matching weight
+- Shared across all rounds for efficiency
+- Continuously improving detection`,
+    heroImage: '/images/case-studies/gg20.jpg',
+    project: 'Gitcoin Grants 20',
+    platform: 'gitcoin-grants-stack',
+    mechanism: 'quadratic-funding',
+    fundingAmount: '$2.5M+',
+    fundingDate: '2024-04-15',
     outcomes: [
       {
-        title: 'Proposals Funded',
-        description: 'Projects funded through themed rounds',
-        metrics: '500+',
+        title: 'Rounds Operated',
+        description: 'Core and community rounds',
+        metrics: '15+ rounds',
       },
       {
-        title: 'Community Growth',
-        description: 'Expanded Nouns ecosystem significantly',
+        title: 'Total Distributed',
+        description: 'Combined matching and contributions',
+        metrics: '$2.5M+',
       },
       {
-        title: 'Model Innovation',
-        description: 'Inspired similar systems in other DAOs',
+        title: 'Unique Donors',
+        description: 'Contributors across all rounds',
+        metrics: '15,000+',
       },
     ],
     lessonsLearned: [
-      'Permissionless grants can scale effectively',
-      'Themed rounds improve proposal quality and evaluation',
-      'Lower stakes enable more experimentation',
-      'Voting mechanism choice affects outcomes',
+      'Communities can effectively self-organize funding rounds',
+      'Shared infrastructure reduces barriers to entry',
+      'Quality curation remains essential',
+      'Unified sybil resistance improves efficiency',
     ],
     status: 'success',
     author: 'Gitcoin Research',
     sources: [
       {
-        title: 'Prop House',
-        url: 'https://prop.house',
+        title: 'GG20 Results',
+        url: 'https://gitcoin.co/blog/gg20-results',
       },
       {
-        title: 'Nouns DAO',
-        url: 'https://nouns.wtf',
+        title: 'Grants Stack',
+        url: 'https://grants.gitcoin.co',
       },
     ],
-    tags: ['nouns', 'permissionless', 'grants', 'nft governance'],
-    publishDate: '2024-02-01',
-    lastUpdated: '2024-11-01',
+    tags: ['quadratic funding', 'community rounds', 'gitcoin', 'decentralization'],
+    publishDate: '2024-05-01',
+    lastUpdated: '2024-12-25',
+  },
+  {
+    id: '5',
+    slug: 'octant-epoch-funding-model',
+    title: 'Octant: Staking-Powered Public Goods Funding',
+    summary: 'How Octant created a sustainable funding model using staked ETH rewards, distributing millions to public goods across 9 epochs.',
+    content: `## Background
+
+Octant, launched by the Golem Foundation, created a novel funding model: stake 100,000 ETH and use the staking rewards to fund public goods. Users lock GLM tokens to participate in allocation decisions.
+
+## The Mechanism
+
+Octant runs 90-day epochs:
+1. **100,000 ETH staked** generates rewards
+2. **GLM lockers** earn proportional ETH rewards
+3. Users choose to **donate or claim** their rewards
+4. Donations go to **curated public goods projects**
+5. **Quadratic funding** determines final allocations
+
+## 9 Epochs of Funding
+
+Through 9 epochs (as of late 2024):
+- **$15M+ total** distributed to public goods
+- **$1-2M per epoch** average funding
+- **Diverse project portfolio** across categories
+- **Growing participation** over time
+
+## Sustainability Model
+
+The model is sustainable because:
+- Principal (100,000 ETH) remains intact
+- Only staking rewards are distributed
+- Creates perpetual funding stream
+- User choice between donation and claim
+
+## Key Projects Funded
+
+Notable recipients include:
+- Ethereum infrastructure projects
+- Developer tooling
+- Research and education
+- Community initiatives`,
+    heroImage: '/images/case-studies/octant.jpg',
+    project: 'Octant Epochs 1-9',
+    platform: 'octant',
+    mechanism: 'quadratic-funding',
+    fundingAmount: '$15M+',
+    fundingDate: '2023-08-01',
+    outcomes: [
+      {
+        title: 'Total Distributed',
+        description: 'Across 9 epochs',
+        metrics: '$15M+',
+      },
+      {
+        title: 'Staked Principal',
+        description: 'Foundation stake generating rewards',
+        metrics: '100,000 ETH',
+      },
+      {
+        title: 'Epochs Completed',
+        description: '90-day funding cycles',
+        metrics: '9 epochs',
+      },
+    ],
+    lessonsLearned: [
+      'Staking rewards can create sustainable funding',
+      'User choice between claim and donate drives engagement',
+      'Regular epochs create predictable funding',
+      'Curation quality affects participation',
+    ],
+    status: 'success',
+    author: 'Gitcoin Research',
+    sources: [
+      {
+        title: 'Octant App',
+        url: 'https://octant.app',
+      },
+      {
+        title: 'Golem Foundation',
+        url: 'https://golem.network',
+      },
+    ],
+    tags: ['octant', 'staking', 'sustainable funding', 'epochs'],
+    publishDate: '2024-10-01',
+    lastUpdated: '2024-12-25',
   },
 ]
 

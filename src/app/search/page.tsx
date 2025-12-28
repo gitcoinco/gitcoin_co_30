@@ -95,22 +95,22 @@ function SearchContent() {
   return (
     <>
       {/* Search Header */}
-      <section className="bg-white border-b border-lichenpunk-warmGray sticky top-16 z-40">
+      <section className="bg-charcoal border-b border-dark-gray sticky top-16 z-40">
         <div className="container-page py-6">
           <div className="relative max-w-2xl mx-auto mb-6">
-            <Search className="absolute left-4 top-1/2 -translate-y-1/2 w-5 h-5 text-text-secondary" />
+            <Search className="absolute left-4 top-1/2 -translate-y-1/2 w-5 h-5 text-muted-gray" />
             <input
               type="text"
               value={query}
               onChange={(e) => setQuery(e.target.value)}
               placeholder="Search apps, mechanisms, case studies..."
-              className="w-full py-3 pl-12 pr-12 rounded-xl border border-lichenpunk-warmGray bg-white text-text-primary placeholder:text-text-secondary/60 focus:outline-none focus:ring-2 focus:ring-gitcoin-green focus:border-transparent"
+              className="w-full py-3 pl-12 pr-12 rounded-xl border border-dark-gray bg-charcoal text-light-white placeholder:text-muted-gray/60 focus:outline-none focus:ring-2 focus:ring-light-white focus:border-transparent"
               autoFocus
             />
             {query && (
               <button
                 onClick={() => setQuery('')}
-                className="absolute right-4 top-1/2 -translate-y-1/2 text-text-secondary hover:text-text-primary"
+                className="absolute right-4 top-1/2 -translate-y-1/2 text-muted-gray hover:text-light-white"
               >
                 <X className="w-5 h-5" />
               </button>
@@ -125,8 +125,8 @@ function SearchContent() {
                 onClick={() => setActiveFilter(filter.value)}
                 className={`px-4 py-2 rounded-full text-sm font-medium transition-colors ${
                   activeFilter === filter.value
-                    ? 'bg-gitcoin-green text-text-primary'
-                    : 'bg-lichenpunk-warmGray text-text-secondary hover:bg-lichenpunk-slateGray hover:text-white'
+                    ? 'bg-light-white text-void-black'
+                    : 'bg-dark-gray text-muted-gray hover:bg-muted-gray hover:text-light-white'
                 }`}
               >
                 {filter.label}
@@ -164,14 +164,14 @@ function SearchContent() {
           ) : (
             <div className="space-y-12">
               {/* Results count */}
-              <p className="text-text-secondary text-center">
-                Found <span className="font-medium text-text-primary">{totalResults}</span> results for &quot;{query}&quot;
+              <p className="text-muted-gray text-center">
+                Found <span className="font-medium text-light-white">{totalResults}</span> results for &quot;{query}&quot;
               </p>
 
               {/* Apps */}
               {showApps && results.apps.length > 0 && (
                 <div>
-                  <h2 className="text-xl font-semibold text-text-primary mb-4 flex items-center gap-2">
+                  <h2 className="text-xl font-semibold text-light-white mb-4 flex items-center gap-2">
                     Apps
                     <Badge size="sm">{results.apps.length}</Badge>
                   </h2>
@@ -186,7 +186,7 @@ function SearchContent() {
               {/* Mechanisms */}
               {showMechanisms && results.mechanisms.length > 0 && (
                 <div>
-                  <h2 className="text-xl font-semibold text-text-primary mb-4 flex items-center gap-2">
+                  <h2 className="text-xl font-semibold text-light-white mb-4 flex items-center gap-2">
                     Mechanisms
                     <Badge size="sm">{results.mechanisms.length}</Badge>
                   </h2>
@@ -201,7 +201,7 @@ function SearchContent() {
               {/* Case Studies */}
               {showCaseStudies && results.caseStudies.length > 0 && (
                 <div>
-                  <h2 className="text-xl font-semibold text-text-primary mb-4 flex items-center gap-2">
+                  <h2 className="text-xl font-semibold text-light-white mb-4 flex items-center gap-2">
                     Case Studies
                     <Badge size="sm">{results.caseStudies.length}</Badge>
                   </h2>
@@ -216,7 +216,7 @@ function SearchContent() {
               {/* Research */}
               {showResearch && results.research.length > 0 && (
                 <div>
-                  <h2 className="text-xl font-semibold text-text-primary mb-4 flex items-center gap-2">
+                  <h2 className="text-xl font-semibold text-light-white mb-4 flex items-center gap-2">
                     Research
                     <Badge size="sm">{results.research.length}</Badge>
                   </h2>
@@ -231,7 +231,7 @@ function SearchContent() {
               {/* Campaigns */}
               {showCampaigns && results.campaigns.length > 0 && (
                 <div>
-                  <h2 className="text-xl font-semibold text-text-primary mb-4 flex items-center gap-2">
+                  <h2 className="text-xl font-semibold text-light-white mb-4 flex items-center gap-2">
                     Campaigns
                     <Badge size="sm">{results.campaigns.length}</Badge>
                   </h2>
@@ -252,10 +252,10 @@ function SearchContent() {
 
 function SearchLoading() {
   return (
-    <div className="min-h-screen bg-lichenpunk-offWhite flex items-center justify-center">
+    <div className="min-h-screen bg-void-black flex items-center justify-center">
       <div className="text-center">
-        <div className="w-8 h-8 border-4 border-gitcoin-green border-t-transparent rounded-full animate-spin mx-auto mb-4" />
-        <p className="text-text-secondary">Loading search...</p>
+        <div className="w-8 h-8 border-4 border-light-white border-t-transparent rounded-full animate-spin mx-auto mb-4" />
+        <p className="text-muted-gray">Loading search...</p>
       </div>
     </div>
   )
@@ -263,7 +263,7 @@ function SearchLoading() {
 
 export default function SearchPage() {
   return (
-    <div className="min-h-screen bg-lichenpunk-offWhite">
+    <div className="min-h-screen bg-void-black">
       <Suspense fallback={<SearchLoading />}>
         <SearchContent />
       </Suspense>

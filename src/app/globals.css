@@ -1,158 +1,318 @@
+/* Import Google Fonts - must be first */
+@import url('https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;700&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500&family=Playfair+Display:ital,wght@0,400;0,700;1,400&display=swap');
+
 @import "tailwindcss";
 
-/* Custom theme configuration */
+/* Celestial Minimalist Brand Theme
+   Pure Black & White Only */
 @theme {
-  /* Lichenpunk Mode (Default) */
-  --color-lichenpunk-moss: #6F8F72;
-  --color-lichenpunk-lichen: #4F6F64;
-  --color-lichenpunk-teal: #4AAE9B;
-  --color-lichenpunk-offWhite: #F5F7F4;
-  --color-lichenpunk-warmGray: #D9DED8;
-  --color-lichenpunk-slateGray: #7A847F;
+  /* Core Brand Colors - Pure Black & White */
+  --color-void-black: #000000;
+  --color-light-white: #FFFFFF;
 
-  /* Solarpunk Mode */
-  --color-solarpunk-solar: #7CFFB2;
-  --color-solarpunk-leaf: #4DFF9A;
-  --color-solarpunk-sky: #6EC1FF;
-  --color-solarpunk-sun: #FFE066;
-  --color-solarpunk-orange: #FFB703;
-  --color-solarpunk-cloudWhite: #FBFDFB;
-  --color-solarpunk-lightStone: #E6EFE9;
+  /* Functional Grays (use sparingly for UI only) */
+  --color-muted-gray: #666666;
+  --color-soft-gray: #E5E5E5;
+  --color-dark-gray: #333333;
+  --color-charcoal: #111111;
+  --color-smoke: #1a1a1a;
 
-  /* Lunarpunk Mode */
-  --color-lunarpunk-midnight: #2D1E4F;
-  --color-lunarpunk-indigo: #1B1F3B;
-  --color-lunarpunk-dusk: #4B3F72;
-  --color-lunarpunk-lavender: #8E7CC3;
-  --color-lunarpunk-moonGray: #9CA3AF;
-  --color-lunarpunk-charcoal: #111827;
-  --color-lunarpunk-fogGray: #E5E7EB;
+  /* System Colors (functional only) */
+  --color-system-success: #22c55e;
+  --color-system-warning: #eab308;
+  --color-system-error: #ef4444;
+  --color-system-info: #3b82f6;
 
-  /* Gitcoin System Colors */
-  --color-gitcoin-green: #00EB88;
-  --color-gitcoin-cyan: #2DFFF5;
-  --color-gitcoin-softCyan: #6AE3C2;
-
-  /* System Accents */
-  --color-system-warning: #F59E0B;
-  --color-system-error: #EF4444;
-  --color-system-info: #3B82F6;
-
-  /* Text Colors */
-  --color-text-primary: #0F172A;
-  --color-text-secondary: #475569;
-  --color-text-light: #F8FAFC;
-  --color-text-muted: #CBD5E1;
+  /* Typography */
+  --font-display: 'Space Grotesk', system-ui, sans-serif;
+  --font-body: 'Inter', system-ui, sans-serif;
+  --font-mono: 'JetBrains Mono', monospace;
+  --font-accent: 'Playfair Display', Georgia, serif;
 }
 
 :root {
-  /* CSS Variables for theme switching */
-  --color-primary: #6F8F72;
-  --color-primary-dark: #4F6F64;
-  --color-accent: #4AAE9B;
-  --color-bg: #F5F7F4;
-  --color-bg-secondary: #D9DED8;
-  --color-muted: #7A847F;
-  --color-cta: #00EB88;
-  --color-cta-secondary: #2DFFF5;
-  --color-warning: #F59E0B;
-  --color-error: #EF4444;
-  --color-info: #3B82F6;
-  --color-text: #0F172A;
-  --color-text-secondary: #475569;
+  --color-bg: #000000;
+  --color-bg-secondary: #111111;
+  --color-bg-card: #1a1a1a;
+  --color-text: #FFFFFF;
+  --color-text-secondary: #999999;
+  --color-text-muted: #666666;
+  --color-border: #333333;
+  --color-border-subtle: #222222;
 }
 
-[data-theme="solarpunk"] {
-  --color-primary: #7CFFB2;
-  --color-primary-dark: #4DFF9A;
-  --color-accent: #6EC1FF;
-  --color-bg: #FBFDFB;
-  --color-bg-secondary: #E6EFE9;
-  --color-muted: #7A847F;
-}
-
-[data-theme="lunarpunk"] {
-  --color-primary: #4B3F72;
-  --color-primary-dark: #2D1E4F;
-  --color-accent: #8E7CC3;
-  --color-bg: #1B1F3B;
-  --color-bg-secondary: #2D1E4F;
-  --color-muted: #9CA3AF;
-  --color-text: #F8FAFC;
-  --color-text-secondary: #CBD5E1;
+/* Light mode override (accessibility) */
+[data-theme="light"] {
+  --color-bg: #FFFFFF;
+  --color-bg-secondary: #F5F5F5;
+  --color-bg-card: #FFFFFF;
+  --color-text: #000000;
+  --color-text-secondary: #666666;
+  --color-text-muted: #999999;
+  --color-border: #E5E5E5;
+  --color-border-subtle: #EEEEEE;
 }
 
 @layer base {
-  body {
-    @apply bg-lichenpunk-offWhite text-text-primary antialiased;
+  html {
+    scroll-behavior: smooth;
+    font-family: var(--font-body);
   }
 
+  body {
+    @apply bg-void-black text-light-white antialiased;
+    font-family: var(--font-body);
+    line-height: 1.6;
+  }
+
+  /* Typography Scale - Space Grotesk for headlines */
   h1, h2, h3, h4, h5, h6 {
-    @apply font-semibold tracking-tight;
+    font-family: var(--font-display);
+    @apply font-bold tracking-tight text-light-white;
   }
 
   h1 {
     @apply text-4xl md:text-5xl lg:text-6xl;
+    line-height: 1.1;
+    letter-spacing: -0.02em;
   }
 
   h2 {
     @apply text-3xl md:text-4xl;
+    line-height: 1.2;
+    letter-spacing: -0.01em;
   }
 
   h3 {
     @apply text-2xl md:text-3xl;
+    line-height: 1.3;
   }
 
   h4 {
     @apply text-xl md:text-2xl;
+    line-height: 1.3;
+  }
+
+  /* Body text - Inter */
+  p, li, span {
+    font-family: var(--font-body);
+  }
+
+  /* Monospace - JetBrains Mono */
+  code, pre, .mono {
+    font-family: var(--font-mono);
+    @apply text-sm;
+  }
+
+  /* Accent font - Playfair Display for quotes */
+  blockquote, .accent-font {
+    font-family: var(--font-accent);
+    @apply italic;
   }
 }
 
 @layer components {
+  /* Primary CTA Button - White on dark (per brand guidelines) */
   .btn-primary {
-    @apply inline-flex items-center justify-center px-6 py-3 bg-gitcoin-green text-text-primary font-medium rounded-lg hover:bg-gitcoin-softCyan transition-colors duration-200;
+    @apply inline-flex items-center justify-center px-6 py-3
+           bg-light-white text-void-black font-medium rounded-lg
+           hover:bg-muted-gray transition-all duration-300;
+    font-family: var(--font-display);
   }
 
+  /* Secondary Button - White Outlined */
   .btn-secondary {
-    @apply inline-flex items-center justify-center px-6 py-3 border-2 border-lichenpunk-lichen text-lichenpunk-lichen font-medium rounded-lg hover:bg-lichenpunk-lichen hover:text-white transition-colors duration-200;
+    @apply inline-flex items-center justify-center px-6 py-3
+           border border-light-white text-light-white font-medium rounded-lg
+           hover:bg-light-white hover:text-void-black transition-all duration-300;
+    font-family: var(--font-display);
   }
 
+  /* Ghost Button */
+  .btn-ghost {
+    @apply inline-flex items-center justify-center px-6 py-3
+           text-muted-gray font-medium rounded-lg
+           hover:text-light-white hover:bg-light-white/10 transition-all duration-300;
+    font-family: var(--font-display);
+  }
+
+  /* Card - Dark with subtle border */
   .card {
-    @apply bg-white rounded-xl shadow-sm border border-lichenpunk-warmGray p-6 hover:shadow-md transition-shadow duration-200;
+    @apply bg-smoke rounded-xl border border-dark-gray p-6
+           transition-all duration-300;
   }
 
+  .card:hover {
+    @apply border-muted-gray;
+  }
+
+  /* Card Featured - White border accent */
   .card-featured {
-    @apply bg-white rounded-xl shadow-lg border-2 border-gitcoin-green p-6;
+    @apply bg-smoke rounded-xl border-2 border-light-white p-6;
   }
 
+  /* Tag/Badge - Pure black/white */
   .tag {
-    @apply inline-flex items-center px-3 py-1 text-sm font-medium rounded-full bg-lichenpunk-warmGray text-lichenpunk-lichen;
+    @apply inline-flex items-center px-3 py-1 text-sm font-medium
+           rounded-full bg-dark-gray text-muted-gray border border-dark-gray;
   }
 
   .tag-active {
-    @apply bg-gitcoin-green text-text-primary;
+    @apply bg-light-white text-void-black border-light-white;
   }
 
+  /* Section spacing */
   .section {
     @apply py-16 md:py-24;
   }
 
+  /* Container */
   .container-page {
     @apply max-w-7xl mx-auto px-4 sm:px-6 lg:px-8;
   }
+
+  /* Star decorative element */
+  .star {
+    @apply inline-block text-light-white;
+  }
+
+  .star::before {
+    content: '☆';
+  }
+
+  .star-filled::before {
+    content: '★';
+  }
+
+  /* Constellation line */
+  .constellation-line {
+    @apply h-px bg-gradient-to-r from-transparent via-muted-gray to-transparent;
+  }
+
+  /* Divider with stars */
+  .divider-stars {
+    @apply flex items-center gap-4 my-8;
+  }
+
+  .divider-stars::before,
+  .divider-stars::after {
+    content: '';
+    @apply flex-1 h-px bg-dark-gray;
+  }
 }
 
-/* Smooth scrolling */
-html {
-  scroll-behavior: smooth;
+@layer utilities {
+  /* Woodcut-style texture overlay (optional) */
+  .texture-woodcut {
+    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.8' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.03'/%3E%3C/svg%3E");
+  }
+
+  /* Star field background */
+  .bg-starfield {
+    background-image:
+      radial-gradient(1px 1px at 20px 30px, white, transparent),
+      radial-gradient(1px 1px at 40px 70px, rgba(255,255,255,0.8), transparent),
+      radial-gradient(1px 1px at 50px 160px, rgba(255,255,255,0.6), transparent),
+      radial-gradient(1px 1px at 90px 40px, white, transparent),
+      radial-gradient(1px 1px at 130px 80px, rgba(255,255,255,0.7), transparent),
+      radial-gradient(1px 1px at 160px 120px, rgba(255,255,255,0.5), transparent);
+    background-repeat: repeat;
+    background-size: 200px 200px;
+  }
 }
 
-/* Focus styles for accessibility */
+/* Focus styles */
 :focus-visible {
-  @apply outline-2 outline-offset-2 outline-gitcoin-green;
+  @apply outline-2 outline-offset-2 outline-light-white;
 }
 
-/* Selection color */
+/* Selection color - white on black */
 ::selection {
-  background-color: rgb(0 235 136 / 0.3);
+  background-color: rgba(255, 255, 255, 0.3);
+  color: white;
+}
+
+/* Scrollbar styling (dark theme) */
+::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+
+::-webkit-scrollbar-track {
+  @apply bg-charcoal;
+}
+
+::-webkit-scrollbar-thumb {
+  @apply bg-dark-gray rounded-full;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  @apply bg-muted-gray;
+}
+
+/* Links - only style links that don't have button classes */
+a:not(.btn-primary):not(.btn-secondary):not(.btn-ghost) {
+  @apply transition-colors;
+}
+
+/* Code blocks */
+pre {
+  @apply bg-charcoal border border-dark-gray rounded-lg p-4 overflow-x-auto;
+}
+
+code:not(pre code) {
+  @apply bg-dark-gray px-1.5 py-0.5 rounded text-sm text-light-white;
+}
+
+/* Blockquotes - Playfair Display, white border */
+blockquote {
+  @apply border-l-2 border-light-white pl-6 my-6;
+  font-family: var(--font-accent);
+  @apply text-xl italic text-muted-gray;
+}
+
+/* Tables */
+table {
+  @apply w-full border-collapse;
+}
+
+th {
+  @apply text-left font-medium text-muted-gray uppercase text-xs tracking-wider py-3 border-b border-dark-gray;
+}
+
+td {
+  @apply py-3 border-b border-dark-gray;
+}
+
+/* Horizontal rule */
+hr {
+  @apply border-dark-gray my-8;
+}
+
+/* Form inputs */
+input, textarea, select {
+  @apply bg-charcoal border border-dark-gray rounded-lg px-4 py-3
+         text-light-white placeholder:text-muted-gray
+         focus:outline-none focus:ring-2 focus:ring-light-white focus:border-transparent
+         transition-all duration-200;
+  font-family: var(--font-body);
+}
+
+/* Animation for celestial elements */
+@keyframes twinkle {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0.5; }
+}
+
+@keyframes float {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-10px); }
+}
+
+.animate-twinkle {
+  animation: twinkle 3s ease-in-out infinite;
+}
+
+.animate-float {
+  animation: float 6s ease-in-out infinite;
 }
