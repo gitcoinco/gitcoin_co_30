@@ -1,20 +1,45 @@
 <svg width="1200" height="630" viewBox="0 0 1200 630" xmlns="http://www.w3.org/2000/svg">
-  <defs>
-    <linearGradient id="gg23-bg" x1="0%" y1="0%" x2="100%" y2="100%">
-      <stop offset="0%" style="stop-color:#40268C" />
-      <stop offset="100%" style="stop-color:#5a3bb0" />
-    </linearGradient>
-  </defs>
-  <rect width="1200" height="630" fill="url(#gg23-bg)"/>
-  <circle cx="1000" cy="100" r="150" fill="white" opacity="0.1"/>
-  <circle cx="200" cy="500" r="100" fill="white" opacity="0.1"/>
+  <rect width="1200" height="630" fill="#000000"/>
+
+  <!-- Quadratic grid pattern -->
   <g opacity="0.15">
-    <rect x="100" y="100" width="60" height="60" fill="#c9e8e3" rx="5"/>
-    <rect x="180" y="100" width="60" height="60" fill="#c9e8e3" rx="5"/>
-    <rect x="260" y="100" width="60" height="60" fill="#c9e8e3" rx="5"/>
+    <line x1="850" y1="150" x2="1100" y2="150" stroke="#FFFFFF" stroke-width="1"/>
+    <line x1="850" y1="200" x2="1100" y2="200" stroke="#FFFFFF" stroke-width="1"/>
+    <line x1="850" y1="250" x2="1100" y2="250" stroke="#FFFFFF" stroke-width="1"/>
+    <line x1="850" y1="300" x2="1100" y2="300" stroke="#FFFFFF" stroke-width="1"/>
+    <line x1="900" y1="100" x2="900" y2="350" stroke="#FFFFFF" stroke-width="1"/>
+    <line x1="950" y1="100" x2="950" y2="350" stroke="#FFFFFF" stroke-width="1"/>
+    <line x1="1000" y1="100" x2="1000" y2="350" stroke="#FFFFFF" stroke-width="1"/>
+    <line x1="1050" y1="100" x2="1050" y2="350" stroke="#FFFFFF" stroke-width="1"/>
   </g>
-  <text x="100" y="350" font-family="Arial, sans-serif" font-size="96" font-weight="bold" fill="white">GG23</text>
-  <text x="100" y="420" font-family="Arial, sans-serif" font-size="42" fill="#c9e8e3" font-weight="500">Gitcoin Grants Round 23</text>
-  <text x="100" y="480" font-family="Arial, sans-serif" font-size="32" fill="white" opacity="0.8">$1.2M+ • 235 Projects Funded</text>
-  <rect x="100" y="510" width="200" height="6" fill="#c9e8e3" rx="3"/>
+
+  <!-- 235 projects as constellation -->
+  <g opacity="0.8">
+    <circle cx="900" cy="400" r="4" fill="#FFFFFF"/>
+    <circle cx="950" cy="420" r="4" fill="#FFFFFF"/>
+    <circle cx="1000" cy="410" r="4" fill="#FFFFFF"/>
+    <circle cx="1050" cy="430" r="4" fill="#FFFFFF"/>
+    <circle cx="870" cy="450" r="3" fill="#FFFFFF"/>
+    <circle cx="1080" cy="450" r="3" fill="#FFFFFF"/>
+    <circle cx="920" cy="470" r="3" fill="#FFFFFF"/>
+    <circle cx="1010" cy="460" r="3" fill="#FFFFFF"/>
+  </g>
+
+  <!-- Horizon -->
+  <line x1="0" y1="530" x2="750" y2="530" stroke="#FFFFFF" stroke-width="1" opacity="0.3"/>
+  <path d="M 0 530 Q 150 505 300 530 T 600 530 L 600 630 L 0 630 Z" fill="#000000" stroke="#FFFFFF" stroke-width="2"/>
+  <g opacity="0.5">
+    <line x1="60" y1="530" x2="70" y2="630" stroke="#FFFFFF" stroke-width="1"/>
+    <line x1="120" y1="515" x2="130" y2="630" stroke="#FFFFFF" stroke-width="1"/>
+    <line x1="180" y1="520" x2="190" y2="630" stroke="#FFFFFF" stroke-width="1"/>
+  </g>
+
+  <text x="80" y="250" font-family="Arial, sans-serif" font-size="88" font-weight="bold" fill="#FFFFFF">GG23</text>
+  <text x="80" y="330" font-family="Arial, sans-serif" font-size="36" font-weight="500" fill="#FFFFFF" opacity="0.85">Gitcoin Grants Round</text>
+  <text x="80" y="400" font-family="Arial, sans-serif" font-size="26" fill="#FFFFFF" opacity="0.8">$1.2M+ • 235 Projects • 12K Donors</text>
+
+  <g transform="translate(60, 280)">
+    <line x1="0" y1="-8" x2="0" y2="8" stroke="#FFFFFF" stroke-width="1.5"/>
+    <line x1="-8" y1="0" x2="8" y2="0" stroke="#FFFFFF" stroke-width="1.5"/>
+  </g>
 </svg>

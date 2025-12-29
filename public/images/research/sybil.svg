@@ -1,24 +1,85 @@
 <svg width="1200" height="630" viewBox="0 0 1200 630" xmlns="http://www.w3.org/2000/svg">
-  <defs>
-    <linearGradient id="sybil-bg" x1="0%" y1="0%" x2="100%" y2="100%">
-      <stop offset="0%" style="stop-color:#40268C" />
-      <stop offset="100%" style="stop-color:#5a3bb0" />
-    </linearGradient>
-  </defs>
-  <rect width="1200" height="630" fill="url(#sybil-bg)"/>
-  <g opacity="0.15">
-    <circle cx="900" cy="200" r="40" fill="#c9e8e3"/>
-    <circle cx="1000" cy="180" r="40" fill="#c9e8e3"/>
-    <circle cx="950" cy="280" r="40" fill="#c9e8e3"/>
-    <circle cx="1050" cy="260" r="40" fill="#c9e8e3"/>
-    <line x1="900" y1="200" x2="950" y2="280" stroke="#c9e8e3" stroke-width="2"/>
-    <line x1="1000" y1="180" x2="950" y2="280" stroke="#c9e8e3" stroke-width="2"/>
-    <line x1="1000" y1="180" x2="1050" y2="260" stroke="#c9e8e3" stroke-width="2"/>
+  <!-- Background -->
+  <rect width="1200" height="630" fill="#000000"/>
+
+  <!-- Central shield/passport (representing Gitcoin Passport) -->
+  <g transform="translate(950, 250)">
+    <!-- Shield outline -->
+    <path d="M 0 -50 L 30 -40 L 30 10 Q 30 30 0 45 Q -30 30 -30 10 L -30 -40 Z"
+          fill="#000000" stroke="#FFFFFF" stroke-width="3"/>
+    <!-- Inner star -->
+    <g transform="translate(0, -5)">
+      <line x1="0" y1="-15" x2="0" y2="15" stroke="#FFFFFF" stroke-width="2"/>
+      <line x1="-15" y1="0" x2="15" y2="0" stroke="#FFFFFF" stroke-width="2"/>
+      <line x1="-10" y1="-10" x2="10" y2="10" stroke="#FFFFFF" stroke-width="2"/>
+      <line x1="10" y1="-10" x2="-10" y2="10" stroke="#FFFFFF" stroke-width="2"/>
+    </g>
   </g>
-  <circle cx="180" cy="480" r="100" fill="white" opacity="0.08"/>
-  <text x="100" y="270" font-family="Arial, sans-serif" font-size="64" font-weight="bold" fill="white">Sybil Resistance</text>
-  <text x="100" y="340" font-family="Arial, sans-serif" font-size="36" fill="#c9e8e3" font-weight="500">Quadratic Funding Analysis</text>
-  <text x="100" y="410" font-family="Arial, sans-serif" font-size="28" fill="white" opacity="0.85">Passport, MACI &amp; Beyond</text>
-  <text x="100" y="455" font-family="Arial, sans-serif" font-size="24" fill="white" opacity="0.75">60% Reduction in Attacks</text>
-  <rect x="100" y="480" width="270" height="6" fill="#c9e8e3" rx="3"/>
+
+  <!-- Legitimate identities (solid stars connected with solid lines) -->
+  <circle cx="1050" cy="120" r="5" fill="#FFFFFF"/>
+  <circle cx="1100" cy="180" r="5" fill="#FFFFFF"/>
+  <circle cx="1080" cy="350" r="5" fill="#FFFFFF"/>
+  <circle cx="1000" cy="390" r="5" fill="#FFFFFF"/>
+  <circle cx="870" cy="320" r="5" fill="#FFFFFF"/>
+  <circle cx="880" cy="180" r="5" fill="#FFFFFF"/>
+
+  <!-- Solid connections from legitimate identities to passport -->
+  <line x1="1050" y1="120" x2="950" y2="210" stroke="#FFFFFF" stroke-width="2"/>
+  <line x1="1100" y1="180" x2="970" y2="230" stroke="#FFFFFF" stroke-width="2"/>
+  <line x1="1080" y1="350" x2="970" y2="280" stroke="#FFFFFF" stroke-width="2"/>
+  <line x1="1000" y1="390" x2="950" y2="290" stroke="#FFFFFF" stroke-width="2"/>
+  <line x1="870" y1="320" x2="920" y2="270" stroke="#FFFFFF" stroke-width="2"/>
+  <line x1="880" y1="180" x2="920" y2="230" stroke="#FFFFFF" stroke-width="2"/>
+
+  <!-- Sybil attempts (hollow circles with dashed/broken connections) -->
+  <circle cx="1120" cy="280" r="5" fill="#000000" stroke="#FFFFFF" stroke-width="2"/>
+  <circle cx="850" cy="150" r="5" fill="#000000" stroke="#FFFFFF" stroke-width="2"/>
+  <circle cx="820" cy="400" r="5" fill="#000000" stroke="#FFFFFF" stroke-width="2"/>
+
+  <!-- Dashed/broken connections (blocked sybils) -->
+  <line x1="1120" y1="280" x2="1050" y2="260" stroke="#FFFFFF" stroke-width="2" stroke-dasharray="5,5" opacity="0.4"/>
+  <line x1="850" y1="150" x2="900" y2="210" stroke="#FFFFFF" stroke-width="2" stroke-dasharray="5,5" opacity="0.4"/>
+  <line x1="820" y1="400" x2="900" y2="310" stroke="#FFFFFF" stroke-width="2" stroke-dasharray="5,5" opacity="0.4"/>
+
+  <!-- X marks on broken connections -->
+  <g transform="translate(1085, 270)">
+    <line x1="-5" y1="-5" x2="5" y2="5" stroke="#FFFFFF" stroke-width="2"/>
+    <line x1="5" y1="-5" x2="-5" y2="5" stroke="#FFFFFF" stroke-width="2"/>
+  </g>
+  <g transform="translate(875, 180)">
+    <line x1="-5" y1="-5" x2="5" y2="5" stroke="#FFFFFF" stroke-width="2"/>
+    <line x1="5" y1="-5" x2="-5" y2="5" stroke="#FFFFFF" stroke-width="2"/>
+  </g>
+  <g transform="translate(860, 355)">
+    <line x1="-5" y1="-5" x2="5" y2="5" stroke="#FFFFFF" stroke-width="2"/>
+    <line x1="5" y1="-5" x2="-5" y2="5" stroke="#FFFFFF" stroke-width="2"/>
+  </g>
+
+  <!-- Additional decorative stars in sky -->
+  <circle cx="750" cy="80" r="3" fill="#FFFFFF"/>
+  <circle cx="680" cy="150" r="3" fill="#FFFFFF"/>
+  <circle cx="720" cy="220" r="3" fill="#FFFFFF"/>
+
+  <!-- Title -->
+  <text x="80" y="200" font-family="Arial, sans-serif" font-size="58" font-weight="bold" fill="#FFFFFF" letter-spacing="-0.02em">Sybil Resistance</text>
+  <text x="80" y="270" font-family="Arial, sans-serif" font-size="32" font-weight="500" fill="#FFFFFF" opacity="0.85">in Quadratic Funding</text>
+
+  <!-- Subtitle -->
+  <text x="80" y="350" font-family="Arial, sans-serif" font-size="24" fill="#FFFFFF" opacity="0.7">Passport • MACI • Identity</text>
+
+  <!-- Bottom decorative element: horizon with hatching -->
+  <line x1="0" y1="520" x2="600" y2="520" stroke="#FFFFFF" stroke-width="1" opacity="0.3"/>
+  <g opacity="0.4">
+    <line x1="50" y1="520" x2="55" y2="630" stroke="#FFFFFF" stroke-width="1"/>
+    <line x1="100" y1="520" x2="105" y2="630" stroke="#FFFFFF" stroke-width="1"/>
+    <line x1="150" y1="520" x2="155" y2="630" stroke="#FFFFFF" stroke-width="1"/>
+    <line x1="200" y1="520" x2="205" y2="630" stroke="#FFFFFF" stroke-width="1"/>
+  </g>
+
+  <!-- Four-pointed star accent -->
+  <g transform="translate(60, 280)">
+    <line x1="0" y1="-8" x2="0" y2="8" stroke="#FFFFFF" stroke-width="1.5"/>
+    <line x1="-8" y1="0" x2="8" y2="0" stroke="#FFFFFF" stroke-width="1.5"/>
+  </g>
 </svg>

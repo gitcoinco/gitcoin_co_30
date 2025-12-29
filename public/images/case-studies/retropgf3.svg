@@ -1,20 +1,74 @@
 <svg width="1200" height="630" viewBox="0 0 1200 630" xmlns="http://www.w3.org/2000/svg">
-  <defs>
-    <linearGradient id="rpgf3-cs-bg" x1="0%" y1="0%" x2="100%" y2="100%">
-      <stop offset="0%" style="stop-color:#FF0420" />
-      <stop offset="100%" style="stop-color:#c9042b" />
-    </linearGradient>
-  </defs>
-  <rect width="1200" height="630" fill="url(#rpgf3-cs-bg)"/>
-  <circle cx="950" cy="150" r="180" fill="white" opacity="0.08"/>
-  <circle cx="100" cy="550" r="120" fill="white" opacity="0.08"/>
-  <g opacity="0.2">
-    <polygon points="900,420 950,370 1000,420 950,470" fill="white"/>
-    <polygon points="950,320 1000,270 1050,320 1000,370" fill="white"/>
+  <!-- Background -->
+  <rect width="1200" height="630" fill="#000000"/>
+
+  <!-- Central badge/coin (representing badgeholders) -->
+  <g transform="translate(950, 280)">
+    <!-- Outer badge circle -->
+    <circle cx="0" cy="0" r="80" fill="#000000" stroke="#FFFFFF" stroke-width="3"/>
+
+    <!-- Inner star pattern -->
+    <g transform="translate(0, 0)">
+      <line x1="0" y1="-50" x2="0" y2="50" stroke="#FFFFFF" stroke-width="2"/>
+      <line x1="-50" y1="0" x2="50" y2="0" stroke="#FFFFFF" stroke-width="2"/>
+      <line x1="-35" y1="-35" x2="35" y2="35" stroke="#FFFFFF" stroke-width="2"/>
+      <line x1="35" y1="-35" x2="-35" y2="35" stroke="#FFFFFF" stroke-width="2"/>
+    </g>
+
+    <!-- Text: 146 -->
+    <text x="-28" y="10" font-family="Arial, sans-serif" font-size="24" font-weight="bold" fill="#FFFFFF">146</text>
   </g>
-  <text x="100" y="280" font-family="Arial, sans-serif" font-size="68" font-weight="bold" fill="white">RetroPGF 3</text>
-  <text x="100" y="350" font-family="Arial, sans-serif" font-size="36" fill="white" opacity="0.95" font-weight="500">Optimism Case Study</text>
-  <text x="100" y="420" font-family="Arial, sans-serif" font-size="30" fill="white" opacity="0.85">30M OP Distributed</text>
-  <text x="100" y="465" font-family="Arial, sans-serif" font-size="26" fill="white" opacity="0.75">501 Projects • 146 Badgeholders</text>
-  <rect x="100" y="490" width="220" height="6" fill="white" opacity="0.6" rx="3"/>
+
+  <!-- 501 projects as constellation spread across sky -->
+  <g opacity="0.8">
+    <!-- Upper cluster -->
+    <circle cx="800" cy="100" r="4" fill="#FFFFFF"/>
+    <circle cx="850" cy="120" r="4" fill="#FFFFFF"/>
+    <circle cx="900" cy="110" r="4" fill="#FFFFFF"/>
+    <circle cx="750" cy="140" r="4" fill="#FFFFFF"/>
+    <circle cx="820" cy="160" r="4" fill="#FFFFFF"/>
+
+    <!-- Mid cluster -->
+    <circle cx="1050" cy="180" r="4" fill="#FFFFFF"/>
+    <circle cx="1100" cy="200" r="4" fill="#FFFFFF"/>
+    <circle cx="1080" cy="230" r="4" fill="#FFFFFF"/>
+
+    <!-- Lower cluster -->
+    <circle cx="850" cy="400" r="4" fill="#FFFFFF"/>
+    <circle cx="900" cy="420" r="4" fill="#FFFFFF"/>
+    <circle cx="1000" cy="410" r="4" fill="#FFFFFF"/>
+    <circle cx="1050" cy="440" r="4" fill="#FFFFFF"/>
+
+    <!-- Additional scattered stars representing the many projects -->
+    <circle cx="700" cy="180" r="3" fill="#FFFFFF"/>
+    <circle cx="750" cy="200" r="3" fill="#FFFFFF"/>
+    <circle cx="1120" cy="350" r="3" fill="#FFFFFF"/>
+    <circle cx="780" cy="300" r="3" fill="#FFFFFF"/>
+    <circle cx="1080" cy="120" r="3" fill="#FFFFFF"/>
+  </g>
+
+  <!-- Horizon with landscape -->
+  <line x1="0" y1="510" x2="700" y2="510" stroke="#FFFFFF" stroke-width="1" opacity="0.3"/>
+  <path d="M 0 510 Q 120 485 240 510 T 480 510 L 480 630 L 0 630 Z"
+        fill="#000000" stroke="#FFFFFF" stroke-width="2"/>
+  <g opacity="0.5">
+    <line x1="50" y1="510" x2="60" y2="630" stroke="#FFFFFF" stroke-width="1"/>
+    <line x1="100" y1="500" x2="110" y2="630" stroke="#FFFFFF" stroke-width="1"/>
+    <line x1="150" y1="495" x2="160" y2="630" stroke="#FFFFFF" stroke-width="1"/>
+    <line x1="200" y1="488" x2="210" y2="630" stroke="#FFFFFF" stroke-width="1"/>
+  </g>
+
+  <!-- Title -->
+  <text x="80" y="190" font-family="Arial, sans-serif" font-size="62" font-weight="bold" fill="#FFFFFF" letter-spacing="-0.02em">RetroPGF 3</text>
+  <text x="80" y="260" font-family="Arial, sans-serif" font-size="32" font-weight="500" fill="#FFFFFF" opacity="0.85">Optimism Collective</text>
+
+  <!-- Metrics -->
+  <text x="80" y="340" font-family="Arial, sans-serif" font-size="28" fill="#FFFFFF" opacity="0.9">30M OP • 501 Projects</text>
+  <text x="80" y="385" font-family="Arial, sans-serif" font-size="22" fill="#FFFFFF" opacity="0.7">146 Badgeholders</text>
+
+  <!-- Four-pointed star accent -->
+  <g transform="translate(60, 220)">
+    <line x1="0" y1="-8" x2="0" y2="8" stroke="#FFFFFF" stroke-width="1.5"/>
+    <line x1="-8" y1="0" x2="8" y2="0" stroke="#FFFFFF" stroke-width="1.5"/>
+  </g>
 </svg>

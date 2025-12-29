@@ -1,21 +1,49 @@
 <svg width="1200" height="630" viewBox="0 0 1200 630" xmlns="http://www.w3.org/2000/svg">
-  <defs>
-    <linearGradient id="gg24-bg" x1="0%" y1="0%" x2="100%" y2="100%">
-      <stop offset="0%" style="stop-color:#40268C" />
-      <stop offset="50%" style="stop-color:#5a3bb0" />
-      <stop offset="100%" style="stop-color:#c9e8e3" />
-    </linearGradient>
-  </defs>
-  <rect width="1200" height="630" fill="url(#gg24-bg)"/>
-  <circle cx="980" cy="140" r="160" fill="white" opacity="0.12"/>
-  <circle cx="220" cy="480" r="110" fill="white" opacity="0.12"/>
-  <g opacity="0.2">
-    <rect x="100" y="100" width="65" height="65" fill="white" rx="5"/>
-    <rect x="185" y="100" width="65" height="65" fill="white" rx="5"/>
-    <rect x="270" y="100" width="65" height="65" fill="white" rx="5"/>
+  <rect width="1200" height="630" fill="#000000"/>
+
+  <!-- Waxing crescent moon (upcoming/growing) -->
+  <g transform="translate(950, 280)">
+    <circle cx="0" cy="0" r="60" fill="#000000" stroke="#FFFFFF" stroke-width="3"/>
+    <circle cx="20" cy="0" r="55" fill="#000000"/>
   </g>
-  <text x="100" y="350" font-family="Arial, sans-serif" font-size="96" font-weight="bold" fill="white">GG24</text>
-  <text x="100" y="420" font-family="Arial, sans-serif" font-size="42" fill="white" font-weight="500">Gitcoin Grants Round 24</text>
-  <text x="100" y="480" font-family="Arial, sans-serif" font-size="32" fill="white" opacity="0.85">Coming Q1 2025 • Upcoming</text>
-  <rect x="100" y="510" width="230" height="6" fill="white" opacity="0.7" rx="3"/>
+
+  <!-- Rising stars (upcoming projects) -->
+  <g opacity="0.7">
+    <circle cx="850" cy="400" r="4" fill="#FFFFFF"/>
+    <circle cx="900" cy="380" r="4" fill="#FFFFFF"/>
+    <circle cx="950" cy="420" r="4" fill="#FFFFFF"/>
+    <circle cx="1000" cy="400" r="4" fill="#FFFFFF"/>
+    <circle cx="1050" cy="430" r="4" fill="#FFFFFF"/>
+    <!-- Upward motion lines -->
+    <line x1="850" y1="410" x2="850" y2="400" stroke="#FFFFFF" stroke-width="1" opacity="0.5"/>
+    <line x1="900" y1="390" x2="900" y2="380" stroke="#FFFFFF" stroke-width="1" opacity="0.5"/>
+    <line x1="1000" y1="410" x2="1000" y2="400" stroke="#FFFFFF" stroke-width="1" opacity="0.5"/>
+  </g>
+
+  <!-- Quadratic grid (subtle) -->
+  <g opacity="0.1">
+    <line x1="850" y1="150" x2="1050" y2="150" stroke="#FFFFFF" stroke-width="1"/>
+    <line x1="850" y1="190" x2="1050" y2="190" stroke="#FFFFFF" stroke-width="1"/>
+    <line x1="900" y1="120" x2="900" y2="220" stroke="#FFFFFF" stroke-width="1"/>
+    <line x1="950" y1="120" x2="950" y2="220" stroke="#FFFFFF" stroke-width="1"/>
+    <line x1="1000" y1="120" x2="1000" y2="220" stroke="#FFFFFF" stroke-width="1"/>
+  </g>
+
+  <!-- Horizon -->
+  <line x1="0" y1="530" x2="750" y2="530" stroke="#FFFFFF" stroke-width="1" opacity="0.3"/>
+  <path d="M 0 530 Q 150 512 300 530 T 600 530 L 600 630 L 0 630 Z" fill="#000000" stroke="#FFFFFF" stroke-width="2"/>
+  <g opacity="0.5">
+    <line x1="60" y1="530" x2="70" y2="630" stroke="#FFFFFF" stroke-width="1"/>
+    <line x1="120" y1="517" x2="130" y2="630" stroke="#FFFFFF" stroke-width="1"/>
+    <line x1="180" y1="524" x2="190" y2="630" stroke="#FFFFFF" stroke-width="1"/>
+  </g>
+
+  <text x="80" y="250" font-family="Arial, sans-serif" font-size="88" font-weight="bold" fill="#FFFFFF">GG24</text>
+  <text x="80" y="330" font-family="Arial, sans-serif" font-size="36" font-weight="500" fill="#FFFFFF" opacity="0.85">Gitcoin Grants Round</text>
+  <text x="80" y="400" font-family="Arial, sans-serif" font-size="26" fill="#FFFFFF" opacity="0.8">Coming Q1 2025 • Upcoming</text>
+
+  <g transform="translate(60, 280)">
+    <line x1="0" y1="-8" x2="0" y2="8" stroke="#FFFFFF" stroke-width="1.5"/>
+    <line x1="-8" y1="0" x2="8" y2="0" stroke="#FFFFFF" stroke-width="1.5"/>
+  </g>
 </svg>

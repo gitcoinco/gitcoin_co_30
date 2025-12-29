@@ -1,21 +1,92 @@
 <svg width="1200" height="630" viewBox="0 0 1200 630" xmlns="http://www.w3.org/2000/svg">
-  <defs>
-    <linearGradient id="octant-cs-bg" x1="0%" y1="0%" x2="100%" y2="100%">
-      <stop offset="0%" style="stop-color:#40268C" />
-      <stop offset="50%" style="stop-color:#5a3bb0" />
-      <stop offset="100%" style="stop-color:#c9e8e3" />
-    </linearGradient>
-  </defs>
-  <rect width="1200" height="630" fill="url(#octant-cs-bg)"/>
-  <g opacity="0.15">
-    <polygon points="950,180 1000,160 1050,180 1050,230 1000,250 950,230" fill="#c9e8e3"/>
-    <polygon points="850,260 900,240 950,260 950,310 900,330 850,310" fill="#c9e8e3"/>
-    <polygon points="1050,260 1100,240 1150,260 1150,310 1100,330 1050,310" fill="#c9e8e3"/>
+  <!-- Background -->
+  <rect width="1200" height="630" fill="#000000"/>
+
+  <!-- 9 epochs as moon phases -->
+  <g>
+    <!-- Epoch 1 - New moon -->
+    <circle cx="800" cy="120" r="18" fill="#000000" stroke="#FFFFFF" stroke-width="2"/>
+
+    <!-- Epoch 2 - Waxing crescent -->
+    <g transform="translate(880, 120)">
+      <circle cx="0" cy="0" r="18" fill="#000000" stroke="#FFFFFF" stroke-width="2"/>
+      <circle cx="8" cy="0" r="16" fill="#000000"/>
+    </g>
+
+    <!-- Epoch 3 - First quarter -->
+    <g transform="translate(960, 120)">
+      <circle cx="0" cy="0" r="18" fill="#000000" stroke="#FFFFFF" stroke-width="2"/>
+      <path d="M 0 -18 A 18 18 0 0 1 0 18 Z" fill="#FFFFFF"/>
+    </g>
+
+    <!-- Epoch 4 - Waxing gibbous -->
+    <g transform="translate(1040, 120)">
+      <circle cx="0" cy="0" r="18" fill="#FFFFFF" stroke="#FFFFFF" stroke-width="2"/>
+      <circle cx="8" cy="0" r="16" fill="#000000"/>
+    </g>
+
+    <!-- Epoch 5 - Full moon (center, largest) -->
+    <circle cx="920" cy="240" r="24" fill="#FFFFFF" stroke="#FFFFFF" stroke-width="2"/>
+
+    <!-- Epoch 6 - Waning gibbous -->
+    <g transform="translate(800, 360)">
+      <circle cx="0" cy="0" r="18" fill="#FFFFFF" stroke="#FFFFFF" stroke-width="2"/>
+      <circle cx="-8" cy="0" r="16" fill="#000000"/>
+    </g>
+
+    <!-- Epoch 7 - Last quarter -->
+    <g transform="translate(880, 360)">
+      <circle cx="0" cy="0" r="18" fill="#000000" stroke="#FFFFFF" stroke-width="2"/>
+      <path d="M 0 -18 A 18 18 0 0 0 0 18 Z" fill="#FFFFFF"/>
+    </g>
+
+    <!-- Epoch 8 - Waning crescent -->
+    <g transform="translate(960, 360)">
+      <circle cx="0" cy="0" r="18" fill="#000000" stroke="#FFFFFF" stroke-width="2"/>
+      <circle cx="-8" cy="0" r="16" fill="#000000"/>
+    </g>
+
+    <!-- Epoch 9 - Returns to new -->
+    <circle cx="1040" cy="360" r="18" fill="#000000" stroke="#FFFFFF" stroke-width="2"/>
+
+    <!-- Orbital path connecting epochs -->
+    <ellipse cx="920" cy="240" rx="150" ry="140" fill="none" stroke="#FFFFFF" stroke-width="1" stroke-dasharray="3,3" opacity="0.3"/>
   </g>
-  <circle cx="200" cy="500" r="100" fill="white" opacity="0.1"/>
-  <text x="100" y="280" font-family="Arial, sans-serif" font-size="72" font-weight="bold" fill="white">Octant</text>
-  <text x="100" y="350" font-family="Arial, sans-serif" font-size="36" fill="#c9e8e3" font-weight="500">Case Study</text>
-  <text x="100" y="420" font-family="Arial, sans-serif" font-size="30" fill="white" opacity="0.85">Staking-Powered Funding</text>
-  <text x="100" y="465" font-family="Arial, sans-serif" font-size="26" fill="white" opacity="0.75">$15M+ • 9 Epochs • 100K ETH</text>
-  <rect x="100" y="490" width="240" height="6" fill="#c9e8e3" rx="3"/>
+
+  <!-- Staking representation - hexagon with ETH symbol suggestion -->
+  <g transform="translate(1080, 450)">
+    <polygon points="0,-20 17.32,-10 17.32,10 0,20 -17.32,10 -17.32,-10"
+             fill="#000000" stroke="#FFFFFF" stroke-width="2"/>
+    <text x="-22" y="5" font-family="Arial, sans-serif" font-size="12" fill="#FFFFFF">100K</text>
+    <text x="-15" y="40" font-family="Arial, sans-serif" font-size="11" fill="#FFFFFF" opacity="0.7">ETH</text>
+  </g>
+
+  <!-- Horizon -->
+  <line x1="0" y1="520" x2="700" y2="520" stroke="#FFFFFF" stroke-width="1" opacity="0.3"/>
+  <path d="M 0 520 Q 100 500 200 520 T 400 520 L 400 630 L 0 630 Z"
+        fill="#000000" stroke="#FFFFFF" stroke-width="2"/>
+  <g opacity="0.5">
+    <line x1="50" y1="520" x2="60" y2="630" stroke="#FFFFFF" stroke-width="1"/>
+    <line x1="100" y1="505" x2="110" y2="630" stroke="#FFFFFF" stroke-width="1"/>
+    <line x1="150" y1="512" x2="160" y2="630" stroke="#FFFFFF" stroke-width="1"/>
+  </g>
+
+  <!-- Title -->
+  <text x="80" y="200" font-family="Arial, sans-serif" font-size="68" font-weight="bold" fill="#FFFFFF" letter-spacing="-0.02em">Octant</text>
+  <text x="80" y="270" font-family="Arial, sans-serif" font-size="32" font-weight="500" fill="#FFFFFF" opacity="0.85">Staking-Powered Funding</text>
+
+  <!-- Metrics -->
+  <text x="80" y="350" font-family="Arial, sans-serif" font-size="28" fill="#FFFFFF" opacity="0.9">$15M+ • 9 Epochs</text>
+  <text x="80" y="395" font-family="Arial, sans-serif" font-size="22" fill="#FFFFFF" opacity="0.7">Sustainable Model</text>
+
+  <!-- Decorative stars -->
+  <circle cx="700" cy="100" r="3" fill="#FFFFFF"/>
+  <circle cx="650" cy="200" r="3" fill="#FFFFFF"/>
+  <circle cx="720" cy="450" r="3" fill="#FFFFFF"/>
+
+  <!-- Star accent -->
+  <g transform="translate(60, 230)">
+    <line x1="0" y1="-8" x2="0" y2="8" stroke="#FFFFFF" stroke-width="1.5"/>
+    <line x1="-8" y1="0" x2="8" y2="0" stroke="#FFFFFF" stroke-width="1.5"/>
+  </g>
 </svg>

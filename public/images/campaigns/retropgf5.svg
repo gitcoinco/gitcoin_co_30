@@ -1,17 +1,43 @@
 <svg width="1200" height="630" viewBox="0 0 1200 630" xmlns="http://www.w3.org/2000/svg">
-  <defs>
-    <linearGradient id="retro5-bg" x1="0%" y1="0%" x2="100%" y2="100%">
-      <stop offset="0%" style="stop-color:#FF0420" />
-      <stop offset="100%" style="stop-color:#d9032a" />
-    </linearGradient>
-  </defs>
-  <rect width="1200" height="630" fill="url(#retro5-bg)"/>
-  <circle cx="950" cy="120" r="160" fill="white" opacity="0.08"/>
-  <g opacity="0.2">
-    <polygon points="880,420 930,370 980,420 930,470" fill="white"/>
+  <rect width="1200" height="630" fill="#000000"/>
+
+  <!-- 180 projects constellation -->
+  <g opacity="0.8">
+    <circle cx="850" cy="180" r="4" fill="#FFFFFF"/>
+    <circle cx="900" cy="200" r="4" fill="#FFFFFF"/>
+    <circle cx="950" cy="190" r="4" fill="#FFFFFF"/>
+    <circle cx="1000" cy="210" r="4" fill="#FFFFFF"/>
+    <circle cx="1050" cy="200" r="4" fill="#FFFFFF"/>
+    <circle cx="920" cy="240" r="3" fill="#FFFFFF"/>
+    <circle cx="980" cy="250" r="3" fill="#FFFFFF"/>
+    <circle cx="1020" cy="260" r="3" fill="#FFFFFF"/>
+    <line x1="850" y1="180" x2="900" y2="200" stroke="#FFFFFF" stroke-width="1" opacity="0.5"/>
+    <line x1="900" y1="200" x2="950" y2="190" stroke="#FFFFFF" stroke-width="1" opacity="0.5"/>
+    <line x1="950" y1="190" x2="1000" y2="210" stroke="#FFFFFF" stroke-width="1" opacity="0.5"/>
+    <line x1="1000" y1="210" x2="1050" y2="200" stroke="#FFFFFF" stroke-width="1" opacity="0.5"/>
   </g>
-  <text x="100" y="320" font-family="Arial, sans-serif" font-size="80" font-weight="bold" fill="white">RetroPGF 5</text>
-  <text x="100" y="390" font-family="Arial, sans-serif" font-size="38" fill="white" opacity="0.9" font-weight="500">Optimism Collective</text>
-  <text x="100" y="460" font-family="Arial, sans-serif" font-size="32" fill="white" opacity="0.8">180 Projects • 8M OP Distributed</text>
-  <rect x="100" y="490" width="200" height="6" fill="white" opacity="0.6" rx="3"/>
+
+  <!-- Dev tools icon suggestion (wrench/tool shape) -->
+  <g transform="translate(900, 380)" opacity="0.3">
+    <rect x="-8" y="-30" width="16" height="40" rx="3" fill="none" stroke="#FFFFFF" stroke-width="2"/>
+    <circle cx="0" cy="-35" r="8" fill="none" stroke="#FFFFFF" stroke-width="2"/>
+  </g>
+
+  <!-- Horizon -->
+  <line x1="0" y1="520" x2="700" y2="520" stroke="#FFFFFF" stroke-width="1" opacity="0.3"/>
+  <path d="M 0 520 Q 100 500 200 520 T 400 520 L 400 630 L 0 630 Z" fill="#000000" stroke="#FFFFFF" stroke-width="2"/>
+  <g opacity="0.5">
+    <line x1="50" y1="520" x2="60" y2="630" stroke="#FFFFFF" stroke-width="1"/>
+    <line x1="100" y1="505" x2="110" y2="630" stroke="#FFFFFF" stroke-width="1"/>
+    <line x1="150" y1="512" x2="160" y2="630" stroke="#FFFFFF" stroke-width="1"/>
+  </g>
+
+  <text x="80" y="230" font-family="Arial, sans-serif" font-size="76" font-weight="bold" fill="#FFFFFF">RetroPGF 5</text>
+  <text x="80" y="300" font-family="Arial, sans-serif" font-size="34" font-weight="500" fill="#FFFFFF" opacity="0.85">Optimism Collective</text>
+  <text x="80" y="370" font-family="Arial, sans-serif" font-size="26" fill="#FFFFFF" opacity="0.8">8M OP • 180 Projects</text>
+
+  <g transform="translate(60, 260)">
+    <line x1="0" y1="-8" x2="0" y2="8" stroke="#FFFFFF" stroke-width="1.5"/>
+    <line x1="-8" y1="0" x2="8" y2="0" stroke="#FFFFFF" stroke-width="1.5"/>
+  </g>
 </svg>

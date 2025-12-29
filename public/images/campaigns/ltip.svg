@@ -1,19 +1,48 @@
 <svg width="1200" height="630" viewBox="0 0 1200 630" xmlns="http://www.w3.org/2000/svg">
-  <defs>
-    <linearGradient id="ltip-bg" x1="0%" y1="0%" x2="100%" y2="100%">
-      <stop offset="0%" style="stop-color:#1C4B99" />
-      <stop offset="100%" style="stop-color:#2D5AA6" />
-    </linearGradient>
-  </defs>
-  <rect width="1200" height="630" fill="url(#ltip-bg)"/>
-  <circle cx="1050" cy="100" r="150" fill="white" opacity="0.08"/>
-  <g opacity="0.15">
-    <rect x="100" y="90" width="70" height="70" fill="#c9e8e3" rx="8"/>
-    <rect x="190" y="90" width="70" height="70" fill="#c9e8e3" rx="8"/>
-    <rect x="280" y="90" width="70" height="70" fill="#c9e8e3" rx="8"/>
+  <rect width="1200" height="630" fill="#000000"/>
+
+  <!-- Long-term growth curve (sustained vs short-term spike) -->
+  <g transform="translate(850, 400)">
+    <!-- Gradual sustained growth line -->
+    <path d="M 0 80 Q 50 65 100 50 T 200 20" fill="none" stroke="#FFFFFF" stroke-width="3"/>
+    <!-- Data points -->
+    <circle cx="0" cy="80" r="4" fill="#FFFFFF"/>
+    <circle cx="50" cy="65" r="4" fill="#FFFFFF"/>
+    <circle cx="100" cy="50" r="5" fill="#FFFFFF"/>
+    <circle cx="150" cy="35" r="5" fill="#FFFFFF"/>
+    <circle cx="200" cy="20" r="5" fill="#FFFFFF"/>
+
+    <!-- Axes -->
+    <line x1="-10" y1="90" x2="210" y2="90" stroke="#FFFFFF" stroke-width="1" opacity="0.4"/>
+    <line x1="-10" y1="0" x2="-10" y2="90" stroke="#FFFFFF" stroke-width="1" opacity="0.4"/>
   </g>
-  <text x="100" y="340" font-family="Arial, sans-serif" font-size="84" font-weight="bold" fill="white">LTIP</text>
-  <text x="100" y="410" font-family="Arial, sans-serif" font-size="40" fill="#c9e8e3" font-weight="500">Arbitrum DAO</text>
-  <text x="100" y="470" font-family="Arial, sans-serif" font-size="32" fill="white" opacity="0.8">Long-Term Incentives • 45.8M ARB</text>
-  <rect x="100" y="500" width="230" height="6" fill="#c9e8e3" rx="3"/>
+
+  <!-- Protocol constellation -->
+  <g opacity="0.8">
+    <circle cx="900" cy="200" r="4" fill="#FFFFFF"/>
+    <circle cx="950" cy="220" r="4" fill="#FFFFFF"/>
+    <circle cx="1000" cy="210" r="4" fill="#FFFFFF"/>
+    <circle cx="1050" cy="230" r="4" fill="#FFFFFF"/>
+    <line x1="900" y1="200" x2="950" y2="220" stroke="#FFFFFF" stroke-width="1" opacity="0.5"/>
+    <line x1="950" y1="220" x2="1000" y2="210" stroke="#FFFFFF" stroke-width="1" opacity="0.5"/>
+    <line x1="1000" y1="210" x2="1050" y2="230" stroke="#FFFFFF" stroke-width="1" opacity="0.5"/>
+  </g>
+
+  <!-- Horizon -->
+  <line x1="0" y1="530" x2="750" y2="530" stroke="#FFFFFF" stroke-width="1" opacity="0.3"/>
+  <path d="M 0 530 Q 150 510 300 530 T 600 530 L 600 630 L 0 630 Z" fill="#000000" stroke="#FFFFFF" stroke-width="2"/>
+  <g opacity="0.5">
+    <line x1="60" y1="530" x2="70" y2="630" stroke="#FFFFFF" stroke-width="1"/>
+    <line x1="120" y1="515" x2="130" y2="630" stroke="#FFFFFF" stroke-width="1"/>
+    <line x1="180" y1="522" x2="190" y2="630" stroke="#FFFFFF" stroke-width="1"/>
+  </g>
+
+  <text x="80" y="240" font-family="Arial, sans-serif" font-size="80" font-weight="bold" fill="#FFFFFF">LTIP</text>
+  <text x="80" y="310" font-family="Arial, sans-serif" font-size="34" font-weight="500" fill="#FFFFFF" opacity="0.85">Arbitrum DAO</text>
+  <text x="80" y="380" font-family="Arial, sans-serif" font-size="26" fill="#FFFFFF" opacity="0.8">45.8M ARB • Long-Term</text>
+
+  <g transform="translate(60, 270)">
+    <line x1="0" y1="-8" x2="0" y2="8" stroke="#FFFFFF" stroke-width="1.5"/>
+    <line x1="-8" y1="0" x2="8" y2="0" stroke="#FFFFFF" stroke-width="1.5"/>
+  </g>
 </svg>

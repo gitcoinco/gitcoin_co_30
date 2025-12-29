@@ -1,24 +1,106 @@
 <svg width="1200" height="630" viewBox="0 0 1200 630" xmlns="http://www.w3.org/2000/svg">
-  <defs>
-    <linearGradient id="plural-bg" x1="0%" y1="0%" x2="100%" y2="100%">
-      <stop offset="0%" style="stop-color:#40268C" />
-      <stop offset="33%" style="stop-color:#627EEA" />
-      <stop offset="66%" style="stop-color:#c9e8e3" />
-      <stop offset="100%" style="stop-color:#40268C" />
-    </linearGradient>
-  </defs>
-  <rect width="1200" height="630" fill="url(#plural-bg)"/>
-  <g opacity="0.2">
-    <circle cx="900" cy="250" r="60" fill="white"/>
-    <circle cx="1050" cy="250" r="60" fill="white"/>
-    <circle cx="975" cy="150" r="60" fill="white"/>
-    <circle cx="975" cy="350" r="60" fill="white"/>
-    <circle cx="1100" cy="350" r="60" fill="white"/>
+  <!-- Background -->
+  <rect width="1200" height="630" fill="#000000"/>
+
+  <!-- Horizon line -->
+  <line x1="0" y1="480" x2="1200" y2="480" stroke="#FFFFFF" stroke-width="1" opacity="0.3"/>
+
+  <!-- Multiple distinct constellations representing different mechanisms -->
+
+  <!-- Constellation 1: Quadratic Funding (triangle shape, upper left) -->
+  <g>
+    <circle cx="200" cy="100" r="5" fill="#FFFFFF"/>
+    <circle cx="280" cy="100" r="5" fill="#FFFFFF"/>
+    <circle cx="240" cy="160" r="5" fill="#FFFFFF"/>
+    <line x1="200" y1="100" x2="280" y2="100" stroke="#FFFFFF" stroke-width="2"/>
+    <line x1="280" y1="100" x2="240" y2="160" stroke="#FFFFFF" stroke-width="2"/>
+    <line x1="240" y1="160" x2="200" y2="100" stroke="#FFFFFF" stroke-width="2"/>
+    <text x="185" y="190" font-family="Arial, sans-serif" font-size="14" fill="#FFFFFF" opacity="0.7">Quadratic</text>
   </g>
-  <circle cx="150" cy="520" r="100" fill="white" opacity="0.1"/>
-  <text x="100" y="260" font-family="Arial, sans-serif" font-size="64" font-weight="bold" fill="white">Plural Funding</text>
-  <text x="100" y="330" font-family="Arial, sans-serif" font-size="36" fill="#c9e8e3" font-weight="500">Mechanisms Opinion</text>
-  <text x="100" y="400" font-family="Arial, sans-serif" font-size="28" fill="white" opacity="0.85">Why Diversity Matters</text>
-  <text x="100" y="445" font-family="Arial, sans-serif" font-size="24" fill="white" opacity="0.75">QF • Retro • Grants • Streaming</text>
-  <rect x="100" y="470" width="300" height="6" fill="#c9e8e3" rx="3"/>
+
+  <!-- Constellation 2: Retroactive Funding (pentagon, upper right) -->
+  <g>
+    <circle cx="950" cy="80" r="5" fill="#FFFFFF"/>
+    <circle cx="1020" cy="100" r="5" fill="#FFFFFF"/>
+    <circle cx="1000" cy="160" r="5" fill="#FFFFFF"/>
+    <circle cx="920" cy="160" r="5" fill="#FFFFFF"/>
+    <circle cx="900" cy="100" r="5" fill="#FFFFFF"/>
+    <line x1="950" y1="80" x2="1020" y2="100" stroke="#FFFFFF" stroke-width="2"/>
+    <line x1="1020" y1="100" x2="1000" y2="160" stroke="#FFFFFF" stroke-width="2"/>
+    <line x1="1000" y1="160" x2="920" y2="160" stroke="#FFFFFF" stroke-width="2"/>
+    <line x1="920" y1="160" x2="900" y2="100" stroke="#FFFFFF" stroke-width="2"/>
+    <line x1="900" y1="100" x2="950" y2="80" stroke="#FFFFFF" stroke-width="2"/>
+    <text x="910" y="190" font-family="Arial, sans-serif" font-size="14" fill="#FFFFFF" opacity="0.7">Retroactive</text>
+  </g>
+
+  <!-- Constellation 3: Direct Grants (square, center left) -->
+  <g>
+    <circle cx="300" cy="260" r="5" fill="#FFFFFF"/>
+    <circle cx="380" cy="260" r="5" fill="#FFFFFF"/>
+    <circle cx="380" cy="330" r="5" fill="#FFFFFF"/>
+    <circle cx="300" cy="330" r="5" fill="#FFFFFF"/>
+    <line x1="300" y1="260" x2="380" y2="260" stroke="#FFFFFF" stroke-width="2"/>
+    <line x1="380" y1="260" x2="380" y2="330" stroke="#FFFFFF" stroke-width="2"/>
+    <line x1="380" y1="330" x2="300" y2="330" stroke="#FFFFFF" stroke-width="2"/>
+    <line x1="300" y1="330" x2="300" y2="260" stroke="#FFFFFF" stroke-width="2"/>
+    <text x="305" y="360" font-family="Arial, sans-serif" font-size="14" fill="#FFFFFF" opacity="0.7">Direct Grants</text>
+  </g>
+
+  <!-- Constellation 4: Streaming (flowing line, center right) -->
+  <g>
+    <circle cx="750" cy="220" r="5" fill="#FFFFFF"/>
+    <circle cx="810" cy="240" r="5" fill="#FFFFFF"/>
+    <circle cx="870" cy="250" r="5" fill="#FFFFFF"/>
+    <circle cx="930" cy="270" r="5" fill="#FFFFFF"/>
+    <line x1="750" y1="220" x2="810" y2="240" stroke="#FFFFFF" stroke-width="2"/>
+    <line x1="810" y1="240" x2="870" y2="250" stroke="#FFFFFF" stroke-width="2"/>
+    <line x1="870" y1="250" x2="930" y2="270" stroke="#FFFFFF" stroke-width="2"/>
+    <text x="800" y="300" font-family="Arial, sans-serif" font-size="14" fill="#FFFFFF" opacity="0.7">Streaming</text>
+  </g>
+
+  <!-- Constellation 5: Milestone-based (stepped pattern, lower center) -->
+  <g>
+    <circle cx="550" cy="280" r="5" fill="#FFFFFF"/>
+    <circle cx="600" cy="280" r="5" fill="#FFFFFF"/>
+    <circle cx="600" cy="330" r="5" fill="#FFFFFF"/>
+    <circle cx="650" cy="330" r="5" fill="#FFFFFF"/>
+    <line x1="550" y1="280" x2="600" y2="280" stroke="#FFFFFF" stroke-width="2"/>
+    <line x1="600" y1="280" x2="600" y2="330" stroke="#FFFFFF" stroke-width="2"/>
+    <line x1="600" y1="330" x2="650" y2="330" stroke="#FFFFFF" stroke-width="2"/>
+    <text x="540" y="365" font-family="Arial, sans-serif" font-size="14" fill="#FFFFFF" opacity="0.7">Milestone</text>
+  </g>
+
+  <!-- Additional scattered individual stars -->
+  <circle cx="450" cy="140" r="3" fill="#FFFFFF"/>
+  <circle cx="650" cy="120" r="3" fill="#FFFFFF"/>
+  <circle cx="500" cy="380" r="3" fill="#FFFFFF"/>
+  <circle cx="1100" cy="280" r="3" fill="#FFFFFF"/>
+  <circle cx="120" cy="220" r="3" fill="#FFFFFF"/>
+
+  <!-- Central radiating sun (representing the commons/public goods) -->
+  <g transform="translate(600, 140)">
+    <circle cx="0" cy="0" r="12" fill="#000000" stroke="#FFFFFF" stroke-width="2"/>
+    <!-- Radiating lines -->
+    <line x1="0" y1="-20" x2="0" y2="-30" stroke="#FFFFFF" stroke-width="2"/>
+    <line x1="14" y1="-14" x2="21" y2="-21" stroke="#FFFFFF" stroke-width="2"/>
+    <line x1="20" y1="0" x2="30" y2="0" stroke="#FFFFFF" stroke-width="2"/>
+    <line x1="14" y1="14" x2="21" y2="21" stroke="#FFFFFF" stroke-width="2"/>
+    <line x1="0" y1="20" x2="0" y2="30" stroke="#FFFFFF" stroke-width="2"/>
+    <line x1="-14" y1="14" x2="-21" y2="21" stroke="#FFFFFF" stroke-width="2"/>
+    <line x1="-20" y1="0" x2="-30" y2="0" stroke="#FFFFFF" stroke-width="2"/>
+    <line x1="-14" y1="-14" x2="-21" y2="-21" stroke="#FFFFFF" stroke-width="2"/>
+  </g>
+
+  <!-- Title -->
+  <text x="80" y="500" font-family="Arial, sans-serif" font-size="54" font-weight="bold" fill="#FFFFFF" letter-spacing="-0.02em">Plural Funding</text>
+  <text x="80" y="560" font-family="Arial, sans-serif" font-size="32" font-weight="500" fill="#FFFFFF" opacity="0.85">Mechanisms</text>
+
+  <!-- Subtitle -->
+  <text x="80" y="605" font-family="Arial, sans-serif" font-size="20" fill="#FFFFFF" opacity="0.7">Diversity • Resilience • Innovation</text>
+
+  <!-- Four-pointed star accent -->
+  <g transform="translate(60, 530)">
+    <line x1="0" y1="-8" x2="0" y2="8" stroke="#FFFFFF" stroke-width="1.5"/>
+    <line x1="-8" y1="0" x2="8" y2="0" stroke="#FFFFFF" stroke-width="1.5"/>
+  </g>
 </svg>

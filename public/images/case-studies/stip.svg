@@ -1,19 +1,59 @@
 <svg width="1200" height="630" viewBox="0 0 1200 630" xmlns="http://www.w3.org/2000/svg">
-  <defs>
-    <linearGradient id="stip-cs-bg" x1="0%" y1="0%" x2="100%" y2="100%">
-      <stop offset="0%" style="stop-color:#1C4B99" />
-      <stop offset="100%" style="stop-color:#28519E" />
-    </linearGradient>
-  </defs>
-  <rect width="1200" height="630" fill="url(#stip-cs-bg)"/>
-  <circle cx="1000" cy="150" r="140" fill="white" opacity="0.08"/>
-  <g opacity="0.15">
-    <rect x="100" y="90" width="70" height="70" fill="#c9e8e3" rx="8"/>
-    <rect x="190" y="90" width="70" height="70" fill="#c9e8e3" rx="8"/>
+  <!-- Background -->
+  <rect width="1200" height="630" fill="#000000"/>
+
+  <!-- Graph/chart representation showing short-term spike and decline -->
+  <g transform="translate(850, 400)">
+    <!-- Rising curve (incentive period) -->
+    <path d="M 0 100 Q 50 60 100 20" fill="none" stroke="#FFFFFF" stroke-width="3"/>
+    <!-- Falling curve (post-incentive) -->
+    <path d="M 100 20 Q 150 50 200 90" fill="none" stroke="#FFFFFF" stroke-width="3" stroke-dasharray="5,5" opacity="0.6"/>
+
+    <!-- Data points -->
+    <circle cx="0" cy="100" r="5" fill="#FFFFFF"/>
+    <circle cx="50" cy="60" r="5" fill="#FFFFFF"/>
+    <circle cx="100" cy="20" r="6" fill="#FFFFFF"/>
+    <circle cx="150" cy="50" r="5" fill="#FFFFFF" opacity="0.6"/>
+    <circle cx="200" cy="90" r="5" fill="#FFFFFF" opacity="0.6"/>
+
+    <!-- Axes -->
+    <line x1="-10" y1="110" x2="210" y2="110" stroke="#FFFFFF" stroke-width="1" opacity="0.4"/>
+    <line x1="-10" y1="0" x2="-10" y2="110" stroke="#FFFFFF" stroke-width="1" opacity="0.4"/>
   </g>
-  <text x="100" y="290" font-family="Arial, sans-serif" font-size="76" font-weight="bold" fill="white">STIP Analysis</text>
-  <text x="100" y="360" font-family="Arial, sans-serif" font-size="36" fill="#c9e8e3" font-weight="500">Arbitrum Case Study</text>
-  <text x="100" y="430" font-family="Arial, sans-serif" font-size="30" fill="white" opacity="0.85">71.4M ARB Distributed</text>
-  <text x="100" y="475" font-family="Arial, sans-serif" font-size="26" fill="white" opacity="0.75">56 Protocols • Valuable Learnings</text>
-  <rect x="100" y="500" width="240" height="6" fill="#c9e8e3" rx="3"/>
+
+  <!-- 56 protocols as scattered constellation -->
+  <g>
+    <circle cx="900" cy="150" r="4" fill="#FFFFFF"/>
+    <circle cx="950" cy="180" r="4" fill="#FFFFFF"/>
+    <circle cx="1000" cy="160" r="4" fill="#FFFFFF"/>
+    <circle cx="850" cy="200" r="4" fill="#FFFFFF"/>
+    <circle cx="1050" cy="210" r="4" fill="#FFFFFF"/>
+    <circle cx="920" cy="230" r="3" fill="#FFFFFF"/>
+    <circle cx="980" cy="240" r="3" fill="#FFFFFF"/>
+    <circle cx="1100" cy="180" r="3" fill="#FFFFFF"/>
+  </g>
+
+  <!-- Horizon -->
+  <line x1="0" y1="540" x2="700" y2="540" stroke="#FFFFFF" stroke-width="1" opacity="0.3"/>
+  <path d="M 0 540 Q 100 520 200 540 T 400 540 L 400 630 L 0 630 Z"
+        fill="#000000" stroke="#FFFFFF" stroke-width="2"/>
+  <g opacity="0.5">
+    <line x1="40" y1="540" x2="50" y2="630" stroke="#FFFFFF" stroke-width="1"/>
+    <line x1="80" y1="533" x2="90" y2="630" stroke="#FFFFFF" stroke-width="1"/>
+    <line x1="120" y1="528" x2="130" y2="630" stroke="#FFFFFF" stroke-width="1"/>
+  </g>
+
+  <!-- Title -->
+  <text x="80" y="200" font-family="Arial, sans-serif" font-size="62" font-weight="bold" fill="#FFFFFF" letter-spacing="-0.02em">STIP Analysis</text>
+  <text x="80" y="270" font-family="Arial, sans-serif" font-size="32" font-weight="500" fill="#FFFFFF" opacity="0.85">Arbitrum Incentives</text>
+
+  <!-- Metrics -->
+  <text x="80" y="350" font-family="Arial, sans-serif" font-size="28" fill="#FFFFFF" opacity="0.9">71.4M ARB • 56 Protocols</text>
+  <text x="80" y="395" font-family="Arial, sans-serif" font-size="22" fill="#FFFFFF" opacity="0.7">Short-Term Learnings</text>
+
+  <!-- Star accent -->
+  <g transform="translate(60, 230)">
+    <line x1="0" y1="-8" x2="0" y2="8" stroke="#FFFFFF" stroke-width="1.5"/>
+    <line x1="-8" y1="0" x2="8" y2="0" stroke="#FFFFFF" stroke-width="1.5"/>
+  </g>
 </svg>
