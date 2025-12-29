@@ -58,6 +58,18 @@ export default async function ResearchDetailPage({ params }: PageProps) {
         </div>
       </div>
 
+      {/* Hero */}
+      {r.heroImage && (
+        <div className="h-64 md:h-80 bg-charcoal relative overflow-hidden">
+          <img
+            src={r.heroImage}
+            alt={r.title}
+            className="w-full h-full object-cover opacity-80"
+          />
+          <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent" />
+        </div>
+      )}
+
       {/* Header */}
       <section className="bg-charcoal border-b border-dark-gray">
         <div className="container-page py-12">

@@ -41,7 +41,7 @@ Estimated public goods funding in 2024:
 2. Better coordination between major funders
 3. Focus on sustainability beyond one-time grants
 4. Support for mechanism research and experimentation`,
-    heroImage: '/images/research/sopgf-2024.jpg',
+    heroImage: '/images/research/sopgf-2024.svg',
     type: 'report',
     dataVisualizations: [
       {
@@ -128,7 +128,7 @@ Based on GG23 data:
 2. **Invest in privacy-preserving identity**: Users need better options
 3. **Accept tradeoffs**: Some accessibility loss for integrity
 4. **Continuous iteration**: Attackers evolve, defenses must too`,
-    heroImage: '/images/research/sybil.jpg',
+    heroImage: '/images/research/sybil.svg',
     type: 'analysis',
     dataVisualizations: [],
     relatedApps: ['gitcoin-grants-stack', 'clr-fund'],
@@ -199,7 +199,7 @@ Retroactive funding promises to reward demonstrated impact, but measuring "impac
 2. Invest in evaluator training and support
 3. Build impact measurement infrastructure
 4. Plan for multi-round iteration`,
-    heroImage: '/images/research/impact.jpg',
+    heroImage: '/images/research/impact.svg',
     type: 'analysis',
     dataVisualizations: [],
     relatedApps: ['optimism-retropgf'],
@@ -273,7 +273,7 @@ No single funding mechanism is optimal for all situations. Different mechanisms 
 3. Invest in mechanism research
 4. Enable interoperability between systems
 5. Fund the infrastructure for plurality`,
-    heroImage: '/images/research/plural.jpg',
+    heroImage: '/images/research/plural.svg',
     type: 'opinion',
     dataVisualizations: [],
     relatedApps: [],
@@ -335,7 +335,7 @@ Available allocation strategies:
 2. **Modularity matters**: Different use cases need different strategies
 3. **Multi-chain is essential**: Users are everywhere
 4. **Developer experience drives adoption**: Good docs and SDKs matter`,
-    heroImage: '/images/research/allo.jpg',
+    heroImage: '/images/research/allo.svg',
     type: 'analysis',
     dataVisualizations: [],
     relatedApps: ['allo-protocol', 'gitcoin-grants-stack'],
