@@ -1,0 +1,17 @@
+<svg width="1200" height="630" viewBox="0 0 1200 630" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <linearGradient id="retro5-bg" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#FF0420" />
+      <stop offset="100%" style="stop-color:#d9032a" />
+    </linearGradient>
+  </defs>
+  <rect width="1200" height="630" fill="url(#retro5-bg)"/>
+  <circle cx="950" cy="120" r="160" fill="white" opacity="0.08"/>
+  <g opacity="0.2">
+    <polygon points="880,420 930,370 980,420 930,470" fill="white"/>
+  </g>
+  <text x="100" y="320" font-family="Arial, sans-serif" font-size="80" font-weight="bold" fill="white">RetroPGF 5</text>
+  <text x="100" y="390" font-family="Arial, sans-serif" font-size="38" fill="white" opacity="0.9" font-weight="500">Optimism Collective</text>
+  <text x="100" y="460" font-family="Arial, sans-serif" font-size="32" fill="white" opacity="0.8">180 Projects • 8M OP Distributed</text>
+  <rect x="100" y="490" width="200" height="6" fill="white" opacity="0.6" rx="3"/>
+</svg>

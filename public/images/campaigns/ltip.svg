@@ -1,0 +1,19 @@
+<svg width="1200" height="630" viewBox="0 0 1200 630" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <linearGradient id="ltip-bg" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#1C4B99" />
+      <stop offset="100%" style="stop-color:#2D5AA6" />
+    </linearGradient>
+  </defs>
+  <rect width="1200" height="630" fill="url(#ltip-bg)"/>
+  <circle cx="1050" cy="100" r="150" fill="white" opacity="0.08"/>
+  <g opacity="0.15">
+    <rect x="100" y="90" width="70" height="70" fill="#c9e8e3" rx="8"/>
+    <rect x="190" y="90" width="70" height="70" fill="#c9e8e3" rx="8"/>
+    <rect x="280" y="90" width="70" height="70" fill="#c9e8e3" rx="8"/>
+  </g>
+  <text x="100" y="340" font-family="Arial, sans-serif" font-size="84" font-weight="bold" fill="white">LTIP</text>
+  <text x="100" y="410" font-family="Arial, sans-serif" font-size="40" fill="#c9e8e3" font-weight="500">Arbitrum DAO</text>
+  <text x="100" y="470" font-family="Arial, sans-serif" font-size="32" fill="white" opacity="0.8">Long-Term Incentives • 45.8M ARB</text>
+  <rect x="100" y="500" width="230" height="6" fill="#c9e8e3" rx="3"/>
+</svg>

@@ -1,0 +1,19 @@
+<svg width="1200" height="630" viewBox="0 0 1200 630" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <linearGradient id="gg22-bg" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#40268C" />
+      <stop offset="100%" style="stop-color:#5a3bb0" />
+    </linearGradient>
+  </defs>
+  <rect width="1200" height="630" fill="url(#gg22-bg)"/>
+  <circle cx="1000" cy="120" r="140" fill="white" opacity="0.1"/>
+  <circle cx="180" cy="500" r="90" fill="white" opacity="0.1"/>
+  <g opacity="0.15">
+    <rect x="100" y="100" width="55" height="55" fill="#c9e8e3" rx="5"/>
+    <rect x="175" y="100" width="55" height="55" fill="#c9e8e3" rx="5"/>
+  </g>
+  <text x="100" y="350" font-family="Arial, sans-serif" font-size="96" font-weight="bold" fill="white">GG22</text>
+  <text x="100" y="420" font-family="Arial, sans-serif" font-size="42" fill="#c9e8e3" font-weight="500">Gitcoin Grants Round 22</text>
+  <text x="100" y="480" font-family="Arial, sans-serif" font-size="32" fill="white" opacity="0.8">$1.5M+ • 300 Projects Funded</text>
+  <rect x="100" y="510" width="200" height="6" fill="#c9e8e3" rx="3"/>
+</svg>

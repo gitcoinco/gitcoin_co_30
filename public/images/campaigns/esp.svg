@@ -1,0 +1,17 @@
+<svg width="1200" height="630" viewBox="0 0 1200 630" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <linearGradient id="esp-bg" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#627EEA" />
+      <stop offset="100%" style="stop-color:#7891F2" />
+    </linearGradient>
+  </defs>
+  <rect width="1200" height="630" fill="url(#esp-bg)"/>
+  <circle cx="950" cy="120" r="170" fill="white" opacity="0.1"/>
+  <g opacity="0.2">
+    <polygon points="900,450 950,400 1000,450 1000,500 950,550 900,500" fill="white"/>
+  </g>
+  <text x="100" y="320" font-family="Arial, sans-serif" font-size="80" font-weight="bold" fill="white">ESP</text>
+  <text x="100" y="390" font-family="Arial, sans-serif" font-size="40" fill="white" opacity="0.95" font-weight="500">Ethereum Foundation</text>
+  <text x="100" y="460" font-family="Arial, sans-serif" font-size="32" fill="white" opacity="0.9">Ecosystem Support • Rolling Grants</text>
+  <rect x="100" y="490" width="210" height="6" fill="white" opacity="0.7" rx="3"/>
+</svg>

@@ -1,0 +1,19 @@
+<svg width="1200" height="630" viewBox="0 0 1200 630" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <linearGradient id="retro6-bg" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#FF0420" />
+      <stop offset="100%" style="stop-color:#c9042b" />
+    </linearGradient>
+  </defs>
+  <rect width="1200" height="630" fill="url(#retro6-bg)"/>
+  <circle cx="950" cy="150" r="180" fill="white" opacity="0.08"/>
+  <circle cx="100" cy="550" r="120" fill="white" opacity="0.08"/>
+  <g opacity="0.2">
+    <polygon points="900,400 950,350 1000,400 950,450" fill="white"/>
+    <polygon points="950,300 1000,250 1050,300 1000,350" fill="white"/>
+  </g>
+  <text x="100" y="320" font-family="Arial, sans-serif" font-size="80" font-weight="bold" fill="white">RetroPGF 6</text>
+  <text x="100" y="390" font-family="Arial, sans-serif" font-size="38" fill="white" opacity="0.9" font-weight="500">Optimism Collective</text>
+  <text x="100" y="460" font-family="Arial, sans-serif" font-size="32" fill="white" opacity="0.8">Rewarding Governance • 2.4M OP</text>
+  <rect x="100" y="490" width="180" height="6" fill="white" opacity="0.6" rx="3"/>
+</svg>
