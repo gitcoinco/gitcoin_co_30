@@ -69,7 +69,7 @@ export default function Home() {
               Fund What Matters
             </h1>
             <p className="font-serif italic text-lg text-light-white/60 mb-8">
-              Your home for discovering whats going on in funding in Ethereum
+              Your home for discovering whats going on in funding infrastructure innovation.
             </p>
 
             <SearchBar size="lg" className="max-w-2xl mx-auto mb-10" />
@@ -99,6 +99,15 @@ export default function Home() {
       {/* Stats */}
       <section className="border-y border-dark-gray bg-charcoal">
         <div className="container-page py-12">
+         <h2 className="text-2xl md:text-3xl font-bold text-light-white mb-2">
+          The funding infrastructure of the next internet
+        </h2>
+        <p className="text-muted-gray">
+          Its being built right now, and its powered by AI, decentralization, stablecoins, and open source software. 
+        </p>
+        <p className="text-muted-gray">
+          &nbsp;
+        </p>
           <Stats stats={stats} />
         </div>
       </section>
