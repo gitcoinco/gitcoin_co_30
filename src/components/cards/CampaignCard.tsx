@@ -25,6 +25,7 @@ export default function CampaignCard({ campaign, featured = false }: CampaignCar
     return new Date(dateString).toLocaleDateString('en-US', {
       month: 'short',
       day: 'numeric',
+      year: 'numeric',
     })
   }
 
