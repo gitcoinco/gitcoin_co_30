@@ -15,15 +15,16 @@ const navigation = {
     { name: 'About', href: '/about' },
   ],
   ecosystem: [
-    { name: 'Grants Stack', href: 'https://grants.gitcoin.co' },
+    { name: 'Gov Forum', href: 'https://gov.gitcoin.co' },
     { name: 'Passport', href: 'https://passport.gitcoin.co' },
-    { name: 'Allo Protocol', href: 'https://allo.gitcoin.co' },
+    { name: 'Allo Capital', href: 'https://allo.capital' },
+    { name: 'KERNEL', href: 'https://kernel.community' },
     { name: 'Greenpill Podcast', href: 'https://greenpill.network' },
   ],
   social: [
     { name: 'Twitter', href: 'https://twitter.com/gitcoin', icon: Twitter },
     { name: 'GitHub', href: 'https://github.com/gitcoinco', icon: Github },
-    { name: 'Discord', href: 'https://discord.gg/gitcoin', icon: MessageCircle },
+    { name: 'Telegram', href: 'https://t.me/+TIzf8MYT7DY0YWVh', icon: MessageCircle },
   ],
 }
 
