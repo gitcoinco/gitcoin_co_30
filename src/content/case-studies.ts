@@ -41,7 +41,7 @@ As of late 2024:
 2. **Make it easy**: One contract to fund all core devs reduces coordination overhead
 3. **Align incentives**: Vesting and tenure weighting reward long-term contribution
 4. **Frame as self-interest**: Protocols benefit from a well-funded base layer`,
-    heroImage: '/images/case-studies/protocol-guild.jpg',
+    heroImage: '/images/case-studies/protocol-guild.svg',
     project: 'Protocol Guild',
     platform: 'protocol-guild',
     mechanism: 'streaming',
@@ -129,7 +129,7 @@ Top allocations went to:
 2. **Badgeholder bandwidth**: 644 projects is too many for thorough evaluation
 3. **Gaming concerns**: Some applicants optimized profiles for votes rather than demonstrating real impact
 4. **Positive incentives**: Despite challenges, RetroPGF creates strong incentives for future builders`,
-    heroImage: '/images/case-studies/retropgf3.jpg',
+    heroImage: '/images/case-studies/retropgf3.svg',
     project: 'RetroPGF Round 3',
     platform: 'optimism-retropgf',
     mechanism: 'retroactive-funding',
@@ -221,7 +221,7 @@ The STIP experience directly informed the Long-Term Incentive Pilot (LTIP):
 - Better measurement frameworks
 - Focus on retention metrics
 - More structured reporting requirements`,
-    heroImage: '/images/case-studies/stip.jpg',
+    heroImage: '/images/case-studies/stip.svg',
     project: 'Short-Term Incentive Program',
     platform: 'arbitrum-dao-grants',
     mechanism: 'direct-grants',
@@ -305,7 +305,7 @@ Gitcoin Passport provided unified sybil resistance:
 - Passport scores determine matching weight
 - Shared across all rounds for efficiency
 - Continuously improving detection`,
-    heroImage: '/images/case-studies/gg20.jpg',
+    heroImage: '/images/case-studies/gg20.svg',
     project: 'Gitcoin Grants 20',
     platform: 'gitcoin-grants-stack',
     mechanism: 'quadratic-funding',
@@ -391,7 +391,7 @@ Notable recipients include:
 - Developer tooling
 - Research and education
 - Community initiatives`,
-    heroImage: '/images/case-studies/octant.jpg',
+    heroImage: '/images/case-studies/octant.svg',
     project: 'Octant Epochs 1-9',
     platform: 'octant',
     mechanism: 'quadratic-funding',

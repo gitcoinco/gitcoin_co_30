@@ -1,0 +1,21 @@
+<svg width="1200" height="630" viewBox="0 0 1200 630" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <linearGradient id="gg20-cs-bg" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#40268C" />
+      <stop offset="100%" style="stop-color:#5a3bb0" />
+    </linearGradient>
+  </defs>
+  <rect width="1200" height="630" fill="url(#gg20-cs-bg)"/>
+  <circle cx="1000" cy="120" r="140" fill="white" opacity="0.1"/>
+  <circle cx="180" cy="500" r="90" fill="white" opacity="0.1"/>
+  <g opacity="0.15">
+    <rect x="100" y="100" width="55" height="55" fill="#c9e8e3" rx="5"/>
+    <rect x="175" y="100" width="55" height="55" fill="#c9e8e3" rx="5"/>
+    <rect x="250" y="100" width="55" height="55" fill="#c9e8e3" rx="5"/>
+  </g>
+  <text x="100" y="290" font-family="Arial, sans-serif" font-size="72" font-weight="bold" fill="white">GG20</text>
+  <text x="100" y="360" font-family="Arial, sans-serif" font-size="36" fill="#c9e8e3" font-weight="500">Gitcoin Case Study</text>
+  <text x="100" y="430" font-family="Arial, sans-serif" font-size="30" fill="white" opacity="0.85">Community Rounds at Scale</text>
+  <text x="100" y="475" font-family="Arial, sans-serif" font-size="26" fill="white" opacity="0.75">$2.5M+ • 15+ Rounds • 15K Donors</text>
+  <rect x="100" y="500" width="250" height="6" fill="#c9e8e3" rx="3"/>
+</svg>

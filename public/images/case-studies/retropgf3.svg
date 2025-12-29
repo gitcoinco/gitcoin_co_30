@@ -1,0 +1,20 @@
+<svg width="1200" height="630" viewBox="0 0 1200 630" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <linearGradient id="rpgf3-cs-bg" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#FF0420" />
+      <stop offset="100%" style="stop-color:#c9042b" />
+    </linearGradient>
+  </defs>
+  <rect width="1200" height="630" fill="url(#rpgf3-cs-bg)"/>
+  <circle cx="950" cy="150" r="180" fill="white" opacity="0.08"/>
+  <circle cx="100" cy="550" r="120" fill="white" opacity="0.08"/>
+  <g opacity="0.2">
+    <polygon points="900,420 950,370 1000,420 950,470" fill="white"/>
+    <polygon points="950,320 1000,270 1050,320 1000,370" fill="white"/>
+  </g>
+  <text x="100" y="280" font-family="Arial, sans-serif" font-size="68" font-weight="bold" fill="white">RetroPGF 3</text>
+  <text x="100" y="350" font-family="Arial, sans-serif" font-size="36" fill="white" opacity="0.95" font-weight="500">Optimism Case Study</text>
+  <text x="100" y="420" font-family="Arial, sans-serif" font-size="30" fill="white" opacity="0.85">30M OP Distributed</text>
+  <text x="100" y="465" font-family="Arial, sans-serif" font-size="26" fill="white" opacity="0.75">501 Projects • 146 Badgeholders</text>
+  <rect x="100" y="490" width="220" height="6" fill="white" opacity="0.6" rx="3"/>
+</svg>
