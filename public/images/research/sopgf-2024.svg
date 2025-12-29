@@ -1,0 +1,22 @@
+<svg width="1200" height="630" viewBox="0 0 1200 630" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <linearGradient id="sopgf-bg" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#40268C" />
+      <stop offset="50%" style="stop-color:#627EEA" />
+      <stop offset="100%" style="stop-color:#c9e8e3" />
+    </linearGradient>
+  </defs>
+  <rect width="1200" height="630" fill="url(#sopgf-bg)"/>
+  <circle cx="1000" cy="120" r="160" fill="white" opacity="0.1"/>
+  <circle cx="150" cy="520" r="110" fill="white" opacity="0.1"/>
+  <g opacity="0.2">
+    <rect x="900" y="400" width="80" height="120" fill="white" rx="5"/>
+    <rect x="1000" y="350" width="80" height="170" fill="white" rx="5"/>
+    <rect x="1100" y="300" width="80" height="220" fill="white" rx="5"/>
+  </g>
+  <text x="100" y="250" font-family="Arial, sans-serif" font-size="56" font-weight="bold" fill="white">State of Public Goods</text>
+  <text x="100" y="320" font-family="Arial, sans-serif" font-size="56" font-weight="bold" fill="white">Funding 2024</text>
+  <text x="100" y="390" font-family="Arial, sans-serif" font-size="32" fill="#c9e8e3" font-weight="500">Research Report</text>
+  <text x="100" y="450" font-family="Arial, sans-serif" font-size="28" fill="white" opacity="0.85">$500M+ Ecosystem Analysis</text>
+  <rect x="100" y="480" width="280" height="6" fill="#c9e8e3" rx="3"/>
+</svg>

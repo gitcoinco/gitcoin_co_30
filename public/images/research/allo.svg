@@ -1,0 +1,25 @@
+<svg width="1200" height="630" viewBox="0 0 1200 630" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <linearGradient id="allo-bg" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#40268C" />
+      <stop offset="50%" style="stop-color:#5a3bb0" />
+      <stop offset="100%" style="stop-color:#c9e8e3" />
+    </linearGradient>
+  </defs>
+  <rect width="1200" height="630" fill="url(#allo-bg)"/>
+  <g opacity="0.15">
+    <rect x="850" y="150" width="100" height="80" fill="white" rx="8"/>
+    <rect x="970" y="150" width="100" height="80" fill="white" rx="8"/>
+    <rect x="1090" y="150" width="100" height="80" fill="white" rx="8"/>
+    <rect x="910" y="250" width="100" height="80" fill="white" rx="8"/>
+    <rect x="1030" y="250" width="100" height="80" fill="white" rx="8"/>
+    <line x1="900" y1="230" x2="960" y2="250" stroke="white" stroke-width="3"/>
+    <line x1="1020" y1="230" x2="960" y2="250" stroke="white" stroke-width="3"/>
+  </g>
+  <circle cx="180" cy="500" r="100" fill="white" opacity="0.1"/>
+  <text x="100" y="270" font-family="Arial, sans-serif" font-size="68" font-weight="bold" fill="white">Allo Protocol</text>
+  <text x="100" y="340" font-family="Arial, sans-serif" font-size="36" fill="#c9e8e3" font-weight="500">Infrastructure Analysis</text>
+  <text x="100" y="410" font-family="Arial, sans-serif" font-size="28" fill="white" opacity="0.85">Capital Allocation Rails</text>
+  <text x="100" y="455" font-family="Arial, sans-serif" font-size="24" fill="white" opacity="0.75">Multi-chain • Modular • Open Source</text>
+  <rect x="100" y="480" width="280" height="6" fill="#c9e8e3" rx="3"/>
+</svg>

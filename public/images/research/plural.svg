@@ -1,0 +1,24 @@
+<svg width="1200" height="630" viewBox="0 0 1200 630" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <linearGradient id="plural-bg" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#40268C" />
+      <stop offset="33%" style="stop-color:#627EEA" />
+      <stop offset="66%" style="stop-color:#c9e8e3" />
+      <stop offset="100%" style="stop-color:#40268C" />
+    </linearGradient>
+  </defs>
+  <rect width="1200" height="630" fill="url(#plural-bg)"/>
+  <g opacity="0.2">
+    <circle cx="900" cy="250" r="60" fill="white"/>
+    <circle cx="1050" cy="250" r="60" fill="white"/>
+    <circle cx="975" cy="150" r="60" fill="white"/>
+    <circle cx="975" cy="350" r="60" fill="white"/>
+    <circle cx="1100" cy="350" r="60" fill="white"/>
+  </g>
+  <circle cx="150" cy="520" r="100" fill="white" opacity="0.1"/>
+  <text x="100" y="260" font-family="Arial, sans-serif" font-size="64" font-weight="bold" fill="white">Plural Funding</text>
+  <text x="100" y="330" font-family="Arial, sans-serif" font-size="36" fill="#c9e8e3" font-weight="500">Mechanisms Opinion</text>
+  <text x="100" y="400" font-family="Arial, sans-serif" font-size="28" fill="white" opacity="0.85">Why Diversity Matters</text>
+  <text x="100" y="445" font-family="Arial, sans-serif" font-size="24" fill="white" opacity="0.75">QF • Retro • Grants • Streaming</text>
+  <rect x="100" y="470" width="300" height="6" fill="#c9e8e3" rx="3"/>
+</svg>

@@ -1,0 +1,22 @@
+<svg width="1200" height="630" viewBox="0 0 1200 630" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <linearGradient id="impact-bg" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#FF0420" />
+      <stop offset="100%" style="stop-color:#c9042b" />
+    </linearGradient>
+  </defs>
+  <rect width="1200" height="630" fill="url(#impact-bg)"/>
+  <circle cx="950" cy="150" r="170" fill="white" opacity="0.08"/>
+  <g opacity="0.2">
+    <circle cx="920" cy="380" r="50" fill="white"/>
+    <circle cx="1020" cy="420" r="50" fill="white"/>
+    <circle cx="1120" cy="360" r="50" fill="white"/>
+    <line x1="920" y1="380" x2="1020" y2="420" stroke="white" stroke-width="3"/>
+    <line x1="1020" y1="420" x2="1120" y2="360" stroke="white" stroke-width="3"/>
+  </g>
+  <text x="100" y="260" font-family="Arial, sans-serif" font-size="60" font-weight="bold" fill="white">Impact Measurement</text>
+  <text x="100" y="330" font-family="Arial, sans-serif" font-size="36" fill="white" opacity="0.95" font-weight="500">RetroPGF Evolution</text>
+  <text x="100" y="400" font-family="Arial, sans-serif" font-size="28" fill="white" opacity="0.85">Rounds 3-6 Analysis</text>
+  <text x="100" y="445" font-family="Arial, sans-serif" font-size="24" fill="white" opacity="0.75">Optimism Research</text>
+  <rect x="100" y="470" width="260" height="6" fill="white" opacity="0.6" rx="3"/>
+</svg>
