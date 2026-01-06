@@ -3,6 +3,7 @@ import { notFound } from 'next/navigation'
 import Link from 'next/link'
 import { ArrowLeft, Edit, ExternalLink, CheckCircle, AlertCircle, Clock, XCircle, BookOpen, Lightbulb } from 'lucide-react'
 import { Button, Badge } from '@/components/ui'
+import { Markdown } from '@/components/Markdown'
 import { getCaseStudyBySlug, caseStudies } from '@/content/case-studies'
 import { getAppBySlug } from '@/content/apps'
 import { getMechanismBySlug } from '@/content/mechanisms'
@@ -66,35 +67,47 @@ export default async function CaseStudyDetailPage({ params }: PageProps) {
         <div className="container-page py-12">
           <div className="max-w-4xl">
             <div className="flex items-center gap-3 mb-4">
-              <Badge variant={caseStudy.status === 'success' ? 'success' : caseStudy.status === 'failed' ? 'error' : 'default'}>
+              <Badge
+                variant={
+                  caseStudy.status === "success"
+                    ? "success"
+                    : caseStudy.status === "failed"
+                    ? "error"
+                    : "default"
+                }
+              >
                 <StatusIcon className="w-3 h-3 mr-1" />
                 {status.label}
               </Badge>
               <span className="text-sm text-muted-gray">
-                {new Date(caseStudy.fundingDate).toLocaleDateString('en-US', {
-                  month: 'long',
-                  year: 'numeric',
+                {new Date(caseStudy.fundingDate).toLocaleDateString("en-US", {
+                  month: "long",
+                  year: "numeric",
                 })}
               </span>
             </div>
             <h1 className="text-3xl md:text-4xl font-bold text-light-white mb-4">
               {caseStudy.title}
             </h1>
-            <p className="text-lg text-muted-gray mb-6">
-              {caseStudy.summary}
-            </p>
+            <p className="text-lg text-muted-gray mb-6">{caseStudy.summary}</p>
             <div className="flex flex-wrap gap-4 text-sm">
               <div>
-                <span className="text-muted-gray">Project:</span>{' '}
-                <span className="font-medium text-light-white">{caseStudy.project}</span>
+                <span className="text-muted-gray">Project:</span>{" "}
+                <span className="font-medium text-light-white">
+                  {caseStudy.project}
+                </span>
               </div>
               <div>
-                <span className="text-muted-gray">Funding:</span>{' '}
-                <span className="font-medium text-light-white">{caseStudy.fundingAmount}</span>
+                <span className="text-muted-gray">Funding:</span>{" "}
+                <span className="font-medium text-light-white">
+                  {caseStudy.fundingAmount}
+                </span>
               </div>
               <div>
-                <span className="text-muted-gray">By:</span>{' '}
-                <span className="font-medium text-light-white">{caseStudy.author}</span>
+                <span className="text-muted-gray">By:</span>{" "}
+                <span className="font-medium text-light-white">
+                  {caseStudy.author}
+                </span>
               </div>
             </div>
           </div>
@@ -109,11 +122,7 @@ export default async function CaseStudyDetailPage({ params }: PageProps) {
             <div className="lg:col-span-2 space-y-8">
               {/* Article */}
               <div className="card">
-                <div className="prose prose-slate max-w-none">
-                  <div className="text-muted-gray whitespace-pre-line">
-                    {caseStudy.content}
-                  </div>
-                </div>
+                <Markdown content={caseStudy.content} />
               </div>
 
               {/* Outcomes */}
@@ -125,7 +134,9 @@ export default async function CaseStudyDetailPage({ params }: PageProps) {
                 <div className="space-y-6">
                   {caseStudy.outcomes.map((outcome, i) => (
                     <div key={i} className="border-l-2 border-light-white pl-4">
-                      <h3 className="font-semibold text-light-white mb-1">{outcome.title}</h3>
+                      <h3 className="font-semibold text-light-white mb-1">
+                        {outcome.title}
+                      </h3>
                       <p className="text-muted-gray">{outcome.description}</p>
                       {outcome.metrics && (
                         <p className="mt-2 text-lg font-semibold text-light-white">
@@ -190,16 +201,21 @@ export default async function CaseStudyDetailPage({ params }: PageProps) {
                   )}
                   <div>
                     <dt className="text-sm text-muted-gray">Funding Amount</dt>
-                    <dd className="font-medium text-light-white">{caseStudy.fundingAmount}</dd>
+                    <dd className="font-medium text-light-white">
+                      {caseStudy.fundingAmount}
+                    </dd>
                   </div>
                   <div>
                     <dt className="text-sm text-muted-gray">Date</dt>
                     <dd className="font-medium text-light-white">
-                      {new Date(caseStudy.fundingDate).toLocaleDateString('en-US', {
-                        month: 'long',
-                        day: 'numeric',
-                        year: 'numeric',
-                      })}
+                      {new Date(caseStudy.fundingDate).toLocaleDateString(
+                        "en-US",
+                        {
+                          month: "long",
+                          day: "numeric",
+                          year: "numeric",
+                        }
+                      )}
                     </dd>
                   </div>
                 </dl>
@@ -235,14 +251,20 @@ export default async function CaseStudyDetailPage({ params }: PageProps) {
                 <h3 className="font-semibold text-light-white mb-4">Tags</h3>
                 <div className="flex flex-wrap gap-2">
                   {caseStudy.tags.map((tag) => (
-                    <Badge key={tag} size="sm">{tag}</Badge>
+                    <Badge key={tag} size="sm">
+                      {tag}
+                    </Badge>
                   ))}
                 </div>
               </div>
 
               {/* Actions */}
               <div className="card">
-                <Button href={`/submit?edit=case-studies/${caseStudy.slug}`} variant="ghost" className="w-full">
+                <Button
+                  href={`https://github.com/gitcoinco/gitcoin_co_30/issues`}
+                  variant="ghost"
+                  className="w-full"
+                >
                   <Edit className="w-4 h-4 mr-2" />
                   Suggest Edit
                 </Button>
@@ -250,7 +272,9 @@ export default async function CaseStudyDetailPage({ params }: PageProps) {
 
               {/* Metadata */}
               <p className="text-sm text-muted-gray text-center">
-                Published: {new Date(caseStudy.publishDate).toLocaleDateString()}<br />
+                Published:{" "}
+                {new Date(caseStudy.publishDate).toLocaleDateString()}
+                <br />
                 Updated: {new Date(caseStudy.lastUpdated).toLocaleDateString()}
               </p>
             </div>
@@ -258,5 +282,5 @@ export default async function CaseStudyDetailPage({ params }: PageProps) {
         </div>
       </section>
     </div>
-  )
+  );
 }

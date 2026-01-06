@@ -3,6 +3,7 @@ import { notFound } from 'next/navigation'
 import Link from 'next/link'
 import { ArrowLeft, ExternalLink, Calendar, Coins, Users, Clock, CheckCircle } from 'lucide-react'
 import { Button, Badge } from '@/components/ui'
+import { Markdown } from '@/components/Markdown'
 import { getCampaignBySlug, campaigns } from '@/content/campaigns'
 import { getMechanismBySlug } from '@/content/mechanisms'
 
@@ -142,7 +143,7 @@ export default async function CampaignDetailPage({ params }: PageProps) {
               {/* Description */}
               <div className="card">
                 <h2 className="text-xl font-semibold text-light-white mb-4">About</h2>
-                <p className="text-muted-gray whitespace-pre-line">{campaign.description}</p>
+                <Markdown content={campaign.description} />
               </div>
 
               {/* Eligibility */}

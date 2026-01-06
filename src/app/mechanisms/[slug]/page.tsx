@@ -4,6 +4,7 @@ import Link from 'next/link'
 import { ArrowLeft, Edit, ExternalLink, Check, X, Lightbulb, BookOpen, Code, Video, FileText } from 'lucide-react'
 import { Button, Badge } from '@/components/ui'
 import { AppCard, CaseStudyCard } from '@/components/cards'
+import { Markdown } from '@/components/Markdown'
 import { getMechanismBySlug, mechanisms } from '@/content/mechanisms'
 import { getAppBySlug } from '@/content/apps'
 import { getCaseStudiesByMechanism } from '@/content/case-studies'
@@ -92,11 +93,15 @@ export default async function MechanismDetailPage({ params }: PageProps) {
               </p>
               {mechanism.inventors && mechanism.inventors.length > 0 && (
                 <p className="mt-4 text-sm text-muted-gray">
-                  Pioneered by: {mechanism.inventors.join(', ')}
+                  Pioneered by: {mechanism.inventors.join(", ")}
                 </p>
               )}
             </div>
-            <Button href={`/submit?edit=mechanisms/${mechanism.slug}`} variant="ghost" size="sm">
+            <Button
+              href={`https://github.com/gitcoinco/gitcoin_co_30/issues`}
+              variant="ghost"
+              size="sm"
+            >
               <Edit className="w-4 h-4 mr-2" />
               Suggest Edit
             </Button>
@@ -117,7 +122,9 @@ export default async function MechanismDetailPage({ params }: PageProps) {
                   How It Works
                 </h2>
                 <div className="prose prose-slate max-w-none">
-                  <p className="text-muted-gray whitespace-pre-line">{mechanism.howItWorks}</p>
+                  <p className="text-muted-gray whitespace-pre-line">
+                    {mechanism.howItWorks}
+                  </p>
                 </div>
               </div>
 
@@ -126,9 +133,7 @@ export default async function MechanismDetailPage({ params }: PageProps) {
                 <h2 className="text-xl font-semibold text-light-white mb-4">
                   Deep Dive
                 </h2>
-                <div className="prose prose-slate max-w-none">
-                  <p className="text-muted-gray whitespace-pre-line">{mechanism.fullDescription}</p>
-                </div>
+                <Markdown content={mechanism.fullDescription} />
               </div>
 
               {/* Pros & Cons */}
@@ -140,7 +145,10 @@ export default async function MechanismDetailPage({ params }: PageProps) {
                   </h3>
                   <ul className="space-y-3">
                     {mechanism.advantages.map((advantage, i) => (
-                      <li key={i} className="flex items-start gap-2 text-muted-gray">
+                      <li
+                        key={i}
+                        className="flex items-start gap-2 text-muted-gray"
+                      >
                         <Check className="w-4 h-4 text-light-white mt-1 flex-shrink-0" />
                         {advantage}
                       </li>
@@ -154,7 +162,10 @@ export default async function MechanismDetailPage({ params }: PageProps) {
                   </h3>
                   <ul className="space-y-3">
                     {mechanism.limitations.map((limitation, i) => (
-                      <li key={i} className="flex items-start gap-2 text-muted-gray">
+                      <li
+                        key={i}
+                        className="flex items-start gap-2 text-muted-gray"
+                      >
                         <X className="w-4 h-4 text-system-error mt-1 flex-shrink-0" />
                         {limitation}
                       </li>
@@ -170,9 +181,9 @@ export default async function MechanismDetailPage({ params }: PageProps) {
                     Apps Using This Mechanism
                   </h2>
                   <div className="grid md:grid-cols-2 gap-4">
-                    {implementations.map((app) => (
-                      app && <AppCard key={app.id} app={app} />
-                    ))}
+                    {implementations.map(
+                      (app) => app && <AppCard key={app.id} app={app} />
+                    )}
                   </div>
                 </div>
               )}
@@ -196,10 +207,15 @@ export default async function MechanismDetailPage({ params }: PageProps) {
             <div className="space-y-6">
               {/* Best Used For */}
               <div className="card">
-                <h3 className="font-semibold text-light-white mb-4">Best Used For</h3>
+                <h3 className="font-semibold text-light-white mb-4">
+                  Best Used For
+                </h3>
                 <ul className="space-y-2">
                   {mechanism.bestUsedFor.map((use, i) => (
-                    <li key={i} className="flex items-center gap-2 text-muted-gray">
+                    <li
+                      key={i}
+                      className="flex items-center gap-2 text-muted-gray"
+                    >
                       <span className="w-1.5 h-1.5 rounded-full bg-light-white" />
                       {use}
                     </li>
@@ -210,10 +226,12 @@ export default async function MechanismDetailPage({ params }: PageProps) {
               {/* Technical Resources */}
               {mechanism.technicalResources.length > 0 && (
                 <div className="card">
-                  <h3 className="font-semibold text-light-white mb-4">Resources</h3>
+                  <h3 className="font-semibold text-light-white mb-4">
+                    Resources
+                  </h3>
                   <div className="space-y-3">
                     {mechanism.technicalResources.map((resource, i) => {
-                      const Icon = resourceIcons[resource.type] || BookOpen
+                      const Icon = resourceIcons[resource.type] || BookOpen;
                       return (
                         <a
                           key={i}
@@ -226,7 +244,7 @@ export default async function MechanismDetailPage({ params }: PageProps) {
                           <span className="flex-1">{resource.title}</span>
                           <ExternalLink className="w-3 h-3 opacity-0 group-hover:opacity-100" />
                         </a>
-                      )
+                      );
                     })}
                   </div>
                 </div>
@@ -237,19 +255,22 @@ export default async function MechanismDetailPage({ params }: PageProps) {
                 <h3 className="font-semibold text-light-white mb-4">Tags</h3>
                 <div className="flex flex-wrap gap-2">
                   {mechanism.tags.map((tag) => (
-                    <Badge key={tag} size="sm">{tag}</Badge>
+                    <Badge key={tag} size="sm">
+                      {tag}
+                    </Badge>
                   ))}
                 </div>
               </div>
 
               {/* Last Updated */}
               <p className="text-sm text-muted-gray text-center">
-                Last updated: {new Date(mechanism.lastUpdated).toLocaleDateString()}
+                Last updated:{" "}
+                {new Date(mechanism.lastUpdated).toLocaleDateString()}
               </p>
             </div>
           </div>
         </div>
       </section>
     </div>
-  )
+  );
 }
