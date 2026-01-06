@@ -4,6 +4,7 @@ import Link from 'next/link'
 import { ExternalLink, Github, Twitter, MessageCircle, ArrowLeft, Edit, Calendar, Coins } from 'lucide-react'
 import { Button, Badge } from '@/components/ui'
 import { MechanismCard, CaseStudyCard } from '@/components/cards'
+import { Markdown } from '@/components/Markdown'
 import { getAppBySlug, apps } from '@/content/apps'
 import { getMechanismBySlug } from '@/content/mechanisms'
 import { getCaseStudiesByPlatform } from '@/content/case-studies'
@@ -90,7 +91,9 @@ export default async function AppDetailPage({ params }: PageProps) {
                 <p className="text-lg text-muted-gray mb-4">{app.tagline}</p>
                 <div className="flex flex-wrap gap-2">
                   <Badge>{categoryLabels[app.category]}</Badge>
-                  <Badge variant={app.status === 'active' ? 'success' : 'default'}>
+                  <Badge
+                    variant={app.status === "active" ? "success" : "default"}
+                  >
                     {app.status.charAt(0).toUpperCase() + app.status.slice(1)}
                   </Badge>
                 </div>
@@ -103,7 +106,11 @@ export default async function AppDetailPage({ params }: PageProps) {
                 <ExternalLink className="w-4 h-4 mr-2" />
                 Visit Website
               </Button>
-              <Button href={`/submit?edit=apps/${app.slug}`} variant="ghost" size="sm">
+              <Button
+                href={`https://github.com/gitcoinco/gitcoin_co_30/issues`}
+                variant="ghost"
+                size="sm"
+              >
                 <Edit className="w-4 h-4 mr-2" />
                 Suggest Edit
               </Button>
@@ -120,8 +127,10 @@ export default async function AppDetailPage({ params }: PageProps) {
             <div className="lg:col-span-2 space-y-8">
               {/* Description */}
               <div className="card">
-                <h2 className="text-xl font-semibold text-light-white mb-4">About</h2>
-                <p className="text-muted-gray whitespace-pre-line">{app.description}</p>
+                <h2 className="text-xl font-semibold text-light-white mb-4">
+                  About
+                </h2>
+                <Markdown content={app.description} />
               </div>
 
               {/* Mechanisms */}
@@ -131,9 +140,15 @@ export default async function AppDetailPage({ params }: PageProps) {
                     Mechanisms Used
                   </h2>
                   <div className="grid md:grid-cols-2 gap-4">
-                    {mechanisms.map((mechanism) => (
-                      mechanism && <MechanismCard key={mechanism.id} mechanism={mechanism} />
-                    ))}
+                    {mechanisms.map(
+                      (mechanism) =>
+                        mechanism && (
+                          <MechanismCard
+                            key={mechanism.id}
+                            mechanism={mechanism}
+                          />
+                        )
+                    )}
                   </div>
                 </div>
               )}
@@ -157,7 +172,9 @@ export default async function AppDetailPage({ params }: PageProps) {
             <div className="space-y-6">
               {/* Stats */}
               <div className="card">
-                <h3 className="font-semibold text-light-white mb-4">Key Stats</h3>
+                <h3 className="font-semibold text-light-white mb-4">
+                  Key Stats
+                </h3>
                 <dl className="space-y-4">
                   {app.fundingVolume && (
                     <div>
@@ -173,9 +190,9 @@ export default async function AppDetailPage({ params }: PageProps) {
                       <dt className="text-sm text-muted-gray">Launch Date</dt>
                       <dd className="text-light-white flex items-center gap-2">
                         <Calendar className="w-4 h-4" />
-                        {new Date(app.launchDate).toLocaleDateString('en-US', {
-                          month: 'long',
-                          year: 'numeric',
+                        {new Date(app.launchDate).toLocaleDateString("en-US", {
+                          month: "long",
+                          year: "numeric",
                         })}
                       </dd>
                     </div>
@@ -241,7 +258,9 @@ export default async function AppDetailPage({ params }: PageProps) {
                 <h3 className="font-semibold text-light-white mb-4">Tags</h3>
                 <div className="flex flex-wrap gap-2">
                   {app.tags.map((tag) => (
-                    <Badge key={tag} size="sm">{tag}</Badge>
+                    <Badge key={tag} size="sm">
+                      {tag}
+                    </Badge>
                   ))}
                 </div>
               </div>
@@ -255,5 +274,5 @@ export default async function AppDetailPage({ params }: PageProps) {
         </div>
       </section>
     </div>
-  )
+  );
 }

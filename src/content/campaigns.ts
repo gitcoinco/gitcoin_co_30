@@ -1,285 +1,60 @@
 import type { Campaign } from '@/lib/types'
+import { getCampaignsFromMarkdown, getCampaignFromMarkdown } from '@/lib/markdown'
 
-export const campaigns: Campaign[] = [
-  {
-    id: '1',
-    slug: 'gg23',
-    name: 'Gitcoin Grants 23',
-    tagline: 'Funding public goods through quadratic funding',
-    description: 'GG23 ran in December 2024, bringing together communities across the Ethereum ecosystem to fund public goods through quadratic funding. The round distributed over $1.2M across 235+ projects in core rounds including Web3 OSS, Developer Tooling, and dApps & Apps.',
-    heroImage: '/images/campaigns/gg23.svg',
-    status: 'completed',
-    startDate: '2024-12-03',
-    endDate: '2024-12-17',
-    organizer: 'Gitcoin',
-    mechanism: 'quadratic-funding',
-    matchingPool: '$1.2M+',
-    applicationUrl: 'https://grants.gitcoin.co',
-    eligibility: [
-      'Open source projects',
-      'Public goods focus',
-      'Active development',
-      'Community engagement',
-    ],
-    isFeatured: true,
-    featuredOrder: 1,
-    results: {
-      projectsFunded: 235,
-      totalDistributed: '$1.2M+',
-      uniqueDonors: 12000,
-      highlights: [
-        'Web3 OSS round featured major infrastructure projects',
-        'Strong participation in Developer Tooling category',
-        'Community rounds expanded reach',
-      ],
-    },
-    tags: ['gitcoin', 'quadratic funding', 'grants', 'public goods', 'GG23'],
-    lastUpdated: '2024-12-25',
-  },
-  {
-    id: '2',
-    slug: 'optimism-retropgf-6',
-    name: 'Optimism RetroPGF Round 6',
-    tagline: 'Rewarding governance contributions',
-    description: 'RetroPGF 6 focuses on rewarding governance contributions to the Optimism Collective. The round distributes 2.4M OP tokens to recognize contributions to governance participation, tooling, and collective operations.',
-    heroImage: '/images/campaigns/retropgf6.svg',
-    status: 'active',
-    startDate: '2024-11-01',
-    endDate: '2025-01-31',
-    organizer: 'Optimism Collective',
-    mechanism: 'retroactive-funding',
-    fundingPool: '2.4M OP',
-    applicationUrl: 'https://retrofunding.optimism.io',
-    eligibility: [
-      'Governance contributions to Optimism',
-      'Governance tooling development',
-      'Delegate activity',
-      'Collective operations support',
-    ],
-    isFeatured: true,
-    featuredOrder: 2,
-    tags: ['optimism', 'retroactive funding', 'governance', 'RetroPGF 6'],
-    lastUpdated: '2024-12-25',
-  },
-  {
-    id: '3',
-    slug: 'octant-epoch-9',
-    name: 'Octant Epoch 9',
-    tagline: 'Participatory public goods funding',
-    description: 'Epoch 9 of Octant\'s participatory funding model is currently active. GLM stakers earn ETH rewards and choose whether to donate to curated public goods projects or claim personally. This epoch continues funding for Ethereum public goods.',
-    heroImage: '/images/campaigns/octant-e9.svg',
-    status: 'active',
-    startDate: '2024-11-15',
-    endDate: '2025-02-15',
-    organizer: 'Octant / Golem Foundation',
-    mechanism: 'quadratic-funding',
-    matchingPool: '$1.5M+',
-    applicationUrl: 'https://octant.app',
-    eligibility: [
-      'Verified public goods project',
-      'Active in Ethereum ecosystem',
-      'Completed Octant verification',
-    ],
-    isFeatured: true,
-    featuredOrder: 3,
-    tags: ['octant', 'staking', 'public goods', 'epoch 9'],
-    lastUpdated: '2024-12-25',
-  },
-  {
-    id: '4',
-    slug: 'arbitrum-ltip',
-    name: 'Arbitrum LTIP',
-    tagline: 'Long-Term Incentive Pilot Program',
-    description: 'The Long-Term Incentive Pilot Program (LTIP) distributes 45.8M ARB tokens to protocols building on Arbitrum. The program builds on learnings from STIP with improved measurement frameworks and longer-term incentive design.',
-    heroImage: '/images/campaigns/ltip.svg',
-    status: 'active',
-    startDate: '2024-09-01',
-    endDate: '2025-03-31',
-    organizer: 'Arbitrum DAO',
-    mechanism: 'direct-grants',
-    fundingPool: '45.8M ARB',
-    applicationUrl: 'https://forum.arbitrum.foundation',
-    eligibility: [
-      'Active Arbitrum protocol',
-      'Proven track record',
-      'Detailed incentive plan',
-      'Commitment to metrics reporting',
-    ],
-    isFeatured: false,
-    tags: ['arbitrum', 'incentives', 'ecosystem', 'LTIP'],
-    lastUpdated: '2024-12-25',
-  },
-  {
-    id: '5',
-    slug: 'optimism-retropgf-5-results',
-    name: 'Optimism RetroPGF Round 5',
-    tagline: 'Rewarding Ethereum and OP Stack contributions',
-    description: 'RetroPGF 5 distributed 8M OP tokens to projects that contributed to the Optimism ecosystem and broader Ethereum infrastructure. The round focused on developer tools, infrastructure, and ecosystem growth.',
-    heroImage: '/images/campaigns/retropgf5.svg',
-    status: 'completed',
-    startDate: '2024-06-01',
-    endDate: '2024-08-15',
-    organizer: 'Optimism Collective',
-    mechanism: 'retroactive-funding',
-    fundingPool: '8M OP',
-    isFeatured: false,
-    results: {
-      projectsFunded: 180,
-      totalDistributed: '8M OP',
-      highlights: [
-        'Streamlined evaluation process',
-        'Focus on dev tooling impact',
-        'OP Stack contributions rewarded',
-      ],
-    },
-    tags: ['optimism', 'retroactive funding', 'completed', 'RetroPGF 5'],
-    lastUpdated: '2024-12-25',
-  },
-  {
-    id: '6',
-    slug: 'arbitrum-stip-results',
-    name: 'Arbitrum STIP',
-    tagline: 'Short-Term Incentive Program Results',
-    description: 'The Short-Term Incentive Program distributed 71.4M ARB tokens to 56 protocols in late 2023 through early 2024. The program provided valuable data on incentive effectiveness and informed the design of LTIP.',
-    heroImage: '/images/campaigns/stip.svg',
-    status: 'completed',
-    startDate: '2023-10-01',
-    endDate: '2024-03-31',
-    organizer: 'Arbitrum DAO',
-    mechanism: 'direct-grants',
-    fundingPool: '71.4M ARB',
-    isFeatured: false,
-    results: {
-      projectsFunded: 56,
-      totalDistributed: '71.4M ARB',
-      highlights: [
-        'TVL increased during program',
-        'Mercenary capital challenges identified',
-        'Learnings applied to LTIP design',
-      ],
-    },
-    caseStudy: 'arbitrum-stip-analysis',
-    tags: ['arbitrum', 'incentives', 'completed', 'STIP'],
-    lastUpdated: '2024-12-25',
-  },
-  {
-    id: '7',
-    slug: 'esp-2025-q1',
-    name: 'EF ESP Open Grants',
-    tagline: 'Ethereum Foundation ongoing support',
-    description: 'The Ethereum Foundation Ecosystem Support Program accepts rolling applications for grants supporting Ethereum infrastructure, research, and community. ESP funded 105 projects totaling ~$3M in 2024.',
-    heroImage: '/images/campaigns/esp.svg',
-    status: 'active',
-    startDate: '2024-01-01',
-    endDate: '2025-12-31',
-    organizer: 'Ethereum Foundation',
-    mechanism: 'direct-grants',
-    fundingPool: 'Rolling',
-    applicationUrl: 'https://esp.ethereum.foundation/applicants',
-    eligibility: [
-      'Benefits Ethereum ecosystem',
-      'Open source preferred',
-      'Clear milestones and deliverables',
-      'Technical or community focus',
-    ],
-    isFeatured: false,
-    tags: ['ethereum foundation', 'ESP', 'grants', 'rolling'],
-    lastUpdated: '2024-12-25',
-  },
-  {
-    id: '8',
-    slug: 'protocol-guild-ongoing',
-    name: 'Protocol Guild Funding',
-    tagline: 'Continuous support for Ethereum core devs',
-    description: 'Protocol Guild provides ongoing streaming funding to 187+ Ethereum core protocol contributors. With over $92.9M in pledges from projects like Lido, Uniswap, and ENS, it represents the largest collective funding for core development.',
-    heroImage: '/images/campaigns/protocol-guild.svg',
-    status: 'active',
-    startDate: '2022-05-01',
-    endDate: '2026-12-31',
-    organizer: 'Protocol Guild',
-    mechanism: 'streaming',
-    fundingPool: '$92.9M+ pledged',
-    applicationUrl: 'https://protocol-guild.readthedocs.io',
-    eligibility: [
-      'Active Ethereum core contributor',
-      'Working on core protocol development',
-      'Nominated by existing members',
-    ],
-    isFeatured: false,
-    tags: ['protocol guild', 'streaming', 'core protocol', 'ongoing'],
-    lastUpdated: '2024-12-25',
-  },
-  {
-    id: '9',
-    slug: 'gg22-results',
-    name: 'Gitcoin Grants 22',
-    tagline: 'Scaling quadratic funding',
-    description: 'GG22 ran in August 2024, funding hundreds of projects across Web3 infrastructure, climate solutions, and ecosystem development through quadratic funding rounds.',
-    heroImage: '/images/campaigns/gg22.svg',
-    status: 'completed',
-    startDate: '2024-08-07',
-    endDate: '2024-08-21',
-    organizer: 'Gitcoin',
-    mechanism: 'quadratic-funding',
-    matchingPool: '$1.5M+',
-    isFeatured: false,
-    results: {
-      projectsFunded: 300,
-      totalDistributed: '$1.5M+',
-      uniqueDonors: 10000,
-      highlights: [
-        'Strong community round participation',
-        'Cross-ecosystem collaboration',
-        'Improved sybil resistance via Passport',
-      ],
-    },
-    tags: ['gitcoin', 'quadratic funding', 'completed', 'GG22'],
-    lastUpdated: '2024-12-25',
-  },
-  {
-    id: '10',
-    slug: 'gg24-upcoming',
-    name: 'Gitcoin Grants 24',
-    tagline: 'The next round of quadratic funding',
-    description: 'GG24 is scheduled for Q1 2025, continuing the tradition of community-driven funding for public goods. Applications and details will be announced on the Gitcoin blog and grants platform.',
-    heroImage: '/images/campaigns/gg24.svg',
-    status: 'upcoming',
-    startDate: '2025-02-01',
-    endDate: '2025-02-15',
-    organizer: 'Gitcoin',
-    mechanism: 'quadratic-funding',
-    matchingPool: 'TBD',
-    applicationUrl: 'https://grants.gitcoin.co',
-    eligibility: [
-      'Open source projects',
-      'Public goods focus',
-      'Active development',
-    ],
-    isFeatured: true,
-    featuredOrder: 4,
-    tags: ['gitcoin', 'quadratic funding', 'upcoming', 'GG24'],
-    lastUpdated: '2024-12-25',
-  },
-]
+/**
+ * Get all campaigns from .md files
+ * Server-side only
+ */
+export function getAllCampaigns(): Campaign[] {
+  return getCampaignsFromMarkdown()
+}
 
+/**
+ * Get a single campaign by slug from .md files
+ * Server-side only
+ */
 export function getCampaignBySlug(slug: string): Campaign | undefined {
-  return campaigns.find((c) => c.slug === slug)
+  return getCampaignFromMarkdown(slug)
 }
 
+/**
+ * Get campaigns by status
+ */
+export function getCampaignsByStatus(status: string): Campaign[] {
+  const allCampaigns = getAllCampaigns()
+  return allCampaigns.filter((c) => c.status === status)
+}
+
+/**
+ * Get active campaigns
+ */
 export function getActiveCampaigns(): Campaign[] {
-  return campaigns.filter((c) => c.status === 'active')
+  return getCampaignsByStatus('active')
 }
 
+/**
+ * Get upcoming campaigns
+ */
 export function getUpcomingCampaigns(): Campaign[] {
-  return campaigns.filter((c) => c.status === 'upcoming')
+  return getCampaignsByStatus('upcoming')
 }
 
+/**
+ * Get completed campaigns
+ */
 export function getCompletedCampaigns(): Campaign[] {
-  return campaigns.filter((c) => c.status === 'completed')
+  return getCampaignsByStatus('completed')
 }
 
+/**
+ * Get featured campaigns
+ */
 export function getFeaturedCampaigns(): Campaign[] {
-  return campaigns
+  const allCampaigns = getAllCampaigns()
+  return allCampaigns
     .filter((c) => c.isFeatured)
-    .sort((a, b) => (a.featuredOrder || 99) - (b.featuredOrder || 99))
+    .sort((a, b) => (a.featuredOrder || 999) - (b.featuredOrder || 999))
 }
+
+// For static params generation and client components
+export const campaigns = getAllCampaigns()

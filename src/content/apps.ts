@@ -1,337 +1,45 @@
 import type { App } from '@/lib/types'
+import { getAppsFromMarkdown, getAppFromMarkdown } from '@/lib/markdown'
 
-export const apps: App[] = [
-  {
-    id: '1',
-    slug: 'gitcoin-grants-stack',
-    name: 'Gitcoin Grants Stack',
-    tagline: 'The easiest way to run a grants program',
-    description: 'Grants Stack is a decentralized, modular protocol for running grants programs. It enables communities to fund their shared needs through quadratic funding, direct grants, and other mechanisms. Built on the Allo Protocol, it has distributed over $60M to open source projects since 2019. GG23 (December 2024) distributed $1.2M+ across 235 projects in the core rounds.',
-    logo: '/logos/gitcoin.svg',
-    website: 'https://grants.gitcoin.co',
-    category: 'platform',
-    mechanisms: ['quadratic-funding', 'direct-grants'],
-    blockchain: ['Ethereum', 'Arbitrum', 'Optimism', 'Polygon', 'Base', 'Scroll', 'zkSync'],
-    launchDate: '2019-01-01',
-    status: 'active',
-    fundingVolume: '$60M+',
-    socialLinks: {
-      twitter: 'https://twitter.com/gitcoin',
-      discord: 'https://discord.gg/gitcoin',
-      github: 'https://github.com/gitcoinco',
-    },
-    tags: ['quadratic funding', 'grants', 'public goods', 'ethereum', 'allo protocol'],
-    lastUpdated: '2024-12-25',
-  },
-  {
-    id: '2',
-    slug: 'optimism-retropgf',
-    name: 'Optimism RetroPGF',
-    tagline: 'Retroactive Public Goods Funding',
-    description: 'Retroactive Public Goods Funding (RetroPGF) is Optimism\'s mechanism for rewarding public goods that have already demonstrated value. RetroPGF 5 (2024) distributed 8M OP tokens to projects, while RetroPGF 6 is distributing 2.4M OP focusing on governance contributions. The program has distributed over 100M OP tokens since inception.',
-    logo: '/logos/optimism.svg',
-    website: 'https://retrofunding.optimism.io',
-    category: 'grant-program',
-    mechanisms: ['retroactive-funding'],
-    blockchain: ['Optimism'],
-    launchDate: '2021-07-01',
-    status: 'active',
-    fundingVolume: '100M+ OP',
-    socialLinks: {
-      twitter: 'https://twitter.com/optimism',
-      discord: 'https://discord.gg/optimism',
-      github: 'https://github.com/ethereum-optimism',
-    },
-    tags: ['retroactive funding', 'optimism', 'public goods', 'impact', 'superchain'],
-    lastUpdated: '2024-12-25',
-  },
-  {
-    id: '3',
-    slug: 'giveth',
-    name: 'Giveth',
-    tagline: 'Building the Future of Giving',
-    description: 'Giveth is a zero-fee donation platform connecting donors directly with verified for-good projects. The GIVbacks program rewards donors with GIV tokens for supporting verified projects. Giveth supports projects on Ethereum, Gnosis Chain, Optimism, Polygon, Base, and other networks with fully transparent, traceable donations.',
-    logo: '/logos/giveth.svg',
-    website: 'https://giveth.io',
-    category: 'platform',
-    mechanisms: ['direct-grants', 'quadratic-funding'],
-    blockchain: ['Ethereum', 'Gnosis', 'Polygon', 'Optimism', 'Base', 'Celo', 'Arbitrum'],
-    launchDate: '2017-01-01',
-    status: 'active',
-    fundingVolume: '$10M+',
-    socialLinks: {
-      twitter: 'https://twitter.com/giveth',
-      discord: 'https://discord.gg/giveth',
-      github: 'https://github.com/Giveth',
-    },
-    tags: ['donations', 'givbacks', 'transparent', 'regenerative', 'zero fees'],
-    lastUpdated: '2024-12-25',
-  },
-  {
-    id: '4',
-    slug: 'clr-fund',
-    name: 'clr.fund',
-    tagline: 'Permissionless quadratic funding',
-    description: 'clr.fund is a protocol for permissionless quadratic funding using MACI (Minimal Anti-Collusion Infrastructure). It provides bribery-resistant, private voting for democratic capital allocation. The protocol enables anyone to run a quadratic funding round without central coordination.',
-    logo: '/logos/clrfund.svg',
-    website: 'https://clr.fund',
-    category: 'primitive',
-    mechanisms: ['quadratic-funding'],
-    blockchain: ['Ethereum', 'Arbitrum', 'Optimism'],
-    launchDate: '2020-06-01',
-    status: 'active',
-    fundingVolume: '$2M+',
-    socialLinks: {
-      twitter: 'https://twitter.com/claboratory',
-      github: 'https://github.com/clrfund',
-    },
-    tags: ['MACI', 'quadratic funding', 'bribery resistant', 'permissionless', 'privacy'],
-    lastUpdated: '2024-12-25',
-  },
-  {
-    id: '5',
-    slug: 'protocol-guild',
-    name: 'Protocol Guild',
-    tagline: 'Funding Ethereum core contributors',
-    description: 'Protocol Guild is a collective funding mechanism for Ethereum\'s core protocol contributors. It has received over $92.9M in pledges and donations from the Ethereum ecosystem and currently distributes funds to 187+ active Ethereum core developers. Major contributors include Lido, Uniswap, ENS, and many others.',
-    logo: '/logos/protocolguild.svg',
-    website: 'https://protocol-guild.readthedocs.io',
-    category: 'fund',
-    mechanisms: ['streaming'],
-    blockchain: ['Ethereum'],
-    launchDate: '2022-05-01',
-    status: 'active',
-    fundingVolume: '$92.9M+',
-    socialLinks: {
-      twitter: 'https://twitter.com/ProtocolGuild',
-      github: 'https://github.com/protocolguild',
-    },
-    tags: ['core protocol', 'ethereum', 'streaming', 'collective', '187 contributors'],
-    lastUpdated: '2024-12-25',
-  },
-  {
-    id: '6',
-    slug: 'arbitrum-dao-grants',
-    name: 'Arbitrum DAO Grants',
-    tagline: 'Funding the Arbitrum ecosystem',
-    description: 'The Arbitrum DAO runs various grant programs to fund the ecosystem. The Short-Term Incentive Program (STIP) distributed 71.4M ARB to 56 protocols in 2023. The Long-Term Incentive Pilot Program (LTIP) is distributing 45.8M ARB with improved measurement frameworks. Additional programs include the Gaming Catalyst Program and Questbook Domain Allocators.',
-    logo: '/logos/arbitrum.svg',
-    website: 'https://arbitrum.foundation/grants',
-    category: 'dao',
-    mechanisms: ['direct-grants', 'milestone-based'],
-    blockchain: ['Arbitrum'],
-    launchDate: '2023-03-01',
-    status: 'active',
-    fundingVolume: '$200M+',
-    socialLinks: {
-      twitter: 'https://twitter.com/arbitrum',
-      discord: 'https://discord.gg/arbitrum',
-      github: 'https://github.com/OffchainLabs',
-    },
-    tags: ['arbitrum', 'grants', 'ecosystem', 'layer 2', 'STIP', 'LTIP'],
-    lastUpdated: '2024-12-25',
-  },
-  {
-    id: '7',
-    slug: 'octant',
-    name: 'Octant',
-    tagline: 'Public goods funding, powered by staking',
-    description: 'Octant is a participatory public goods funding platform built by the Golem Foundation. 100,000 ETH is staked and the rewards fund public goods projects. Users lock GLM tokens to participate in allocation decisions. Octant runs 90-day epochs; Epoch 9 is currently active as of late 2024. Each epoch typically distributes $1-2M to selected projects.',
-    logo: '/logos/octant.svg',
-    website: 'https://octant.app',
-    category: 'platform',
-    mechanisms: ['quadratic-funding', 'direct-grants'],
-    blockchain: ['Ethereum'],
-    launchDate: '2023-08-01',
-    status: 'active',
-    fundingVolume: '$15M+',
-    socialLinks: {
-      twitter: 'https://twitter.com/OctantApp',
-      discord: 'https://discord.gg/octant',
-    },
-    tags: ['staking', 'golem', 'epochs', 'participatory', '100k ETH'],
-    lastUpdated: '2024-12-25',
-  },
-  {
-    id: '8',
-    slug: 'drips',
-    name: 'Drips',
-    tagline: 'Streaming funding for open source',
-    description: 'Drips enables continuous token streaming to fund open source dependencies. It creates sustainable funding flows from projects to their dependencies using a novel Drip List model. Projects can split incoming funds to their dependencies automatically, creating supply chain funding graphs.',
-    logo: '/logos/drips.svg',
-    website: 'https://drips.network',
-    category: 'primitive',
-    mechanisms: ['streaming'],
-    blockchain: ['Ethereum'],
-    launchDate: '2023-01-01',
-    status: 'active',
-    fundingVolume: '$2M+',
-    socialLinks: {
-      twitter: 'https://twitter.com/draboratory',
-      github: 'https://github.com/drips-network',
-    },
-    tags: ['streaming', 'dependencies', 'open source', 'continuous', 'drip lists'],
-    lastUpdated: '2024-12-25',
-  },
-  {
-    id: '9',
-    slug: 'superfluid',
-    name: 'Superfluid',
-    tagline: 'Money streaming protocol',
-    description: 'Superfluid is a smart contract framework for programmable money streams. It enables real-time finance applications including continuous salary payments, subscriptions, and streaming grants. The protocol processes over $50M in active monthly streams across multiple networks.',
-    logo: '/logos/superfluid.svg',
-    website: 'https://superfluid.finance',
-    category: 'primitive',
-    mechanisms: ['streaming'],
-    blockchain: ['Ethereum', 'Polygon', 'Arbitrum', 'Optimism', 'Avalanche', 'BSC', 'Base', 'Celo'],
-    launchDate: '2021-01-01',
-    status: 'active',
-    fundingVolume: '$100M+',
-    socialLinks: {
-      twitter: 'https://twitter.com/Superfluid_HQ',
-      discord: 'https://discord.gg/superfluid',
-      github: 'https://github.com/superfluid-finance',
-    },
-    tags: ['streaming', 'real-time', 'programmable', 'DeFi', 'super tokens'],
-    lastUpdated: '2024-12-25',
-  },
-  {
-    id: '10',
-    slug: 'ethereum-foundation-esp',
-    name: 'Ethereum Foundation ESP',
-    tagline: 'Supporting Ethereum ecosystem growth',
-    description: 'The Ecosystem Support Program (ESP) provides grants to teams and individuals working on projects that benefit the Ethereum ecosystem. In 2024, ESP allocated approximately $3M across 105 projects covering research, development, community building, and education. The program supports work on core protocol, Layer 2, security, and ecosystem tooling.',
-    logo: '/logos/ef.svg',
-    website: 'https://esp.ethereum.foundation',
-    category: 'grant-program',
-    mechanisms: ['direct-grants', 'milestone-based'],
-    blockchain: ['Ethereum'],
-    launchDate: '2014-01-01',
-    status: 'active',
-    fundingVolume: '$100M+',
-    socialLinks: {
-      twitter: 'https://twitter.com/EF_ESP',
-      github: 'https://github.com/ethereum',
-    },
-    tags: ['ethereum foundation', 'ecosystem', 'research', 'development', 'ESP'],
-    lastUpdated: '2024-12-25',
-  },
-  {
-    id: '11',
-    slug: 'allo-protocol',
-    name: 'Allo Protocol',
-    tagline: 'The infrastructure for capital allocation',
-    description: 'Allo Protocol is an open-source protocol for capital allocation built by Gitcoin. It provides modular building blocks (strategies) that developers can use to create any type of funding mechanism. Allo V2 powers Gitcoin Grants Stack and enables custom allocation strategies for quadratic funding, direct grants, and more.',
-    logo: '/logos/allo.svg',
-    website: 'https://allo.gitcoin.co',
-    category: 'primitive',
-    mechanisms: ['quadratic-funding', 'direct-grants', 'milestone-based'],
-    blockchain: ['Ethereum', 'Arbitrum', 'Optimism', 'Polygon', 'Base', 'Scroll', 'zkSync'],
-    launchDate: '2023-06-01',
-    status: 'active',
-    socialLinks: {
-      twitter: 'https://twitter.com/alloprotocol',
-      github: 'https://github.com/allo-protocol',
-    },
-    tags: ['protocol', 'infrastructure', 'modular', 'capital allocation', 'strategies'],
-    lastUpdated: '2024-12-25',
-  },
-  {
-    id: '12',
-    slug: 'nouns-dao',
-    name: 'Nouns DAO',
-    tagline: 'One Noun, Every Day, Forever',
-    description: 'Nouns DAO is a generative avatar community that funds public goods and creative projects. With one NFT auctioned daily, the treasury (currently over 20,000 ETH) funds proposals voted on by Noun holders. Prop House enabled permissionless grant rounds for smaller proposals.',
-    logo: '/logos/nouns.svg',
-    website: 'https://nouns.wtf',
-    category: 'dao',
-    mechanisms: ['direct-grants'],
-    blockchain: ['Ethereum'],
-    launchDate: '2021-08-01',
-    status: 'active',
-    fundingVolume: '$50M+',
-    socialLinks: {
-      twitter: 'https://twitter.com/nounsdao',
-      discord: 'https://discord.gg/nouns',
-    },
-    tags: ['NFT', 'generative', 'treasury', 'proposals', 'CC0'],
-    lastUpdated: '2024-12-25',
-  },
-  {
-    id: '13',
-    slug: 'ecosystempartners',
-    name: 'Ecosystem Partners',
-    tagline: 'Venture-style funding for public goods',
-    description: 'Ecosystem Partners is a venture-style fund focused on public goods and regenerative projects in the Ethereum ecosystem. It provides long-term capital and support to projects building infrastructure, tools, and protocols that benefit the broader ecosystem.',
-    logo: '/logos/ecosystempartners.svg',
-    website: 'https://ecosystem.partners',
-    category: 'fund',
-    mechanisms: ['direct-grants'],
-    blockchain: ['Ethereum', 'Multi-chain'],
-    launchDate: '2023-01-01',
-    status: 'active',
-    socialLinks: {
-      twitter: 'https://twitter.com/ecosystempartners',
-    },
-    tags: ['venture', 'public goods', 'funding', 'long-term'],
-    lastUpdated: '2024-12-25',
-  },
-  {
-    id: '14',
-    slug: 'base-grants',
-    name: 'Base Builder Grants',
-    tagline: 'Supporting builders on Base',
-    description: 'Base offers grants through the Base Ecosystem Fund and Builder Grants to support developers building on the network. The program focuses on consumer apps, DeFi infrastructure, developer tooling, and onchain identity solutions.',
-    logo: '/logos/base.svg',
-    website: 'https://base.org/builders',
-    category: 'grant-program',
-    mechanisms: ['direct-grants'],
-    blockchain: ['Base'],
-    launchDate: '2023-08-01',
-    status: 'active',
-    socialLinks: {
-      twitter: 'https://twitter.com/base',
-      discord: 'https://discord.gg/base',
-      github: 'https://github.com/base-org',
-    },
-    tags: ['base', 'coinbase', 'grants', 'builders', 'layer 2'],
-    lastUpdated: '2024-12-25',
-  },
-  {
-    id: '15',
-    slug: 'scroll-grants',
-    name: 'Scroll Grants',
-    tagline: 'Building the zkEVM ecosystem',
-    description: 'Scroll offers grants to projects building on their zkEVM network. The program supports infrastructure, DeFi protocols, developer tools, and applications leveraging the security of zero-knowledge proofs on Ethereum.',
-    logo: '/logos/scroll.svg',
-    website: 'https://scroll.io/grants',
-    category: 'grant-program',
-    mechanisms: ['direct-grants'],
-    blockchain: ['Scroll'],
-    launchDate: '2023-10-01',
-    status: 'active',
-    socialLinks: {
-      twitter: 'https://twitter.com/scroll_zkp',
-      discord: 'https://discord.gg/scroll',
-      github: 'https://github.com/scroll-tech',
-    },
-    tags: ['scroll', 'zkEVM', 'grants', 'zero knowledge', 'layer 2'],
-    lastUpdated: '2024-12-25',
-  },
-]
+/**
+ * Get all apps from .md files
+ * Server-side only
+ */
+export function getAllApps(): App[] {
+  return getAppsFromMarkdown()
+}
 
+/**
+ * Get a single app by slug from .md files
+ * Server-side only
+ */
 export function getAppBySlug(slug: string): App | undefined {
-  return apps.find((app) => app.slug === slug)
+  return getAppFromMarkdown(slug)
 }
 
+/**
+ * Get apps by category
+ */
 export function getAppsByCategory(category: string): App[] {
-  return apps.filter((app) => app.category === category)
+  const allApps = getAllApps()
+  return allApps.filter((app) => app.category === category)
 }
 
+/**
+ * Get apps by mechanism
+ */
 export function getAppsByMechanism(mechanism: string): App[] {
-  return apps.filter((app) => app.mechanisms.includes(mechanism))
+  const allApps = getAllApps()
+  return allApps.filter((app) => app.mechanisms.includes(mechanism))
 }
 
-export function getFeaturedApps(count: number = 4): App[] {
-  return apps.slice(0, count)
+/**
+ * Get featured apps
+ */
+export function getFeaturedApps(count: number = 6): App[] {
+  const allApps = getAllApps()
+  return allApps.filter((app) => app.status === 'active').slice(0, count)
 }
+
+// For static params generation and client components
+export const apps = getAllApps()

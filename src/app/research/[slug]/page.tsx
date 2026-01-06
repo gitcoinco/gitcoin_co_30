@@ -3,6 +3,7 @@ import { notFound } from 'next/navigation'
 import Link from 'next/link'
 import { ArrowLeft, Edit, ExternalLink, BarChart3, FileText, TrendingUp, MessageSquare, Database, Calendar, User } from 'lucide-react'
 import { Button, Badge } from '@/components/ui'
+import { Markdown } from '@/components/Markdown'
 import { getResearchBySlug, research } from '@/content/research'
 
 interface PageProps {
@@ -86,20 +87,18 @@ export default async function ResearchDetailPage({ params }: PageProps) {
             <h1 className="text-3xl md:text-4xl font-bold text-light-white mb-4">
               {r.title}
             </h1>
-            <p className="text-lg text-muted-gray mb-6">
-              {r.abstract}
-            </p>
+            <p className="text-lg text-muted-gray mb-6">{r.abstract}</p>
             <div className="flex flex-wrap items-center gap-4 text-sm text-muted-gray">
               <div className="flex items-center gap-2">
                 <User className="w-4 h-4" />
-                {r.authors.join(', ')}
+                {r.authors.join(", ")}
               </div>
               <div className="flex items-center gap-2">
                 <Calendar className="w-4 h-4" />
-                {new Date(r.publishDate).toLocaleDateString('en-US', {
-                  month: 'long',
-                  day: 'numeric',
-                  year: 'numeric',
+                {new Date(r.publishDate).toLocaleDateString("en-US", {
+                  month: "long",
+                  day: "numeric",
+                  year: "numeric",
                 })}
               </div>
             </div>
@@ -114,11 +113,7 @@ export default async function ResearchDetailPage({ params }: PageProps) {
             {/* Main Content */}
             <div className="lg:col-span-2">
               <article className="card">
-                <div className="prose prose-slate max-w-none prose-headings:text-light-white prose-p:text-muted-gray prose-strong:text-light-white prose-li:text-muted-gray">
-                  <div className="whitespace-pre-line text-muted-gray">
-                    {r.content}
-                  </div>
-                </div>
+                <Markdown content={r.content} />
               </article>
             </div>
 
@@ -127,7 +122,9 @@ export default async function ResearchDetailPage({ params }: PageProps) {
               {/* Related Topics */}
               {(r.relatedApps.length > 0 || r.relatedMechanisms.length > 0) && (
                 <div className="card">
-                  <h3 className="font-semibold text-light-white mb-4">Related Topics</h3>
+                  <h3 className="font-semibold text-light-white mb-4">
+                    Related Topics
+                  </h3>
                   {r.relatedApps.length > 0 && (
                     <div className="mb-4">
                       <p className="text-sm text-muted-gray mb-2">Apps</p>
@@ -166,7 +163,9 @@ export default async function ResearchDetailPage({ params }: PageProps) {
               {/* Sources */}
               {r.sources.length > 0 && (
                 <div className="card">
-                  <h3 className="font-semibold text-light-white mb-4">Sources</h3>
+                  <h3 className="font-semibold text-light-white mb-4">
+                    Sources
+                  </h3>
                   <ul className="space-y-2">
                     {r.sources.map((source, i) => (
                       <li key={i}>
@@ -190,14 +189,20 @@ export default async function ResearchDetailPage({ params }: PageProps) {
                 <h3 className="font-semibold text-light-white mb-4">Tags</h3>
                 <div className="flex flex-wrap gap-2">
                   {r.tags.map((tag) => (
-                    <Badge key={tag} size="sm">{tag}</Badge>
+                    <Badge key={tag} size="sm">
+                      {tag}
+                    </Badge>
                   ))}
                 </div>
               </div>
 
               {/* Actions */}
               <div className="card">
-                <Button href={`/submit?edit=research/${r.slug}`} variant="ghost" className="w-full">
+                <Button
+                  href={`https://github.com/gitcoinco/gitcoin_co_30/issues`}
+                  variant="ghost"
+                  className="w-full"
+                >
                   <Edit className="w-4 h-4 mr-2" />
                   Suggest Edit
                 </Button>
@@ -205,7 +210,8 @@ export default async function ResearchDetailPage({ params }: PageProps) {
 
               {/* Metadata */}
               <p className="text-sm text-muted-gray text-center">
-                Published: {new Date(r.publishDate).toLocaleDateString()}<br />
+                Published: {new Date(r.publishDate).toLocaleDateString()}
+                <br />
                 Updated: {new Date(r.lastUpdated).toLocaleDateString()}
               </p>
             </div>
@@ -213,5 +219,5 @@ export default async function ResearchDetailPage({ params }: PageProps) {
         </div>
       </section>
     </div>
-  )
+  );
 }
