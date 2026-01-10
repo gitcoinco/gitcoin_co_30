@@ -23,6 +23,9 @@ tags:
   - epochs
   - participatory
   - 100k ETH
+relatedMechanisms:
+  - quadratic-funding
+  - direct-grants
 lastUpdated: '2024-12-25'
 ---
 

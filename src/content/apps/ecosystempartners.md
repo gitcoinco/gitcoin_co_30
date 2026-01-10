@@ -20,6 +20,8 @@ tags:
   - public goods
   - funding
   - long-term
+relatedMechanisms:
+  - direct-grants
 lastUpdated: '2024-12-25'
 ---
 

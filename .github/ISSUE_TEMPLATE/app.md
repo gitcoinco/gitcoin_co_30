@@ -2,62 +2,67 @@
 name: App Submission
 about: Submit a new app, platform, or funding tool to the directory
 title: '[App] Add your app name here'
-labels: ['content', 'app']
+labels: ["content","app"]
 assignees: ''
 ---
 
 <!--
 This template will be automatically converted to a markdown file.
-Fill in all sections below. Add the logo image first - it will be automatically downloaded.
+Fill in all sections below. You can use markdown formatting and add images.
 -->
 
 ## Metadata
 
-- **Tagline**: (One-line description, 10-15 words)
-- **Category**: (platform | dao | grant-program | fund | primitive)
-- **Status**: (active | deprecated | upcoming)
-- **Website**:
-- **Launch Date**: (YYYY-MM-DD)
-- **Funding Volume**: (e.g., $10M distributed, or leave empty)
+- **Short Description**: (One-line description)
+- **Tags**: (comma-separated tags)
 
-## Mechanisms Used
-<!-- Which funding mechanisms does this app support? -->
-- quadratic-funding
-- direct-grants
-- retroactive-funding
 
-## Blockchains Supported
-<!-- Which blockchains/networks? -->
-- Ethereum
-- Optimism
-- Arbitrum
+## Banner Image
+<!--
+OPTIONAL: Add a banner image - it will be displayed at the top of the page.
+Recommended dimensions: 1600x900 pixels (16:9 aspect ratio) or 1200x600 pixels (2:1 aspect ratio)
+Formats: PNG, JPG, or WebP
+-->
 
-## Social Links
-- **Twitter**:
-- **Discord**:
-- **GitHub**:
-
-## Tags
-<!-- Comma-separated tags -->
-quadratic-funding, grants, public-goods
 
 ## Logo
-<!-- Add logo image here (first image in the issue). SVG or PNG preferred. -->
+<!--
+OPTIONAL: Add a logo image.
+Recommended dimensions: Square (e.g., 256x256 pixels)
+Formats: SVG, PNG preferred
+-->
 
 
 ## Description
-<!-- Full description of what this app does, its features, and use cases (use markdown formatting) -->
+<!--
+Full description of what this app does, its features, and use cases (use markdown formatting).
+You can include details like:
+- **Category**: Platform | DAO | Grant Program | Fund | Primitive
+- **Status**: Active | Deprecated | Upcoming
+- **Website**: URL
+- **Launch Date**: YYYY-MM-DD
+- **Funding Volume**: e.g., $10M distributed
+- **Blockchains**: Ethereum, Optimism, Arbitrum, etc.
+- **Social Links**: Twitter, Discord, GitHub
+-->
 
+
+## Related Mechanisms
+<!-- Related mechanisms (use slugs like "quadratic-funding", "direct-grants") -->
+-
+-
+
+
+## Related Apps
+<!-- Related apps (use slugs like "gitcoin-grants-stack", "allo-protocol") -->
+-
+-
 
 ---
 
 ## Submission Checklist
 <!-- Check all boxes before submitting -->
-- [ ] All metadata fields are filled in
-- [ ] Tagline is clear and concise
-- [ ] Category and status are selected
-- [ ] At least one mechanism is listed
-- [ ] Logo image is included
+- [ ] Short description is clear and concise
+- [ ] Tags are provided
 - [ ] Description is comprehensive
-- [ ] Social links are provided (if available)
-
+- [ ] Related mechanisms/apps are listed (if applicable)

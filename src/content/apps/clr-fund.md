@@ -24,6 +24,8 @@ tags:
   - bribery resistant
   - permissionless
   - privacy
+relatedMechanisms:
+  - quadratic-funding
 lastUpdated: '2024-12-25'
 ---
 

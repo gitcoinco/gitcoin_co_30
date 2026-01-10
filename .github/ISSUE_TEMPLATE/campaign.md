@@ -2,7 +2,7 @@
 name: Campaign Submission
 about: Submit an active, upcoming, or completed funding campaign
 title: '[Campaign] Add your campaign name here'
-labels: ['content', 'campaign']
+labels: ["content","campaign"]
 assignees: ''
 ---
 
@@ -13,56 +13,65 @@ Fill in all sections below. You can use markdown formatting and add images.
 
 ## Metadata
 
-- **Tagline**: (One-line description)
-- **Status**: (upcoming | active | completed)
-- **Start Date**: (YYYY-MM-DD)
-- **End Date**: (YYYY-MM-DD)
-- **Organizer**: (Who is running this campaign?)
-- **Mechanism**: (mechanism slug: quadratic-funding, direct-grants, etc.)
-- **Funding Pool**: (e.g., $500,000)
-- **Matching Pool**: (e.g., $100,000, if applicable)
-- **Application URL**: (Link to apply, if applicable)
-- **Is Featured**: (true | false)
-- **Tags**: (comma-separated: grants, public-goods, etc.)
+- **Short Description**: (One-line description)
+- **Tags**: (comma-separated tags)
 
-## Hero/Banner Image
+
+## Banner Image
 <!--
-RECOMMENDED: Add a campaign banner/hero image - it will be displayed at the top of the campaign page.
+OPTIONAL: Add a banner image - it will be displayed at the top of the page.
 Recommended dimensions: 1600x900 pixels (16:9 aspect ratio) or 1200x600 pixels (2:1 aspect ratio)
 Formats: PNG, JPG, or WebP
-This MUST be the FIRST image in your issue.
 -->
 
 
-## Eligibility
-<!-- Who can participate? What are the requirements? -->
--
--
--
+## Logo
+<!--
+OPTIONAL: Add a logo image.
+Recommended dimensions: Square (e.g., 256x256 pixels)
+Formats: SVG, PNG preferred
+-->
+
 
 ## Description
-<!-- Full description of the campaign (use markdown formatting) -->
+<!--
+Full description of the campaign (use markdown formatting).
+
+You can include details like:
+- **Status**: Upcoming | Active | Completed
+- **Start Date**: YYYY-MM-DD
+- **End Date**: YYYY-MM-DD
+- **Organizer**: Who is running this campaign?
+- **Mechanism**: quadratic-funding, direct-grants, etc.
+- **Funding Pool**: e.g., $500,000
+- **Matching Pool**: e.g., $100,000 (if applicable)
+- **Application URL**: Link to apply
+- **Is Featured**: true | false
+- **Eligibility**: Who can participate? What are the requirements?
+- **Results** (For Completed Campaigns):
+  - Projects Funded
+  - Total Distributed
+  - Unique Donors
+  - Highlights
+-->
 
 
+## Related Mechanisms
+<!-- Related mechanisms (use slugs like "quadratic-funding", "direct-grants") -->
+-
+-
 
 
-## Results (For Completed Campaigns)
-<!-- Provide results if campaign is completed -->
-- **Projects Funded**:
-- **Total Distributed**:
-- **Unique Donors**:
-- **Highlights**:
+## Related Apps
+<!-- Related apps (use slugs like "gitcoin-grants-stack", "allo-protocol") -->
+-
+-
 
 ---
 
 ## Submission Checklist
 <!-- Check all boxes before submitting -->
-- [ ] All metadata fields are filled in
-- [ ] Tagline is clear and concise
-- [ ] Status, dates, and organizer are specified
-- [ ] Mechanism is identified
-- [ ] Funding pool information is provided
-- [ ] Eligibility requirements are listed
+- [ ] Short description is clear and concise
+- [ ] Tags are provided
 - [ ] Description is comprehensive
-- [ ] Results are included (if campaign is completed)
-
+- [ ] Related mechanisms/apps are listed (if applicable)

@@ -18,14 +18,6 @@ export function getResearchBySlug(slug: string): Research | undefined {
 }
 
 /**
- * Get research by type
- */
-export function getResearchByType(type: string): Research[] {
-  const allResearch = getAllResearch()
-  return allResearch.filter((r) => r.type === type)
-}
-
-/**
  * Get featured research
  */
 export function getFeaturedResearch(count: number = 3): Research[] {

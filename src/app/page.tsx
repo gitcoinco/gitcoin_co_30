@@ -136,7 +136,7 @@ export default function Home() {
             </div>
             <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
               {(activeCampaigns.length > 0 ? activeCampaigns : featuredCampaigns).slice(0, 3).map((campaign) => (
-                <CampaignCard key={campaign.id} campaign={campaign} featured={campaign.isFeatured} />
+                <CampaignCard key={campaign.id} campaign={campaign} />
               ))}
             </div>
             <Link

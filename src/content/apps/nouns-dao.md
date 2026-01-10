@@ -22,6 +22,8 @@ tags:
   - treasury
   - proposals
   - CC0
+relatedMechanisms:
+  - direct-grants
 lastUpdated: '2024-12-25'
 ---
 

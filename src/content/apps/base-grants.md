@@ -22,6 +22,8 @@ tags:
   - grants
   - builders
   - layer 2
+relatedMechanisms:
+  - direct-grants
 lastUpdated: '2024-12-25'
 ---
 

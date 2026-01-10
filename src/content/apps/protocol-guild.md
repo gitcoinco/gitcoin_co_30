@@ -22,6 +22,8 @@ tags:
   - streaming
   - collective
   - 187 contributors
+relatedMechanisms:
+  - streaming
 lastUpdated: '2024-12-25'
 ---
 

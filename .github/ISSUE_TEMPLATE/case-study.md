@@ -2,7 +2,7 @@
 name: Case Study Submission
 about: Submit a new case study about a funding mechanism or program
 title: '[Case Study] Add your case study title here'
-labels: ['content', 'case-study']
+labels: ["content","case-study"]
 assignees: ''
 ---
 
@@ -13,77 +13,62 @@ Fill in all sections below. You can use markdown formatting and add images.
 
 ## Metadata
 
-- **Project Name**: (The actual project/program name)
-- **Platform Used**: (Platform slug: gitcoin-grants-stack, allo-protocol, etc.)
-- **Mechanism Type**: (Mechanism slug: quadratic-funding, direct-grants, retroactive-funding, etc.)
-- **Funding Amount**: (e.g., $500,000 or 100M ARB)
-- **Funding Date**: (YYYY-MM-DD)
-- **Status**: (success | partial | failed | ongoing)
-- **Tags**: (comma-separated: funding, grants, ecosystem, etc.)
+- **Short Description**: (One-line description)
+- **Tags**: (comma-separated tags)
 
-## Hero/Banner Image
+
+## Banner Image
 <!--
-REQUIRED: Add your hero image here - it will be displayed at the top of the case study.
+OPTIONAL: Add a banner image - it will be displayed at the top of the page.
 Recommended dimensions: 1600x900 pixels (16:9 aspect ratio) or 1200x600 pixels (2:1 aspect ratio)
 Formats: PNG, JPG, or WebP
-This MUST be the FIRST image in your issue.
 -->
 
 
-## Summary
-<!-- 2-3 sentence summary of the case study -->
-
-
-## Background
-<!-- Provide context: What problem was being solved? When did this take place? -->
-
-
-## The Mechanism/Program
-<!-- Describe how the funding mechanism worked -->
-
-
-## Outcomes
+## Logo
 <!--
-DO NOT CHANGE THE FORMAT BELOW - it will be automatically parsed.
-List measurable outcomes with metrics. Add more outcomes by copying the structure.
+OPTIONAL: Add a logo image.
+Recommended dimensions: Square (e.g., 256x256 pixels)
+Formats: SVG, PNG preferred
 -->
 
-### Outcome 1
-- **Title**:
-- **Description**:
-- **Metrics**:
 
-### Outcome 2
-- **Title**:
-- **Description**:
-- **Metrics**:
-
-
-## Lessons Learned
+## Description
 <!--
-DO NOT CHANGE THIS HEADING - it will be automatically parsed.
-List key lessons as bullet points.
+Full description of the case study (use markdown formatting).
+Include sections for:
+- Background (context: what problem was being solved? when did this take place?)
+- The Mechanism/Program (how the funding mechanism worked)
+- Outcomes (measurable outcomes with metrics)
+- Lessons Learned (key takeaways)
+
+You can include details like:
+- **Project Name**: The actual project/program name
+- **Platform Used**: gitcoin-grants-stack, allo-protocol, etc.
+- **Mechanism Type**: quadratic-funding, direct-grants, retroactive-funding
+- **Funding Amount**: e.g., $500,000 or 100M ARB
+- **Funding Date**: YYYY-MM-DD
+- **Status**: Success | Partial | Failed | Ongoing
+- **Sources**: Links to data, reports, or additional resources
 -->
+
+
+## Related Mechanisms
+<!-- Related mechanisms (use slugs like "quadratic-funding", "direct-grants") -->
 -
 -
 
 
-## Sources
-<!--
-DO NOT CHANGE THE FORMAT BELOW - it will be automatically parsed.
-Provide links to data, reports, or additional resources.
--->
-- [Source Title](URL)
-- [Source Title](URL)
+## Related Apps
+<!-- Related apps (use slugs like "gitcoin-grants-stack", "allo-protocol") -->
+-
+-
 
 ---
 
 ## Submission Checklist
 <!-- Check all boxes before submitting -->
-- [ ] All metadata fields are filled in
-- [ ] Summary is clear and concise (2-3 sentences)
-- [ ] At least 2 outcomes are documented with metrics
-- [ ] At least 2 lessons learned are listed
-- [ ] At least 1 source is provided
-- [ ] Images are included (if available)
-- [ ] All required sections are complete
+- [ ] Short description is clear and concise
+- [ ] Tags are provided
+- [ ] Description is comprehensive
+- [ ] Related mechanisms/apps are listed (if applicable)

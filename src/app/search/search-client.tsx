@@ -38,7 +38,7 @@ export function SearchClient({ apps, mechanisms, caseStudies, research, campaign
     const matchedApps = apps.filter(
       (a) =>
         a.name.toLowerCase().includes(q) ||
-        a.tagline.toLowerCase().includes(q) ||
+        a.shortDescription.toLowerCase().includes(q) ||
         a.description.toLowerCase().includes(q) ||
         a.tags.some((t) => t.toLowerCase().includes(q))
     )
@@ -52,23 +52,22 @@ export function SearchClient({ apps, mechanisms, caseStudies, research, campaign
 
     const matchedCaseStudies = caseStudies.filter(
       (cs) =>
-        cs.title.toLowerCase().includes(q) ||
-        cs.summary.toLowerCase().includes(q) ||
-        cs.project.toLowerCase().includes(q) ||
+        cs.name.toLowerCase().includes(q) ||
+        cs.shortDescription.toLowerCase().includes(q) ||
         cs.tags.some((t) => t.toLowerCase().includes(q))
     )
 
     const matchedResearch = research.filter(
       (r) =>
-        r.title.toLowerCase().includes(q) ||
-        r.abstract.toLowerCase().includes(q) ||
+        r.name.toLowerCase().includes(q) ||
+        r.shortDescription.toLowerCase().includes(q) ||
         r.tags.some((t) => t.toLowerCase().includes(q))
     )
 
     const matchedCampaigns = campaigns.filter(
       (c) =>
         c.name.toLowerCase().includes(q) ||
-        c.tagline.toLowerCase().includes(q) ||
+        c.shortDescription.toLowerCase().includes(q) ||
         c.description.toLowerCase().includes(q) ||
         c.tags.some((t) => t.toLowerCase().includes(q))
     )

@@ -23,6 +23,8 @@ tags:
   - public goods
   - impact
   - superchain
+relatedMechanisms:
+  - retroactive-funding
 lastUpdated: '2024-12-25'
 ---
 

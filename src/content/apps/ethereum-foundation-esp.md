@@ -23,6 +23,9 @@ tags:
   - research
   - development
   - ESP
+relatedMechanisms:
+  - direct-grants
+  - milestone-based
 lastUpdated: '2024-12-25'
 ---
 

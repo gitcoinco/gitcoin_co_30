@@ -30,6 +30,9 @@ tags:
   - transparent
   - regenerative
   - zero fees
+relatedMechanisms:
+  - direct-grants
+  - quadratic-funding
 lastUpdated: '2024-12-25'
 ---
 

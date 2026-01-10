@@ -8,20 +8,6 @@ interface AppCardProps {
 }
 
 export default function AppCard({ app, featured = false }: AppCardProps) {
-  const categoryLabels: Record<string, string> = {
-    platform: 'Platform',
-    dao: 'DAO',
-    'grant-program': 'Grant Program',
-    fund: 'Fund',
-    primitive: 'Primitive',
-  }
-
-  const statusVariants: Record<string, 'success' | 'warning' | 'default'> = {
-    active: 'success',
-    upcoming: 'warning',
-    deprecated: 'default',
-  }
-
   return (
     <Link href={`/apps/${app.slug}`}>
       <div className={`${featured ? 'card-featured' : 'card'} group h-full flex flex-col`}>
@@ -44,49 +30,31 @@ export default function AppCard({ app, featured = false }: AppCardProps) {
             <h3 className="font-semibold text-light-white group-hover:text-light-white transition-colors truncate">
               {app.name}
             </h3>
-            <p className="text-sm text-muted-gray truncate">{app.tagline}</p>
+            <p className="text-sm text-muted-gray truncate">{app.shortDescription}</p>
           </div>
           {featured && (
             <Badge variant="active" size="sm">Featured</Badge>
           )}
         </div>
 
-        {/* Description */}
-        <p className="text-muted-gray text-sm mb-4 line-clamp-2 flex-grow">
-          {app.description}
-        </p>
-
-        {/* Metadata */}
-        <div className="flex flex-wrap gap-2 mb-4">
-          <Badge>{categoryLabels[app.category]}</Badge>
-          <Badge variant={statusVariants[app.status]}>
-            {app.status.charAt(0).toUpperCase() + app.status.slice(1)}
-          </Badge>
-        </div>
-
-        {/* Stats */}
-        <div className="flex items-center justify-between pt-4 border-t border-dark-gray">
-          {app.fundingVolume && (
-            <span className="text-sm font-medium text-light-white">
-              {app.fundingVolume} funded
-            </span>
-          )}
-          <div className="flex items-center gap-2">
-            {app.blockchain.slice(0, 2).map((chain) => (
+        {/* Tags */}
+        {app.tags.length > 0 && (
+          <div className="flex flex-wrap gap-2 mt-auto">
+            {app.tags.slice(0, 3).map((tag) => (
               <span
-                key={chain}
+                key={tag}
                 className="text-xs px-2 py-0.5 bg-dark-gray border border-muted-gray/30 rounded text-muted-gray"
               >
-                {chain}
+                {tag}
               </span>
             ))}
-            {app.blockchain.length > 2 && (
+            {app.tags.length > 3 && (
               <span className="text-xs text-muted-gray">
-                +{app.blockchain.length - 2}
+                +{app.tags.length - 3}
               </span>
             )}
           </div>
-        </div>
+        )}
       </div>
     </Link>
   )

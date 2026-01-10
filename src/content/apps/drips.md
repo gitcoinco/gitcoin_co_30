@@ -22,6 +22,8 @@ tags:
   - open source
   - continuous
   - drip lists
+relatedMechanisms:
+  - streaming
 lastUpdated: '2024-12-25'
 ---
 

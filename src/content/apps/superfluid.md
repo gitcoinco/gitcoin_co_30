@@ -30,6 +30,8 @@ tags:
   - programmable
   - DeFi
   - super tokens
+relatedMechanisms:
+  - streaming
 lastUpdated: '2024-12-25'
 ---
 

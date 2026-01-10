@@ -18,27 +18,11 @@ export function getAppBySlug(slug: string): App | undefined {
 }
 
 /**
- * Get apps by category
- */
-export function getAppsByCategory(category: string): App[] {
-  const allApps = getAllApps()
-  return allApps.filter((app) => app.category === category)
-}
-
-/**
- * Get apps by mechanism
- */
-export function getAppsByMechanism(mechanism: string): App[] {
-  const allApps = getAllApps()
-  return allApps.filter((app) => app.mechanisms.includes(mechanism))
-}
-
-/**
  * Get featured apps
  */
 export function getFeaturedApps(count: number = 6): App[] {
   const allApps = getAllApps()
-  return allApps.filter((app) => app.status === 'active').slice(0, count)
+  return allApps.slice(0, count)
 }
 
 // For static params generation and client components

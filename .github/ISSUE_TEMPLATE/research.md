@@ -2,7 +2,7 @@
 name: Research Submission
 about: Submit research, analysis, or data about public goods funding
 title: '[Research] Add your research title here'
-labels: ['content', 'research']
+labels: ["content","research"]
 assignees: ''
 ---
 
@@ -13,38 +13,45 @@ Fill in all sections below. You can use markdown formatting and add images.
 
 ## Metadata
 
-- **Abstract**: (2-3 sentence summary of the research)
-- **Type**: (analysis | report | trend | opinion | data)
-- **Authors**: (comma-separated: @username1, @username2)
-- **Tags**: (comma-separated: research, analysis, etc.)
+- **Short Description**: (One-line description)
+- **Tags**: (comma-separated tags)
 
-## Hero/Banner Image
+
+## Banner Image
 <!--
-OPTIONAL: Add a hero/banner image - it will be displayed at the top of the research page.
+OPTIONAL: Add a banner image - it will be displayed at the top of the page.
 Recommended dimensions: 1600x900 pixels (16:9 aspect ratio) or 1200x600 pixels (2:1 aspect ratio)
 Formats: PNG, JPG, or WebP
-This MUST be the FIRST image in your issue.
 -->
 
 
-## Related Content
-- **Related Apps**: (comma-separated app slugs: gitcoin-grants-stack, allo-protocol)
-- **Related Mechanisms**: (comma-separated mechanism slugs: quadratic-funding, direct-grants)
-
-## Sources
-<!-- Links to data sources, citations -->
-- [Source Title](URL)
-- [Source Title](URL)
-
-## Full Content
-<!-- The complete research content (use markdown formatting) -->
+## Logo
+<!--
+OPTIONAL: Add a logo image.
+Recommended dimensions: Square (e.g., 256x256 pixels)
+Formats: SVG, PNG preferred
+-->
 
 
+## Description
+<!--
+The complete research content (use markdown formatting).
+Include key findings and main insights.
+You can include details like:
+- **Type**: Analysis | Report | Trend | Opinion | Data
+- **Authors**: @username1, @username2
+- **Sources**: Links to data sources, citations
+-->
 
 
-## Key Findings
-<!-- Bullet points of main findings -->
+## Related Mechanisms
+<!-- Related mechanisms (use slugs like "quadratic-funding", "direct-grants") -->
 -
+-
+
+
+## Related Apps
+<!-- Related apps (use slugs like "gitcoin-grants-stack", "allo-protocol") -->
 -
 -
 
@@ -52,12 +59,7 @@ This MUST be the FIRST image in your issue.
 
 ## Submission Checklist
 <!-- Check all boxes before submitting -->
-- [ ] All metadata fields are filled in
-- [ ] Abstract is clear and concise (2-3 sentences)
-- [ ] Type is selected
-- [ ] Authors are listed
-- [ ] Full content is complete and well-formatted
-- [ ] At least 2 key findings are listed
-- [ ] At least 2 sources are provided
-- [ ] Related apps/mechanisms are listed (if applicable)
-
+- [ ] Short description is clear and concise
+- [ ] Tags are provided
+- [ ] Description is comprehensive
+- [ ] Related mechanisms/apps are listed (if applicable)

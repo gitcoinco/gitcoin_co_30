@@ -18,42 +18,18 @@ export function getCampaignBySlug(slug: string): Campaign | undefined {
 }
 
 /**
- * Get campaigns by status
- */
-export function getCampaignsByStatus(status: string): Campaign[] {
-  const allCampaigns = getAllCampaigns()
-  return allCampaigns.filter((c) => c.status === status)
-}
-
-/**
- * Get active campaigns
+ * Get active campaigns (returns all campaigns for now)
  */
 export function getActiveCampaigns(): Campaign[] {
-  return getCampaignsByStatus('active')
+  return getAllCampaigns()
 }
 
 /**
- * Get upcoming campaigns
+ * Get featured campaigns (returns first few campaigns)
  */
-export function getUpcomingCampaigns(): Campaign[] {
-  return getCampaignsByStatus('upcoming')
-}
-
-/**
- * Get completed campaigns
- */
-export function getCompletedCampaigns(): Campaign[] {
-  return getCampaignsByStatus('completed')
-}
-
-/**
- * Get featured campaigns
- */
-export function getFeaturedCampaigns(): Campaign[] {
+export function getFeaturedCampaigns(count: number = 6): Campaign[] {
   const allCampaigns = getAllCampaigns()
-  return allCampaigns
-    .filter((c) => c.isFeatured)
-    .sort((a, b) => (a.featuredOrder || 999) - (b.featuredOrder || 999))
+  return allCampaigns.slice(0, count)
 }
 
 // For static params generation and client components

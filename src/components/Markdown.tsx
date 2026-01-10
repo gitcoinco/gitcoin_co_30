@@ -16,27 +16,27 @@ export function Markdown({ content, className = '' }: MarkdownProps) {
         components={{
         // Style headings
         h1: ({ children }) => (
-          <h1 className="text-3xl font-bold text-light-white mt-8 mb-4">{children}</h1>
+          <h1 className="text-3xl font-bold text-light-white mt-12 mb-6 first:mt-0">{children}</h1>
         ),
         h2: ({ children }) => (
-          <h2 className="text-2xl font-semibold text-light-white mt-6 mb-3">{children}</h2>
+          <h2 className="text-2xl font-semibold text-light-white mt-10 mb-5">{children}</h2>
         ),
         h3: ({ children }) => (
-          <h3 className="text-xl font-semibold text-light-white mt-4 mb-2">{children}</h3>
+          <h3 className="text-xl font-semibold text-light-white mt-8 mb-4">{children}</h3>
         ),
         // Style paragraphs
         p: ({ children }) => (
-          <p className="text-muted-gray mb-4 leading-relaxed">{children}</p>
+          <p className="text-muted-gray mb-6 leading-relaxed text-base">{children}</p>
         ),
         // Style lists
         ul: ({ children }) => (
-          <ul className="list-disc list-inside text-muted-gray mb-4 space-y-2">{children}</ul>
+          <ul className="list-disc list-inside text-muted-gray mb-6 space-y-2 ml-4">{children}</ul>
         ),
         ol: ({ children }) => (
-          <ol className="list-decimal list-inside text-muted-gray mb-4 space-y-2">{children}</ol>
+          <ol className="list-decimal list-inside text-muted-gray mb-6 space-y-2 ml-4">{children}</ol>
         ),
         li: ({ children }) => (
-          <li className="text-muted-gray">{children}</li>
+          <li className="text-muted-gray leading-relaxed">{children}</li>
         ),
         // Style links
         a: ({ href, children }) => (
@@ -71,12 +71,12 @@ export function Markdown({ content, className = '' }: MarkdownProps) {
             {children}
           </blockquote>
         ),
-        // Style images
+        // Style images with dark background
         img: ({ src, alt }) => (
           <img
             src={src}
             alt={alt || ''}
-            className="rounded-lg my-6 w-full"
+            className="rounded-lg my-8 w-full bg-void-black invert"
           />
         ),
         // Style tables

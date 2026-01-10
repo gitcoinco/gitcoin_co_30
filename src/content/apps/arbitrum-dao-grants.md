@@ -25,6 +25,9 @@ tags:
   - layer 2
   - STIP
   - LTIP
+relatedMechanisms:
+  - direct-grants
+  - milestone-based
 lastUpdated: '2024-12-25'
 ---
 

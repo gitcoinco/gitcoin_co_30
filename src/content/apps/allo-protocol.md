@@ -29,6 +29,10 @@ tags:
   - modular
   - capital allocation
   - strategies
+relatedMechanisms:
+  - quadratic-funding
+  - direct-grants
+  - milestone-based
 lastUpdated: '2024-12-25'
 ---
 

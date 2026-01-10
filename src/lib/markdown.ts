@@ -41,32 +41,29 @@ function readMarkdownFile<T>(directory: string, slug: string, parser: (data: any
   return parser(data, content.trim(), slug)
 }
 
+// Generic parser for all BaseContent types
+function parseBaseContent(data: any, content: string, slug: string): App | Mechanism | CaseStudy | Research | Campaign {
+  return {
+    id: data.id || slug,
+    slug: data.slug || slug,
+    name: data.name || '',
+    shortDescription: data.shortDescription || '',
+    description: content,
+    logo: data.logo,
+    banner: data.banner,
+    tags: data.tags || [],
+    lastUpdated: data.lastUpdated || new Date().toISOString().split('T')[0],
+    relatedApps: data.relatedApps || [],
+    relatedMechanisms: data.relatedMechanisms || [],
+  }
+}
+
 // ============================================
 // CASE STUDIES
 // ============================================
 
 function parseCaseStudy(data: any, content: string, slug: string): CaseStudy {
-  return {
-    id: data.id || slug,
-    slug: data.slug || slug,
-    title: data.title || '',
-    summary: data.summary || '',
-    content,
-    heroImage: data.heroImage,
-    project: data.project || '',
-    platform: data.platform || '',
-    mechanism: data.mechanism || '',
-    fundingAmount: data.fundingAmount || '',
-    fundingDate: data.fundingDate || '',
-    outcomes: data.outcomes || [],
-    lessonsLearned: data.lessonsLearned || [],
-    status: data.status || 'ongoing',
-    author: data.author || data.submittedBy || '',
-    sources: data.sources || [],
-    tags: data.tags || [],
-    publishDate: data.publishDate || data.date || new Date().toISOString().split('T')[0],
-    lastUpdated: data.lastUpdated || data.date || new Date().toISOString().split('T')[0],
-  } as CaseStudy
+  return parseBaseContent(data, content, slug) as CaseStudy
 }
 
 export function getCaseStudiesFromMarkdown(): CaseStudy[] {
@@ -82,25 +79,7 @@ export function getCaseStudyFromMarkdown(slug: string): CaseStudy | undefined {
 // ============================================
 
 function parseApp(data: any, content: string, slug: string): App {
-  return {
-    id: data.id || slug,
-    slug: data.slug || slug,
-    name: data.name || '',
-    tagline: data.tagline || '',
-    description: content,
-    logo: data.logo,
-    website: data.website || '',
-    category: data.category || 'platform',
-    mechanisms: data.mechanisms || [],
-    blockchain: data.blockchain || [],
-    launchDate: data.launchDate,
-    status: data.status || 'active',
-    fundingVolume: data.fundingVolume,
-    socialLinks: data.socialLinks || {},
-    tags: data.tags || [],
-    lastUpdated: data.lastUpdated || new Date().toISOString().split('T')[0],
-    themeMode: data.themeMode,
-  } as App
+  return parseBaseContent(data, content, slug) as App
 }
 
 export function getAppsFromMarkdown(): App[] {
@@ -116,26 +95,7 @@ export function getAppFromMarkdown(slug: string): App | undefined {
 // ============================================
 
 function parseMechanism(data: any, content: string, slug: string): Mechanism {
-  return {
-    id: data.id || slug,
-    slug: data.slug || slug,
-    name: data.name || '',
-    shortDescription: data.shortDescription || '',
-    fullDescription: content,
-    heroImage: data.heroImage,
-    category: data.category || 'allocation',
-    howItWorks: data.howItWorks || '',
-    advantages: data.advantages || [],
-    limitations: data.limitations || [],
-    bestUsedFor: data.bestUsedFor || [],
-    implementations: data.implementations || [],
-    technicalResources: data.technicalResources || [],
-    inventors: data.inventors,
-    originYear: data.originYear,
-    relatedMechanisms: data.relatedMechanisms || [],
-    tags: data.tags || [],
-    lastUpdated: data.lastUpdated || new Date().toISOString().split('T')[0],
-  } as Mechanism
+  return parseBaseContent(data, content, slug) as Mechanism
 }
 
 export function getMechanismsFromMarkdown(): Mechanism[] {
@@ -151,24 +111,7 @@ export function getMechanismFromMarkdown(slug: string): Mechanism | undefined {
 // ============================================
 
 function parseResearch(data: any, content: string, slug: string): Research {
-  return {
-    id: data.id || slug,
-    slug: data.slug || slug,
-    title: data.title || '',
-    abstract: data.abstract || '',
-    content,
-    heroImage: data.heroImage,
-    type: data.type || 'analysis',
-    dataVisualizations: data.dataVisualizations || [],
-    relatedApps: data.relatedApps || [],
-    relatedMechanisms: data.relatedMechanisms || [],
-    timeframe: data.timeframe,
-    authors: data.authors || [],
-    sources: data.sources || [],
-    tags: data.tags || [],
-    publishDate: data.publishDate || new Date().toISOString().split('T')[0],
-    lastUpdated: data.lastUpdated || new Date().toISOString().split('T')[0],
-  } as Research
+  return parseBaseContent(data, content, slug) as Research
 }
 
 export function getResearchFromMarkdown(): Research[] {
@@ -184,29 +127,7 @@ export function getResearchItemFromMarkdown(slug: string): Research | undefined 
 // ============================================
 
 function parseCampaign(data: any, content: string, slug: string): Campaign {
-  return {
-    id: data.id || slug,
-    slug: data.slug || slug,
-    name: data.name || '',
-    tagline: data.tagline || '',
-    description: content,
-    heroImage: data.heroImage,
-    status: data.status || 'upcoming',
-    startDate: data.startDate || '',
-    endDate: data.endDate || '',
-    organizer: data.organizer || '',
-    mechanism: data.mechanism || '',
-    fundingPool: data.fundingPool,
-    matchingPool: data.matchingPool,
-    applicationUrl: data.applicationUrl,
-    eligibility: data.eligibility,
-    isFeatured: data.isFeatured || false,
-    featuredOrder: data.featuredOrder,
-    results: data.results,
-    caseStudy: data.caseStudy,
-    tags: data.tags || [],
-    lastUpdated: data.lastUpdated || new Date().toISOString().split('T')[0],
-  } as Campaign
+  return parseBaseContent(data, content, slug) as Campaign
 }
 
 export function getCampaignsFromMarkdown(): Campaign[] {
