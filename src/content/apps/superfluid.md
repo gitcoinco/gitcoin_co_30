@@ -2,28 +2,7 @@
 id: '9'
 slug: superfluid
 name: Superfluid
-tagline: Money streaming protocol
-logo: /logos/superfluid.svg
-website: https://superfluid.finance
-category: primitive
-mechanisms:
-  - streaming
-blockchain:
-  - Ethereum
-  - Polygon
-  - Arbitrum
-  - Optimism
-  - Avalanche
-  - BSC
-  - Base
-  - Celo
-launchDate: '2021-01-01'
-status: active
-fundingVolume: $100M+
-socialLinks:
-  twitter: https://twitter.com/Superfluid_HQ
-  discord: https://discord.gg/superfluid
-  github: https://github.com/superfluid-finance
+shortDescription: Money streaming protocol
 tags:
   - streaming
   - real-time
@@ -34,5 +13,15 @@ relatedMechanisms:
   - streaming
 lastUpdated: '2024-12-25'
 ---
+
+**Category:** primitive
+**Status:** active
+**Website:** [superfluid.finance](https://superfluid.finance)
+**Launch Date:** January 1, 2021
+**Funding Volume:** $100M+
+**Blockchain:** Ethereum, Polygon, Arbitrum, Optimism, Avalanche, BSC, Base, Celo
+
+**Social Links:**
+[Twitter](https://twitter.com/Superfluid_HQ) | [Discord](https://discord.gg/superfluid) | [GitHub](https://github.com/superfluid-finance)
 
 Superfluid is a smart contract framework for programmable money streams. It enables real-time finance applications including continuous salary payments, subscriptions, and streaming grants. The protocol processes over $50M in active monthly streams across multiple networks.

@@ -2,20 +2,7 @@
 id: '14'
 slug: base-grants
 name: Base Builder Grants
-tagline: Supporting builders on Base
-logo: /logos/base.svg
-website: https://base.org/builders
-category: grant-program
-mechanisms:
-  - direct-grants
-blockchain:
-  - Base
-launchDate: '2023-08-01'
-status: active
-socialLinks:
-  twitter: https://twitter.com/base
-  discord: https://discord.gg/base
-  github: https://github.com/base-org
+shortDescription: Supporting builders on Base
 tags:
   - base
   - coinbase
@@ -26,5 +13,14 @@ relatedMechanisms:
   - direct-grants
 lastUpdated: '2024-12-25'
 ---
+
+**Category:** grant-program
+**Status:** active
+**Website:** [base.org/builders](https://base.org/builders)
+**Launch Date:** August 1, 2023
+**Blockchain:** Base
+
+**Social Links:**
+[Twitter](https://twitter.com/base) | [Discord](https://discord.gg/base) | [GitHub](https://github.com/base-org)
 
 Base offers grants through the Base Ecosystem Fund and Builder Grants to support developers building on the network. The program focuses on consumer apps, DeFi infrastructure, developer tooling, and onchain identity solutions.

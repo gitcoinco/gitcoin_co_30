@@ -1,20 +1,28 @@
-import { Metadata } from 'next'
-import { CaseStudyCard } from '@/components/cards'
-import { ListPageLayout, ListPageHeader, FilterBar, ResultsBar, ItemsGrid, CTASection } from '@/components/layouts'
-import { caseStudies } from '@/content/case-studies'
+import { Metadata } from "next";
+import { CaseStudyCard } from "@/components/cards";
+import {
+  ListPageLayout,
+  ListPageHeader,
+  FilterBar,
+  ResultsBar,
+  ItemsGrid,
+  CTASection,
+} from "@/components/layouts";
+import { caseStudies } from "@/content/case-studies";
 
 export const metadata: Metadata = {
-  title: 'Case Studies',
-  description: 'Learn from real funding experiments. Explore what worked, what didn\'t, and the lessons learned.',
-}
+  title: "Case Studies",
+  description:
+    "Learn from real funding experiments. Explore what worked, what didn't, and the lessons learned.",
+};
 
 const statusFilters = [
-  { value: 'all', label: 'All' },
-  { value: 'success', label: 'Success' },
-  { value: 'partial', label: 'Partial Success' },
-  { value: 'ongoing', label: 'Ongoing' },
-  { value: 'failed', label: 'Failed' },
-]
+  { value: "all", label: "All" },
+  { value: "success", label: "Success" },
+  { value: "partial", label: "Partial Success" },
+  { value: "ongoing", label: "Ongoing" },
+  { value: "failed", label: "Failed" },
+];
 
 export default function CaseStudiesPage() {
   return (
@@ -25,14 +33,11 @@ export default function CaseStudiesPage() {
         searchPlaceholder="Search case studies..."
       />
 
-      <FilterBar filters={statusFilters} />
-
       <section className="section">
         <div className="container-page">
           <ResultsBar
             count={caseStudies.length}
             itemType="case studies"
-            sortOptions={['Sort by newest', 'Sort by funding amount', 'Sort by title']}
           />
           <ItemsGrid>
             {caseStudies.map((cs) => (
@@ -49,5 +54,5 @@ export default function CaseStudiesPage() {
         buttonHref="/submit?type=case-study"
       />
     </ListPageLayout>
-  )
+  );
 }

@@ -5,7 +5,6 @@ name: Attestation-Based Funding
 shortDescription: >-
   Using onchain attestations and reputation signals to determine funding
   eligibility and amounts.
-banner: /images/attestation-hero.jpg
 tags:
   - attestations
   - reputation

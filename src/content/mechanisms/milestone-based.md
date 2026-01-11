@@ -5,7 +5,6 @@ name: Milestone-Based Funding
 shortDescription: >-
   Funding released in tranches as projects complete predefined milestones,
   reducing risk and ensuring accountability.
-banner: /images/milestone-hero.jpg
 tags:
   - milestones
   - tranches

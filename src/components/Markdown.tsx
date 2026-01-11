@@ -44,7 +44,7 @@ export function Markdown({ content, className = '' }: MarkdownProps) {
             href={href}
             target={href?.startsWith('http') ? '_blank' : undefined}
             rel={href?.startsWith('http') ? 'noopener noreferrer' : undefined}
-            className="text-light-white hover:underline"
+            className="text-light-white underline"
           >
             {children}
           </a>

@@ -1,43 +1,43 @@
 ---
-title: "Protocol Guild: $92M+ for Ethereum Core Development"
+id: '1'
 slug: "protocol-guild-ecosystem-funding"
-summary: "How Protocol Guild became the largest collective funding mechanism for Ethereum core contributors, receiving pledges from Lido, Uniswap, ENS, and dozens of other protocols."
-project: "Protocol Guild"
-platform: "protocol-guild"
-mechanism: "streaming"
-fundingAmount: "$92.9M+"
-fundingDate: "2022-05-01"
-status: "success"
-author: "Gitcoin Research"
-publishDate: "2024-12-01"
-lastUpdated: "2024-12-25"
-heroImage: "/images/case-studies/protocol-guild.svg"
-outcomes:
-  - title: "Total Funding"
-    description: "Pledges and donations from ecosystem"
-    metrics: "$92.9M+"
-  - title: "Contributors Funded"
-    description: "Active Ethereum core protocol developers"
-    metrics: "187+"
-  - title: "Ecosystem Adoption"
-    description: "Major protocols contributing to infrastructure"
-    metrics: "50+ donors"
-lessonsLearned:
-  - "Collective funding mechanisms enable what individual funding cannot"
-  - "Simple contribution interfaces increase participation"
-  - "Long-term vesting aligns contributor and funder incentives"
-  - "Framing infrastructure funding as self-interest drives adoption"
-sources:
-  - title: "Protocol Guild Documentation"
-    url: "https://protocol-guild.readthedocs.io"
-  - title: "Dune Analytics Dashboard"
-    url: "https://dune.com/protocolguild/protocol-guild"
+name: "Protocol Guild: $92M+ for Ethereum Core Development"
+shortDescription: "How Protocol Guild became the largest collective funding mechanism for Ethereum core contributors, receiving pledges from Lido, Uniswap, ENS, and dozens of other protocols."
+banner: "/images/case-studies/protocol-guild.svg"
 tags:
   - "core protocol"
   - "ethereum"
   - "streaming"
   - "collective funding"
+lastUpdated: "2024-12-25"
+relatedMechanisms:
+  - streaming
+relatedApps:
+  - protocol-guild
 ---
+
+**Project:** Protocol Guild
+**Platform:** protocol-guild
+**Mechanism:** Streaming
+**Funding Amount:** $92.9M+
+**Funding Date:** May 1, 2022
+**Status:** Success
+**Author:** Gitcoin Research
+
+**Outcomes:**
+- **Total Funding:** $92.9M+ pledges and donations from ecosystem
+- **Contributors Funded:** 187+ active Ethereum core protocol developers
+- **Ecosystem Adoption:** 50+ major protocols contributing to infrastructure
+
+**Lessons Learned:**
+- Collective funding mechanisms enable what individual funding cannot
+- Simple contribution interfaces increase participation
+- Long-term vesting aligns contributor and funder incentives
+- Framing infrastructure funding as self-interest drives adoption
+
+**Sources:**
+- [Protocol Guild Documentation](https://protocol-guild.readthedocs.io)
+- [Dune Analytics Dashboard](https://dune.com/protocolguild/protocol-guild)
 
 ## Background
 

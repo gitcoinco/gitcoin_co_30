@@ -3,7 +3,6 @@ id: '2'
 slug: retroactive-funding
 name: Retroactive Public Goods Funding
 shortDescription: Rewards projects after they've demonstrated impact, rather than funding promises. "It's easier to agree on what was useful than what will be useful."
-banner: /images/retropgf-hero.jpg
 tags:
   - retroactive
   - impact

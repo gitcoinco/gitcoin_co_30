@@ -5,7 +5,6 @@ name: Token Streaming
 shortDescription: >-
   Continuous, real-time transfer of tokens from sender to recipient, enabling
   salary streams, subscriptions, and ongoing funding flows.
-banner: /images/streaming-hero.jpg
 tags:
   - streaming
   - real-time

@@ -5,7 +5,6 @@ name: Quadratic Voting
 shortDescription: >-
   A voting mechanism where the cost of additional votes increases quadratically,
   allowing for nuanced preference expression.
-banner: /images/qv-hero.jpg
 tags:
   - voting
   - quadratic

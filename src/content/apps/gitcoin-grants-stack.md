@@ -3,7 +3,6 @@ id: '1'
 slug: gitcoin-grants-stack
 name: Gitcoin Grants Stack
 shortDescription: The easiest way to run a grants program
-logo: /logos/gitcoin.svg
 tags:
   - quadratic funding
   - grants

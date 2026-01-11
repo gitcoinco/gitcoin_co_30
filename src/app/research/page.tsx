@@ -1,21 +1,20 @@
-import { Metadata } from 'next'
-import { ResearchCard } from '@/components/cards'
-import { ListPageLayout, ListPageHeader, FilterBar, ResultsBar, ItemsGrid, CTASection } from '@/components/layouts'
-import { research } from '@/content/research'
+import { Metadata } from "next";
+import { ResearchCard } from "@/components/cards";
+import {
+  ListPageLayout,
+  ListPageHeader,
+  FilterBar,
+  ResultsBar,
+  ItemsGrid,
+  CTASection,
+} from "@/components/layouts";
+import { research } from "@/content/research";
 
 export const metadata: Metadata = {
-  title: 'Research & Trends',
-  description: 'Analysis of capital flows, mechanism performance, and ecosystem shifts in Ethereum funding.',
-}
-
-const typeFilters = [
-  { value: 'all', label: 'All' },
-  { value: 'report', label: 'Reports' },
-  { value: 'analysis', label: 'Analysis' },
-  { value: 'trend', label: 'Trends' },
-  { value: 'opinion', label: 'Opinion' },
-  { value: 'data', label: 'Data' },
-]
+  title: "Research & Trends",
+  description:
+    "Analysis of capital flows, mechanism performance, and ecosystem shifts in Ethereum funding.",
+};
 
 export default function ResearchPage() {
   return (
@@ -26,15 +25,9 @@ export default function ResearchPage() {
         searchPlaceholder="Search research..."
       />
 
-      <FilterBar filters={typeFilters} />
-
       <section className="section">
         <div className="container-page">
-          <ResultsBar
-            count={research.length}
-            itemType="articles"
-            sortOptions={['Sort by newest', 'Sort by title']}
-          />
+          <ResultsBar count={research.length} itemType="articles" />
           <ItemsGrid>
             {research.map((r) => (
               <ResearchCard key={r.id} research={r} />
@@ -50,5 +43,5 @@ export default function ResearchPage() {
         buttonHref="/submit?type=research"
       />
     </ListPageLayout>
-  )
+  );
 }

@@ -3,7 +3,6 @@ id: '3'
 slug: conviction-voting
 name: Conviction Voting
 shortDescription: A continuous voting mechanism where support accumulates over time, allowing preferences to be expressed without discrete voting periods.
-banner: /images/conviction-hero.jpg
 tags:
   - voting
   - continuous

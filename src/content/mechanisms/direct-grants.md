@@ -3,7 +3,6 @@ id: '4'
 slug: direct-grants
 name: Direct Grants
 shortDescription: Traditional grant-making where a committee or individual directly allocates funds to selected projects based on applications and evaluation.
-banner: /images/direct-grants-hero.jpg
 tags:
   - grants
   - committee

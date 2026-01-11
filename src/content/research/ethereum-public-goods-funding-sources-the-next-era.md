@@ -1,29 +1,28 @@
 ---
-title: "Ethereum Public Goods Funding Sources - The Next Era"
+id: '6'
 slug: "ethereum-public-goods-funding-sources-the-next-era"
-abstract: "in this piece, i examine where the money comes from. money always has a source, and the source shapes behavior downstream.  by studying the attributes of its sources, we may then reason about the shape, form, and longevity of how it flows ."
-heroImage: "/images/research/ethereum-public-goods-funding-sources-the-next-era/image.png"
-type: "analysis"
-authors:
-  - "@owocki"
-relatedApps:
-  - gitcoin-grants-stack
-  - allo-protocol
-relatedMechanisms:
-  - quadratic-funding
-  - direct-grants
-dataVisualizations: []
-sources:
-  - title: "Gitcoin Data"
-    url: "https://gitcoin.co"
+name: "Ethereum Public Goods Funding Sources - The Next Era"
+shortDescription: "in this piece, i examine where the money comes from. money always has a source, and the source shapes behavior downstream.  by studying the attributes of its sources, we may then reason about the shape, form, and longevity of how it flows ."
+banner: "/images/research/ethereum-public-goods-funding-sources-the-next-era/image.png"
 tags:
   - "research"
   - "analysis"
-publishDate: "2026-01-05"
 lastUpdated: "2026-01-05"
-submittedBy: "@cristinalare"
-issueNumber: 2
+relatedMechanisms:
+  - quadratic-funding
+  - direct-grants
+relatedApps:
+  - gitcoin-grants-stack
+  - allo-protocol
 ---
+
+**Type:** Analysis
+**Authors:** @owocki
+**Submitted by:** @cristinalare
+**Issue Number:** 2
+
+**Sources:**
+- [Gitcoin Data](https://gitcoin.co)
 
 ethereum has always had a culture of public goods funding. 
 in this piece, i examine where the money comes from. money always has a source, and the source shapes behavior downstream.  by studying the attributes of its sources, we may then reason about the shape, form, and longevity of how it flows (or doesnt flow).

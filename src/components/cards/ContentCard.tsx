@@ -1,0 +1,82 @@
+import Link from "next/link";
+import Badge from "../ui/Badge";
+import TagsList from "../ui/TagsList";
+
+interface ContentCardProps {
+  href: string;
+  name: string;
+  shortDescription: string;
+  tags: string[];
+  featured?: boolean;
+  layout?: "logo" | "banner";
+  logo?: string;
+  banner?: string;
+  bannerHeight?: string;
+}
+
+export default function ContentCard({
+  href,
+  name,
+  shortDescription,
+  tags,
+  featured = false,
+  layout = "logo",
+  logo,
+  banner,
+  bannerHeight = "h-40",
+}: ContentCardProps) {
+  return (
+    <Link href={href}>
+      <div
+        className={`${
+          featured ? "card-featured" : "card"
+        } group h-full flex flex-col`}
+      >
+        <>
+          {layout === "banner" && banner && (
+            <div
+              className={`relative ${bannerHeight} -mx-6 -mt-6 mb-4 overflow-hidden rounded-t-xl`}
+            >
+              <img
+                src={banner}
+                alt={name}
+                className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
+              />
+              <div className="absolute inset-0 bg-linear-to-b from-transparent to-smoke group-hover:opacity-0 transition-all duration-500"/>
+            </div>
+          )}
+
+          <div className="flex items-center gap-4 mb-4 min-h-16">
+            {layout === "logo" && logo ? (
+              <img
+                src={logo}
+                alt={`${name} logo`}
+                className="w-12 h-12 rounded-lg object-cover bg-dark-gray"
+              />
+            ) : layout === "logo" ? (
+              <div className="w-12 h-12 rounded-lg border border-light-white flex items-center justify-center flex-shrink-0">
+                <span className="text-xl font-heading text-light-white">
+                  {name.charAt(0)}
+                </span>
+              </div>
+            ) : (
+              ""
+            )}
+            <h3 className="text-xl md:text-2xl font-semibold text-light-white group-hover:text-light-white transition-colors line-clamp-2">
+              {name}
+            </h3>
+          </div>
+
+          <p className="text-muted-gray text-sm mb-4 line-clamp-3 flex-grow">
+            {shortDescription}
+          </p>
+        </>
+
+        {/* Tags */}
+        <div className="pt-5 border-t border-muted-gray/60 h-[3.7rem]">
+          <TagsList tags={tags} />
+        </div>
+      </div>
+    </Link>
+  );
+}

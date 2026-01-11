@@ -3,7 +3,6 @@ id: '1'
 slug: quadratic-funding
 name: Quadratic Funding
 shortDescription: A democratic funding mechanism that matches community contributions quadratically, amplifying the impact of many small donors over few large ones.
-banner: /images/qf-hero.jpg
 tags:
   - quadratic
   - matching
