@@ -22,7 +22,7 @@ export default function ContentCard({
   featured = false,
   layout = "logo",
   logo,
-  banner,
+  banner = '/og-default.png',
   bannerHeight = "h-40",
 }: ContentCardProps) {
   return (
@@ -33,7 +33,7 @@ export default function ContentCard({
         } group h-full flex flex-col`}
       >
         <>
-          {layout === "banner" && banner && (
+          {layout === "banner" && !!banner && (
             <div
               className={`relative ${bannerHeight} -mx-6 -mt-6 mb-4 overflow-hidden rounded-t-xl`}
             >
@@ -42,7 +42,7 @@ export default function ContentCard({
                 alt={name}
                 className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
               />
-              <div className="absolute inset-0 bg-linear-to-b from-transparent to-smoke group-hover:opacity-0 transition-all duration-500"/>
+              <div className="absolute inset-0 bg-linear-to-b from-transparent to-smoke group-hover:opacity-0 transition-all duration-500" />
             </div>
           )}
 
