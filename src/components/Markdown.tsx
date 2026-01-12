@@ -16,27 +16,27 @@ export function Markdown({ content, className = '' }: MarkdownProps) {
         components={{
         // Style headings
         h1: ({ children }) => (
-          <h1 className="text-3xl font-bold text-light-white mt-8 mb-4">{children}</h1>
+          <h1 className="text-3xl font-bold text-light-white mt-12 mb-6 first:mt-0">{children}</h1>
         ),
         h2: ({ children }) => (
-          <h2 className="text-2xl font-semibold text-light-white mt-6 mb-3">{children}</h2>
+          <h2 className="text-2xl font-semibold text-light-white mt-10 mb-5">{children}</h2>
         ),
         h3: ({ children }) => (
-          <h3 className="text-xl font-semibold text-light-white mt-4 mb-2">{children}</h3>
+          <h3 className="text-xl font-semibold text-light-white mt-8 mb-4">{children}</h3>
         ),
         // Style paragraphs
         p: ({ children }) => (
-          <p className="text-muted-gray mb-4 leading-relaxed">{children}</p>
+          <p className="text-gray-400 mb-6 leading-relaxed text-base">{children}</p>
         ),
         // Style lists
         ul: ({ children }) => (
-          <ul className="list-disc list-inside text-muted-gray mb-4 space-y-2">{children}</ul>
+          <ul className="list-disc list-inside text-gray-400 mb-6 space-y-2 ml-4">{children}</ul>
         ),
         ol: ({ children }) => (
-          <ol className="list-decimal list-inside text-muted-gray mb-4 space-y-2">{children}</ol>
+          <ol className="list-decimal list-inside text-gray-400 mb-6 space-y-2 ml-4">{children}</ol>
         ),
         li: ({ children }) => (
-          <li className="text-muted-gray">{children}</li>
+          <li className="text-gray-400 leading-relaxed">{children}</li>
         ),
         // Style links
         a: ({ href, children }) => (
@@ -44,7 +44,7 @@ export function Markdown({ content, className = '' }: MarkdownProps) {
             href={href}
             target={href?.startsWith('http') ? '_blank' : undefined}
             rel={href?.startsWith('http') ? 'noopener noreferrer' : undefined}
-            className="text-light-white hover:underline"
+            className="text-light-white underline"
           >
             {children}
           </a>
@@ -67,16 +67,16 @@ export function Markdown({ content, className = '' }: MarkdownProps) {
         ),
         // Style blockquotes
         blockquote: ({ children }) => (
-          <blockquote className="border-l-4 border-light-white pl-4 italic text-muted-gray my-4">
+          <blockquote className="border-l-4 border-light-white pl-4 italic text-gray-400 my-4">
             {children}
           </blockquote>
         ),
-        // Style images
+        // Style images with dark background
         img: ({ src, alt }) => (
           <img
             src={src}
             alt={alt || ''}
-            className="rounded-lg my-6 w-full"
+            className="rounded-lg my-8 w-full bg-void-black invert"
           />
         ),
         // Style tables
@@ -94,7 +94,7 @@ export function Markdown({ content, className = '' }: MarkdownProps) {
           </th>
         ),
         td: ({ children }) => (
-          <td className="px-4 py-2 text-muted-gray border border-dark-gray">
+          <td className="px-4 py-2 text-gray-400 border border-dark-gray">
             {children}
           </td>
         ),

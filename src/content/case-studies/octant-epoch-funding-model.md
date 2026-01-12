@@ -1,43 +1,43 @@
 ---
-title: "Octant: Staking-Powered Public Goods Funding"
+id: '5'
 slug: "octant-epoch-funding-model"
-summary: "How Octant created a sustainable funding model using staked ETH rewards, distributing millions to public goods across 9 epochs."
-project: "Octant Epochs 1-9"
-platform: "octant"
-mechanism: "quadratic-funding"
-fundingAmount: "$15M+"
-fundingDate: "2023-08-01"
-status: "success"
-author: "Gitcoin Research"
-publishDate: "2024-10-01"
-lastUpdated: "2024-12-25"
-heroImage: "/images/case-studies/octant.svg"
-outcomes:
-  - title: "Total Distributed"
-    description: "Across 9 epochs"
-    metrics: "$15M+"
-  - title: "Staked Principal"
-    description: "Foundation stake generating rewards"
-    metrics: "100,000 ETH"
-  - title: "Epochs Completed"
-    description: "90-day funding cycles"
-    metrics: "9 epochs"
-lessonsLearned:
-  - "Staking rewards can create sustainable funding"
-  - "User choice between claim and donate drives engagement"
-  - "Regular epochs create predictable funding"
-  - "Curation quality affects participation"
-sources:
-  - title: "Octant App"
-    url: "https://octant.app"
-  - title: "Golem Foundation"
-    url: "https://golem.network"
+name: "Octant: Staking-Powered Public Goods Funding"
+shortDescription: "How Octant created a sustainable funding model using staked ETH rewards, distributing millions to public goods across 9 epochs."
+banner: "/images/case-studies/octant.svg"
 tags:
   - "octant"
   - "staking"
   - "sustainable funding"
   - "epochs"
+lastUpdated: "2024-12-25"
+relatedMechanisms:
+  - quadratic-funding
+relatedApps:
+  - octant
 ---
+
+**Project:** Octant Epochs 1-9
+**Platform:** octant
+**Mechanism:** Quadratic Funding
+**Funding Amount:** $15M+
+**Funding Date:** August 1, 2023
+**Status:** Success
+**Author:** Gitcoin Research
+
+**Outcomes:**
+- **Total Distributed:** $15M+ across 9 epochs
+- **Staked Principal:** 100,000 ETH foundation stake generating rewards
+- **Epochs Completed:** 9 epochs (90-day funding cycles)
+
+**Lessons Learned:**
+- Staking rewards can create sustainable funding
+- User choice between claim and donate drives engagement
+- Regular epochs create predictable funding
+- Curation quality affects participation
+
+**Sources:**
+- [Octant App](https://octant.app)
+- [Golem Foundation](https://golem.network)
 
 ## Background
 

@@ -18,14 +18,6 @@ export function getMechanismBySlug(slug: string): Mechanism | undefined {
 }
 
 /**
- * Get mechanisms by category
- */
-export function getMechanismsByCategory(category: string): Mechanism[] {
-  const allMechanisms = getAllMechanisms()
-  return allMechanisms.filter((m) => m.category === category)
-}
-
-/**
  * Get featured mechanisms
  */
 export function getFeaturedMechanisms(count: number = 4): Mechanism[] {

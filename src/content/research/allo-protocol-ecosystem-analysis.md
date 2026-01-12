@@ -1,34 +1,29 @@
 ---
 id: '5'
 slug: allo-protocol-ecosystem-analysis
-title: 'Allo Protocol: Building the Rails for Capital Allocation'
-abstract: >-
-  Analysis of how Allo Protocol enables customizable funding mechanisms and its
-  adoption across the ecosystem.
-heroImage: /images/research/allo.svg
-type: analysis
-dataVisualizations: []
-relatedApps:
-  - allo-protocol
-  - gitcoin-grants-stack
-relatedMechanisms:
-  - quadratic-funding
-  - direct-grants
-  - milestone-based
-authors:
-  - Gitcoin Research
-sources:
-  - title: Allo Protocol Docs
-    url: https://docs.allo.gitcoin.co
-  - title: Allo GitHub
-    url: https://github.com/allo-protocol
+name: 'Allo Protocol: Building the Rails for Capital Allocation'
+shortDescription: Analysis of how Allo Protocol enables customizable funding mechanisms and its adoption across the ecosystem.
+banner: /images/research/allo.svg
 tags:
   - allo protocol
   - infrastructure
   - capital allocation
-publishDate: '2024-09-15'
 lastUpdated: '2024-12-25'
+relatedMechanisms:
+  - quadratic-funding
+  - direct-grants
+  - milestone-based
+relatedApps:
+  - allo-protocol
+  - gitcoin-grants-stack
 ---
+
+**Type:** Analysis
+**Authors:** Gitcoin Research
+
+**Sources:**
+- [Allo Protocol Docs](https://docs.allo.gitcoin.co)
+- [Allo GitHub](https://github.com/allo-protocol)
 
 ## What is Allo Protocol?
 

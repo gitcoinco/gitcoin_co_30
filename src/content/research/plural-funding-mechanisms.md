@@ -1,29 +1,24 @@
 ---
 id: '4'
 slug: plural-funding-mechanisms
-title: The Case for Plural Funding Mechanisms
-abstract: >-
-  Why no single funding mechanism is optimal, and how ecosystems benefit from
-  mechanism diversity.
-heroImage: /images/research/plural.svg
-type: opinion
-dataVisualizations: []
-relatedApps: []
+name: The Case for Plural Funding Mechanisms
+shortDescription: Why no single funding mechanism is optimal, and how ecosystems benefit from mechanism diversity.
+banner: /images/research/plural.svg
+tags:
+  - mechanism design
+  - plurality
+  - public goods
+lastUpdated: '2024-12-25'
 relatedMechanisms:
   - quadratic-funding
   - retroactive-funding
   - direct-grants
   - streaming
-authors:
-  - Kevin Owocki
-sources: []
-tags:
-  - mechanism design
-  - plurality
-  - public goods
-publishDate: '2024-08-15'
-lastUpdated: '2024-12-25'
+relatedApps: []
 ---
+
+**Type:** Opinion
+**Authors:** Kevin Owocki
 
 ## The Plurality Thesis
 

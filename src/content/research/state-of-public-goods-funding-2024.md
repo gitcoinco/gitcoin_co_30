@@ -1,45 +1,38 @@
 ---
 id: '1'
 slug: state-of-public-goods-funding-2024
-title: State of Public Goods Funding 2024
-abstract: >-
-  A comprehensive analysis of how public goods are funded across the Ethereum
-  ecosystem, tracking capital flows, mechanism adoption, and emerging trends
-  through 2024.
-heroImage: /images/research/sopgf-2024.svg
-type: report
-dataVisualizations:
-  - title: Funding by Mechanism 2024
-    type: chart
-  - title: Capital Flow Trends
-    type: infographic
-relatedApps:
-  - gitcoin-grants-stack
-  - optimism-retropgf
-  - protocol-guild
-relatedMechanisms:
-  - quadratic-funding
-  - retroactive-funding
-  - streaming
-timeframe: '2024'
-authors:
-  - Gitcoin Research
-sources:
-  - title: Gitcoin Data
-    url: https://gitcoin.co
-  - title: Optimism Governance
-    url: https://gov.optimism.io
-  - title: Protocol Guild Dashboard
-    url: https://dune.com/protocolguild/protocol-guild
+name: State of Public Goods Funding 2024
+shortDescription: A comprehensive analysis of how public goods are funded across the Ethereum ecosystem, tracking capital flows, mechanism adoption, and emerging trends through 2024.
+banner: /images/research/sopgf-2024.svg
 tags:
   - public goods
   - funding
   - analysis
   - trends
   - '2024'
-publishDate: '2024-12-01'
 lastUpdated: '2024-12-25'
+relatedMechanisms:
+  - quadratic-funding
+  - retroactive-funding
+  - streaming
+relatedApps:
+  - gitcoin-grants-stack
+  - optimism-retropgf
+  - protocol-guild
 ---
+
+**Type:** Report
+**Authors:** Gitcoin Research
+**Timeframe:** 2024
+
+**Data Visualizations:**
+- Funding by Mechanism 2024 (Chart)
+- Capital Flow Trends (Infographic)
+
+**Sources:**
+- [Gitcoin Data](https://gitcoin.co)
+- [Optimism Governance](https://gov.optimism.io)
+- [Protocol Guild Dashboard](https://dune.com/protocolguild/protocol-guild)
 
 ## Executive Summary
 

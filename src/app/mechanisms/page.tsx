@@ -1,93 +1,61 @@
-import { Metadata } from 'next'
-import { MechanismCard } from '@/components/cards'
-import { SearchBar } from '@/components/ui'
-import { mechanisms } from '@/content/mechanisms'
+import { Metadata } from "next";
+import { MechanismCard } from "@/components/cards";
+import {
+  ListPageLayout,
+  ListPageHeader,
+  FilterBar,
+  ResultsBar,
+  ItemsGrid,
+  CTASection,
+} from "@/components/layouts";
+import { mechanisms } from "@/content/mechanisms";
 
 export const metadata: Metadata = {
-  title: 'Funding Mechanisms',
-  description: 'Learn about quadratic funding, retroactive funding, conviction voting, and other funding mechanisms.',
-}
+  title: "Funding Mechanisms",
+  description:
+    "Learn about quadratic funding, retroactive funding, conviction voting, and other funding mechanisms.",
+};
 
 const categories = [
-  { value: 'all', label: 'All' },
-  { value: 'allocation', label: 'Allocation' },
-  { value: 'voting', label: 'Voting' },
-  { value: 'streaming', label: 'Streaming' },
-  { value: 'trust', label: 'Trust-based' },
-  { value: 'hybrid', label: 'Hybrid' },
-]
+  { value: "all", label: "All" },
+  { value: "allocation", label: "Allocation" },
+  { value: "voting", label: "Voting" },
+  { value: "streaming", label: "Streaming" },
+  { value: "trust", label: "Trust-based" },
+  { value: "hybrid", label: "Hybrid" },
+];
 
 export default function MechanismsPage() {
   return (
-    <div className="min-h-screen bg-void-black">
-      {/* Header */}
-      <section className="bg-charcoal border-b border-dark-gray">
-        <div className="container-page py-12">
-          <h1 className="text-3xl md:text-4xl font-bold text-light-white mb-4">
-            Funding Mechanisms
-          </h1>
-          <p className="text-lg text-muted-gray max-w-3xl mb-8">
-            Understand the different approaches to capital allocation. From quadratic funding
-            to retroactive rewards, explore how each mechanism works and when to use it.
-          </p>
-          <SearchBar placeholder="Search mechanisms..." className="max-w-xl" />
-        </div>
-      </section>
+    <ListPageLayout>
+      <ListPageHeader
+        title="Funding Mechanisms"
+        description="Understand the different approaches to capital allocation. From quadratic funding to retroactive rewards, explore how each mechanism works and when to use it."
+        searchPlaceholder="Search mechanisms..."
+        icon="/assets/mechanisms-icon.svg"
+      />
 
-      {/* Filters */}
-      <section className="bg-charcoal border-b border-dark-gray sticky top-16 z-40">
-        <div className="container-page py-4">
-          <div className="flex flex-wrap gap-2">
-            {categories.map((category) => (
-              <button
-                key={category.value}
-                className={`px-4 py-2 rounded-full text-sm font-medium transition-colors ${
-                  category.value === 'all'
-                    ? 'bg-light-white text-void-black'
-                    : 'bg-dark-gray text-muted-gray hover:bg-muted-gray hover:text-light-white'
-                }`}
-              >
-                {category.label}
-              </button>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      {/* Mechanisms Grid */}
       <section className="section">
         <div className="container-page">
-          <div className="flex items-center justify-between mb-6">
-            <p className="text-muted-gray">
-              Showing <span className="font-medium text-light-white">{mechanisms.length}</span> mechanisms
-            </p>
-          </div>
-          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+          <ResultsBar
+            count={mechanisms.length}
+            itemType="mechanisms"
+            showSort={false}
+          />
+          <ItemsGrid>
             {mechanisms.map((mechanism) => (
               <MechanismCard key={mechanism.id} mechanism={mechanism} />
             ))}
-          </div>
+          </ItemsGrid>
         </div>
       </section>
 
-      {/* CTA */}
-      <section className="section bg-charcoal">
-        <div className="container-page text-center">
-          <h2 className="text-2xl font-bold text-light-white mb-4">
-            Know a mechanism we&apos;re missing?
-          </h2>
-          <p className="text-muted-gray mb-6 max-w-xl mx-auto">
-            Help us document the full landscape of funding mechanisms. Submit new mechanisms
-            or suggest improvements to existing documentation.
-          </p>
-          <a
-            href="/submit?type=mechanism"
-            className="btn-primary inline-flex"
-          >
-            Submit a Mechanism
-          </a>
-        </div>
-      </section>
-    </div>
-  )
+      <CTASection
+        title="Know a mechanism we're missing?"
+        description="Help us document the full landscape of funding mechanisms. Submit new mechanisms or suggest improvements to existing documentation."
+        buttonText="Submit a Mechanism"
+        buttonHref="/submit?type=mechanism"
+      />
+    </ListPageLayout>
+  );
 }

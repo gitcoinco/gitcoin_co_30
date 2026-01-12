@@ -18,30 +18,20 @@ export function getCaseStudyBySlug(slug: string): CaseStudy | undefined {
 }
 
 /**
- * Get case studies by platform
- * Server-side only
- */
-export function getCaseStudiesByPlatform(platform: string): CaseStudy[] {
-  const allCaseStudies = getAllCaseStudies()
-  return allCaseStudies.filter((cs) => cs.platform === platform)
-}
-
-/**
- * Get case studies by mechanism
- * Server-side only
- */
-export function getCaseStudiesByMechanism(mechanism: string): CaseStudy[] {
-  const allCaseStudies = getAllCaseStudies()
-  return allCaseStudies.filter((cs) => cs.mechanism === mechanism)
-}
-
-/**
  * Get featured case studies
  * Server-side only
  */
 export function getFeaturedCaseStudies(count: number = 3): CaseStudy[] {
   const allCaseStudies = getAllCaseStudies()
   return allCaseStudies.slice(0, count)
+}
+
+/**
+ * Get case studies by platform (deprecated - use relatedApps filter)
+ */
+export function getCaseStudiesByPlatform(platform: string): CaseStudy[] {
+  const allCaseStudies = getAllCaseStudies()
+  return allCaseStudies.filter((cs) => cs.relatedApps?.includes(platform) || false)
 }
 
 // For static params generation in Next.js

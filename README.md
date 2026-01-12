@@ -16,7 +16,8 @@ This is the easiest way to contribute. The content is automatically formatted an
    - [Submit a Campaign](https://github.com/gitcoinco/gitcoin_co_30/issues/new?template=campaign.md)
 
 2. **Fill out the template** with your content
-   - Add your hero/banner image first (if applicable)
+   - Add banner image under `## Banner Image` section (if applicable)
+   - Add logo image under `## Logo` section (if applicable)
    - Fill in all metadata fields
    - Write your content using markdown formatting
 
@@ -97,10 +98,24 @@ npm run build
 ## Content Guidelines
 
 ### Images
-- **Hero images**: 1600x900px (16:9) or 1200x600px (2:1) recommended
-- Add your hero image as the FIRST image in your GitHub issue
-- Additional images can be added anywhere in the content
+
+**Banner Images (Optional)**
+- **Dimensions**: 1600x900px (16:9 aspect ratio) or 1200x600px (2:1 aspect ratio) recommended
+- **Where to add**: Place under the `## Banner Image` section in the GitHub issue template
+- **Format**: PNG, JPG, or WebP
+- Used as the hero image at the top of content pages
+
+**Logo Images (Optional)**
+- **Dimensions**: Square format recommended (e.g., 256x256px, 512x512px)
+- **Aspect ratio**: 1:1 (square)
+- **Where to add**: Place under the `## Logo` section in the GitHub issue template
+- **Format**: SVG or PNG preferred
+- Used for thumbnails, cards, and branding
+
+**Additional Images**
+- Can be added anywhere in the `## Description` section
 - All images are automatically downloaded and optimized
+- Image paths are automatically updated in the generated markdown
 
 ### Formatting
 - Use markdown formatting in GitHub issues

@@ -1,7 +1,11 @@
-/* Import Google Fonts - must be first */
-@import url('https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;700&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500&family=Playfair+Display:ital,wght@0,400;0,700;1,400&display=swap');
-
 @import "tailwindcss";
+
+
+@theme inline {
+  --font-heading: var(--font-heading);
+  --font-sans: var(--font-sand);
+  --font-mono: var(--font-mono);
+}
 
 /* Celestial Minimalist Brand Theme
    Pure Black & White Only */
@@ -11,7 +15,7 @@
   --color-light-white: #FFFFFF;
 
   /* Functional Grays (use sparingly for UI only) */
-  --color-muted-gray: #666666;
+  --color-muted-gray: #6a7282;
   --color-soft-gray: #E5E5E5;
   --color-dark-gray: #333333;
   --color-charcoal: #111111;
@@ -22,12 +26,6 @@
   --color-system-warning: #eab308;
   --color-system-error: #ef4444;
   --color-system-info: #3b82f6;
-
-  /* Typography */
-  --font-display: 'Space Grotesk', system-ui, sans-serif;
-  --font-body: 'Inter', system-ui, sans-serif;
-  --font-mono: 'JetBrains Mono', monospace;
-  --font-accent: 'Playfair Display', Georgia, serif;
 }
 
 :root {
@@ -56,19 +54,19 @@
 @layer base {
   html {
     scroll-behavior: smooth;
-    font-family: var(--font-body);
+    font-family: var(--font-sans);
   }
 
   body {
     @apply bg-void-black text-light-white antialiased;
-    font-family: var(--font-body);
+    font-family: var(--font-sans);
     line-height: 1.6;
   }
 
   /* Typography Scale - Space Grotesk for headlines */
   h1, h2, h3, h4, h5, h6 {
-    font-family: var(--font-display);
     @apply font-bold tracking-tight text-light-white;
+    font-family: var(--font-mono);
   }
 
   h1 {
@@ -93,21 +91,14 @@
     line-height: 1.3;
   }
 
-  /* Body text - Inter */
-  p, li, span {
-    font-family: var(--font-body);
-  }
-
-  /* Monospace - JetBrains Mono */
-  code, pre, .mono {
-    font-family: var(--font-mono);
-    @apply text-sm;
-  }
 
   /* Accent font - Playfair Display for quotes */
   blockquote, .accent-font {
-    font-family: var(--font-accent);
     @apply italic;
+  }
+
+  .heading {
+    @apply font-heading tracking-wider uppercase;
   }
 }
 
@@ -117,7 +108,6 @@
     @apply inline-flex items-center justify-center px-6 py-3
            bg-light-white text-void-black font-medium rounded-lg
            hover:bg-muted-gray transition-all duration-300;
-    font-family: var(--font-display);
   }
 
   /* Secondary Button - White Outlined */
@@ -125,7 +115,6 @@
     @apply inline-flex items-center justify-center px-6 py-3
            border border-light-white text-light-white font-medium rounded-lg
            hover:bg-light-white hover:text-void-black transition-all duration-300;
-    font-family: var(--font-display);
   }
 
   /* Ghost Button */
@@ -133,7 +122,6 @@
     @apply inline-flex items-center justify-center px-6 py-3
            text-muted-gray font-medium rounded-lg
            hover:text-light-white hover:bg-light-white/10 transition-all duration-300;
-    font-family: var(--font-display);
   }
 
   /* Card - Dark with subtle border */
@@ -267,7 +255,6 @@ code:not(pre code) {
 /* Blockquotes - Playfair Display, white border */
 blockquote {
   @apply border-l-2 border-light-white pl-6 my-6;
-  font-family: var(--font-accent);
   @apply text-xl italic text-muted-gray;
 }
 
@@ -295,7 +282,7 @@ input, textarea, select {
          text-light-white placeholder:text-muted-gray
          focus:outline-none focus:ring-2 focus:ring-light-white focus:border-transparent
          transition-all duration-200;
-  font-family: var(--font-body);
+  font-family: var(--font-sans);
 }
 
 /* Animation for celestial elements */
@@ -315,4 +302,24 @@ input, textarea, select {
 
 .animate-float {
   animation: float 6s ease-in-out infinite;
+}
+
+/* Icon hover effect - target SVG star */
+.icon-hover-container {
+  @apply transition-all duration-300;
+}
+
+.icon-hover-container:hover img {
+  filter: brightness(1.2);
+}
+
+/* For inline SVGs - target the star (second path) */
+.icon-hover-container svg path:nth-child(2) {
+  transition: all 0.3s ease;
+  transform-origin: center;
+}
+
+.icon-hover-container:hover svg path:nth-child(2) {
+  fill: white !important;
+  transform: scale(0.65);
 }

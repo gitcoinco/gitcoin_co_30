@@ -1,12 +1,13 @@
 import { Metadata } from 'next'
 import { notFound } from 'next/navigation'
-import Link from 'next/link'
-import { ArrowLeft, Edit, ExternalLink, CheckCircle, AlertCircle, Clock, XCircle, BookOpen, Lightbulb } from 'lucide-react'
-import { Button, Badge } from '@/components/ui'
-import { Markdown } from '@/components/Markdown'
+import { AppCard, MechanismCard, CaseStudyCard, ResearchCard, CampaignCard } from '@/components/cards'
+import ContentDetailPage from '@/components/templates/ContentDetailPage'
 import { getCaseStudyBySlug, caseStudies } from '@/content/case-studies'
 import { getAppBySlug } from '@/content/apps'
 import { getMechanismBySlug } from '@/content/mechanisms'
+import { getResearchBySlug } from '@/content/research'
+import { getCampaignBySlug } from '@/content/campaigns'
+import { generateDetailPageMetadata } from '@/lib/metadata'
 
 interface PageProps {
   params: Promise<{ slug: string }>
@@ -21,17 +22,15 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
   const caseStudy = getCaseStudyBySlug(slug)
   if (!caseStudy) return { title: 'Case Study Not Found' }
 
-  return {
-    title: caseStudy.title,
-    description: caseStudy.summary,
-  }
-}
-
-const statusConfig = {
-  success: { icon: CheckCircle, label: 'Success', color: 'text-light-white' },
-  partial: { icon: AlertCircle, label: 'Partial Success', color: 'text-system-warning' },
-  ongoing: { icon: Clock, label: 'Ongoing', color: 'text-system-info' },
-  failed: { icon: XCircle, label: 'Failed', color: 'text-system-error' },
+  return generateDetailPageMetadata({
+    title: caseStudy.name,
+    shortDescription: caseStudy.shortDescription,
+    slug,
+    type: 'case-studies',
+    banner: caseStudy.banner,
+    logo: caseStudy.logo,
+    lastUpdated: caseStudy.lastUpdated,
+  })
 }
 
 export default async function CaseStudyDetailPage({ params }: PageProps) {
@@ -42,245 +41,40 @@ export default async function CaseStudyDetailPage({ params }: PageProps) {
     notFound()
   }
 
-  const platform = getAppBySlug(caseStudy.platform)
-  const mechanism = getMechanismBySlug(caseStudy.mechanism)
-  const status = statusConfig[caseStudy.status]
-  const StatusIcon = status.icon
+  // Get related items
+  const relatedApps = caseStudy.relatedApps?.map(slug => getAppBySlug(slug)).filter((app): app is NonNullable<typeof app> => app !== undefined) || []
+  const relatedMechanisms = caseStudy.relatedMechanisms?.map(slug => getMechanismBySlug(slug)).filter((m): m is NonNullable<typeof m> => m !== undefined) || []
+  const relatedCaseStudies = caseStudy.relatedCaseStudies?.map(slug => getCaseStudyBySlug(slug)).filter((cs): cs is NonNullable<typeof cs> => cs !== undefined) || []
+  const relatedResearch = caseStudy.relatedResearch?.map(slug => getResearchBySlug(slug)).filter((r): r is NonNullable<typeof r> => r !== undefined) || []
+  const relatedCampaigns = caseStudy.relatedCampaigns?.map(slug => getCampaignBySlug(slug)).filter((c): c is NonNullable<typeof c> => c !== undefined) || []
 
   return (
-    <div className="min-h-screen bg-void-black">
-      {/* Breadcrumb */}
-      <div className="bg-charcoal border-b border-dark-gray">
-        <div className="container-page py-4">
-          <Link
-            href="/case-studies"
-            className="inline-flex items-center gap-2 text-muted-gray hover:text-light-white transition-colors"
-          >
-            <ArrowLeft className="w-4 h-4" />
-            Back to Case Studies
-          </Link>
-        </div>
-      </div>
-
-      {/* Header */}
-      <section className="bg-charcoal border-b border-dark-gray">
-        <div className="container-page py-12">
-          <div className="max-w-4xl">
-            <div className="flex items-center gap-3 mb-4">
-              <Badge
-                variant={
-                  caseStudy.status === "success"
-                    ? "success"
-                    : caseStudy.status === "failed"
-                    ? "error"
-                    : "default"
-                }
-              >
-                <StatusIcon className="w-3 h-3 mr-1" />
-                {status.label}
-              </Badge>
-              <span className="text-sm text-muted-gray">
-                {new Date(caseStudy.fundingDate).toLocaleDateString("en-US", {
-                  month: "long",
-                  year: "numeric",
-                })}
-              </span>
-            </div>
-            <h1 className="text-3xl md:text-4xl font-bold text-light-white mb-4">
-              {caseStudy.title}
-            </h1>
-            <p className="text-lg text-muted-gray mb-6">{caseStudy.summary}</p>
-            <div className="flex flex-wrap gap-4 text-sm">
-              <div>
-                <span className="text-muted-gray">Project:</span>{" "}
-                <span className="font-medium text-light-white">
-                  {caseStudy.project}
-                </span>
-              </div>
-              <div>
-                <span className="text-muted-gray">Funding:</span>{" "}
-                <span className="font-medium text-light-white">
-                  {caseStudy.fundingAmount}
-                </span>
-              </div>
-              <div>
-                <span className="text-muted-gray">By:</span>{" "}
-                <span className="font-medium text-light-white">
-                  {caseStudy.author}
-                </span>
-              </div>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      {/* Content */}
-      <section className="section">
-        <div className="container-page">
-          <div className="grid lg:grid-cols-3 gap-8">
-            {/* Main Content */}
-            <div className="lg:col-span-2 space-y-8">
-              {/* Article */}
-              <div className="card">
-                <Markdown content={caseStudy.content} />
-              </div>
-
-              {/* Outcomes */}
-              <div className="card">
-                <h2 className="text-xl font-semibold text-light-white mb-6 flex items-center gap-2">
-                  <CheckCircle className="w-5 h-5 text-light-white" />
-                  Outcomes
-                </h2>
-                <div className="space-y-6">
-                  {caseStudy.outcomes.map((outcome, i) => (
-                    <div key={i} className="border-l-2 border-light-white pl-4">
-                      <h3 className="font-semibold text-light-white mb-1">
-                        {outcome.title}
-                      </h3>
-                      <p className="text-muted-gray">{outcome.description}</p>
-                      {outcome.metrics && (
-                        <p className="mt-2 text-lg font-semibold text-light-white">
-                          {outcome.metrics}
-                        </p>
-                      )}
-                    </div>
-                  ))}
-                </div>
-              </div>
-
-              {/* Lessons Learned */}
-              <div className="card bg-charcoal border border-light-white">
-                <h2 className="text-xl font-semibold text-light-white mb-6 flex items-center gap-2">
-                  <Lightbulb className="w-5 h-5 text-light-white" />
-                  Lessons Learned
-                </h2>
-                <ul className="space-y-4">
-                  {caseStudy.lessonsLearned.map((lesson, i) => (
-                    <li key={i} className="flex items-start gap-3">
-                      <span className="w-6 h-6 rounded-full bg-charcoal text-light-white text-sm font-bold flex items-center justify-center flex-shrink-0">
-                        {i + 1}
-                      </span>
-                      <span className="text-muted-gray">{lesson}</span>
-                    </li>
-                  ))}
-                </ul>
-              </div>
-            </div>
-
-            {/* Sidebar */}
-            <div className="space-y-6">
-              {/* Context */}
-              <div className="card">
-                <h3 className="font-semibold text-light-white mb-4">Context</h3>
-                <dl className="space-y-4">
-                  {platform && (
-                    <div>
-                      <dt className="text-sm text-muted-gray">Platform</dt>
-                      <dd>
-                        <Link
-                          href={`/apps/${platform.slug}`}
-                          className="font-medium text-light-white hover:text-light-white transition-colors"
-                        >
-                          {platform.name}
-                        </Link>
-                      </dd>
-                    </div>
-                  )}
-                  {mechanism && (
-                    <div>
-                      <dt className="text-sm text-muted-gray">Mechanism</dt>
-                      <dd>
-                        <Link
-                          href={`/mechanisms/${mechanism.slug}`}
-                          className="font-medium text-light-white hover:text-light-white transition-colors"
-                        >
-                          {mechanism.name}
-                        </Link>
-                      </dd>
-                    </div>
-                  )}
-                  <div>
-                    <dt className="text-sm text-muted-gray">Funding Amount</dt>
-                    <dd className="font-medium text-light-white">
-                      {caseStudy.fundingAmount}
-                    </dd>
-                  </div>
-                  <div>
-                    <dt className="text-sm text-muted-gray">Date</dt>
-                    <dd className="font-medium text-light-white">
-                      {new Date(caseStudy.fundingDate).toLocaleDateString(
-                        "en-US",
-                        {
-                          month: "long",
-                          day: "numeric",
-                          year: "numeric",
-                        }
-                      )}
-                    </dd>
-                  </div>
-                </dl>
-              </div>
-
-              {/* Sources */}
-              {caseStudy.sources.length > 0 && (
-                <div className="card">
-                  <h3 className="font-semibold text-light-white mb-4 flex items-center gap-2">
-                    <BookOpen className="w-4 h-4" />
-                    Sources
-                  </h3>
-                  <ul className="space-y-2">
-                    {caseStudy.sources.map((source, i) => (
-                      <li key={i}>
-                        <a
-                          href={source.url}
-                          target="_blank"
-                          rel="noopener noreferrer"
-                          className="text-muted-gray hover:text-light-white transition-colors flex items-center gap-2 group"
-                        >
-                          {source.title}
-                          <ExternalLink className="w-3 h-3 opacity-0 group-hover:opacity-100" />
-                        </a>
-                      </li>
-                    ))}
-                  </ul>
-                </div>
-              )}
-
-              {/* Tags */}
-              <div className="card">
-                <h3 className="font-semibold text-light-white mb-4">Tags</h3>
-                <div className="flex flex-wrap gap-2">
-                  {caseStudy.tags.map((tag) => (
-                    <Badge key={tag} size="sm">
-                      {tag}
-                    </Badge>
-                  ))}
-                </div>
-              </div>
-
-              {/* Actions */}
-              <div className="card">
-                <Button
-                  href={`https://github.com/gitcoinco/gitcoin_co_30/issues`}
-                  variant="ghost"
-                  className="w-full"
-                >
-                  <Edit className="w-4 h-4 mr-2" />
-                  Suggest Edit
-                </Button>
-              </div>
-
-              {/* Metadata */}
-              <p className="text-sm text-muted-gray text-center">
-                Published:{" "}
-                {new Date(caseStudy.publishDate).toLocaleDateString()}
-                <br />
-                Updated: {new Date(caseStudy.lastUpdated).toLocaleDateString()}
-              </p>
-            </div>
-          </div>
-        </div>
-      </section>
-    </div>
+    <ContentDetailPage
+      item={caseStudy}
+      breadcrumbHref="/case-studies"
+      breadcrumbLabel="Back to Case Studies"
+      relatedSections={[
+        {
+          title: 'Related Apps',
+          items: relatedApps.map((app) => <AppCard key={app.id} app={app} />),
+        },
+        {
+          title: 'Related Mechanisms',
+          items: relatedMechanisms.map((m) => <MechanismCard key={m.id} mechanism={m} />),
+        },
+        {
+          title: 'Related Case Studies',
+          items: relatedCaseStudies.map((cs) => <CaseStudyCard key={cs.id} caseStudy={cs} />),
+        },
+        {
+          title: 'Related Research',
+          items: relatedResearch.map((r) => <ResearchCard key={r.id} research={r} />),
+        },
+        {
+          title: 'Related Campaigns',
+          items: relatedCampaigns.map((c) => <CampaignCard key={c.id} campaign={c} />),
+        },
+      ]}
+    />
   );
 }

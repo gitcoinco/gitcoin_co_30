@@ -1,43 +1,43 @@
 ---
-title: "Optimism RetroPGF 3: 30M OP to 501 Projects"
+id: '2'
 slug: "optimism-retropgf-round-3"
-summary: "The largest retroactive funding round in crypto history distributed 30M OP tokens to 501 projects, testing scalable impact evaluation."
-project: "RetroPGF Round 3"
-platform: "optimism-retropgf"
-mechanism: "retroactive-funding"
-fundingAmount: "30M OP (~$90M)"
-fundingDate: "2024-01-15"
-status: "success"
-author: "Gitcoin Research"
-publishDate: "2024-02-15"
-lastUpdated: "2024-12-25"
-heroImage: "/images/case-studies/retropgf3.svg"
-outcomes:
-  - title: "Projects Funded"
-    description: "Largest retro funding round ever"
-    metrics: "501 recipients"
-  - title: "Total Distribution"
-    description: "OP tokens distributed"
-    metrics: "30M OP"
-  - title: "Badgeholder Participation"
-    description: "Community evaluators"
-    metrics: "146 badgeholders"
-lessonsLearned:
-  - "Cross-category comparison requires careful framework design"
-  - "Badgeholder capacity limits round size"
-  - "Clear impact metrics improve evaluation quality"
-  - "Gaming will occur; design for resilience"
-sources:
-  - title: "RetroPGF 3 Results"
-    url: "https://round3.optimism.io"
-  - title: "Optimism Governance Forum"
-    url: "https://gov.optimism.io"
+name: "Optimism RetroPGF 3: 30M OP to 501 Projects"
+shortDescription: "The largest retroactive funding round in crypto history distributed 30M OP tokens to 501 projects, testing scalable impact evaluation."
+banner: "/images/case-studies/retropgf3.svg"
 tags:
   - "retroactive funding"
   - "optimism"
   - "public goods"
   - "evaluation"
+lastUpdated: "2024-12-25"
+relatedMechanisms:
+  - retroactive-funding
+relatedApps:
+  - optimism-retropgf
 ---
+
+**Project:** RetroPGF Round 3
+**Platform:** optimism-retropgf
+**Mechanism:** Retroactive Funding
+**Funding Amount:** 30M OP (~$90M)
+**Funding Date:** January 15, 2024
+**Status:** Success
+**Author:** Gitcoin Research
+
+**Outcomes:**
+- **Projects Funded:** 501 recipients (largest retro funding round ever)
+- **Total Distribution:** 30M OP tokens distributed
+- **Badgeholder Participation:** 146 community evaluators
+
+**Lessons Learned:**
+- Cross-category comparison requires careful framework design
+- Badgeholder capacity limits round size
+- Clear impact metrics improve evaluation quality
+- Gaming will occur; design for resilience
+
+**Sources:**
+- [RetroPGF 3 Results](https://round3.optimism.io)
+- [Optimism Governance Forum](https://gov.optimism.io)
 
 ## Background
 

@@ -1,13 +1,13 @@
 import { Metadata } from 'next'
 import { notFound } from 'next/navigation'
-import Link from 'next/link'
-import { ExternalLink, Github, Twitter, MessageCircle, ArrowLeft, Edit, Calendar, Coins } from 'lucide-react'
-import { Button, Badge } from '@/components/ui'
-import { MechanismCard, CaseStudyCard } from '@/components/cards'
-import { Markdown } from '@/components/Markdown'
+import { AppCard, CaseStudyCard, MechanismCard, ResearchCard, CampaignCard } from '@/components/cards'
+import ContentDetailPage from '@/components/templates/ContentDetailPage'
 import { getAppBySlug, apps } from '@/content/apps'
+import { getCaseStudiesByPlatform, getCaseStudyBySlug } from '@/content/case-studies'
 import { getMechanismBySlug } from '@/content/mechanisms'
-import { getCaseStudiesByPlatform } from '@/content/case-studies'
+import { getResearchBySlug } from '@/content/research'
+import { getCampaignBySlug } from '@/content/campaigns'
+import { generateDetailPageMetadata } from '@/lib/metadata'
 
 interface PageProps {
   params: Promise<{ slug: string }>
@@ -22,18 +22,14 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
   const app = getAppBySlug(slug)
   if (!app) return { title: 'App Not Found' }
 
-  return {
+  return generateDetailPageMetadata({
     title: app.name,
-    description: app.tagline,
-  }
-}
-
-const categoryLabels: Record<string, string> = {
-  platform: 'Platform',
-  dao: 'DAO',
-  'grant-program': 'Grant Program',
-  fund: 'Fund',
-  primitive: 'Primitive',
+    shortDescription: app.shortDescription,
+    slug,
+    type: 'apps',
+    logo: app.logo,
+    lastUpdated: app.lastUpdated,
+  })
 }
 
 export default async function AppDetailPage({ params }: PageProps) {
@@ -44,235 +40,45 @@ export default async function AppDetailPage({ params }: PageProps) {
     notFound()
   }
 
-  const mechanisms = app.mechanisms
-    .map((m) => getMechanismBySlug(m))
-    .filter(Boolean)
+  // Get related items
+  const relatedApps = app.relatedApps?.map(slug => getAppBySlug(slug)).filter((a): a is NonNullable<typeof a> => a !== undefined) || []
+  const relatedMechanisms = app.relatedMechanisms?.map(slug => getMechanismBySlug(slug)).filter((m): m is NonNullable<typeof m> => m !== undefined) || []
 
-  const caseStudies = getCaseStudiesByPlatform(app.slug)
+  // Merge case studies from both relatedCaseStudies and getCaseStudiesByPlatform (backward compatibility)
+  const caseStudiesFromPlatform = getCaseStudiesByPlatform(app.slug)
+  const caseStudiesFromRelated = app.relatedCaseStudies?.map(slug => getCaseStudyBySlug(slug)).filter((cs): cs is NonNullable<typeof cs> => cs !== undefined) || []
+  const allCaseStudies = [...new Map([...caseStudiesFromPlatform, ...caseStudiesFromRelated].map(cs => [cs.id, cs])).values()]
+
+  const relatedResearch = app.relatedResearch?.map(slug => getResearchBySlug(slug)).filter((r): r is NonNullable<typeof r> => r !== undefined) || []
+  const relatedCampaigns = app.relatedCampaigns?.map(slug => getCampaignBySlug(slug)).filter((c): c is NonNullable<typeof c> => c !== undefined) || []
 
   return (
-    <div className="min-h-screen bg-void-black">
-      {/* Breadcrumb */}
-      <div className="bg-charcoal border-b border-dark-gray">
-        <div className="container-page py-4">
-          <Link
-            href="/apps"
-            className="inline-flex items-center gap-2 text-muted-gray hover:text-light-white transition-colors"
-          >
-            <ArrowLeft className="w-4 h-4" />
-            Back to Apps
-          </Link>
-        </div>
-      </div>
-
-      {/* Header */}
-      <section className="bg-charcoal border-b border-dark-gray">
-        <div className="container-page py-12">
-          <div className="flex flex-col md:flex-row gap-8">
-            {/* Logo & Basic Info */}
-            <div className="flex items-start gap-6">
-              {app.logo ? (
-                <img
-                  src={app.logo}
-                  alt={`${app.name} logo`}
-                  className="w-20 h-20 rounded-2xl object-cover bg-dark-gray"
-                />
-              ) : (
-                <div className="w-20 h-20 rounded-2xl bg-dark-gray flex items-center justify-center">
-                  <span className="text-3xl font-bold text-light-white">
-                    {app.name.charAt(0)}
-                  </span>
-                </div>
-              )}
-              <div>
-                <h1 className="text-3xl md:text-4xl font-bold text-light-white mb-2">
-                  {app.name}
-                </h1>
-                <p className="text-lg text-muted-gray mb-4">{app.tagline}</p>
-                <div className="flex flex-wrap gap-2">
-                  <Badge>{categoryLabels[app.category]}</Badge>
-                  <Badge
-                    variant={app.status === "active" ? "success" : "default"}
-                  >
-                    {app.status.charAt(0).toUpperCase() + app.status.slice(1)}
-                  </Badge>
-                </div>
-              </div>
-            </div>
-
-            {/* Actions */}
-            <div className="md:ml-auto flex flex-col gap-3">
-              <Button href={app.website} external variant="primary">
-                <ExternalLink className="w-4 h-4 mr-2" />
-                Visit Website
-              </Button>
-              <Button
-                href={`https://github.com/gitcoinco/gitcoin_co_30/issues`}
-                variant="ghost"
-                size="sm"
-              >
-                <Edit className="w-4 h-4 mr-2" />
-                Suggest Edit
-              </Button>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      {/* Content */}
-      <section className="section">
-        <div className="container-page">
-          <div className="grid lg:grid-cols-3 gap-8">
-            {/* Main Content */}
-            <div className="lg:col-span-2 space-y-8">
-              {/* Description */}
-              <div className="card">
-                <h2 className="text-xl font-semibold text-light-white mb-4">
-                  About
-                </h2>
-                <Markdown content={app.description} />
-              </div>
-
-              {/* Mechanisms */}
-              {mechanisms.length > 0 && (
-                <div>
-                  <h2 className="text-xl font-semibold text-light-white mb-4">
-                    Mechanisms Used
-                  </h2>
-                  <div className="grid md:grid-cols-2 gap-4">
-                    {mechanisms.map(
-                      (mechanism) =>
-                        mechanism && (
-                          <MechanismCard
-                            key={mechanism.id}
-                            mechanism={mechanism}
-                          />
-                        )
-                    )}
-                  </div>
-                </div>
-              )}
-
-              {/* Case Studies */}
-              {caseStudies.length > 0 && (
-                <div>
-                  <h2 className="text-xl font-semibold text-light-white mb-4">
-                    Case Studies
-                  </h2>
-                  <div className="grid md:grid-cols-2 gap-4">
-                    {caseStudies.map((cs) => (
-                      <CaseStudyCard key={cs.id} caseStudy={cs} />
-                    ))}
-                  </div>
-                </div>
-              )}
-            </div>
-
-            {/* Sidebar */}
-            <div className="space-y-6">
-              {/* Stats */}
-              <div className="card">
-                <h3 className="font-semibold text-light-white mb-4">
-                  Key Stats
-                </h3>
-                <dl className="space-y-4">
-                  {app.fundingVolume && (
-                    <div>
-                      <dt className="text-sm text-muted-gray">Total Funded</dt>
-                      <dd className="text-lg font-semibold text-light-white flex items-center gap-2">
-                        <Coins className="w-4 h-4" />
-                        {app.fundingVolume}
-                      </dd>
-                    </div>
-                  )}
-                  {app.launchDate && (
-                    <div>
-                      <dt className="text-sm text-muted-gray">Launch Date</dt>
-                      <dd className="text-light-white flex items-center gap-2">
-                        <Calendar className="w-4 h-4" />
-                        {new Date(app.launchDate).toLocaleDateString("en-US", {
-                          month: "long",
-                          year: "numeric",
-                        })}
-                      </dd>
-                    </div>
-                  )}
-                  <div>
-                    <dt className="text-sm text-muted-gray">Blockchains</dt>
-                    <dd className="flex flex-wrap gap-1 mt-1">
-                      {app.blockchain.map((chain) => (
-                        <span
-                          key={chain}
-                          className="px-2 py-0.5 bg-dark-gray rounded text-sm text-muted-gray"
-                        >
-                          {chain}
-                        </span>
-                      ))}
-                    </dd>
-                  </div>
-                </dl>
-              </div>
-
-              {/* Social Links */}
-              <div className="card">
-                <h3 className="font-semibold text-light-white mb-4">Links</h3>
-                <div className="space-y-3">
-                  {app.socialLinks.twitter && (
-                    <a
-                      href={app.socialLinks.twitter}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="flex items-center gap-3 text-muted-gray hover:text-light-white transition-colors"
-                    >
-                      <Twitter className="w-5 h-5" />
-                      Twitter
-                    </a>
-                  )}
-                  {app.socialLinks.github && (
-                    <a
-                      href={app.socialLinks.github}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="flex items-center gap-3 text-muted-gray hover:text-light-white transition-colors"
-                    >
-                      <Github className="w-5 h-5" />
-                      GitHub
-                    </a>
-                  )}
-                  {app.socialLinks.discord && (
-                    <a
-                      href={app.socialLinks.discord}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="flex items-center gap-3 text-muted-gray hover:text-light-white transition-colors"
-                    >
-                      <MessageCircle className="w-5 h-5" />
-                      Discord
-                    </a>
-                  )}
-                </div>
-              </div>
-
-              {/* Tags */}
-              <div className="card">
-                <h3 className="font-semibold text-light-white mb-4">Tags</h3>
-                <div className="flex flex-wrap gap-2">
-                  {app.tags.map((tag) => (
-                    <Badge key={tag} size="sm">
-                      {tag}
-                    </Badge>
-                  ))}
-                </div>
-              </div>
-
-              {/* Last Updated */}
-              <p className="text-sm text-muted-gray text-center">
-                Last updated: {new Date(app.lastUpdated).toLocaleDateString()}
-              </p>
-            </div>
-          </div>
-        </div>
-      </section>
-    </div>
+    <ContentDetailPage
+      item={app}
+      breadcrumbHref="/apps"
+      breadcrumbLabel="Back to Apps"
+      relatedSections={[
+        {
+          title: 'Related Apps',
+          items: relatedApps.map((a) => <AppCard key={a.id} app={a} />),
+        },
+        {
+          title: 'Related Mechanisms',
+          items: relatedMechanisms.map((m) => <MechanismCard key={m.id} mechanism={m} />),
+        },
+        {
+          title: 'Related Case Studies',
+          items: allCaseStudies.map((cs) => <CaseStudyCard key={cs.id} caseStudy={cs} />),
+        },
+        {
+          title: 'Related Research',
+          items: relatedResearch.map((r) => <ResearchCard key={r.id} research={r} />),
+        },
+        {
+          title: 'Related Campaigns',
+          items: relatedCampaigns.map((c) => <CampaignCard key={c.id} campaign={c} />),
+        },
+      ]}
+    />
   );
 }

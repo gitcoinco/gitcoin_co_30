@@ -1,32 +1,36 @@
-import Link from 'next/link'
-import { Twitter, Github, MessageCircle } from 'lucide-react'
+import Link from "next/link";
+import { Twitter, Github, MessageCircle } from "lucide-react";
 
 const navigation = {
   directory: [
-    { name: 'Apps', href: '/apps' },
-    { name: 'Mechanisms', href: '/mechanisms' },
-    { name: 'Case Studies', href: '/case-studies' },
-    { name: 'Research', href: '/research' },
-    { name: 'Campaigns', href: '/campaigns' },
+    { name: "Apps", href: "/apps" },
+    { name: "Mechanisms", href: "/mechanisms" },
+    { name: "Case Studies", href: "/case-studies" },
+    { name: "Research", href: "/research" },
+    { name: "Campaigns", href: "/campaigns" },
   ],
   resources: [
-    { name: 'Submit Content', href: '/submit' },
-    { name: 'Contribution Guide', href: '/contribute' },
-    { name: 'About', href: '/about' },
+    { name: "Submit Content", href: "/submit" },
+    { name: "Contribution Guide", href: "/contribute" },
+    { name: "About", href: "/about" },
   ],
   ecosystem: [
-    { name: 'Gov Forum', href: 'https://gov.gitcoin.co' },
-    { name: 'Passport', href: 'https://passport.gitcoin.co' },
-    { name: 'Allo Capital', href: 'https://allo.capital' },
-    { name: 'KERNEL', href: 'https://kernel.community' },
-    { name: 'Greenpill Podcast', href: 'https://greenpill.network' },
+    { name: "Gov Forum", href: "https://gov.gitcoin.co" },
+    { name: "Passport", href: "https://passport.gitcoin.co" },
+    { name: "Allo Capital", href: "https://allo.capital" },
+    { name: "KERNEL", href: "https://kernel.community" },
+    { name: "Greenpill Podcast", href: "https://greenpill.network" },
   ],
   social: [
-    { name: 'Twitter', href: 'https://twitter.com/gitcoin', icon: Twitter },
-    { name: 'GitHub', href: 'https://github.com/gitcoinco', icon: Github },
-    { name: 'Telegram', href: 'https://t.me/+TIzf8MYT7DY0YWVh', icon: MessageCircle },
+    { name: "Twitter", href: "https://twitter.com/gitcoin", icon: Twitter },
+    { name: "GitHub", href: "https://github.com/gitcoinco", icon: Github },
+    {
+      name: "Telegram",
+      href: "https://t.me/+TIzf8MYT7DY0YWVh",
+      icon: MessageCircle,
+    },
   ],
-}
+};
 
 export default function Footer() {
   return (
@@ -35,7 +39,9 @@ export default function Footer() {
         <div className="grid grid-cols-2 md:grid-cols-4 gap-8 mb-12">
           {/* Directory */}
           <div>
-            <h3 className="font-semibold text-lg mb-4 text-light-white">Directory</h3>
+            <h3 className="font-semibold text-lg mb-4 text-light-white">
+              Directory
+            </h3>
             <ul className="space-y-3">
               {navigation.directory.map((item) => (
                 <li key={item.name}>
@@ -52,7 +58,9 @@ export default function Footer() {
 
           {/* Resources */}
           <div>
-            <h3 className="font-semibold text-lg mb-4 text-light-white">Resources</h3>
+            <h3 className="font-semibold text-lg mb-4 text-light-white">
+              Resources
+            </h3>
             <ul className="space-y-3">
               {navigation.resources.map((item) => (
                 <li key={item.name}>
@@ -69,7 +77,9 @@ export default function Footer() {
 
           {/* Ecosystem */}
           <div>
-            <h3 className="font-semibold text-lg mb-4 text-light-white">Ecosystem</h3>
+            <h3 className="font-semibold text-lg mb-4 text-light-white">
+              Ecosystem
+            </h3>
             <ul className="space-y-3">
               {navigation.ecosystem.map((item) => (
                 <li key={item.name}>
@@ -88,9 +98,12 @@ export default function Footer() {
 
           {/* Newsletter */}
           <div>
-            <h3 className="font-semibold text-lg mb-4 text-light-white">Stay Updated</h3>
+            <h3 className="font-semibold text-lg mb-4 text-light-white">
+              Stay Updated
+            </h3>
             <p className="text-muted-gray text-sm mb-4">
-              Get the latest on Ethereum funding mechanisms and ecosystem updates.
+              Get the latest on Ethereum funding mechanisms and ecosystem
+              updates.
             </p>
             <form className="flex flex-col gap-2">
               <input
@@ -125,9 +138,7 @@ export default function Footer() {
             />
           </div>
 
-          <p className="text-muted-gray text-sm italic font-serif">
-            Fund What Matters
-          </p>
+          <p className="text-muted-gray text-sm italic ">Fund What Matters</p>
 
           <div className="flex items-center gap-4">
             {navigation.social.map((item) => (
@@ -146,5 +157,5 @@ export default function Footer() {
         </div>
       </div>
     </footer>
-  )
+  );
 }

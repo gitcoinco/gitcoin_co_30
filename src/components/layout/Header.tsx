@@ -1,19 +1,20 @@
-'use client'
+"use client";
 
-import Link from 'next/link'
-import { useState } from 'react'
-import { Menu, X, Search } from 'lucide-react'
+import Link from "next/link";
+import { useState } from "react";
+import { Menu, X, Search } from "lucide-react";
+import { Button } from "../ui";
 
 const navigation = [
-  { name: 'Apps', href: '/apps' },
-  { name: 'Mechanisms', href: '/mechanisms' },
-  { name: 'Case Studies', href: '/case-studies' },
-  { name: 'Research', href: '/research' },
-  { name: 'Campaigns', href: '/campaigns' },
-]
+  { name: "Apps", href: "/apps" },
+  { name: "Mechanisms", href: "/mechanisms" },
+  { name: "Case Studies", href: "/case-studies" },
+  { name: "Research", href: "/research" },
+  { name: "Campaigns", href: "/campaigns" },
+];
 
 export default function Header() {
-  const [mobileMenuOpen, setMobileMenuOpen] = useState(false)
+  const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
 
   return (
     <header className="bg-void-black border-b border-dark-gray sticky top-0 z-50">
@@ -51,12 +52,9 @@ export default function Header() {
             >
               <Search className="w-5 h-5" />
             </Link>
-            <Link
-              href="/submit"
-              className="btn-primary text-sm"
-            >
+            <Button href="/submit" variant="primary">
               Submit Content
-            </Link>
+            </Button>
           </div>
 
           {/* Mobile menu button */}
@@ -99,17 +97,17 @@ export default function Header() {
                 <Search className="w-5 h-5" />
                 Search
               </Link>
-              <Link
+              <Button
                 href="/submit"
-                className="btn-primary text-center"
+                variant="primary"
                 onClick={() => setMobileMenuOpen(false)}
               >
                 Submit Content
-              </Link>
+              </Button>
             </div>
           </div>
         )}
       </nav>
     </header>
-  )
+  );
 }

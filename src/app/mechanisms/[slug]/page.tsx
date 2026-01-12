@@ -1,13 +1,13 @@
 import { Metadata } from 'next'
 import { notFound } from 'next/navigation'
-import Link from 'next/link'
-import { ArrowLeft, Edit, ExternalLink, Check, X, Lightbulb, BookOpen, Code, Video, FileText } from 'lucide-react'
-import { Button, Badge } from '@/components/ui'
-import { AppCard, CaseStudyCard } from '@/components/cards'
-import { Markdown } from '@/components/Markdown'
+import { AppCard, MechanismCard, CaseStudyCard, ResearchCard, CampaignCard } from '@/components/cards'
+import ContentDetailPage from '@/components/templates/ContentDetailPage'
 import { getMechanismBySlug, mechanisms } from '@/content/mechanisms'
 import { getAppBySlug } from '@/content/apps'
-import { getCaseStudiesByMechanism } from '@/content/case-studies'
+import { getCaseStudyBySlug } from '@/content/case-studies'
+import { getResearchBySlug } from '@/content/research'
+import { getCampaignBySlug } from '@/content/campaigns'
+import { generateDetailPageMetadata } from '@/lib/metadata'
 
 interface PageProps {
   params: Promise<{ slug: string }>
@@ -22,25 +22,15 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
   const mechanism = getMechanismBySlug(slug)
   if (!mechanism) return { title: 'Mechanism Not Found' }
 
-  return {
+  return generateDetailPageMetadata({
     title: mechanism.name,
-    description: mechanism.shortDescription,
-  }
-}
-
-const categoryLabels: Record<string, string> = {
-  allocation: 'Allocation',
-  voting: 'Voting',
-  streaming: 'Streaming',
-  trust: 'Trust-based',
-  hybrid: 'Hybrid',
-}
-
-const resourceIcons: Record<string, typeof BookOpen> = {
-  paper: FileText,
-  repo: Code,
-  article: BookOpen,
-  video: Video,
+    shortDescription: mechanism.shortDescription,
+    slug,
+    type: 'mechanisms',
+    banner: mechanism.banner,
+    logo: mechanism.logo,
+    lastUpdated: mechanism.lastUpdated,
+  })
 }
 
 export default async function MechanismDetailPage({ params }: PageProps) {
@@ -51,226 +41,40 @@ export default async function MechanismDetailPage({ params }: PageProps) {
     notFound()
   }
 
-  const implementations = mechanism.implementations
-    .map((slug) => getAppBySlug(slug))
-    .filter(Boolean)
-
-  const caseStudies = getCaseStudiesByMechanism(mechanism.slug)
+  // Get related items
+  const relatedApps = mechanism.relatedApps?.map(slug => getAppBySlug(slug)).filter((app): app is NonNullable<typeof app> => app !== undefined) || []
+  const relatedMechanisms = mechanism.relatedMechanisms?.map(slug => getMechanismBySlug(slug)).filter((m): m is NonNullable<typeof m> => m !== undefined) || []
+  const relatedCaseStudies = mechanism.relatedCaseStudies?.map(slug => getCaseStudyBySlug(slug)).filter((cs): cs is NonNullable<typeof cs> => cs !== undefined) || []
+  const relatedResearch = mechanism.relatedResearch?.map(slug => getResearchBySlug(slug)).filter((r): r is NonNullable<typeof r> => r !== undefined) || []
+  const relatedCampaigns = mechanism.relatedCampaigns?.map(slug => getCampaignBySlug(slug)).filter((c): c is NonNullable<typeof c> => c !== undefined) || []
 
   return (
-    <div className="min-h-screen bg-void-black">
-      {/* Breadcrumb */}
-      <div className="bg-charcoal border-b border-dark-gray">
-        <div className="container-page py-4">
-          <Link
-            href="/mechanisms"
-            className="inline-flex items-center gap-2 text-muted-gray hover:text-light-white transition-colors"
-          >
-            <ArrowLeft className="w-4 h-4" />
-            Back to Mechanisms
-          </Link>
-        </div>
-      </div>
-
-      {/* Header */}
-      <section className="bg-charcoal border-b border-dark-gray">
-        <div className="container-page py-12">
-          <div className="flex flex-col md:flex-row md:items-start md:justify-between gap-6">
-            <div>
-              <div className="flex items-center gap-3 mb-4">
-                <Badge>{categoryLabels[mechanism.category]}</Badge>
-                {mechanism.originYear && (
-                  <span className="text-sm text-muted-gray">
-                    Since {mechanism.originYear}
-                  </span>
-                )}
-              </div>
-              <h1 className="text-3xl md:text-4xl font-bold text-light-white mb-4">
-                {mechanism.name}
-              </h1>
-              <p className="text-lg text-muted-gray max-w-2xl">
-                {mechanism.shortDescription}
-              </p>
-              {mechanism.inventors && mechanism.inventors.length > 0 && (
-                <p className="mt-4 text-sm text-muted-gray">
-                  Pioneered by: {mechanism.inventors.join(", ")}
-                </p>
-              )}
-            </div>
-            <Button
-              href={`https://github.com/gitcoinco/gitcoin_co_30/issues`}
-              variant="ghost"
-              size="sm"
-            >
-              <Edit className="w-4 h-4 mr-2" />
-              Suggest Edit
-            </Button>
-          </div>
-        </div>
-      </section>
-
-      {/* Content */}
-      <section className="section">
-        <div className="container-page">
-          <div className="grid lg:grid-cols-3 gap-8">
-            {/* Main Content */}
-            <div className="lg:col-span-2 space-y-8">
-              {/* How It Works */}
-              <div className="card">
-                <h2 className="text-xl font-semibold text-light-white mb-4 flex items-center gap-2">
-                  <Lightbulb className="w-5 h-5 text-light-white" />
-                  How It Works
-                </h2>
-                <div className="prose prose-slate max-w-none">
-                  <p className="text-muted-gray whitespace-pre-line">
-                    {mechanism.howItWorks}
-                  </p>
-                </div>
-              </div>
-
-              {/* Full Description */}
-              <div className="card">
-                <h2 className="text-xl font-semibold text-light-white mb-4">
-                  Deep Dive
-                </h2>
-                <Markdown content={mechanism.fullDescription} />
-              </div>
-
-              {/* Pros & Cons */}
-              <div className="grid md:grid-cols-2 gap-6">
-                <div className="card">
-                  <h3 className="font-semibold text-light-white mb-4 flex items-center gap-2">
-                    <Check className="w-5 h-5 text-light-white" />
-                    Advantages
-                  </h3>
-                  <ul className="space-y-3">
-                    {mechanism.advantages.map((advantage, i) => (
-                      <li
-                        key={i}
-                        className="flex items-start gap-2 text-muted-gray"
-                      >
-                        <Check className="w-4 h-4 text-light-white mt-1 flex-shrink-0" />
-                        {advantage}
-                      </li>
-                    ))}
-                  </ul>
-                </div>
-                <div className="card">
-                  <h3 className="font-semibold text-light-white mb-4 flex items-center gap-2">
-                    <X className="w-5 h-5 text-system-error" />
-                    Limitations
-                  </h3>
-                  <ul className="space-y-3">
-                    {mechanism.limitations.map((limitation, i) => (
-                      <li
-                        key={i}
-                        className="flex items-start gap-2 text-muted-gray"
-                      >
-                        <X className="w-4 h-4 text-system-error mt-1 flex-shrink-0" />
-                        {limitation}
-                      </li>
-                    ))}
-                  </ul>
-                </div>
-              </div>
-
-              {/* Implementations */}
-              {implementations.length > 0 && (
-                <div>
-                  <h2 className="text-xl font-semibold text-light-white mb-4">
-                    Apps Using This Mechanism
-                  </h2>
-                  <div className="grid md:grid-cols-2 gap-4">
-                    {implementations.map(
-                      (app) => app && <AppCard key={app.id} app={app} />
-                    )}
-                  </div>
-                </div>
-              )}
-
-              {/* Case Studies */}
-              {caseStudies.length > 0 && (
-                <div>
-                  <h2 className="text-xl font-semibold text-light-white mb-4">
-                    Case Studies
-                  </h2>
-                  <div className="grid md:grid-cols-2 gap-4">
-                    {caseStudies.map((cs) => (
-                      <CaseStudyCard key={cs.id} caseStudy={cs} />
-                    ))}
-                  </div>
-                </div>
-              )}
-            </div>
-
-            {/* Sidebar */}
-            <div className="space-y-6">
-              {/* Best Used For */}
-              <div className="card">
-                <h3 className="font-semibold text-light-white mb-4">
-                  Best Used For
-                </h3>
-                <ul className="space-y-2">
-                  {mechanism.bestUsedFor.map((use, i) => (
-                    <li
-                      key={i}
-                      className="flex items-center gap-2 text-muted-gray"
-                    >
-                      <span className="w-1.5 h-1.5 rounded-full bg-light-white" />
-                      {use}
-                    </li>
-                  ))}
-                </ul>
-              </div>
-
-              {/* Technical Resources */}
-              {mechanism.technicalResources.length > 0 && (
-                <div className="card">
-                  <h3 className="font-semibold text-light-white mb-4">
-                    Resources
-                  </h3>
-                  <div className="space-y-3">
-                    {mechanism.technicalResources.map((resource, i) => {
-                      const Icon = resourceIcons[resource.type] || BookOpen;
-                      return (
-                        <a
-                          key={i}
-                          href={resource.url}
-                          target="_blank"
-                          rel="noopener noreferrer"
-                          className="flex items-center gap-3 text-muted-gray hover:text-light-white transition-colors group"
-                        >
-                          <Icon className="w-4 h-4" />
-                          <span className="flex-1">{resource.title}</span>
-                          <ExternalLink className="w-3 h-3 opacity-0 group-hover:opacity-100" />
-                        </a>
-                      );
-                    })}
-                  </div>
-                </div>
-              )}
-
-              {/* Tags */}
-              <div className="card">
-                <h3 className="font-semibold text-light-white mb-4">Tags</h3>
-                <div className="flex flex-wrap gap-2">
-                  {mechanism.tags.map((tag) => (
-                    <Badge key={tag} size="sm">
-                      {tag}
-                    </Badge>
-                  ))}
-                </div>
-              </div>
-
-              {/* Last Updated */}
-              <p className="text-sm text-muted-gray text-center">
-                Last updated:{" "}
-                {new Date(mechanism.lastUpdated).toLocaleDateString()}
-              </p>
-            </div>
-          </div>
-        </div>
-      </section>
-    </div>
+    <ContentDetailPage
+      item={mechanism}
+      breadcrumbHref="/mechanisms"
+      breadcrumbLabel="Back to Mechanisms"
+      relatedSections={[
+        {
+          title: 'Related Apps',
+          items: relatedApps.map((app) => <AppCard key={app.id} app={app} />),
+        },
+        {
+          title: 'Related Mechanisms',
+          items: relatedMechanisms.map((m) => <MechanismCard key={m.id} mechanism={m} />),
+        },
+        {
+          title: 'Related Case Studies',
+          items: relatedCaseStudies.map((cs) => <CaseStudyCard key={cs.id} caseStudy={cs} />),
+        },
+        {
+          title: 'Related Research',
+          items: relatedResearch.map((r) => <ResearchCard key={r.id} research={r} />),
+        },
+        {
+          title: 'Related Campaigns',
+          items: relatedCampaigns.map((c) => <CampaignCard key={c.id} campaign={c} />),
+        },
+      ]}
+    />
   );
 }

@@ -1,33 +1,28 @@
 ---
 id: '3'
 slug: retropgf-impact-measurement-evolution
-title: 'Impact Measurement in Retroactive Funding: Evolution Through RetroPGF 3-6'
-abstract: >-
-  How Optimism has evolved its impact measurement approaches across four
-  RetroPGF rounds, with lessons for the broader ecosystem.
-heroImage: /images/research/impact.svg
-type: analysis
-dataVisualizations: []
-relatedApps:
-  - optimism-retropgf
-relatedMechanisms:
-  - retroactive-funding
-  - attestation-based
-authors:
-  - Gitcoin Research
-sources:
-  - title: Optimism RetroPGF
-    url: https://retrofunding.optimism.io
-  - title: OP Governance Forum
-    url: https://gov.optimism.io
+name: 'Impact Measurement in Retroactive Funding: Evolution Through RetroPGF 3-6'
+shortDescription: How Optimism has evolved its impact measurement approaches across four RetroPGF rounds, with lessons for the broader ecosystem.
+banner: /images/research/impact.svg
 tags:
   - impact measurement
   - retroactive funding
   - evaluation
   - optimism
-publishDate: '2024-11-01'
 lastUpdated: '2024-12-25'
+relatedMechanisms:
+  - retroactive-funding
+  - attestation-based
+relatedApps:
+  - optimism-retropgf
 ---
+
+**Type:** Analysis
+**Authors:** Gitcoin Research
+
+**Sources:**
+- [Optimism RetroPGF](https://retrofunding.optimism.io)
+- [OP Governance Forum](https://gov.optimism.io)
 
 ## The Measurement Challenge
 

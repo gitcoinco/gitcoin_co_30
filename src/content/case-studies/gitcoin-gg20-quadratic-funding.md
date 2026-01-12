@@ -1,43 +1,43 @@
 ---
-title: "Gitcoin GG20: Community Rounds at Scale"
+id: '4'
 slug: "gitcoin-gg20-quadratic-funding"
-summary: "GG20 demonstrated the maturation of community-run quadratic funding rounds, with multiple ecosystems running independent rounds on Grants Stack."
-project: "Gitcoin Grants 20"
-platform: "gitcoin-grants-stack"
-mechanism: "quadratic-funding"
-fundingAmount: "$2.5M+"
-fundingDate: "2024-04-15"
-status: "success"
-author: "Gitcoin Research"
-publishDate: "2024-05-01"
-lastUpdated: "2024-12-25"
-heroImage: "/images/case-studies/gg20.svg"
-outcomes:
-  - title: "Rounds Operated"
-    description: "Core and community rounds"
-    metrics: "15+ rounds"
-  - title: "Total Distributed"
-    description: "Combined matching and contributions"
-    metrics: "$2.5M+"
-  - title: "Unique Donors"
-    description: "Contributors across all rounds"
-    metrics: "15,000+"
-lessonsLearned:
-  - "Communities can effectively self-organize funding rounds"
-  - "Shared infrastructure reduces barriers to entry"
-  - "Quality curation remains essential"
-  - "Unified sybil resistance improves efficiency"
-sources:
-  - title: "GG20 Results"
-    url: "https://gitcoin.co/blog/gg20-results"
-  - title: "Grants Stack"
-    url: "https://grants.gitcoin.co"
+name: "Gitcoin GG20: Community Rounds at Scale"
+shortDescription: "GG20 demonstrated the maturation of community-run quadratic funding rounds, with multiple ecosystems running independent rounds on Grants Stack."
+banner: "/images/case-studies/gg20.svg"
 tags:
   - "quadratic funding"
   - "community rounds"
   - "gitcoin"
   - "decentralization"
+lastUpdated: "2024-12-25"
+relatedMechanisms:
+  - quadratic-funding
+relatedApps:
+  - gitcoin-grants-stack
 ---
+
+**Project:** Gitcoin Grants 20
+**Platform:** gitcoin-grants-stack
+**Mechanism:** Quadratic Funding
+**Funding Amount:** $2.5M+
+**Funding Date:** April 15, 2024
+**Status:** Success
+**Author:** Gitcoin Research
+
+**Outcomes:**
+- **Rounds Operated:** 15+ core and community rounds
+- **Total Distributed:** $2.5M+ combined matching and contributions
+- **Unique Donors:** 15,000+ contributors across all rounds
+
+**Lessons Learned:**
+- Communities can effectively self-organize funding rounds
+- Shared infrastructure reduces barriers to entry
+- Quality curation remains essential
+- Unified sybil resistance improves efficiency
+
+**Sources:**
+- [GG20 Results](https://gitcoin.co/blog/gg20-results)
+- [Grants Stack](https://grants.gitcoin.co)
 
 ## Background
 
