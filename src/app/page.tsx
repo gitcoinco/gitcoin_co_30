@@ -1,7 +1,7 @@
 import Link from "next/link";
 import Image from "next/image";
 import { ArrowRight } from "lucide-react";
-import { SearchBar, Stats, Button } from "@/components/ui";
+import { SearchBar, Stats, Button, CategoryIcon } from "@/components/ui";
 import {
   AppCard,
   MechanismCard,
@@ -87,16 +87,16 @@ export default function Home() {
               <Link
                 key={category.name}
                 href={category.href}
-                className="card group text-center hover:border-light-white"
+                className="card group text-center hover:border-light-white icon-hover-container"
               >
                 <div className="w-full h-20 flex items-center justify-center mx-auto mb-4">
-                  <Image
-                    src={category.icon}
-                    alt={`${category.name} icon`}
-                    width={120}
-                    height={80}
-                    className="w-auto h-16 object-contain"
-                  />
+                  <div className="h-20 w-30">
+                    <CategoryIcon
+                      src={category.icon}
+                      alt={`${category.name} icon`}
+                      className="h-20 w-30 object-contain"
+                    />
+                  </div>
                 </div>
                 <h3 className="font-bold font-mono text-light-white mb-2 group-hover:text-muted-gray transition-colors">
                   {category.name}

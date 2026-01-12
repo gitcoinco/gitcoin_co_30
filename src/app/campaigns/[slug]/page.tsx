@@ -1,10 +1,12 @@
 import { Metadata } from 'next'
 import { notFound } from 'next/navigation'
-import { Edit } from 'lucide-react'
-import { Button } from '@/components/ui'
-import { Markdown } from '@/components/Markdown'
-import { DetailPageLayout, Breadcrumb, HeroImage, PageHeader, TwoColumnLayout, TagsSection, MetadataSection } from '@/components/layouts'
+import { AppCard, MechanismCard, CaseStudyCard, ResearchCard, CampaignCard } from '@/components/cards'
+import ContentDetailPage from '@/components/templates/ContentDetailPage'
 import { getCampaignBySlug, campaigns } from '@/content/campaigns'
+import { getAppBySlug } from '@/content/apps'
+import { getMechanismBySlug } from '@/content/mechanisms'
+import { getCaseStudyBySlug } from '@/content/case-studies'
+import { getResearchBySlug } from '@/content/research'
 import { generateDetailPageMetadata } from '@/lib/metadata'
 
 interface PageProps {
@@ -39,51 +41,40 @@ export default async function CampaignDetailPage({ params }: PageProps) {
     notFound()
   }
 
+  // Get related items
+  const relatedApps = campaign.relatedApps?.map(slug => getAppBySlug(slug)).filter((app): app is NonNullable<typeof app> => app !== undefined) || []
+  const relatedMechanisms = campaign.relatedMechanisms?.map(slug => getMechanismBySlug(slug)).filter((m): m is NonNullable<typeof m> => m !== undefined) || []
+  const relatedCaseStudies = campaign.relatedCaseStudies?.map(slug => getCaseStudyBySlug(slug)).filter((cs): cs is NonNullable<typeof cs> => cs !== undefined) || []
+  const relatedResearch = campaign.relatedResearch?.map(slug => getResearchBySlug(slug)).filter((r): r is NonNullable<typeof r> => r !== undefined) || []
+  const relatedCampaigns = campaign.relatedCampaigns?.map(slug => getCampaignBySlug(slug)).filter((c): c is NonNullable<typeof c> => c !== undefined) || []
+
   return (
-    <DetailPageLayout>
-      <Breadcrumb href="/campaigns" label="Back to Campaigns" />
-
-      {campaign.banner && <HeroImage src={campaign.banner} alt={campaign.name} />}
-
-      <PageHeader>
-        <div className="flex flex-col lg:flex-row lg:items-start lg:justify-between gap-6">
-            <div className="max-w-2xl">
-              <h1 className="text-3xl md:text-4xl font-bold text-light-white mb-2">
-                {campaign.name}
-              </h1>
-              <p className="text-lg text-muted-gray">{campaign.shortDescription}</p>
-            </div>
-
-            <div className="flex flex-col gap-3">
-              <Button
-                href={`https://github.com/gitcoinco/gitcoin_co_30/issues`}
-                variant="ghost"
-                size="sm"
-              >
-                <Edit className="w-4 h-4 mr-2" />
-                Suggest Edit
-              </Button>
-            </div>
-          </div>
-      </PageHeader>
-
-      <TwoColumnLayout
-        content={
-          <div className="space-y-8">
-              {/* Description */}
-              <div className="card">
-                <h2 className="text-xl font-semibold text-light-white mb-4">About</h2>
-                <Markdown content={campaign.description} />
-              </div>
-          </div>
-        }
-        sidebar={
-          <div className="space-y-6">
-              <TagsSection tags={campaign.tags} />
-              <MetadataSection lastUpdated={campaign.lastUpdated} />
-          </div>
-        }
-      />
-    </DetailPageLayout>
+    <ContentDetailPage
+      item={campaign}
+      breadcrumbHref="/campaigns"
+      breadcrumbLabel="Back to Campaigns"
+      relatedSections={[
+        {
+          title: 'Related Apps',
+          items: relatedApps.map((app) => <AppCard key={app.id} app={app} />),
+        },
+        {
+          title: 'Related Mechanisms',
+          items: relatedMechanisms.map((m) => <MechanismCard key={m.id} mechanism={m} />),
+        },
+        {
+          title: 'Related Case Studies',
+          items: relatedCaseStudies.map((cs) => <CaseStudyCard key={cs.id} caseStudy={cs} />),
+        },
+        {
+          title: 'Related Research',
+          items: relatedResearch.map((r) => <ResearchCard key={r.id} research={r} />),
+        },
+        {
+          title: 'Related Campaigns',
+          items: relatedCampaigns.map((c) => <CampaignCard key={c.id} campaign={c} />),
+        },
+      ]}
+    />
   )
 }

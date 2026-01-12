@@ -13,6 +13,9 @@ export interface BaseContent {
   lastUpdated: string
   relatedApps?: string[]
   relatedMechanisms?: string[]
+  relatedCaseStudies?: string[]
+  relatedResearch?: string[]
+  relatedCampaigns?: string[]
 }
 
 // All content types extend BaseContent with zero additional fields

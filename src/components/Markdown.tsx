@@ -26,17 +26,17 @@ export function Markdown({ content, className = '' }: MarkdownProps) {
         ),
         // Style paragraphs
         p: ({ children }) => (
-          <p className="text-muted-gray mb-6 leading-relaxed text-base">{children}</p>
+          <p className="text-gray-400 mb-6 leading-relaxed text-base">{children}</p>
         ),
         // Style lists
         ul: ({ children }) => (
-          <ul className="list-disc list-inside text-muted-gray mb-6 space-y-2 ml-4">{children}</ul>
+          <ul className="list-disc list-inside text-gray-400 mb-6 space-y-2 ml-4">{children}</ul>
         ),
         ol: ({ children }) => (
-          <ol className="list-decimal list-inside text-muted-gray mb-6 space-y-2 ml-4">{children}</ol>
+          <ol className="list-decimal list-inside text-gray-400 mb-6 space-y-2 ml-4">{children}</ol>
         ),
         li: ({ children }) => (
-          <li className="text-muted-gray leading-relaxed">{children}</li>
+          <li className="text-gray-400 leading-relaxed">{children}</li>
         ),
         // Style links
         a: ({ href, children }) => (
@@ -67,7 +67,7 @@ export function Markdown({ content, className = '' }: MarkdownProps) {
         ),
         // Style blockquotes
         blockquote: ({ children }) => (
-          <blockquote className="border-l-4 border-light-white pl-4 italic text-muted-gray my-4">
+          <blockquote className="border-l-4 border-light-white pl-4 italic text-gray-400 my-4">
             {children}
           </blockquote>
         ),
@@ -94,7 +94,7 @@ export function Markdown({ content, className = '' }: MarkdownProps) {
           </th>
         ),
         td: ({ children }) => (
-          <td className="px-4 py-2 text-muted-gray border border-dark-gray">
+          <td className="px-4 py-2 text-gray-400 border border-dark-gray">
             {children}
           </td>
         ),

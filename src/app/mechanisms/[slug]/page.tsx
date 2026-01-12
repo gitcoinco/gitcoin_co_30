@@ -1,12 +1,12 @@
 import { Metadata } from 'next'
 import { notFound } from 'next/navigation'
-import { Edit } from 'lucide-react'
-import { Button } from '@/components/ui'
-import { Markdown } from '@/components/Markdown'
-import { AppCard, MechanismCard } from '@/components/cards'
-import { DetailPageLayout, Breadcrumb, HeroImage, PageHeader, TwoColumnLayout, TagsSection, MetadataSection } from '@/components/layouts'
+import { AppCard, MechanismCard, CaseStudyCard, ResearchCard, CampaignCard } from '@/components/cards'
+import ContentDetailPage from '@/components/templates/ContentDetailPage'
 import { getMechanismBySlug, mechanisms } from '@/content/mechanisms'
 import { getAppBySlug } from '@/content/apps'
+import { getCaseStudyBySlug } from '@/content/case-studies'
+import { getResearchBySlug } from '@/content/research'
+import { getCampaignBySlug } from '@/content/campaigns'
 import { generateDetailPageMetadata } from '@/lib/metadata'
 
 interface PageProps {
@@ -44,77 +44,37 @@ export default async function MechanismDetailPage({ params }: PageProps) {
   // Get related items
   const relatedApps = mechanism.relatedApps?.map(slug => getAppBySlug(slug)).filter((app): app is NonNullable<typeof app> => app !== undefined) || []
   const relatedMechanisms = mechanism.relatedMechanisms?.map(slug => getMechanismBySlug(slug)).filter((m): m is NonNullable<typeof m> => m !== undefined) || []
+  const relatedCaseStudies = mechanism.relatedCaseStudies?.map(slug => getCaseStudyBySlug(slug)).filter((cs): cs is NonNullable<typeof cs> => cs !== undefined) || []
+  const relatedResearch = mechanism.relatedResearch?.map(slug => getResearchBySlug(slug)).filter((r): r is NonNullable<typeof r> => r !== undefined) || []
+  const relatedCampaigns = mechanism.relatedCampaigns?.map(slug => getCampaignBySlug(slug)).filter((c): c is NonNullable<typeof c> => c !== undefined) || []
 
   return (
-    <DetailPageLayout>
-      <Breadcrumb href="/mechanisms" label="Back to Mechanisms" />
-
-      <PageHeader>
-        <div className="flex flex-col md:flex-row md:items-start md:justify-between gap-6">
-          <div>
-            <h1 className="text-3xl md:text-4xl font-bold text-light-white mb-4">
-              {mechanism.name}
-            </h1>
-            <p className="text-lg text-muted-gray max-w-2xl">
-              {mechanism.shortDescription}
-            </p>
-          </div>
-          <Button
-            href={`https://github.com/gitcoinco/gitcoin_co_30/issues`}
-            variant="ghost"
-            size="sm"
-          >
-            <Edit className="w-4 h-4 mr-2" />
-            Suggest Edit
-          </Button>
-        </div>
-      </PageHeader>
-
-      {mechanism.banner && <HeroImage src={mechanism.banner} alt={mechanism.name} />}
-
-      <TwoColumnLayout
-        content={
-          <div className="space-y-8">
-            <article className="card p-8 md:p-10">
-              <Markdown content={mechanism.description} />
-            </article>
-
-            {/* Related Apps */}
-            {relatedApps.length > 0 && (
-              <div>
-                <h2 className="text-2xl font-bold text-light-white mb-4">
-                  Apps Using This Mechanism
-                </h2>
-                <div className="grid md:grid-cols-2 gap-4">
-                  {relatedApps.map((app) => (
-                    <AppCard key={app.id} app={app} />
-                  ))}
-                </div>
-              </div>
-            )}
-
-            {/* Related Mechanisms */}
-            {relatedMechanisms.length > 0 && (
-              <div>
-                <h2 className="text-2xl font-bold text-light-white mb-4">
-                  Related Mechanisms
-                </h2>
-                <div className="grid md:grid-cols-2 gap-4">
-                  {relatedMechanisms.map((m) => (
-                    <MechanismCard key={m.id} mechanism={m} />
-                  ))}
-                </div>
-              </div>
-            )}
-          </div>
-        }
-        sidebar={
-          <div className="space-y-6">
-              <TagsSection tags={mechanism.tags} />
-              <MetadataSection lastUpdated={mechanism.lastUpdated} />
-          </div>
-        }
-      />
-    </DetailPageLayout>
+    <ContentDetailPage
+      item={mechanism}
+      breadcrumbHref="/mechanisms"
+      breadcrumbLabel="Back to Mechanisms"
+      relatedSections={[
+        {
+          title: 'Related Apps',
+          items: relatedApps.map((app) => <AppCard key={app.id} app={app} />),
+        },
+        {
+          title: 'Related Mechanisms',
+          items: relatedMechanisms.map((m) => <MechanismCard key={m.id} mechanism={m} />),
+        },
+        {
+          title: 'Related Case Studies',
+          items: relatedCaseStudies.map((cs) => <CaseStudyCard key={cs.id} caseStudy={cs} />),
+        },
+        {
+          title: 'Related Research',
+          items: relatedResearch.map((r) => <ResearchCard key={r.id} research={r} />),
+        },
+        {
+          title: 'Related Campaigns',
+          items: relatedCampaigns.map((c) => <CampaignCard key={c.id} campaign={c} />),
+        },
+      ]}
+    />
   );
 }

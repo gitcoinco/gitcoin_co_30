@@ -98,6 +98,9 @@ async function publishContent(contentType, issueNumber, customOptions = {}) {
   const description = parseSection(issue.body, 'Description');
   const relatedMechanisms = parseList(issue.body, 'Related Mechanisms');
   const relatedApps = parseList(issue.body, 'Related Apps');
+  const relatedCaseStudies = parseList(issue.body, 'Related Case Studies');
+  const relatedResearch = parseList(issue.body, 'Related Research');
+  const relatedCampaigns = parseList(issue.body, 'Related Campaigns');
 
   // Allow custom parsing for specific content types
   const customData = customOptions.parseCustomFields
@@ -118,6 +121,18 @@ async function publishContent(contentType, issueNumber, customOptions = {}) {
 
   const relatedAppsYaml = relatedApps.length > 0
     ? relatedApps.map(a => `  - ${a}`).join('\n')
+    : '';
+
+  const relatedCaseStudiesYaml = relatedCaseStudies.length > 0
+    ? relatedCaseStudies.map(cs => `  - ${cs}`).join('\n')
+    : '';
+
+  const relatedResearchYaml = relatedResearch.length > 0
+    ? relatedResearch.map(r => `  - ${r}`).join('\n')
+    : '';
+
+  const relatedCampaignsYaml = relatedCampaigns.length > 0
+    ? relatedCampaigns.map(c => `  - ${c}`).join('\n')
     : '';
 
   const tagsYaml = metadata.tags && metadata.tags.length > 0
@@ -143,7 +158,13 @@ lastUpdated: '${new Date().toISOString().split('T')[0]}'
 relatedMechanisms:
 ${relatedMechanismsYaml}
 relatedApps:
-${relatedAppsYaml}`;
+${relatedAppsYaml}
+relatedCaseStudies:
+${relatedCaseStudiesYaml}
+relatedResearch:
+${relatedResearchYaml}
+relatedCampaigns:
+${relatedCampaignsYaml}`;
 
   // Allow custom frontmatter fields
   if (customOptions.addCustomFrontmatter) {

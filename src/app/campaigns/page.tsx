@@ -14,6 +14,8 @@ export default function CampaignsPage() {
       <ListPageHeader
         title="Funding Campaigns"
         description="Discover funding rounds. Apply for grants, participate in quadratic funding, or learn from past campaigns."
+        icon="/assets/campaigns-icon.svg"
+        searchPlaceholder="Search campaigns..."
       />
 
       {/* All Campaigns */}

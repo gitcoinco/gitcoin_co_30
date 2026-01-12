@@ -31,6 +31,7 @@ export default function CaseStudiesPage() {
         title="Case Studies"
         description="Learn from real funding experiments across the ecosystem. Discover what worked, what didn't, and the lessons that can guide future initiatives."
         searchPlaceholder="Search case studies..."
+        icon="/assets/case-studies-icon.svg"
       />
 
       <section className="section">

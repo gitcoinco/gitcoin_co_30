@@ -19,9 +19,10 @@ export default function AppsPage() {
   return (
     <ListPageLayout>
       <ListPageHeader
-        title="Funding Apps Directory"
+        title="Apps"
         description="Explore the platforms, DAOs, grant programs, and funding primitives that power Ethereum's public goods ecosystem."
         searchPlaceholder="Search apps..."
+        icon="/assets/apps-icon.svg"
       />
 
       <section className="section">

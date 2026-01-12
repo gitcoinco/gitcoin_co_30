@@ -303,3 +303,23 @@ input, textarea, select {
 .animate-float {
   animation: float 6s ease-in-out infinite;
 }
+
+/* Icon hover effect - target SVG star */
+.icon-hover-container {
+  @apply transition-all duration-300;
+}
+
+.icon-hover-container:hover img {
+  filter: brightness(1.2);
+}
+
+/* For inline SVGs - target the star (second path) */
+.icon-hover-container svg path:nth-child(2) {
+  transition: all 0.3s ease;
+  transform-origin: center;
+}
+
+.icon-hover-container:hover svg path:nth-child(2) {
+  fill: white !important;
+  transform: scale(0.65);
+}

@@ -1,8 +1,12 @@
 import { Metadata } from 'next'
 import { notFound } from 'next/navigation'
-import { Markdown } from '@/components/Markdown'
-import { DetailPageLayout, Breadcrumb, HeroImage, PageHeader, TwoColumnLayout, TagsSection, MetadataSection, SuggestEditButton } from '@/components/layouts'
+import { AppCard, MechanismCard, CaseStudyCard, ResearchCard, CampaignCard } from '@/components/cards'
+import ContentDetailPage from '@/components/templates/ContentDetailPage'
 import { getResearchBySlug, research } from '@/content/research'
+import { getAppBySlug } from '@/content/apps'
+import { getMechanismBySlug } from '@/content/mechanisms'
+import { getCaseStudyBySlug } from '@/content/case-studies'
+import { getCampaignBySlug } from '@/content/campaigns'
 import { generateDetailPageMetadata } from '@/lib/metadata'
 
 interface PageProps {
@@ -37,35 +41,40 @@ export default async function ResearchDetailPage({ params }: PageProps) {
     notFound()
   }
 
+  // Get related items
+  const relatedApps = r.relatedApps?.map(slug => getAppBySlug(slug)).filter((app): app is NonNullable<typeof app> => app !== undefined) || []
+  const relatedMechanisms = r.relatedMechanisms?.map(slug => getMechanismBySlug(slug)).filter((m): m is NonNullable<typeof m> => m !== undefined) || []
+  const relatedCaseStudies = r.relatedCaseStudies?.map(slug => getCaseStudyBySlug(slug)).filter((cs): cs is NonNullable<typeof cs> => cs !== undefined) || []
+  const relatedResearch = r.relatedResearch?.map(slug => getResearchBySlug(slug)).filter((res): res is NonNullable<typeof res> => res !== undefined) || []
+  const relatedCampaigns = r.relatedCampaigns?.map(slug => getCampaignBySlug(slug)).filter((c): c is NonNullable<typeof c> => c !== undefined) || []
+
   return (
-    <DetailPageLayout>
-      <Breadcrumb href="/research" label="Back to Research" />
-
-      {r.banner && <HeroImage src={r.banner} alt={r.name} />}
-
-      <PageHeader>
-        <div className="max-w-4xl">
-          <h1 className="text-3xl md:text-4xl font-bold text-light-white mb-4">
-            {r.name}
-          </h1>
-          <p className="text-lg text-muted-gray">{r.shortDescription}</p>
-        </div>
-      </PageHeader>
-
-      <TwoColumnLayout
-        content={
-          <article className="card p-8 md:p-10">
-            <Markdown content={r.description} />
-          </article>
-        }
-        sidebar={
-          <div className="space-y-6">
-              <TagsSection tags={r.tags} />
-              <SuggestEditButton />
-              <MetadataSection lastUpdated={r.lastUpdated} />
-            </div>
-        }
-      />
-    </DetailPageLayout>
+    <ContentDetailPage
+      item={r}
+      breadcrumbHref="/research"
+      breadcrumbLabel="Back to Research"
+      relatedSections={[
+        {
+          title: 'Related Apps',
+          items: relatedApps.map((app) => <AppCard key={app.id} app={app} />),
+        },
+        {
+          title: 'Related Mechanisms',
+          items: relatedMechanisms.map((m) => <MechanismCard key={m.id} mechanism={m} />),
+        },
+        {
+          title: 'Related Case Studies',
+          items: relatedCaseStudies.map((cs) => <CaseStudyCard key={cs.id} caseStudy={cs} />),
+        },
+        {
+          title: 'Related Research',
+          items: relatedResearch.map((res) => <ResearchCard key={res.id} research={res} />),
+        },
+        {
+          title: 'Related Campaigns',
+          items: relatedCampaigns.map((c) => <CampaignCard key={c.id} campaign={c} />),
+        },
+      ]}
+    />
   );
 }

@@ -1,11 +1,19 @@
-import Link from 'next/link'
-import { ArrowLeft, Edit, ExternalLink, Twitter, Github, MessageCircle } from 'lucide-react'
-import { ReactNode, ComponentType } from 'react'
-import { Button, Badge, SearchBar } from '@/components/ui'
+import Link from "next/link";
+import {
+  ArrowLeft,
+  Edit,
+  ExternalLink,
+  Twitter,
+  Github,
+  MessageCircle,
+} from "lucide-react";
+import { ReactNode, ComponentType } from "react";
+import { Button, Badge, SearchBar } from "@/components/ui";
+import CategoryIcon from "@/components/ui/CategoryIcon";
 
 interface BreadcrumbProps {
-  href: string
-  label: string
+  href: string;
+  label: string;
 }
 
 export function Breadcrumb({ href, label }: BreadcrumbProps) {
@@ -21,76 +29,62 @@ export function Breadcrumb({ href, label }: BreadcrumbProps) {
         </Link>
       </div>
     </div>
-  )
+  );
 }
 
 interface HeroImageProps {
-  src: string
-  alt: string
+  src: string;
+  alt: string;
 }
 
 export function HeroImage({ src, alt }: HeroImageProps) {
   return (
     <div className="h-64 md:h-80 bg-charcoal relative overflow-hidden">
-      <img
-        src={src}
-        alt={alt}
-        className="w-full h-full object-cover"
-      />
+      <img src={src} alt={alt} className="w-full h-full object-cover" />
     </div>
-  )
+  );
 }
 
 interface DetailPageLayoutProps {
-  children: ReactNode
+  children: ReactNode;
 }
 
 export function DetailPageLayout({ children }: DetailPageLayoutProps) {
-  return (
-    <div className="min-h-screen bg-void-black">
-      {children}
-    </div>
-  )
+  return <div className="min-h-screen bg-void-black">{children}</div>;
 }
 
 interface PageHeaderProps {
-  children: ReactNode
+  children: ReactNode;
 }
 
 export function PageHeader({ children }: PageHeaderProps) {
   return (
     <section className="bg-charcoal border-b border-dark-gray">
-      <div className="container-page py-12">
-        {children}
-      </div>
+      <div className="container-page py-12">{children}</div>
     </section>
-  )
+  );
 }
 
 interface TwoColumnLayoutProps {
-  content: ReactNode
-  sidebar: ReactNode
+  content: ReactNode;
+  sidebar: ReactNode;
 }
 
 export function TwoColumnLayout({ content, sidebar }: TwoColumnLayoutProps) {
   return (
     <div className="container-page py-12">
       <div className="grid grid-cols-1 lg:grid-cols-3 gap-12">
-        <div className="lg:col-span-2 space-y-12">
-          {content}
-        </div>
-        <aside className="space-y-6">
-          {sidebar}
-        </aside>
+        <div className="lg:col-span-2 space-y-12">{content}</div>
+        <aside className="space-y-6">{sidebar}</aside>
       </div>
     </div>
-  )
+  );
 }
 
 // Shared sidebar components
 
 interface TagsSectionProps {
-  tags: string[]
+  tags: string[];
 }
 
 export function TagsSection({ tags }: TagsSectionProps) {
@@ -105,15 +99,18 @@ export function TagsSection({ tags }: TagsSectionProps) {
         ))}
       </div>
     </div>
-  )
+  );
 }
 
 interface MetadataSectionProps {
-  publishDate?: string
-  lastUpdated: string
+  publishDate?: string;
+  lastUpdated: string;
 }
 
-export function MetadataSection({ publishDate, lastUpdated }: MetadataSectionProps) {
+export function MetadataSection({
+  publishDate,
+  lastUpdated,
+}: MetadataSectionProps) {
   return (
     <p className="text-sm text-muted-gray text-center">
       {publishDate && (
@@ -124,39 +121,39 @@ export function MetadataSection({ publishDate, lastUpdated }: MetadataSectionPro
       )}
       Updated: {new Date(lastUpdated).toLocaleDateString()}
     </p>
-  )
+  );
 }
 
 export function SuggestEditButton() {
   return (
-    <div className="card">
-      <Button
-        href="https://github.com/gitcoinco/gitcoin_co_30/issues"
-        variant="ghost"
-        className="w-full"
-      >
+    <div className="card !p-0">
+      <Button href="/submit?edit=true" variant="ghost" className="w-full">
         <Edit className="w-4 h-4 mr-2" />
         Suggest Edit
       </Button>
     </div>
-  )
+  );
 }
 
 // Additional sidebar components
 
 interface ExternalLink {
-  title: string
-  url: string
+  title: string;
+  url: string;
 }
 
 interface ExternalLinksSectionProps {
-  title: string
-  links: ExternalLink[]
-  icon?: ComponentType<{ className?: string }>
+  title: string;
+  links: ExternalLink[];
+  icon?: ComponentType<{ className?: string }>;
 }
 
-export function ExternalLinksSection({ title, links, icon: Icon }: ExternalLinksSectionProps) {
-  if (links.length === 0) return null
+export function ExternalLinksSection({
+  title,
+  links,
+  icon: Icon,
+}: ExternalLinksSectionProps) {
+  if (links.length === 0) return null;
 
   return (
     <div className="card">
@@ -180,22 +177,22 @@ export function ExternalLinksSection({ title, links, icon: Icon }: ExternalLinks
         ))}
       </ul>
     </div>
-  )
+  );
 }
 
 interface SocialLinks {
-  twitter?: string
-  github?: string
-  discord?: string
+  twitter?: string;
+  github?: string;
+  discord?: string;
 }
 
 interface SocialLinksSectionProps {
-  links: SocialLinks
+  links: SocialLinks;
 }
 
 export function SocialLinksSection({ links }: SocialLinksSectionProps) {
-  const hasAnyLinks = links.twitter || links.github || links.discord
-  if (!hasAnyLinks) return null
+  const hasAnyLinks = links.twitter || links.github || links.discord;
+  if (!hasAnyLinks) return null;
 
   return (
     <div className="card">
@@ -236,58 +233,69 @@ export function SocialLinksSection({ links }: SocialLinksSectionProps) {
         )}
       </div>
     </div>
-  )
+  );
 }
 
 // List page components
 
 interface ListPageLayoutProps {
-  children: ReactNode
+  children: ReactNode;
 }
 
 export function ListPageLayout({ children }: ListPageLayoutProps) {
-  return (
-    <div className="min-h-screen bg-void-black">
-      {children}
-    </div>
-  )
+  return <div className="min-h-screen bg-void-black">{children}</div>;
 }
 
 interface ListPageHeaderProps {
-  title: string
-  description: string
-  searchPlaceholder?: string
+  title: string;
+  description: string;
+  searchPlaceholder: string;
+  icon: string;
 }
 
-export function ListPageHeader({ title, description, searchPlaceholder }: ListPageHeaderProps) {
+export function ListPageHeader({
+  title,
+  description,
+  searchPlaceholder,
+  icon,
+}: ListPageHeaderProps) {
   return (
     <section className="bg-charcoal border-b border-dark-gray">
-      <div className="container-page py-12">
-        <h1 className="text-3xl md:text-4xl font-bold text-light-white mb-4">
-          {title}
-        </h1>
-        <p className="text-lg text-muted-gray max-w-3xl mb-8">
-          {description}
-        </p>
-        {searchPlaceholder && (
-          <SearchBar placeholder={searchPlaceholder} className="max-w-xl" />
-        )}
+      <div className="container-page py-12 flex gap-6 sm:gap-12 items-center">
+        <div className="icon-hover-container w-24 h-16 sm:h-40 sm:w-60">
+          <CategoryIcon
+            src={icon}
+            alt={`${title} icon`}
+            className="w-24 h-16  sm:h-40 sm:w-60"
+          />
+        </div>
+        <div className="flex flex-col gap-4">
+          <h1 className="text-xl md:text-4xl heading text-light-white">
+            {title}
+          </h1>
+          <div className="sm:block hidden">
+            <p className="text-lg text-muted-gray max-w-3xl mb-8">
+              {description}
+            </p>
+            <SearchBar placeholder={searchPlaceholder} className="max-w-xl" />
+          </div>
+        </div>
       </div>
     </section>
-  )
+  );
 }
 
 interface FilterOption {
-  value: string
-  label: string
+  value: string;
+  label: string;
 }
 
 interface FilterBarProps {
-  filters: FilterOption[]
-  activeFilter?: string
+  filters: FilterOption[];
+  activeFilter?: string;
 }
 
-export function FilterBar({ filters, activeFilter = 'all' }: FilterBarProps) {
+export function FilterBar({ filters, activeFilter = "all" }: FilterBarProps) {
   return (
     <section className="bg-charcoal border-b border-dark-gray sticky top-16 z-40">
       <div className="container-page py-4">
@@ -297,8 +305,8 @@ export function FilterBar({ filters, activeFilter = 'all' }: FilterBarProps) {
               key={filter.value}
               className={`px-4 py-2 rounded-full text-sm font-medium transition-colors ${
                 filter.value === activeFilter
-                  ? 'bg-light-white text-void-black'
-                  : 'bg-dark-gray text-muted-gray hover:bg-muted-gray hover:text-light-white'
+                  ? "bg-light-white text-void-black"
+                  : "bg-dark-gray text-muted-gray hover:bg-muted-gray hover:text-light-white"
               }`}
             >
               {filter.label}
@@ -307,21 +315,27 @@ export function FilterBar({ filters, activeFilter = 'all' }: FilterBarProps) {
         </div>
       </div>
     </section>
-  )
+  );
 }
 
 interface ResultsBarProps {
-  count: number
-  itemType: string
-  showSort?: boolean
-  sortOptions?: string[]
+  count: number;
+  itemType: string;
+  showSort?: boolean;
+  sortOptions?: string[];
 }
 
-export function ResultsBar({ count, itemType, showSort = true, sortOptions }: ResultsBarProps) {
+export function ResultsBar({
+  count,
+  itemType,
+  showSort = true,
+  sortOptions,
+}: ResultsBarProps) {
   return (
     <div className="flex items-center justify-between mb-6">
       <p className="text-muted-gray">
-        Showing <span className="font-medium text-light-white">{count}</span> {itemType}
+        Showing <span className="font-medium text-light-white">{count}</span>{" "}
+        {itemType}
       </p>
       {showSort && sortOptions && sortOptions.length > 0 && (
         <select className="px-4 py-2 rounded-lg border border-dark-gray bg-charcoal text-light-white text-sm">
@@ -331,45 +345,41 @@ export function ResultsBar({ count, itemType, showSort = true, sortOptions }: Re
         </select>
       )}
     </div>
-  )
+  );
 }
 
 interface ItemsGridProps {
-  children: ReactNode
+  children: ReactNode;
 }
 
 export function ItemsGrid({ children }: ItemsGridProps) {
   return (
-    <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
-      {children}
-    </div>
-  )
+    <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">{children}</div>
+  );
 }
 
 interface CTASectionProps {
-  title: string
-  description: string
-  buttonText: string
-  buttonHref: string
+  title: string;
+  description: string;
+  buttonText: string;
+  buttonHref: string;
 }
 
-export function CTASection({ title, description, buttonText, buttonHref }: CTASectionProps) {
+export function CTASection({
+  title,
+  description,
+  buttonText,
+  buttonHref,
+}: CTASectionProps) {
   return (
     <section className="section bg-charcoal">
       <div className="container-page text-center">
-        <h2 className="text-2xl font-bold text-light-white mb-4">
-          {title}
-        </h2>
-        <p className="text-muted-gray mb-6 max-w-xl mx-auto">
-          {description}
-        </p>
-        <a
-          href={buttonHref}
-          className="btn-primary inline-flex"
-        >
+        <h2 className="text-2xl font-bold text-light-white mb-4">{title}</h2>
+        <p className="text-muted-gray mb-6 max-w-xl mx-auto">{description}</p>
+        <a href={buttonHref} className="btn-primary inline-flex">
           {buttonText}
         </a>
       </div>
     </section>
-  )
+  );
 }

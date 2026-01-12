@@ -32,6 +32,7 @@ export default function MechanismsPage() {
         title="Funding Mechanisms"
         description="Understand the different approaches to capital allocation. From quadratic funding to retroactive rewards, explore how each mechanism works and when to use it."
         searchPlaceholder="Search mechanisms..."
+        icon="/assets/mechanisms-icon.svg"
       />
 
       <section className="section">

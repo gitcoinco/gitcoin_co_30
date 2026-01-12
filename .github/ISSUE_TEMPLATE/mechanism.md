@@ -45,14 +45,32 @@ Include sections for:
 -->
 
 
-## Related Mechanisms
+## Related Apps (Optional)
+<!-- Related apps (use slugs like "gitcoin-grants-stack", "allo-protocol") -->
+-
+-
+
+
+## Related Mechanisms (Optional)
 <!-- Related mechanisms (use slugs like "quadratic-funding", "direct-grants") -->
 -
 -
 
 
-## Related Apps
-<!-- Related apps (use slugs like "gitcoin-grants-stack", "allo-protocol") -->
+## Related Case Studies (Optional)
+<!-- Related case studies (use slugs like "gitcoin-gg20-quadratic-funding") -->
+-
+-
+
+
+## Related Research (Optional)
+<!-- Related research (use slugs like "plural-funding-mechanisms") -->
+-
+-
+
+
+## Related Campaigns (Optional)
+<!-- Related campaigns (use slugs like "esp-2025-q1") -->
 -
 -
 

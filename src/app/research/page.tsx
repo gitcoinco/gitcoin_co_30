@@ -23,6 +23,7 @@ export default function ResearchPage() {
         title="Research & Trends"
         description="Deep dives into the funding ecosystem. Analysis of capital flows, mechanism performance, and emerging trends shaping the future of public goods funding."
         searchPlaceholder="Search research..."
+        icon="/assets/research-icon.svg"
       />
 
       <section className="section">
