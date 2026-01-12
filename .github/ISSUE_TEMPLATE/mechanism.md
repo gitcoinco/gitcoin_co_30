@@ -21,7 +21,7 @@ Fill in all sections below. You can use markdown formatting and add images.
 <!--
 OPTIONAL: Add a banner image - it will be displayed at the top of the page.
 Recommended dimensions: 1600x900 pixels (16:9 aspect ratio) or 1200x600 pixels (2:1 aspect ratio)
-Formats: PNG, JPG, or WebP
+Formats: PNG or JPG only 
 -->
 
 
@@ -29,7 +29,7 @@ Formats: PNG, JPG, or WebP
 <!--
 OPTIONAL: Add a logo image.
 Recommended dimensions: Square (e.g., 256x256 pixels)
-Formats: SVG, PNG preferred
+Formats: PNG or JPG only 
 -->
 
 

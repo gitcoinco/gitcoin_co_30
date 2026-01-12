@@ -102,14 +102,14 @@ npm run build
 **Banner Images (Optional)**
 - **Dimensions**: 1600x900px (16:9 aspect ratio) or 1200x600px (2:1 aspect ratio) recommended
 - **Where to add**: Place under the `## Banner Image` section in the GitHub issue template
-- **Format**: PNG, JPG, or WebP
-- Used as the hero image at the top of content pages
+- **Format**: PNG or JPG only
+- Used as the hero image at the top of content pages and for social media previews
 
 **Logo Images (Optional)**
 - **Dimensions**: Square format recommended (e.g., 256x256px, 512x512px)
 - **Aspect ratio**: 1:1 (square)
 - **Where to add**: Place under the `## Logo` section in the GitHub issue template
-- **Format**: SVG or PNG preferred
+- **Format**: PNG or JPG only
 - Used for thumbnails, cards, and branding
 
 **Additional Images**

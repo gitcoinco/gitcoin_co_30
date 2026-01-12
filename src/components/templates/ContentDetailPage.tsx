@@ -23,11 +23,12 @@ export default function ContentDetailPage({
   breadcrumbLabel,
   relatedSections = [],
 }: ContentDetailPageProps) {
+  const banner = item.banner || '/og-default.png';
   return (
     <DetailPageLayout>
       <Breadcrumb href={breadcrumbHref} label={breadcrumbLabel} />
 
-      {item.banner && <HeroImage src={item.banner} alt={item.name} />}
+      {banner && <HeroImage src={banner} alt={item.name} />}
 
       <PageHeader>
         <div className="flex flex-col md:flex-row gap-6 md:gap-8">
