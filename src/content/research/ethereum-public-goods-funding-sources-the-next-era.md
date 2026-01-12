@@ -3,7 +3,6 @@ id: '6'
 slug: "ethereum-public-goods-funding-sources-the-next-era"
 name: "Ethereum Public Goods Funding Sources - The Next Era"
 shortDescription: "in this piece, i examine where the money comes from. money always has a source, and the source shapes behavior downstream.  by studying the attributes of its sources, we may then reason about the shape, form, and longevity of how it flows ."
-banner: "/images/research/ethereum-public-goods-funding-sources-the-next-era/image.png"
 tags:
   - "research"
   - "analysis"
