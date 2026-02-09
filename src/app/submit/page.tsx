@@ -58,12 +58,12 @@ function SubmitContent() {
   return (
     <>
       {/* Header */}
-      <section className="bg-charcoal border-b border-dark-gray">
+      <section className="bg-gray-950 border-b border-gray-800">
         <div className="container-page py-12">
-          <h1 className="text-3xl md:text-4xl heading text-light-white mb-4">
+          <h1 className="text-3xl md:text-4xl heading text-gray-25 mb-4">
             {editPath ? "Suggest an Edit" : "Submit Content"}
           </h1>
-          <p className="text-lg text-muted-gray max-w-3xl">
+          <p className="text-lg text-gray-500 max-w-3xl">
             {editPath
               ? "Help us improve this content. Your edit will be reviewed by our team."
               : "Contribute to the Gitcoin Funding Directory. Quality submissions earn bounties up to $100."}
@@ -77,7 +77,7 @@ function SubmitContent() {
             {/* Content Type Selection */}
 
             <div className="space-y-6">
-              <h2 className="text-xl font-semibold text-light-white">
+              <h2 className="text-xl font-semibold text-gray-25">
                 What would you like to submit?
               </h2>
               <div className="grid gap-4">
@@ -87,16 +87,16 @@ function SubmitContent() {
                     variant="ghost"
                     size="sm"
                     key={type.value}
-                    className="card text-left flex items-center justify-start gap-4 hover:border-light-white transition-colors"
+                    className="card text-left flex items-center justify-start gap-4 hover:border-gray-25 transition-colors"
                   >
-                    <div className="w-12 h-12 rounded-lg bg-light-white/10 flex items-center justify-center flex-shrink-0">
-                      <type.icon className="w-6 h-6 text-light-white" />
+                    <div className="w-12 h-12 rounded-lg bg-gray-25/10 flex items-center justify-center flex-shrink-0">
+                      <type.icon className="w-6 h-6 text-gray-25" />
                     </div>
                     <div>
-                      <h3 className="font-semibold text-light-white">
+                      <h3 className="font-semibold text-gray-25">
                         {type.label}
                       </h3>
-                      <p className="text-sm text-muted-gray">
+                      <p className="text-sm text-gray-500">
                         {type.description}
                       </p>
                     </div>
@@ -113,8 +113,14 @@ function SubmitContent() {
 
 export default function SubmitPage() {
   return (
-    <div className="min-h-screen bg-void-black">
-      <Suspense fallback={<div className="container-page py-12"><p className="text-muted-gray">Loading...</p></div>}>
+    <div className="min-h-screen bg-gray-900">
+      <Suspense
+        fallback={
+          <div className="container-page py-12">
+            <p className="text-gray-500">Loading...</p>
+          </div>
+        }
+      >
         <SubmitContent />
       </Suspense>
     </div>

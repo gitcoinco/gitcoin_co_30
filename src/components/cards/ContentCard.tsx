@@ -22,7 +22,7 @@ export default function ContentCard({
   featured = false,
   layout = "logo",
   logo,
-  banner = '/og-default.png',
+  banner = "/og-default.png",
   bannerHeight = "h-40",
 }: ContentCardProps) {
   return (
@@ -42,7 +42,7 @@ export default function ContentCard({
                 alt={name}
                 className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
               />
-              <div className="absolute inset-0 bg-linear-to-b from-transparent to-smoke group-hover:opacity-0 transition-all duration-500" />
+              <div className="absolute inset-0 bg-linear-to-b from-transparent to-gray-900 group-hover:opacity-0 transition-all duration-500" />
             </div>
           )}
 
@@ -51,29 +51,29 @@ export default function ContentCard({
               <img
                 src={logo}
                 alt={`${name} logo`}
-                className="w-12 h-12 rounded-lg object-cover bg-dark-gray"
+                className="w-12 h-12 rounded-lg object-cover bg-gray-800"
               />
             ) : layout === "logo" ? (
-              <div className="w-12 h-12 rounded-lg border border-light-white flex items-center justify-center flex-shrink-0">
-                <span className="text-xl font-heading text-light-white">
+              <div className="w-12 h-12 rounded-lg border border-gray-25 flex items-center justify-center flex-shrink-0">
+                <span className="text-xl font-heading text-gray-25">
                   {name.charAt(0)}
                 </span>
               </div>
             ) : (
               ""
             )}
-            <h3 className="text-xl md:text-2xl font-semibold text-light-white group-hover:text-light-white transition-colors line-clamp-2">
+            <h3 className="text-xl md:text-2xl font-semibold text-gray-25 group-hover:text-gray-25 transition-colors line-clamp-2">
               {name}
             </h3>
           </div>
 
-          <p className="text-muted-gray text-sm mb-4 line-clamp-3 flex-grow">
+          <p className="text-gray-500 text-sm mb-4 line-clamp-3 flex-grow">
             {shortDescription}
           </p>
         </>
 
         {/* Tags */}
-        <div className="pt-5 border-t border-muted-gray/60 h-[3.7rem]">
+        <div className="pt-5 border-t border-gray-500/60 h-[3.7rem]">
           <TagsList tags={tags} />
         </div>
       </div>

@@ -1,9 +1,9 @@
-'use client'
+"use client";
 
-import { useEffect, useState } from 'react'
+import { useEffect, useState } from "react";
 
 export default function HeroBackground() {
-  const [scrollY, setScrollY] = useState(0)
+  const [scrollY, setScrollY] = useState(0);
 
   // Generate stars with varied properties
   const [stars] = useState(() =>
@@ -14,20 +14,20 @@ export default function HeroBackground() {
       size: Math.random() * 2 + 1,
       opacity: Math.random() * 0.5 + 0.3,
       speed: Math.random() * 0.3 + 0.1,
-    }))
-  )
+    })),
+  );
 
   useEffect(() => {
     const handleScroll = () => {
-      setScrollY(window.scrollY)
-    }
+      setScrollY(window.scrollY);
+    };
 
-    window.addEventListener('scroll', handleScroll, { passive: true })
+    window.addEventListener("scroll", handleScroll, { passive: true });
 
     return () => {
-      window.removeEventListener('scroll', handleScroll)
-    }
-  }, [])
+      window.removeEventListener("scroll", handleScroll);
+    };
+  }, []);
 
   return (
     <div className="absolute inset-0 z-0 pointer-events-none overflow-hidden">
@@ -35,7 +35,7 @@ export default function HeroBackground() {
       {stars.map((star) => (
         <div
           key={star.id}
-          className="absolute rounded-full bg-light-white"
+          className="absolute rounded-full bg-gray-25"
           style={{
             left: `${star.left}%`,
             top: `${star.top}%`,
@@ -43,7 +43,7 @@ export default function HeroBackground() {
             height: `${star.size}px`,
             opacity: star.opacity,
             transform: `translateY(${scrollY * star.speed}px)`,
-            transition: 'transform 0.1s ease-out',
+            transition: "transform 0.1s ease-out",
           }}
         />
       ))}
@@ -52,11 +52,11 @@ export default function HeroBackground() {
       <svg
         className="absolute w-12"
         style={{
-          top: '10%',
-          left: '10%',
+          top: "10%",
+          left: "10%",
           opacity: 0.9,
           transform: `translateY(${scrollY * 0.15}px)`,
-          transition: 'transform 0.1s ease-out',
+          transition: "transform 0.1s ease-out",
         }}
         viewBox="0 0 50 50"
       >
@@ -76,14 +76,53 @@ export default function HeroBackground() {
         preserveAspectRatio="xMidYMax slice"
       >
         <defs>
-          <pattern id="hatch1" patternUnits="userSpaceOnUse" width="4" height="4" patternTransform="rotate(45)">
-            <line x1="0" y1="0" x2="0" y2="4" stroke="white" strokeWidth="0.8" />
+          <pattern
+            id="hatch1"
+            patternUnits="userSpaceOnUse"
+            width="4"
+            height="4"
+            patternTransform="rotate(45)"
+          >
+            <line
+              x1="0"
+              y1="0"
+              x2="0"
+              y2="4"
+              stroke="white"
+              strokeWidth="0.8"
+            />
           </pattern>
-          <pattern id="hatch2" patternUnits="userSpaceOnUse" width="5" height="5" patternTransform="rotate(35)">
-            <line x1="0" y1="0" x2="0" y2="5" stroke="white" strokeWidth="0.6" />
+          <pattern
+            id="hatch2"
+            patternUnits="userSpaceOnUse"
+            width="5"
+            height="5"
+            patternTransform="rotate(35)"
+          >
+            <line
+              x1="0"
+              y1="0"
+              x2="0"
+              y2="5"
+              stroke="white"
+              strokeWidth="0.6"
+            />
           </pattern>
-          <pattern id="hatch3" patternUnits="userSpaceOnUse" width="6" height="6" patternTransform="rotate(55)">
-            <line x1="0" y1="0" x2="0" y2="6" stroke="white" strokeWidth="0.5" />
+          <pattern
+            id="hatch3"
+            patternUnits="userSpaceOnUse"
+            width="6"
+            height="6"
+            patternTransform="rotate(55)"
+          >
+            <line
+              x1="0"
+              y1="0"
+              x2="0"
+              y2="6"
+              stroke="white"
+              strokeWidth="0.5"
+            />
           </pattern>
         </defs>
         <path
@@ -103,5 +142,5 @@ export default function HeroBackground() {
         />
       </svg>
     </div>
-  )
+  );
 }

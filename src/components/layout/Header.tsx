@@ -1,8 +1,8 @@
 "use client";
 
 import Link from "next/link";
-import { useState } from "react";
-import { Menu, X, Search } from "lucide-react";
+import { useState, useEffect } from "react";
+import { Menu, X, Search, ChevronDown } from "lucide-react";
 import { Button } from "../ui";
 
 const navigation = [
@@ -15,99 +15,120 @@ const navigation = [
 
 export default function Header() {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
+  const [scrolled, setScrolled] = useState(false);
+
+  useEffect(() => {
+    const handleScroll = () => setScrolled(window.scrollY > 20);
+    handleScroll();
+    window.addEventListener("scroll", handleScroll, { passive: true });
+    return () => window.removeEventListener("scroll", handleScroll);
+  }, []);
 
   return (
-    <header className="bg-void-black border-b border-dark-gray sticky top-0 z-50">
-      <nav className="container-page" aria-label="Global">
-        <div className="flex items-center justify-between h-16">
-          {/* Logo */}
-          <div className="flex items-center">
-            <Link href="/" className="flex items-center gap-2 group">
-              <img
-                src="/gitcoin-logo.png"
-                alt="Gitcoin"
-                className="h-8 w-auto invert brightness-0 invert"
-              />
-            </Link>
-          </div>
+    <div className={`fixed top-0 left-0 right-0 z-50 px-6 md:px-12 py-4 transition-colors duration-300 ${scrolled ? "bg-gray-900/90 backdrop-blur-md" : "bg-transparent"}`}>
+      <header className="flex items-center justify-between">
+        <Link href="/" aria-label="Gitcoin home">
+          <img
+            src="/gitcoin-logo.svg"
+            alt="Gitcoin"
+            className="h-[21px] w-[118px] w-auto"
+          />
+        </Link>
 
-          {/* Desktop Navigation */}
-          <div className="hidden md:flex md:items-center md:gap-8">
-            {navigation.map((item) => (
-              <Link
-                key={item.name}
-                href={item.href}
-                className="text-muted-gray hover:text-light-white transition-colors duration-300 font-medium"
-              >
-                {item.name}
-              </Link>
-            ))}
-          </div>
+        <button
+          type="button"
+          className="inline-flex items-center justify-center rounded-md border border-gray-700 p-2 text-gray-200 lg:hidden"
+          aria-expanded={mobileMenuOpen}
+          aria-controls="home-mobile-menu"
+          onClick={() => setMobileMenuOpen((prev) => !prev)}
+        >
+          <span className="sr-only">Toggle navigation</span>
+          {mobileMenuOpen ? (
+            <X className="size-5" />
+          ) : (
+            <Menu className="size-5" />
+          )}
+        </button>
 
-          {/* Desktop Actions */}
-          <div className="hidden md:flex md:items-center md:gap-4">
+        <nav className="hidden items-center gap-8 lg:flex">
+          <Link
+            href="/about"
+            className="flex items-center gap-1 text-base tracking-[0.04em] text-gray-200 font-heading"
+          >
+            About
+            <ChevronDown className="size-3" />
+          </Link>
+          <Link
+            href="/campaigns"
+            className="flex items-center gap-1 text-base tracking-[0.04em] text-gray-200 font-heading"
+          >
+            Campaigns
+            <ChevronDown className="size-3" />
+          </Link>
+          <Link
+            href="/research"
+            className="text-base tracking-[0.04em] text-gray-200 font-heading"
+          >
+            Research
+          </Link>
+          <Link
+            href="/apps"
+            className="text-base tracking-[0.04em] text-gray-200 font-heading"
+          >
+            Apps
+          </Link>
+          <Link
+            href="/mechanisms"
+            className="text-base tracking-[0.04em] text-gray-200 font-heading"
+          >
+            Mechanisms
+          </Link>
+          <Link
+            href="/case-studies"
+            className="text-base tracking-[0.04em] text-gray-200 font-heading"
+          >
+            Case Studies
+          </Link>
+          <Link
+            href="/submit"
+            className="rounded-[10px] border border-teal-500 px-[14px] py-2 text-base text-teal-500 font-mono"
+          >
+            Partner with us
+          </Link>
+        </nav>
+      </header>
+
+      {mobileMenuOpen && (
+        <nav
+          id="home-mobile-menu"
+          className="mb-5 space-y-4 rounded-xl border border-gray-700 bg-gray-900/95 p-4 lg:hidden"
+        >
+          {[
+            ["About", "/about"],
+            ["Campaigns", "/campaigns"],
+            ["Research", "/research"],
+            ["Apps", "/apps"],
+            ["Mechanisms", "/mechanisms"],
+            ["Case Studies", "/case-studies"],
+          ].map(([label, href]) => (
             <Link
-              href="/search"
-              className="p-2 text-muted-gray hover:text-light-white transition-colors duration-300"
+              key={label}
+              href={href}
+              className="block text-gray-200"
+              onClick={() => setMobileMenuOpen(false)}
             >
-              <Search className="w-5 h-5" />
+              {label}
             </Link>
-            <Button href="/submit" variant="primary">
-              Submit Content
-            </Button>
-          </div>
-
-          {/* Mobile menu button */}
-          <div className="flex md:hidden">
-            <button
-              type="button"
-              className="p-2 text-muted-gray hover:text-light-white transition-colors"
-              onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
-            >
-              <span className="sr-only">Open menu</span>
-              {mobileMenuOpen ? (
-                <X className="w-6 h-6" />
-              ) : (
-                <Menu className="w-6 h-6" />
-              )}
-            </button>
-          </div>
-        </div>
-
-        {/* Mobile Navigation */}
-        {mobileMenuOpen && (
-          <div className="md:hidden py-4 border-t border-dark-gray">
-            <div className="flex flex-col gap-4">
-              {navigation.map((item) => (
-                <Link
-                  key={item.name}
-                  href={item.href}
-                  className="text-muted-gray hover:text-light-white transition-colors font-medium py-2"
-                  onClick={() => setMobileMenuOpen(false)}
-                >
-                  {item.name}
-                </Link>
-              ))}
-              <hr className="border-dark-gray" />
-              <Link
-                href="/search"
-                className="flex items-center gap-2 text-muted-gray hover:text-light-white transition-colors font-medium py-2"
-                onClick={() => setMobileMenuOpen(false)}
-              >
-                <Search className="w-5 h-5" />
-                Search
-              </Link>
-              <Button
-                href="/submit"
-                variant="primary"
-                onClick={() => setMobileMenuOpen(false)}
-              >
-                Submit Content
-              </Button>
-            </div>
-          </div>
-        )}
-      </nav>
-    </header>
+          ))}
+          <Link
+            href="/submit"
+            className="block rounded-[10px] border border-teal-500 px-3 py-2 text-center text-teal-500 font-mono"
+            onClick={() => setMobileMenuOpen(false)}
+          >
+            Partner with us
+          </Link>
+        </nav>
+      )}
+    </div>
   );
 }

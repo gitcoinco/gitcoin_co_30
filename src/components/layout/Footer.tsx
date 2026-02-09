@@ -1,157 +1,140 @@
-import Link from "next/link";
-import { Twitter, Github, MessageCircle } from "lucide-react";
+"use client";
 
-const navigation = {
-  directory: [
-    { name: "Apps", href: "/apps" },
-    { name: "Mechanisms", href: "/mechanisms" },
-    { name: "Case Studies", href: "/case-studies" },
-    { name: "Research", href: "/research" },
-    { name: "Campaigns", href: "/campaigns" },
-  ],
-  resources: [
-    { name: "Submit Content", href: "/submit" },
-    { name: "Contribution Guide", href: "/contribute" },
-    { name: "About", href: "/about" },
-  ],
-  ecosystem: [
-    { name: "Gov Forum", href: "https://gov.gitcoin.co" },
-    { name: "Passport", href: "https://passport.gitcoin.co" },
-    { name: "Allo Capital", href: "https://allo.capital" },
-    { name: "KERNEL", href: "https://kernel.community" },
-    { name: "Greenpill Podcast", href: "https://greenpill.network" },
-  ],
-  social: [
-    { name: "Twitter", href: "https://twitter.com/gitcoin", icon: Twitter },
-    { name: "GitHub", href: "https://github.com/gitcoinco", icon: Github },
-    {
-      name: "Telegram",
-      href: "https://t.me/+TIzf8MYT7DY0YWVh",
-      icon: MessageCircle,
-    },
-  ],
+import Link from "next/link";
+import {
+  Twitter,
+  Github,
+  Youtube,
+  MessageSquare,
+  type LucideIcon,
+} from "lucide-react";
+import ChladniBackground from "@/components/ChladniBackground";
+
+type FooterLink = {
+  title: string;
+  href: string;
+  external?: boolean;
 };
+
+type SocialLink = {
+  title: string;
+  href: string;
+  icon: LucideIcon;
+};
+
+const socialLinks: SocialLink[] = [
+  { title: "X", href: "https://x.com/gitcoin", icon: Twitter },
+  { title: "GitHub", href: "https://github.com/gitcoinco", icon: Github },
+  { title: "YouTube", href: "https://www.youtube.com/gitcoin", icon: Youtube },
+  { title: "Discourse", href: "https://gov.gitcoin.co", icon: MessageSquare },
+];
+
+const exploreLinks: FooterLink[] = [
+  { title: "Campaigns", href: "/campaigns" },
+  { title: "Research", href: "/research" },
+  { title: "Apps", href: "/apps" },
+  { title: "Mechanisms", href: "/mechanisms" },
+  { title: "Case Studies", href: "/case-studies" },
+];
+
+const resourceLinks: FooterLink[] = [
+  { title: "Impact", href: "https://impact.gitcoin.co", external: true },
+  {
+    title: "Grants Program",
+    href: "https://www.gitcoin.co/grants",
+    external: true,
+  },
+  {
+    title: "Greenpill Podcast",
+    href: "https://greenpill.network",
+    external: true,
+  },
+  { title: "gov.gitcoin.co", href: "https://gov.gitcoin.co", external: true },
+  { title: "allo.capital", href: "https://allo.capital", external: true },
+];
+
+const communityLinks: FooterLink[] = [
+  { title: "Contribute", href: "/contribute" },
+  { title: "Guidelines", href: "/contribute" },
+  { title: "Telegram", href: "https://t.me/+TIzf8MYT7DY0YWVh", external: true },
+];
+
+const bottomLinks: FooterLink[] = [
+  { title: "Privacy", href: "#" },
+  { title: "Terms", href: "#" },
+  { title: "Contact", href: "#" },
+];
+
+function FooterLinkItem({ link }: { link: FooterLink }) {
+  if (link.external) {
+    return (
+      <a href={link.href} target="_blank" rel="noopener noreferrer">
+        {link.title}
+      </a>
+    );
+  }
+  return <Link href={link.href}>{link.title}</Link>;
+}
+
+function FooterLinkGroup({
+  title,
+  links,
+}: {
+  title: string;
+  links: FooterLink[];
+}) {
+  return (
+    <div>
+      <h4 className="text-base font-semibold tracking-[-0.01em]">{title}</h4>
+      <div className="mt-4 flex flex-col gap-2 text-sm text-gray-300">
+        {links.map((link) => (
+          <FooterLinkItem key={link.title} link={link} />
+        ))}
+      </div>
+    </div>
+  );
+}
 
 export default function Footer() {
   return (
-    <footer className="bg-charcoal border-t border-dark-gray">
-      <div className="container-page py-12 md:py-16">
-        <div className="grid grid-cols-2 md:grid-cols-4 gap-8 mb-12">
-          {/* Directory */}
+    <footer className="relative overflow-hidden">
+      <ChladniBackground />
+      <div className="relative z-10 mx-auto w-full max-w-[1216px] px-4 py-14 sm:px-6 lg:px-0">
+        <div className="grid gap-10 lg:grid-cols-[2.2fr_1fr_1fr_1fr]">
           <div>
-            <h3 className="font-semibold text-lg mb-4 text-light-white">
-              Directory
-            </h3>
-            <ul className="space-y-3">
-              {navigation.directory.map((item) => (
-                <li key={item.name}>
-                  <Link
-                    href={item.href}
-                    className="text-muted-gray hover:text-light-white transition-colors duration-300"
-                  >
-                    {item.name}
-                  </Link>
-                </li>
-              ))}
-            </ul>
-          </div>
-
-          {/* Resources */}
-          <div>
-            <h3 className="font-semibold text-lg mb-4 text-light-white">
-              Resources
-            </h3>
-            <ul className="space-y-3">
-              {navigation.resources.map((item) => (
-                <li key={item.name}>
-                  <Link
-                    href={item.href}
-                    className="text-muted-gray hover:text-light-white transition-colors duration-300"
-                  >
-                    {item.name}
-                  </Link>
-                </li>
-              ))}
-            </ul>
-          </div>
-
-          {/* Ecosystem */}
-          <div>
-            <h3 className="font-semibold text-lg mb-4 text-light-white">
-              Ecosystem
-            </h3>
-            <ul className="space-y-3">
-              {navigation.ecosystem.map((item) => (
-                <li key={item.name}>
-                  <a
-                    href={item.href}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="text-muted-gray hover:text-light-white transition-colors duration-300"
-                  >
-                    {item.name}
-                  </a>
-                </li>
-              ))}
-            </ul>
-          </div>
-
-          {/* Newsletter */}
-          <div>
-            <h3 className="font-semibold text-lg mb-4 text-light-white">
-              Stay Updated
-            </h3>
-            <p className="text-muted-gray text-sm mb-4">
-              Get the latest on Ethereum funding mechanisms and ecosystem
-              updates.
+            <img src="/gitcoin-logo.svg" alt="Gitcoin" className="h-6 w-auto" />
+            <p className="mt-4 max-w-[348px] text-sm text-gray-400">
+              The premier place where Ethereum funds solutions to its most
+              important problems. We curate the funding landscape so you
+              don&apos;t have to.
             </p>
-            <form className="flex flex-col gap-2">
-              <input
-                type="email"
-                placeholder="Enter your email"
-                className="px-4 py-2 rounded-lg bg-dark-gray border border-muted-gray/30 text-light-white placeholder:text-muted-gray focus:outline-none focus:ring-2 focus:ring-light-white focus:border-transparent transition-all duration-200"
-              />
-              <button
-                type="submit"
-                className="px-4 py-2 bg-light-white text-void-black font-medium rounded-lg hover:bg-muted-gray transition-colors duration-300"
-              >
-                Subscribe
-              </button>
-            </form>
-          </div>
-        </div>
-
-        {/* Divider with stars */}
-        <div className="flex items-center gap-4 mb-8">
-          <div className="flex-1 h-px bg-dark-gray"></div>
-          <span className="text-muted-gray text-sm">☆ &nbsp; ☆ &nbsp; ☆</span>
-          <div className="flex-1 h-px bg-dark-gray"></div>
-        </div>
-
-        {/* Bottom */}
-        <div className="flex flex-col md:flex-row justify-between items-center gap-4">
-          <div className="flex items-center">
-            <img
-              src="/gitcoin-logo.png"
-              alt="Gitcoin"
-              className="h-6 w-auto invert brightness-0 invert"
-            />
+            <div className="mt-5 flex items-center gap-4">
+              {socialLinks.map(({ title, href, icon: Icon }) => (
+                <a
+                  key={title}
+                  href={href}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  aria-label={title}
+                >
+                  <Icon className="h-4 w-4 text-gray-400 hover:text-white transition-colors" />
+                </a>
+              ))}
+            </div>
           </div>
 
-          <p className="text-muted-gray text-sm italic ">Fund What Matters</p>
+          <FooterLinkGroup title="Explore" links={exploreLinks} />
+          <FooterLinkGroup title="Resources" links={resourceLinks} />
+          <FooterLinkGroup title="Community" links={communityLinks} />
+        </div>
 
-          <div className="flex items-center gap-4">
-            {navigation.social.map((item) => (
-              <a
-                key={item.name}
-                href={item.href}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="text-muted-gray hover:text-light-white transition-colors duration-300"
-              >
-                <span className="sr-only">{item.name}</span>
-                <item.icon className="w-5 h-5" />
-              </a>
+        <div className="mt-10 flex flex-col gap-3 border-t border-gray-500 pt-4 text-sm text-gray-400 sm:flex-row sm:items-center sm:justify-between">
+          <p>&copy; 2026 Gitcoin. Fund what matters.</p>
+          <div className="flex items-center gap-6">
+            {bottomLinks.map((link) => (
+              <Link key={link.title} href={link.href}>
+                {link.title}
+              </Link>
             ))}
           </div>
         </div>
