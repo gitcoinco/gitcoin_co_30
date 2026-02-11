@@ -9,6 +9,10 @@ tags:
   - retroactive funding
   - completed
   - RetroPGF 5
+matchingPoolUsd: '8M OP'
+projectsCount: '180'
+startDate: '2024-06-01'
+endDate: '2024-08-15'
 lastUpdated: '2024-12-25'
 relatedMechanisms:
   - retroactive-funding

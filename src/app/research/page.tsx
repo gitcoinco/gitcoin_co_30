@@ -7,6 +7,7 @@ import {
   ResultsBar,
   ItemsGrid,
   CTASection,
+  SensemakingSection,
 } from "@/components/layouts";
 import { research } from "@/content/research";
 
@@ -25,6 +26,8 @@ export default function ResearchPage() {
         searchPlaceholder="Search research..."
         icon="/assets/research-icon.svg"
       />
+
+      <SensemakingSection category="research" />
 
       <section className="section">
         <div className="container-page">

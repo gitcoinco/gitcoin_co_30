@@ -16,16 +16,13 @@ if (!issueNumber) {
   process.exit(1);
 }
 
-// You can add custom parsing/formatting logic here if needed for research
 const customOptions = {
-  // parseCustomFields: (issueBody) => {
-  //   // Parse research-specific fields
-  //   return {};
-  // },
-  // addCustomFrontmatter: (customData, metadata) => {
-  //   // Add research-specific frontmatter
-  //   return '';
-  // }
+  addCustomFrontmatter: (_customData, metadata) => {
+    if (metadata.sensemakingFor) {
+      return `sensemakingFor: ${metadata.sensemakingFor}`;
+    }
+    return '';
+  }
 };
 
 publishContent('research', issueNumber, customOptions).catch(console.error);

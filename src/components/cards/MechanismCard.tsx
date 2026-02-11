@@ -12,8 +12,8 @@ export default function MechanismCard({ mechanism }: MechanismCardProps) {
       name={mechanism.name}
       shortDescription={mechanism.shortDescription}
       tags={mechanism.tags}
-      layout="logo"
-      logo={mechanism.logo}
+      layout="banner"
+      banner={mechanism.banner}
     />
   )
 }

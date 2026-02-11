@@ -6,6 +6,7 @@ import {
   FilterBar,
   ResultsBar,
   ItemsGrid,
+  SensemakingSection,
 } from "@/components/layouts";
 import { apps } from "@/content/apps";
 
@@ -24,6 +25,8 @@ export default function AppsPage() {
         searchPlaceholder="Search apps..."
         icon="/assets/apps-icon.svg"
       />
+
+      <SensemakingSection category="apps" />
 
       <section className="section">
         <div className="container-page">

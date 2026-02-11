@@ -16,16 +16,16 @@ if (!issueNumber) {
   process.exit(1);
 }
 
-// You can add custom parsing/formatting logic here if needed for campaigns
 const customOptions = {
-  // parseCustomFields: (issueBody) => {
-  //   // Parse campaign-specific fields
-  //   return {};
-  // },
-  // addCustomFrontmatter: (customData, metadata) => {
-  //   // Add campaign-specific frontmatter
-  //   return '';
-  // }
+  addCustomFrontmatter: (_customData, metadata) => {
+    const lines = [];
+    if (metadata.externalUrl) lines.push(`externalUrl: '${metadata.externalUrl}'`);
+    if (metadata.matchingPoolUsd) lines.push(`matchingPoolUsd: '${metadata.matchingPoolUsd}'`);
+    if (metadata.projectsCount) lines.push(`projectsCount: '${metadata.projectsCount}'`);
+    if (metadata.startDate) lines.push(`startDate: '${metadata.startDate}'`);
+    if (metadata.endDate) lines.push(`endDate: '${metadata.endDate}'`);
+    return lines.join('\n');
+  }
 };
 
 publishContent('campaign', issueNumber, customOptions).catch(console.error);

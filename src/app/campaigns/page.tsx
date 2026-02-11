@@ -1,6 +1,6 @@
 import { Metadata } from 'next'
 import { CampaignCard } from '@/components/cards'
-import { ListPageLayout, ListPageHeader, ItemsGrid, CTASection, ResultsBar } from '@/components/layouts'
+import { ListPageLayout, ListPageHeader, ItemsGrid, CTASection, ResultsBar, SensemakingSection } from '@/components/layouts'
 import { campaigns } from '@/content/campaigns'
 
 export const metadata: Metadata = {
@@ -18,7 +18,8 @@ export default function CampaignsPage() {
         searchPlaceholder="Search campaigns..."
       />
 
-      {/* All Campaigns */}
+      <SensemakingSection category="campaigns" />
+
       <section className="section">
         <div className="container-page">
           <ResultsBar count={campaigns.length} itemType="campaigns" />

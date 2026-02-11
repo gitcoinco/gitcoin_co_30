@@ -1,25 +1,69 @@
 @import "tailwindcss";
+@import "tw-animate-css";
+@import "shadcn/tailwind.css";
 
+@custom-variant dark (&:is(.dark *));
 
 @theme inline {
   --font-heading: var(--font-heading);
-  --font-sans: var(--font-sand);
+  --font-sans: var(--font-sans);
   --font-mono: var(--font-mono);
+  --font-serif: var(--font-serif);
+  --radius-sm: calc(var(--radius) - 4px);
+  --radius-md: calc(var(--radius) - 2px);
+  --radius-lg: var(--radius);
+  --radius-xl: calc(var(--radius) + 4px);
+  --radius-2xl: calc(var(--radius) + 8px);
+  --radius-3xl: calc(var(--radius) + 12px);
+  --radius-4xl: calc(var(--radius) + 16px);
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --color-card: var(--card);
+  --color-card-foreground: var(--card-foreground);
+  --color-popover: var(--popover);
+  --color-popover-foreground: var(--popover-foreground);
+  --color-primary: var(--primary);
+  --color-primary-foreground: var(--primary-foreground);
+  --color-secondary: var(--secondary);
+  --color-secondary-foreground: var(--secondary-foreground);
+  --color-muted: var(--muted);
+  --color-muted-foreground: var(--muted-foreground);
+  --color-accent: var(--accent);
+  --color-accent-foreground: var(--accent-foreground);
+  --color-destructive: var(--destructive);
+  --color-border: var(--border);
+  --color-input: var(--input);
+  --color-ring: var(--ring);
 }
 
-/* Celestial Minimalist Brand Theme
-   Pure Black & White Only */
 @theme {
-  /* Core Brand Colors - Pure Black & White */
-  --color-void-black: #000000;
-  --color-light-white: #FFFFFF;
+  /* Core Brand Colors */
 
-  /* Functional Grays (use sparingly for UI only) */
-  --color-muted-gray: #6a7282;
-  --color-soft-gray: #E5E5E5;
-  --color-dark-gray: #333333;
-  --color-charcoal: #111111;
-  --color-smoke: #1a1a1a;
+  --color-iris-500: #A195F0;
+
+  --color-teal-25: #ECFFFA;
+  --color-teal-50: #CFFFF4;
+  --color-teal-100: #A1F7E7;
+  --color-teal-200: #63EED4;
+  --color-teal-300: #2FE5C0;
+  --color-teal-400: #12D9B2;
+  --color-teal-500: #02E2AC;
+  --color-teal-600: #00B894;
+  --color-teal-700: #008F73;
+  --color-teal-800: #006957;
+  --color-teal-900: #00483E;
+  --color-teal-950: #002E28;
+
+  --color-gray-25: #FBFAF9;
+  --color-gray-100: #EAE8E4;
+  --color-gray-200: #D6D3CD;
+  --color-gray-300: #B8B4AC;
+  --color-gray-400: #9A958C;
+  --color-gray-500: #7C776F;
+  --color-gray-600: #605B55;
+  --color-gray-700: #46423D;
+  --color-gray-900: #1C1A17;
+  --color-gray-950: #12100D;
 
   /* System Colors (functional only) */
   --color-system-success: #22c55e;
@@ -28,27 +72,27 @@
   --color-system-info: #3b82f6;
 }
 
+/* Shadcn CSS variables — dark theme only (matches our design) */
 :root {
-  --color-bg: #000000;
-  --color-bg-secondary: #111111;
-  --color-bg-card: #1a1a1a;
-  --color-text: #FFFFFF;
-  --color-text-secondary: #999999;
-  --color-text-muted: #666666;
-  --color-border: #333333;
-  --color-border-subtle: #222222;
-}
-
-/* Light mode override (accessibility) */
-[data-theme="light"] {
-  --color-bg: #FFFFFF;
-  --color-bg-secondary: #F5F5F5;
-  --color-bg-card: #FFFFFF;
-  --color-text: #000000;
-  --color-text-secondary: #666666;
-  --color-text-muted: #999999;
-  --color-border: #E5E5E5;
-  --color-border-subtle: #EEEEEE;
+  --radius: 0.625rem;
+  --background: #1C1A17;
+  --foreground: #FBFAF9;
+  --card: #1C1A17;
+  --card-foreground: #FBFAF9;
+  --popover: #1C1A17;
+  --popover-foreground: #FBFAF9;
+  --primary: #02E2AC;
+  --primary-foreground: #1C1A17;
+  --secondary: #46423D;
+  --secondary-foreground: #FBFAF9;
+  --muted: #46423D;
+  --muted-foreground: #7C776F;
+  --accent: #46423D;
+  --accent-foreground: #FBFAF9;
+  --destructive: #ef4444;
+  --border: #46423D;
+  --input: #46423D;
+  --ring: #02E2AC;
 }
 
 @layer base {
@@ -58,27 +102,30 @@
   }
 
   body {
-    @apply bg-void-black text-light-white antialiased;
+    @apply bg-gray-900 text-gray-25 antialiased;
     font-family: var(--font-sans);
-    line-height: 1.6;
+  }
+
+  * {
+    @apply border-border outline-ring/50;
   }
 
   /* Typography Scale - Space Grotesk for headlines */
-  h1, h2, h3, h4, h5, h6 {
-    @apply font-bold tracking-tight text-light-white;
-    font-family: var(--font-mono);
+  h1, h2 {
+    @apply font-extrabold text-gray-25;
+  }
+
+  h3, h4, h5, h6 {
+    @apply font-bold text-gray-25;
   }
 
   h1 {
     @apply text-4xl md:text-5xl lg:text-6xl;
-    line-height: 1.1;
-    letter-spacing: -0.02em;
   }
 
   h2 {
     @apply text-3xl md:text-4xl;
     line-height: 1.2;
-    letter-spacing: -0.01em;
   }
 
   h3 {
@@ -98,7 +145,7 @@
   }
 
   .heading {
-    @apply font-heading tracking-wider uppercase;
+    @apply font-heading tracking-wider;
   }
 }
 
@@ -106,47 +153,47 @@
   /* Primary CTA Button - White on dark (per brand guidelines) */
   .btn-primary {
     @apply inline-flex items-center justify-center px-6 py-3
-           bg-light-white text-void-black font-medium rounded-lg
-           hover:bg-muted-gray transition-all duration-300;
+           bg-gray-25 text-gray-900 font-medium rounded-lg
+           hover:bg-gray-500 transition-all duration-300;
   }
 
   /* Secondary Button - White Outlined */
   .btn-secondary {
     @apply inline-flex items-center justify-center px-6 py-3
-           border border-light-white text-light-white font-medium rounded-lg
-           hover:bg-light-white hover:text-void-black transition-all duration-300;
+           border border-gray-25 text-gray-25 font-medium rounded-lg
+           hover:bg-gray-25 hover:text-gray-900 transition-all duration-300;
   }
 
   /* Ghost Button */
   .btn-ghost {
     @apply inline-flex items-center justify-center px-6 py-3
-           text-muted-gray font-medium rounded-lg
-           hover:text-light-white hover:bg-light-white/10 transition-all duration-300;
+           text-gray-500 font-medium rounded-lg
+           hover:text-gray-25 hover:bg-gray-25/10 transition-all duration-300;
   }
 
   /* Card - Dark with subtle border */
   .card {
-    @apply bg-smoke rounded-xl border border-dark-gray p-6
+    @apply bg-gray-900 rounded-xl border border-gray-800 p-6
            transition-all duration-300;
   }
 
   .card:hover {
-    @apply border-muted-gray;
+    @apply border-gray-500;
   }
 
   /* Card Featured - White border accent */
   .card-featured {
-    @apply bg-smoke rounded-xl border-2 border-light-white p-6;
+    @apply bg-gray-900 rounded-xl border-2 border-gray-25 p-6;
   }
 
   /* Tag/Badge - Pure black/white */
   .tag {
     @apply inline-flex items-center px-3 py-1 text-sm font-medium
-           rounded-full bg-dark-gray text-muted-gray border border-dark-gray;
+           rounded-full bg-gray-800 text-gray-500 border border-gray-800;
   }
 
   .tag-active {
-    @apply bg-light-white text-void-black border-light-white;
+    @apply bg-gray-25 text-gray-900 border-gray-25;
   }
 
   /* Section spacing */
@@ -161,7 +208,7 @@
 
   /* Star decorative element */
   .star {
-    @apply inline-block text-light-white;
+    @apply inline-block text-gray-25;
   }
 
   .star::before {
@@ -174,7 +221,7 @@
 
   /* Constellation line */
   .constellation-line {
-    @apply h-px bg-gradient-to-r from-transparent via-muted-gray to-transparent;
+    @apply h-px bg-gradient-to-r from-transparent via-gray-500 to-transparent;
   }
 
   /* Divider with stars */
@@ -185,7 +232,7 @@
   .divider-stars::before,
   .divider-stars::after {
     content: '';
-    @apply flex-1 h-px bg-dark-gray;
+    @apply flex-1 h-px bg-gray-800;
   }
 }
 
@@ -211,7 +258,7 @@
 
 /* Focus styles */
 :focus-visible {
-  @apply outline-2 outline-offset-2 outline-light-white;
+  @apply outline-2 outline-offset-2 outline-gray-25;
 }
 
 /* Selection color - white on black */
@@ -227,15 +274,15 @@
 }
 
 ::-webkit-scrollbar-track {
-  @apply bg-charcoal;
+  @apply bg-gray-950;
 }
 
 ::-webkit-scrollbar-thumb {
-  @apply bg-dark-gray rounded-full;
+  @apply bg-gray-800 rounded-full;
 }
 
 ::-webkit-scrollbar-thumb:hover {
-  @apply bg-muted-gray;
+  @apply bg-gray-500;
 }
 
 /* Links - only style links that don't have button classes */
@@ -245,17 +292,17 @@ a:not(.btn-primary):not(.btn-secondary):not(.btn-ghost) {
 
 /* Code blocks */
 pre {
-  @apply bg-charcoal border border-dark-gray rounded-lg p-4 overflow-x-auto;
+  @apply bg-gray-950 border border-gray-800 rounded-lg p-4 overflow-x-auto;
 }
 
 code:not(pre code) {
-  @apply bg-dark-gray px-1.5 py-0.5 rounded text-sm text-light-white;
+  @apply bg-gray-800 px-1.5 py-0.5 rounded text-sm text-gray-25;
 }
 
 /* Blockquotes - Playfair Display, white border */
 blockquote {
-  @apply border-l-2 border-light-white pl-6 my-6;
-  @apply text-xl italic text-muted-gray;
+  @apply border-l-2 border-gray-25 pl-6 my-6;
+  @apply text-xl italic text-gray-500;
 }
 
 /* Tables */
@@ -264,25 +311,55 @@ table {
 }
 
 th {
-  @apply text-left font-medium text-muted-gray uppercase text-xs tracking-wider py-3 border-b border-dark-gray;
+  @apply text-left font-medium text-gray-500 uppercase text-xs tracking-wider py-3 border-b border-gray-800;
 }
 
 td {
-  @apply py-3 border-b border-dark-gray;
+  @apply py-3 border-b border-gray-800;
 }
 
 /* Horizontal rule */
 hr {
-  @apply border-dark-gray my-8;
+  @apply border-gray-800 my-8;
 }
 
 /* Form inputs */
 input, textarea, select {
-  @apply bg-charcoal border border-dark-gray rounded-lg px-4 py-3
-         text-light-white placeholder:text-muted-gray
-         focus:outline-none focus:ring-2 focus:ring-light-white focus:border-transparent
-         transition-all duration-200;
+  @apply bg-gray-900/60 border border-gray-200 rounded-xl px-4 py-3
+         text-gray-25 placeholder:text-gray-500
+           hover:border-teal-500
+         focus:outline-none focus:border-teal-500
+         transition-all duration-400;
   font-family: var(--font-sans);
+}
+
+/* Dropdown animation */
+@keyframes dropdown-in {
+  from { opacity: 0; transform: scale(0.95) translateY(-4px); }
+  to { opacity: 1; transform: scale(1) translateY(0); }
+}
+
+@keyframes dropdown-out {
+  from { opacity: 1; transform: scale(1) translateY(0); }
+  to { opacity: 0; transform: scale(0.95) translateY(-4px); }
+}
+
+/* Sidebar slide — desktop: right, mobile: bottom */
+@keyframes sidebar-in-right {
+  from { transform: translateX(100%); }
+  to { transform: translateX(0); }
+}
+@keyframes sidebar-out-right {
+  from { transform: translateX(0); }
+  to { transform: translateX(100%); }
+}
+@keyframes sidebar-in-bottom {
+  from { transform: translateY(100%); }
+  to { transform: translateY(0); }
+}
+@keyframes sidebar-out-bottom {
+  from { transform: translateY(0); }
+  to { transform: translateY(100%); }
 }
 
 /* Animation for celestial elements */

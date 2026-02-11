@@ -9,6 +9,10 @@ tags:
   - incentives
   - completed
   - STIP
+matchingPoolUsd: '71.4M ARB'
+projectsCount: '56'
+startDate: '2023-10-01'
+endDate: '2024-03-31'
 lastUpdated: '2024-12-25'
 relatedMechanisms:
   - direct-grants

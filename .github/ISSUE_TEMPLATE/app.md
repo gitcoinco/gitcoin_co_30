@@ -7,21 +7,25 @@ assignees: ''
 ---
 
 <!--
-This template will be automatically converted to a markdown file.
-Fill in all sections below. You can use markdown formatting and add images.
+IMPORTANT: This template is automatically parsed by a script to generate content files.
+- Fill in all metadata fields below — do NOT rename or remove the field labels (e.g. "Short Description", "Tags").
+- The bold field names (e.g. **Short Description**) are used as keys during parsing. Changing them will break the automation.
+- You can use markdown formatting in the Description section and add images.
 -->
 
 ## Metadata
 
+- **Slug**: (Optional: override auto-generated slug, e.g. `gitcoin-grants-stack`. Required when updating existing content)
 - **Short Description**: (One-line description)
 - **Tags**: (comma-separated tags)
+- **Featured**: (Optional: `true` to feature on homepage)
 
 
 ## Banner Image
 <!--
 OPTIONAL: Add a banner image - it will be displayed at the top of the page.
 Recommended dimensions: 1600x900 pixels (16:9 aspect ratio) or 1200x600 pixels (2:1 aspect ratio)
-Formats: PNG, JPG, or WebP
+Formats: PNG or JPG only 
 -->
 
 
@@ -29,7 +33,7 @@ Formats: PNG, JPG, or WebP
 <!--
 OPTIONAL: Add a logo image.
 Recommended dimensions: Square (e.g., 256x256 pixels)
-Formats: SVG, PNG preferred
+Formats: PNG or JPG only 
 -->
 
 

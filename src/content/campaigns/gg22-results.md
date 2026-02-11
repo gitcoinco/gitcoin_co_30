@@ -9,6 +9,11 @@ tags:
   - quadratic funding
   - completed
   - GG22
+matchingPoolUsd: '$1.5M+'
+projectsCount: '300'
+startDate: '2024-08-07'
+endDate: '2024-08-21'
+featured: true
 lastUpdated: '2024-12-25'
 relatedMechanisms:
   - quadratic-funding

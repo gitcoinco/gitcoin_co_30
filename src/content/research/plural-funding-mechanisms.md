@@ -3,7 +3,7 @@ id: '4'
 slug: plural-funding-mechanisms
 name: The Case for Plural Funding Mechanisms
 shortDescription: Why no single funding mechanism is optimal, and how ecosystems benefit from mechanism diversity.
-banner: /images/research/plural.svg
+banner: /images/banner-placeholder.png
 tags:
   - mechanism design
   - plurality

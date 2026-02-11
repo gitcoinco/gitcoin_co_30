@@ -16,3 +16,5 @@ export {
   ItemsGrid,
   CTASection,
 } from './DetailPageLayout'
+
+export { default as SensemakingSection } from './SensemakingSection'

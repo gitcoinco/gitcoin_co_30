@@ -25,11 +25,10 @@ export function getActiveCampaigns(): Campaign[] {
 }
 
 /**
- * Get featured campaigns (returns first few campaigns)
+ * Get featured campaigns (items with featured: true in frontmatter)
  */
 export function getFeaturedCampaigns(count: number = 6): Campaign[] {
-  const allCampaigns = getAllCampaigns()
-  return allCampaigns.slice(0, count)
+  return campaigns.filter(c => c.featured).slice(0, count)
 }
 
 // For static params generation and client components

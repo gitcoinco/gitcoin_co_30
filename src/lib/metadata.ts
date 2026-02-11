@@ -19,16 +19,29 @@ export function generateDetailPageMetadata(config: MetadataConfig): Metadata {
 
   // Determine the best image to use
   let imageUrl = 'https://explore.gitcoin.co/og-default.png'
-  if (banner) {
+
+  // Only use banner/logo if it's not SVG (PNG, JPG, WebP work in all platforms)
+  if (banner && !banner.endsWith('.svg')) {
     imageUrl = `https://explore.gitcoin.co${banner}`
-  } else if (logo) {
+  } else if (logo && !logo.endsWith('.svg')) {
     imageUrl = `https://explore.gitcoin.co${logo}`
+  }
+
+  // Determine image type based on extension
+  const getImageType = (url: string): string => {
+    if (url.endsWith('.jpg') || url.endsWith('.jpeg')) return 'image/jpeg'
+    if (url.endsWith('.png')) return 'image/png'
+    if (url.endsWith('.webp')) return 'image/webp'
+    return 'image/png' // default
   }
 
   // Base metadata
   const metadata: Metadata = {
     title,
     description: shortDescription,
+    alternates: {
+      canonical: url,
+    },
     openGraph: {
       title,
       description: shortDescription,
@@ -40,6 +53,7 @@ export function generateDetailPageMetadata(config: MetadataConfig): Metadata {
           width: 1200,
           height: 630,
           alt: title,
+          type: getImageType(imageUrl),
         },
       ],
       locale: 'en_US',
@@ -51,6 +65,7 @@ export function generateDetailPageMetadata(config: MetadataConfig): Metadata {
       description: shortDescription,
       images: [imageUrl],
       creator: '@gitcoin',
+      site: '@gitcoin',
     },
   }
 

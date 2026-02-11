@@ -1,29 +1,36 @@
 interface BadgeProps {
-  children: React.ReactNode
-  variant?: 'default' | 'success' | 'warning' | 'error' | 'info' | 'active'
-  size?: 'sm' | 'md'
+  children: React.ReactNode;
+  variant?: "default" | "success" | "warning" | "error" | "info" | "active";
+  size?: "sm" | "md";
+  className?: string;
 }
 
-export default function Badge({ children, variant = 'default', size = 'md' }: BadgeProps) {
-  const baseStyles = 'inline-flex items-center font-medium rounded-full border'
+export default function Badge({
+  children,
+  variant = "default",
+  size = "md",
+  className = "",
+}: BadgeProps) {
+  const baseStyles = "items-center font-medium font-mono rounded-full leading-none w-fit";
 
   const variants = {
-    default: 'bg-dark-gray border-dark-gray text-gray-400',
-    success: 'bg-light-white/10 border-light-white/30 text-light-white',
-    warning: 'bg-system-warning/20 border-system-warning/30 text-system-warning',
-    error: 'bg-system-error/20 border-system-error/30 text-system-error',
-    info: 'bg-light-white/10 border-light-white/30 text-light-white',
-    active: 'bg-light-white border-light-white text-void-black',
-  }
+    default: "bg-gray-700 text-gray-100",
+    success: "bg-teal-500 text-teal-900",
+    info: "bg-teal-500 text-teal-900",
+    active: "bg-teal-500 text-teal-900",
+    warning:
+      "bg-system-warning/20 border border-system-warning/30 text-system-warning",
+    error: "bg-system-error/20 border-system-error/30 text-system-error",
+  };
 
   const sizes = {
-    sm: 'px-2 py-0.5 text-xs',
-    md: 'px-3 py-1 text-sm',
-  }
+    sm: "px-2.5 py-1.5 text-xs",
+    md: "px-3 py-1.5 text-sm",
+  };
 
   return (
-    <span className={`${baseStyles} ${variants[variant]} ${sizes[size]}`}>
+    <span className={`${className} ${baseStyles} ${variants[variant]} ${sizes[size]}`}>
       {children}
     </span>
-  )
+  );
 }

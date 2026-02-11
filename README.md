@@ -94,6 +94,8 @@ npm run build
 - `npm run publish-research <issue-number>` - Create research from GitHub issue
 - `npm run publish-case-study <issue-number>` - Create case study from GitHub issue
 - `npm run publish-campaign <issue-number>` - Create campaign from GitHub issue
+- `npm run sync-docs` - Sync content files from src/content to OpenAI vector store for AI chat
+
 
 ## Content Guidelines
 
@@ -102,14 +104,14 @@ npm run build
 **Banner Images (Optional)**
 - **Dimensions**: 1600x900px (16:9 aspect ratio) or 1200x600px (2:1 aspect ratio) recommended
 - **Where to add**: Place under the `## Banner Image` section in the GitHub issue template
-- **Format**: PNG, JPG, or WebP
-- Used as the hero image at the top of content pages
+- **Format**: PNG or JPG only
+- Used as the hero image at the top of content pages and for social media previews
 
 **Logo Images (Optional)**
 - **Dimensions**: Square format recommended (e.g., 256x256px, 512x512px)
 - **Aspect ratio**: 1:1 (square)
 - **Where to add**: Place under the `## Logo` section in the GitHub issue template
-- **Format**: SVG or PNG preferred
+- **Format**: PNG or JPG only
 - Used for thumbnails, cards, and branding
 
 **Additional Images**
@@ -121,7 +123,24 @@ npm run build
 - Use markdown formatting in GitHub issues
 - Supports standard markdown: headings, lists, links, code blocks
 
-### Metadata
+### Metadata / Frontmatter Fields
 - Follow the enum values exactly (e.g., `analysis` not `'analysis'`)
 - Use slugs for references (e.g., `quadratic-funding`, `gitcoin-grants-stack`)
 - Dates in `YYYY-MM-DD` format
+
+**`slug`** (all content types, optional)
+- Override the auto-generated slug (which is derived from the issue title)
+- Required when updating existing content to ensure the correct file is overwritten
+- Example: `slug: quadratic-funding`
+
+**`featured`** (all content types, optional)
+- Set `featured: true` to feature an item on the homepage
+- Featured apps and campaigns are displayed in their respective homepage sections
+
+**`sensemakingFor`** (research only, optional)
+- Marks a research article as a "sensemaking" piece for a specific category
+- Valid values: `mechanisms`, `apps`, `campaigns`, `case-studies`, `research`
+- Each category page displays its sensemaking article at the top in a dedicated section
+- On the `/research` page, sensemaking articles also appear in the normal grid
+- Banner images for sensemaking articles should use a wider 3:1 aspect ratio (e.g., 1800x600px)
+- Example: `sensemakingFor: mechanisms`
