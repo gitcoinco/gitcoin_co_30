@@ -10,6 +10,9 @@ import {
 import "./globals.css";
 import Header from "@/components/layout/Header";
 import Footer from "@/components/layout/Footer";
+import SearchProvider from "@/components/search/SearchProvider";
+import SearchModal from "@/components/search/SearchModal";
+import AIChatSidebar from "@/components/search/AIChatSidebar";
 
 const inter = Inter({
   subsets: ["latin"],
@@ -87,9 +90,13 @@ export default function RootLayout({
       className={`${inter.variable} ${bdoGrotesk.variable} ${source_serif.variable} ${ibm_plex_mono.variable}`}
     >
       <body className="min-h-screen flex flex-col">
-        <Header />
-        <main className="flex-grow">{children}</main>
-        <Footer />
+        <SearchProvider>
+          <Header />
+          <main className="flex-grow pt-[72px]">{children}</main>
+          <Footer />
+          <SearchModal />
+          <AIChatSidebar />
+        </SearchProvider>
       </body>
     </html>
   );

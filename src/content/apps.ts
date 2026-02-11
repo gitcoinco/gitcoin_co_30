@@ -18,11 +18,10 @@ export function getAppBySlug(slug: string): App | undefined {
 }
 
 /**
- * Get featured apps
+ * Get featured apps (items with featured: true in frontmatter)
  */
 export function getFeaturedApps(count: number = 6): App[] {
-  const allApps = getAllApps()
-  return allApps.slice(0, count)
+  return apps.filter(a => a.featured).slice(0, count)
 }
 
 // For static params generation and client components

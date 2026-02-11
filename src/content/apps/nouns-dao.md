@@ -12,6 +12,7 @@ tags:
 relatedMechanisms:
   - direct-grants
 lastUpdated: '2024-12-25'
+featured: true
 ---
 
 **Category:** dao

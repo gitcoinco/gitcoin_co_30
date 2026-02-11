@@ -13,6 +13,7 @@ relatedMechanisms:
   - direct-grants
   - quadratic-funding
 lastUpdated: '2024-12-25'
+featured: true
 ---
 
 **Category:** platform

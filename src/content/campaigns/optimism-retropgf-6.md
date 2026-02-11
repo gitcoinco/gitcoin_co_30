@@ -9,6 +9,10 @@ tags:
   - retroactive funding
   - governance
   - RetroPGF 6
+externalUrl: https://retrofunding.optimism.io
+matchingPoolUsd: '2.4M OP'
+startDate: '2024-11-01'
+endDate: '2025-01-31'
 lastUpdated: '2024-12-25'
 relatedMechanisms:
   - retroactive-funding

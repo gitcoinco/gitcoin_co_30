@@ -18,11 +18,20 @@ export function getResearchBySlug(slug: string): Research | undefined {
 }
 
 /**
- * Get featured research
+ * Get featured research (sorted by most recent)
  */
 export function getFeaturedResearch(count: number = 3): Research[] {
   const allResearch = getAllResearch()
-  return allResearch.slice(0, count)
+  return [...allResearch]
+    .sort((a, b) => b.lastUpdated.localeCompare(a.lastUpdated))
+    .slice(0, count)
+}
+
+/**
+ * Get the sensemaking research article for a given category
+ */
+export function getSensemakingFor(category: string): Research | undefined {
+  return research.find(r => r.sensemakingFor === category)
 }
 
 // For static params generation and client components

@@ -3,7 +3,7 @@ id: '2'
 slug: quadratic-funding-sybil-resistance
 name: 'Sybil Resistance in Quadratic Funding: 2024 Approaches'
 shortDescription: An analysis of how Gitcoin Passport, MACI, and other approaches address sybil attacks in quadratic funding rounds.
-banner: /images/research/sybil.svg
+banner: /images/banner-placeholder.png
 tags:
   - sybil resistance
   - identity

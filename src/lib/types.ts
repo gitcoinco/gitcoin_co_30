@@ -11,6 +11,7 @@ export interface BaseContent {
   banner?: string
   tags: string[]
   lastUpdated: string
+  featured?: boolean
   relatedApps?: string[]
   relatedMechanisms?: string[]
   relatedCaseStudies?: string[]
@@ -22,8 +23,16 @@ export interface BaseContent {
 export interface App extends BaseContent {}
 export interface Mechanism extends BaseContent {}
 export interface CaseStudy extends BaseContent {}
-export interface Research extends BaseContent {}
-export interface Campaign extends BaseContent {}
+export interface Research extends BaseContent {
+  sensemakingFor?: string
+}
+export interface Campaign extends BaseContent {
+  externalUrl?: string
+  matchingPoolUsd?: string
+  projectsCount?: string
+  startDate?: string
+  endDate?: string
+}
 
 // Supporting types
 export interface SocialLinks {

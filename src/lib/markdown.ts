@@ -53,6 +53,7 @@ function parseBaseContent(data: any, content: string, slug: string): App | Mecha
     banner: data.banner,
     tags: data.tags || [],
     lastUpdated: data.lastUpdated || new Date().toISOString().split('T')[0],
+    featured: data.featured || false,
     relatedApps: data.relatedApps || [],
     relatedMechanisms: data.relatedMechanisms || [],
   }
@@ -111,7 +112,10 @@ export function getMechanismFromMarkdown(slug: string): Mechanism | undefined {
 // ============================================
 
 function parseResearch(data: any, content: string, slug: string): Research {
-  return parseBaseContent(data, content, slug) as Research
+  return {
+    ...parseBaseContent(data, content, slug),
+    sensemakingFor: data.sensemakingFor,
+  } as Research
 }
 
 export function getResearchFromMarkdown(): Research[] {
@@ -127,7 +131,14 @@ export function getResearchItemFromMarkdown(slug: string): Research | undefined 
 // ============================================
 
 function parseCampaign(data: any, content: string, slug: string): Campaign {
-  return parseBaseContent(data, content, slug) as Campaign
+  return {
+    ...parseBaseContent(data, content, slug),
+    externalUrl: data.externalUrl,
+    matchingPoolUsd: data.matchingPoolUsd,
+    projectsCount: data.projectsCount,
+    startDate: data.startDate,
+    endDate: data.endDate,
+  } as Campaign
 }
 
 export function getCampaignsFromMarkdown(): Campaign[] {

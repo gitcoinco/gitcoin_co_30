@@ -7,14 +7,18 @@ assignees: ''
 ---
 
 <!--
-This template will be automatically converted to a markdown file.
-Fill in all sections below. You can use markdown formatting and add images.
+IMPORTANT: This template is automatically parsed by a script to generate content files.
+- Fill in all metadata fields below — do NOT rename or remove the field labels (e.g. "Short Description", "Tags").
+- The bold field names (e.g. **Short Description**) are used as keys during parsing. Changing them will break the automation.
+- You can use markdown formatting in the Description section and add images.
 -->
 
 ## Metadata
 
+- **Slug**: (Optional: override auto-generated slug, e.g. `quadratic-funding`. Required when updating existing content)
 - **Short Description**: (One-line description)
 - **Tags**: (comma-separated tags)
+- **Featured**: (Optional: `true` to feature on homepage)
 
 
 ## Banner Image

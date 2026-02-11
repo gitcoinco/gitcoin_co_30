@@ -7,14 +7,23 @@ assignees: ''
 ---
 
 <!--
-This template will be automatically converted to a markdown file.
-Fill in all sections below. You can use markdown formatting and add images.
+IMPORTANT: This template is automatically parsed by a script to generate content files.
+- Fill in all metadata fields below — do NOT rename or remove the field labels (e.g. "Short Description", "Tags").
+- The bold field names (e.g. **Short Description**) are used as keys during parsing. Changing them will break the automation.
+- You can use markdown formatting in the Description section and add images.
 -->
 
 ## Metadata
 
+- **Slug**: (Optional: override auto-generated slug, e.g. `esp-2025-q1`. Required when updating existing content)
 - **Short Description**: (One-line description)
 - **Tags**: (comma-separated tags)
+- **Featured**: (Optional: `true` to feature on homepage)
+- **External URL**: (Link to the campaign page, e.g., https://grants.gitcoin.co)
+- **Matching Pool USD**: (e.g., $500K)
+- **Projects Count**: (Number of projects, e.g., 234)
+- **Start Date**: (YYYY-MM-DD, e.g., 2026-02-01)
+- **End Date**: (YYYY-MM-DD, e.g., 2026-02-15)
 
 
 ## Banner Image
@@ -39,14 +48,9 @@ Full description of the campaign (use markdown formatting).
 
 You can include details like:
 - **Status**: Upcoming | Active | Completed
-- **Start Date**: YYYY-MM-DD
-- **End Date**: YYYY-MM-DD
 - **Organizer**: Who is running this campaign?
 - **Mechanism**: quadratic-funding, direct-grants, etc.
-- **Funding Pool**: e.g., $500,000
-- **Matching Pool**: e.g., $100,000 (if applicable)
 - **Application URL**: Link to apply
-- **Is Featured**: true | false
 - **Eligibility**: Who can participate? What are the requirements?
 - **Results** (For Completed Campaigns):
   - Projects Funded

@@ -1,15 +1,46 @@
 @import "tailwindcss";
+@import "tw-animate-css";
+@import "shadcn/tailwind.css";
 
+@custom-variant dark (&:is(.dark *));
 
 @theme inline {
   --font-heading: var(--font-heading);
   --font-sans: var(--font-sans);
   --font-mono: var(--font-mono);
   --font-serif: var(--font-serif);
+  --radius-sm: calc(var(--radius) - 4px);
+  --radius-md: calc(var(--radius) - 2px);
+  --radius-lg: var(--radius);
+  --radius-xl: calc(var(--radius) + 4px);
+  --radius-2xl: calc(var(--radius) + 8px);
+  --radius-3xl: calc(var(--radius) + 12px);
+  --radius-4xl: calc(var(--radius) + 16px);
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --color-card: var(--card);
+  --color-card-foreground: var(--card-foreground);
+  --color-popover: var(--popover);
+  --color-popover-foreground: var(--popover-foreground);
+  --color-primary: var(--primary);
+  --color-primary-foreground: var(--primary-foreground);
+  --color-secondary: var(--secondary);
+  --color-secondary-foreground: var(--secondary-foreground);
+  --color-muted: var(--muted);
+  --color-muted-foreground: var(--muted-foreground);
+  --color-accent: var(--accent);
+  --color-accent-foreground: var(--accent-foreground);
+  --color-destructive: var(--destructive);
+  --color-border: var(--border);
+  --color-input: var(--input);
+  --color-ring: var(--ring);
 }
 
 @theme {
   /* Core Brand Colors */
+
+  --color-iris-500: #A195F0;
+
   --color-teal-25: #ECFFFA;
   --color-teal-50: #CFFFF4;
   --color-teal-100: #A1F7E7;
@@ -41,28 +72,28 @@
   --color-system-info: #3b82f6;
 }
 
-/* :root {
-  --color-bg: #000000;
-  --color-bg-secondary: #111111;
-  --color-bg-card: #1a1a1a;
-  --color-text: #FFFFFF;
-  --color-text-secondary: #999999;
-  --color-text-muted: #666666;
-  --color-border: #333333;
-  --color-border-subtle: #222222;
-} */
-
-/* Light mode override (accessibility) */
-/* [data-theme="light"] {
-  --color-bg: #FFFFFF;
-  --color-bg-secondary: #F5F5F5;
-  --color-bg-card: #FFFFFF;
-  --color-text: #000000;
-  --color-text-secondary: #666666;
-  --color-text-muted: #999999;
-  --color-border: #E5E5E5;
-  --color-border-subtle: #EEEEEE;
-} */
+/* Shadcn CSS variables — dark theme only (matches our design) */
+:root {
+  --radius: 0.625rem;
+  --background: #1C1A17;
+  --foreground: #FBFAF9;
+  --card: #1C1A17;
+  --card-foreground: #FBFAF9;
+  --popover: #1C1A17;
+  --popover-foreground: #FBFAF9;
+  --primary: #02E2AC;
+  --primary-foreground: #1C1A17;
+  --secondary: #46423D;
+  --secondary-foreground: #FBFAF9;
+  --muted: #46423D;
+  --muted-foreground: #7C776F;
+  --accent: #46423D;
+  --accent-foreground: #FBFAF9;
+  --destructive: #ef4444;
+  --border: #46423D;
+  --input: #46423D;
+  --ring: #02E2AC;
+}
 
 @layer base {
   html {
@@ -73,6 +104,10 @@
   body {
     @apply bg-gray-900 text-gray-25 antialiased;
     font-family: var(--font-sans);
+  }
+
+  * {
+    @apply border-border outline-ring/50;
   }
 
   /* Typography Scale - Space Grotesk for headlines */
@@ -290,12 +325,41 @@ hr {
 
 /* Form inputs */
 input, textarea, select {
-  @apply bg-gray-900 border border-gray-200 rounded-xl px-4 py-3
+  @apply bg-gray-900/60 border border-gray-200 rounded-xl px-4 py-3
          text-gray-25 placeholder:text-gray-500
-          hover:placeholder:text-teal-500 hover:border-teal-500
-         focus:outline-none focus:ring-2 focus:ring-gray-25 focus:border-transparent
+           hover:border-teal-500
+         focus:outline-none focus:border-teal-500
          transition-all duration-400;
   font-family: var(--font-sans);
+}
+
+/* Dropdown animation */
+@keyframes dropdown-in {
+  from { opacity: 0; transform: scale(0.95) translateY(-4px); }
+  to { opacity: 1; transform: scale(1) translateY(0); }
+}
+
+@keyframes dropdown-out {
+  from { opacity: 1; transform: scale(1) translateY(0); }
+  to { opacity: 0; transform: scale(0.95) translateY(-4px); }
+}
+
+/* Sidebar slide — desktop: right, mobile: bottom */
+@keyframes sidebar-in-right {
+  from { transform: translateX(100%); }
+  to { transform: translateX(0); }
+}
+@keyframes sidebar-out-right {
+  from { transform: translateX(0); }
+  to { transform: translateX(100%); }
+}
+@keyframes sidebar-in-bottom {
+  from { transform: translateY(100%); }
+  to { transform: translateY(0); }
+}
+@keyframes sidebar-out-bottom {
+  from { transform: translateY(0); }
+  to { transform: translateY(100%); }
 }
 
 /* Animation for celestial elements */

@@ -9,6 +9,10 @@ tags:
   - quadratic funding
   - upcoming
   - GG24
+externalUrl: https://grants.gitcoin.co
+matchingPoolUsd: TBD
+startDate: '2025-02-01'
+endDate: '2025-02-15'
 lastUpdated: '2024-12-25'
 relatedMechanisms:
   - quadratic-funding

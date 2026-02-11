@@ -3,12 +3,15 @@ id: '4'
 slug: arbitrum-ltip
 name: Arbitrum LTIP
 shortDescription: Long-Term Incentive Pilot Program
-banner: /images/campaigns/ltip.svg
+banner: /images/campaigns/ltip.png
 tags:
   - arbitrum
   - incentives
   - ecosystem
   - LTIP
+matchingPoolUsd: '45.8M ARB'
+startDate: '2024-09-01'
+endDate: '2025-03-31'
 lastUpdated: '2024-12-25'
 relatedMechanisms:
   - direct-grants

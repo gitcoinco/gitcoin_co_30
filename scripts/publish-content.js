@@ -83,18 +83,19 @@ async function publishContent(contentType, issueNumber, customOptions = {}) {
     return;
   }
 
-  // Extract slug from title
   const titlePrefix = new RegExp(`^\\[${config.label}\\]\\s*`, 'i');
-  const slug = issue.title
+
+  // Parse structured data from issue body (standardized across all types)
+  const metadata = parseMetadata(issue.body);
+
+  // Use slug from metadata if provided, otherwise generate from title
+  const slug = metadata.slug || issue.title
     .replace(titlePrefix, '')
     .toLowerCase()
     .replace(/[^a-z0-9]+/g, '-')
     .replace(/(^-|-$)/g, '');
 
   console.log(`${config.emoji} Creating ${contentType}: ${slug}`);
-
-  // Parse structured data from issue body (standardized across all types)
-  const metadata = parseMetadata(issue.body);
   const description = parseSection(issue.body, 'Description');
   const relatedMechanisms = parseList(issue.body, 'Related Mechanisms');
   const relatedApps = parseList(issue.body, 'Related Apps');
@@ -149,6 +150,9 @@ shortDescription: ${metadata.shortDescription || ''}`;
   // Add optional image fields
   if (banner) frontmatter += `\nbanner: ${banner}`;
   if (logo) frontmatter += `\nlogo: ${logo}`;
+
+  // Add featured flag if set
+  if (metadata.featured) frontmatter += `\nfeatured: true`;
 
   // Add standard fields
   frontmatter += `

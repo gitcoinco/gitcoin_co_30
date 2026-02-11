@@ -1,5 +1,4 @@
 import Link from "next/link";
-import Badge from "../ui/Badge";
 import TagsList from "../ui/TagsList";
 
 interface ContentCardProps {
@@ -23,19 +22,25 @@ export default function ContentCard({
   layout = "logo",
   logo,
   banner = "/og-default.png",
-  bannerHeight = "h-40",
+  bannerHeight,
 }: ContentCardProps) {
+  const isBanner = layout === "banner";
+
   return (
     <Link href={href}>
       <div
         className={`${
           featured ? "card-featured" : "card"
-        } group h-full flex flex-col`}
+        } group h-full flex flex-col transition-all duration-300 ${
+          isBanner
+            ? "hover:border-teal-500 hover:shadow-[0_0_12px_-3px_rgba(2,226,172,0.6)] bg-bottom bg-no-repeat bg-size-[100%_0%] hover:bg-size-[100%_50%] bg-[linear-gradient(to_top,rgba(2,226,172,0.3),transparent)]"
+            : ""
+        }`}
       >
         <>
-          {layout === "banner" && !!banner && (
+          {isBanner && !!banner && (
             <div
-              className={`relative ${bannerHeight} -mx-6 -mt-6 mb-4 overflow-hidden rounded-t-xl`}
+              className={`relative ${bannerHeight || "aspect-video"} -mx-6 -mt-6 mb-4 overflow-hidden rounded-t-xl`}
             >
               <img
                 src={banner}

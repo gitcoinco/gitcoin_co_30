@@ -7,6 +7,7 @@ import {
   ResultsBar,
   ItemsGrid,
   CTASection,
+  SensemakingSection,
 } from "@/components/layouts";
 import { mechanisms } from "@/content/mechanisms";
 
@@ -34,6 +35,8 @@ export default function MechanismsPage() {
         searchPlaceholder="Search mechanisms..."
         icon="/assets/mechanisms-icon.svg"
       />
+
+      <SensemakingSection category="mechanisms" />
 
       <section className="section">
         <div className="container-page">

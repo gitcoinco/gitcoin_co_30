@@ -74,12 +74,60 @@ function parseMetadata(markdown) {
   if (metadataSection) {
     const content = metadataSection[1];
 
+    const slugMatch = content.match(/\*\*Slug\*\*:\s*(.+)/);
+    if (slugMatch) {
+      const val = slugMatch[1].replace(/\(.*?\)/g, '').trim();
+      if (val && val !== '') metadata.slug = val;
+    }
+
     const descMatch = content.match(/\*\*Short Description\*\*:\s*(.+)/);
     if (descMatch) metadata.shortDescription = descMatch[1].replace(/\(.*?\)/g, '').trim();
 
     const tagsMatch = content.match(/\*\*Tags\*\*:\s*(.+)/);
     if (tagsMatch) {
       metadata.tags = tagsMatch[1].replace(/\(.*?\)/g, '').split(',').map(t => t.trim()).filter(t => t);
+    }
+
+    const featuredMatch = content.match(/\*\*Featured\*\*:\s*(.+)/);
+    if (featuredMatch) {
+      const val = featuredMatch[1].replace(/\(.*?\)/g, '').trim().toLowerCase();
+      if (val === 'true') metadata.featured = true;
+    }
+
+    const sensemakingMatch = content.match(/\*\*Sensemaking For\*\*:\s*(.+)/);
+    if (sensemakingMatch) {
+      const val = sensemakingMatch[1].replace(/\(.*?\)/g, '').trim().toLowerCase();
+      if (val && val !== '') metadata.sensemakingFor = val;
+    }
+
+    const externalUrlMatch = content.match(/\*\*External URL\*\*:\s*(.+)/);
+    if (externalUrlMatch) {
+      const val = externalUrlMatch[1].replace(/\(.*?\)/g, '').trim();
+      if (val && val !== '') metadata.externalUrl = val;
+    }
+
+    const matchingPoolMatch = content.match(/\*\*Matching Pool USD\*\*:\s*(.+)/);
+    if (matchingPoolMatch) {
+      const val = matchingPoolMatch[1].replace(/\(.*?\)/g, '').trim();
+      if (val && val !== '') metadata.matchingPoolUsd = val;
+    }
+
+    const projectsCountMatch = content.match(/\*\*Projects Count\*\*:\s*(.+)/);
+    if (projectsCountMatch) {
+      const val = projectsCountMatch[1].replace(/\(.*?\)/g, '').trim();
+      if (val && val !== '') metadata.projectsCount = val;
+    }
+
+    const startDateMatch = content.match(/\*\*Start Date\*\*:\s*(.+)/);
+    if (startDateMatch) {
+      const val = startDateMatch[1].replace(/\(.*?\)/g, '').trim();
+      if (val && val !== '') metadata.startDate = val;
+    }
+
+    const endDateMatch = content.match(/\*\*End Date\*\*:\s*(.+)/);
+    if (endDateMatch) {
+      const val = endDateMatch[1].replace(/\(.*?\)/g, '').trim();
+      if (val && val !== '') metadata.endDate = val;
     }
   }
 

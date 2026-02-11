@@ -2,12 +2,7 @@ import Link from "next/link";
 import ContentCard from "./ContentCard";
 import type { Campaign } from "@/lib/types";
 import { Calendar, DollarSign, Users, type LucideIcon } from "lucide-react";
-
-interface CampaignMetric {
-  icon: LucideIcon;
-  label: string;
-  value: string;
-}
+import { Badge, Button } from "../ui";
 
 interface CampaignCardProps {
   campaign: Campaign;
@@ -17,13 +12,24 @@ interface CampaignCardProps {
   ctaLabel?: string;
 }
 
-const metrics: CampaignMetric[] = [
-  { icon: DollarSign, label: "Matching Pool", value: "$500K" },
-  { icon: Users, label: "Projects", value: "234" },
-  { icon: Calendar, label: "Timeline", value: "12 days" },
-];
+function getTimelineLabel(startDate?: string, endDate?: string): string | null {
+  if (!endDate) return null;
+  const now = new Date();
+  const end = new Date(endDate);
+  const start = startDate ? new Date(startDate) : null;
 
-function CampaignMetric({ icon: Icon, label, value }: CampaignMetric) {
+  if (end < now) return "Ended";
+  if (start && start > now) {
+    const days = Math.ceil((start.getTime() - now.getTime()) / (1000 * 60 * 60 * 24));
+    return days === 1 ? "Starts in 1 day" : `Starts in ${days} days`;
+  }
+
+  const days = Math.ceil((end.getTime() - now.getTime()) / (1000 * 60 * 60 * 24));
+  if (days < 1) return "Ends today";
+  return days === 1 ? "1 day left" : `${days} days left`;
+}
+
+function MetricItem({ icon: Icon, label, value }: { icon: LucideIcon; label: string; value: string }) {
   return (
     <div>
       <dt className="flex items-center gap-1 text-sm text-gray-400 font-mono">
@@ -34,19 +40,31 @@ function CampaignMetric({ icon: Icon, label, value }: CampaignMetric) {
     </div>
   );
 }
+
 export default function CampaignCard({
   campaign,
   featured = false,
-  variant = "default",
+  variant = "home",
   statusLabel = "Active now",
   ctaLabel = "Visit campaign",
 }: CampaignCardProps) {
+  const campaignUrl = campaign.externalUrl || `/campaigns/${campaign.slug}`;
+  const isExternal = !!campaign.externalUrl;
+  const timelineLabel = getTimelineLabel(campaign.startDate, campaign.endDate);
+
+  const metrics = [
+    campaign.matchingPoolUsd && { icon: DollarSign, label: "Matching Pool", value: campaign.matchingPoolUsd },
+    campaign.projectsCount && { icon: Users, label: "Projects", value: campaign.projectsCount },
+    timelineLabel && { icon: Calendar, label: "Timeline", value: timelineLabel },
+  ].filter(Boolean) as { icon: LucideIcon; label: string; value: string }[];
+
   if (variant === "home") {
     return (
       <article className="flex min-h-[366px] flex-col rounded-2xl border border-gray-600 bg-gray-900 p-6">
-        <p className="w-fit rounded-xl bg-teal-50 px-[9px] py-1 text-[13px] leading-4 text-gray-950">
+        <Badge variant="info" size="sm">
           {statusLabel}
-        </p>
+        </Badge>
+
         <h3 className="mt-6 text-[30px] text-gray-25 font-heading">
           {campaign.name}
         </h3>
@@ -54,25 +72,24 @@ export default function CampaignCard({
           {campaign.shortDescription}
         </p>
 
-        <dl className="mt-8 grid grid-cols-3 gap-4">
-          {metrics.map((metric) => (
-            <CampaignMetric key={metric.label} {...metric} />
-          ))}
-        </dl>
+        {metrics.length > 0 && (
+          <dl className="mt-8 grid grid-cols-3 gap-4">
+            {metrics.map((metric) => (
+              <MetricItem key={metric.label} {...metric} />
+            ))}
+          </dl>
+        )}
 
-        <Link
-          href={`/campaigns/${campaign.slug}`}
-          className="mt-auto inline-flex items-center justify-center rounded-[10px] border border-teal-500 px-4 py-2 text-center text-base text-teal-500 font-mono"
-        >
+        <Button variant="secondary" href={campaignUrl} external={isExternal} className="mt-auto">
           {ctaLabel}
-        </Link>
+        </Button>
       </article>
     );
   }
 
   return (
     <ContentCard
-      href={`/campaigns/${campaign.slug}`}
+      href={campaignUrl}
       name={campaign.name}
       shortDescription={campaign.shortDescription}
       tags={campaign.tags}

@@ -3,7 +3,7 @@ id: '3'
 slug: retropgf-impact-measurement-evolution
 name: 'Impact Measurement in Retroactive Funding: Evolution Through RetroPGF 3-6'
 shortDescription: How Optimism has evolved its impact measurement approaches across four RetroPGF rounds, with lessons for the broader ecosystem.
-banner: /images/research/impact.svg
+banner: /images/banner-placeholder.png
 tags:
   - impact measurement
   - retroactive funding

@@ -3,12 +3,16 @@ id: '3'
 slug: octant-epoch-9
 name: Octant Epoch 9
 shortDescription: Participatory public goods funding
-banner: /images/campaigns/octant-e9.svg
+banner: /images/campaigns/octant-e9.png
 tags:
   - octant
   - staking
   - public goods
   - epoch 9
+externalUrl: https://octant.app
+matchingPoolUsd: '$1.5M+'
+startDate: '2024-11-15'
+endDate: '2025-02-15'
 lastUpdated: '2024-12-25'
 relatedMechanisms:
   - quadratic-funding

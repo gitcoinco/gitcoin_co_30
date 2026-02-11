@@ -7,6 +7,7 @@ import {
   ResultsBar,
   ItemsGrid,
   CTASection,
+  SensemakingSection,
 } from "@/components/layouts";
 import { caseStudies } from "@/content/case-studies";
 
@@ -33,6 +34,8 @@ export default function CaseStudiesPage() {
         searchPlaceholder="Search case studies..."
         icon="/assets/case-studies-icon.svg"
       />
+
+      <SensemakingSection category="case-studies" />
 
       <section className="section">
         <div className="container-page">

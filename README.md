@@ -94,6 +94,8 @@ npm run build
 - `npm run publish-research <issue-number>` - Create research from GitHub issue
 - `npm run publish-case-study <issue-number>` - Create case study from GitHub issue
 - `npm run publish-campaign <issue-number>` - Create campaign from GitHub issue
+- `npm run sync-docs` - Sync content files from src/content to OpenAI vector store for AI chat
+
 
 ## Content Guidelines
 
@@ -121,7 +123,24 @@ npm run build
 - Use markdown formatting in GitHub issues
 - Supports standard markdown: headings, lists, links, code blocks
 
-### Metadata
+### Metadata / Frontmatter Fields
 - Follow the enum values exactly (e.g., `analysis` not `'analysis'`)
 - Use slugs for references (e.g., `quadratic-funding`, `gitcoin-grants-stack`)
 - Dates in `YYYY-MM-DD` format
+
+**`slug`** (all content types, optional)
+- Override the auto-generated slug (which is derived from the issue title)
+- Required when updating existing content to ensure the correct file is overwritten
+- Example: `slug: quadratic-funding`
+
+**`featured`** (all content types, optional)
+- Set `featured: true` to feature an item on the homepage
+- Featured apps and campaigns are displayed in their respective homepage sections
+
+**`sensemakingFor`** (research only, optional)
+- Marks a research article as a "sensemaking" piece for a specific category
+- Valid values: `mechanisms`, `apps`, `campaigns`, `case-studies`, `research`
+- Each category page displays its sensemaking article at the top in a dedicated section
+- On the `/research` page, sensemaking articles also appear in the normal grid
+- Banner images for sensemaking articles should use a wider 3:1 aspect ratio (e.g., 1800x600px)
+- Example: `sensemakingFor: mechanisms`

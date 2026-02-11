@@ -1,64 +1,56 @@
 "use client";
 
-import { useState } from "react";
-import { Search } from "lucide-react";
-import { useRouter } from "next/navigation";
+import { useEffect, useState } from "react";
+import { Command, Search } from "lucide-react";
+import { useSearch } from "@/components/search/SearchProvider";
 
 interface SearchBarProps {
   placeholder?: string;
-  size?: "sm" | "md" | "lg";
+  size?: "sm" | "md";
   className?: string;
 }
 
 export default function SearchBar({
-  placeholder = "Search apps, mechanisms, case studies...",
+  placeholder = "Search...",
   size = "md",
   className = "",
 }: SearchBarProps) {
-  const [query, setQuery] = useState("");
-  const router = useRouter();
+  const { setModalOpen } = useSearch();
+  const [isMac, setIsMac] = useState(true);
 
-  const handleSubmit = (e: React.FormEvent) => {
-    e.preventDefault();
-    if (query.trim()) {
-      router.push(`/search?q=${encodeURIComponent(query.trim())}`);
-    }
+  useEffect(() => {
+    const ua = navigator.userAgent || "";
+    setIsMac(/mac/i.test(ua));
+  }, []);
+
+  const sizeStyles = {
+    sm: "gap-2 rounded-lg px-3 py-1.5 text-sm",
+    md: "gap-3 rounded-xl px-4 py-3 text-base",
   };
 
-  const sizeClasses = {
-    sm: "py-2 pr-4 text-sm",
-    md: "py-3 pr-5 text-base",
-    lg: "py-4 pr-6 text-lg",
-  };
-
-  const paddingLeft = {
-    sm: "2.75rem",
-    md: "3.5rem",
-    lg: "5rem",
-  };
-
-  const iconSizes = {
-    sm: "w-4 h-4 left-4",
-    md: "w-5 h-5 left-5",
-    lg: "w-6 h-6 left-6",
-  };
+  const iconSize = size === "sm" ? "size-3.5" : "size-5";
 
   return (
-    <form onSubmit={handleSubmit} className={`relative ${className}`}>
+    <button
+      type="button"
+      onClick={() => setModalOpen(true)}
+      className={`group flex w-full cursor-pointer items-center border border-gray-300 bg-gray-900/60 text-left hover:border-teal-500 hover:shadow-[0_0_12px_0px_rgba(2,226,172,0.4)] ${sizeStyles[size]} ${className}`}
+      style={{ transition: "all 300ms ease" }}
+    >
       <Search
-        className={`absolute top-1/2 -translate-y-1/2 text-gray-500 ${iconSizes[size]}`}
+        className={`${iconSize} shrink-0 text-gray-300 group-hover:text-teal-500`}
+        style={{ transition: "color 300ms ease" }}
       />
-      <input
-        type="text"
-        value={query}
-        onChange={(e) => setQuery(e.target.value)}
-        placeholder={placeholder}
-        style={{ paddingLeft: paddingLeft[size] }}
-        className={`
-          w-full 
-          ${sizeClasses[size]}
-        `}
-      />
-    </form>
+      <span className="flex-1 text-gray-300">{placeholder}</span>
+      <kbd className="shrink-0 rounded px-1.5 py-0.5 text-sm text-gray-300 font-mono">
+        {isMac ? (
+          <span className="flex items-center">
+            <Command className="size-3" /> K
+          </span>
+        ) : (
+          "Ctrl+K"
+        )}
+      </kbd>
+    </button>
   );
 }

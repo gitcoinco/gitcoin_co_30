@@ -9,6 +9,11 @@ tags:
   - streaming
   - core protocol
   - ongoing
+externalUrl: https://protocol-guild.readthedocs.io
+matchingPoolUsd: '$92.9M+'
+projectsCount: '187'
+startDate: '2022-05-01'
+endDate: '2026-12-31'
 lastUpdated: '2024-12-25'
 relatedMechanisms:
   - streaming

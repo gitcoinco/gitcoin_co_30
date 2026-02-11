@@ -1,3 +1,5 @@
+"use client";
+
 import React, { useEffect, useRef } from "react";
 import * as THREE from "three";
 
@@ -355,10 +357,17 @@ const ChladniBackground = () => {
     };
 
     // --- Init Logic ---
+    let retryFrame;
     const init = () => {
+      const { width, height } = getCanvasSize();
+      // During client-side navigation the container may not be laid out yet
+      if (width === 0 || height === 0) {
+        retryFrame = requestAnimationFrame(init);
+        return;
+      }
+
       scene = new THREE.Scene();
       const aspect = getAspect();
-      const { width, height } = getCanvasSize();
       const frustumSize = CONFIG.viewScale * 2;
 
       camera = new THREE.OrthographicCamera(
@@ -419,6 +428,7 @@ const ChladniBackground = () => {
     return () => {
       window.removeEventListener("resize", onWindowResize);
       cancelAnimationFrame(animationFrameId);
+      cancelAnimationFrame(retryFrame);
       if (mountRef.current && renderer.domElement) {
         mountRef.current.removeChild(renderer.domElement);
       }
