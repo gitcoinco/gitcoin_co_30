@@ -25,7 +25,7 @@ const typeRoutes: Record<string, string> = {
 };
 
 export default function SearchModal() {
-  const { modalOpen, setModalOpen, openSidebar } = useSearch();
+  const { modalOpen, setModalOpen, dismissModal, openSidebar } = useSearch();
   const [query, setQuery] = useState("");
   const [results, setResults] = useState<SearchResultItem[]>([]);
   const [loading, setLoading] = useState(false);
@@ -82,7 +82,10 @@ export default function SearchModal() {
   }
 
   return (
-    <Dialog.Root open={modalOpen} onOpenChange={setModalOpen}>
+    <Dialog.Root open={modalOpen} onOpenChange={(open) => {
+      if (!open) dismissModal();
+      else setModalOpen(open);
+    }}>
       <Dialog.Portal>
         <Dialog.Overlay className="fixed inset-0 z-[100] bg-black/60 backdrop-blur-sm animate-[dropdown-in_150ms_ease-out] data-[state=closed]:animate-[dropdown-out_100ms_ease-in]" />
         <Dialog.Content
@@ -116,7 +119,7 @@ export default function SearchModal() {
             <Button
               size="xs"
               variant="tertiary"
-              onClick={() => setModalOpen(false)}
+              onClick={() => dismissModal()}
             >
               <kbd>ESC</kbd>
             </Button>
