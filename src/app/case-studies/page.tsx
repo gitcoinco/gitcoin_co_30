@@ -10,6 +10,7 @@ import {
   SensemakingSection,
 } from "@/components/layouts";
 import { caseStudies } from "@/content/case-studies";
+import SectionHeader from "@/components/ui/SectionHeader";
 
 export const metadata: Metadata = {
   title: "Case Studies",
@@ -28,21 +29,14 @@ const statusFilters = [
 export default function CaseStudiesPage() {
   return (
     <ListPageLayout>
-      <ListPageHeader
-        title="Case Studies"
-        description="Learn from real funding experiments across the ecosystem. Discover what worked, what didn't, and the lessons that can guide future initiatives."
-        searchPlaceholder="Search case studies..."
-        icon="/assets/case-studies-icon.svg"
-      />
+      <ListPageHeader title="Case Studies" />
 
       <SensemakingSection category="case-studies" />
 
       <section className="section">
         <div className="container-page">
-          <ResultsBar
-            count={caseStudies.length}
-            itemType="case studies"
-          />
+          <SectionHeader title="All Case Studies" subtitle="" />
+
           <ItemsGrid>
             {caseStudies.map((cs) => (
               <CaseStudyCard key={cs.id} caseStudy={cs} />

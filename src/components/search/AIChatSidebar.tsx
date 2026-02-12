@@ -30,7 +30,7 @@ const SUGGESTED_QUESTIONS = [
 ];
 
 export default function AIChatSidebar() {
-  const { sidebarOpen, setSidebarOpen, initialQuery } = useSearch();
+  const { sidebarOpen, setSidebarOpen, dismissSidebar, initialQuery } = useSearch();
   const {
     messages,
     status,
@@ -71,7 +71,8 @@ export default function AIChatSidebar() {
     function handleGlobalKeyDown(e: KeyboardEvent) {
       if ((e.metaKey || e.ctrlKey) && e.key === "i") {
         e.preventDefault();
-        setSidebarOpen(!sidebarOpen);
+        if (sidebarOpen) dismissSidebar();
+        else setSidebarOpen(true);
       }
     }
     document.addEventListener("keydown", handleGlobalKeyDown);
@@ -151,6 +152,12 @@ export default function AIChatSidebar() {
     : "animate-[sidebar-in-bottom_250ms_ease-out] sm:animate-[sidebar-in-right_250ms_ease-out]";
 
   return (
+    <>
+    {/* Backdrop overlay */}
+    <div
+      className={`fixed inset-0 z-101 bg-black/85 backdrop-blur-md ${closing ? "animate-[dropdown-out_100ms_ease-in_forwards]" : "animate-[dropdown-in_150ms_ease-out]"}`}
+      onClick={() => dismissSidebar()}
+    />
     <div
       className={`fixed z-102 flex flex-col border-gray-700 bg-gray-900 shadow-2xl bottom-0 left-0 right-0 h-[90vh] rounded-t-2xl border-t sm:top-0 sm:left-auto sm:right-0 sm:h-full sm:w-full sm:max-w-sm sm:rounded-t-none sm:border-l sm:border-t-0 ${animClass}`}
     >
@@ -162,7 +169,7 @@ export default function AIChatSidebar() {
         </div>
         <button
           type="button"
-          onClick={() => setSidebarOpen(false)}
+          onClick={() => dismissSidebar()}
           className="rounded-lg p-1 text-gray-400 hover:text-gray-25 cursor-pointer"
           style={{ transition: "color 150ms ease" }}
         >
@@ -344,5 +351,6 @@ export default function AIChatSidebar() {
         </div>
       </div>
     </div>
+    </>
   );
 }

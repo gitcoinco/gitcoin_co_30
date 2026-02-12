@@ -198,12 +198,12 @@
 
   /* Section spacing */
   .section {
-    @apply py-16 md:py-24;
+    @apply my-16 md:my-24;
   }
 
   /* Container */
   .container-page {
-    @apply max-w-7xl mx-auto px-4 sm:px-6 lg:px-8;
+    @apply max-w-7xl mx-auto px-4 sm:px-6 lg:px-24;
   }
 
   /* Star decorative element */

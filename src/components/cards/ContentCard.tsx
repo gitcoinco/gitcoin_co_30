@@ -31,9 +31,9 @@ export default function ContentCard({
       <div
         className={`${
           featured ? "card-featured" : "card"
-        } group h-full flex flex-col transition-all duration-300 ${
+        } bg-gray-950 group h-full flex flex-col transition-all duration-300 ${
           isBanner
-            ? "hover:border-teal-500 hover:shadow-[0_0_12px_-3px_rgba(2,226,172,0.6)] bg-bottom bg-no-repeat bg-size-[100%_0%] hover:bg-size-[100%_50%] bg-[linear-gradient(to_top,rgba(2,226,172,0.3),transparent)]"
+            ? "hover:border-teal-500 hover:shadow-[0_0_12px_-3px_rgba(2,226,172,0.6)] bg-bottom bg-no-repeat bg-size-[100%_6%] hover:bg-size-[100%_50%] bg-[linear-gradient(to_top,rgba(2,226,172,0.5),transparent)]"
             : ""
         }`}
       >
@@ -47,7 +47,7 @@ export default function ContentCard({
                 alt={name}
                 className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
               />
-              <div className="absolute inset-0 bg-linear-to-b from-transparent to-gray-900 group-hover:opacity-0 transition-all duration-500" />
+              <div className="absolute inset-0 bg-linear-to-b from-transparent to-gray-950 group-hover:opacity-0 transition-all duration-500" />
             </div>
           )}
 
@@ -72,7 +72,7 @@ export default function ContentCard({
             </h3>
           </div>
 
-          <p className="text-gray-500 text-sm mb-4 line-clamp-3 flex-grow">
+          <p className="text-gray-300 font-serif text-sm mb-4 line-clamp-3 flex-grow">
             {shortDescription}
           </p>
         </>

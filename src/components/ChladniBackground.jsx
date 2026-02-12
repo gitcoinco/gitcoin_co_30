@@ -1,10 +1,18 @@
 "use client";
 
-import React, { useEffect, useRef } from "react";
+import React, { useEffect, useRef, useState } from "react";
+import { usePathname } from "next/navigation";
 import * as THREE from "three";
 
-const ChladniBackground = () => {
+// Wrapper that forces remount on navigation by changing key
+function ChladniBackground(props) {
+  const pathname = usePathname();
+  return <ChladniCanvas key={pathname} {...props} />;
+}
+
+const ChladniCanvas = (variant) => {
   const mountRef = useRef(null);
+  const [ready, setReady] = useState(false);
 
   useEffect(() => {
     // --- Configuration ---
@@ -36,7 +44,7 @@ const ChladniBackground = () => {
     const clamp = (value, min, max) => Math.max(min, Math.min(max, value));
 
     // --- Wave Strategy Definitions ---
-    const WAVE_FUNCTIONS = {
+    const WAVE_FUNCTIONS_v1 = {
       Cartesian: (cx, cy, mode) => {
         const rx = cx * mode.cos - cy * mode.sin;
         const ry = cx * mode.sin + cy * mode.cos;
@@ -68,6 +76,41 @@ const ChladniBackground = () => {
         );
       },
     };
+
+    const WAVE_FUNCTIONS_v2 = {
+      Cartesian: (cx, cy, mode) => {
+        const rx = cx * mode.cos - cy * mode.sin;
+        const ry = cx * mode.sin + cy * mode.cos;
+        return (
+          Math.sin(mode.m * Math.PI * (rx + 0.5) + mode.px) *
+          Math.sin(mode.n * Math.PI * (ry + 0.5) + mode.py)
+        );
+      },
+      Gyroid: (cx, cy, mode) => {
+        const scaleX = mode.m * 10;
+        const scaleY = Math.max(0.5, mode.n) * 10;
+        return (
+          Math.sin(cx * scaleX) * Math.cos(cy * scaleY) +
+          Math.sin(cy * scaleY) * Math.cos(mode.px)
+        );
+      },
+      Web: (cx, cy, mode) => {
+        const rx = cx * mode.cos - cy * mode.sin;
+        const ry = cx * mode.sin + cy * mode.cos;
+        const k = mode.m * Math.PI;
+        // 3-axis interference creates a hexagonal/web lattice
+        const v1 = rx;
+        const v2 = -0.5 * rx + 0.866 * ry;
+        const v3 = -0.5 * rx - 0.866 * ry;
+        return (
+          Math.sin(k * v1 + mode.px) +
+          Math.sin(k * v2 + mode.py) +
+          Math.sin(k * v3)
+        );
+      },
+    };
+
+    const WAVE_FUNCTIONS = variant === "2" ? WAVE_FUNCTIONS_v2 : WAVE_FUNCTIONS_v1;
 
     // --- Variables ---
     let scene, camera, renderer, geometry, points;
@@ -350,10 +393,15 @@ const ChladniBackground = () => {
       rebuildField();
     };
 
+    let firstFrame = true;
     const animate = () => {
       animationFrameId = requestAnimationFrame(animate);
       updateParticles();
       renderer.render(scene, camera);
+      if (firstFrame) {
+        firstFrame = false;
+        setReady(true);
+      }
     };
 
     // --- Init Logic ---
@@ -390,6 +438,10 @@ const ChladniBackground = () => {
       renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
 
       if (mountRef.current) {
+        // Clear any leftover canvas from a previous mount
+        while (mountRef.current.firstChild) {
+          mountRef.current.removeChild(mountRef.current.firstChild);
+        }
         mountRef.current.appendChild(renderer.domElement);
       }
 
@@ -429,7 +481,7 @@ const ChladniBackground = () => {
       window.removeEventListener("resize", onWindowResize);
       cancelAnimationFrame(animationFrameId);
       cancelAnimationFrame(retryFrame);
-      if (mountRef.current && renderer.domElement) {
+      if (mountRef.current && renderer?.domElement && mountRef.current.contains(renderer.domElement)) {
         mountRef.current.removeChild(renderer.domElement);
       }
       if (geometry) geometry.dispose();
@@ -441,6 +493,7 @@ const ChladniBackground = () => {
     <div
       ref={mountRef}
       className="absolute inset-0 pointer-events-none"
+      style={{ opacity: ready ? 1 : 0, transition: "opacity 1s ease-in" }}
       aria-hidden="true"
     />
   );

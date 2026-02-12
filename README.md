@@ -106,6 +106,7 @@ npm run build
 - **Where to add**: Place under the `## Banner Image` section in the GitHub issue template
 - **Format**: PNG or JPG only
 - Used as the hero image at the top of content pages and for social media previews
+- **Generator**: Use the [Chladni Particles generator](https://octaviaan.github.io/Chladni-Particles/) to create banner images. Export as square or landscape. Press `R` to randomize, then click "Rebuild Particles" to apply.
 
 **Logo Images (Optional)**
 - **Dimensions**: Square format recommended (e.g., 256x256px, 512x512px)

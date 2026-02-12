@@ -17,7 +17,7 @@ const aboutItems: DropdownItem[] = [
   { label: "Impact", href: "/impact" },
   {
     label: "Grants Program",
-    href: "https://www.gitcoin.co/grants",
+    href: "https://grants.gitcoin.co",
     external: true,
   },
 ];

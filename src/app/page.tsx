@@ -11,6 +11,7 @@ import ChladniBackground from "@/components/ChladniBackground";
 import { getFeaturedApps } from "@/content/apps";
 import { getFeaturedCampaigns } from "@/content/campaigns";
 import { getFeaturedResearch } from "@/content/research";
+import SectionHeader from "@/components/ui/SectionHeader";
 
 const curateCards = [
   {
@@ -55,33 +56,6 @@ const curateCards = [
   },
 ];
 
-function SectionHeader({
-  title,
-  subtitle,
-  href,
-}: {
-  title: string;
-  subtitle: string;
-  href: string;
-}) {
-  return (
-    <div className="mb-8 flex flex-col gap-4 sm:flex-row sm:items-end sm:justify-between">
-      <div>
-        <h2 className="text-[30px] leading-9 tracking-[0.012em] text-gray-25">
-          {title}
-        </h2>
-        <p className="mt-2 text-sm text-gray-300 font-serif">{subtitle}</p>
-      </div>
-
-      <Link href={href}>
-        <Button variant="ghost" className="text-right font-semibold">
-          View All →
-        </Button>
-      </Link>
-    </div>
-  );
-}
-
 export default function HomePage() {
   const featuredApps = getFeaturedApps(3);
   const featuredCampaigns = getFeaturedCampaigns(2);
@@ -90,7 +64,7 @@ export default function HomePage() {
   return (
     <div className="bg-gray-900 text-gray-25" data-node-id="551:2185">
       <section className="relative overflow-hidden -mt-[72px] pt-[72px]">
-        <ChladniBackground />
+        <ChladniBackground variant="1"/>
 
         <div className="relative z-10 mx-auto w-full max-w-[1216px] px-4 sm:px-6 lg:px-0">
           <div className="pb-20 pt-16 md:pb-28 md:pt-24">

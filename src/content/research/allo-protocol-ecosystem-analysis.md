@@ -3,7 +3,7 @@ id: '5'
 slug: allo-protocol-ecosystem-analysis
 name: 'Allo Protocol: Building the Rails for Capital Allocation'
 shortDescription: Analysis of how Allo Protocol enables customizable funding mechanisms and its adoption across the ecosystem.
-banner: /images/banner-placeholder.png
+banner: /og-default.png
 tags:
   - allo protocol
   - infrastructure
