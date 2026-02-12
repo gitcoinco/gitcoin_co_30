@@ -7,11 +7,11 @@
     "build": "next build",
     "start": "next start",
     "lint": "next lint",
-    "publish-case-study": "node scripts/publish-case-study.js",
-    "publish-app": "node scripts/publish-app.js",
-    "publish-mechanism": "node scripts/publish-mechanism.js",
-    "publish-research": "node scripts/publish-research.js",
-    "publish-campaign": "node scripts/publish-campaign.js",
+    "publish-case-study": "npx tsx scripts/publish-case-study.ts",
+    "publish-app": "npx tsx scripts/publish-app.ts",
+    "publish-mechanism": "npx tsx scripts/publish-mechanism.ts",
+    "publish-research": "npx tsx scripts/publish-research.ts",
+    "publish-campaign": "npx tsx scripts/publish-campaign.ts",
     "sync-docs": "npx tsx --env-file-if-exists=.env.local scripts/sync-docs.ts"
   },
   "dependencies": {

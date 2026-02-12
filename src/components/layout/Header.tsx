@@ -101,7 +101,7 @@ export default function Header() {
 
   return (
     <div
-      className={`fixed top-0 left-0 right-0 z-50 px-6 md:px-8 py-4 transition-colors duration-300 ${scrolled ? "bg-gray-900/90 backdrop-blur-md" : "bg-transparent"}`}
+      className={`fixed top-0 left-0 right-0 z-50 px-8 py-4 transition-colors duration-300 ${scrolled ? "bg-gray-900/90 backdrop-blur-md" : "bg-transparent"}`}
     >
       <header className="flex items-center justify-between">
         <Link href="/" aria-label="Gitcoin home">
@@ -112,22 +112,26 @@ export default function Header() {
           />
         </Link>
 
-        <button
-          type="button"
-          className="inline-flex items-center justify-center rounded-md border border-gray-700 p-2 text-gray-200 lg:hidden"
-          aria-expanded={mobileMenuOpen}
-          aria-controls="home-mobile-menu"
-          onClick={() => setMobileMenuOpen((prev) => !prev)}
-        >
-          <span className="sr-only">Toggle navigation</span>
-          {mobileMenuOpen ? (
-            <X className="size-5" />
-          ) : (
-            <Menu className="size-5" />
-          )}
-        </button>
+        <div className="flex items-center gap-2 lg:hidden">
+          <SearchBar placeholder="Search..." size="sm" className="w-48" />
 
-        <nav className="hidden items-center gap-8 lg:flex">
+          <button
+            type="button"
+            className="inline-flex items-center justify-center rounded-md border border-gray-700 p-2 text-gray-200 "
+            aria-expanded={mobileMenuOpen}
+            aria-controls="home-mobile-menu"
+            onClick={() => setMobileMenuOpen((prev) => !prev)}
+          >
+            <span className="sr-only">Toggle navigation</span>
+            {mobileMenuOpen ? (
+              <X className="size-5" />
+            ) : (
+              <Menu className="size-5" />
+            )}
+          </button>
+        </div>
+
+        <nav className="hidden items-center xl:gap-8 gap-2 lg:flex">
           <NavDropdown label="About" items={aboutItems} />
           <NavDropdown label="Campaigns" items={campaignItems} />
           {navLinks.map(({ label, href }) => (
@@ -137,7 +141,7 @@ export default function Header() {
           ))}
         </nav>
 
-        <div className="hidden items-center gap-8 lg:flex">
+        <div className="hidden items-center xl:gap-8 gap-2 lg:flex">
           <SearchBar placeholder="Search..." size="sm" className="w-48" />
           <Button variant="secondary" href="/submit" size="sm">
             Partner with us
