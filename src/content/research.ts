@@ -22,9 +22,11 @@ export function getResearchBySlug(slug: string): Research | undefined {
  */
 export function getFeaturedResearch(count: number = 3): Research[] {
   const allResearch = getAllResearch()
-  return [...allResearch]
+  const featured = allResearch.filter(r => r.featured)
+  const rest = allResearch
+    .filter(r => !r.featured)
     .sort((a, b) => b.lastUpdated.localeCompare(a.lastUpdated))
-    .slice(0, count)
+  return [...featured, ...rest].slice(0, count)
 }
 
 /**

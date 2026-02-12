@@ -22,7 +22,11 @@ export function getMechanismBySlug(slug: string): Mechanism | undefined {
  */
 export function getFeaturedMechanisms(count: number = 4): Mechanism[] {
   const allMechanisms = getAllMechanisms()
-  return allMechanisms.slice(0, count)
+  const featured = allMechanisms.filter(m => m.featured)
+  const rest = allMechanisms
+    .filter(m => !m.featured)
+    .sort((a, b) => b.lastUpdated.localeCompare(a.lastUpdated))
+  return [...featured, ...rest].slice(0, count)
 }
 
 // For static params generation and client components
