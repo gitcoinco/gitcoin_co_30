@@ -1,5 +1,5 @@
 ---
-id: '1770928329577'
+id: '1770934225104'
 slug: protocol-guild
 name: "Protocol Guild"
 shortDescription: "Collective fund distributing donated tokens to Ethereum L1 core contributors via onchain vesting."

@@ -1,5 +1,5 @@
 ---
-id: '1770928322512'
+id: '1770934218095'
 slug: retroactive-funding
 name: "Retroactive Funding"
 shortDescription: "Capital allocation mechanism that rewards projects for impact after outcomes are known."

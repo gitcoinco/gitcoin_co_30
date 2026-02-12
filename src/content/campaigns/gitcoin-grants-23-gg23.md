@@ -1,10 +1,12 @@
 ---
-id: '1770928342440'
+id: '1770934237042'
 slug: gitcoin-grants-23-gg23
 name: "Gitcoin Grants 23 (GG23)"
-shortDescription: "Gitcoin's first multi-mechanism grants round distributing $1.3M in matching via parallel quadratic and retroactive funding tracks."
+shortDescription: "Gitcoin's first multi-mechanism round distributed $1.4M via parallel quadratic and retro funding."
 tags:
-
+  - quadratic
+  - retroactive
+  - multimech
 lastUpdated: '2026-02-12'
 relatedMechanisms:
 
@@ -104,5 +106,5 @@ Following the conclusion of GG23, Grants Stack and Gitcoin Labs were sunset by M
 ## Further Reading
 
 - [**GG23 Results & Recap** — Gitcoin](https://www.gitcoin.co/blog/gg23-results-recap)  
-- [**Gitcoin Grants 23: A Milestone Round for Public Goods Funding** — Gitcoin](https://www.gitcoin.co/blog/gitcoin-grants-23-retro)  
+- [**Gitcoin Grants 23: A Milestone Round** — Gitcoin](https://www.gitcoin.co/blog/gitcoin-grants-23-retro)  
 - [**Announcing: Gitcoin Grants Round 23 (GG23)** — Gitcoin](https://www.gitcoin.co/blog/announcing-gitcoin-grants-round-23-gg23)

@@ -1,10 +1,12 @@
 ---
-id: '1770928344356'
+id: '1770934238719'
 slug: gitcoin-grants-22-gg22
 name: "Gitcoin Grants 22 (GG22)"
-shortDescription: "Gitcoin Grants 22 reintroduced dedicated OSS funding, distributing $1.7M in funding across four OSS and seven community rounds."
+shortDescription: "Gitcoin Grants 22 reinstated dedicated OSS funding, distributing $1.7M across 12 rounds."
 tags:
-
+  - quadratic
+  - grants
+  - verification
 lastUpdated: '2026-02-12'
 relatedMechanisms:
 
@@ -96,5 +98,5 @@ GG22 demonstrated that OSS Program rounds and Community Rounds could operate eff
 ## Further Reading
 
 - [**GG22 Results & Recap** — Gitcoin](https://www.gitcoin.co/blog/gg22-results-recap)  
-- [**GG22 OSS Program Matching Results** — Gitcoin Governance Forum](https://gov.gitcoin.co/t/gg22-oss-program-matching-results/19645)  
+- [**GG22 OSS Program Results** — Gitcoin Governance Forum](https://gov.gitcoin.co/t/gg22-oss-program-matching-results/19645)  
 - [**Announcing: Gitcoin Grants 22** — Gitcoin](https://www.gitcoin.co/blog/announcing-gitcoin-grants-22)

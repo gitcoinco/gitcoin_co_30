@@ -1,5 +1,5 @@
 ---
-id: '1770928336575'
+id: '1770934231800'
 slug: allo-protocol
 name: "Allo Protocol"
 shortDescription: "Open-source smart contracts for programmable onchain capital allocation and modular funding strategies."

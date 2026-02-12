@@ -1,5 +1,5 @@
 ---
-id: '1770928333029'
+id: '1770934228401'
 slug: gitcoin-grants-stack
 name: "Gitcoin Grants Stack"
 shortDescription: "Open-source grants platform powering quadratic funding, direct grants, and retroactive funding."
