@@ -16,7 +16,7 @@ This is the easiest way to contribute. The content is automatically formatted an
    - [Submit a Campaign](https://github.com/gitcoinco/gitcoin_co_30/issues/new?template=campaign.md)
 
 2. **Fill out the template** with your content
-   - Add banner image under `## Banner Image` section (if applicable)
+   - Add banner image under `## Banner Image` section (if applicable) - Use the [Chladni Particles generator](https://octaviaan.github.io/Chladni-Particles/). Press `R` to randomize, then click "Rebuild Particles" to apply.
    - Add logo image under `## Logo` section (if applicable)
    - Fill in all metadata fields
    - Write your content using markdown formatting
@@ -94,6 +94,7 @@ npm run build
 - `npm run publish-research <issue-number>` - Create research from GitHub issue
 - `npm run publish-case-study <issue-number>` - Create case study from GitHub issue
 - `npm run publish-campaign <issue-number>` - Create campaign from GitHub issue
+- `npm run publish-all` - Publish all open GitHub issues at once
 - `npm run sync-docs` - Sync content files from src/content to OpenAI vector store for AI chat
 
 

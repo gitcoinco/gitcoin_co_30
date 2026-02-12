@@ -12,6 +12,7 @@
     "publish-mechanism": "npx tsx scripts/publish-mechanism.ts",
     "publish-research": "npx tsx scripts/publish-research.ts",
     "publish-campaign": "npx tsx scripts/publish-campaign.ts",
+    "publish-all": "sh scripts/publish-all-issues.sh",
     "sync-docs": "npx tsx --env-file-if-exists=.env.local scripts/sync-docs.ts"
   },
   "dependencies": {
