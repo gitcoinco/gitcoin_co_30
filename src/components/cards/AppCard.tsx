@@ -33,9 +33,9 @@ export default function AppCard({
             />
           ) : (
             <div
-              className="mt-6 h-14 w-14 rounded-xl bg-teal-500 flex-shrink-0 flex items-center justify-center"
+              className="mt-6 h-14 w-14 rounded-xl border border-teal-500 flex-shrink-0 flex items-center justify-center"
             >
-              <span className="text-2xl font-bold text-gray-900 font-heading">
+              <span className="text-3xl font-light text-teal-500 font-heading leading-none">
                 {app.name.charAt(0).toUpperCase()}
               </span>
             </div>
