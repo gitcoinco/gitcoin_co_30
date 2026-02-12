@@ -10,7 +10,7 @@ export default function SectionHeader({
   href?: string;
 }) {
   return (
-    <div className="mb-8 flex flex-col gap-4 sm:flex-row sm:items-end sm:justify-between">
+    <div className="mb-8 flex flex-col gap-4 sm:flex-row sm:items-end sm:justify-between ">
       <div>
         <h2 className="text-[30px] leading-9 tracking-[0.012em] text-gray-25">
           {title}

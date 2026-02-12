@@ -29,7 +29,10 @@ const statusFilters = [
 export default function CaseStudiesPage() {
   return (
     <ListPageLayout>
-      <ListPageHeader title="Case Studies" />
+      <ListPageHeader
+        title="Case Studies"
+        description="Analysis of a funding experiment"
+      />
 
       <SensemakingSection category="case-studies" />
 

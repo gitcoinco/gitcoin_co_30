@@ -16,7 +16,7 @@ This is the easiest way to contribute. The content is automatically formatted an
    - [Submit a Campaign](https://github.com/gitcoinco/gitcoin_co_30/issues/new?template=campaign.md)
 
 2. **Fill out the template** with your content
-   - Add banner image under `## Banner Image` section (if applicable) - Use the [Chladni Particles generator](https://octaviaan.github.io/Chladni-Particles/). Press `R` to randomize, then click "Rebuild Particles" to apply.
+   - Add banner image under `## Banner Image` section (if applicable) - Use the [Chladni Particles generator](https://octaviaan.github.io/Chladni-Particles/). Press `R` to randomize.
    - Add logo image under `## Logo` section (if applicable)
    - Fill in all metadata fields
    - Write your content using markdown formatting
@@ -107,7 +107,7 @@ npm run build
 - **Where to add**: Place under the `## Banner Image` section in the GitHub issue template
 - **Format**: PNG or JPG only
 - Used as the hero image at the top of content pages and for social media previews
-- **Generator**: Use the [Chladni Particles generator](https://octaviaan.github.io/Chladni-Particles/) to create banner images. Export as square or landscape. Press `R` to randomize, then click "Rebuild Particles" to apply.
+- **Generator**: Use the [Chladni Particles generator](https://octaviaan.github.io/Chladni-Particles/) to create banner images. Export as square or landscape. Press `R` to randomize.
 
 **Logo Images (Optional)**
 - **Dimensions**: Square format recommended (e.g., 256x256px, 512x512px)

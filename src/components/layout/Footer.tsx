@@ -49,14 +49,19 @@ const resourceLinks: FooterLink[] = [
     href: "https://greenpill.network",
     external: true,
   },
-  { title: "gov.gitcoin.co", href: "https://gov.gitcoin.co", external: true },
-  { title: "allo.capital", href: "https://allo.capital", external: true },
+  { title: "Forum", href: "https://gov.gitcoin.co", external: true },
+  {
+    title: "Rainbow Paper",
+    href: "https://www.dropbox.com/scl/fi/2ew20lb31kz62cd87g3dc/Owocki-Scheling-Point_Nov102025-b.pdf?rlkey=pw1jgsemym4tu34hol8egnt0y&e=2&st=636ugx92&dl=0",
+    external: true,
+  },
 ];
 
 const communityLinks: FooterLink[] = [
   { title: "Contribute", href: "/contribute" },
   { title: "Guidelines", href: "/contribute" },
   { title: "Telegram", href: "https://t.me/+TIzf8MYT7DY0YWVh", external: true },
+  { title: "Get Updates", href: "/updates" },
 ];
 
 const bottomLinks: FooterLink[] = [
@@ -86,7 +91,7 @@ function FooterLinkGroup({
   return (
     <div>
       <h4 className="text-base font-semibold tracking-[-0.01em]">{title}</h4>
-      <div className="mt-4 flex flex-col gap-2 text-sm text-gray-300">
+      <div className="mt-4 flex flex-col gap-2 text-sm text-gray-200">
         {links.map((link) => (
           <FooterLinkItem key={link.title} link={link} />
         ))}
@@ -98,12 +103,13 @@ function FooterLinkGroup({
 export default function Footer() {
   return (
     <footer className="relative overflow-hidden">
-      <ChladniBackground />
+      <ChladniBackground variant="2" opacity={0.35} />
+      <div className="absolute top-0 left-0 right-0 h-32 bg-gradient-to-b from-gray-900 to-transparent z-[1]" />
       <div className="relative z-10 mx-auto w-full max-w-[1216px] px-4 py-14 sm:px-6 lg:px-0">
         <div className="grid gap-10 lg:grid-cols-[2.2fr_1fr_1fr_1fr]">
           <div>
             <img src="/gitcoin-logo.svg" alt="Gitcoin" className="h-6 w-auto" />
-            <p className="mt-4 max-w-[348px] text-sm text-gray-400">
+            <p className="mt-4 max-w-[348px] text-sm text-gray-200">
               The premier place where Ethereum funds solutions to its most
               important problems. We curate the funding landscape so you
               don&apos;t have to.
@@ -117,7 +123,7 @@ export default function Footer() {
                   rel="noopener noreferrer"
                   aria-label={title}
                 >
-                  <Icon className="h-4 w-4 text-gray-400 hover:text-white transition-colors" />
+                  <Icon className="h-4 w-4 text-gray-200 hover:text-white transition-colors" />
                 </a>
               ))}
             </div>
@@ -128,7 +134,7 @@ export default function Footer() {
           <FooterLinkGroup title="Community" links={communityLinks} />
         </div>
 
-        <div className="mt-10 flex flex-col gap-3 border-t border-gray-500 pt-4 text-sm text-gray-400 sm:flex-row sm:items-center sm:justify-between">
+        <div className="mt-10 flex flex-col gap-3 border-t border-gray-500 pt-4 text-sm text-gray-300 sm:flex-row sm:items-center sm:justify-between">
           <p>&copy; 2026 Gitcoin. Fund what matters.</p>
           <div className="flex items-center gap-6">
             {bottomLinks.map((link) => (

@@ -28,7 +28,7 @@ OPTIONAL: Add a banner image - it will be displayed at the top of the page.
 Recommended dimensions: 1600x900 pixels (16:9 aspect ratio)
 For sensemaking articles: use wider 3:1 aspect ratio (e.g., 1800x600 pixels)
 Formats: PNG or JPG only
-Generate one: https://octaviaan.github.io/Chladni-Particles/ (press R to randomize, then Rebuild Particles)
+Generate one: https://octaviaan.github.io/Chladni-Particles/ (press R to randomize)
 -->
 
 

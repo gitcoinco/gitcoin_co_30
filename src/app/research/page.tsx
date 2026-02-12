@@ -21,11 +21,14 @@ export const metadata: Metadata = {
 export default function ResearchPage() {
   return (
     <ListPageLayout>
-      <ListPageHeader title="Research & Trends" />
+      <ListPageHeader
+        title="Research & Trends"
+        description="Analysis, reports, or trend pieces"
+      />
 
       <SensemakingSection category="research" />
 
-      <section className="section">
+      <section className="mb-16 md:mb-24 mt-3">
         <div className="container-page">
           <SectionHeader title="All Research" subtitle="" />
           <ItemsGrid>

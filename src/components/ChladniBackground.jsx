@@ -5,12 +5,12 @@ import { usePathname } from "next/navigation";
 import * as THREE from "three";
 
 // Wrapper that forces remount on navigation by changing key
-function ChladniBackground(props) {
+function ChladniBackground({ opacity, ...props }) {
   const pathname = usePathname();
-  return <ChladniCanvas key={pathname} {...props} />;
+  return <ChladniCanvas key={pathname} opacity={opacity} {...props} />;
 }
 
-const ChladniCanvas = (variant) => {
+const ChladniCanvas = ({ variant, opacity: opacityProp }) => {
   const mountRef = useRef(null);
   const [ready, setReady] = useState(false);
 
@@ -19,24 +19,24 @@ const ChladniCanvas = (variant) => {
     const CONFIG = {
       particleCount: 80000,
       gridSize: 128,
-      settleStrength: 3.0,
-      jitter: 0.06,
+      settleStrength: variant === "2" ? 3 : variant === "3" ? 6 : 3.0,
+      jitter: variant === "2" ? 0.15 : 0.06,
       drag: 0.9,
-      speedLimit: 2.0,
+      speedLimit: variant === "3" ? 3 : 2.0,
       viewScale: 400,
       color: "#B8B4AC",
       particleSize: 2.0,
       particleOpacity: 0.4,
 
-      modeCount: 3,
-      mRange: { min: 3, max: 9 },
-      nRange: { min: 3, max: 9 },
+      modeCount: variant === "2" ? 2 : variant === "3" ? 2 : 3,
+      mRange: { min: variant === "3" ? 8 : 2, max: variant === "2" ? 4 : variant === "3" ? 8 : 9 },
+      nRange: { min: variant === "3"  ? 10 : 2, max: variant === "2" ? 4 : variant === "3" ? 10 : 9 },
 
-      fieldScale: 2,
-
-      waveTypeA: "Cartesian",
-      waveTypeB: "Web",
-      waveMix: 0.5,
+      fieldScale: variant === "2" ? 1.3 : variant === "3" ? 0.5 : 2,
+      waveTypeA: variant === "2" ? "CurvedStripes" : variant === "3" ? "Cartesian" : "Cartesian",
+      waveTypeB: variant === "2" ? "Flower" : variant === "3" ? "Web" : "Web",
+      waveMix: variant === "3" ? 0.6 : 0.5,
+      phaseJitter: variant === "2" ? 0.5 : variant === "3" ? 0.85 : 0,
     };
 
     // --- Math Helpers ---
@@ -78,39 +78,48 @@ const ChladniCanvas = (variant) => {
     };
 
     const WAVE_FUNCTIONS_v2 = {
-      Cartesian: (cx, cy, mode) => {
+      CurvedStripes: (cx, cy, mode) => {
         const rx = cx * mode.cos - cy * mode.sin;
         const ry = cx * mode.sin + cy * mode.cos;
-        return (
-          Math.sin(mode.m * Math.PI * (rx + 0.5) + mode.px) *
-          Math.sin(mode.n * Math.PI * (ry + 0.5) + mode.py)
-        );
+        const warp = 0.45 * Math.sin(mode.n * Math.PI * ry + mode.py);
+        const warpedX = rx + warp;
+        return Math.sin(mode.m * Math.PI * warpedX + mode.px);
       },
-      Gyroid: (cx, cy, mode) => {
-        const scaleX = mode.m * 10;
-        const scaleY = Math.max(0.5, mode.n) * 10;
-        return (
-          Math.sin(cx * scaleX) * Math.cos(cy * scaleY) +
-          Math.sin(cy * scaleY) * Math.cos(mode.px)
-        );
-      },
+
+      Flower: (cx, cy, mode) => {
+          const rx = cx * mode.cos - cy * mode.sin;
+          const ry = cx * mode.sin + cy * mode.cos;
+          const r = Math.sqrt(rx * rx + ry * ry);
+          const theta = Math.atan2(ry, rx);
+          return (
+            Math.sin(mode.m * theta + mode.px) *
+            Math.cos(mode.n * Math.PI * r + mode.py)
+          );
+      }
+    };
+
+    const WAVE_FUNCTIONS_v3 = {
       Web: (cx, cy, mode) => {
         const rx = cx * mode.cos - cy * mode.sin;
         const ry = cx * mode.sin + cy * mode.cos;
         const k = mode.m * Math.PI;
-        // 3-axis interference creates a hexagonal/web lattice
         const v1 = rx;
         const v2 = -0.5 * rx + 0.866 * ry;
         const v3 = -0.5 * rx - 0.866 * ry;
         return (
-          Math.sin(k * v1 + mode.px) +
-          Math.sin(k * v2 + mode.py) +
-          Math.sin(k * v3)
+          Math.sin(k * v1 + mode.px) + Math.sin(k * v2 + mode.py) + Math.sin(k * v3)
         );
       },
+      Cartesian: (cx, cy, mode) => {
+          const rx = cx * mode.cos - cy * mode.sin;
+          const ry = cx * mode.sin + cy * mode.cos;
+          return (
+            Math.sin(mode.m * Math.PI * (rx + 0.5) + mode.px) *
+            Math.sin(mode.n * Math.PI * (ry + 0.5) + mode.py)
+          );
+      }
     };
-
-    const WAVE_FUNCTIONS = variant === "2" ? WAVE_FUNCTIONS_v2 : WAVE_FUNCTIONS_v1;
+    const WAVE_FUNCTIONS = variant === "2" ? WAVE_FUNCTIONS_v2 : variant === "3" ? WAVE_FUNCTIONS_v3 : WAVE_FUNCTIONS_v1;
 
     // --- Variables ---
     let scene, camera, renderer, geometry, points;
@@ -184,6 +193,7 @@ const ChladniCanvas = (variant) => {
 
     const initModes = () => {
       modes = [];
+      const phaseJitter = Math.max(0, CONFIG.phaseJitter || 0);
       for (let i = 0; i < CONFIG.modeCount; i++) {
         const mRaw = modeValueAt(
           i,
@@ -199,11 +209,11 @@ const ChladniCanvas = (variant) => {
           true,
         );
         modes.push({
-          m: mRaw,
-          n: nRaw,
+          m: Math.max(0.25, mRaw),
+          n: Math.max(0.25, nRaw),
           a: Math.exp(-i * 0.35),
-          px: 0,
-          py: 0,
+          px: (Math.random() * 2 - 1) * Math.PI * phaseJitter,
+          py: (Math.random() * 2 - 1) * Math.PI * phaseJitter,
           cos: 1,
           sin: 0,
         });
@@ -493,7 +503,7 @@ const ChladniCanvas = (variant) => {
     <div
       ref={mountRef}
       className="absolute inset-0 pointer-events-none"
-      style={{ opacity: ready ? 1 : 0, transition: "opacity 1s ease-in" }}
+      style={{ opacity: ready ? (opacityProp ?? 1) : 0, transition: "opacity 1s ease-in" }}
       aria-hidden="true"
     />
   );
