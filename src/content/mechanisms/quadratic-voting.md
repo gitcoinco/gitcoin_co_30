@@ -1,5 +1,5 @@
 ---
-id: '1770923858249'
+id: '1770928324276'
 slug: quadratic-voting
 name: "Quadratic Voting"
 shortDescription: "Governance mechanism where votes cost quadratically, enabling nuanced preferences."

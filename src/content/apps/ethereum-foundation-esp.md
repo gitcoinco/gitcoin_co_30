@@ -1,10 +1,12 @@
 ---
-id: '1770923871437'
+id: '1770928334812'
 slug: ethereum-foundation-esp
 name: "Ethereum Foundation ESP"
-shortDescription: "The Ethereum Foundation’s primary direct grants program funding open-source infrastructure, research, and developer tooling."
+shortDescription: "The Ethereum Foundation's direct grants program for open-source infrastructure, research, and tooling."
 tags:
-
+  - expert
+  - milestone
+  - grants
 lastUpdated: '2026-02-12'
 relatedMechanisms:
 
@@ -75,5 +77,5 @@ ESP operates an annual Academic Grants Round that supports academic research adv
 ## Further Reading
 
 - [**Unveiling ESP's New Grants Program** — Ethereum Foundation](https://blog.ethereum.org/2025/11/03/new-esp-grants)  
-- [**The Ecosystem Support Program's Next Chapter** — Ethereum Foundation](https://blog.ethereum.org/2025/08/29/esp-next-chapter)  
+- [**Ecosystem Support Program's Next Chapter** — Ethereum Foundation](https://blog.ethereum.org/2025/08/29/esp-next-chapter)  
 - [**Applicants Overview** — Ethereum Foundation ESP](https://esp.ethereum.foundation/applicants)

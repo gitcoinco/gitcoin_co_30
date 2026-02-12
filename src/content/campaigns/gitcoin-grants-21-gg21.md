@@ -1,5 +1,5 @@
 ---
-id: '1770923884189'
+id: '1770928348137'
 slug: gitcoin-grants-21-gg21
 name: "Gitcoin Grants 21 (GG21)"
 shortDescription: "Gitcoin's first fully community-led grants round distributed $933K across 11 quadratic funding rounds without a centralized OSS Program."

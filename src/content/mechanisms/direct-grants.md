@@ -1,5 +1,5 @@
 ---
-id: '1770923892930'
+id: '1770928357158'
 slug: direct-grants
 name: "Direct Grants"
 shortDescription: "A funding allocation mechanism where expert reviewers allocate capital based on judgment, strategy, and expected impact."
