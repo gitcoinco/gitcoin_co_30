@@ -23,7 +23,11 @@ export function getCaseStudyBySlug(slug: string): CaseStudy | undefined {
  */
 export function getFeaturedCaseStudies(count: number = 3): CaseStudy[] {
   const allCaseStudies = getAllCaseStudies()
-  return allCaseStudies.slice(0, count)
+  const featured = allCaseStudies.filter(cs => cs.featured)
+  const rest = allCaseStudies
+    .filter(cs => !cs.featured)
+    .sort((a, b) => b.lastUpdated.localeCompare(a.lastUpdated))
+  return [...featured, ...rest].slice(0, count)
 }
 
 /**
