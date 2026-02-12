@@ -148,7 +148,7 @@ export default function HomePage() {
         </section>
 
         {featuredApps.length > 0 && (
-          <section className="py-16 bg-teal-950">
+          <section className="py-16 bg-gray-800">
             <div className="mx-auto w-full max-w-[1216px] px-4 sm:px-6 lg:px-0">
               <SectionHeader
                 title="Featured Apps"

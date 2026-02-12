@@ -1,10 +1,12 @@
 ---
-id: '1770916068385'
+id: '1770923862952'
 slug: attestation-based-funding
-name: Attestation Based Funding
-shortDescription: A continuous governance and allocation mechanism that funds proposals once sustained community support crosses a threshold.
+name: "Attestation-Based Funding"
+shortDescription: "Continuous capital allocation triggered by verified community support thresholds."
 tags:
-
+  - attribution
+  - identity
+  - verification
 lastUpdated: '2026-02-12'
 relatedMechanisms:
 
@@ -18,7 +20,7 @@ relatedCampaigns:
 
 ---
 
-Attestation-based funding uses onchain attestations — verifiable, cryptographic claims about identity, actions, or impact — to inform how funding is allocated. Instead of relying solely on applications, votes, or committee judgment, funding mechanisms reference attestations as objective signals. These signals can gate participation, weight influence, or directly trigger payouts.
+**Attestation-based funding** uses onchain attestations — verifiable, cryptographic claims about identity, actions, or impact — to inform how funding is allocated. Instead of relying solely on applications, votes, or committee judgment, funding mechanisms reference attestations as objective signals. These signals can gate participation, weight influence, or directly trigger payouts.
 
 In the funding stack, attestation-based funding operates at the attribution layer. It does not replace allocation mechanisms like quadratic funding or retroactive funding; it strengthens them by supplying reusable, verifiable signals about identity, contribution, and impact.
 
@@ -81,5 +83,5 @@ Attestation-based funding works best when:
 
 - [**Ethereum Attestation Service Documentation** — EAS Team](https://docs.attest.org)  
 - [**Building Sybil Resistance Using Cost of Forgery** — Gitcoin Blog](https://www.gitcoin.co/blog/cost-of-forgery)  
-- [**Building a Sybil Resistant Future** — Gitcoin Blog](https://www.gitcoin.co/blog/gitcoin-passport-onchain-stamps)  
+- [**Building a Sybil Resistant Future Using Gitcoin Passport** — Gitcoin Blog](https://www.gitcoin.co/blog/gitcoin-passport-onchain-stamps)  
 - [**Citizens' House Overview** — Optimism Collective](https://community.optimism.io/citizens-house/citizen-house-overview)

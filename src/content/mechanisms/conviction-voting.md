@@ -1,10 +1,12 @@
 ---
-id: '1770916066650'
+id: '1770923860802'
 slug: conviction-voting
-name: Conviction Voting
-shortDescription: A continuous governance and allocation mechanism that funds proposals once sustained community support crosses a threshold.
+name: "Conviction Voting"
+shortDescription: "Continuous governance mechanism where voting power accumulates over time."
 tags:
-
+  - continuous
+  - governance
+  - weighted
 lastUpdated: '2026-02-12'
 relatedMechanisms:
 
@@ -18,13 +20,15 @@ relatedCampaigns:
 
 ---
 
-Conviction voting is a continuous governance and treasury allocation mechanism in which participants stake tokens on proposals to signal support, with voting power — called *conviction* — accumulating over time via an exponential decay function. Rather than relying on time-boxed voting windows, conviction voting treats preference expression as an ongoing process: sustained support increases influence, while withdrawn support decays gradually.
+**Conviction voting** is a continuous governance and treasury allocation mechanism in which participants stake tokens on proposals to signal support, with voting power — called *conviction* — accumulating over time via an exponential decay function. Rather than relying on time-boxed voting windows, conviction voting treats preference expression as an ongoing process: sustained support increases influence, while withdrawn support decays gradually.
 
 When a proposal's accumulated conviction crosses a dynamic threshold — determined by the proportion of funds requested relative to the total treasury — it passes automatically and funds are disbursed. This design rewards long-term commitment over short-term coordination and makes last-minute vote manipulation costly. Originally derived from Michael Zargham's research on *social sensor fusion* and first implemented by Commons Stack and 1Hive, conviction voting is one of the most mature continuous allocation mechanisms in the Ethereum ecosystem.
 
 ## How It Works
 
-Time-boxed voting mechanisms introduce structural vulnerabilities in decentralized communities: low participation due to attention costs, susceptibility to last-minute vote swings by large token holders, and binary outcomes that fail to capture evolving community preferences. Conviction voting replaces discrete voting events with continuous preference signaling, where participants stake tokens on proposals at any time and their influence grows gradually according to a configurable half-life. Redirecting stake causes conviction to decay at the same rate, making sudden vote swings capital-intensive and difficult to sustain. Conviction voting operates at the decision layer of the funding stack, determining how a shared treasury distributes capital to competing proposals.
+Time-boxed voting mechanisms introduce structural vulnerabilities in decentralized communities: low participation due to attention costs, susceptibility to last-minute vote swings by large token holders, and binary outcomes that fail to capture evolving community preferences. Conviction voting replaces discrete voting events with continuous preference signaling, where participants stake tokens on proposals at any time and their influence grows gradually according to a configurable half-life. 
+
+Redirecting stake causes conviction to decay at the same rate, making sudden vote swings capital-intensive and difficult to sustain. Conviction voting operates at the decision layer of the funding stack, determining how a shared treasury distributes capital to competing proposals.
 
 1. **Treasury and parameter configuration:** A community configures a shared funding pool and sets conviction voting parameters: the decay rate (half-life determining how quickly conviction charges and discharges), the maximum ratio of total funds any single proposal can request, and the minimum conviction threshold required for any proposal to pass.  
 2. **Proposal submission:** Any token holder can submit a funding proposal at any time, specifying the amount requested and the intended use of funds. Proposals have no explicit expiration — they remain active as long as participants maintain conviction on them.  
@@ -76,6 +80,6 @@ Conviction voting works best when:
 
 - [**From Ad-Hoc Voting to Continuous Voting** — Jeff Emmett, Giveth](https://blog.giveth.io/conviction-voting-34019bd17b10)  
 - [**Conviction Voting** — Michael Zargham, BlockScience](https://github.com/BlockScience/Aragon_Conviction_Voting)  
-- [**Announcing the Conviction Voting cadCAD Model Release** — Jeff Emmett, Commons Stack](https://medium.com/commonsstack/announcing-the-conviction-voting-cadcad-model-release-8e907ce67e4e)  
+- [**Conviction Voting cadCAD Model** — Jeff Emmett, Commons Stack](https://medium.com/commonsstack/announcing-the-conviction-voting-cadcad-model-release-8e907ce67e4e)  
 - [**Conviction Voting Algorithm Overview** — 1Hive / BlockScience](https://github.com/1Hive/conviction-voting-cadcad/blob/master/algorithm_overview.ipynb)  
 - [**Conviction Voting** — Mechanism Institute](https://www.mechanism.institute/library/conviction-voting)

@@ -1,8 +1,8 @@
 ---
-id: '1770916070045'
+id: '1770923865124'
 slug: protocol-guild
-name: Protocol Guild
-shortDescription: A collective fund distributing donated tokens to Ethereum Layer 1 core contributors through long-term, onchain vesting.
+name: "Protocol Guild"
+shortDescription: "A collective fund distributing donated tokens to Ethereum Layer 1 core contributors through long-term, onchain vesting."
 tags:
 
 lastUpdated: '2026-02-12'

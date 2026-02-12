@@ -1,10 +1,12 @@
 ---
-id: '1770920317615'
+id: '1770923853968'
 slug: milestone-based-funding
 name: "Milestone-Based Funding"
 shortDescription: "Staged funding mechanism that releases grant payments upon verified milestone completion."
 tags:
-
+  - payments
+  - milestone
+  - grants
 lastUpdated: '2026-02-12'
 relatedMechanisms:
 
@@ -18,7 +20,7 @@ relatedCampaigns:
 
 ---
 
-Milestone-based funding is a payment execution mechanism that disburses capital in staged tranches, with each release conditional on the verified completion of predefined deliverables. Rather than distributing a full grant upfront or only after final completion, funders and recipients agree on a series of milestones — specific outputs, features, reports, or measurable criteria — and funds are released incrementally as each milestone is approved. This structure balances accountability with builder cash flow, reducing misallocation risk while supporting ongoing execution.
+**Milestone-based funding** is a payment execution mechanism that disburses capital in staged tranches, with each release conditional on the verified completion of predefined deliverables. Rather than distributing a full grant upfront or only after final completion, funders and recipients agree on a series of milestones — specific outputs, features, reports, or measurable criteria — and funds are released incrementally as each milestone is approved. This structure balances accountability with builder cash flow, reducing misallocation risk while supporting ongoing execution.
 
 Milestone-based funding operates at the execution layer (payment rails) of the funding stack. It governs how approved funds move from funder to recipient after allocation decisions have been made. The mechanism is allocation-agnostic: it can follow direct grants, committee review, quadratic funding, retroactive programs, or DAO governance votes. It is the most widely adopted disbursement model in web3 grant programs across protocol foundations and DAO ecosystems.
 

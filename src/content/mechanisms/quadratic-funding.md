@@ -1,10 +1,12 @@
 ---
-id: '1770916078789'
+id: '1770923874925'
 slug: quadratic-funding
-name: Quadratic Funding
-shortDescription: A funding allocation mechanism that uses quadratic matching to distribute a shared pool based on the number of contributors rather than the size of their donations.
+name: "Quadratic Funding"
+shortDescription: "Democratic funding mechanism that amplifies small donors via quadratic matching."
 tags:
-
+  - quadratic
+  - democratic
+  - verification
 lastUpdated: '2026-02-12'
 relatedMechanisms:
 
@@ -18,13 +20,17 @@ relatedCampaigns:
 
 ---
 
-Quadratic funding (QF) is a capital allocation mechanism that distributes a shared matching pool to projects based on how many individual contributors they attract, not just how much money each contributor gives. The matching amount for each project is calculated by squaring the sum of the square roots of individual contributions — a formula that compresses the influence of large donations while restoring scale through squaring, thereby amplifying projects with broad community support. Originally proposed in a 2018 paper by Vitalik Buterin, Zoë Hitzig, and E. Glen Weyl, QF is the most widely deployed democratic capital allocation mechanism in the Ethereum ecosystem.
+**Quadratic funding** (QF) is a capital allocation mechanism that distributes a shared matching pool to projects based on how many individual contributors they attract, not just how much money each contributor gives.
+
+The matching amount for each project is calculated by squaring the sum of the square roots of individual contributions — a formula that compresses the influence of large donations while restoring scale through squaring, thereby amplifying projects with broad community support. Originally proposed in a 2018 paper by Vitalik Buterin, Zoë Hitzig, and E. Glen Weyl, QF is the most widely deployed democratic capital allocation mechanism in the Ethereum ecosystem.
 
 QF operates at the decision layer (allocation layer) of the funding stack, determining how a pool of capital gets distributed based on community signal rather than committee judgment or token-weighted voting. It depends on external infrastructure for identity verification, sybil resistance, and fund custody, and is commonly composed with passport-style identity systems and post-round review processes to maintain allocation integrity.
 
 ## How It Works
 
-Traditional grant programs concentrate decision-making power in small committees, and conventional crowdfunding rewards projects that already have large, well-resourced audiences. Neither approach reliably surfaces public goods that serve broad communities but lack wealthy patrons. Quadratic funding addresses this by introducing a matching pool funded by sponsors, protocols, or treasuries. Community members make individual contributions to projects of their choice, and the matching formula distributes the pool proportionally — giving outsized matching to projects that receive many small donations rather than a few large ones.
+Traditional grant programs concentrate decision-making power in small committees, and conventional crowdfunding rewards projects that already have large, well-resourced audiences. Neither approach reliably surfaces public goods that serve broad communities but lack wealthy patrons.
+
+Quadratic funding addresses this by introducing a matching pool funded by sponsors, protocols, or treasuries. Community members make individual contributions to projects of their choice, and the matching formula distributes the pool proportionally — giving outsized matching to projects that receive many small donations rather than a few large ones.
 
 Because the formula takes the square root of each contribution before summing and squaring, individual donations are converted into weighted preference signals. This weighting partially corrects for the public goods free-rider problem by amplifying broad participation over concentrated spending.
 

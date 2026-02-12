@@ -1,10 +1,12 @@
 ---
-id: '1770916063359'
+id: '1770923856105'
 slug: retroactive-funding
-name: Retroactive Funding
-shortDescription: A funding allocation mechanism that rewards projects for demonstrated impact after outcomes are known.
+name: "Retroactive Funding"
+shortDescription: "Capital allocation mechanism that rewards projects for impact after outcomes are known."
 tags:
-
+  - expert
+  - results-based
+  - retroactive
 lastUpdated: '2026-02-12'
 relatedMechanisms:
 
@@ -18,7 +20,7 @@ relatedCampaigns:
 
 ---
 
-Retroactive funding is a capital allocation mechanism that distributes funding based on demonstrated impact rather than proposals for future work. Introduced by Vitalik Buterin and the Optimism team in 2021, it rests on the premise that outcomes are easier to evaluate than predictions. By allocating rewards after work is delivered, retroactive funding reduces allocation risk and creates exit-like incentives for public goods that lack traditional revenue models.
+**Retroactive funding** is a capital allocation mechanism that distributes funding based on demonstrated impact rather than proposals for future work. Introduced by Vitalik Buterin and the Optimism team in 2021, it rests on the premise that outcomes are easier to evaluate than predictions. By allocating rewards after work is delivered, retroactive funding reduces allocation risk and creates exit-like incentives for public goods that lack traditional revenue models.
 
 Retroactive funding operates at the decision layer (allocation layer) of the funding stack, determining how capital is allocated after work has been delivered. It is commonly composed with prospective mechanisms like quadratic funding and direct grants, which provide early-stage support, while retroactive funding rewards demonstrated results — creating sequential funding layers that address different stages of the project lifecycle.
 
@@ -78,7 +80,7 @@ Retroactive funding works best when:
 ## Further Reading
 
 - [**Retroactive Public Goods Funding** — Vitalik Buterin, Optimism](https://medium.com/ethereum-optimism/retroactive-public-goods-funding-33c9b7d00f0c)  
-- [**Review of Optimism Retro Funding Round 1** — Vitalik Buterin](https://vitalik.eth.limo/general/2021/11/16/retro1.html)  
+- [**Optimism Retro Funding Round 1** — Vitalik Buterin](https://vitalik.eth.limo/general/2021/11/16/retro1.html)  
 - [**WTF is Retro Funding** — Gitcoin Blog](https://www.gitcoin.co/blog/wtf-is-retro-funding)  
 - [**How Retro Funding Works** — Optimism Collective](https://community.optimism.io/citizens-house/how-retro-funding-works)  
 - [**Retro Funding 2025** — Optimism](https://www.optimism.io/blog/retro-funding-2025)

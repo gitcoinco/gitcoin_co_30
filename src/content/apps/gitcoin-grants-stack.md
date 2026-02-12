@@ -1,8 +1,8 @@
 ---
-id: '1770916073908'
+id: '1770923869512'
 slug: gitcoin-grants-stack
-name: Gitcoin Grants Stack
-shortDescription: An open-source grants platform powering quadratic funding, direct grants, and retroactive funding across the Ethereum ecosystem.
+name: "Gitcoin Grants Stack"
+shortDescription: "An open-source grants platform powering quadratic funding, direct grants, and retroactive funding across the Ethereum ecosystem."
 tags:
 
 lastUpdated: '2026-02-12'

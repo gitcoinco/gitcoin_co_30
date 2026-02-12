@@ -1,8 +1,8 @@
 ---
-id: '1770916083663'
+id: '1770923880427'
 slug: gitcoin-grants-22-gg22
-name: Gitcoin Grants 22 (GG22)
-shortDescription: Gitcoin Grants 22 reintroduced dedicated OSS funding, distributing $1.7M in funding across four OSS and seven community rounds.
+name: "Gitcoin Grants 22 (GG22)"
+shortDescription: "Gitcoin Grants 22 reintroduced dedicated OSS funding, distributing $1.7M in funding across four OSS and seven community rounds."
 tags:
 
 lastUpdated: '2026-02-12'

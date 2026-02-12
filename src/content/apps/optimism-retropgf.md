@@ -1,8 +1,8 @@
 ---
-id: '1770916072234'
+id: '1770923867595'
 slug: optimism-retropgf
-name: Optimism RetroPGF
-shortDescription: A retroactive public goods funding program that allocates OP tokens to contributors based on demonstrated ecosystem impact.
+name: "Optimism RetroPGF"
+shortDescription: "A retroactive public goods funding program that allocates OP tokens to contributors based on demonstrated ecosystem impact."
 tags:
 
 lastUpdated: '2026-02-12'
