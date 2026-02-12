@@ -325,7 +325,7 @@ hr {
 
 /* Form inputs */
 input, textarea, select {
-  @apply bg-gray-900/60 border border-gray-200 rounded-xl px-4 py-3
+  @apply font-mono bg-gray-900/60 border border-gray-200 rounded-xl px-4 py-3
          text-gray-25 placeholder:text-gray-500
            hover:border-teal-500
          focus:outline-none focus:border-teal-500

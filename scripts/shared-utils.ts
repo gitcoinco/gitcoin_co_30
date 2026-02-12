@@ -25,11 +25,31 @@ import {
   type ParsedImage,
 } from "../src/lib/parse-issue";
 
+const ALLOWED_HOSTS = [
+  "github.com",
+  "user-images.githubusercontent.com",
+  "raw.githubusercontent.com",
+  "objects.githubusercontent.com",
+  "avatars.githubusercontent.com",
+];
+const MAX_REDIRECTS = 5;
+const MAX_FILE_SIZE = 10 * 1024 * 1024; // 10 MB
+
 /** Download an image from a URL to a local file */
 export async function downloadImage(
   url: string,
   filepath: string,
+  redirectCount = 0,
 ): Promise<void> {
+  if (redirectCount > MAX_REDIRECTS) {
+    throw new Error(`Too many redirects (>${MAX_REDIRECTS}) for ${url}`);
+  }
+
+  const parsed = new URL(url);
+  if (!ALLOWED_HOSTS.some((h) => parsed.hostname === h || parsed.hostname.endsWith(`.${h}`))) {
+    throw new Error(`Blocked download from untrusted host: ${parsed.hostname}`);
+  }
+
   return new Promise((resolve, reject) => {
     https
       .get(url, (response) => {
@@ -39,12 +59,30 @@ export async function downloadImage(
           response.statusCode < 400 &&
           response.headers.location
         ) {
-          return downloadImage(response.headers.location, filepath)
+          return downloadImage(response.headers.location, filepath, redirectCount + 1)
             .then(resolve)
             .catch(reject);
         }
 
+        const contentType = response.headers["content-type"] || "";
+        if (!contentType.startsWith("image/") && !contentType.startsWith("application/octet-stream")) {
+          response.resume(); // drain the response
+          return reject(new Error(`Unexpected content-type "${contentType}" for ${url}`));
+        }
+
+        let downloaded = 0;
         const file = fs.createWriteStream(filepath);
+
+        response.on("data", (chunk: Buffer) => {
+          downloaded += chunk.length;
+          if (downloaded > MAX_FILE_SIZE) {
+            response.destroy();
+            file.close();
+            fs.unlink(filepath, () => {});
+            reject(new Error(`File exceeds ${MAX_FILE_SIZE / 1024 / 1024}MB limit: ${url}`));
+          }
+        });
+
         response.pipe(file);
         file.on("finish", () => {
           file.close();

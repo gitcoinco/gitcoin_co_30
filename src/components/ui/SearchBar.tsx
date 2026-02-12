@@ -41,7 +41,7 @@ export default function SearchBar({
         className={`${iconSize} shrink-0 text-gray-300 group-hover:text-teal-500`}
         style={{ transition: "color 300ms ease" }}
       />
-      <span className="flex-1 text-gray-300">{placeholder}</span>
+      <span className="flex-1 text-gray-300 font-mono">{placeholder}</span>
       <kbd className="shrink-0 rounded px-1.5 py-0.5 text-sm text-gray-300 font-mono">
         {isMac ? (
           <span className="flex items-center">
