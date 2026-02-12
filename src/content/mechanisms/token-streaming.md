@@ -1,10 +1,12 @@
 ---
-id: '1770920324228'
+id: '1770923852020'
 slug: token-streaming
 name: "Token Streaming"
 shortDescription: "Continuous funding mechanism that streams ERC-20 token payments per second instead of lump sums."
 tags:
-
+  - payments
+  - continuous
+  - streaming
 lastUpdated: '2026-02-12'
 relatedMechanisms:
 
@@ -18,7 +20,7 @@ relatedCampaigns:
 
 ---
 
-Token streaming is a payment execution mechanism that distributes ERC-20 tokens continuously over time — typically calculated per second — rather than through discrete lump-sum transfers. A sender deposits tokens (or authorizes ongoing token flows) into a smart contract that programmatically accrues value to a recipient as time passes. Recipients can withdraw earned balances at any time without requiring additional transactions from the sender.
+**Token streaming** is a payment execution mechanism that distributes ERC-20 tokens continuously over time — typically calculated per second — rather than through discrete lump-sum transfers. A sender deposits tokens (or authorizes ongoing token flows) into a smart contract that programmatically accrues value to a recipient as time passes. Recipients can withdraw earned balances at any time without requiring additional transactions from the sender.
 
 Token streaming operates at the execution layer (payment rails) of the funding stack. It determines how capital moves after allocation decisions are made. The mechanism is allocation-agnostic: streaming can distribute funds allocated through quadratic funding, retroactive funding, direct grants, payroll systems, vesting schedules, or DAO governance decisions. It is commonly used when sustained incentive alignment, treasury risk reduction, or smoother token distribution dynamics are desired.
 

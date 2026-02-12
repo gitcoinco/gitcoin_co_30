@@ -1,8 +1,8 @@
 ---
-id: '1770916075500'
+id: '1770923871437'
 slug: ethereum-foundation-esp
-name: Ethereum Foundation ESP
-shortDescription: The Ethereum Foundation’s primary direct grants program funding open-source infrastructure, research, and developer tooling.
+name: "Ethereum Foundation ESP"
+shortDescription: "The Ethereum Foundation’s primary direct grants program funding open-source infrastructure, research, and developer tooling."
 tags:
 
 lastUpdated: '2026-02-12'

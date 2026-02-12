@@ -1,8 +1,8 @@
 ---
-id: '1770916080430'
+id: '1770923876877'
 slug: gitcoin-grants-20-gg20
-name: Gitcoin Grants 20 (GG20)
-shortDescription: Gitcoin's twentieth grants round distributed $1.5M in matching, debuting community governance and automated sybil resistance.
+name: "Gitcoin Grants 20 (GG20)"
+shortDescription: "Gitcoin's twentieth grants round distributed $1.5M in matching, debuting community governance and automated sybil resistance."
 tags:
 
 lastUpdated: '2026-02-12'

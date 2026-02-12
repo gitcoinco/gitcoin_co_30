@@ -1,8 +1,8 @@
 ---
-id: '1770916093351'
+id: '1770923891244'
 slug: coin-center-defending-cryptocurrency-rights-through-community-funded-advocacy
 name: "Coin Center: Defending Cryptocurrency Rights Through Community-Funded Advocacy"
-shortDescription: Quadratic funding case study on how Coin Center used Gitcoin Grants to build community-backed support for crypto policy advocacy and litigation.
+shortDescription: "Quadratic funding case study on how Coin Center used Gitcoin Grants to build community-backed support for crypto policy advocacy and litigation."
 tags:
 
 lastUpdated: '2026-02-12'

@@ -1,10 +1,12 @@
 ---
-id: '1770916065041'
+id: '1770923858249'
 slug: quadratic-voting
-name: Quadratic Voting
-shortDescription: A governance mechanism that captures preference intensity through quadratic vote costs, enabling fairer prioritization.
+name: "Quadratic Voting"
+shortDescription: "Governance mechanism where votes cost quadratically, enabling nuanced preferences."
 tags:
-
+  - quadratic
+  - democratic
+  - governance
 lastUpdated: '2026-02-12'
 relatedMechanisms:
 
@@ -18,13 +20,19 @@ relatedCampaigns:
 
 ---
 
-Quadratic voting (QV) is a collective decision-making mechanism that allows participants to express not just their preferences but the strength of those preferences. Each participant receives an equal budget of voice credits, which they allocate across issues or proposals on a ballot. The cost of casting votes follows a quadratic function: one vote costs one credit, two votes cost four credits, three votes cost nine credits, and so on. This escalating cost prevents any single participant from dominating outcomes on a single issue while enabling those who care deeply about a particular question to meaningfully amplify their voice — at the expense of influence elsewhere.
+**Quadratic voting** (QV) is a collective decision-making mechanism that allows participants to express not just their preferences but the strength of those preferences. Each participant receives an equal budget of voice credits, which they allocate across issues or proposals on a ballot.
+
+The cost of casting votes follows a quadratic function: one vote costs one credit, two votes cost four credits, three votes cost nine credits, and so on. This escalating cost prevents any single participant from dominating outcomes on a single issue while enabling those who care deeply about a particular question to meaningfully amplify their voice — at the expense of influence elsewhere.
 
 Originally proposed by Steven Lalley and E. Glen Weyl in 2012 and formalized in 2018, QV has been deployed in settings ranging from the Colorado State Legislature and the Taiwan Presidential Hackathon to DAO governance platforms like Snapshot. It is the most mature mechanism for capturing preference intensity in collective decision-making.
 
 ## How It Works
 
-Standard one-person-one-vote systems treat every voter's preference as equally intense, allowing an indifferent majority to override a passionate minority. This creates a bias toward median preferences and fails to account for how differently issues affect different people. In blockchain governance, token-weighted voting concentrates power among large holders, while simple one-address-one-vote systems are trivially sybil attackable. Neither approach reliably captures the nuanced preference landscape of a diverse community. QV introduces a market-like mechanism for expressing preferences: participants receive equal budgets of voice credits and allocate them across a ballot of proposals or candidates, with a quadratic cost function ensuring that each additional vote on a single issue becomes increasingly expensive. QV operates at the decision layer (allocation layer) of the funding and governance stack, determining which proposals, priorities, or candidates a community selects.
+Standard one-person-one-vote systems treat every voter's preference as equally intense, allowing an indifferent majority to override a passionate minority. This creates a bias toward median preferences and fails to account for how differently issues affect different people.
+
+In blockchain governance, token-weighted voting concentrates power among large holders, while simple one-address-one-vote systems are trivially sybil attackable. Neither approach reliably captures the nuanced preference landscape of a diverse community. QV introduces a market-like mechanism for expressing preferences: participants receive equal budgets of voice credits and allocate them across a ballot of proposals or candidates, with a quadratic cost function ensuring that each additional vote on a single issue becomes increasingly expensive.
+
+QV operates at the decision layer (allocation layer) of the funding and governance stack, determining which proposals, priorities, or candidates a community selects.
 
 1. **Credit distribution:** Each eligible participant receives an equal budget of voice credits. The absolute size of the budget does not affect outcomes — what matters is equal starting allocation. Common implementations use 99 or 100 credits.  
 2. **Ballot design:** A governance process defines the proposals, priorities, or candidates on the ballot. Ballot design is critical, as the available options shape which preferences can be expressed. Proposals may support both positive and negative votes.  
@@ -81,5 +89,5 @@ Quadratic voting works best when:
 - [**Quadratic Voting** — Steven P. Lalley, E. Glen Weyl](https://papers.ssrn.com/sol3/papers.cfm?abstract_id=2003531)  
 - [**Radical Markets** — Eric A. Posner, E. Glen Weyl](https://press.princeton.edu/books/hardcover/9780691177502/radical-markets)  
 - [**Quadratic Voting: A How-To Guide** — Gitcoin Blog](https://www.gitcoin.co/blog/quadratic-voting-a-how-to-guide)  
-- [**The Handbook for Radical Local Democracy** — RadicalxChange Foundation](https://www.radicalxchange.org/media/papers/The_Handbook_for_Radical_Local_Democracy.pdf)  
+- [**Radical Local Democracy** — RadicalxChange Foundation](https://www.radicalxchange.org/media/papers/The_Handbook_for_Radical_Local_Democracy.pdf)  
 - [**Quadratic Voting in Colorado** — RadicalxChange](https://www.radicalxchange.org/wiki/colorado-qv/)

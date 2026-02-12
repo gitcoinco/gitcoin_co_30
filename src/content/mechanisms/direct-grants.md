@@ -1,10 +1,12 @@
 ---
-id: '1770916095152'
+id: '1770923892930'
 slug: direct-grants
-name: Direct Grants
-shortDescription: A funding allocation mechanism where expert reviewers allocate capital based on judgment, strategy, and expected impact.
+name: "Direct Grants"
+shortDescription: "A funding allocation mechanism where expert reviewers allocate capital based on judgment, strategy, and expected impact."
 tags:
-
+  - expert
+  - milestone
+  - grants
 lastUpdated: '2026-02-12'
 relatedMechanisms:
 
@@ -18,13 +20,15 @@ relatedCampaigns:
 
 ---
 
-Direct grants are a capital allocation mechanism in which a designated individual, committee, or domain expert evaluates proposals and awards funding based on strategic priorities, technical merit, and expected impact. Direct grants are the most widely deployed funding mechanism in the Ethereum ecosystem, forming the operational backbone of nearly every protocol foundation and DAO treasury program.
+**Direct grants** are a capital allocation mechanism in which a designated individual, committee, or domain expert evaluates proposals and awards funding based on strategic priorities, technical merit, and expected impact. Direct grants are the most widely deployed funding mechanism in the Ethereum ecosystem, forming the operational backbone of nearly every protocol foundation and DAO treasury program.
 
 Unlike community-driven mechanisms such as quadratic funding or conviction voting, direct grants delegate allocation authority to reviewers with relevant domain expertise, trading democratic signal for depth and speed of evaluation. Many programs structure disbursement around milestones, releasing capital incrementally as grantees deliver on agreed deliverables.
 
 ## How It Works
 
-Many funding needs — infrastructure research, security audits, and protocol development — require deep technical evaluation that broad community voting cannot reliably provide. Community-driven mechanisms excel at surfacing popular projects but can underweight specialized, unglamorous, or long-horizon work. Direct grants address this by delegating allocation authority to reviewers with relevant domain expertise, who evaluate proposals against defined criteria and make funding decisions. This approach trades the democratic signal of crowdfunding for the depth and speed of expert judgment. Direct grants are frequently composed with milestone-based disbursement as an execution layer.
+Many funding needs — infrastructure research, security audits, and protocol development — require deep technical evaluation that broad community voting cannot reliably provide. Community-driven mechanisms excel at surfacing popular projects but can underweight specialized, unglamorous, or long-horizon work.
+
+Direct grants address this by delegating allocation authority to reviewers with relevant domain expertise, who evaluate proposals against defined criteria and make funding decisions. This approach trades the democratic signal of crowdfunding for the depth and speed of expert judgment. Direct grants are frequently composed with milestone-based disbursement as an execution layer.
 
 1. **Strategic scoping:** A foundation, DAO, or treasury defines funding priorities, often organized by domain (e.g., developer tooling, security, education, research). Some programs publish explicit wishlists or Requests for Proposals (RFPs) to signal areas of need.  
 2. **Proposal submission:** Applicants submit proposals through an application process — typically a form or onchain submission — describing the project, team, methodology, timeline, budget, and expected impact. Some programs accept open applications; others operate by invitation or proactive scouting.  
@@ -80,6 +84,6 @@ Direct grants work best when:
 
 - [**Ethereum Foundation ESP** — Ethereum Foundation](https://blog.ethereum.org/en/2025/11/03/new-esp-grants)  
 - [**Delegated Domain Allocators** — Questbook Blog](https://blog.questbook.xyz/posts/delegated-domain-allocators/)  
-- [**How To Fund Innovation: A Guide to Web3 Grants** — Be In Crypto](https://beincrypto.com/learn/web3-grants-guide/)  
+- [**A Guide to Web3 Grants** — Be In Crypto](https://beincrypto.com/learn/web3-grants-guide/)  
 - [**Gitcoin 3.0: The Road to GG24** — Gitcoin](https://3.gitcoin.co/)  
-- [**Ethereum Foundation & Community Grant Programs** — Ethereum Foundation](https://ethereum.org/community/grants/)
+- [**Community Grant Programs** — Ethereum Foundation](https://ethereum.org/community/grants/)

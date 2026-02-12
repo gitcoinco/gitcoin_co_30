@@ -1,8 +1,8 @@
 ---
-id: '1770916086798'
+id: '1770923884189'
 slug: gitcoin-grants-21-gg21
-name: Gitcoin Grants 21 (GG21)
-shortDescription: Gitcoin's first fully community-led grants round distributed $933K across 11 quadratic funding rounds without a centralized OSS Program.
+name: "Gitcoin Grants 21 (GG21)"
+shortDescription: "Gitcoin's first fully community-led grants round distributed $933K across 11 quadratic funding rounds without a centralized OSS Program."
 tags:
 
 lastUpdated: '2026-02-12'

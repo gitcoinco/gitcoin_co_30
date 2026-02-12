@@ -1,8 +1,8 @@
 ---
-id: '1770916082080'
+id: '1770923878599'
 slug: gitcoin-grants-23-gg23
-name: Gitcoin Grants 23 (GG23)
-shortDescription: Gitcoin's first multi-mechanism grants round distributing $1.3M in matching via parallel quadratic and retroactive funding tracks.
+name: "Gitcoin Grants 23 (GG23)"
+shortDescription: "Gitcoin's first multi-mechanism grants round distributing $1.3M in matching via parallel quadratic and retroactive funding tracks."
 tags:
 
 lastUpdated: '2026-02-12'
