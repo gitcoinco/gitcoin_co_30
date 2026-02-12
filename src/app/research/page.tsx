@@ -10,6 +10,7 @@ import {
   SensemakingSection,
 } from "@/components/layouts";
 import { research } from "@/content/research";
+import SectionHeader from "@/components/ui/SectionHeader";
 
 export const metadata: Metadata = {
   title: "Research & Trends",
@@ -20,18 +21,13 @@ export const metadata: Metadata = {
 export default function ResearchPage() {
   return (
     <ListPageLayout>
-      <ListPageHeader
-        title="Research & Trends"
-        description="Deep dives into the funding ecosystem. Analysis of capital flows, mechanism performance, and emerging trends shaping the future of public goods funding."
-        searchPlaceholder="Search research..."
-        icon="/assets/research-icon.svg"
-      />
+      <ListPageHeader title="Research & Trends" />
 
       <SensemakingSection category="research" />
 
       <section className="section">
         <div className="container-page">
-          <ResultsBar count={research.length} itemType="articles" />
+          <SectionHeader title="All Research" subtitle="" />
           <ItemsGrid>
             {research.map((r) => (
               <ResearchCard key={r.id} research={r} />

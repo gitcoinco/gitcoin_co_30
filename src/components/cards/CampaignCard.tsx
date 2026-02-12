@@ -65,10 +65,10 @@ export default function CampaignCard({
           {statusLabel}
         </Badge>
 
-        <h3 className="mt-6 text-[30px] text-gray-25 font-heading">
+        <h3 className="mt-6 text-2xl sm:text-[32px] text-gray-25 font-heading font-light">
           {campaign.name}
         </h3>
-        <p className="mt-4 text-[20px] text-gray-300 font-serif">
+        <p className="mt-4 text-lg sm:text-xl text-gray-300 font-serif">
           {campaign.shortDescription}
         </p>
 

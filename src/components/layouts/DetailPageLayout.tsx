@@ -243,42 +243,19 @@ interface ListPageLayoutProps {
 }
 
 export function ListPageLayout({ children }: ListPageLayoutProps) {
-  return <div className="min-h-screen bg-gray-900">{children}</div>;
+  return <div className="min-h-screen bg-gray-900 pt-16">{children}</div>;
 }
 
 interface ListPageHeaderProps {
   title: string;
-  description: string;
-  searchPlaceholder: string;
-  icon: string;
 }
 
-export function ListPageHeader({
-  title,
-  description,
-  searchPlaceholder,
-  icon,
-}: ListPageHeaderProps) {
+export function ListPageHeader({ title }: ListPageHeaderProps) {
   return (
-    <section className="bg-gray-950 border-b border-gray-800">
-      <div className="container-page py-12 flex gap-6 sm:gap-12 items-center">
-        <div className="icon-hover-container w-24 h-16 sm:h-40 sm:w-60">
-          <CategoryIcon
-            src={icon}
-            alt={`${title} icon`}
-            className="w-24 h-16  sm:h-40 sm:w-60"
-          />
-        </div>
-        <div className="flex flex-col gap-4">
-          <h1 className="text-xl md:text-4xl heading text-gray-25">{title}</h1>
-          <div className="sm:block hidden">
-            <p className="text-lg text-gray-500 max-w-3xl mb-8">
-              {description}
-            </p>
-            <SearchBar placeholder={searchPlaceholder} className="max-w-xl" />
-          </div>
-        </div>
-      </div>
+    <section className="">
+      <h1 className="text-3xl md:text-4xl font-heading text-gray-25 text-center">
+        {title}
+      </h1>
     </section>
   );
 }
@@ -348,11 +325,12 @@ export function ResultsBar({
 
 interface ItemsGridProps {
   children: ReactNode;
+  columns?: 2 | 3;
 }
 
-export function ItemsGrid({ children }: ItemsGridProps) {
+export function ItemsGrid({ children, columns = 3 }: ItemsGridProps) {
   return (
-    <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">{children}</div>
+    <div className={`grid md:grid-cols-2 ${columns === 3 ? "lg:grid-cols-3" : ""} gap-6`}>{children}</div>
   );
 }
 

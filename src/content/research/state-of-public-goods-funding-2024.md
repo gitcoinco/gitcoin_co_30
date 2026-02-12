@@ -3,7 +3,7 @@ id: '1'
 slug: state-of-public-goods-funding-2024
 name: State of Public Goods Funding 2024
 shortDescription: A comprehensive analysis of how public goods are funded across the Ethereum ecosystem, tracking capital flows, mechanism adoption, and emerging trends through 2024.
-banner: /images/banner-placeholder.png
+banner: /og-default.png
 tags:
   - public goods
   - funding

@@ -32,7 +32,7 @@ const Button = forwardRef<HTMLButtonElement, ButtonProps>(
         "border border-teal-500 text-teal-500 hover:text-iris-500 hover:border-iris-500 bg-gray-900/70 !focus:ring-iris-500 hover:shadow-[0_2px_10px_rgba(161,149,240,0.6)] bg-bottom bg-no-repeat bg-[length:100%_0%] hover:bg-[length:100%_30%] bg-[image:linear-gradient(to_top,rgba(161,149,240,0.7),transparent)]",
       tertiary:
         "border border-gray-600 text-gray-300 hover:border-iris-500 hover:text-iris-500",
-      ghost: "text-sm text-teal-500 hover:text-teal-100",
+      ghost: "text-sm text-teal-500 hover:text-teal-100 !py-1",
     };
 
     const sizes = {

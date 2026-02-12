@@ -3,7 +3,7 @@ id: '1'
 slug: "protocol-guild-ecosystem-funding"
 name: "Protocol Guild: $92M+ for Ethereum Core Development"
 shortDescription: "How Protocol Guild became the largest collective funding mechanism for Ethereum core contributors, receiving pledges from Lido, Uniswap, ENS, and dozens of other protocols."
-banner: "/images/case-studies/protocol-guild.svg"
+banner: "/images/case-studies/protocol-guild.png"
 tags:
   - "core protocol"
   - "ethereum"

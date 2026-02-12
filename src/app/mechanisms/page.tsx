@@ -10,6 +10,7 @@ import {
   SensemakingSection,
 } from "@/components/layouts";
 import { mechanisms } from "@/content/mechanisms";
+import SectionHeader from "@/components/ui/SectionHeader";
 
 export const metadata: Metadata = {
   title: "Funding Mechanisms",
@@ -29,22 +30,17 @@ const categories = [
 export default function MechanismsPage() {
   return (
     <ListPageLayout>
-      <ListPageHeader
-        title="Funding Mechanisms"
-        description="Understand the different approaches to capital allocation. From quadratic funding to retroactive rewards, explore how each mechanism works and when to use it."
-        searchPlaceholder="Search mechanisms..."
-        icon="/assets/mechanisms-icon.svg"
-      />
+      <ListPageHeader title="Funding Mechanisms" />
 
       <SensemakingSection category="mechanisms" />
 
       <section className="section">
         <div className="container-page">
-          <ResultsBar
-            count={mechanisms.length}
-            itemType="mechanisms"
-            showSort={false}
+          <SectionHeader
+            title="All Mechanisms"
+            subtitle=""
           />
+
           <ItemsGrid>
             {mechanisms.map((mechanism) => (
               <MechanismCard key={mechanism.id} mechanism={mechanism} />

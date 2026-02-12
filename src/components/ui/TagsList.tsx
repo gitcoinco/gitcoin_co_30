@@ -24,9 +24,9 @@ export default function TagsList({
           </Badge>
         ))}
         {tags.length > maxTags && (
-          <span className="text-xs text-gray-400">
-            +{tags.length - maxTags}
-          </span>
+          <Badge size="sm">
+            <span className="">+{tags.length - maxTags}</span>
+          </Badge>
         )}
       </div>
     </div>
