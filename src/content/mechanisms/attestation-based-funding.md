@@ -1,5 +1,5 @@
 ---
-id: '1770928327821'
+id: '1770934223400'
 slug: attestation-based-funding
 name: "Attestation-Based Funding"
 shortDescription: "Continuous capital allocation triggered by verified community support thresholds."

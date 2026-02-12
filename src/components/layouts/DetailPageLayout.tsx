@@ -10,6 +10,7 @@ import {
 import { ReactNode, ComponentType } from "react";
 import { Button, Badge, SearchBar } from "@/components/ui";
 import CategoryIcon from "@/components/ui/CategoryIcon";
+import ChladniBackground from "@/components/ChladniBackground";
 
 interface BreadcrumbProps {
   href: string;
@@ -257,19 +258,26 @@ interface ListPageLayoutProps {
 }
 
 export function ListPageLayout({ children }: ListPageLayoutProps) {
-  return <div className="min-h-screen bg-gray-900 pt-16">{children}</div>;
+  return <div className="min-h-screen bg-gray-900">{children}</div>;
 }
 
 interface ListPageHeaderProps {
   title: string;
+  description?: string;
 }
 
-export function ListPageHeader({ title }: ListPageHeaderProps) {
+export function ListPageHeader({ title, description }: ListPageHeaderProps) {
   return (
-    <section className="">
-      <h1 className="text-3xl md:text-4xl font-heading text-gray-25 text-center">
-        {title}
-      </h1>
+    <section className="relative overflow-hidden -mt-[72px] pt-[72px] w-full">
+      <ChladniBackground variant="3" opacity={0.5} />
+      <div className="absolute bottom-0 left-0 right-0 h-16 bg-gradient-to-t from-gray-900 to-transparent z-[1]" />
+      <div className="relative z-10 pt-16 pb-28 w-full">
+        <h1 className="text-3xl md:text-5xl font-heading text-gray-25 text-center font-light">
+          {title}
+        </h1>
+    
+        <p className="mt-4 text-center text-gray-200 max-w-2xl mx-auto sm:text-2xl font-serif">{description}</p>
+      </div>
     </section>
   );
 }

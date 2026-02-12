@@ -26,7 +26,7 @@ IMPORTANT: This template is automatically parsed by a script to generate content
 OPTIONAL: Add a banner image - it will be displayed at the top of the page.
 Recommended dimensions: 1600x900 pixels (16:9 aspect ratio)
 Formats: PNG or JPG only
-Generate one: https://octaviaan.github.io/Chladni-Particles/ (press R to randomize, then Rebuild Particles)
+Generate one: https://octaviaan.github.io/Chladni-Particles/ (press R to randomize)
 -->
 
 

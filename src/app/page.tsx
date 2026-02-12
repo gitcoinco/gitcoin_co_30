@@ -65,7 +65,8 @@ export default function HomePage() {
   return (
     <div className="bg-gray-900 text-gray-25" data-node-id="551:2185">
       <section className="relative overflow-hidden -mt-[72px] pt-[72px]">
-        <ChladniBackground variant="1" />
+        <ChladniBackground variant="1" opacity={0.8} />
+        <div className="absolute bottom-0 left-0 right-0 h-32 bg-gradient-to-t from-gray-900 to-transparent z-[1]" />
 
         <div className="relative z-10 mx-auto w-full max-w-[1216px] px-4 sm:px-6 lg:px-0">
           <div className="pb-20 pt-16 md:pb-28 md:pt-24">

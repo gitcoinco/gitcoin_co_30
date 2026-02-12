@@ -1,5 +1,5 @@
 ---
-id: '1770928351697'
+id: '1770934245943'
 slug: optimism-from-plasma-group-research-to-a-2b-layer-2-ecosystem
 name: "Optimism: From Plasma Group Research to a $2B+ Layer 2 Ecosystem"
 shortDescription: "How quadratic funding sustained early Optimism research that became a leading Ethereum L2."

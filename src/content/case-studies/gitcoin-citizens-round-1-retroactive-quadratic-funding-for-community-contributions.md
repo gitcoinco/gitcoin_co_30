@@ -1,5 +1,5 @@
 ---
-id: '1770928346313'
+id: '1770934240465'
 slug: gitcoin-citizens-round-1-retroactive-quadratic-funding-for-community-contributions
 name: "Gitcoin Citizens Round 1: Retroactive Quadratic Funding for Community Contributions"
 shortDescription: "Gitcoin's first retroactive quadratic funding round, achieving a record 4× matching multiplier."

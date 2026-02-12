@@ -1,5 +1,5 @@
 ---
-id: '1770928326021'
+id: '1770934221676'
 slug: conviction-voting
 name: "Conviction Voting"
 shortDescription: "Continuous governance mechanism where voting power accumulates over time."

@@ -21,7 +21,7 @@ export default function AppsPage() {
   const featuredApps = getFeaturedApps(3);
   return (
     <ListPageLayout>
-      <ListPageHeader title="Apps" />
+      <ListPageHeader title="Apps" description="Funding platforms, DAOs, grant programs"/>
 
       <SensemakingSection category="apps" />
 

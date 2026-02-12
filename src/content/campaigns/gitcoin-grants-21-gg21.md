@@ -1,10 +1,12 @@
 ---
-id: '1770928348137'
+id: '1770934242062'
 slug: gitcoin-grants-21-gg21
 name: "Gitcoin Grants 21 (GG21)"
-shortDescription: "Gitcoin's first fully community-led grants round distributed $933K across 11 quadratic funding rounds without a centralized OSS Program."
+shortDescription: "Gitcoin's first fully community-led round distributed $933K across 11 independent QF rounds."
 tags:
-
+  - quadratic
+  - democratic
+  - community
 lastUpdated: '2026-02-12'
 relatedMechanisms:
 
@@ -62,6 +64,24 @@ Each round defined its own project eligibility criteria based on domain scope an
 - **Crowdfunded contributions:** $190K raised through community donations  
 - **Crowdfunding-to-Gitcoin-matching ratio:** 51.35% (exceeding the 50% target)
 
-**Round-by-round results:**  
-| Round | Projects | Matching Pool | Donors | Crowdfunded |  
-| :
+
+### Highlights  
+The Asia Round recorded the highest participation of any round, attracting 3,900 donors and $59,471 in crowdfunded contributions, signaling strong regional community engagement.
+
+The Climate Solutions Round piloted a hybrid 50% Quadratic Funding / 50% Connection-Oriented Cluster Matching model and distributed matching funds in Glo Dollars, generating over $10K in additional climate-focused funding.
+
+The Regen Coordi-Nation Genesis Round brought together GreenPill Network, ReFi DAO, and Celo Public Goods, mobilizing $110K in combined program funding across partners — of which $50K was allocated as the GG21 matching pool — while testing Tunable Quadratic Funding (TQF).
+
+The CollabTech Round introduced a threshold funding mechanism requiring projects to meet minimum contribution levels before receiving matching funds. Sixteen of twenty-nine projects reached their thresholds.
+
+### What Changed  
+GG21 validated that fully community-led rounds can function at scale. Compared to GG20, community round matching increased by 15% and community round crowdfunding increased by 30%.
+
+At the same time, the absence of the OSS Program resulted in a 70% decrease in overall crowdfunding and a 59% decrease in total funding. Historical data showed that the OSS Program had previously accounted for approximately 65–85% of total Gitcoin Grants funding volume.
+
+These outcomes directly informed the decision to reinstate OSS funding as the primary program track in GG22, while retaining the Community Rounds model. GG21 also led to stricter eligibility requirements for Community Round operators in subsequent rounds, including a minimum $5K self-raised matching threshold introduced in GG22.
+
+## Further Reading  
+- [**GG21 Results & Retrospective** — Gitcoin](https://www.gitcoin.co/blog/gg21-results-retrospective)  
+- [**Announcing: Gitcoin Grants Round 21** — Gitcoin](https://www.gitcoin.co/blog/announcing-gitcoin-grants-round-21)  
+- [**GG21 Community Rounds Announced** — Gitcoin Governance Forum](https://gov.gitcoin.co/t/gg21-community-rounds-announced/19168)

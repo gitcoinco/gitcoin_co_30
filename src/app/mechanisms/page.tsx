@@ -30,16 +30,16 @@ const categories = [
 export default function MechanismsPage() {
   return (
     <ListPageLayout>
-      <ListPageHeader title="Funding Mechanisms" />
+      <ListPageHeader
+        title="Funding Mechanisms"
+        description="Funding mechanisms and approaches"
+      />
 
       <SensemakingSection category="mechanisms" />
 
       <section className="section">
         <div className="container-page">
-          <SectionHeader
-            title="All Mechanisms"
-            subtitle=""
-          />
+          <SectionHeader title="All Mechanisms" subtitle="" />
 
           <ItemsGrid>
             {mechanisms.map((mechanism) => (

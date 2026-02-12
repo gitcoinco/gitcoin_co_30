@@ -20,7 +20,10 @@ export default function CampaignsPage() {
   const featuredCampaigns = getFeaturedCampaigns(2);
   return (
     <ListPageLayout>
-      <ListPageHeader title="Funding Campaigns" />
+      <ListPageHeader
+        title="Funding Campaigns"
+        description="Active or upcoming funding rounds"
+      />
 
       <SensemakingSection category="campaigns" />
 
