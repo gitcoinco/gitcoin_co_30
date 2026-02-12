@@ -72,7 +72,7 @@ Community round proposals were submitted to the governance forum and reviewed by
 - **Projects funded:** 326 OSS Program projects, plus additional grantees across five Community Rounds  
 - **Total matching distributed:** $1.5M across OSS Program and Community Rounds  
 - **Total crowdfunded contributions:** $680,935  
-- **OSS crowdfunding:** $484,000 (36% increase from GG19)  
+- **OSS crowdfunding:** $484,000 (50% increase from GG19)  
 - **Median OSS project funding:** $1,511 (50% increase from GG19)
 
 **Participation**
