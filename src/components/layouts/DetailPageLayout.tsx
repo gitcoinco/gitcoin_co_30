@@ -18,7 +18,7 @@ interface BreadcrumbProps {
 
 export function Breadcrumb({ href, label }: BreadcrumbProps) {
   return (
-    <div className="bg-gray-950 border-b border-gray-800">
+    <div className="bg-gray-950 border-b border-gray-600">
       <div className="container-page py-4">
         <Link
           href={href}
@@ -59,7 +59,7 @@ interface PageHeaderProps {
 
 export function PageHeader({ children }: PageHeaderProps) {
   return (
-    <section className="bg-gray-950 border-b border-gray-800">
+    <section className="bg-gray-950 border-b border-gray-600">
       <div className="container-page py-12">{children}</div>
     </section>
   );
@@ -124,12 +124,20 @@ export function MetadataSection({
   );
 }
 
-export function SuggestEditButton() {
+interface SuggestEditButtonProps {
+  contentPath?: string;
+}
+
+export function SuggestEditButton({ contentPath }: SuggestEditButtonProps) {
+  const href = contentPath
+    ? `https://github.com/gitcoinco/gitcoin_co_30/edit/main/src/content/${contentPath}`
+    : "/submit?edit=true";
+
   return (
-    <div className="card !p-0">
-      <Button href="/submit?edit=true" variant="ghost" className="w-full">
-        <Edit className="w-4 h-4 mr-2" />
-        Suggest Edit
+    <div className="">
+      <Button href={href} external={!!contentPath} variant="secondary" size="sm" className="w-full">
+        <ExternalLink className="w-4 h-4 mr-2" />
+        Edit on GitHub
       </Button>
     </div>
   );
@@ -272,7 +280,7 @@ interface FilterBarProps {
 
 export function FilterBar({ filters, activeFilter = "all" }: FilterBarProps) {
   return (
-    <section className="bg-gray-950 border-b border-gray-800 sticky top-16 z-40">
+    <section className="bg-gray-950 border-b border-gray-600 sticky top-16 z-40">
       <div className="container-page py-4">
         <div className="flex flex-wrap gap-2">
           {filters.map((filter) => (
@@ -313,7 +321,7 @@ export function ResultsBar({
         {itemType}
       </p>
       {showSort && sortOptions && sortOptions.length > 0 && (
-        <select className="px-4 py-2 rounded-lg border border-gray-800 bg-gray-950 text-gray-25 text-sm">
+        <select className="px-4 py-2 rounded-lg border border-gray-600 bg-gray-950 text-gray-25 text-sm">
           {sortOptions.map((option) => (
             <option key={option}>{option}</option>
           ))}

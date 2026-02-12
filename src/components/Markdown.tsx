@@ -32,23 +32,23 @@ export function Markdown({ content, className = "" }: MarkdownProps) {
           ),
           // Style paragraphs
           p: ({ children }) => (
-            <p className="text-gray-400 mb-6 leading-relaxed text-base">
+            <p className="text-gray-50 mb-6 leading-relaxed text-base">
               {children}
             </p>
           ),
           // Style lists
           ul: ({ children }) => (
-            <ul className="list-disc list-inside text-gray-400 mb-6 space-y-2 ml-4">
+            <ul className="list-disc list-outside text-gray-50 mb-6 space-y-2 ml-8">
               {children}
             </ul>
           ),
           ol: ({ children }) => (
-            <ol className="list-decimal list-inside text-gray-400 mb-6 space-y-2 ml-4">
+            <ol className="list-decimal list-outside text-gray-50 mb-6 space-y-2 ml-8">
               {children}
             </ol>
           ),
           li: ({ children }) => (
-            <li className="text-gray-400 leading-relaxed">{children}</li>
+            <li className="text-gray-50 leading-relaxed">{children}</li>
           ),
           // Style links
           a: ({ href, children }) => (

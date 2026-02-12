@@ -40,14 +40,14 @@ export default function ContentDetailPage({
       {banner && <HeroImage src={banner} alt={item.name} />}
 
       <PageHeader>
-        <div className="flex flex-col md:flex-row gap-6 md:gap-8">
+        <div className="max-w-[850px] flex flex-col md:flex-row gap-6 md:gap-8">
           {/* Logo (for apps) */}
           {item.logo && !item.banner && (
             <div className="flex-shrink-0">
               <img
                 src={item.logo}
                 alt={`${item.name} logo`}
-                className="w-20 h-20 rounded-2xl object-cover bg-gray-800"
+                className="w-20 h-20 rounded-2xl object-cover bg-gray-900"
               />
             </div>
           )}
@@ -64,37 +64,35 @@ export default function ContentDetailPage({
         </div>
       </PageHeader>
 
-      <TwoColumnLayout
-        content={
-          <div className="space-y-8">
-            <article className="card p-8 md:p-10">
-              <Markdown content={item.description} />
-            </article>
+      <section className="max-w-[850px] mx-auto container-page section">
+        <div className="space-y-8">
+          <article className="">
+            <Markdown content={item.description} />
+          </article>
 
-            {/* Related Sections */}
-            {relatedSections.map(
-              (section, index) =>
-                section.items.length > 0 && (
-                  <div key={index}>
-                    <h2 className="text-2xl font-bold text-gray-25 mb-4">
-                      {section.title}
-                    </h2>
-                    <div className="grid md:grid-cols-2 gap-4">
-                      {section.items}
-                    </div>
+          {!!item.tags.length ? <TagsSection tags={item.tags} /> : ""}
+
+          {/* Related Sections */}
+          {relatedSections.map(
+            (section, index) =>
+              section.items.length > 0 && (
+                <div key={index}>
+                  <h2 className="text-2xl font-bold text-gray-25 mb-4">
+                    {section.title}
+                  </h2>
+                  <div className="grid md:grid-cols-2 gap-4">
+                    {section.items}
                   </div>
-                ),
-            )}
-          </div>
-        }
-        sidebar={
-          <div className="space-y-6">
-            <TagsSection tags={item.tags} />
-            <SuggestEditButton />
-            <MetadataSection lastUpdated={item.lastUpdated} />
-          </div>
-        }
-      />
+                </div>
+              ),
+          )}
+        </div>
+
+        <div className="space-y-6 my-10">
+          <SuggestEditButton contentPath={`${breadcrumbHref.slice(1)}/${item.slug}.md`} />
+          <MetadataSection lastUpdated={item.lastUpdated} />
+        </div>
+      </section>
     </DetailPageLayout>
   );
 }
