@@ -133,8 +133,9 @@ export async function publishContent(
   let frontmatter = `---
 id: '${Date.now()}'
 slug: ${slug}
-name: ${issue.title.replace(titlePrefix, "")}
-shortDescription: ${metadata.shortDescription || ""}`;
+name: "${issue.title.replace(titlePrefix, "").replace(/"/g, '\\"')}"
+shortDescription: "${(metadata.shortDescription || "").replace(/"/g, '\\"')}"`;
+
 
   if (banner) frontmatter += `\nbanner: ${banner}`;
   if (logo) frontmatter += `\nlogo: ${logo}`;
