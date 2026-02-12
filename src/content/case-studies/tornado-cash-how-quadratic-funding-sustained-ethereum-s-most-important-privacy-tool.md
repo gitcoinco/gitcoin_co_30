@@ -1,7 +1,7 @@
 ---
 id: '1770916088484'
 slug: tornado-cash-how-quadratic-funding-sustained-ethereum-s-most-important-privacy-tool
-name: Tornado Cash: How Quadratic Funding Sustained Ethereum's Most Important Privacy Tool
+name: "Tornado Cash: How Quadratic Funding Sustained Ethereum's Most Important Privacy Tool"
 shortDescription: Quadratic funding case study on how Gitcoin Grants supported Tornado Cash amid debates on sanctions and open-source responsibility.
 tags:
 
