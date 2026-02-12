@@ -22,11 +22,6 @@ const aboutItems: DropdownItem[] = [
   },
 ];
 
-const campaignItems: DropdownItem[] = [
-  { label: "GG25", href: "/campaigns/gg25" },
-  { label: "All", href: "/campaigns" },
-];
-
 const navLinks = [
   { label: "Research", href: "/research" },
   { label: "Apps", href: "/apps" },
@@ -133,8 +128,7 @@ export default function Header() {
 
         <nav className="hidden items-center xl:gap-8 gap-2 lg:flex">
           <NavDropdown label="About" items={aboutItems} />
-          <NavDropdown label="Campaigns" items={campaignItems} />
-          {navLinks.map(({ label, href }) => (
+          {[{ label: "Campaigns", href: "/campaigns" }, ...navLinks].map(({ label, href }) => (
             <Link key={href} href={href} className={navLinkClass}>
               {label}
             </Link>
@@ -154,13 +148,9 @@ export default function Header() {
           id="home-mobile-menu"
           className="mb-5 space-y-4 rounded-xl border border-gray-700 bg-gray-900/95 p-4 lg:hidden"
         >
-          {[
-            { heading: "About", items: aboutItems },
-            { heading: "Campaigns", items: campaignItems },
-          ].map(({ heading, items }) => (
-            <div key={heading} className="space-y-2">
-              <p className="text-sm font-semibold text-gray-400">{heading}</p>
-              {items.map((item) =>
+          <div className="space-y-2">
+              <p className="text-sm font-semibold text-gray-400">About</p>
+              {aboutItems.map((item) =>
                 item.external ? (
                   <a
                     key={item.label}
@@ -184,8 +174,7 @@ export default function Header() {
                 ),
               )}
             </div>
-          ))}
-          {navLinks.map(({ label, href }) => (
+          {[{ label: "Campaigns", href: "/campaigns" }, ...navLinks].map(({ label, href }) => (
             <Link
               key={href}
               href={href}

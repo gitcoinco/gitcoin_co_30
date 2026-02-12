@@ -89,7 +89,7 @@ export default function HomePage() {
               </div>
             </div>
             <div className="mt-30 flex flex-wrap items-center justify-center gap-4">
-              <Link href="/submit">
+              <Link href="/partner">
                 <Button variant="primary">Partner with us</Button>
               </Link>
 
