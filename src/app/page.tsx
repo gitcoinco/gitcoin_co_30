@@ -12,6 +12,7 @@ import { getFeaturedApps } from "@/content/apps";
 import { getFeaturedCampaigns } from "@/content/campaigns";
 import { getFeaturedResearch } from "@/content/research";
 import SectionHeader from "@/components/ui/SectionHeader";
+import ContributeCard from "@/components/cards/ContributeCard";
 
 const curateCards = [
   {
@@ -64,7 +65,7 @@ export default function HomePage() {
   return (
     <div className="bg-gray-900 text-gray-25" data-node-id="551:2185">
       <section className="relative overflow-hidden -mt-[72px] pt-[72px]">
-        <ChladniBackground variant="1"/>
+        <ChladniBackground variant="1" />
 
         <div className="relative z-10 mx-auto w-full max-w-[1216px] px-4 sm:px-6 lg:px-0">
           <div className="pb-20 pt-16 md:pb-28 md:pt-24">
@@ -232,16 +233,8 @@ export default function HomePage() {
               ))}
             </div>
 
-            <div className="mx-auto mt-14 max-w-[796px] text-center">
-              <h3 className="text-2xl leading-8">Ready to Contribute?</h3>
-              <div className="mt-6 flex flex-wrap items-center justify-center gap-8">
-                <Link href="/submit">
-                  <Button variant="primary">Submit an Entry</Button>
-                </Link>
-                <Link href="/contribute">
-                  <Button variant="secondary">View Guidelines</Button>
-                </Link>
-              </div>
+            <div className="mt-24 max-w-[796px] mx-auto">
+              <ContributeCard />
             </div>
           </div>
         </section>

@@ -1,10 +1,12 @@
 ---
-id: '1770923882268'
+id: '1770928346313'
 slug: gitcoin-citizens-round-1-retroactive-quadratic-funding-for-community-contributions
 name: "Gitcoin Citizens Round 1: Retroactive Quadratic Funding for Community Contributions"
-shortDescription: "Case study of Gitcoin’s first retroactive quadratic funding round, rewarding past contributions and achieving a record 4× matching multiplier."
+shortDescription: "Gitcoin's first retroactive quadratic funding round, achieving a record 4× matching multiplier."
 tags:
-
+  - quadratic
+  - retroactive
+  - verification
 lastUpdated: '2026-02-12'
 relatedMechanisms:
 
@@ -48,27 +50,27 @@ More than 17,000 donors participated, far exceeding initial expectations of comm
 
 The round demonstrated that retroactive quadratic funding can mobilize substantial participation and capital even with limited matching funds, provided contributors have visibility into past impact.
 
-## Challenges & Solutions
+## Challenges and Solutions
 
-**Over- and undercompensation**  
+**Challenge: Over- and undercompensation**  
 Some allocation outcomes diverged from expectations of which contributions had delivered the most value. Visibility and social dynamics appeared to influence results, raising concerns that retroactive quadratic funding can resemble a popularity contest when impact information is uneven.
 
-*Proposed response:* Introduce clearer evaluation thresholds and contribution metrics to improve voter context and better align funding with demonstrated impact.
+***Solution:*** Introduce clearer evaluation thresholds and contribution metrics to improve voter context and better align funding with demonstrated impact.
 
-**Eligibility clarity**  
+**Challenge: Eligibility clarity**  
 Unclear communication about eligibility led some potential applicants to self-exclude, believing the round targeted a narrower category of contributions than intended.
 
-*Proposed response:* Improve pre-round communication through multiple channels and publish clearer, more explicit eligibility criteria well in advance of future rounds.
+***Solution:*** Improve pre-round communication through multiple channels and publish clearer, more explicit eligibility criteria well in advance of future rounds.
 
-**Grant setup friction**  
+**Challenge: Grant setup friction**  
 Even experienced community members found the multi-step grant creation and round application process cumbersome.
 
-*Proposed response:* Provide additional onboarding resources, including runbooks, documentation, and live Q&A sessions, to reduce friction and improve applicant confidence.
+***Solution:*** Provide additional onboarding resources, including runbooks, documentation, and live Q&A sessions, to reduce friction and improve applicant confidence.
 
-**Airdrop farming**  
+**Challenge: Airdrop farming**  
 Post-round analysis indicated that over 50% of donors participated with speculative motives related to potential future token distributions, distorting participation metrics and community signal.
 
-*Proposed response:* Identify and filter airdrop-motivated donations from analysis to better isolate genuine community signal in retroactive allocation outcomes.
+***Solution:*** Identify and filter airdrop-motivated donations from analysis to better isolate genuine community signal in retroactive allocation outcomes.
 
 ## Lessons Learned
 

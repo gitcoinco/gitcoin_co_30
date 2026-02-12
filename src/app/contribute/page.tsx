@@ -6,8 +6,13 @@ import {
   Edit,
   AlertCircle,
   Star,
+  Zap,
+  BookOpen,
+  BarChart3,
+  Calendar,
 } from "lucide-react";
 import { Button } from "@/components/ui";
+import ContributeCard from "@/components/cards/ContributeCard";
 
 export const metadata: Metadata = {
   title: "Contribution Guide",
@@ -19,27 +24,32 @@ const bounties = [
   {
     type: "Case Study",
     amount: "$100",
+    icon: BookOpen,
     description:
       "In-depth analysis of a funding experiment with outcomes and lessons learned",
   },
   {
     type: "Mechanism Documentation",
     amount: "$75",
+    icon: FileText,
     description: "Comprehensive documentation of a funding mechanism",
   },
   {
     type: "App Profile",
     amount: "$50",
+    icon: Zap,
     description: "Complete profile of a funding platform, DAO, or program",
   },
   {
     type: "Research Piece",
     amount: "$100",
+    icon: BarChart3,
     description: "Original analysis or trend report",
   },
   {
     type: "Edit/Update",
     amount: "$25",
+    icon: Edit,
     description: "Significant improvements to existing content",
   },
 ];
@@ -62,7 +72,7 @@ export default function ContributePage() {
           <h1 className="text-3xl md:text-4xl font-bold text-gray-25 mb-4">
             Contribution Guide
           </h1>
-          <p className="text-lg text-gray-500 max-w-3xl">
+          <p className="text-lg text-gray-400 max-w-3xl font-serif">
             Help build Ethereum&apos;s definitive funding resource. Quality
             contributions earn bounties and recognition in the community.
           </p>
@@ -74,9 +84,6 @@ export default function ContributePage() {
         <div className="container-page">
           <div className="max-w-4xl mx-auto">
             <div className="flex items-center gap-3 mb-8">
-              <div className="w-10 h-10 rounded-lg bg-gray-25/10 flex items-center justify-center">
-                <DollarSign className="w-5 h-5 text-gray-25" />
-              </div>
               <h2 className="text-2xl font-bold text-gray-25">Bounty Rates</h2>
             </div>
             <div className="grid gap-4">
@@ -85,11 +92,14 @@ export default function ContributePage() {
                   key={bounty.type}
                   className="card flex flex-col md:flex-row md:items-center gap-4"
                 >
+                  <div className="w-12 h-12 rounded-lg bg-teal-950 border border-teal-700 flex items-center justify-center flex-shrink-0">
+                    <bounty.icon className="w-6 h-6 text-teal-700" />
+                  </div>
                   <div className="flex-1">
                     <h3 className="font-semibold text-gray-25">
                       {bounty.type}
                     </h3>
-                    <p className="text-sm text-gray-500">
+                    <p className="text-sm text-gray-400 font-serif">
                       {bounty.description}
                     </p>
                   </div>
@@ -99,7 +109,7 @@ export default function ContributePage() {
                 </div>
               ))}
             </div>
-            <p className="text-sm text-gray-500 mt-4 text-center">
+            <p className="text-sm text-gray-400 mt-4 text-center">
               Bounties are paid in ETH or USDC to your provided wallet address
               upon approval.
             </p>
@@ -108,7 +118,7 @@ export default function ContributePage() {
       </section>
 
       {/* What to Contribute */}
-      <section className="section bg-gray-950">
+      <section className="section ">
         <div className="container-page">
           <div className="max-w-4xl mx-auto">
             <div className="flex items-center gap-3 mb-8">
@@ -126,20 +136,20 @@ export default function ContributePage() {
                   High Priority
                 </h3>
                 <ul className="space-y-3">
-                  <li className="flex items-start gap-2 text-gray-500">
+                  <li className="flex items-start gap-2 text-gray-400">
                     <Star className="w-4 h-4 text-gray-25 mt-1 flex-shrink-0" />
                     Case studies from recent funding rounds (GG24, RetroPGF4,
                     etc.)
                   </li>
-                  <li className="flex items-start gap-2 text-gray-500">
+                  <li className="flex items-start gap-2 text-gray-400">
                     <Star className="w-4 h-4 text-gray-25 mt-1 flex-shrink-0" />
                     Documentation of emerging mechanisms
                   </li>
-                  <li className="flex items-start gap-2 text-gray-500">
+                  <li className="flex items-start gap-2 text-gray-400">
                     <Star className="w-4 h-4 text-gray-25 mt-1 flex-shrink-0" />
                     Profiles of DAOs with active grant programs
                   </li>
-                  <li className="flex items-start gap-2 text-gray-500">
+                  <li className="flex items-start gap-2 text-gray-400">
                     <Star className="w-4 h-4 text-gray-25 mt-1 flex-shrink-0" />
                     Research on funding effectiveness and impact
                   </li>
@@ -150,19 +160,19 @@ export default function ContributePage() {
                   Always Welcome
                 </h3>
                 <ul className="space-y-3">
-                  <li className="flex items-start gap-2 text-gray-500">
+                  <li className="flex items-start gap-2 text-gray-400">
                     <CheckCircle className="w-4 h-4 text-gray-25 mt-1 flex-shrink-0" />
                     Updates to outdated information
                   </li>
-                  <li className="flex items-start gap-2 text-gray-500">
+                  <li className="flex items-start gap-2 text-gray-400">
                     <CheckCircle className="w-4 h-4 text-gray-25 mt-1 flex-shrink-0" />
                     New platforms and tools we&apos;ve missed
                   </li>
-                  <li className="flex items-start gap-2 text-gray-500">
+                  <li className="flex items-start gap-2 text-gray-400">
                     <CheckCircle className="w-4 h-4 text-gray-25 mt-1 flex-shrink-0" />
                     Translations (coming soon)
                   </li>
-                  <li className="flex items-start gap-2 text-gray-500">
+                  <li className="flex items-start gap-2 text-gray-400">
                     <CheckCircle className="w-4 h-4 text-gray-25 mt-1 flex-shrink-0" />
                     Corrections and fact-checking
                   </li>
@@ -185,7 +195,7 @@ export default function ContributePage() {
                 Quality Standards
               </h2>
             </div>
-            <p className="text-gray-500 mb-6">
+            <p className="text-gray-400 mb-6">
               To earn a bounty, your submission must meet these standards:
             </p>
             <div className="card">
@@ -195,7 +205,7 @@ export default function ContributePage() {
                     <span className="w-6 h-6 rounded-full bg-gray-25/10 text-gray-25 text-sm font-bold flex items-center justify-center flex-shrink-0">
                       {i + 1}
                     </span>
-                    <span className="text-gray-500">{standard}</span>
+                    <span className="text-gray-400">{standard}</span>
                   </li>
                 ))}
               </ul>
@@ -205,7 +215,7 @@ export default function ContributePage() {
       </section>
 
       {/* Process */}
-      <section className="section bg-gray-950">
+      <section className="section ">
         <div className="container-page">
           <div className="max-w-4xl mx-auto">
             <div className="flex items-center gap-3 mb-8">
@@ -217,40 +227,40 @@ export default function ContributePage() {
 
             <div className="grid md:grid-cols-4 gap-6">
               <div className="text-center">
-                <div className="w-12 h-12 rounded-full bg-gray-800 text-gray-25 font-bold flex items-center justify-center mx-auto mb-4">
+                <div className="w-12 h-12 rounded-full bg-teal-700 text-gray-25 font-bold flex items-center justify-center mx-auto mb-4">
                   1
                 </div>
                 <h3 className="font-semibold text-gray-25 mb-2">Submit</h3>
-                <p className="text-sm text-gray-500">
+                <p className="text-sm text-gray-400 font-serif">
                   Fill out the submission form with your content
                 </p>
               </div>
               <div className="text-center">
-                <div className="w-12 h-12 rounded-full bg-gray-800 text-gray-25 font-bold flex items-center justify-center mx-auto mb-4">
+                <div className="w-12 h-12 rounded-full bg-teal-700 text-gray-25 font-bold flex items-center justify-center mx-auto mb-4">
                   2
                 </div>
                 <h3 className="font-semibold text-gray-25 mb-2">Review</h3>
-                <p className="text-sm text-gray-500">
+                <p className="text-sm text-gray-400 font-serif">
                   Our team reviews within 3-5 business days
                 </p>
               </div>
               <div className="text-center">
-                <div className="w-12 h-12 rounded-full bg-gray-800 text-gray-25 font-bold flex items-center justify-center mx-auto mb-4">
+                <div className="w-12 h-12 rounded-full bg-teal-700 text-gray-25 font-bold flex items-center justify-center mx-auto mb-4">
                   3
                 </div>
                 <h3 className="font-semibold text-gray-25 mb-2">Feedback</h3>
-                <p className="text-sm text-gray-500">
+                <p className="text-sm text-gray-400 font-serif">
                   We may request revisions before approval
                 </p>
               </div>
               <div className="text-center">
-                <div className="w-12 h-12 rounded-full bg-gray-25 text-gray-900 font-bold flex items-center justify-center mx-auto mb-4">
+                <div className="w-12 h-12 rounded-full bg-teal-700 text-gray-25 font-bold flex items-center justify-center mx-auto mb-4">
                   4
                 </div>
                 <h3 className="font-semibold text-gray-25 mb-2">
                   Publish & Pay
                 </h3>
-                <p className="text-sm text-gray-500">
+                <p className="text-sm text-gray-400">
                   Content goes live, bounty sent to your wallet
                 </p>
               </div>
@@ -260,22 +270,10 @@ export default function ContributePage() {
       </section>
 
       {/* CTA */}
-      <section className="section bg-gray-950 text-gray-25">
-        <div className="container-page text-center">
-          <h2 className="text-2xl md:text-3xl font-bold mb-4">
-            Ready to Contribute?
-          </h2>
-          <p className="text-white/80 mb-8 max-w-xl mx-auto">
-            Start with something you know well. Share your expertise and help
-            build the definitive resource for Ethereum funding.
-          </p>
-          <Button
-            href="/submit"
-            className="bg-gray-25 text-gray-900 hover:bg-gray-500"
-          >
-            Start Contributing
-          </Button>
-        </div>
+      <section className="border-y border-teal-500 py-20 relative">
+        <div className="pointer-events-none absolute inset-x-0 -top-4 h-4 bg-gradient-to-b from-transparent to-teal-500/30" />
+
+        <ContributeCard showGuidelinesLink={false} />
       </section>
     </div>
   );

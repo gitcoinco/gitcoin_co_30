@@ -1,10 +1,12 @@
 ---
-id: '1770923867595'
+id: '1770928331297'
 slug: optimism-retropgf
 name: "Optimism RetroPGF"
-shortDescription: "A retroactive public goods funding program that allocates OP tokens to contributors based on demonstrated ecosystem impact."
+shortDescription: "Retroactive funding program allocating OP tokens to contributors based on demonstrated impact."
 tags:
-
+  - retroactive
+  - results-based
+  - governance
 lastUpdated: '2026-02-12'
 relatedMechanisms:
 
@@ -18,7 +20,7 @@ relatedCampaigns:
 
 ---
 
-**Optimism RetroPGF** is a retroactive public goods funding program operated by the Optimism Collective. It allocates OP tokens from the Optimism treasury to contributors who have already delivered measurable ecosystem impact. Funding decisions are made by **badgeholders** — governance-selected evaluators — using scoped evaluation processes that prioritize outcomes over proposals.
+**Optimism RetroPGF** is a retroactive public goods funding program operated by the Optimism Collective. It allocates OP tokens from the Optimism treasury to contributors who have already delivered measurable ecosystem impact. Funding decisions are made by badgeholders — governance-selected evaluators — using scoped evaluation processes that prioritize outcomes over proposals.
 
 Since launch, RetroPGF has distributed **over 60M OP tokens** to **hundreds of projects and contributors**, supporting open-source infrastructure, governance research, developer education, and long-term ecosystem maintenance. The program continues to evolve its evaluation methods, including increased use of metrics-informed analysis. A total of **850M OP (20% of total supply)** is reserved for public goods funding.
 
