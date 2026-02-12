@@ -135,7 +135,13 @@ export function SuggestEditButton({ contentPath }: SuggestEditButtonProps) {
 
   return (
     <div className="">
-      <Button href={href} external={!!contentPath} variant="secondary" size="sm" className="w-full">
+      <Button
+        href={href}
+        external={!!contentPath}
+        variant="secondary"
+        size="sm"
+        className="w-full"
+      >
         <ExternalLink className="w-4 h-4 mr-2" />
         Edit on GitHub
       </Button>
@@ -338,7 +344,11 @@ interface ItemsGridProps {
 
 export function ItemsGrid({ children, columns = 3 }: ItemsGridProps) {
   return (
-    <div className={`grid md:grid-cols-2 ${columns === 3 ? "lg:grid-cols-3" : ""} gap-6`}>{children}</div>
+    <div
+      className={`grid md:grid-cols-2 ${columns === 3 ? "lg:grid-cols-3" : ""} gap-6`}
+    >
+      {children}
+    </div>
   );
 }
 
@@ -356,13 +366,17 @@ export function CTASection({
   buttonHref,
 }: CTASectionProps) {
   return (
-    <section className="section bg-gray-950">
+    <section className="border-y border-teal-500 py-20 relative">
+      <div className="pointer-events-none absolute inset-x-0 -top-4 h-4 bg-gradient-to-b from-transparent to-teal-500/30" />
+
       <div className="container-page text-center">
         <h2 className="text-2xl font-bold text-gray-25 mb-4">{title}</h2>
-        <p className="text-gray-500 mb-6 max-w-xl mx-auto">{description}</p>
-        <a href={buttonHref} className="btn-primary inline-flex">
+        <p className="font-serif text-gray-200 max-w-lg mb-6 mx-auto">
+          {description}
+        </p>
+        <Button href={buttonHref} variant="primary">
           {buttonText}
-        </a>
+        </Button>
       </div>
     </section>
   );

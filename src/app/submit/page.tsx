@@ -12,6 +12,7 @@ import {
   CheckCircle,
 } from "lucide-react";
 import { Button, Input, Textarea, Select, Badge } from "@/components/ui";
+import ContributeCard from "@/components/cards/ContributeCard";
 
 const contentTypes = [
   {
@@ -106,6 +107,12 @@ function SubmitContent() {
             </div>
           </div>
         </div>
+      </section>
+
+      <section className="border-y border-teal-500 py-20 relative">
+        <div className="pointer-events-none absolute inset-x-0 -top-4 h-4 bg-gradient-to-b from-transparent to-teal-500/30" />
+
+        <ContributeCard showSubmitButton={false} />
       </section>
     </>
   );
