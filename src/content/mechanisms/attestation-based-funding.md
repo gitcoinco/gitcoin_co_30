@@ -1,32 +1,22 @@
 ---
-id: '1770845891572'
+id: '1770916068385'
 slug: attestation-based-funding
-name: Attestation-Based Funding
+name: Attestation Based Funding
 shortDescription: A continuous governance and allocation mechanism that funds proposals once sustained community support crosses a threshold.
 tags:
 
-lastUpdated: '2026-02-11'
+lastUpdated: '2026-02-12'
 relatedMechanisms:
-  - -
-relatedApps:
-  - -
-relatedCaseStudies:
-  - -
-relatedResearch:
-  - -
-relatedCampaigns:
-  - -
----
 
-<!--  
-Full description of the mechanism (use markdown formatting).  
-Include sections for:  
-- How it works (step-by-step explanation)  
-- Advantages (benefits of this mechanism)  
-- Limitations (challenges or limitations)  
-- Best used for (what types of projects or situations)  
-- Examples and use cases  
--->
+relatedApps:
+
+relatedCaseStudies:
+
+relatedResearch:
+
+relatedCampaigns:
+
+---
 
 Attestation-based funding uses onchain attestations — verifiable, cryptographic claims about identity, actions, or impact — to inform how funding is allocated. Instead of relying solely on applications, votes, or committee judgment, funding mechanisms reference attestations as objective signals. These signals can gate participation, weight influence, or directly trigger payouts.
 
@@ -38,16 +28,11 @@ A persistent challenge in decentralized funding is allocating capital when parti
 
 Attestation-based funding introduces an intermediate layer of verifiable credentials — digitally signed claims issued by third parties asserting that a specific condition is true — that funding mechanisms reference as inputs for gating participation, weighting influence, or automating payouts.
 
-1. **Schema definition:** Schemas define what can be attested to (e.g., *verified human*, *completed task*, *delivered impact*).
-
-2. **Attestation issuance:** Trusted entities issue digitally signed claims about a subject against a schema. Attestations may be onchain (publicly verifiable, gas costs apply) or offchain (signed externally, gas-free, verifiable on demand).
-
-3. **Storage and verification:** Attestations are stored and made queryable using open standards.
-
-4. **Credential aggregation:** Multiple attestations are combined into composite credential sets or scores to improve signal quality.
-
-5. **Funding logic:** Funding mechanisms reference attestation data to gate eligibility, weight influence in matching calculations, or automate payouts based on verified criteria.
-
+1. **Schema definition:** Schemas define what can be attested to (e.g., *verified human*, *completed task*, *delivered impact*).  
+2. **Attestation issuance:** Trusted entities issue digitally signed claims about a subject against a schema. Attestations may be onchain (publicly verifiable, gas costs apply) or offchain (signed externally, gas-free, verifiable on demand).  
+3.  **Storage and verification:** Attestations are stored and made queryable using open standards.  
+4. **Credential aggregation:** Multiple attestations are combined into composite credential sets or scores to improve signal quality.  
+5. **Funding logic:** Funding mechanisms reference attestation data to gate eligibility, weight influence in matching calculations, or automate payouts based on verified criteria.  
 6. **Reputation emergence:** As attestations accumulate over time, persistent and portable reputation forms, enabling continuous evaluation rather than episodic review.
 
 ## Advantages
@@ -91,15 +76,6 @@ Attestation-based funding works best when:
 
 **Hypercerts** represent certified claims about impact — who did what, when, and with what effect — using attestation-like structures. These certified impact claims can be referenced by retroactive funding programs, creating a pipeline from attested contribution to capital allocation without embedding funding decisions directly in the credential itself.
 
-## Composability Notes
-
-Attestation-based funding functions as a modular signal and attribution layer that composes with a wide range of funding and governance mechanisms across the stack. Rather than determining allocation on its own, it supplies verifiable inputs that other mechanisms rely on for credibility, eligibility, and weighting.
-
-- **Quadratic funding:** QF assumes one-person-one-voice; attestation-based systems provide the identity and Sybil resistance required to make that assumption credible. Attestations can gate participation, weight matching outcomes, or establish contributor uniqueness, strengthening QF's democratic properties without modifying its core allocation logic.  
-- **Retroactive funding:** Retroactive funding rewards demonstrated impact after outcomes are known. Attestations supply verifiable evidence of past contributions — such as completed work, usage, or impact metrics — that evaluators can reference. This separates impact verification from allocation and enables more consistent, evidence-backed retroactive rewards.  
-- **Direct grants:** In committee-based grant programs, attestations augment subjective review with objective credentials. Verified identity, contribution history, or prior impact attestations reduce reliance on self-reported applications and improve evaluator confidence without replacing human judgment.  
-- **Conviction voting:** Conviction voting measures sustained support over time, while attestations capture verified actions, identity, or reputation. Combined, the two distinguish between who is credibly participating and how strongly they are committed, enabling systems that account for both temporal commitment and earned trust.  
-- **Hypercerts and impact attestations:** Attestations can formalize impact claims produced by funded work. When composed with allocation mechanisms, this creates feedback loops where funded projects generate verifiable impact records that inform future funding decisions, enabling cumulative and composable funding histories.
 
 ## Further Reading
 
