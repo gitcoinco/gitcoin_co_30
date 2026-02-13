@@ -18,6 +18,11 @@ relatedResearch:
 
 relatedCampaigns:
 
+externalUrl: 'https://grants.gitcoin.co'
+matchingPoolUsd: '$1.3M'
+projectsCount: '265'
+startDate: '2025-04-02'
+endDate: '2025-04-23'
 ---
 
 **Gitcoin Grants 23 (GG23)** was Gitcoin's first multi-mechanism Open Source Software (OSS) Program, running quadratic funding and retroactive funding in parallel to support builders at different stages of project maturity. The round distributed approximately $1.3M in matching funds — including $1.2M allocated to the OSS Program and $130K to Community Rounds — alongside $95,278 in crowdfunded contributions.

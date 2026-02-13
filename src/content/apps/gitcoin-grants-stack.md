@@ -3,6 +3,7 @@ id: '1770997159197'
 slug: gitcoin-grants-stack
 name: "Gitcoin Grants Stack"
 shortDescription: "Open-source grants platform powering quadratic funding, direct grants, and retroactive funding."
+logo: /content-images/apps/gitcoin-grants-stack/logo.svg
 tags:
   - quadratic
   - grants
