@@ -3,6 +3,7 @@ id: '1770997151439'
 slug: attestation-based-funding
 name: "Attestation-Based Funding"
 shortDescription: "Continuous capital allocation triggered by verified community support thresholds."
+banner: /content-images/mechanisms/attestation-based-funding/banner.jpg
 tags:
   - attribution
   - identity

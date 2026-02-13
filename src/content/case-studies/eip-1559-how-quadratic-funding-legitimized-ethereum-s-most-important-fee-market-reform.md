@@ -3,6 +3,7 @@ id: '1770997180681'
 slug: eip-1559-how-quadratic-funding-legitimized-ethereum-s-most-important-fee-market-reform
 name: "EIP-1559: How Quadratic Funding Legitimized Ethereum's Most Important Fee Market Reform"
 shortDescription: "How a Gitcoin grant funded EIP-1559 implementation and signaled community demand for the upgrade."
+banner: /content-images/case-studies/eip-1559-how-quadratic-funding-legitimized-ethereum-s-most-important-fee-market-reform/banner.jpg
 tags:
   - quadratic
   - infrastructure

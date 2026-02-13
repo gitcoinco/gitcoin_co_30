@@ -22,7 +22,7 @@ export default function SectionHeader({
         <Button
           href={href}
           variant="ghost"
-          className="text-right font-semibold"
+          className="text-right font-semibold ml-auto w-fit"
         >
           View All →
         </Button>

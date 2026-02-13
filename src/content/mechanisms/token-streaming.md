@@ -3,6 +3,7 @@ id: '1770997140951'
 slug: token-streaming
 name: "Token Streaming"
 shortDescription: "Continuous funding mechanism that streams ERC-20 token payments per second instead of lump sums."
+banner: /content-images/mechanisms/token-streaming/banner.jpg
 tags:
   - payments
   - continuous

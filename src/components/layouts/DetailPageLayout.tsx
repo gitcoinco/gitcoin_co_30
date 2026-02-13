@@ -42,6 +42,7 @@ export function HeroImage({ src, alt }: HeroImageProps) {
   return (
     <div className="h-64 md:h-80 bg-gray-950 relative overflow-hidden">
       <img src={src} alt={alt} className="w-full h-full object-cover" />
+      <div className="absolute inset-0 bg-linear-to-t from-gray-950 to-gray-950/60" />
     </div>
   );
 }

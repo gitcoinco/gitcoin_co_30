@@ -3,6 +3,7 @@ id: '1770997144623'
 slug: retroactive-funding
 name: "Retroactive Funding"
 shortDescription: "Capital allocation mechanism that rewards projects for impact after outcomes are known."
+banner: /content-images/mechanisms/retroactive-funding/banner.jpg
 tags:
   - expert
   - results-based

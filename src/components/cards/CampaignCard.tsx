@@ -20,16 +20,28 @@ function getTimelineLabel(startDate?: string, endDate?: string): string | null {
 
   if (end < now) return "Ended";
   if (start && start > now) {
-    const days = Math.ceil((start.getTime() - now.getTime()) / (1000 * 60 * 60 * 24));
+    const days = Math.ceil(
+      (start.getTime() - now.getTime()) / (1000 * 60 * 60 * 24),
+    );
     return days === 1 ? "Starts in 1 day" : `Starts in ${days} days`;
   }
 
-  const days = Math.ceil((end.getTime() - now.getTime()) / (1000 * 60 * 60 * 24));
+  const days = Math.ceil(
+    (end.getTime() - now.getTime()) / (1000 * 60 * 60 * 24),
+  );
   if (days < 1) return "Ends today";
   return days === 1 ? "1 day left" : `${days} days left`;
 }
 
-function MetricItem({ icon: Icon, label, value }: { icon: LucideIcon; label: string; value: string }) {
+function MetricItem({
+  icon: Icon,
+  label,
+  value,
+}: {
+  icon: LucideIcon;
+  label: string;
+  value: string;
+}) {
   return (
     <div>
       <dt className="flex items-center gap-1 text-sm text-gray-400 font-mono">
@@ -53,37 +65,60 @@ export default function CampaignCard({
   const timelineLabel = getTimelineLabel(campaign.startDate, campaign.endDate);
 
   const metrics = [
-    campaign.matchingPoolUsd && { icon: DollarSign, label: "Matching Pool", value: campaign.matchingPoolUsd },
-    campaign.projectsCount && { icon: Users, label: "Projects", value: campaign.projectsCount },
-    timelineLabel && { icon: Calendar, label: "Timeline", value: timelineLabel },
+    campaign.matchingPoolUsd && {
+      icon: DollarSign,
+      label: "Matching Pool",
+      value: campaign.matchingPoolUsd,
+    },
+    campaign.projectsCount && {
+      icon: Users,
+      label: "Projects",
+      value: campaign.projectsCount,
+    },
+    timelineLabel && {
+      icon: Calendar,
+      label: "Timeline",
+      value: timelineLabel,
+    },
   ].filter(Boolean) as { icon: LucideIcon; label: string; value: string }[];
 
   if (variant === "home") {
+    const Wrapper = isExternal ? "a" : Link;
+    const wrapperProps = isExternal
+      ? { href: campaignUrl, target: "_blank", rel: "noopener noreferrer" }
+      : { href: campaignUrl };
+
     return (
-      <article className="flex min-h-[366px] flex-col rounded-2xl border border-gray-600 bg-gray-900 p-6">
-        <Badge variant="info" size="sm">
-          {statusLabel}
-        </Badge>
+      <Wrapper {...wrapperProps}>
+        <article className="group flex min-h-[386px] flex-col rounded-2xl border border-gray-600 bg-gray-900 p-6 transition-all duration-300 hover:border-teal-500">
+          <Badge variant="info" size="sm">
+            {statusLabel}
+          </Badge>
 
-        <h3 className="mt-6 text-2xl sm:text-[32px] text-gray-25 font-heading font-light">
-          {campaign.name}
-        </h3>
-        <p className="mt-4 text-lg sm:text-xl text-gray-300 font-serif">
-          {campaign.shortDescription}
-        </p>
+          <h3 className="mt-6 text-2xl sm:text-[32px] text-gray-25 font-heading font-light">
+            {campaign.name}
+          </h3>
+          <div className="flex flex-col w-full justify-between flex-grow mb-4">
+            <p className="mt-4 text-lg sm:text-xl text-gray-300 font-serif line-clamp-3">
+              {campaign.shortDescription}
+            </p>
 
-        {metrics.length > 0 && (
-          <dl className="mt-8 grid grid-cols-3 gap-4">
-            {metrics.map((metric) => (
-              <MetricItem key={metric.label} {...metric} />
-            ))}
-          </dl>
-        )}
-
-        <Button variant="secondary" href={campaignUrl} external={isExternal} className="mt-auto">
-          {ctaLabel}
-        </Button>
-      </article>
+            {metrics.length > 0 && (
+              <dl className="mt-8 grid grid-cols-3 gap-4">
+                {metrics.map((metric) => (
+                  <MetricItem key={metric.label} {...metric} />
+                ))}
+              </dl>
+            )}
+          </div>
+          <Button
+            variant="secondary"
+            className="mt-auto"
+          >
+            {ctaLabel}
+          </Button>
+        </article>
+      </Wrapper>
     );
   }
 

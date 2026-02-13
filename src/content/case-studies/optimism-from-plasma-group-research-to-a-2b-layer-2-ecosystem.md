@@ -3,6 +3,7 @@ id: '1770997179081'
 slug: optimism-from-plasma-group-research-to-a-2b-layer-2-ecosystem
 name: "Optimism: From Plasma Group Research to a $2B+ Layer 2 Ecosystem"
 shortDescription: "How quadratic funding sustained early Optimism research that became a leading Ethereum L2."
+banner: /content-images/case-studies/optimism-from-plasma-group-research-to-a-2b-layer-2-ecosystem/banner.jpg
 tags:
   - quadratic
   - infrastructure

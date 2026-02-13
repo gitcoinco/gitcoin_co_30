@@ -30,7 +30,6 @@ export function generateDetailPageMetadata(config: MetadataConfig): Metadata {
   // Determine the best image to use
   let imageUrl = "https://explore.gitcoin.co/content-images/placeholder.png";
 
-  // Only use banner/logo if it's not SVG (PNG, JPG, WebP work in all platforms)
   if (banner && !banner.endsWith(".svg")) {
     imageUrl = `https://explore.gitcoin.co${banner}`;
   } else if (logo && !logo.endsWith(".svg")) {
