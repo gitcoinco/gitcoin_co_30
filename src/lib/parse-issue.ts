@@ -29,7 +29,7 @@ const DESC_STOP = "\\n## Related|\\n## Submission|---|$";
 function extractField(content: string, label: string): string {
   const match = content.match(new RegExp(`\\*\\*${label}\\*\\*:\\s*(.+)`));
   if (!match) return "";
-  return match[1].replace(/\(.*?\)/g, "").trim();
+  return match[1].replace(/\[([^\]]*)\]\([^)]*\)/g, "$1").trim();
 }
 
 /** Parse the ## Metadata section from a GitHub issue body */
