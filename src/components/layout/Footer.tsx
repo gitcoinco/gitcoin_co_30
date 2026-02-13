@@ -41,7 +41,7 @@ const resourceLinks: FooterLink[] = [
   { title: "Impact", href: "https://impact.gitcoin.co", external: true },
   {
     title: "Grants Program",
-    href: "https://www.gitcoin.co/grants",
+    href: "https://grants.gitcoin.co",
     external: true,
   },
   {
@@ -58,16 +58,16 @@ const resourceLinks: FooterLink[] = [
 ];
 
 const communityLinks: FooterLink[] = [
-  { title: "Contribute", href: "/contribute" },
+  { title: "Contribute", href: "/submit" },
   { title: "Guidelines", href: "/contribute" },
   { title: "Telegram", href: "https://t.me/+TIzf8MYT7DY0YWVh", external: true },
   { title: "Get Updates", href: "/updates" },
 ];
 
 const bottomLinks: FooterLink[] = [
-  { title: "Privacy", href: "#" },
-  { title: "Terms", href: "#" },
-  { title: "Contact", href: "#" },
+  { title: "Privacy", href: "/privacy" },
+  { title: "Terms", href: "/terms" },
+  { title: "Contact", href: "/partner" },
 ];
 
 function FooterLinkItem({ link }: { link: FooterLink }) {
@@ -90,7 +90,7 @@ function FooterLinkGroup({
 }) {
   return (
     <div>
-      <h4 className="text-base font-semibold tracking-[-0.01em]">{title}</h4>
+      <h4 className="text-base font-semibold">{title}</h4>
       <div className="mt-4 flex flex-col gap-2 text-sm text-gray-200">
         {links.map((link) => (
           <FooterLinkItem key={link.title} link={link} />

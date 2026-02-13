@@ -137,7 +137,7 @@ export default function Header() {
 
         <div className="hidden items-center xl:gap-8 gap-2 lg:flex">
           <SearchBar placeholder="Search..." size="sm" className="w-48" />
-          <Button variant="secondary" href="/submit" size="sm">
+          <Button variant="secondary" href="/partner" size="sm">
             Partner with us
           </Button>
         </div>
@@ -186,7 +186,7 @@ export default function Header() {
           ))}
           <Button
             variant="secondary"
-            href="/submit"
+            href="/partner"
             size="sm"
             onClick={() => setMobileMenuOpen(false)}
           >
