@@ -70,7 +70,7 @@ export default function HomePage() {
 
         <div className="relative z-10 mx-auto w-full max-w-[1216px] px-4 sm:px-6 lg:px-0">
           <div className="pb-20 pt-16 md:pb-28 md:pt-24">
-            <div className="flex flex-col xl:ml-[10vw] ml-auto mr-auto ">
+            <div className="flex flex-col mx-auto w-fit">
               <p className="mb-8 w-fit rounded-lg bg-gray-900 px-5 py-[10px] text-sm text-teal-500 font-mono">
                 Fund What Matters
               </p>
