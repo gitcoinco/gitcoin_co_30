@@ -40,7 +40,7 @@ export default function ContentDetailPage({
       {banner && <HeroImage src={banner} alt={item.name} />}
 
       <PageHeader>
-        <div className="max-w-[850px] flex flex-col md:flex-row gap-6 md:gap-8">
+        <div className="max-w-[850px] flex flex-col md:flex-row gap-6 md:gap-8 md:items-center">
           {/* Logo (for apps) */}
           {item.logo && !item.banner && (
             <div className="flex-shrink-0">
