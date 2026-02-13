@@ -31,7 +31,7 @@ in this piece, i examine where the money comes from. money always has a source, 
 ####  flush treasuries, native tokens, and grants  
 ETHUSD went through major bull markets in 2017 and 2021.  this led to the 2018-2024 era most of ethereum’s history, where pgf was funded by large, relatively centralized treasuries. 
 l1 foundations, l2 foundations, defi foundations, and a handful of early dao treasuries were flush with cash. token prices were high, balance sheets looked strong, and the mandate was broad: fund the ecosystem.  
-![Image](/images/research/ethereum-public-goods-funding-sources-the-next-era/image-1.png)
+![Image](/content-images/research/ethereum-public-goods-funding-sources-the-next-era/image-1.png)
 
 
 **incentives and motivations**  
@@ -113,6 +113,6 @@ this is what maturation looks like.
 Funding sources over time  
 Funding campaigns over time
 
-![Funding sources over time](/images/research/ethereum-public-goods-funding-sources-the-next-era/funding-sources-over-time.png)
+![Funding sources over time](/content-images/research/ethereum-public-goods-funding-sources-the-next-era/funding-sources-over-time.png)
 
-![Funding campaigns over time](/images/research/ethereum-public-goods-funding-sources-the-next-era/funding-campaigns-over-time.png)
+![Funding campaigns over time](/content-images/research/ethereum-public-goods-funding-sources-the-next-era/funding-campaigns-over-time.png)

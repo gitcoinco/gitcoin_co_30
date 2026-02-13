@@ -21,7 +21,7 @@ export default function ContentCard({
   featured = false,
   layout = "logo",
   logo,
-  banner = "/og-default.png",
+  banner = "/content-images/placeholder.png",
   bannerHeight,
 }: ContentCardProps) {
   const isBanner = layout === "banner";

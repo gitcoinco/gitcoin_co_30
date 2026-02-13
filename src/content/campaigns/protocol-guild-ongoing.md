@@ -3,7 +3,7 @@ id: '8'
 slug: protocol-guild-ongoing
 name: Protocol Guild Funding
 shortDescription: Continuous support for Ethereum core devs
-banner: /images/campaigns/protocol-guild.svg
+banner: /content-images/campaigns/protocol-guild-ongoing/banner.svg
 tags:
   - protocol guild
   - streaming

@@ -3,7 +3,7 @@ id: '6'
 slug: arbitrum-stip-results
 name: Arbitrum STIP
 shortDescription: Short-Term Incentive Program Results
-banner: /images/campaigns/stip.svg
+banner: /content-images/campaigns/arbitrum-stip-results/banner.svg
 tags:
   - arbitrum
   - incentives

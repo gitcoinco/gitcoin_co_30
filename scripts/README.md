@@ -207,7 +207,7 @@ The scripts automatically handle both **banner** and **logo** images by parsing 
 - **Banner images**: Parsed from the `## Banner Image` section (optional)
   - Wide format (16:9 or 2:1 aspect ratio recommended)
   - **Format**: PNG or JPG only 
-  - Saved to `/public/images/<type>/<slug>/`
+  - Saved to `/public/content-images/<type>/<slug>/`
   - Referenced in frontmatter as `banner` field
 
 - **Logo images**: Parsed from the `## Logo` section (optional)
@@ -218,7 +218,7 @@ The scripts automatically handle both **banner** and **logo** images by parsing 
 
 - **Additional images**: Parsed from the `## Description` section
   - Embedded in the content
-  - Saved to `/public/images/<type>/<slug>/`
+  - Saved to `/public/content-images/<type>/<slug>/`
   - Paths automatically updated in the generated markdown
 
 Both banner and logo are optional. You can have:

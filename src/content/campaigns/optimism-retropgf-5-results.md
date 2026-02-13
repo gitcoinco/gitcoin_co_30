@@ -3,7 +3,7 @@ id: '5'
 slug: optimism-retropgf-5-results
 name: Optimism RetroPGF Round 5
 shortDescription: Rewarding Ethereum and OP Stack contributions
-banner: /images/campaigns/retropgf5.svg
+banner: /content-images/campaigns/optimism-retropgf-5-results/banner.svg
 tags:
   - optimism
   - retroactive funding

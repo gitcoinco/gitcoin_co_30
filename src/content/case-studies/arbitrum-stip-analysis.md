@@ -3,7 +3,7 @@ id: '3'
 slug: "arbitrum-stip-analysis"
 name: "Arbitrum STIP: 71.4M ARB Incentive Experiment"
 shortDescription: "Analysis of Arbitrum's Short-Term Incentive Program, which distributed 71.4M ARB to 56 protocols with mixed but valuable learnings."
-banner: "/images/case-studies/stip.png"
+banner: "/content-images/case-studies/arbitrum-stip-analysis/banner.png"
 tags:
   - "arbitrum"
   - "incentives"

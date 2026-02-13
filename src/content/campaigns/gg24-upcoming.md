@@ -3,7 +3,7 @@ id: '10'
 slug: gg24-upcoming
 name: Gitcoin Grants 24
 shortDescription: The next round of quadratic funding
-banner: /images/campaigns/gg24.svg
+banner: /content-images/campaigns/gg24-upcoming/banner.svg
 tags:
   - gitcoin
   - quadratic funding

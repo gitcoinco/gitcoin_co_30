@@ -46,7 +46,11 @@ export async function downloadImage(
   }
 
   const parsed = new URL(url);
-  if (!ALLOWED_HOSTS.some((h) => parsed.hostname === h || parsed.hostname.endsWith(`.${h}`))) {
+  if (
+    !ALLOWED_HOSTS.some(
+      (h) => parsed.hostname === h || parsed.hostname.endsWith(`.${h}`),
+    )
+  ) {
     throw new Error(`Blocked download from untrusted host: ${parsed.hostname}`);
   }
 
@@ -59,15 +63,24 @@ export async function downloadImage(
           response.statusCode < 400 &&
           response.headers.location
         ) {
-          return downloadImage(response.headers.location, filepath, redirectCount + 1)
+          return downloadImage(
+            response.headers.location,
+            filepath,
+            redirectCount + 1,
+          )
             .then(resolve)
             .catch(reject);
         }
 
         const contentType = response.headers["content-type"] || "";
-        if (!contentType.startsWith("image/") && !contentType.startsWith("application/octet-stream")) {
+        if (
+          !contentType.startsWith("image/") &&
+          !contentType.startsWith("application/octet-stream")
+        ) {
           response.resume(); // drain the response
-          return reject(new Error(`Unexpected content-type "${contentType}" for ${url}`));
+          return reject(
+            new Error(`Unexpected content-type "${contentType}" for ${url}`),
+          );
         }
 
         let downloaded = 0;
@@ -79,7 +92,11 @@ export async function downloadImage(
             response.destroy();
             file.close();
             fs.unlink(filepath, () => {});
-            reject(new Error(`File exceeds ${MAX_FILE_SIZE / 1024 / 1024}MB limit: ${url}`));
+            reject(
+              new Error(
+                `File exceeds ${MAX_FILE_SIZE / 1024 / 1024}MB limit: ${url}`,
+              ),
+            );
           }
         });
 
@@ -122,14 +139,12 @@ export async function processImages(
   const imagesDir = path.join(
     process.cwd(),
     "public",
-    "images",
+    "content-images",
     contentType,
     slug,
   );
-  const logosDir = path.join(process.cwd(), "public", "logos");
 
   fs.mkdirSync(imagesDir, { recursive: true });
-  fs.mkdirSync(logosDir, { recursive: true });
 
   let updatedMarkdown = formatMarkdown(descriptionMarkdown);
   let banner = "";
@@ -171,28 +186,28 @@ export async function processImages(
     return { filename, publicPath };
   }
 
-  // Process banner image
+  // Process banner image — saved as {slug}/banner.ext
   if (bannerImages.length > 0) {
-    const { filename, publicPath } = await downloadWithFilename(
-      bannerImages[0],
-      imagesDir,
-      `/images/${contentType}/${slug}`,
-      "banner",
-      ".png",
-    );
+    const img = bannerImages[0];
+    const ext = img.url.match(/\.(png|jpg|jpeg|gif|svg|webp)/i)?.[0] || ".png";
+    const filename = `banner${ext}`;
+    const filepath = path.join(imagesDir, filename);
+    const publicPath = `/content-images/${contentType}/${slug}/${filename}`;
+
+    await downloadImage(img.url, filepath);
     banner = publicPath;
     console.log(`  ✓ ${filename} (banner)`);
   }
 
-  // Process logo image
+  // Process logo image — saved as {slug}/logo.ext
   if (logoImages.length > 0) {
-    const { filename, publicPath } = await downloadWithFilename(
-      logoImages[0],
-      logosDir,
-      "/logos",
-      slug,
-      ".svg",
-    );
+    const img = logoImages[0];
+    const ext = img.url.match(/\.(png|jpg|jpeg|gif|svg|webp)/i)?.[0] || ".svg";
+    const filename = `logo${ext}`;
+    const filepath = path.join(imagesDir, filename);
+    const publicPath = `/content-images/${contentType}/${slug}/${filename}`;
+
+    await downloadImage(img.url, filepath);
     logo = publicPath;
     console.log(`  ✓ ${filename} (logo)`);
   }
@@ -203,7 +218,7 @@ export async function processImages(
     const { filename, publicPath } = await downloadWithFilename(
       img,
       imagesDir,
-      `/images/${contentType}/${slug}`,
+      `/content-images/${contentType}/${slug}`,
       `image-${i + 1}`,
       ".png",
     );

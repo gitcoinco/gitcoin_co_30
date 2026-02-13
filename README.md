@@ -21,29 +21,18 @@ This is the easiest way to contribute. The content is automatically formatted an
    - Fill in all metadata fields
    - Write your content using markdown formatting
 
-3. **Run the publish script** (requires repository access):
-   ```bash
-   # For apps
-   npm run publish-app <issue-number>
-
-   # For mechanisms
-   npm run publish-mechanism <issue-number>
-
-   # For research
-   npm run publish-research <issue-number>
-
-   # For case studies
-   npm run publish-case-study <issue-number>
-
-   # For campaigns
-   npm run publish-campaign <issue-number>
+3. **Preview your submission** — a bot will comment on your issue with a preview link, or visit directly:
+   ```
+   https://gitcoin.co/preview?issue=<issue-number>&type=<content-type>
    ```
 
-4. **Review and commit** the generated files:
+4. **Publishing** — a maintainer adds the `approved` label, which automatically creates a PR with your content. Alternatively, maintainers can publish manually:
    ```bash
-   git add .
-   git commit -m "Add <content-type>: <title>"
-   git push
+   npm run publish-app <issue-number>
+   npm run publish-mechanism <issue-number>
+   npm run publish-research <issue-number>
+   npm run publish-case-study <issue-number>
+   npm run publish-campaign <issue-number>
    ```
 
 ### Method 2: Manual Creation
@@ -73,6 +62,34 @@ Your content here in markdown format.
 ```
 
 See existing files in each directory for the exact frontmatter schema required.
+
+**Images for Manual Contributions:**
+
+Each content item has its own image folder at `public/content-images/{category}/{slug}/`:
+```
+public/content-images/
+├── campaigns/
+│   └── gg24-upcoming/
+│       └── banner.svg          # Banner/cover image
+├── case-studies/
+│   └── protocol-guild-ecosystem-funding/
+│       └── banner.png
+├── research/
+│   └── ethereum-public-goods-funding-sources-the-next-era/
+│       ├── banner.png          # Banner image
+│       ├── funding-sources.png # Inline image (named from alt text)
+│       └── image-1.png         # Inline image (auto-numbered)
+├── apps/
+│   └── gitcoin-grants-stack/
+│       ├── banner.png
+│       └── logo.svg            # Logo/icon (square format)
+└── placeholder.png             # Fallback image
+```
+
+- **Banner**: `public/content-images/{category}/{slug}/banner.{ext}` — reference as `banner: "/content-images/{category}/{slug}/banner.png"`
+- **Logo**: `public/content-images/{category}/{slug}/logo.{ext}` — reference as `logo: "/content-images/{category}/{slug}/logo.svg"`
+- **Inline images**: Same folder, named from alt text or numbered — reference as `![Alt text](/content-images/{category}/{slug}/image-name.png)`
+- Accepted formats: PNG, JPG, SVG
 
 ## Development
 

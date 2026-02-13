@@ -21,7 +21,7 @@ export default function ResearchCard({
             aria-hidden="true"
           >
             <img
-              src={research.banner || "/og-default.png"}
+              src={research.banner || "/content-images/placeholder.png"}
               alt=""
               className="w-full h-full object-cover"
             />
@@ -62,7 +62,7 @@ export default function ResearchCard({
       <article className="group relative flex h-full flex-col overflow-hidden rounded-xl border border-gray-700 bg-gray-900 transition-all duration-300 hover:border-teal-500 hover:shadow-[0_0_12px_-3px_rgba(2,226,172,0.6)] bg-bottom bg-no-repeat bg-size-[100%_0%] hover:bg-size-[100%_50%] bg-[linear-gradient(to_top,rgba(2,226,172,0.5),transparent)]">
         <div className="relative aspect-video w-full shrink-0 overflow-hidden">
           <img
-            src={research.banner || "/og-default.png"}
+            src={research.banner || "/content-images/placeholder.png"}
             alt=""
             className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
           />

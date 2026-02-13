@@ -3,7 +3,7 @@ id: '4'
 slug: "gitcoin-gg20-quadratic-funding"
 name: "Gitcoin GG20: Community Rounds at Scale"
 shortDescription: "GG20 demonstrated the maturation of community-run quadratic funding rounds, with multiple ecosystems running independent rounds on Grants Stack."
-banner: "/images/case-studies/gg20.png"
+banner: "/content-images/case-studies/gitcoin-gg20-quadratic-funding/banner.png"
 tags:
   - "quadratic funding"
   - "community rounds"
