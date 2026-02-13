@@ -125,13 +125,23 @@ export async function publishContent(
     config.folder,
   );
 
+  const mdPath = path.join(contentDir, `${slug}.md`);
+
+  // Preserve existing ID if the file already exists
+  let existingId = "";
+  if (fs.existsSync(mdPath)) {
+    const existing = fs.readFileSync(mdPath, "utf-8");
+    const idMatch = existing.match(/^id:\s*'([^']+)'/m);
+    if (idMatch) existingId = idMatch[1];
+  }
+
   const yamlList = (items: string[]) =>
     items.length > 0 ? items.map((i) => `  - ${i}`).join("\n") : "";
 
   const tagsYaml = yamlList(metadata.tags || []);
 
   let frontmatter = `---
-id: '${Date.now()}'
+id: '${existingId || Date.now()}'
 slug: ${slug}
 name: "${issue.title.replace(titlePrefix, "").replace(/"/g, '\\"')}"
 shortDescription: "${(metadata.shortDescription || "").replace(/"/g, '\\"')}"`;
@@ -169,7 +179,6 @@ ${yamlList(relatedCampaigns)}`;
   frontmatter += "\n---";
 
   const mdContent = `${frontmatter}\n\n${updatedMarkdown.trim()}\n`;
-  const mdPath = path.join(contentDir, `${slug}.md`);
   fs.writeFileSync(mdPath, mdContent);
 
   console.log(`\n✅ Published!`);
