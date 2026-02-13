@@ -3,6 +3,7 @@ id: '1770997173865'
 slug: gitcoin-citizens-round-1-retroactive-quadratic-funding-for-community-contributions
 name: "Gitcoin Citizens Round 1: Retroactive Quadratic Funding for Community Contributions"
 shortDescription: "Gitcoin's first retroactive quadratic funding round, achieving a record 4× matching multiplier."
+banner: /content-images/case-studies/gitcoin-citizens-round-1-retroactive-quadratic-funding-for-community-contributions/banner.jpg
 tags:
   - quadratic
   - retroactive

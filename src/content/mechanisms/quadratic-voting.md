@@ -3,6 +3,7 @@ id: '1770997146772'
 slug: quadratic-voting
 name: "Quadratic Voting"
 shortDescription: "Governance mechanism where votes cost quadratically, enabling nuanced preferences."
+banner: /content-images/mechanisms/quadratic-voting/banner.jpg
 tags:
   - quadratic
   - democratic

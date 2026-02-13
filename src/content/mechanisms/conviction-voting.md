@@ -3,6 +3,7 @@ id: '1770997148695'
 slug: conviction-voting
 name: "Conviction Voting"
 shortDescription: "Continuous governance mechanism where voting power accumulates over time."
+banner: /content-images/mechanisms/conviction-voting/banner.jpg
 tags:
   - continuous
   - governance

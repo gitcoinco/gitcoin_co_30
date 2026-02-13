@@ -3,6 +3,7 @@ id: '1770997142916'
 slug: milestone-based-funding
 name: "Milestone-Based Funding"
 shortDescription: "Staged funding mechanism that releases grant payments upon verified milestone completion."
+banner: /content-images/mechanisms/milestone-based-funding/banner.jpg
 tags:
   - payments
   - milestone
