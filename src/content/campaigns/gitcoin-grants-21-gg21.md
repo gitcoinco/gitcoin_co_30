@@ -19,6 +19,11 @@ relatedResearch:
 
 relatedCampaigns:
 
+externalUrl: 'grants.gitcoin.co'
+matchingPoolUsd: '$743K'
+projectsCount: '517'
+startDate: '2024-08-07'
+endDate: '2024-08-21'
 ---
 
 **Gitcoin Grants 21 (GG21)** was the 21st Gitcoin Grants round, held from August 7 to August 21, 2024. It marked Gitcoin's first fully community-led grants round, operating entirely through Community Rounds and Ecosystem Rounds without a Gitcoin-managed Open Source Software (OSS) Program.

@@ -19,6 +19,11 @@ relatedResearch:
 
 relatedCampaigns:
 
+externalUrl: 'grants.gitcoin.co'
+matchingPoolUsd: '$1.4M'
+projectsCount: '290'
+startDate: '2024-10-23'
+endDate: '2024-11-06'
 ---
 
 **Gitcoin Grants 22 (GG22)** was the 22nd Gitcoin Grants round, held from October 23 to November 6, 2024. The round marked the return of dedicated Open Source Software (OSS) funding after GG21's community-only structure, while retaining the community-led rounds model introduced in GG20. This restored a dual-track structure combining centralized OSS funding with decentralized community-led rounds.
