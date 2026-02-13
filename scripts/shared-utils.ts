@@ -46,11 +46,14 @@ export async function downloadImage(
   }
 
   const parsed = new URL(url);
-  if (
-    !ALLOWED_HOSTS.some(
+  const isAllowed =
+    ALLOWED_HOSTS.some(
       (h) => parsed.hostname === h || parsed.hostname.endsWith(`.${h}`),
-    )
-  ) {
+    ) ||
+    // GitHub stores issue-uploaded images on S3
+    (parsed.hostname.startsWith("github-production-") &&
+      parsed.hostname.endsWith(".s3.amazonaws.com"));
+  if (!isAllowed) {
     throw new Error(`Blocked download from untrusted host: ${parsed.hostname}`);
   }
 
