@@ -1,5 +1,5 @@
 ---
-id: '1770934249555'
+id: '1770997182373'
 slug: coin-center-defending-cryptocurrency-rights-through-community-funded-advocacy
 name: "Coin Center: Defending Cryptocurrency Rights Through Community-Funded Advocacy"
 shortDescription: "How quadratic funding built community-backed support for crypto policy advocacy and litigation."
@@ -7,7 +7,7 @@ tags:
   - quadratic
   - democratic
   - advocacy
-lastUpdated: '2026-02-12'
+lastUpdated: '2026-02-13'
 relatedMechanisms:
 
 relatedApps:

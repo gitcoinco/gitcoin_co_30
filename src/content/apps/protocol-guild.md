@@ -1,13 +1,14 @@
 ---
-id: '1770934225104'
+id: '1770997153968'
 slug: protocol-guild
 name: "Protocol Guild"
 shortDescription: "Collective fund distributing donated tokens to Ethereum L1 core contributors via onchain vesting."
+featured: true
 tags:
   - streaming
   - collective
   - infrastructure
-lastUpdated: '2026-02-12'
+lastUpdated: '2026-02-13'
 relatedMechanisms:
 
 relatedApps:

@@ -1,13 +1,14 @@
 ---
-id: '1770934235209'
+id: '1770997167373'
 slug: gitcoin-grants-20-gg20
-name: "Gitcoin Grants 20 (GG20)"
+name: "Gitcoin Grants 20"
 shortDescription: "Gitcoin's twentieth grants round distributed $2.2M, debuting community governance and Allo v2."
+featured: true
 tags:
   - quadratic
   - grants
   - multichain
-lastUpdated: '2026-02-12'
+lastUpdated: '2026-02-13'
 relatedMechanisms:
 
 relatedApps:

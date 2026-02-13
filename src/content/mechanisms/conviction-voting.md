@@ -1,5 +1,5 @@
 ---
-id: '1770934221676'
+id: '1770997148695'
 slug: conviction-voting
 name: "Conviction Voting"
 shortDescription: "Continuous governance mechanism where voting power accumulates over time."
@@ -7,7 +7,7 @@ tags:
   - continuous
   - governance
   - weighted
-lastUpdated: '2026-02-12'
+lastUpdated: '2026-02-13'
 relatedMechanisms:
 
 relatedApps:

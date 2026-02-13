@@ -1,5 +1,5 @@
 ---
-id: '1770934226819'
+id: '1770997156898'
 slug: optimism-retropgf
 name: "Optimism RetroPGF"
 shortDescription: "Retroactive funding program allocating OP tokens to contributors based on demonstrated impact."
@@ -7,7 +7,7 @@ tags:
   - retroactive
   - results-based
   - governance
-lastUpdated: '2026-02-12'
+lastUpdated: '2026-02-13'
 relatedMechanisms:
 
 relatedApps:

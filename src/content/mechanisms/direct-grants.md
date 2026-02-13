@@ -1,5 +1,5 @@
 ---
-id: '1770934251212'
+id: '1770997184112'
 slug: direct-grants
 name: "Direct Grants"
 shortDescription: "A funding allocation mechanism where expert reviewers allocate capital based on judgment, strategy, and expected impact."
@@ -7,7 +7,7 @@ tags:
   - expert
   - milestone
   - grants
-lastUpdated: '2026-02-12'
+lastUpdated: '2026-02-13'
 relatedMechanisms:
 
 relatedApps:
