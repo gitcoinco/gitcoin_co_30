@@ -3,6 +3,7 @@ id: '1770997161588'
 slug: ethereum-foundation-esp
 name: "Ethereum Foundation ESP"
 shortDescription: "The Ethereum Foundation's direct grants program for open-source infrastructure, research, and tooling."
+logo: /content-images/apps/ethereum-foundation-esp/logo.svg
 featured: true
 tags:
   - expert
