@@ -15,5 +15,5 @@ curl -s "https://api.github.com/repos/$REPO/issues?state=open&per_page=50" | \
     }
   " | while IFS=$'\t' read -r num type; do
   echo "Publishing #$num as $type..."
-  npx tsx scripts/publish-content.ts "$type" "$num"
+  npx tsx scripts/publish-$type.ts "$num"
 done
