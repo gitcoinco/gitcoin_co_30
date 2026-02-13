@@ -1,5 +1,5 @@
 ---
-id: '1770934231800'
+id: '1770997163535'
 slug: allo-protocol
 name: "Allo Protocol"
 shortDescription: "Open-source smart contracts for programmable onchain capital allocation and modular funding strategies."
@@ -7,7 +7,7 @@ tags:
   - protocol
   - modular
   - grants
-lastUpdated: '2026-02-12'
+lastUpdated: '2026-02-13'
 relatedMechanisms:
 
 relatedApps:

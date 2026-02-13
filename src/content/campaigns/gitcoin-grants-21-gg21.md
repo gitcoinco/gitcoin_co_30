@@ -1,13 +1,14 @@
 ---
-id: '1770934242062'
+id: '1770997175466'
 slug: gitcoin-grants-21-gg21
-name: "Gitcoin Grants 21 (GG21)"
+name: "Gitcoin Grants 21"
 shortDescription: "Gitcoin's first fully community-led round distributed $933K across 11 independent QF rounds."
+featured: true
 tags:
   - quadratic
   - democratic
   - community
-lastUpdated: '2026-02-12'
+lastUpdated: '2026-02-13'
 relatedMechanisms:
 
 relatedApps:

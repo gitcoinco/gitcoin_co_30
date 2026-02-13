@@ -1,5 +1,5 @@
 ---
-id: '1770934219747'
+id: '1770997146772'
 slug: quadratic-voting
 name: "Quadratic Voting"
 shortDescription: "Governance mechanism where votes cost quadratically, enabling nuanced preferences."
@@ -7,7 +7,7 @@ tags:
   - quadratic
   - democratic
   - governance
-lastUpdated: '2026-02-12'
+lastUpdated: '2026-02-13'
 relatedMechanisms:
 
 relatedApps:

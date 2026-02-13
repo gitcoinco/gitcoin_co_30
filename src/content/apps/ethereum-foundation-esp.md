@@ -1,13 +1,14 @@
 ---
-id: '1770934230048'
+id: '1770997161588'
 slug: ethereum-foundation-esp
 name: "Ethereum Foundation ESP"
 shortDescription: "The Ethereum Foundation's direct grants program for open-source infrastructure, research, and tooling."
+featured: true
 tags:
   - expert
   - milestone
   - grants
-lastUpdated: '2026-02-12'
+lastUpdated: '2026-02-13'
 relatedMechanisms:
 
 relatedApps:

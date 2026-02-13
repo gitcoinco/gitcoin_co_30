@@ -1,5 +1,5 @@
 ---
-id: '1770934233494'
+id: '1770997165399'
 slug: quadratic-funding
 name: "Quadratic Funding"
 shortDescription: "Democratic funding mechanism that amplifies small donors via quadratic matching."
@@ -7,7 +7,7 @@ tags:
   - quadratic
   - democratic
   - verification
-lastUpdated: '2026-02-12'
+lastUpdated: '2026-02-13'
 relatedMechanisms:
 
 relatedApps:
