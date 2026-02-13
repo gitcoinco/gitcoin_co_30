@@ -3,7 +3,7 @@ id: '2'
 slug: optimism-retropgf-6
 name: Optimism RetroPGF Round 6
 shortDescription: Rewarding governance contributions
-banner: /images/campaigns/retropgf6.svg
+banner: /content-images/campaigns/optimism-retropgf-6/banner.svg
 tags:
   - optimism
   - retroactive funding

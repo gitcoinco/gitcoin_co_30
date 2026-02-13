@@ -32,7 +32,7 @@ export default function ContentDetailPage({
   breadcrumbLabel,
   relatedSections = [],
 }: ContentDetailPageProps) {
-  const banner = item.banner || "/og-default.png";
+  const banner = item.banner || "/content-images/placeholder.png";
   return (
     <DetailPageLayout>
       <Breadcrumb href={breadcrumbHref} label={breadcrumbLabel} />
@@ -89,7 +89,9 @@ export default function ContentDetailPage({
         </div>
 
         <div className="space-y-6 my-10">
-          <SuggestEditButton contentPath={`${breadcrumbHref.slice(1)}/${item.slug}.md`} />
+          <SuggestEditButton
+            contentPath={`${breadcrumbHref.slice(1)}/${item.slug}.md`}
+          />
           <MetadataSection lastUpdated={item.lastUpdated} />
         </div>
       </section>

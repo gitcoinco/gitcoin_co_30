@@ -3,7 +3,7 @@ id: '3'
 slug: octant-epoch-9
 name: Octant Epoch 9
 shortDescription: Participatory public goods funding
-banner: /images/campaigns/octant-e9.png
+banner: /content-images/campaigns/octant-epoch-9/banner.png
 tags:
   - octant
   - staking

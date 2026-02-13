@@ -3,7 +3,7 @@ id: '2'
 slug: "optimism-retropgf-round-3"
 name: "Optimism RetroPGF 3: 30M OP to 501 Projects"
 shortDescription: "The largest retroactive funding round in crypto history distributed 30M OP tokens to 501 projects, testing scalable impact evaluation."
-banner: "/images/case-studies/retropgf3.png"
+banner: "/content-images/case-studies/optimism-retropgf-round-3/banner.png"
 tags:
   - "retroactive funding"
   - "optimism"

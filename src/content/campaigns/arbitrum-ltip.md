@@ -3,7 +3,7 @@ id: '4'
 slug: arbitrum-ltip
 name: Arbitrum LTIP
 shortDescription: Long-Term Incentive Pilot Program
-banner: /images/campaigns/ltip.png
+banner: /content-images/campaigns/arbitrum-ltip/banner.png
 tags:
   - arbitrum
   - incentives

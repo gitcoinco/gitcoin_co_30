@@ -3,7 +3,7 @@ id: '5'
 slug: "octant-epoch-funding-model"
 name: "Octant: Staking-Powered Public Goods Funding"
 shortDescription: "How Octant created a sustainable funding model using staked ETH rewards, distributing millions to public goods across 9 epochs."
-banner: "/images/case-studies/octant.png"
+banner: "/content-images/case-studies/octant-epoch-funding-model/banner.png"
 tags:
   - "octant"
   - "staking"
