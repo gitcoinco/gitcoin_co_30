@@ -81,3 +81,5 @@ Organizations running grants programs across different stages of project maturit
 - [**Gitcoin 2.0 Whitepaper** — Gitcoin.co](https://www.gitcoin.co/whitepaper/read)  
 - [**Gitcoin Grants Stack** — Gitcoin Blog](https://www.gitcoin.co/blog/gitcoin-grants-stack)  
 - [**Grants Stack Winds Down** — Gitcoin Blog](https://www.gitcoin.co/blog/grants-stack-winds-down--heres-whats-changing-and-what-to-expect)
+
+
