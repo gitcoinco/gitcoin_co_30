@@ -18,8 +18,7 @@ relatedApps:
 
 **Type:** Analysis
 **Authors:** @owocki
-**Submitted by:** @cristinalare
-**Issue Number:** 2
+
 
 **Sources:**
 - [Gitcoin Data](https://gitcoin.co)
