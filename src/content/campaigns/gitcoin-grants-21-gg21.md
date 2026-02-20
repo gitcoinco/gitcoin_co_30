@@ -3,7 +3,7 @@ id: '1770997175466'
 slug: gitcoin-grants-21-gg21
 name: "Gitcoin Grants 21"
 shortDescription: "Gitcoin's first fully community-led round distributed $933K across 11 independent QF rounds."
-featured: true
+featured: false
 tags:
   - quadratic
   - democratic

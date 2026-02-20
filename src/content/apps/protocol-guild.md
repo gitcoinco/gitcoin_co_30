@@ -19,6 +19,7 @@ relatedCaseStudies:
 relatedResearch:
 
 relatedCampaigns:
+  - protocol-guild-ongoing
 
 ---
 

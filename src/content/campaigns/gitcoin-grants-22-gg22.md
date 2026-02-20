@@ -3,7 +3,7 @@ id: '1770997172052'
 slug: gitcoin-grants-22-gg22
 name: "Gitcoin Grants 22"
 shortDescription: "Gitcoin Grants 22 reinstated dedicated OSS funding, distributing $1.7M across 12 rounds."
-featured: true
+featured: false
 tags:
   - quadratic
   - grants
