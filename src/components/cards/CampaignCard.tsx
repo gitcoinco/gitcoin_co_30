@@ -60,8 +60,7 @@ export default function CampaignCard({
   statusLabel = "Active now",
   ctaLabel = "Visit campaign",
 }: CampaignCardProps) {
-  const campaignUrl = campaign.externalUrl || `/campaigns/${campaign.slug}`;
-  const isExternal = !!campaign.externalUrl;
+  const campaignUrl = `/campaigns/${campaign.slug}`;
   const timelineLabel = getTimelineLabel(campaign.startDate, campaign.endDate);
 
   const metrics = [
@@ -83,13 +82,8 @@ export default function CampaignCard({
   ].filter(Boolean) as { icon: LucideIcon; label: string; value: string }[];
 
   if (variant === "home") {
-    const Wrapper = isExternal ? "a" : Link;
-    const wrapperProps = isExternal
-      ? { href: campaignUrl, target: "_blank", rel: "noopener noreferrer" }
-      : { href: campaignUrl };
-
     return (
-      <Wrapper {...wrapperProps}>
+      <Link href={campaignUrl}>
         <article className="group flex min-h-[386px] flex-col rounded-2xl border border-gray-600 bg-gray-900 p-6 transition-all duration-300 hover:border-teal-500">
           <Badge variant="info" size="sm">
             {statusLabel}
@@ -111,14 +105,11 @@ export default function CampaignCard({
               </dl>
             )}
           </div>
-          <Button
-            variant="secondary"
-            className="mt-auto"
-          >
+          <Button variant="secondary" className="mt-auto">
             {ctaLabel}
           </Button>
         </article>
-      </Wrapper>
+      </Link>
     );
   }
 
