@@ -10,49 +10,49 @@ const nextConfig: NextConfig = {
       //  redo - high priority
       {
         source: "/about",
-        destination: "https://www.gitcoin.co/about",
+        destination: "https://app.gitcoin.co/about",
       },
       // medium - on webflow 
       {
         source: "/blog",
-        destination: "https://www.gitcoin.co/blog",
+        destination: "https://app.gitcoin.co/blog",
       },
       // redo 
       {
         source: "/program",
-        destination: "https://www.gitcoin.co/program",
+        destination: "https://app.gitcoin.co/program",
       },
       // update 
       {
         source: "/whitepaper",
-        destination: "https://www.gitcoin.co/whitepaper",
+        destination: "https://app.gitcoin.co/whitepaper",
       },
       
       {
         source: "/updates",
-        destination: "https://www.gitcoin.co/updates",
+        destination: "https://app.gitcoin.co/updates",
       },
 
       // redo 
       {
         source: "/brand",
-        destination: "https://www.gitcoin.co/brand",
+        destination: "https://app.gitcoin.co/brand",
       },
      
       // redo
       {
         source: "/partner",
-        destination: "https://www.gitcoin.co/partner",
+        destination: "https://app.gitcoin.co/partner",
       },
       // redo
       {
         source: "/privacy",
-        destination: "https://www.gitcoin.co/privacy-policy",
+        destination: "https://app.gitcoin.co/privacy-policy",
       },
       // redo
       {
         source: "/terms",
-        destination: "https://www.gitcoin.co/terms",
+        destination: "https://app.gitcoin.co/terms",
       },
 
       // impact.gitcoin.co rewrites
