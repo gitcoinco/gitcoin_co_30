@@ -2,34 +2,22 @@ name: Post preview link on new content issues
 
 on:
   issues:
-    types: [opened]
+    types: [labeled]
 
 jobs:
   preview-comment:
-    if: contains(github.event.issue.labels.*.name, 'content')
+    if: contains(fromJSON('["app", "mechanism", "research", "case-study", "campaign"]'), github.event.label.name)
     runs-on: ubuntu-latest
     permissions:
       issues: write
     steps:
-      - name: Detect content type from labels
-        id: detect
-        run: |
-          LABELS='${{ toJSON(github.event.issue.labels.*.name) }}'
-          for TYPE in app mechanism research case-study campaign; do
-            if echo "$LABELS" | grep -q "\"$TYPE\""; then
-              echo "type=$TYPE" >> "$GITHUB_OUTPUT"
-              break
-            fi
-          done
-
       - name: Post preview comment
-        if: steps.detect.outputs.type
         uses: actions/github-script@v7
         with:
           script: |
             const issue = context.issue.number;
-            const type = '${{ steps.detect.outputs.type }}';
-            const siteUrl = 'https://gitcoin.co';
+            const type = '${{ github.event.label.name }}';
+            const siteUrl = 'https://www.gitcoin.co';
             const previewUrl = `${siteUrl}/preview?issue=${issue}&type=${type}`;
 
             await github.rest.issues.createComment({
