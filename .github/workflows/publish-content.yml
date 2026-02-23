@@ -47,6 +47,8 @@ jobs:
           body: |
             Auto-generated from issue #${{ github.event.issue.number }}.
 
+            **Preview:** https://www.gitcoin.co/preview?issue=${{ github.event.issue.number }}&type=${{ steps.detect.outputs.type }}
+
             Closes #${{ github.event.issue.number }}
 
       - name: Comment on issue
