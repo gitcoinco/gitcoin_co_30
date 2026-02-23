@@ -35,12 +35,21 @@ const ALLOWED_HOSTS = [
 const MAX_REDIRECTS = 5;
 const MAX_FILE_SIZE = 10 * 1024 * 1024; // 10 MB
 
-/** Download an image from a URL to a local file */
+function contentTypeToExt(contentType: string): string {
+  if (contentType.includes("svg")) return ".svg";
+  if (contentType.includes("webp")) return ".webp";
+  if (contentType.includes("gif")) return ".gif";
+  if (contentType.includes("png")) return ".png";
+  if (contentType.includes("jpeg") || contentType.includes("jpg")) return ".jpg";
+  return ".png";
+}
+
+/** Download an image from a URL to a local file. Returns the detected content-type. */
 export async function downloadImage(
   url: string,
   filepath: string,
   redirectCount = 0,
-): Promise<void> {
+): Promise<string> {
   if (redirectCount > MAX_REDIRECTS) {
     throw new Error(`Too many redirects (>${MAX_REDIRECTS}) for ${url}`);
   }
@@ -106,7 +115,7 @@ export async function downloadImage(
         response.pipe(file);
         file.on("finish", () => {
           file.close();
-          resolve();
+          resolve(contentType);
         });
       })
       .on("error", (err) => {
@@ -192,26 +201,26 @@ export async function processImages(
   // Process banner image — saved as {slug}/banner.ext
   if (bannerImages.length > 0) {
     const img = bannerImages[0];
-    const ext = img.url.match(/\.(png|jpg|jpeg|gif|svg|webp)/i)?.[0] || ".png";
+    const urlExt = img.url.match(/\.(png|jpg|jpeg|gif|svg|webp)/i)?.[0];
+    const tempPath = path.join(imagesDir, `banner_tmp`);
+    const detectedType = await downloadImage(img.url, tempPath);
+    const ext = urlExt || contentTypeToExt(detectedType);
     const filename = `banner${ext}`;
-    const filepath = path.join(imagesDir, filename);
-    const publicPath = `/content-images/${contentType}/${slug}/${filename}`;
-
-    await downloadImage(img.url, filepath);
-    banner = publicPath;
+    fs.renameSync(tempPath, path.join(imagesDir, filename));
+    banner = `/content-images/${contentType}/${slug}/${filename}`;
     console.log(`  ✓ ${filename} (banner)`);
   }
 
   // Process logo image — saved as {slug}/logo.ext
   if (logoImages.length > 0) {
     const img = logoImages[0];
-    const ext = img.url.match(/\.(png|jpg|jpeg|gif|svg|webp)/i)?.[0] || ".svg";
+    const urlExt = img.url.match(/\.(png|jpg|jpeg|gif|svg|webp)/i)?.[0];
+    const tempPath = path.join(imagesDir, `logo_tmp`);
+    const detectedType = await downloadImage(img.url, tempPath);
+    const ext = urlExt || contentTypeToExt(detectedType);
     const filename = `logo${ext}`;
-    const filepath = path.join(imagesDir, filename);
-    const publicPath = `/content-images/${contentType}/${slug}/${filename}`;
-
-    await downloadImage(img.url, filepath);
-    logo = publicPath;
+    fs.renameSync(tempPath, path.join(imagesDir, filename));
+    logo = `/content-images/${contentType}/${slug}/${filename}`;
     console.log(`  ✓ ${filename} (logo)`);
   }
 
