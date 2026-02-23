@@ -27,7 +27,7 @@ export interface ParsedImage {
 const DESC_STOP = "\\n## Related|\\n## Submission|---|$";
 
 function extractField(content: string, label: string): string {
-  const match = content.match(new RegExp(`\\*\\*${label}\\*\\*:\\s*(.+)`));
+  const match = content.match(new RegExp(`\\*\\*${label}\\*\\*:[ \\t]*(.+)`));
   if (!match) return "";
   // For markdown links [text](url), extract the url for URL fields, text otherwise
   const linkMatch = match[1].match(/\[([^\]]*)\]\(([^)]*)\)/);
