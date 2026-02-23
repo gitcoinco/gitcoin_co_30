@@ -93,9 +93,9 @@ export async function publishContent(
   const titlePrefix = new RegExp(`^\\[${config.label}\\]\\s*`, "i");
   const metadata = parseMetadata(issue.body);
 
-  const slug =
-    metadata.slug ||
-    slugify(issue.title.replace(titlePrefix, ""));
+  const slug = slugify(
+    metadata.slug || issue.title.replace(titlePrefix, ""),
+  );
 
   console.log(`${config.emoji} Creating ${contentType}: ${slug}`);
 
