@@ -3,11 +3,12 @@ id: '1771872164248'
 slug: polygon-grants
 name: "Polygon Grants"
 shortDescription: "Community-governed grants funding builders across Polygon PoS and zkEVM from a 1B POL treasury."
+logo: /content-images/apps/polygon-grants/logo.png
 tags:
   - grants
   - governance
   - milestone
-lastUpdated: '2026-02-23'
+lastUpdated: '2026-02-24'
 relatedMechanisms:
 
 relatedApps:
