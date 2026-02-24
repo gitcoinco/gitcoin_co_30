@@ -3,11 +3,12 @@ id: '1771872714816'
 slug: base-ecosystem-fund
 name: "Base Ecosystem Fund"
 shortDescription: "Early-stage venture fund led by Coinbase Ventures investing in projects building on the Base Ethereum L2."
+logo: /content-images/apps/base-ecosystem-fund/logo.png
 tags:
   - grants
   - ecosystem
   - infrastructure
-lastUpdated: '2026-02-23'
+lastUpdated: '2026-02-24'
 relatedMechanisms:
 
 relatedApps:
