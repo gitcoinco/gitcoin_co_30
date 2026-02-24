@@ -3,11 +3,12 @@ id: '1771872118315'
 slug: scroll-grants
 name: "Scroll Grants"
 shortDescription: "Multi-track grants program funding developers, builders, and communities across Scroll's zkEVM ecosystem."
+logo: /content-images/apps/scroll-grants/logo.png
 tags:
   - grants
   - ecosystem
   - community
-lastUpdated: '2026-02-23'
+lastUpdated: '2026-02-24'
 relatedMechanisms:
 
 relatedApps:
