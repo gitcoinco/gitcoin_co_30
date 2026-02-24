@@ -3,11 +3,12 @@ id: '1771872833667'
 slug: arbitrum-dao-grants
 name: "Arbitrum DAO Grants"
 shortDescription: "Arbitrum's DAO-governed grants ecosystem funding builders and infrastructure across the network."
+logo: /content-images/apps/arbitrum-dao-grants/logo.png
 tags:
   - grants
   - governance
   - milestone
-lastUpdated: '2026-02-23'
+lastUpdated: '2026-02-24'
 relatedMechanisms:
 
 relatedApps:
