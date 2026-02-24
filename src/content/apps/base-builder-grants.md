@@ -3,11 +3,12 @@ id: '1771872205597'
 slug: base-builder-grants
 name: "Base Builder Grants"
 shortDescription: "Retroactive grant program by Base awarding ETH to builders for shipped apps, tools, and contributions."
+logo: /content-images/apps/base-builder-grants/logo.png
 tags:
   - grants
   - ecosystem
   - retroactive
-lastUpdated: '2026-02-23'
+lastUpdated: '2026-02-24'
 relatedMechanisms:
 
 relatedApps:
