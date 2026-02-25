@@ -32,14 +32,14 @@ Rather than focusing narrowly on blockchain or artificial intelligence, the d/ac
 
 The current version of the d/acc Market Map is below:
 
-![dacc-market-map](/content-images/research/d-acc-market-map/dacc-market-map.png)
+![gitcoin-dacc-market-map](/content-images/research/d-acc-market-map/gitcoin-dacc-market-map.png)
 
 ## **The Two Axes of the Defensive Acceleration Ecosystem**
 
 The defensive acceleration ecosystem is organized across two intersecting dimensions:
 
-- **Atoms vs. Bits** – material-world systems versus digital systems  
-- **Survive vs. Thrive** – baseline defensive capacity versus longterm positive-sum coordination
+- **Atoms vs. Bits:** material-world systems versus digital systems  
+- **Survive vs. Thrive:** baseline defensive capacity versus long term positive-sum coordination
 
 **Atoms vs. Bits** is the primary organizing dimension, distinguishing between technologies that operate in the physical world and those that operate in the informational domain.
 
@@ -69,7 +69,7 @@ These technologies are central to defensive acceleration because they alter the 
 
 As artificial intelligence lowers the cost of misinformation, surveillance, and automated exploitation, strengthening this digital layer becomes increasingly critical to preserving decentralized coordination.
 
-**Deployed examples in this quadrant include:**
+Deployed examples in this quadrant include:
 
 - **Zero-knowledge proof systems (Polygon zkEVM, StarkNet, Aztec):** Cryptographic systems that enable verification without revealing underlying data. ZK proofs are foundational to d/acc because they make it possible to prove identity, eligibility, or compliance without exposing private information – structurally shifting the cost of surveillance while preserving accountability.  
 - **Polymarket and prediction markets:** Decentralized information markets that aggregate distributed knowledge into probability estimates. Buterin has described these as "social epistemic tools" that can help separate signal from noise, making them a key component of d/acc's information defense layer.  
@@ -84,7 +84,7 @@ As artificial intelligence lowers the cost of misinformation, surveillance, and 
 
 Survive systems span both Atoms and Bits. In the physical domain, they include pandemic detection infrastructure, open source vaccine development platforms, and decentralized water and food supply systems. In the digital domain, they include zero-knowledge proof systems, encrypted communications, formal verification of smart contracts, and anti-collusion infrastructure.
 
-**Deployed examples include:**
+Deployed examples include:
 
 - **MACI (Minimal Anti-Collusion Infrastructure):** A cryptographic voting system that prevents bribery and vote-buying by making it impossible for voters to prove how they voted. MACI protects the integrity of collective decision-making under adversarial conditions, serving as defensive infrastructure for governance processes.  
 - **Zero-knowledge proof systems:** ZK proofs make it structurally cheaper to verify claims than to extract private information, shifting the offense-defense balance toward defense in identity verification, financial privacy, and compliance contexts.  
@@ -96,7 +96,7 @@ Survive systems span both Atoms and Bits. In the physical domain, they include p
 
 Like Survive systems, Thrive technologies span both Atoms and Bits. In the physical domain, they include community land trusts, cooperative energy governance, and open source agricultural coordination platforms. In the digital domain, they include democratic funding mechanisms, DAO governance frameworks, and treasury management infrastructure.
 
-**Deployed examples include:**
+Deployed examples include:
 
 - **Quadratic funding (Gitcoin Grants, Giveth, clr.fund):** A capital allocation mechanism that amplifies small contributions, distributing funding decisions across communities rather than concentrating them in committees. QF has distributed over $60 million through Gitcoin alone and has been adopted across multiple ecosystems.  
 - **Retroactive public goods funding (Optimism RetroPGF):** An allocation mechanism that rewards demonstrated impact rather than proposals, with over 60 million OP distributed to contributors across seven completed rounds. RetroPGF shifts execution risk while creating incentives for durable public goods work.  
