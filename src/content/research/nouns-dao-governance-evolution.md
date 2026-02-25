@@ -3,7 +3,6 @@ id: '1740000794001'
 slug: nouns-dao-governance-evolution
 name: 'From Auction to Incubator: The Evolution of Nouns DAO Capital Deployment'
 shortDescription: How Nouns DAO evolved from direct proposals to Prop House to Flows.wtf, revealing broader patterns in onchain capital allocation.
-banner: /content-images/research/nouns-dao-governance-evolution/banner.jpg
 tags:
   - governance
   - nouns

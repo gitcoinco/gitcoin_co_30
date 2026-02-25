@@ -3,7 +3,6 @@ id: '1740000794005'
 slug: token-curated-registry
 name: "Token Curated Registry"
 shortDescription: "Decentralized curation mechanism where token holders collectively maintain quality-filtered lists through economic incentives."
-banner: /content-images/mechanisms/token-curated-registry/banner.jpg
 tags:
   - curation
   - continuous

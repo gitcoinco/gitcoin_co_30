@@ -3,7 +3,6 @@ id: '1770997200001'
 slug: coalitional-funding
 name: "Coalitional Funding"
 shortDescription: "A capital allocation pattern where multiple aligned funders coordinate around a shared domain, pool or stack resources, and co-fund initiatives through a common mechanism, round, or program."
-banner: /content-images/mechanisms/coalitional-funding/banner.jpg
 tags:
   - coordination
   - matching

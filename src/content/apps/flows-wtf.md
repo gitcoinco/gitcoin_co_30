@@ -3,7 +3,6 @@ id: '1740000794003'
 slug: flows-wtf
 name: "Flows.wtf"
 shortDescription: "AI-powered continuous grants platform using token curated registries for community-driven, second-by-second fund streaming."
-logo: /content-images/apps/flows-wtf/logo.png
 tags:
   - streaming
   - grants

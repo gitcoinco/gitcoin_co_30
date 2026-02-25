@@ -3,7 +3,6 @@ id: '1740500000002'
 slug: revnets
 name: "Revnets"
 shortDescription: "Fully autonomous, immutable revenue networks that tokenize revenues and fundraises — deployed once, no owner, no governance, no rug pulls."
-logo: /content-images/apps/revnets/logo.png
 tags:
   - autonomous
   - revenue

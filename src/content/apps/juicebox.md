@@ -3,7 +3,6 @@ id: '1740500000001'
 slug: juicebox
 name: "Juicebox"
 shortDescription: "Programmable treasury protocol on Ethereum enabling transparent, code-governed fundraising and treasury management for DAOs, projects, and communities."
-logo: /content-images/apps/juicebox/logo.png
 tags:
   - treasury
   - fundraising
