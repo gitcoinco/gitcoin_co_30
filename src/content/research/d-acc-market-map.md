@@ -32,7 +32,7 @@ Rather than focusing narrowly on blockchain or artificial intelligence, the d/ac
 
 The current version of the d/acc Market Map is below:
 
-![gitcoin-dacc-market-map](/content-images/research/d-acc-market-map/gitcoin-dacc-market-map.png)
+[![gitcoin-dacc-market-map](https://www.gitcoin.co/content-images/research/d-acc-market-map/gitcoin-dacc-market-map.png)](https://www.gitcoin.co/content-images/research/d-acc-market-map/gitcoin-dacc-market-map.png)
 
 ## **The Two Axes of the Defensive Acceleration Ecosystem**
 
