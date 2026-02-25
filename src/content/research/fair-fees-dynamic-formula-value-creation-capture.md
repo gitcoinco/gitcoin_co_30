@@ -3,7 +3,6 @@ id: '12'
 slug: fair-fees-dynamic-formula-value-creation-capture
 name: "Fair Fees: A Dynamic Formula for Balancing Value Creation and Value Capture"
 shortDescription: "A proposed dynamic fee structure for onchain capital allocation mechanism builders that provides higher returns for smaller pools while decreasing to a minimal percentage for larger ones."
-banner: /content-images/research/fair-fees-dynamic-formula-value-creation-capture/banner.svg
 tags:
   - fee structure
   - mechanism design

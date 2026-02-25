@@ -3,7 +3,6 @@ id: '1740000794002'
 slug: nouns-dao
 name: "Nouns DAO"
 shortDescription: "Perpetual NFT auction DAO deploying capital through governance proposals, Prop House rounds, and continuous streaming via Flows.wtf."
-logo: /content-images/apps/nouns-dao/logo.png
 tags:
   - governance
   - nft

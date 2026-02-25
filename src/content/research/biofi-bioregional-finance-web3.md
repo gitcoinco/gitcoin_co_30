@@ -3,7 +3,6 @@ id: '11'
 slug: biofi-bioregional-finance-web3
 name: "BioFi: Bioregional Finance Powered by Web3"
 shortDescription: "How bioregional finance channels web3 capital into regenerating ecosystems through local-first coordination, DAOs, eco-credits, and participatory funding."
-banner: /content-images/research/biofi-bioregional-finance-web3/banner.svg
 tags:
   - bioregional finance
   - regeneration

@@ -3,7 +3,6 @@ id: '10'
 slug: coalitional-funding-2026-era-primitive
 name: "Coalitional Funding: A 2026+ Era Funding Primitive"
 shortDescription: "How coalitional funding evolves from ad-hoc practice to first-class coordination primitive, with historical precedents and design principles."
-banner: /content-images/research/coalitional-funding-2026-era-primitive/banner.svg
 tags:
   - coalitional funding
   - coordination

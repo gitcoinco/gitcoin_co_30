@@ -3,7 +3,6 @@ id: '1740000794004'
 slug: auction-based-treasury-funding
 name: "Auction-Based Treasury Funding"
 shortDescription: "Perpetual NFT auction mechanism that generates sustainable, ongoing treasury revenue through daily asset sales."
-banner: /content-images/mechanisms/auction-based-treasury-funding/banner.jpg
 tags:
   - auction
   - treasury
