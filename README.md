@@ -82,14 +82,14 @@ public/content-images/
 ├── apps/
 │   └── gitcoin-grants-stack/
 │       ├── banner.png
-│       └── logo.svg            # Logo/icon (square format)
+│       └── logo.png            # Logo/icon (square format, white/negative version)
 └── placeholder.png             # Fallback image
 ```
 
 - **Banner**: `public/content-images/{category}/{slug}/banner.{ext}` — reference as `banner: "/content-images/{category}/{slug}/banner.png"`
-- **Logo**: `public/content-images/{category}/{slug}/logo.{ext}` — reference as `logo: "/content-images/{category}/{slug}/logo.svg"`
+- **Logo**: `public/content-images/{category}/{slug}/logo.png` — reference as `logo: "/content-images/{category}/{slug}/logo.png"` (white/negative version, PNG only)
 - **Inline images**: Same folder, named from alt text or numbered — reference as `![Alt text](/content-images/{category}/{slug}/image-name.png)`
-- Accepted formats: PNG, JPG, SVG
+- Accepted formats: PNG, JPG (SVG not supported — banners and logos are used as OG images)
 
 ## Development
 
@@ -120,9 +120,9 @@ npm run build
 ### Images
 
 **Banner Images (Optional)**
-- **Dimensions**: 1600x900px (16:9 aspect ratio) or 1200x600px (2:1 aspect ratio) recommended
+- **Dimensions**: 1600x900px (16:9 aspect ratio) or 1200x600px (2:1 aspect ratio) recommended; 1800x600px (3:1) for sensemaking articles
 - **Where to add**: Place under the `## Banner Image` section in the GitHub issue template
-- **Format**: PNG or JPG only
+- **Format**: PNG or JPG only — SVG is not supported (banners are used as OG images)
 - Used as the hero image at the top of content pages and for social media previews
 - **Generator**: Use the [Chladni Particles generator](https://octaviaan.github.io/Chladni-Particles/) to create banner images. Export as square or landscape. Press `R` to randomize.
 
@@ -130,7 +130,7 @@ npm run build
 - **Dimensions**: Square format recommended (e.g., 256x256px, 512x512px)
 - **Aspect ratio**: 1:1 (square)
 - **Where to add**: Place under the `## Logo` section in the GitHub issue template
-- **Format**: PNG or JPG only
+- **Format**: PNG or JPG only — SVG is not supported (logos are used as OG images)
 - Used for thumbnails, cards, and branding
 
 **Additional Images**
