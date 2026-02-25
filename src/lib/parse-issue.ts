@@ -95,7 +95,7 @@ export function parseSection(markdown: string, sectionName: string): string {
     sectionName === "Description" ? DESC_STOP : "\\n## [^#]|---|$";
   const section = markdown.match(
     new RegExp(
-      `## ${sectionName}\\s+(?:<!--[\\s\\S]*?-->\\s*)?([\\s\\S]*?)(?=${stop})`,
+      `## ${sectionName}\\s+(?:<!--[\\s\\S]*?-->[ \\t]*)?([\\s\\S]*?)(?=${stop})`,
     ),
   );
   return section ? section[1].trim() : "";
@@ -105,7 +105,7 @@ export function parseSection(markdown: string, sectionName: string): string {
 export function parseList(markdown: string, sectionName: string): string[] {
   const section = markdown.match(
     new RegExp(
-      `## ${sectionName}\\s+(?:<!--[\\s\\S]*?-->\\s*)?([\\s\\S]*?)(?=\\n## [^#]|---|$)`,
+      `## ${sectionName}\\s+(?:<!--[\\s\\S]*?-->[ \\t]*)?([\\s\\S]*?)(?=\\n## [^#]|---|$)`,
     ),
   );
   if (!section) return [];
@@ -150,7 +150,7 @@ export function extractFirstImage(
 ): string {
   const section = markdown.match(
     new RegExp(
-      `## ${sectionName}\\s+(?:<!--[\\s\\S]*?-->\\s*)?([\\s\\S]*?)(?=\\n## [^#]|$)`,
+      `## ${sectionName}\\s+(?:<!--[\\s\\S]*?-->[ \\t]*)?([\\s\\S]*?)(?=\\n## [^#]|$)`,
     ),
   );
   if (!section) return "";
@@ -169,18 +169,18 @@ export function extractImagesBySections(issueBody: string) {
   const descriptionImages: ParsedImage[] = [];
 
   const bannerSection = issueBody.match(
-    /## Banner Image\s+(?:<!--.*?-->\s*)?([\s\S]*?)(?=\n## [^#]|$)/,
+    /## Banner Image\s+(?:<!--.*?-->[ \t]*)?([\s\S]*?)(?=\n## [^#]|$)/,
   );
   if (bannerSection) bannerImages.push(...extractImages(bannerSection[1]));
 
   const logoSection = issueBody.match(
-    /## Logo\s+(?:<!--.*?-->\s*)?([\s\S]*?)(?=\n## [^#]|$)/,
+    /## Logo\s+(?:<!--.*?-->[ \t]*)?([\s\S]*?)(?=\n## [^#]|$)/,
   );
   if (logoSection) logoImages.push(...extractImages(logoSection[1]));
 
   const descSection = issueBody.match(
     new RegExp(
-      `## Description\\s+(?:<!--[\\s\\S]*?-->\\s*)?([\\s\\S]*?)(?=${DESC_STOP})`,
+      `## Description\\s+(?:<!--[\\s\\S]*?-->[ \\t]*)?([\\s\\S]*?)(?=${DESC_STOP})`,
     ),
   );
   if (descSection) descriptionImages.push(...extractImages(descSection[1]));
