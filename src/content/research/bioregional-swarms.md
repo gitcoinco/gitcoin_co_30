@@ -3,7 +3,6 @@ id: '12'
 slug: bioregional-swarms
 name: "Bioregional Swarms"
 shortDescription: "How bioregional financing facilities, AI swarms, and knowledge commons converge to enable place-based coordination beyond nation-state boundaries."
-banner: /content-images/research/bioregional-swarms/banner.svg
 tags:
   - bioregional finance
   - AI swarms
@@ -17,6 +16,7 @@ relatedMechanisms:
   - quadratic-funding
 relatedApps: []
 sensemakingFor: "mechanisms"
+banner: /content-images/research/bioregional-swarms/banner.png
 ---
 
 **Type:** Opinion
