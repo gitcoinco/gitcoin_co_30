@@ -171,8 +171,13 @@ async function main() {
   let browser: import("playwright").Browser;
   try {
     browser = await chromium.launch({
-      headless: false,
-      args: ["--window-size=1600,900", "--window-position=0,0"],
+      headless: true,
+      args: [
+        "--disable-gpu-sandbox",
+        "--enable-webgl",
+        "--ignore-gpu-blocklist",
+        "--use-gl=angle",
+      ],
     });
   } catch (err: any) {
     if (
@@ -196,7 +201,7 @@ async function main() {
   // Navigate once upfront
   console.log("  Loading Chladni generator...");
   await page.goto(CHLADNI_URL, { waitUntil: "networkidle" });
-  await page.waitForTimeout(8000);
+  await page.waitForTimeout(4000);
   await setLandscape(page);
 
   let succeeded = 0;

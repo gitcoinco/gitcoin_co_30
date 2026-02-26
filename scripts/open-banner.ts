@@ -30,6 +30,16 @@ function openUrl(url: string) {
   exec(cmd);
 }
 
+function focusTerminal() {
+  if (process.platform !== "darwin") return;
+  const termProgram = process.env.TERM_PROGRAM ?? "";
+  let appName = "Terminal";
+  if (termProgram === "iTerm.app") appName = "iTerm2";
+  else if (termProgram === "WarpTerminal") appName = "Warp";
+  else if (termProgram === "vscode") appName = "Visual Studio Code";
+  exec(`osascript -e 'tell application "${appName}" to activate'`);
+}
+
 function waitForDownload(existing: Set<string>): Promise<string> {
   return new Promise((resolve) => {
     const interval = setInterval(() => {
@@ -68,6 +78,7 @@ async function main() {
   const outDir = path.join(process.cwd(), "public", "content-images", contentType, slug);
   const outPath = path.join(outDir, "banner.png");
   const publicPath = `/content-images/${contentType}/${slug}/banner.png`;
+  const mdPath = path.join(process.cwd(), "src", "content", contentType, `${slug}.md`);
 
   let existing: Set<string>;
   try {
@@ -81,7 +92,7 @@ async function main() {
   console.log("\n🎨  Chladni generator opened in your browser\n");
   console.log("  1. Set Aspect to Landscape (bottom of the panel)");
   console.log("  2. Press R to randomize — repeat until you like it");
-  console.log("  3. Press S to save\n");
+  console.log("  3. When happy, press S to save — terminal will return automatically\n");
   console.log("Watching ~/Downloads... (Ctrl+C to cancel)");
 
   const srcPath = await waitForDownload(existing);
@@ -90,8 +101,33 @@ async function main() {
   fs.copyFileSync(srcPath, outPath);
   fs.unlinkSync(srcPath);
 
+  focusTerminal();
   console.log(`\n✅  Saved: public${publicPath}`);
-  console.log(`\nAdd to frontmatter:\n  banner: ${publicPath}`);
+
+  // Auto-patch frontmatter if the markdown file exists
+  if (fs.existsSync(mdPath)) {
+    const content = fs.readFileSync(mdPath, "utf-8");
+    if (!/^banner:/m.test(content)) {
+      const lines = content.split("\n");
+      let closingIndex = -1;
+      for (let i = 1; i < lines.length; i++) {
+        if (lines[i].trimEnd() === "---") {
+          closingIndex = i;
+          break;
+        }
+      }
+      if (closingIndex !== -1) {
+        lines.splice(closingIndex, 0, `banner: ${publicPath}`);
+        fs.writeFileSync(mdPath, lines.join("\n"));
+        console.log(`✅  Frontmatter updated in ${contentType}/${slug}.md`);
+      }
+    } else {
+      // Replace existing banner line
+      const updated = content.replace(/^banner:.*$/m, `banner: ${publicPath}`);
+      fs.writeFileSync(mdPath, updated);
+      console.log(`✅  Frontmatter updated in ${contentType}/${slug}.md`);
+    }
+  }
 }
 
 main().catch((err) => {

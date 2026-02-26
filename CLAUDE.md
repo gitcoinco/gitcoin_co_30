@@ -160,7 +160,7 @@ npm run banner:pick research my-article-slug
 npm run banner:pick apps my-app-slug
 ```
 
-Opens the Chladni generator in the user's browser. They set Aspect to Landscape, press R until happy, press S to save — the script detects the download, moves it to the right path, and prints the `banner:` line to paste into the frontmatter.
+Opens the Chladni generator in the user's browser. They set Aspect to Landscape, press R until happy, press S to save — the terminal comes back into focus automatically, the script moves the file to the right path, and updates the frontmatter.
 
 > When generating multiple articles, run `npm run banner:auto` after creating all the files — it handles everything in one pass.
 
