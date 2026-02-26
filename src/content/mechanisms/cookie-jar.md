@@ -14,6 +14,7 @@ relatedApps: []
 relatedCaseStudies: []
 relatedResearch: []
 relatedCampaigns: []
+banner: /content-images/mechanisms/cookie-jar/banner.png
 ---
 
 **Cookie Jar** is a micro-grants mechanism that lets trusted community contributors draw modest amounts from a shared pool without extensive oversight. Small contributions — answering questions, organizing events, building tools — merit real financial support but shouldn't require burdensome grant processes.

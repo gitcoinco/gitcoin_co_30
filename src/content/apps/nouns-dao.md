@@ -22,6 +22,7 @@ relatedResearch:
   - nouns-dao-governance-evolution
 relatedCampaigns:
 
+banner: /content-images/apps/nouns-dao/banner.png
 ---
 
 **Nouns DAO** is an Ethereum-based decentralized autonomous organization that generates and auctions one unique 32x32 pixel NFT every 24 hours, with 100% of proceeds flowing to a community-governed treasury. Launched on August 17, 2021, by a group of ten co-founders (known as Nounders, including Vine founder Dom Hofmann), Nouns pioneered a perpetual auction model that creates sustainable, ongoing funding for community-directed initiatives without relying on token sales or external donors.

@@ -14,6 +14,7 @@ relatedApps: []
 relatedCaseStudies: []
 relatedResearch: []
 relatedCampaigns: []
+banner: /content-images/mechanisms/evolutionary-grants-games/banner.png
 ---
 
 **Evolutionary Grants Games** treat funding like a living system. Instead of a one-time grant process, proposals emerge, mutate, and compete across iterative rounds. Community members act as selectors through signaling, remixing, and voting — borrowing from biological evolution and competitive dynamics to surface the strongest ideas.

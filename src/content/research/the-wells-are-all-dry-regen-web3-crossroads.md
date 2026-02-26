@@ -19,6 +19,7 @@ relatedApps:
 relatedResearch:
   - state-of-public-goods-funding-2024
   - ethereum-public-goods-funding-sources-the-next-era
+banner: /content-images/research/the-wells-are-all-dry-regen-web3-crossroads/banner.png
 ---
 
 **Type:** Opinion / Analysis

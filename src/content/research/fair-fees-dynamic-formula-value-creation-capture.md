@@ -14,6 +14,7 @@ relatedMechanisms:
   - direct-grants
 relatedApps: []
 sensemakingFor: "mechanisms"
+banner: /content-images/research/fair-fees-dynamic-formula-value-creation-capture/banner.png
 ---
 
 **Type:** Research

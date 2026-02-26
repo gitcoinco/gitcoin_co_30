@@ -14,6 +14,7 @@ relatedApps: []
 relatedCaseStudies: []
 relatedResearch: []
 relatedCampaigns: []
+banner: /content-images/mechanisms/decentralized-validators/banner.png
 ---
 
 **Decentralized Validators** are trusted, independent participants who review, verify, or endorse actions within funding systems. Rather than centralizing decision-making, this model distributes verification power across multiple validators to enhance trust and minimize bias.

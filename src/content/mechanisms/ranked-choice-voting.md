@@ -14,6 +14,7 @@ relatedApps: []
 relatedCaseStudies: []
 relatedResearch: []
 relatedCampaigns: []
+banner: /content-images/mechanisms/ranked-choice-voting/banner.png
 ---
 
 **Ranked Choice Voting (RCV)** lets voters express their full preferences, not just a single choice. Voters rank options (1st, 2nd, 3rd...), and if no option gets a majority, the system eliminates the least popular choices and redistributes those votes — round by round — until one option has majority support.

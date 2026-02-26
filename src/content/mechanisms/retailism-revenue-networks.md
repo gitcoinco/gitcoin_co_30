@@ -17,6 +17,7 @@ relatedCaseStudies: []
 relatedResearch:
   - revnets-retailism-autonomous-public-goods-funding
 relatedCampaigns: []
+banner: /content-images/mechanisms/retailism-revenue-networks/banner.png
 ---
 
 **Retailism** is an economic framework where wealth is exchanged programmatically over time from newer participants to elder ones, and where investors and customers are treated as alike participants. Conceived by Jango (jango.eth), the creator of Juicebox Protocol, Retailism is implemented through **Revenue Networks (Revnets)** — autonomous, immutable smart contract treasuries that tokenize revenue and enforce deterministic economic rules without governance or human intervention.

@@ -19,6 +19,7 @@ relatedResearch:
 
 relatedCampaigns:
 
+banner: /content-images/apps/optimism-retropgf/banner.png
 ---
 
 **Optimism RetroPGF** is a retroactive public goods funding program operated by the Optimism Collective. It allocates OP tokens from the Optimism treasury to contributors who have already delivered measurable ecosystem impact. Funding decisions are made by badgeholders — governance-selected evaluators — using scoped evaluation processes that prioritize outcomes over proposals.

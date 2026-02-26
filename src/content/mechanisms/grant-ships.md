@@ -15,6 +15,7 @@ relatedApps: []
 relatedCaseStudies: []
 relatedResearch: []
 relatedCampaigns: []
+banner: /content-images/mechanisms/grant-ships/banner.png
 ---
 
 **Grant Ships** are modular, self-contained funding rounds designed as plug-and-play mechanisms. Each ship operates independently with its own scope, team, governance rules, and budget, while leveraging shared infrastructure like Allo Protocol. Multiple ships can run simultaneously as a "fleet," scaling grantmaking horizontally.

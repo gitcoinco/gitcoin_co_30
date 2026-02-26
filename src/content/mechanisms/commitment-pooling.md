@@ -14,6 +14,7 @@ relatedApps: []
 relatedCaseStudies: []
 relatedResearch: []
 relatedCampaigns: []
+banner: /content-images/mechanisms/commitment-pooling/banner.png
 ---
 
 **Commitment Pooling** is a funding mechanism where participants signal their willingness to contribute to a shared cause before money actually moves. If enough commitments align, the pool is triggered and funds are collected. If not, nothing moves. It solves the coordination problem: many people support a cause but hesitate to act without confidence that others will too.

@@ -23,6 +23,7 @@ relatedResearch:
   - ethereum-public-goods-funding-sources-the-next-era
 relatedCaseStudies: []
 relatedCampaigns: []
+banner: /content-images/research/the-great-interregnum-where-capital-flows-after-institutional-breakdown/banner.png
 ---
 
 **Type:** Analysis

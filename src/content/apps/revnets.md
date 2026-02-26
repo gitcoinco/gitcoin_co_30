@@ -16,6 +16,7 @@ relatedCaseStudies: []
 relatedResearch:
   - revnets-retailism-autonomous-public-goods-funding
 relatedCampaigns: []
+banner: /content-images/apps/revnets/banner.png
 ---
 
 **Revnets** (Revenue Networks) is a platform for deploying fully autonomous, rule-based, immutable treasuries that share tokenized revenues with their users. Created by Jango (jango.eth) and built on Juicebox V4, Revnets let anyone fairly launch a token for their project, company, or community — backed by a shared treasury that cannot be changed or rugged once deployed.

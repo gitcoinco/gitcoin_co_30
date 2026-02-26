@@ -14,6 +14,7 @@ relatedApps: []
 relatedCaseStudies: []
 relatedResearch: []
 relatedCampaigns: []
+banner: /content-images/mechanisms/participatory-budgeting/banner.png
 ---
 
 **Participatory Budgeting (PB)** allows communities to decide together how to spend money. It shifts resource allocation authority from centralized decision-makers to the people impacted by funding choices. Originally developed in Porto Alegre, Brazil, PB has expanded globally across civic, institutional, and blockchain contexts.

@@ -14,6 +14,7 @@ relatedApps: []
 relatedCaseStudies: []
 relatedResearch: []
 relatedCampaigns: []
+banner: /content-images/mechanisms/dedicated-domain-allocation/banner.png
 ---
 
 **Dedicated Domain Allocation (DDA)** is a decentralized funding framework that distributes capital allocation authority to trusted specialists — domain stewards — rather than centralizing decisions in a single committee. Each steward manages funding within a clearly defined area like DevRel, Governance, Ecosystem, or Research.

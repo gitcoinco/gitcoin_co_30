@@ -19,6 +19,7 @@ relatedResearch:
 
 relatedCampaigns:
 
+banner: /content-images/apps/allo-protocol/banner.png
 ---
 
 **Allo Protocol** is an open-source framework of EVM-compatible smart contracts for **programmable onchain capital allocation**. It allows communities, DAOs, and developers to create funding pools and distribute capital using modular, customizable allocation strategies.

@@ -20,6 +20,7 @@ relatedResearch:
   - nouns-dao-governance-evolution
 relatedCampaigns:
 
+banner: /content-images/mechanisms/auction-based-treasury-funding/banner.png
 ---
 
 **Auction-based treasury funding** is a capital formation mechanism in which a protocol continuously generates and auctions digital assets — typically NFTs — on a fixed schedule, with 100% of proceeds flowing to a community-governed treasury. Unlike token sales, fundraising rounds, or protocol fee extraction, this model creates a perpetual, self-sustaining funding engine that operates trustlessly as long as the underlying blockchain functions and there are interested bidders.

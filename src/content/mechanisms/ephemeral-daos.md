@@ -14,6 +14,7 @@ relatedApps: []
 relatedCaseStudies: []
 relatedResearch: []
 relatedCampaigns: []
+banner: /content-images/mechanisms/ephemeral-daos/banner.png
 ---
 
 **Ephemeral DAOs** are short-lived, flexible governance containers formed to carry out a particular process — like allocating a grant round, selecting stewards, or funding a mission-critical task — and dissolve or pause once complete. They prioritize purpose over permanence.

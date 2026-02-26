@@ -19,6 +19,7 @@ relatedResearch:
 
 relatedCampaigns:
 
+banner: /content-images/apps/base-builder-grants/banner.png
 ---
 
 **Base Builder Grants** is a retroactive grants program operated by the Base team at Coinbase, providing fast ETH-denominated funding to builders who have already shipped projects or made meaningful contributions to the Base Ethereum Layer 2 ecosystem. Grants typically range from 1 to 5 ETH per recipient and are distributed in publicly announced cohorts on X and Farcaster.

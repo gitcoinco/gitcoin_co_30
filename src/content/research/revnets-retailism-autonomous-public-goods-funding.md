@@ -21,6 +21,7 @@ relatedResearch:
   - eip-1890-and-eip-6969-lessons-from-in-protocol-funding
 relatedCaseStudies: []
 relatedCampaigns: []
+banner: /content-images/research/revnets-retailism-autonomous-public-goods-funding/banner.png
 ---
 
 **Type:** Analysis

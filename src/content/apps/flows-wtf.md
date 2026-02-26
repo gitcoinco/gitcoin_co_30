@@ -21,6 +21,7 @@ relatedResearch:
   - nouns-dao-governance-evolution
 relatedCampaigns:
 
+banner: /content-images/apps/flows-wtf/banner.png
 ---
 
 **Flows.wtf** is a decentralized, AI-powered capital allocation platform that enables continuous streaming of funds to approved recipients through community curation. Built on top of the Nouns DAO ecosystem, Flows uses token curated registries (TCRs) to let communities collectively decide which projects receive ongoing funding, with funds accruing and distributing second-by-second via onchain smart contracts.

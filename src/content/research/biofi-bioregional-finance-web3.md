@@ -17,6 +17,7 @@ relatedMechanisms:
   - token-streaming
 relatedApps: []
 sensemakingFor: "mechanisms"
+banner: /content-images/research/biofi-bioregional-finance-web3/banner.png
 ---
 
 **Type:** Research

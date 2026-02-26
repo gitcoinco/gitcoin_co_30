@@ -14,6 +14,7 @@ relatedApps: []
 relatedCaseStudies: []
 relatedResearch: []
 relatedCampaigns: []
+banner: /content-images/mechanisms/bonding-curves/banner.png
 ---
 
 **Bonding Curves** are algorithmic token pricing mechanisms where a mathematical function governs the relationship between token supply and its cost. When someone buys a token, the price goes up; when they sell, the price goes down. This enables continuous, self-regulating token issuance without intermediaries, creating perpetual liquidity for any token.
