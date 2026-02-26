@@ -15,6 +15,7 @@ relatedApps: []
 relatedCaseStudies: []
 relatedResearch: []
 relatedCampaigns: []
+banner: /content-images/mechanisms/artizen-artifacts/banner.png
 ---
 
 **Artizen Artifacts** are non-financial tokens of recognition awarded to people who contribute meaningfully to public goods and cultural ecosystems. They function as collectible proofs of impact — onchain objects that represent not just what was done, but why it mattered. Developed by the Artizen community, they represent a post-financial reward layer.

@@ -14,6 +14,7 @@ relatedApps: []
 relatedCaseStudies: []
 relatedResearch: []
 relatedCampaigns: []
+banner: /content-images/mechanisms/multisig-treasury/banner.png
 ---
 
 **Multisig Treasury (Gnosis Safe)** is a multi-signature smart contract wallet where funds can only move if a predefined number of trusted signers approve the transaction. It replaces centralized control with programmable governance, serving as foundational treasury infrastructure for DAOs and communities managing collective capital.

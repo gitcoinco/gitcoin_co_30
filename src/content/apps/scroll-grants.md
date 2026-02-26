@@ -19,6 +19,7 @@ relatedResearch:
 
 relatedCampaigns:
 
+banner: /content-images/apps/scroll-grants/banner.png
 ---
 
 **Scroll Grants** is a multi-track funding program supporting developers, builders, and communities across the Scroll zkEVM Ethereum Layer 2 ecosystem. The program includes several distinct funding streams: developer grants for building on Scroll (Starter Track grants up to $10,000 and Launch Track grants up to $100,000), Scroll Open (a retroactive rewards program with a potential allocation of up to $100 million in SCR tokens), the Ecosystem Growth Council (a DAO-governed body with a 2 million SCR budget for strategic growth initiatives), and the Community Grants Support Program (a Community Council-managed program funding events, meetups, hackathons, and educational activations).

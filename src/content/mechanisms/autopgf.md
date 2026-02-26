@@ -15,6 +15,7 @@ relatedApps: []
 relatedCaseStudies: []
 relatedResearch: []
 relatedCampaigns: []
+banner: /content-images/mechanisms/autopgf/banner.png
 ---
 
 **AutoPGF** eliminates governance friction by automating capital distribution to public goods. Rather than managing grants through traditional rounds or reviews, funds flow continuously or periodically based on predefined, objective signals — protocol fees, usage metrics, contribution data, or community votes.

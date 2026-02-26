@@ -56,6 +56,9 @@ function parseBaseContent(data: any, content: string, slug: string): App | Mecha
     featured: data.featured || false,
     relatedApps: data.relatedApps || [],
     relatedMechanisms: data.relatedMechanisms || [],
+    relatedCaseStudies: data.relatedCaseStudies || [],
+    relatedResearch: data.relatedResearch || [],
+    relatedCampaigns: data.relatedCampaigns || [],
   }
 }
 

@@ -21,6 +21,7 @@ relatedResearch:
 relatedCampaigns:
   - protocol-guild-ongoing
 
+banner: /content-images/apps/protocol-guild/banner.png
 ---
 
 **Protocol Guild** is a collective fund that supports Ethereum Layer 1 core protocol contributors through long-term, onchain token vesting. It maintains a publicly verifiable registry of active contributors and distributes donated assets directly to individuals, providing supplementary income that rewards sustained participation in Ethereum's core research, development, and coordination work.

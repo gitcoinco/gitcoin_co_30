@@ -14,6 +14,7 @@ relatedApps: []
 relatedCaseStudies: []
 relatedResearch: []
 relatedCampaigns: []
+banner: /content-images/mechanisms/lotto-pgf/banner.png
 ---
 
 **Lotto PGF** uses a lottery-style system to allocate funds to public goods projects or contributors. Instead of competing for limited slots or votes, anyone who meets basic criteria is entered into a pool — and winners are chosen at random.

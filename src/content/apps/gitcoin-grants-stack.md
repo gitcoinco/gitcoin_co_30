@@ -19,6 +19,7 @@ relatedResearch:
 
 relatedCampaigns:
 
+banner: /content-images/apps/gitcoin-grants-stack/banner.png
 ---
 
 **Gitcoin Grants Stack** is an open-source grants management platform built on **Allo Protocol**. It provides shared infrastructure for creating and operating grants programs using multiple allocation mechanisms, including quadratic funding, direct grants, and retroactive funding.

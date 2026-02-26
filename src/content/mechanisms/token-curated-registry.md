@@ -21,6 +21,7 @@ relatedResearch:
   - nouns-dao-governance-evolution
 relatedCampaigns:
 
+banner: /content-images/mechanisms/token-curated-registry/banner.png
 ---
 
 **Token curated registries (TCRs)** are a decentralized curation mechanism in which token holders collectively maintain a quality-filtered list of entries — such as grant recipients, service providers, or content sources — through economic staking and challenge processes. Participants purchase tokens associated with a specific registry, gaining the right and incentive to curate its contents: adding high-quality entries, challenging low-quality ones, and earning rewards for maintaining the registry's integrity.

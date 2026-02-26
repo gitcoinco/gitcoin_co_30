@@ -19,6 +19,7 @@ relatedResearch:
 
 relatedCampaigns:
 
+banner: /content-images/apps/base-ecosystem-fund/banner.png
 ---
 
 **Base Ecosystem Fund** is an early-stage venture fund operated by Coinbase Ventures, focused on investing in pre-seed and seed-stage teams building on Base, Coinbase's Ethereum Layer 2 network. Announced in February 2023 alongside the Base testnet launch, the fund deploys equity and token-based investments into applications, infrastructure, and protocols that contribute to the growth of the Base ecosystem. Unlike grant programs, the Base Ecosystem Fund provides venture capital in exchange for ownership rather than non-dilutive funding. Individual investment amounts and total fund size have not been publicly disclosed.

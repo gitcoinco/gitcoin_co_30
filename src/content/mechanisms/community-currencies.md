@@ -14,6 +14,7 @@ relatedApps: []
 relatedCaseStudies: []
 relatedResearch: []
 relatedCampaigns: []
+banner: /content-images/mechanisms/community-currencies/banner.png
 ---
 
 **Community Currencies** are alternative currencies designed to serve the needs and values of a specific community. They facilitate local exchange outside traditional banking systems, encoding trust and shared values into monetary design. In Web3 contexts, they can be implemented as ERC-20 tokens, smart contract credit systems, or reputation-linked issuance mechanisms.

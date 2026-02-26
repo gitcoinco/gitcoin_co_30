@@ -16,6 +16,7 @@ relatedCaseStudies: []
 relatedResearch:
   - revnets-retailism-autonomous-public-goods-funding
 relatedCampaigns: []
+banner: /content-images/apps/juicebox/banner.png
 ---
 
 **Juicebox** is a programmable treasury management protocol on Ethereum that enables transparent, code-governed fundraising through smart contracts. Created by Jango (jango.eth) and launched in July 2021, it lets projects raise ETH, issue tokens to contributors, and manage treasuries without intermediaries or platform discretion.

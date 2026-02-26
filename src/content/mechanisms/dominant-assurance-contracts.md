@@ -14,6 +14,7 @@ relatedApps: []
 relatedCaseStudies: []
 relatedResearch: []
 relatedCampaigns: []
+banner: /content-images/mechanisms/dominant-assurance-contracts/banner.png
 ---
 
 **Dominant Assurance Contracts (DACs)** incentivize public goods contributions by guaranteeing a win-win scenario for early supporters. If the project gets funded, the public good is delivered. If it doesn't, funders get refunded with a bonus. Originally proposed by economist Alex Tabarrok, DACs solve the public goods dilemma by removing first-mover risk.

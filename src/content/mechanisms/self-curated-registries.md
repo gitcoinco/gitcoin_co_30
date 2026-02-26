@@ -14,6 +14,7 @@ relatedApps: []
 relatedCaseStudies: []
 relatedResearch: []
 relatedCampaigns: []
+banner: /content-images/mechanisms/self-curated-registries/banner.png
 ---
 
 **Self-Curated Registries** enable projects and individuals to autonomously nominate themselves for funding consideration without gatekeepers. Rather than applying to central committees, participants join open registries where communities validate legitimacy through signaling, voting, and curation. These registries serve as foundations for downstream mechanisms like Quadratic Funding, Direct Grants, or Retro Funding rounds.

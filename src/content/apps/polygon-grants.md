@@ -19,6 +19,7 @@ relatedResearch:
 
 relatedCampaigns:
 
+banner: /content-images/apps/polygon-grants/banner.png
 ---
 
 The **Polygon Community Grants Program (CGP)** is a community-governed grants initiative funded by the Polygon Community Treasury – an in-protocol fund independent from Polygon Labs. The program distributes POL tokens to builders, developers, and ecosystem contributors building on Polygon PoS and Polygon zkEVM, with approximately 100 million POL unlocking annually over a ten-year horizon. Grant allocation is overseen by a five-member **Community Treasury Board (CTB)** alongside independent **Grant Allocators (GAs)** – external domain experts who manage themed funding tracks, evaluate applications, and deploy capital within their areas of specialization.

@@ -15,6 +15,7 @@ relatedApps: []
 relatedCaseStudies: []
 relatedResearch: []
 relatedCampaigns: []
+banner: /content-images/mechanisms/requests-for-proposals/banner.png
 ---
 
 **Requests for Proposals (RFPs)** are a formal capital allocation mechanism adapted from traditional procurement. An organization defines a specific problem or need, publishes detailed requirements and success criteria, and invites external teams to submit competing proposals. The best-fit proposal is selected through structured evaluation.

@@ -14,6 +14,7 @@ relatedApps: []
 relatedCaseStudies: []
 relatedResearch: []
 relatedCampaigns: []
+banner: /content-images/mechanisms/sourcecred/banner.png
 ---
 
 **SourceCred** is a mechanism for tracking community contributions and distributing rewards proportionally. It builds a "contribution graph" mapping people, projects, and interactions, then assigns "cred" scores based on measurable activity to allocate treasury funds. Contributors are paid based on what they actually did, not what they said they'd do.

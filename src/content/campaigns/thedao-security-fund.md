@@ -25,6 +25,7 @@ matchingPoolUsd: '$220M+'
 projectsCount: 'TBD'
 startDate: '2026-01-29'
 endDate: ''
+banner: /content-images/campaigns/thedao-security-fund/banner.png
 ---
 
 **TheDAO Security Fund** is a long-term endowment that reactivates over 75,000 ETH in unclaimed assets from the original 2016 DAO hack recovery to fund Ethereum security infrastructure. Announced on January 29, 2026, the initiative stakes the majority of these funds — approximately 69,420 ETH from the ExtraBalance contract — to generate an estimated $8M per year in staking yield, which is then distributed through community-driven funding rounds to security researchers, tooling developers, and rapid-response teams.

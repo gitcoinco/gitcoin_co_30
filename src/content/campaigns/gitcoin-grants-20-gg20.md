@@ -24,6 +24,7 @@ matchingPoolUsd: '$1.5M'
 projectsCount: '326+'
 startDate: '2024-04-23'
 endDate: '2024-05-07'
+banner: /content-images/campaigns/gitcoin-grants-20-gg20/banner.png
 ---
 
 **Gitcoin Grants 20 (GG20)** was the 20th Gitcoin Grants round, running from April 23 to May 7, 2024. The round marked a strategic return to open-source software (OSS) funding as Gitcoin's primary focus, doubling OSS matching from $400K in GG19 to $1M distributed across four dedicated OSS rounds.

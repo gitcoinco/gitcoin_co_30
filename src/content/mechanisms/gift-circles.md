@@ -14,6 +14,7 @@ relatedApps: []
 relatedCaseStudies: []
 relatedResearch: []
 relatedCampaigns: []
+banner: /content-images/mechanisms/gift-circles/banner.png
 ---
 
 **Gift Circles** are participatory funding gatherings where a group of people comes together to discuss needs, contributions, and intentions, then collectively decides how to allocate a shared pool of funds or support. Rather than traditional voting or competitive pitching, participants engage in listening, witnessing, and gifting with relational awareness.

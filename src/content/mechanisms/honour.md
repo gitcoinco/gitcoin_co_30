@@ -14,6 +14,7 @@ relatedApps: []
 relatedCaseStudies: []
 relatedResearch: []
 relatedCampaigns: []
+banner: /content-images/mechanisms/honour/banner.png
 ---
 
 **Honour** is a coordination mechanism that surfaces non-financial forms of value — care, reliability, relational trust, and integrity. Rather than distributing funds or votes, participants publicly recognize one another's contributions, creating a social ledger of what the community values.

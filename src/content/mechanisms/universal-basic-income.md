@@ -14,6 +14,7 @@ relatedApps: []
 relatedCaseStudies: []
 relatedResearch: []
 relatedCampaigns: []
+banner: /content-images/mechanisms/universal-basic-income/banner.png
 ---
 
 **Universal Basic Income (UBI)** distributes a flat amount of income to everyone in a defined group or network — regularly, without conditions. The goal is decoupling survival from labor, enabling broader participation in public goods, creativity, and care work.

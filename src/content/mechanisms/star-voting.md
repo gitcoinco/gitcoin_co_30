@@ -15,6 +15,7 @@ relatedApps: []
 relatedCaseStudies: []
 relatedResearch: []
 relatedCampaigns: []
+banner: /content-images/mechanisms/star-voting/banner.png
 ---
 
 **STAR Voting** (Score Then Automatic Runoff) is a voting mechanism where participants rate each option on a scale (typically 0-5 stars), the two highest-scoring options advance to a runoff, and whichever gains majority preference wins. It combines the expressiveness of scoring with the decisiveness of a runoff.

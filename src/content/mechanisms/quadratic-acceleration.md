@@ -15,6 +15,7 @@ relatedApps: []
 relatedCaseStudies: []
 relatedResearch: []
 relatedCampaigns: []
+banner: /content-images/mechanisms/quadratic-acceleration/banner.png
 ---
 
 **Quadratic Acceleration (q/acc)** merges Quadratic Funding's democratic allocation with Augmented Bonding Curves' economic sustainability. Contributors fund public goods projects via QF, and projects receive not only capital but curve-based tokens — turning public goods into programmable economic primitives.

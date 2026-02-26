@@ -23,6 +23,7 @@ relatedResearch:
 
 relatedCampaigns:
 
+banner: /content-images/mechanisms/coalitional-funding/banner.png
 ---
 
 **Coalitional funding** is a capital allocation pattern where multiple aligned funders coordinate around a shared domain, pool or stack resources, and co-fund initiatives through a common mechanism, round, or program. Instead of a single sponsor or a fully centralized allocator, a coalition forms around a theme (e.g., security, privacy, accelerators, or public infrastructure) and each participant contributes capital, legitimacy, distribution, and/or expertise. The coalition increases total funding power, reduces individual risk, and creates positive-sum outcomes through matching, amplification, and shared signaling.

@@ -14,6 +14,7 @@ relatedApps: []
 relatedCaseStudies: []
 relatedResearch: []
 relatedCampaigns: []
+banner: /content-images/mechanisms/harberger-taxes/banner.png
 ---
 
 **Harberger Taxes** create a system of temporary ownership where asset holders must declare a sale price, pay recurring taxes on that value, and sell to anyone offering the declared price. This prevents monopolization of scarce resources, incentivizes honest valuation, and generates tax revenue for public goods.

@@ -19,6 +19,7 @@ relatedResearch:
 
 relatedCampaigns:
 
+banner: /content-images/apps/arbitrum-dao-grants/banner.png
 ---
 
 **Arbitrum DAO Grants** is a multi-program funding ecosystem that distributes ARB tokens from the Arbitrum DAO treasury to support builders, researchers, infrastructure teams, protocols, and community initiatives across the Arbitrum network.

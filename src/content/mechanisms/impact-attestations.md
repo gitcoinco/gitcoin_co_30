@@ -14,6 +14,7 @@ relatedApps: []
 relatedCaseStudies: []
 relatedResearch: []
 relatedCampaigns: []
+banner: /content-images/mechanisms/impact-attestations/banner.png
 ---
 
 **Impact Attestations** are social or onchain signals that say: this person or project made a valuable contribution. They function as a legitimacy layer without requiring tokens or money, feeding into downstream funding mechanisms like Retro Funding, Hypercerts, or Allo registries.

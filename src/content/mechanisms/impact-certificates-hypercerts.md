@@ -14,6 +14,7 @@ relatedApps: []
 relatedCaseStudies: []
 relatedResearch: []
 relatedCampaigns: []
+banner: /content-images/mechanisms/impact-certificates-hypercerts/banner.png
 ---
 
 **Impact Certificates (Hypercerts)** are onchain tokens representing completed impactful work. They flip the funding model: instead of paying for promises, they let contributors create verifiable claims about what they've already done. Hypercerts, developed by Protocol Labs and the Hypercerts Foundation, provide a standardized, open-source format including who did what, for whom, when, and what impact was created.
