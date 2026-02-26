@@ -96,7 +96,7 @@ export default function Header() {
 
   return (
     <div
-      className={`fixed top-0 left-0 right-0 z-50 px-8 py-4 transition-colors duration-300 ${scrolled ? "bg-gray-900/90 backdrop-blur-md" : "bg-transparent"}`}
+      className={`fixed top-0 left-0 right-0 z-50 sm:px-8 px-3 py-4 transition-colors duration-300 ${scrolled ? "bg-gray-900/90 backdrop-blur-md" : "bg-transparent"}`}
     >
       <header className="flex items-center justify-between">
         <Link href="/" aria-label="Gitcoin home">
