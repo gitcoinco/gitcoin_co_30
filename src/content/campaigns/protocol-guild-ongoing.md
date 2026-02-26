@@ -26,7 +26,7 @@ matchingPoolUsd: '$100M+'
 projectsCount: '~190'
 startDate: '2022-05-01'
 endDate: ''
-banner: /content-images/campaigns/protocol-guild-ongoing/banner.svg
+banner: /content-images/campaigns/protocol-guild-ongoing/banner.png
 ---
 
 **Protocol Guild** is a collective funding mechanism that distributes donated tokens directly to Ethereum Layer 1 core protocol contributors through onchain, time-weighted vesting. With over $100 million in cumulative donations and approximately 190 active members across 30 teams, it is the largest sustained funding initiative for Ethereum's core infrastructure workforce.
