@@ -7,6 +7,7 @@
 import fs from "node:fs";
 import path from "node:path";
 import https from "node:https";
+import sharp from "sharp";
 
 // Re-export all parsing functions from the shared module
 export {
@@ -42,6 +43,14 @@ function contentTypeToExt(contentType: string): string {
   if (contentType.includes("png")) return ".png";
   if (contentType.includes("jpeg") || contentType.includes("jpg")) return ".jpg";
   return ".png";
+}
+
+/** Convert an SVG file to PNG in-place, returns the new filepath */
+async function convertSvgToPng(svgPath: string): Promise<string> {
+  const pngPath = svgPath.replace(/\.svg$/i, ".png");
+  await sharp(svgPath, { density: 144 }).png().toFile(pngPath);
+  fs.unlinkSync(svgPath);
+  return pngPath;
 }
 
 /** Download an image from a URL to a local file. Returns the detected content-type. */
@@ -80,7 +89,7 @@ export async function downloadImage(
             filepath,
             redirectCount + 1,
           )
-            .then(resolve)
+            .then((ct) => resolve(ct))
             .catch(reject);
         }
 
@@ -198,30 +207,38 @@ export async function processImages(
     return { filename, publicPath };
   }
 
-  // Process banner image — saved as {slug}/banner.ext
+  // Process banner image — saved as {slug}/banner.png (converted from SVG if needed)
   if (bannerImages.length > 0) {
     const img = bannerImages[0];
     const urlExt = img.url.match(/\.(png|jpg|jpeg|gif|svg|webp)/i)?.[0];
     const tempPath = path.join(imagesDir, `banner_tmp`);
     const detectedType = await downloadImage(img.url, tempPath);
-    const ext = urlExt || contentTypeToExt(detectedType);
-    const filename = `banner${ext}`;
-    fs.renameSync(tempPath, path.join(imagesDir, filename));
-    banner = `/content-images/${contentType}/${slug}/${filename}`;
-    console.log(`  ✓ ${filename} (banner)`);
+    let ext = urlExt || contentTypeToExt(detectedType);
+    let finalPath = path.join(imagesDir, `banner${ext}`);
+    fs.renameSync(tempPath, finalPath);
+    if (ext === ".svg") {
+      finalPath = await convertSvgToPng(finalPath);
+      ext = ".png";
+    }
+    banner = `/content-images/${contentType}/${slug}/banner${ext}`;
+    console.log(`  ✓ banner${ext} (banner)`);
   }
 
-  // Process logo image — saved as {slug}/logo.ext
+  // Process logo image — saved as {slug}/logo.png (converted from SVG if needed)
   if (logoImages.length > 0) {
     const img = logoImages[0];
     const urlExt = img.url.match(/\.(png|jpg|jpeg|gif|svg|webp)/i)?.[0];
     const tempPath = path.join(imagesDir, `logo_tmp`);
     const detectedType = await downloadImage(img.url, tempPath);
-    const ext = urlExt || contentTypeToExt(detectedType);
-    const filename = `logo${ext}`;
-    fs.renameSync(tempPath, path.join(imagesDir, filename));
-    logo = `/content-images/${contentType}/${slug}/${filename}`;
-    console.log(`  ✓ ${filename} (logo)`);
+    let ext = urlExt || contentTypeToExt(detectedType);
+    let finalPath = path.join(imagesDir, `logo${ext}`);
+    fs.renameSync(tempPath, finalPath);
+    if (ext === ".svg") {
+      finalPath = await convertSvgToPng(finalPath);
+      ext = ".png";
+    }
+    logo = `/content-images/${contentType}/${slug}/logo${ext}`;
+    console.log(`  ✓ logo${ext} (logo)`);
   }
 
   // Process description images
