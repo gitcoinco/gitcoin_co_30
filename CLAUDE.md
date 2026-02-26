@@ -140,7 +140,29 @@ public/content-images/
 
 ### Banner image generator
 
-Use the [Chladni Particles generator](https://octaviaan.github.io/Chladni-Particles/) to create abstract banner images. Press `R` to randomize. Export as PNG in landscape format.
+Two workflows depending on the situation:
+
+**Batch / automatic** — generates banners for all content files that are missing one, fully automated. Requires a one-time browser install (`npx playwright install chromium`).
+
+```bash
+npm run banner:auto                          # all content types
+npm run banner:auto mechanisms               # one content type
+npm run banner:auto mechanisms quadratic-funding  # single item
+```
+
+Finds every `.md` file without a `banner:` field, generates a banner using the real Chladni Particles generator headlessly, saves the PNG to the correct path, and updates the frontmatter automatically.
+
+**Manual / interactive** — for when the user wants to pick the pattern themselves. Always fill in the content type and slug from the file you just created:
+
+```bash
+npm run banner:pick mechanisms quadratic-funding
+npm run banner:pick research my-article-slug
+npm run banner:pick apps my-app-slug
+```
+
+Opens the Chladni generator in the user's browser. They set Aspect to Landscape, press R until happy, press S to save — the script detects the download, moves it to the right path, and prints the `banner:` line to paste into the frontmatter.
+
+> When generating multiple articles, run `npm run banner:auto` after creating all the files — it handles everything in one pass.
 
 ---
 
@@ -158,12 +180,17 @@ npm run publish-case-study <issue-number>
 npm run publish-campaign <issue-number>
 ```
 
-### Manual creation
+### Manual creation (what Claude should do)
 
-When writing `.md` files directly:
 1. Create the file at `src/content/{category}/{slug}.md`
-2. Only add `banner:` / `logo:` frontmatter **after** the actual PNG/JPG file exists at `public/content-images/{category}/{slug}/banner.png` (or `logo.png`)
-3. If no image is available, **omit** the field entirely — never write a path that doesn't exist
+2. Do **not** add `banner:` to the frontmatter — omit it entirely
+3. After creating all content files, run:
+   ```bash
+   npm run banner:auto
+   ```
+   This finds every `.md` file without a `banner:` field, generates a banner using the Chladni Particles generator, saves the PNG to the correct path, and patches the frontmatter automatically. **Always run this after creating content files.**
+
+> If `npm run banner:auto` fails with a Playwright error, the user needs to run `npx playwright install chromium` once (one-time setup per machine). Tell them to do this and then re-run the command.
 
 ### Slugs
 
@@ -182,8 +209,9 @@ Lowercase, hyphen-separated. Follow existing conventions from similar files — 
 
 ```bash
 npm install
-npm run dev       # dev server
-npm run build     # production build
+npx playwright install chromium  # one-time per machine — needed for banner generation
+npm run dev                       # dev server
+npm run build                     # production build
 npm run lint
-npm run sync-docs # sync content to OpenAI vector store for AI chat
+npm run sync-docs                 # sync content to OpenAI vector store for AI chat
 ```

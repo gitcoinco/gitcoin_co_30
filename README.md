@@ -97,6 +97,9 @@ public/content-images/
 # Install dependencies
 npm install
 
+# One-time setup: install Playwright browser for banner generation
+npx playwright install chromium
+
 # Run development server
 npm run dev
 
@@ -106,12 +109,21 @@ npm run build
 
 ## Scripts
 
+**Publishing (from GitHub Issues)**
 - `npm run publish-app <issue-number>` - Create app from GitHub issue
 - `npm run publish-mechanism <issue-number>` - Create mechanism from GitHub issue
 - `npm run publish-research <issue-number>` - Create research from GitHub issue
 - `npm run publish-case-study <issue-number>` - Create case study from GitHub issue
 - `npm run publish-campaign <issue-number>` - Create campaign from GitHub issue
 - `npm run publish-all` - Publish all open GitHub issues at once
+
+**Banner generation**
+- `npm run banner:auto` - Generate banners for all content files missing one (automated, headless)
+- `npm run banner:auto mechanisms` - Generate banners for one content type
+- `npm run banner:auto mechanisms quadratic-funding` - Generate banner for a single item
+- `npm run banner:pick <content-type> <slug>` - Open the Chladni generator interactively to pick a banner yourself
+
+**Other**
 - `npm run sync-docs` - Sync content files from src/content to OpenAI vector store for AI chat
 
 
@@ -124,7 +136,7 @@ npm run build
 - **Where to add**: Place under the `## Banner Image` section in the GitHub issue template
 - **Format**: PNG or JPG only — SVG is not supported (banners are used as OG images)
 - Used as the hero image at the top of content pages and for social media previews
-- **Generator**: Use the [Chladni Particles generator](https://octaviaan.github.io/Chladni-Particles/) to create banner images. Export as square or landscape. Press `R` to randomize.
+- **Generator**: [Chladni Particles](https://octaviaan.github.io/Chladni-Particles/) — use `npm run banner:auto` to generate automatically, or `npm run banner:pick <type> <slug>` to pick one interactively
 
 **Logo Images (Optional)**
 - **Dimensions**: Square format recommended (e.g., 256x256px, 512x512px)
