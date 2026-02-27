@@ -4,6 +4,15 @@ const nextConfig: NextConfig = {
   images: {
     domains: ["images.unsplash.com"],
   },
+  async redirects() {
+    return [
+      {
+        source: "/whitepaper",
+        destination: "/research",
+        permanent: true,
+      },
+    ];
+  },
   async rewrites() {
     return [
       // gitcoin.co rewrites
@@ -22,12 +31,6 @@ const nextConfig: NextConfig = {
         source: "/program",
         destination: "https://app.gitcoin.co/program",
       },
-      // update 
-      {
-        source: "/whitepaper",
-        destination: "https://app.gitcoin.co/whitepaper",
-      },
-      
       {
         source: "/updates",
         destination: "https://app.gitcoin.co/updates",
