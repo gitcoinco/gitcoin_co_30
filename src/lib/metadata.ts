@@ -25,15 +25,15 @@ export function generateDetailPageMetadata(config: MetadataConfig): Metadata {
     authors,
   } = config;
 
-  const url = `https://explore.gitcoin.co/${type}/${slug}`;
+  const url = `https://gitcoin.co/${type}/${slug}`;
 
   // Determine the best image to use
-  let imageUrl = "https://explore.gitcoin.co/content-images/placeholder.png";
+  let imageUrl = "https://gitcoin.co/content-images/placeholder.png";
 
   if (banner && !banner.endsWith(".svg")) {
-    imageUrl = `https://explore.gitcoin.co${banner}`;
+    imageUrl = `https://gitcoin.co${banner}`;
   } else if (logo && !logo.endsWith(".svg")) {
-    imageUrl = `https://explore.gitcoin.co${logo}`;
+    imageUrl = `https://gitcoin.co${logo}`;
   }
 
   // Determine image type based on extension
@@ -55,7 +55,7 @@ export function generateDetailPageMetadata(config: MetadataConfig): Metadata {
       title,
       description: shortDescription,
       url,
-      siteName: "Gitcoin Explorer",
+      siteName: "Gitcoin",
       images: [
         {
           url: imageUrl,
@@ -66,8 +66,7 @@ export function generateDetailPageMetadata(config: MetadataConfig): Metadata {
         },
       ],
       locale: "en_US",
-      type:
-        type === "research" || type === "case-studies" ? "article" : "website",
+      type: "article",
     },
     twitter: {
       card: "summary_large_image",

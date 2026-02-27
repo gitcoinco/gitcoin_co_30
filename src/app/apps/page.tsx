@@ -10,12 +10,9 @@ import {
 } from "@/components/layouts";
 import { apps, getFeaturedApps } from "@/content/apps";
 import SectionHeader from "@/components/ui/SectionHeader";
+import { pageSeo } from "@/lib/page-seo";
 
-export const metadata: Metadata = {
-  title: "Apps Directory",
-  description:
-    "Explore funding platforms, DAOs, grant programs, and primitives in the Ethereum ecosystem.",
-};
+export const metadata: Metadata = pageSeo.apps;
 
 export default function AppsPage() {
   const featuredApps = getFeaturedApps(3);

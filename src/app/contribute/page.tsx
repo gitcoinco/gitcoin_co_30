@@ -1,4 +1,5 @@
 import { Metadata } from "next";
+import { pageSeo } from "@/lib/page-seo";
 import {
   CheckCircle,
   DollarSign,
@@ -14,11 +15,7 @@ import {
 import { Button } from "@/components/ui";
 import ContributeCard from "@/components/cards/ContributeCard";
 
-export const metadata: Metadata = {
-  title: "Contribution Guide",
-  description:
-    "Learn how to contribute to the Gitcoin Funding Directory and earn bounties.",
-};
+export const metadata: Metadata = pageSeo.contribute;
 
 const bounties = [
   {

@@ -8,6 +8,7 @@ import { getMechanismBySlug } from '@/content/mechanisms'
 import { getCaseStudyBySlug } from '@/content/case-studies'
 import { getResearchBySlug } from '@/content/research'
 import { generateDetailPageMetadata } from '@/lib/metadata'
+import { breadcrumbJsonLd } from '@/lib/json-ld'
 
 interface PageProps {
   params: Promise<{ slug: string }>
@@ -48,33 +49,57 @@ export default async function CampaignDetailPage({ params }: PageProps) {
   const relatedResearch = campaign.relatedResearch?.map(slug => getResearchBySlug(slug)).filter((r): r is NonNullable<typeof r> => r !== undefined) || []
   const relatedCampaigns = campaign.relatedCampaigns?.map(slug => getCampaignBySlug(slug)).filter((c): c is NonNullable<typeof c> => c !== undefined) || []
 
+  const breadcrumb = breadcrumbJsonLd('Campaigns', '/campaigns', campaign.name, `/campaigns/${slug}`)
+
+  const articleJsonLd = {
+    "@context": "https://schema.org",
+    "@type": "Article",
+    headline: campaign.name,
+    description: campaign.shortDescription,
+    image: campaign.banner
+      ? `https://gitcoin.co${campaign.banner}`
+      : "https://gitcoin.co/content-images/placeholder.png",
+    datePublished: campaign.lastUpdated,
+    dateModified: campaign.lastUpdated,
+    url: `https://gitcoin.co/campaigns/${slug}`,
+    publisher: {
+      "@type": "Organization",
+      name: "Gitcoin",
+      url: "https://gitcoin.co",
+    },
+  }
+
   return (
-    <ContentDetailPage
-      item={campaign}
-      breadcrumbHref="/campaigns"
-      breadcrumbLabel="Back to Campaigns"
-      relatedSections={[
-        {
-          title: 'Related Apps',
-          items: relatedApps.map((app) => <AppCard key={app.id} app={app} />),
-        },
-        {
-          title: 'Related Mechanisms',
-          items: relatedMechanisms.map((m) => <MechanismCard key={m.id} mechanism={m} />),
-        },
-        {
-          title: 'Related Case Studies',
-          items: relatedCaseStudies.map((cs) => <CaseStudyCard key={cs.id} caseStudy={cs} />),
-        },
-        {
-          title: 'Related Research',
-          items: relatedResearch.map((r) => <ResearchCard key={r.id} research={r} />),
-        },
-        {
-          title: 'Related Campaigns',
-          items: relatedCampaigns.map((c) => <CampaignCard key={c.id} campaign={c} />),
-        },
-      ]}
-    />
+    <>
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumb) }} />
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(articleJsonLd) }} />
+      <ContentDetailPage
+        item={campaign}
+        breadcrumbHref="/campaigns"
+        breadcrumbLabel="Back to Campaigns"
+        relatedSections={[
+          {
+            title: 'Related Apps',
+            items: relatedApps.map((app) => <AppCard key={app.id} app={app} />),
+          },
+          {
+            title: 'Related Mechanisms',
+            items: relatedMechanisms.map((m) => <MechanismCard key={m.id} mechanism={m} />),
+          },
+          {
+            title: 'Related Case Studies',
+            items: relatedCaseStudies.map((cs) => <CaseStudyCard key={cs.id} caseStudy={cs} />),
+          },
+          {
+            title: 'Related Research',
+            items: relatedResearch.map((r) => <ResearchCard key={r.id} research={r} />),
+          },
+          {
+            title: 'Related Campaigns',
+            items: relatedCampaigns.map((c) => <CampaignCard key={c.id} campaign={c} />),
+          },
+        ]}
+      />
+    </>
   )
 }

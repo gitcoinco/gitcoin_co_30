@@ -1,4 +1,5 @@
 import { Metadata } from "next";
+import { pageSeo } from "@/lib/page-seo";
 import { CaseStudyCard } from "@/components/cards";
 import {
   ListPageLayout,
@@ -12,11 +13,7 @@ import {
 import { caseStudies } from "@/content/case-studies";
 import SectionHeader from "@/components/ui/SectionHeader";
 
-export const metadata: Metadata = {
-  title: "Case Studies",
-  description:
-    "Learn from real funding experiments. Explore what worked, what didn't, and the lessons learned.",
-};
+export const metadata: Metadata = pageSeo.caseStudies;
 
 const statusFilters = [
   { value: "all", label: "All" },
