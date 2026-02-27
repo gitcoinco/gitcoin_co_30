@@ -8,6 +8,7 @@ import { getMechanismBySlug } from '@/content/mechanisms'
 import { getCaseStudyBySlug } from '@/content/case-studies'
 import { getCampaignBySlug } from '@/content/campaigns'
 import { generateDetailPageMetadata } from '@/lib/metadata'
+import { breadcrumbJsonLd } from '@/lib/json-ld'
 
 interface PageProps {
   params: Promise<{ slug: string }>
@@ -48,11 +49,37 @@ export default async function ResearchDetailPage({ params }: PageProps) {
   const relatedResearch = r.relatedResearch?.map(slug => getResearchBySlug(slug)).filter((res): res is NonNullable<typeof res> => res !== undefined) || []
   const relatedCampaigns = r.relatedCampaigns?.map(slug => getCampaignBySlug(slug)).filter((c): c is NonNullable<typeof c> => c !== undefined) || []
 
+  const breadcrumb = breadcrumbJsonLd('Research', '/research', r.name, `/research/${slug}`)
+
+  const articleJsonLd = {
+    "@context": "https://schema.org",
+    "@type": "Article",
+    headline: r.name,
+    description: r.shortDescription,
+    image: r.banner
+      ? `https://gitcoin.co${r.banner}`
+      : "https://gitcoin.co/content-images/placeholder.png",
+    datePublished: r.lastUpdated,
+    dateModified: r.lastUpdated,
+    url: `https://gitcoin.co/research/${r.slug}`,
+    publisher: {
+      "@type": "Organization",
+      name: "Gitcoin",
+      url: "https://gitcoin.co",
+    },
+  };
+
   return (
-    <ContentDetailPage
-      item={r}
-      breadcrumbHref="/research"
-      breadcrumbLabel="Back to Research"
+    <>
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumb) }} />
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(articleJsonLd) }}
+      />
+      <ContentDetailPage
+        item={r}
+        breadcrumbHref="/research"
+        breadcrumbLabel="Back to Research"
       relatedSections={[
         {
           title: 'Related Apps',
@@ -75,6 +102,7 @@ export default async function ResearchDetailPage({ params }: PageProps) {
           items: relatedCampaigns.map((c) => <CampaignCard key={c.id} campaign={c} />),
         },
       ]}
-    />
+      />
+    </>
   );
 }

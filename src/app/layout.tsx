@@ -1,13 +1,9 @@
 import type { Metadata } from "next";
+import { siteTitle, siteDescription } from "@/lib/page-seo";
 import localFont from "next/font/local";
-import {
-  BBH_Bartle,
-  IBM_Plex_Mono,
-  Inter,
-  Source_Serif_4,
-  Space_Grotesk,
-} from "next/font/google";
+import { IBM_Plex_Mono, Inter, Source_Serif_4 } from "next/font/google";
 import "./globals.css";
+import { GoogleAnalytics } from "@next/third-parties/google";
 import Header from "@/components/layout/Header";
 import Footer from "@/components/layout/Footer";
 import SearchProvider from "@/components/search/SearchProvider";
@@ -22,11 +18,23 @@ const inter = Inter({
 const bdoGrotesk = localFont({
   src: [
     { path: "../../public/assets/fonts/BDOGrotesk-Light.woff2", weight: "300" },
-    { path: "../../public/assets/fonts/BDOGrotesk-Regular.woff2", weight: "400" },
-    { path: "../../public/assets/fonts/BDOGrotesk-Medium.woff2", weight: "500" },
-    { path: "../../public/assets/fonts/BDOGrotesk-DemiBold.woff2", weight: "600" },
+    {
+      path: "../../public/assets/fonts/BDOGrotesk-Regular.woff2",
+      weight: "400",
+    },
+    {
+      path: "../../public/assets/fonts/BDOGrotesk-Medium.woff2",
+      weight: "500",
+    },
+    {
+      path: "../../public/assets/fonts/BDOGrotesk-DemiBold.woff2",
+      weight: "600",
+    },
     { path: "../../public/assets/fonts/BDOGrotesk-Bold.woff2", weight: "700" },
-    { path: "../../public/assets/fonts/BDOGrotesk-ExtraBold.woff2", weight: "800" },
+    {
+      path: "../../public/assets/fonts/BDOGrotesk-ExtraBold.woff2",
+      weight: "800",
+    },
     { path: "../../public/assets/fonts/BDOGrotesk-Black.woff2", weight: "900" },
   ],
   variable: "--font-heading",
@@ -47,11 +55,10 @@ const source_serif = Source_Serif_4({
 
 export const metadata: Metadata = {
   title: {
-    default: "Gitcoin - Fund What Matters",
+    default: siteTitle,
     template: "%s | Gitcoin",
   },
-  description:
-    "The trusted directory and reference library for Ethereum public goods funding. Discover funding mechanisms, platforms, and learn what works.",
+  description: siteDescription,
   keywords: [
     "Ethereum",
     "public goods",
@@ -62,20 +69,32 @@ export const metadata: Metadata = {
     "Web3",
   ],
   authors: [{ name: "Gitcoin" }],
+  alternates: {
+    canonical: "https://gitcoin.co",
+  },
   openGraph: {
     type: "website",
     locale: "en_US",
-    url: "https://explore.gitcoin.co",
+    url: "https://gitcoin.co",
     siteName: "Gitcoin",
-    title: "Gitcoin - Fund What Matters",
-    description:
-      "The trusted directory and reference library for Ethereum public goods funding.",
+    title: siteTitle,
+    description: siteDescription,
+    images: [
+      {
+        url: "https://gitcoin.co/opengraph-image.jpg",
+        width: 1920,
+        height: 1080,
+        alt: siteTitle,
+      },
+    ],
   },
   twitter: {
     card: "summary_large_image",
-    title: "Gitcoin - Fund What Matters",
-    description:
-      "The trusted directory and reference library for Ethereum public goods funding.",
+    title: siteTitle,
+    description: siteDescription,
+    images: ["https://gitcoin.co/opengraph-image.jpg"],
+    site: "@gitcoin",
+    creator: "@gitcoin",
   },
 };
 
@@ -98,6 +117,7 @@ export default function RootLayout({
           <AIChatSidebar />
         </SearchProvider>
       </body>
+      <GoogleAnalytics gaId="G-MYMQNTYY27" />
     </html>
   );
 }

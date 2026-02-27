@@ -11,12 +11,9 @@ import {
 } from "@/components/layouts";
 import { mechanisms } from "@/content/mechanisms";
 import SectionHeader from "@/components/ui/SectionHeader";
+import { pageSeo } from "@/lib/page-seo";
 
-export const metadata: Metadata = {
-  title: "Funding Mechanisms",
-  description:
-    "Learn about quadratic funding, retroactive funding, conviction voting, and other funding mechanisms.",
-};
+export const metadata: Metadata = pageSeo.mechanisms;
 
 const categories = [
   { value: "all", label: "All" },

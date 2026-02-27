@@ -11,12 +11,9 @@ import {
 } from "@/components/layouts";
 import { research } from "@/content/research";
 import SectionHeader from "@/components/ui/SectionHeader";
+import { pageSeo } from "@/lib/page-seo";
 
-export const metadata: Metadata = {
-  title: "Research & Trends",
-  description:
-    "Analysis of capital flows, mechanism performance, and ecosystem shifts in Ethereum funding.",
-};
+export const metadata: Metadata = pageSeo.research;
 
 export default function ResearchPage() {
   return (

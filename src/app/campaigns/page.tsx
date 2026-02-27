@@ -10,11 +10,9 @@ import {
 } from "@/components/layouts";
 import { campaigns, getFeaturedCampaigns } from "@/content/campaigns";
 import SectionHeader from "@/components/ui/SectionHeader";
+import { pageSeo } from "@/lib/page-seo";
 
-export const metadata: Metadata = {
-  title: "Campaigns",
-  description: "Discover funding rounds across the Ethereum ecosystem.",
-};
+export const metadata: Metadata = pageSeo.campaigns;
 
 export default function CampaignsPage() {
   const featuredCampaigns = getFeaturedCampaigns(2);

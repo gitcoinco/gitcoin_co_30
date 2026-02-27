@@ -17,7 +17,7 @@ export default async function OGImage({
   const app = getAppBySlug(slug);
 
   const logoSrc = app?.logo
-    ? `https://explore.gitcoin.co${app.logo}`
+    ? `https://gitcoin.co${app.logo}`
     : null;
 
   return new ImageResponse(

@@ -90,6 +90,16 @@ export default function PreviewForm() {
 
   return (
     <>
+      {/* Persistent disclaimer */}
+      <div className="bg-yellow-950 border-b-2 border-yellow-600">
+        <div className="container-page py-3 flex items-center gap-3 text-sm text-yellow-300">
+          <span className="text-yellow-500 text-base flex-shrink-0">⚠</span>
+          <span>
+            <strong>This is not an official Gitcoin page.</strong> This is an internal tool for reviewing community contributions before they are published. Content shown here has not been approved or endorsed by Gitcoin.
+          </span>
+        </div>
+      </div>
+
       {/* Form */}
       <div className="bg-gray-950 border-b border-gray-800">
         <div className="container-page py-8">
@@ -147,7 +157,7 @@ export default function PreviewForm() {
           {/* Preview banner */}
           <div className="bg-yellow-900/30 border-b border-yellow-700/50">
             <div className="container-page py-2 text-center text-sm text-yellow-300">
-              Preview of issue #{issueNumber} — this is not a published page
+              Previewing community submission #{issueNumber} — not published or endorsed by Gitcoin
             </div>
           </div>
 

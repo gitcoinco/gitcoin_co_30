@@ -4,6 +4,15 @@ const nextConfig: NextConfig = {
   images: {
     domains: ["images.unsplash.com"],
   },
+  async redirects() {
+    return [
+      {
+        source: "/whitepaper",
+        destination: "/research",
+        permanent: true,
+      },
+    ];
+  },
   async rewrites() {
     return [
       // gitcoin.co rewrites
