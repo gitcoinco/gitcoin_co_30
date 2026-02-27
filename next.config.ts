@@ -21,27 +21,28 @@ const nextConfig: NextConfig = {
         source: "/about",
         destination: "https://app.gitcoin.co/about",
       },
-      // medium - on webflow 
+      // medium - on webflow
       {
         source: "/blog",
         destination: "https://app.gitcoin.co/blog",
       },
-      // redo 
+      // redo
       {
         source: "/program",
         destination: "https://app.gitcoin.co/program",
       },
+
       {
         source: "/updates",
         destination: "https://app.gitcoin.co/updates",
       },
 
-      // redo 
+      // redo
       {
         source: "/brand",
         destination: "https://app.gitcoin.co/brand",
       },
-     
+
       // redo
       {
         source: "/partner",

@@ -238,7 +238,7 @@ export default function ContributePage() {
                 </div>
                 <h3 className="font-semibold text-gray-25 mb-2">Review</h3>
                 <p className="text-sm text-gray-400 font-serif">
-                  Our team reviews within 3-5 business days
+                  Our team reviews within 30 business days
                 </p>
               </div>
               <div className="text-center">

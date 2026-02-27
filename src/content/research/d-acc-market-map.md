@@ -9,7 +9,7 @@ tags:
   - governance
   - infrastructure
   - privacy
-lastUpdated: '2026-02-25'
+lastUpdated: '2026-02-26'
 relatedMechanisms:
 
 relatedApps:
@@ -32,7 +32,7 @@ Rather than focusing narrowly on blockchain or artificial intelligence, the d/ac
 
 The current version of the d/acc Market Map is below:
 
-[![gitcoin-dacc-market-map](https://www.gitcoin.co/content-images/research/d-acc-market-map/gitcoin-dacc-market-map.png)](https://www.gitcoin.co/content-images/research/d-acc-market-map/gitcoin-dacc-market-map.png)
+![gitcoin-dacc-market-map](/content-images/research/d-acc-market-map/gitcoin-dacc-market-map.png)
 
 ## **The Two Axes of the Defensive Acceleration Ecosystem**
 
@@ -41,9 +41,9 @@ The defensive acceleration ecosystem is organized across two intersecting dimens
 - **Atoms vs. Bits:** material-world systems versus digital systems  
 - **Survive vs. Thrive:** baseline defensive capacity versus long term positive-sum coordination
 
-**Atoms vs. Bits** is the primary organizing dimension, distinguishing between technologies that operate in the physical world and those that operate in the informational domain.
+**Atoms vs. Bits** is the primary organizing dimension, distinguishing between technologies that operate in the physical world and those that operate in the digital world.
 
-**Survive vs. Thrive** is a secondary lens that cuts across both domains, distinguishing between technologies that prevent catastrophic failure and those that enable sustained prosperous coordination.
+**Survive vs. Thrive** is a secondary lens that cuts across both, distinguishing between technologies that prevent catastrophic failure and those that enable sustained prosperous coordination.
 
 Together, these axes allow systems to be evaluated not just by sector, but by structural role in shaping resilience.
 
@@ -57,13 +57,13 @@ Within the defensive acceleration framework, physical resilience is foundational
 
 Deployed examples in this quadrant include:
 
-- **Balvi and Kanro:** Vitalik Buterin's scientific investment and direct gifting funds, which have distributed over $400 million to support open source biosecurity, pandemic prevention, and indoor air quality programs. Balvi grantees include Varro (airborne pathogen biosensors) and OpenWater (personal-scale medical imaging using ultrasound). This represents the most direct institutional expression of d/acc principles in the physical domain.  
+- **Balvi and Kanro:** Vitalik Buterin's scientific investment and direct gifting funds, which have distributed over $400 million to support open source biosecurity, pandemic prevention, and indoor air quality programs. Balvi grantees include Varro (airborne pathogen biosensors) and OpenWater (personal-scale medical imaging using ultrasound). This represents the most direct institutional expression of d/acc principles in the physical world.  
 - **RISC-V:** An open source instruction set architecture that provides an alternative to proprietary chip designs from ARM and Intel. By making processor architecture freely available, RISC-V reduces hardware-level dependency on centralized vendors – a structural chokepoint in global infrastructure.  
 - **Decentralized energy networks:** Community-scale solar, battery storage, and microgrid systems that reduce dependency on centralized power generation and transmission infrastructure. These systems determine whether communities can maintain material stability during infrastructure failures or geopolitical disruption.
 
 ### **Bits: Digital Agency and Coordination Infrastructure**
 
-The **Bits** quadrant includes digital systems that preserve agency in the informational domain: cryptography, zero-knowledge proofs, decentralized identity, privacy-preserving computation, formal verification, governance tooling, oracle networks, crosschain infrastructure, and epistemic systems.
+The **Bits** quadrant includes digital systems that preserve agency in the informational sphere: cryptography, zero-knowledge proofs, decentralized identity, privacy-preserving computation, formal verification, governance tooling, oracle networks, crosschain infrastructure, and epistemic systems.
 
 These technologies are central to defensive acceleration because they alter the structural cost of attack. For example: public-key cryptography enables secure communication even against vastly more powerful adversaries; zero-knowledge systems enable verification without exposure; formal verification reduces the attack surface of critical infrastructure.
 
@@ -82,7 +82,7 @@ Deployed examples in this quadrant include:
 
 **Survive** technologies preserve baseline agency and prevent catastrophic failure. These include biosecurity infrastructure, privacy-preserving cryptography, secure communications systems, and formal security tooling. Within defensive acceleration, Survive systems form the defensive foundation. Without them, higher-order coordination systems collapse under adversarial pressure.
 
-Survive systems span both Atoms and Bits. In the physical domain, they include pandemic detection infrastructure, open source vaccine development platforms, and decentralized water and food supply systems. In the digital domain, they include zero-knowledge proof systems, encrypted communications, formal verification of smart contracts, and anti-collusion infrastructure.
+Survive systems span both Atoms and Bits. In the physical world, they include pandemic detection infrastructure, open source vaccine development platforms, and decentralized water and food supply systems. In the digital world, they include zero-knowledge proof systems, encrypted communications, formal verification of smart contracts, and anti-collusion infrastructure.
 
 Deployed examples include:
 
@@ -94,7 +94,7 @@ Deployed examples include:
 
 **Thrive** systems enable sustained positive-sum coordination, things like: governance tooling, decentralized monetary systems, democratic funding mechanisms, treasury streaming infrastructure, and crosschain coordination tools. These systems allow communities to not merely defend themselves, but to allocate capital, coordinate decisions, and build durable institutions without centralized authority. In this sense, Thrive technologies represent the institutional layer of defensive acceleration.
 
-Like Survive systems, Thrive technologies span both Atoms and Bits. In the physical domain, they include community land trusts, cooperative energy governance, and open source agricultural coordination platforms. In the digital domain, they include democratic funding mechanisms, DAO governance frameworks, and treasury management infrastructure.
+Like Survive systems, Thrive technologies span both Atoms and Bits. In the physical world, they include community land trusts, cooperative energy governance, and open source agricultural coordination platforms. In the digital world, they include democratic funding mechanisms, DAO governance frameworks, and treasury management infrastructure.
 
 Deployed examples include:
 
@@ -139,7 +139,7 @@ Instead of asking whether to accelerate or regulate, this framework asks:
 Which systems reduce reliance on centralized chokepoints?  
 Which coordination mechanisms remain stable under adversarial conditions?*
 
-By mapping projects across physical and digital domains – across Survive and Thrive layers – the defensive acceleration ecosystem becomes visible as a coherent systems architecture. As artificial intelligence, biotechnology, and distributed systems continue to scale, the structure of technological progress will determine whether power concentrates or distributes.
+By mapping projects across physical and digital disciplines – across Survive and Thrive layers – the defensive acceleration ecosystem becomes visible as a coherent systems architecture. As artificial intelligence, biotechnology, and distributed systems continue to scale, the structure of technological progress will determine whether power concentrates or distributes.
 
 The d/acc Market Map provides a lens for evaluating that structure.
 

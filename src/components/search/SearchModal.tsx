@@ -89,7 +89,7 @@ export default function SearchModal() {
       <Dialog.Portal>
         <Dialog.Overlay className="fixed inset-0 z-[100] bg-black/60 backdrop-blur-sm animate-[dropdown-in_150ms_ease-out] data-[state=closed]:animate-[dropdown-out_100ms_ease-in]" />
         <Dialog.Content
-          className="fixed left-1/2 top-[15%] z-[101] w-full max-w-2xl -translate-x-1/2 rounded-2xl border border-gray-700 bg-gray-900 shadow-2xl animate-[dropdown-in_150ms_ease-out] data-[state=closed]:animate-[dropdown-out_100ms_ease-in]"
+          className="fixed left-1/2 top-[10%] z-[101] w-[calc(100%-2rem)] max-w-2xl -translate-x-1/2 rounded-2xl border border-gray-700 bg-gray-900 shadow-2xl animate-[dropdown-in_150ms_ease-out] data-[state=closed]:animate-[dropdown-out_100ms_ease-in] sm:top-[15%] sm:w-full"
           onOpenAutoFocus={(e) => {
             e.preventDefault();
             inputRef.current?.focus();
@@ -104,25 +104,27 @@ export default function SearchModal() {
               value={query}
               onChange={(e) => setQuery(e.target.value)}
               placeholder="Search for anything..."
-              className="flex-1 bg-transparent text-base text-gray-25 placeholder:text-gray-500 outline-none border-none shadow-none focus:shadow-none p-0"
+              className="min-w-0 flex-1 bg-transparent text-base text-gray-25 placeholder:text-gray-500 outline-none border-none shadow-none focus:shadow-none p-0"
             />
             <Button
               size="xs"
               variant="tertiary"
               type="button"
               onClick={handleAskAI}
-              className="flex items-center gap-2"
+              className="flex shrink-0 items-center gap-2"
             >
               <Sparkles className="size-3 text-iris-500" />
               Ask AI
             </Button>
-            <Button
-              size="xs"
-              variant="tertiary"
-              onClick={() => dismissModal()}
-            >
-              <kbd>ESC</kbd>
-            </Button>
+            <div className="hidden sm:block">
+              <Button
+                size="xs"
+                variant="tertiary"
+                onClick={() => dismissModal()}
+              >
+                <kbd>ESC</kbd>
+              </Button>
+            </div>
           </div>
 
           {/* Results */}

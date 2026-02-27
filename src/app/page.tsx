@@ -161,7 +161,7 @@ export default function HomePage() {
         >
           <div className="mx-auto w-full max-w-[1216px] px-4 sm:px-6 lg:px-0">
             <div className="mx-auto max-w-[980px] text-center">
-              <h2 className="text-balance text-[48px] font-extrabold text-gray-25 font-heading sm:text-[64px] lg:text-[72px]">
+              <h2 className="text-balance text-[32px] font-extrabold text-gray-25 font-heading sm:text-[48px] lg:text-[64px]">
                 What We Curate
               </h2>
               <p className="mx-auto mt-3 max-w-[700px] text-sm text-gray-400 font-serif">
