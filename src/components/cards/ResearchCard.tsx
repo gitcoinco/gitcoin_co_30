@@ -36,10 +36,10 @@ export default function ResearchCard({
               Report
             </Badge>
 
-            <h3 className="max-w-[60%] mt-4 text-xl font-bold text-gray-25 md:text-2xl font-heading">
+            <h3 className="sm:max-w-[60%] mt-4 text-xl font-bold text-gray-25 md:text-2xl font-heading">
               {research.name}
             </h3>
-            <p className="max-w-[60%] mt-2 text-sm text-gray-400 font-serif">
+            <p className="sm:max-w-[60%] mt-2 text-sm text-gray-400 font-serif">
               {research.shortDescription}
             </p>
             <div className="mt-4 flex justify-end">

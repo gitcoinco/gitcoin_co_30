@@ -56,14 +56,19 @@ export default function AIChatSidebar() {
     if (sidebarOpen) {
       setVisible(true);
       setClosing(false);
+      document.body.style.overflow = "hidden";
     } else if (visible) {
       setClosing(true);
+      document.body.style.overflow = "";
       const timer = setTimeout(() => {
         setVisible(false);
         setClosing(false);
       }, 200);
       return () => clearTimeout(timer);
     }
+    return () => {
+      document.body.style.overflow = "";
+    };
   }, [sidebarOpen]); // eslint-disable-line react-hooks/exhaustive-deps
 
   // Cmd+I to toggle sidebar
@@ -159,7 +164,7 @@ export default function AIChatSidebar() {
       onClick={() => dismissSidebar()}
     />
     <div
-      className={`fixed z-102 flex flex-col border-gray-700 bg-gray-900 shadow-2xl bottom-0 left-0 right-0 h-[90vh] rounded-t-2xl border-t sm:top-0 sm:left-auto sm:right-0 sm:h-full sm:w-full sm:max-w-sm sm:rounded-t-none sm:border-l sm:border-t-0 ${animClass}`}
+      className={`fixed z-102 flex flex-col border-gray-700 bg-gray-900 shadow-2xl bottom-0 left-0 right-0 h-[90dvh] rounded-t-2xl border-t sm:top-0 sm:left-auto sm:right-0 sm:h-full sm:w-full sm:max-w-sm sm:rounded-t-none sm:border-l sm:border-t-0 ${animClass}`}
     >
       {/* Header */}
       <div className="flex items-center justify-between border-b border-gray-700 px-4 py-3">
@@ -316,7 +321,7 @@ export default function AIChatSidebar() {
       </div>
 
       {/* Input */}
-      <div className="border-t border-gray-700 px-4 py-3">
+      <div className="border-t border-gray-700 px-4 py-3 pb-[max(12px,env(safe-area-inset-bottom))]">
         <div className="flex items-center gap-2 rounded-xl border border-gray-600 bg-gray-900 px-3 py-2">
           <input
             type="text"
@@ -325,7 +330,7 @@ export default function AIChatSidebar() {
             onKeyDown={handleKeyDown}
             disabled={error != null}
             placeholder="Ask a question..."
-            className="flex-1 bg-transparent text-sm text-gray-25 placeholder:text-gray-500 outline-none border-none shadow-none focus:shadow-none p-0"
+            className="flex-1 bg-transparent text-base sm:text-sm text-gray-25 placeholder:text-gray-500 outline-none border-none shadow-none focus:shadow-none p-0"
           />
           {isLoading ? (
             <button
