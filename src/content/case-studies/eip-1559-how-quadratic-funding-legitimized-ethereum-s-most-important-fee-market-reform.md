@@ -3,7 +3,6 @@ id: '1770997180681'
 slug: eip-1559-how-quadratic-funding-legitimized-ethereum-s-most-important-fee-market-reform
 name: "EIP-1559: How Quadratic Funding Legitimized Ethereum's Most Important Fee Market Reform"
 shortDescription: "How a Gitcoin grant funded EIP-1559 implementation and signaled community demand for the upgrade."
-banner: /content-images/case-studies/eip-1559-how-quadratic-funding-legitimized-ethereum-s-most-important-fee-market-reform/banner.jpg
 tags:
   - quadratic
   - infrastructure
@@ -19,6 +18,7 @@ relatedResearch:
 
 relatedCampaigns:
 
+banner: /content-images/case-studies/eip-1559-how-quadratic-funding-legitimized-ethereum-s-most-important-fee-market-reform/banner.png
 ---
 
 The EIP-1559 Community Fund was the top grant in Gitcoin Grants Round 6 (July 2020), raising $65,473 from 412 contributors to fund implementation of Ethereum's most significant fee market reform. The grant served a dual function: it provided direct funding for client implementations, research, and economic analysis, and it generated a credible, non-plutocratic community signal demonstrating broad demand for the proposal. EIP-1559 went live in August 2021 as part of the London Hard Fork, introducing a base fee mechanism that reduced transaction wait times by over 40% and established ETH fee burning — a foundational change to Ethereum's monetary policy.
