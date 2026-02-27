@@ -79,7 +79,7 @@ export function generateDetailPageMetadata(config: MetadataConfig): Metadata {
   };
 
   // Add article-specific metadata
-  if (metadata.openGraph && (type === "research" || type === "case-studies")) {
+  if (metadata.openGraph) {
     const ogArticle: Record<string, any> = metadata.openGraph as any;
     if (publishDate) {
       ogArticle.publishedTime = publishDate;

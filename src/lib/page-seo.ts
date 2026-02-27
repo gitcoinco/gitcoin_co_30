@@ -16,14 +16,36 @@ export const siteTitle = "Gitcoin - Fund What Matters";
 export const siteDescription =
   "The trusted directory and reference library for Ethereum public goods funding. Discover funding mechanisms, platforms, and learn what works.";
 
+const ogImage = {
+  url: `${BASE_URL}/opengraph-image.jpg`,
+  width: 1920,
+  height: 1080,
+  alt: siteTitle,
+};
+
 function meta(title: string, description: string, path: string): Metadata {
   const url = `${BASE_URL}${path}`;
   return {
     title,
     description,
     alternates: { canonical: url },
-    openGraph: { title, description, url },
-    twitter: { title, description },
+    openGraph: {
+      type: "website",
+      locale: "en_US",
+      siteName: "Gitcoin",
+      title,
+      description,
+      url,
+      images: [ogImage],
+    },
+    twitter: {
+      card: "summary_large_image",
+      title,
+      description,
+      images: [ogImage.url],
+      site: "@gitcoin",
+      creator: "@gitcoin",
+    },
   };
 }
 
@@ -33,8 +55,23 @@ function metaHome(title: string, description: string): Metadata {
     title: { absolute: title },
     description,
     alternates: { canonical: BASE_URL },
-    openGraph: { title, description, url: BASE_URL },
-    twitter: { title, description },
+    openGraph: {
+      type: "website",
+      locale: "en_US",
+      siteName: "Gitcoin",
+      title,
+      description,
+      url: BASE_URL,
+      images: [ogImage],
+    },
+    twitter: {
+      card: "summary_large_image",
+      title,
+      description,
+      images: [ogImage.url],
+      site: "@gitcoin",
+      creator: "@gitcoin",
+    },
   };
 }
 
