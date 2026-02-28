@@ -6,9 +6,9 @@ shortDescription: "The Ethereum Foundation's direct grants program for open-sour
 logo: /content-images/apps/ethereum-foundation-esp/logo.png
 featured: true
 tags:
-  - expert
-  - milestone
   - grants
+  - milestone
+  - expert
 lastUpdated: '2026-02-13'
 relatedMechanisms:
 
