@@ -3,7 +3,7 @@ id: '1772308124481'
 slug: octant
 name: "Octant"
 shortDescription: "Public goods funding platform that converts ETH staking rewards into community-governed grants."
-banner: /content-images/apps/octant/banner.png
+logo: /content-images/apps/octant/logo.png
 tags:
   - public-goods
   - quadratic
