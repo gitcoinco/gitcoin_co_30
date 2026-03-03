@@ -35,7 +35,7 @@ jobs:
 
       - name: Publish content
         if: steps.detect.outputs.type
-        run: npx tsx scripts/publish-content.ts ${{ steps.detect.outputs.type }} ${{ github.event.issue.number }}
+        run: npx tsx scripts/publish-${{ steps.detect.outputs.type }}.ts ${{ github.event.issue.number }}
 
       - name: Create pull request
         if: steps.detect.outputs.type

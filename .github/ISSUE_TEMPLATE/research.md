@@ -46,7 +46,6 @@ Formats: PNG or JPG only
 The complete research content (use markdown formatting).
 Include key findings and main insights.
 You can include details like:
-- **Type**: Analysis | Report | Trend | Opinion | Data
 - **Authors**: @username1, @username2
 - **Sources**: Links to data sources, citations
 -->
