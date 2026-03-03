@@ -27,7 +27,7 @@ const CONTENT_TYPES: Record<string, string> = {
 };
 
 // How long to wait for particles to settle after randomizing (ms)
-const SETTLE_MS = 5000;
+const SETTLE_MS = 10000;
 
 interface ContentItem {
   contentType: string;
