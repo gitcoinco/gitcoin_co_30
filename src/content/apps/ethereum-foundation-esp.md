@@ -1,3 +1,4 @@
+<img width="2048" height="1151" alt="chladni-1772404086954-2048x1151" src="https://github.com/user-attachments/assets/01dc5d97-5a51-45b3-8030-556955f31ac4" />
 ---
 id: '1770997161588'
 slug: ethereum-foundation-esp
