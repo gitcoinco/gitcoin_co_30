@@ -39,7 +39,9 @@ Coin Center participated in Gitcoin Grants quadratic funding rounds beginning in
 
 This structure aligned well with Coin Center's funding profile. As a nonprofit serving the entire crypto ecosystem, Coin Center's support base was naturally broad — thousands of individual users who benefited from its advocacy but had no structured way to contribute small amounts with meaningful impact. Quadratic funding converted those small contributions into significant matching allocations, transforming diffuse community support into substantial operational funding.
 
-Gitcoin Passport was used for Sybil resistance in later rounds, gating eligibility through identity verification scores to ensure that contribution patterns reflected genuine community preference rather than manufactured support.
+Gitcoin Passport (now known as Human Passport) was used for Sybil resistance in later rounds, gating eligibility through identity verification scores to ensure that contribution patterns reflected genuine community preference rather than manufactured support.
+
+Human Passport is the evolution of Gitcoin Passport as an independent, identity attestation protocol designed to mitigate Sybil attacks across onchain funding systems. It aggregates verifiable credentials and produces a composite trust score used to weight or gate participation in quadratic funding rounds.
 
 ## Outcomes
 
@@ -89,3 +91,4 @@ Coin Center's experience on Gitcoin Grants demonstrates that quadratic funding c
 - [**Coin Center vs. OFAC** — Coin Center](https://www.coincenter.org/coin-center-is-suing-ofac-over-its-tornado-cash-sanction/)  
 - [**Two Victories in our Fight** — Coin Center](https://www.coincenter.org/two-victories-in-our-fight-against-unconstitutional-financial-surveillance/)  
 - [**About Coin Center** — Coin Center](https://www.coincenter.org/about/)
+- [**Human Passport Documentation** — Human Tech](https://passport.human.tech/)
