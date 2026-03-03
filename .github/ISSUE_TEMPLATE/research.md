@@ -20,6 +20,7 @@ IMPORTANT: This template is automatically parsed by a script to generate content
 - **Tags**: (comma-separated tags)
 - **Featured**: (Optional: `true` to feature on homepage)
 - **Sensemaking For**: (Optional — write one of these exact values without quotes: `mechanisms` / `apps` / `campaigns` / `case-studies` / `research`. Example: `mechanisms`)
+- **Research Type**: (Optional — can be: `Report` / `Opinion` etc)
 
 
 ## Banner Image
