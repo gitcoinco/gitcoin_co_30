@@ -9,6 +9,8 @@ tags:
   - coordination
   - knowledge commons
   - regeneration
+researchType:
+  - Perspective
 lastUpdated: '2026-02-25'
 relatedMechanisms:
   - conviction-voting
@@ -19,7 +21,7 @@ sensemakingFor: "mechanisms"
 banner: /content-images/research/bioregional-swarms/banner.png
 ---
 
-**Type:** Opinion
+**Type:** Perspective
 **Authors:** Kevin Owocki
 **Source:** [Farcaster](https://warpcast.com/owocki)
 
