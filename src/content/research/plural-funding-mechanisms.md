@@ -7,6 +7,8 @@ tags:
   - mechanism design
   - plurality
   - public goods
+researchType:
+  - Perspective
 lastUpdated: '2024-12-25'
 relatedMechanisms:
   - quadratic-funding
@@ -18,7 +20,7 @@ sensemakingFor: "mechanisms"
 banner: /content-images/research/plural-funding-mechanisms/banner.png
 ---
 
-**Type:** Opinion
+**Type:** Perspective
 **Authors:** Kevin Owocki
 
 ## The Plurality Thesis
