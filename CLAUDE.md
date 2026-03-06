@@ -267,6 +267,10 @@ All content should be optimized for both traditional search engines and AI-power
 5. **Structured data:** Use tables, numbered lists, and definition patterns where appropriate. These are preferred by both Google and AI search for extraction.
 6. **Internal linking:** Link to related mechanisms, apps, case studies, and research using relative paths. This builds topical authority and helps AI crawlers map relationships.
 7. **Tags:** Use established tag vocabulary. Tags feed the site's filtering and help search engines understand content taxonomy.
+8. **Keyword targeting:** Identify one primary keyword and 2–3 secondary keywords before writing. Primary keyword appears in title, first paragraph, and at least one H2. Secondary keywords appear naturally in body copy.
+9. **Semantic coverage:** Include the full semantic field around the primary keyword — related terms, named variants, adjacent concepts — rather than repeating the same phrase. Aim for topical depth, not keyword density.
+10. **Direct answer patterns:** At least one section should follow: question as H2/H3 → direct one-sentence answer → supporting explanation. Optimizes for featured snippet and AI Overview extraction.
+11. **Entity naming:** Use full canonical names on first use for people, protocols, organizations, and events. ("Vitalik Buterin" not "Vitalik," "Optimism RetroPGF" not "RetroPGF.")
 
 ### Verification Pass
 
