@@ -13,10 +13,15 @@
 
 # Production
 /build
+/gitcoin_co_30/
 
 # Misc
 .DS_Store
 *.pem
+
+# Dev
+.next/
+
 
 # Debug
 npm-debug.log*

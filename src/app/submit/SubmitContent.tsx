@@ -64,7 +64,7 @@ export default function SubmitContent() {
           <p className="text-lg text-gray-500 max-w-3xl font-serif">
             {editPath
               ? "Help us improve this content. Your edit will be reviewed by our team."
-              : "Contribute to the Gitcoin Funding Directory. Quality submissions earn bounties up to $100."}
+              : "Contribute to the Gitcoin Funding Directory. Only high-quality, original submissions will be accepted."}
           </p>
         </div>
       </section>

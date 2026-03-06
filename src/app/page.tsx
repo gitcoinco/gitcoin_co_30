@@ -247,8 +247,8 @@ export default function HomePage() {
                 },
                 {
                   icon: Zap,
-                  title: "Earn Bounties",
-                  copy: "Get rewarded for high-quality contributions that meet our standards",
+                  title: "Quality First",
+                  copy: "Only well-researched, original submissions that meet our high standards are accepted",
                 },
               ].map((item) => (
                 <article key={item.title} className="text-center">

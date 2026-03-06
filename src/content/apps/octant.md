@@ -19,6 +19,7 @@ relatedResearch:
 
 relatedCampaigns:
 
+banner: /content-images/apps/octant/banner.png
 ---
 
 **Octant** is a participatory public goods funding platform developed by the Golem Foundation. It converts ETH staking rewards into recurring, community-governed grants. The Golem Foundation stakes 100,000 ETH from its treasury, with a portion of the staking yield allocated to Octant for distribution.

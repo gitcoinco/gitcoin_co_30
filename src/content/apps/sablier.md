@@ -19,6 +19,7 @@ relatedResearch:
 
 relatedCampaigns:
 
+banner: /content-images/apps/sablier/banner.png
 ---
 
 **Sablier** is a decentralized token streaming protocol that enables continuous, by-the-second distribution of ERC-20 tokens across Ethereum, 28+ EVM-compatible blockchains, and Solana. Launched in 2019, Sablier is widely recognized as the first token streaming protocol in the Ethereum ecosystem. It originated from ERC-1620, a proposed standard for streaming payments authored by co-founder Paul Berg in November 2018.

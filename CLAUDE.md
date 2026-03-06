@@ -139,6 +139,20 @@ public/content-images/
 | `banner` (standard) | 1600×900px or 1200×600px | 16:9 or 2:1 |
 | `banner` (sensemaking article) | 1800×600px | 3:1 |
 | `logo` | 256×256px or 512×512px | 1:1 square |
+| `og-image` (override) | 1200×630px | ~1.91:1 |
+
+### OG image — dynamic generation and override
+
+Every content page gets a **dynamic OG image** generated at build time: the banner is used as background with a gradient overlay, the Gitcoin logo, read time, title, and a "Read Now" button overlaid on it.
+
+To **override** the generated OG image with a custom static one (e.g. a specially designed card), drop a file here — no frontmatter change needed:
+
+```
+public/content-images/{type}/{slug}/og-image.png
+public/content-images/{type}/{slug}/og-image.jpg
+```
+
+The generator checks for this file first and serves it as-is if found, skipping dynamic generation entirely.
 
 ### Banner image generator
 
@@ -186,13 +200,23 @@ npm run publish-campaign <issue-number>
 
 1. Create the file at `src/content/{category}/{slug}.md`
 2. Do **not** add `banner:` to the frontmatter — omit it entirely
-3. After creating all content files, run:
+3. **Download inline images from the source article.** If the original article contains embedded images (diagrams, charts, figures, screenshots), download each one and save it to `public/content-images/{category}/{slug}/` with a descriptive filename (e.g. `diagram-1.png`, `funding-flow.png`). Reference them in the markdown body as `![Alt text](/content-images/{category}/{slug}/filename.png)`. Do **not** leave external URLs as image sources — always download and host locally.
+4. After creating all content files, run:
    ```bash
    npm run banner:auto
    ```
    This finds every `.md` file without a `banner:` field, generates a banner using the Chladni Particles generator, saves the PNG to the correct path, and patches the frontmatter automatically. **Always run this after creating content files.**
 
 > If `npm run banner:auto` fails with a Playwright error, the user needs to run `npx playwright install chromium` once (one-time setup per machine). Tell them to do this and then re-run the command.
+
+### Ingesting content from external URLs
+
+When ingesting a post/article from an external URL (e.g. gov.gitcoin.co, blog posts, etc.):
+
+1. **Always download inline images.** Fetch the page, identify ALL images in the post body, and download the original/high-resolution versions to `public/content-images/{category}/{slug}/`. Use descriptive filenames (e.g. `01-diagram-name.png`, `02-chart-name.png`).
+2. **Reference images with local paths** in the markdown body — use `/content-images/{category}/{slug}/filename.png`, not the original external URLs. External image URLs can break or disappear over time.
+3. **Preserve the original structure** of the source content as closely as possible — keep headings, tables, lists, and image placement in their original positions rather than summarizing or reorganizing.
+4. Skip images that are purely navigational (avatars, UI chrome, social share buttons) — only download content-relevant images like diagrams, charts, screenshots, and illustrations.
 
 ### Slugs
 

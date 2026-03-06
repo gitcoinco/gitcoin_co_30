@@ -7,6 +7,8 @@ sensemakingFor: "apps"
 tags:
   - "research"
   - "analysis"
+researchType:
+  - Perspective
 lastUpdated: "2026-01-05"
 relatedMechanisms:
   - quadratic-funding
@@ -17,7 +19,7 @@ relatedApps:
 banner: /content-images/research/ethereum-public-goods-funding-sources-the-next-era/banner.png
 ---
 
-**Type:** Analysis
+**Type:** Perspective
 **Authors:** @owocki
 
 

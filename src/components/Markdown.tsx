@@ -1,5 +1,6 @@
 import ReactMarkdown from "react-markdown";
 import remarkGfm from "remark-gfm";
+import remarkBreaks from "remark-breaks";
 
 interface MarkdownProps {
   content: string;
@@ -10,7 +11,7 @@ export function Markdown({ content, className = "" }: MarkdownProps) {
   return (
     <div className={`prose prose-slate prose-invert max-w-none ${className}`}>
       <ReactMarkdown
-        remarkPlugins={[remarkGfm]}
+        remarkPlugins={[remarkGfm, remarkBreaks]}
         components={{
           // Style headings
           h1: ({ children }) => (
@@ -90,7 +91,7 @@ export function Markdown({ content, className = "" }: MarkdownProps) {
             <img
               src={src}
               alt={alt || ""}
-              className="rounded-lg my-8 w-full bg-gray-900 invert"
+              className="rounded-lg my-8 w-full"
             />
           ),
           // Style tables
@@ -115,7 +116,7 @@ export function Markdown({ content, className = "" }: MarkdownProps) {
             </td>
           ),
           // Style horizontal rules
-          hr: () => <hr className="border-t border-gray-800 my-8" />,
+          hr: () => <hr className="border-t border-gray-800 mt-2 mb-8" />,
           // Style strong/bold
           strong: ({ children }) => (
             <strong className="font-bold text-gray-25">{children}</strong>

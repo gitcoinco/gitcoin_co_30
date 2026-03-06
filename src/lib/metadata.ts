@@ -13,38 +13,11 @@ interface MetadataConfig {
 }
 
 export function generateDetailPageMetadata(config: MetadataConfig): Metadata {
-  const {
-    title,
-    shortDescription,
-    slug,
-    type,
-    banner,
-    logo,
-    publishDate,
-    lastUpdated,
-    authors,
-  } = config;
+  const { title, shortDescription, slug, type, publishDate, lastUpdated, authors } = config;
 
   const url = `https://gitcoin.co/${type}/${slug}`;
 
-  // Determine the best image to use
-  let imageUrl = "https://gitcoin.co/content-images/placeholder.png";
-
-  if (banner && !banner.endsWith(".svg")) {
-    imageUrl = `https://gitcoin.co${banner}`;
-  } else if (logo && !logo.endsWith(".svg")) {
-    imageUrl = `https://gitcoin.co${logo}`;
-  }
-
-  // Determine image type based on extension
-  const getImageType = (url: string): string => {
-    if (url.endsWith(".jpg") || url.endsWith(".jpeg")) return "image/jpeg";
-    if (url.endsWith(".png")) return "image/png";
-    if (url.endsWith(".webp")) return "image/webp";
-    return "image/png"; // default
-  };
-
-  // Base metadata
+  // Base metadata — images are handled by opengraph-image.tsx in each route segment
   const metadata: Metadata = {
     title,
     description: shortDescription,
@@ -56,15 +29,6 @@ export function generateDetailPageMetadata(config: MetadataConfig): Metadata {
       description: shortDescription,
       url,
       siteName: "Gitcoin",
-      images: [
-        {
-          url: imageUrl,
-          width: 1200,
-          height: 630,
-          alt: title,
-          type: getImageType(imageUrl),
-        },
-      ],
       locale: "en_US",
       type: "article",
     },
@@ -72,7 +36,6 @@ export function generateDetailPageMetadata(config: MetadataConfig): Metadata {
       card: "summary_large_image",
       title,
       description: shortDescription,
-      images: [imageUrl],
       creator: "@gitcoin",
       site: "@gitcoin",
     },

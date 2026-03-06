@@ -19,6 +19,7 @@ relatedResearch:
 
 relatedCampaigns:
 
+banner: /content-images/apps/drips/banner.png
 ---
 
 **Drips** is an Ethereum-based protocol and application for funding open source software through curated funding lists, token streaming, and automatic dependency splitting. Built by Drips Org within the Radworks ecosystem (alongside Radicle), Drips addresses the sustainability challenges of free and open source software (FOSS) by enabling structured, transparent funding flows across the software supply chain.

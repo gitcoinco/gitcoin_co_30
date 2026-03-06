@@ -38,7 +38,7 @@ export default function ResearchPage() {
 
       <CTASection
         title="Contribute Research"
-        description="Have insights to share? Submit analysis, reports, or trend pieces. Quality research earns bounties and recognition."
+        description="Have insights to share? Submit original analysis, reports, or trend pieces. We maintain a high bar — only well-researched submissions are accepted."
         buttonText="Submit Research"
         buttonHref="/submit?type=research"
       />

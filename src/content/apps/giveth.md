@@ -19,6 +19,7 @@ relatedResearch:
 
 relatedCampaigns:
 
+banner: /content-images/apps/giveth/banner.png
 ---
 
 **Giveth** is an open-source, community-driven crypto donation platform that enables zero-fee, direct blockchain donations to public goods, nonprofits, and for-good projects worldwide. Founded in 2016 as one of the earliest Ethereum-native philanthropy experiments, Giveth allows anyone to create a project page and begin receiving crypto donations across multiple chains, with 100% of each donation going directly to the recipient (excluding network gas fees).

@@ -47,7 +47,7 @@ export default function CaseStudiesPage() {
 
       <CTASection
         title="Share Your Experience"
-        description="Have you run a funding round or received a grant? Your story could help others make better decisions. Earn bounties for quality case studies."
+        description="Have you run a funding round or received a grant? Your story could help others make better decisions. Only thorough, well-documented case studies are accepted."
         buttonText="Submit a Case Study"
         buttonHref="/submit?type=case-study"
       />
