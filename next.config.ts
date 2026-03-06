@@ -8,11 +8,7 @@ const nextConfig: NextConfig = {
     return [
       // gitcoin.co rewrites
       //  redo - high priority
-      {
-        source: "/about",
-        destination: "https://app.gitcoin.co/about",
-      },
-      // medium - on webflow 
+      // medium - on webflow
       {
         source: "/blog",
         destination: "https://app.gitcoin.co/blog",
