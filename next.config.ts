@@ -4,6 +4,23 @@ const nextConfig: NextConfig = {
   images: {
     domains: ["images.unsplash.com"],
   },
+
+  // Prevent large packages from being bundled into serverless functions
+  serverExternalPackages: ["three"],
+
+  experimental: {
+    // Exclude large directories from output file tracing so they don't
+    // bloat serverless function bundles (e.g. opengraph-image routes)
+    outputFileTracingExcludes: {
+      "**": [
+        "node_modules/three/**",
+        "node_modules/@react-three/**",
+        "node_modules/canvas/**",
+        "public/content-images/**",
+      ],
+    },
+  },
+
   async redirects() {
     return [
       {
