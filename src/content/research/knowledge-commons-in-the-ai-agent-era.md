@@ -12,6 +12,7 @@ tags:
   - open-data
   - web3
 lastUpdated: '2026-03-06'
+banner: /content-images/research/knowledge-commons-in-the-ai-agent-era/banner.png
 relatedMechanisms:
   - quadratic-funding
   - direct-grants
@@ -31,7 +32,6 @@ relatedResearch:
 relatedCaseStudies: []
 relatedCampaigns: []
 researchType: Perspective
-banner: /content-images/research/knowledge-commons-in-the-ai-agent-era/banner.png
 ---
 
 **Type:** Perspective
