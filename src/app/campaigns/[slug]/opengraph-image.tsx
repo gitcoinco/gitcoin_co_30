@@ -1,13 +1,10 @@
 import { ImageResponse } from "next/og";
-import { getCampaignBySlug, campaigns } from "@/content/campaigns";
+import { getCampaignBySlug } from "@/content/campaigns";
 import { generateOgImage, OG_SIZE } from "@/lib/og-image";
 
 export const size = OG_SIZE;
 export const contentType = "image/png";
 
-export function generateStaticParams() {
-  return campaigns.map((c) => ({ slug: c.slug }));
-}
 
 export default async function OGImage({
   params,

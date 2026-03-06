@@ -1,13 +1,10 @@
 import { ImageResponse } from "next/og";
-import { getMechanismBySlug, mechanisms } from "@/content/mechanisms";
+import { getMechanismBySlug } from "@/content/mechanisms";
 import { generateOgImage, OG_SIZE } from "@/lib/og-image";
 
 export const size = OG_SIZE;
 export const contentType = "image/png";
 
-export function generateStaticParams() {
-  return mechanisms.map((m) => ({ slug: m.slug }));
-}
 
 export default async function OGImage({
   params,

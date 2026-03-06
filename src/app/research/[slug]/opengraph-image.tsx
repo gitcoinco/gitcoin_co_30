@@ -1,13 +1,10 @@
 import { ImageResponse } from "next/og";
-import { getResearchBySlug, research } from "@/content/research";
+import { getResearchBySlug } from "@/content/research";
 import { generateOgImage, OG_SIZE } from "@/lib/og-image";
 
 export const size = OG_SIZE;
 export const contentType = "image/png";
 
-export function generateStaticParams() {
-  return research.map((r) => ({ slug: r.slug }));
-}
 
 export default async function OGImage({
   params,
