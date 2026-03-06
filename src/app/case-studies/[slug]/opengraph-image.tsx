@@ -1,12 +1,12 @@
 import { ImageResponse } from "next/og";
-import { getAppBySlug, apps } from "@/content/apps";
+import { getCaseStudyBySlug, caseStudies } from "@/content/case-studies";
 import { generateOgImage, OG_SIZE } from "@/lib/og-image";
 
 export const size = OG_SIZE;
 export const contentType = "image/png";
 
 export function generateStaticParams() {
-  return apps.map((app) => ({ slug: app.slug }));
+  return caseStudies.map((cs) => ({ slug: cs.slug }));
 }
 
 export default async function OGImage({
@@ -15,14 +15,14 @@ export default async function OGImage({
   params: Promise<{ slug: string }>;
 }) {
   const { slug } = await params;
-  const app = getAppBySlug(slug);
-  if (!app) return new ImageResponse(<div>Not found</div>, OG_SIZE);
+  const caseStudy = getCaseStudyBySlug(slug);
+  if (!caseStudy) return new ImageResponse(<div>Not found</div>, OG_SIZE);
 
   return generateOgImage({
-    name: app.name,
-    description: app.description,
-    contentType: "apps",
+    name: caseStudy.name,
+    description: caseStudy.description,
+    contentType: "case-studies",
     slug,
-    banner: app.banner,
+    banner: caseStudy.banner,
   });
 }

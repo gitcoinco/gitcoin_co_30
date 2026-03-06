@@ -4,6 +4,27 @@ const nextConfig: NextConfig = {
   images: {
     domains: ["images.unsplash.com"],
   },
+
+  // Prevent large packages from being bundled into serverless functions
+  serverExternalPackages: ["three", "@react-three/fiber", "@react-three/drei"],
+
+  experimental: {
+    // outputFileTracingExcludes is valid but missing from the TS types
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
+    ...(({
+      outputFileTracingExcludes: {
+        // Exclude the banner images and three.js from all serverless function
+        // bundles — they are served as static files and don't need to be
+        // bundled into functions like opengraph-image routes
+        "**": [
+          "public/content-images/**",
+          "node_modules/three/**",
+          "node_modules/@react-three/**",
+        ],
+      },
+    }) as any),
+  },
+
   async redirects() {
     return [
       {
@@ -15,6 +36,10 @@ const nextConfig: NextConfig = {
   },
   async rewrites() {
     return [
+      {
+        source: "/generator",
+        destination: "https://octaviaan.github.io/Chladni-Particles/",
+      },
       // gitcoin.co rewrites
       //  redo - high priority
       {

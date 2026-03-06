@@ -36,13 +36,19 @@ export function Breadcrumb({ href, label }: BreadcrumbProps) {
 interface HeroImageProps {
   src: string;
   alt: string;
+  readTime?: number;
 }
 
-export function HeroImage({ src, alt }: HeroImageProps) {
+export function HeroImage({ src, alt, readTime }: HeroImageProps) {
   return (
     <div className="h-64 md:h-80 bg-gray-950 relative overflow-hidden">
       <img src={src} alt={alt} className="w-full h-full object-cover" />
-      <div className="absolute inset-0 bg-linear-to-t from-gray-950 to-gray-950/60" />
+      <div className="absolute inset-0 bg-linear-to-t from-gray-950 to-transparent" />
+      {readTime !== undefined && (
+        <div className="absolute top-4 right-4 bg-gray-900 backdrop-blur-sm text-gray-200 px-3 py-1.5 rounded-md">
+          {readTime} min read
+        </div>
+      )}
     </div>
   );
 }

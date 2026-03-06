@@ -139,6 +139,20 @@ public/content-images/
 | `banner` (standard) | 1600×900px or 1200×600px | 16:9 or 2:1 |
 | `banner` (sensemaking article) | 1800×600px | 3:1 |
 | `logo` | 256×256px or 512×512px | 1:1 square |
+| `og-image` (override) | 1200×630px | ~1.91:1 |
+
+### OG image — dynamic generation and override
+
+Every content page gets a **dynamic OG image** generated at build time: the banner is used as background with a gradient overlay, the Gitcoin logo, read time, title, and a "Read Now" button overlaid on it.
+
+To **override** the generated OG image with a custom static one (e.g. a specially designed card), drop a file here — no frontmatter change needed:
+
+```
+public/content-images/{type}/{slug}/og-image.png
+public/content-images/{type}/{slug}/og-image.jpg
+```
+
+The generator checks for this file first and serves it as-is if found, skipping dynamic generation entirely.
 
 ### Banner image generator
 

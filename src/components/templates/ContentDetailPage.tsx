@@ -26,6 +26,11 @@ interface ContentDetailPageProps {
   relatedSections?: RelatedSection[];
 }
 
+function calcReadTime(text: string): number {
+  const wordCount = text.trim().split(/\s+/).filter(Boolean).length;
+  return Math.max(1, Math.ceil(wordCount / 200));
+}
+
 export default function ContentDetailPage({
   item,
   breadcrumbHref,
@@ -33,11 +38,12 @@ export default function ContentDetailPage({
   relatedSections = [],
 }: ContentDetailPageProps) {
   const banner = item.banner || "/content-images/placeholder.png";
+  const readTime = calcReadTime(item.description);
   return (
     <DetailPageLayout>
       <Breadcrumb href={breadcrumbHref} label={breadcrumbLabel} />
 
-      {banner && <HeroImage src={banner} alt={item.name} />}
+      {banner && <HeroImage src={banner} alt={item.name} readTime={readTime} />}
 
       <PageHeader>
         <div className="max-w-[850px] flex flex-col md:flex-row gap-6 md:gap-8 md:items-center">
