@@ -3,6 +3,9 @@ import Image from "next/image";
 import { ArrowUpRight } from "lucide-react";
 import { Button } from "@/components/ui";
 import { CTASection } from "@/components/layouts";
+import { pageSeo } from "@/lib/page-seo";
+
+export const metadata: Metadata = pageSeo.about;
 
 function StatCard({
   value,
@@ -27,12 +30,6 @@ function StatCard({
     </div>
   );
 }
-
-export const metadata: Metadata = {
-  title: "About | Gitcoin",
-  description:
-    "Since 2017, Gitcoin has empowered communities to build, fund and protect what matters to them.",
-};
 
 const timelineEvents = [
   {
@@ -491,7 +488,6 @@ export default function AboutPage() {
           </div>
         </div>
       </section>
-
 
       {/* ── CTA ──────────────────────────────────────────────────────────── */}
       <CTASection
