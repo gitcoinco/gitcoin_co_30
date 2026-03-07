@@ -267,7 +267,7 @@ function truncateAddress(addr: string) {
 
 // Sepolia testnet config
 const SEPOLIA_CHAIN_ID = "0xaa36a7"; // 11155111
-const SIGNAL_ADDRESS = "0x000000000000000000000000000000000000dACC"; // vanity burn address for signals
+const STAKING_CONTRACT = "0x60F293ab87470b9b13228e7085026858167BbAC5";
 
 async function ensureSepolia() {
   const eth = window.ethereum;
@@ -371,7 +371,7 @@ export default function CoalitionalFundingTool() {
       const switched = await ensureSepolia();
       if (!switched) { setTxError("Please switch to Sepolia testnet"); setTxPending(false); return; }
 
-      // Encode attractor data as hex calldata
+      // Encode attractor data as bytes for stake(bytes) call
       const attractorData = JSON.stringify({
         category: attractor.category,
         subcategories: [...attractor.subcategories],
@@ -380,8 +380,16 @@ export default function CoalitionalFundingTool() {
         timestamp: Date.now(),
       });
       const encoder = new TextEncoder();
-      const bytes = encoder.encode(attractorData);
-      const hexData = "0x" + Array.from(bytes).map((b) => b.toString(16).padStart(2, "0")).join("");
+      const dataBytes = encoder.encode(attractorData);
+
+      // ABI encode: stake(bytes) = 0x7a66c02b + offset(32) + length(32) + data(padded)
+      const fnSig = "0x7a66c02b";
+      const offset = "0000000000000000000000000000000000000000000000000000000000000020";
+      const len = dataBytes.length.toString(16).padStart(64, "0");
+      let hexBytes = Array.from(dataBytes).map((b) => b.toString(16).padStart(2, "0")).join("");
+      // Pad to 32-byte boundary
+      while (hexBytes.length % 64 !== 0) hexBytes += "0";
+      const calldata = fnSig + offset + len + hexBytes;
 
       // Convert ETH to wei hex
       const weiValue = BigInt(Math.round(parseFloat(amountEth) * 1e18));
@@ -391,9 +399,9 @@ export default function CoalitionalFundingTool() {
         method: "eth_sendTransaction",
         params: [{
           from: addr,
-          to: SIGNAL_ADDRESS,
+          to: STAKING_CONTRACT,
           value: hexValue,
-          data: hexData,
+          data: calldata,
         }],
       })) as string;
 
@@ -404,6 +412,49 @@ export default function CoalitionalFundingTool() {
     }
     setTxPending(false);
   }, [walletAddress, connectWallet, attractor]);
+
+  // Position monitoring
+  const [myStake, setMyStake] = useState<string | null>(null);
+  const [totalStaked, setTotalStaked] = useState<string | null>(null);
+  const [stakerCount, setStakerCount] = useState<number | null>(null);
+  const [loadingPositions, setLoadingPositions] = useState(false);
+
+  const fetchPositions = useCallback(async () => {
+    if (!walletAddress) return;
+    setLoadingPositions(true);
+    try {
+      const rpc = "https://ethereum-sepolia-rpc.publicnode.com";
+      const call = async (data: string) => {
+        const res = await fetch(rpc, {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({ jsonrpc: "2.0", id: 1, method: "eth_call", params: [{ to: STAKING_CONTRACT, data }, "latest"] }),
+        });
+        const json = await res.json();
+        return json.result as string;
+      };
+      // stakes(address) = 0x16934fc4 + address padded
+      const addrPadded = walletAddress.slice(2).toLowerCase().padStart(64, "0");
+      const stakeHex = await call("0x16934fc4" + addrPadded);
+      const stakeWei = BigInt(stakeHex);
+      setMyStake((Number(stakeWei) / 1e18).toFixed(4));
+
+      // totalStaked() = 0xaf7568dd
+      const totalHex = await call("0xaf7568dd");
+      const totalWei = BigInt(totalHex);
+      setTotalStaked((Number(totalWei) / 1e18).toFixed(4));
+
+      // stakerCount() = 0xa8b42a84
+      const countHex = await call("0xa8b42a84");
+      setStakerCount(Number(BigInt(countHex)));
+    } catch { /* ignore */ }
+    setLoadingPositions(false);
+  }, [walletAddress]);
+
+  // Auto-fetch positions when wallet connects or tx completes
+  useEffect(() => {
+    if (walletAddress) fetchPositions();
+  }, [walletAddress, txHash, fetchPositions]);
 
   const quadrantCategories = useMemo(
     () => attractor.quadrant ? CATEGORIES.filter((c) => c.quadrant === attractor.quadrant) : [],
@@ -856,6 +907,57 @@ export default function CoalitionalFundingTool() {
               </p>
             )}
             <p className="text-center text-[10px] text-gray-600 mt-1">Experimental prototype on Sepolia testnet.</p>
+          </div>
+        )}
+
+        {/* Positions Monitor */}
+        {walletAddress && myStake !== null && (
+          <div className="mt-10 bg-[#14141f] rounded-xl p-5 border border-gray-800">
+            <div className="flex items-center justify-between mb-3">
+              <h3 className="text-sm font-semibold text-white">Your Position</h3>
+              <button onClick={fetchPositions} disabled={loadingPositions} className="text-[10px] text-teal-400 hover:text-teal-300">
+                {loadingPositions ? "Loading…" : "↻ Refresh"}
+              </button>
+            </div>
+            <div className="grid grid-cols-3 gap-3">
+              <div>
+                <p className="text-[10px] text-gray-500 uppercase tracking-wider">Your Stake</p>
+                <p className="text-lg font-mono font-bold text-white">{myStake} <span className="text-xs text-gray-500">ETH</span></p>
+              </div>
+              <div>
+                <p className="text-[10px] text-gray-500 uppercase tracking-wider">Total Pool</p>
+                <p className="text-lg font-mono font-bold text-teal-400">{totalStaked} <span className="text-xs text-gray-500">ETH</span></p>
+              </div>
+              <div>
+                <p className="text-[10px] text-gray-500 uppercase tracking-wider">Stakers</p>
+                <p className="text-lg font-mono font-bold text-white">{stakerCount}</p>
+              </div>
+            </div>
+            {totalStaked && parseFloat(totalStaked) > 0 && (
+              <div className="mt-3">
+                <div className="flex justify-between text-[10px] text-gray-500 mb-1">
+                  <span>Progress to 1 ETH threshold</span>
+                  <span>{Math.min(100, (parseFloat(totalStaked) / 1) * 100).toFixed(1)}%</span>
+                </div>
+                <div className="w-full h-2 bg-gray-800 rounded-full overflow-hidden">
+                  <div className="h-full bg-teal-500 rounded-full transition-all" style={{ width: `${Math.min(100, (parseFloat(totalStaked) / 1) * 100)}%` }} />
+                </div>
+              </div>
+            )}
+            <div className="mt-3 flex items-center gap-2">
+              <a href={`https://sepolia.etherscan.io/address/${STAKING_CONTRACT}`} target="_blank" className="text-[10px] text-teal-400/60 hover:text-teal-400">
+                View contract ↗
+              </a>
+              <span className="text-[10px] text-gray-700">•</span>
+              <span className="text-[10px] text-gray-600">You can withdraw anytime</span>
+            </div>
+          </div>
+        )}
+
+        {!walletAddress && (
+          <div className="mt-10 bg-[#14141f] rounded-xl p-5 border border-dashed border-gray-700 text-center">
+            <p className="text-gray-500 text-sm mb-2">Connect wallet to see positions</p>
+            <button onClick={() => connectWallet()} className="text-xs text-teal-400 hover:text-teal-300">Connect Wallet</button>
           </div>
         )}
 
