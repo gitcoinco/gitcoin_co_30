@@ -28,6 +28,8 @@ researchType: Report
 banner: /content-images/research/ai-agents-and-public-goods-the-emerging-agentic-economy/banner.png
 ---
 
+> **TLDR:** AI agents can solve public goods funding's information bottleneck — but only if we build competing models with human oversight, not centralized algorithms. Deep Funding proves the concept: value as a graph, AI fills the weights, humans spot-check.
+
 **Type:** Report
 **Authors:** Gitcoin Research
 

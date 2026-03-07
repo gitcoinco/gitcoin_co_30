@@ -22,6 +22,8 @@ sensemakingFor: "mechanisms"
 banner: /content-images/research/coalitional-funding-2026-era-primitive/banner.png
 ---
 
+> **TLDR:** Coalitional funding turns fragmented $1-2M efforts into coordinated $10M+ ones by pooling capital, expertise, and legitimacy. From SEMATECH to Protocol Guild, it's the pattern where aligned funders coordinate around shared domains — amplifying capital, spreading risk, and making public goods funding pluralistic by default.
+
 **Type:** Perspective
 **Authors:** Kevin Owocki, Griff Green
 

@@ -20,6 +20,8 @@ sensemakingFor: "mechanisms"
 banner: /content-images/research/biofi-bioregional-finance-web3/banner.png
 ---
 
+> **TLDR:** BioFi routes web3 capital to people actually regenerating ecosystems — Indigenous nations, permaculture guilds, land trusts — bypassing extractive finance and making communities their own allocators through DAOs, eco-credits, and bioregional coordination.
+
 **Type:** Research
 **Authors:** Allo Capital Research
 **Source:** [Allo Capital Forum](https://research.allo.capital/t/biofi-bioregional-finance-powered-by-web3/347)

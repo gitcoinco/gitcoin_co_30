@@ -27,6 +27,8 @@ researchType: Report
 banner: /content-images/research/antifragile-by-design-lessons-from-decentralized-resilience/banner.png
 ---
 
+> **TLDR:** Antifragile systems don't just survive stress — they get stronger from it. Bitcoin, Ethereum, and permaculture all share the same design principle: redundancy, decentralization, and adversarial hardening create systems that thrive on disorder rather than collapse from it.
+
 **Type:** Report
 **Authors:** Gitcoin Research
 

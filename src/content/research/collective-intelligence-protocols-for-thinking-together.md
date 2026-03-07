@@ -28,6 +28,8 @@ relatedCampaigns: []
 banner: /content-images/research/collective-intelligence-protocols-for-thinking-together/banner.png
 ---
 
+> **TLDR:** Before you can allocate capital well, you need to think well together. Pol.is maps consensus, Loomio structures decisions, Roam and Noosphere turn knowledge into networked memory — these are the cognitive rails that turn DAOs from token-weighted plutocracies into collective intelligence.
+
 **Type:** Report
 **Authors:** Gitcoin Research
 

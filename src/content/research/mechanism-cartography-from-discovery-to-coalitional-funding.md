@@ -31,21 +31,25 @@ banner: /content-images/research/mechanism-cartography-from-discovery-to-coaliti
 
 ## Overview
 
-The coordination ecosystem has a discovery problem. Dozens of funding mechanisms exist — [quadratic funding](/mechanisms/quadratic-funding), [conviction voting](/mechanisms/conviction-voting), [retroactive public goods funding](/mechanisms/retroactive-funding), [direct grants](/mechanisms/direct-grants), and more — but there is no map. Funders don't know which mechanism fits their problem. Builders don't know where the capital is gathering. Round operators don't know if there's enough demand to justify launching.
+The coordination ecosystem has a possibility problem. Dozens of funding mechanisms exist — [quadratic funding](/mechanisms/quadratic-funding), [conviction voting](/mechanisms/conviction-voting), [retroactive public goods funding](/mechanisms/retroactive-funding), [direct grants](/mechanisms/direct-grants), and more — but most funders don't even know what's possible. They have capital and conviction but no map of the solution space. And even when they discover what's possible, they lack the resources to turn funding into action — they need to delegate the operational details to people who can execute.
 
-Mechanism cartography solves this by creating a reflexive feedback loop between **discovering the right mechanism**, **forming coalitions around shared problems**, and **deploying capital through the right structure**. It turns a static reference tool into living coordination infrastructure.
+Mechanism cartography solves this by creating a reflexive feedback loop between **expanding what funders know is possible**, **forming coalitions around shared problems**, and **connecting capital with operators who can deploy it**. It turns a static reference tool into living coordination infrastructure — not just discovery, but delegation and execution.
 
-## The Problem: Fragmented Funding, No Map
+## The Problem: Funders Don't Know What's Possible
 
-Today's funding landscape looks like this:
+The deepest problem isn't that funders can't pick between QF and retroPGF. It's that most funders **don't know what's possible in the first place**. They have capital and conviction — they care about watershed monitoring or AI safety or regenerative agriculture — but they have no map of the solution space. They don't know that conviction voting exists, that impact certificates are being experimented with, that coalitional funding can amplify their capital 10x through matching.
 
-- A **funder** with $50K for watershed monitoring has to independently research QF vs. direct grants vs. retroPGF, find the right platform, and hope other funders show up
-- A **builder** creating open-source soil sensors has to apply to 15 different rounds and hope one matches
-- A **round operator** wants to run a climate funding round but doesn't know if enough funders and builders exist to make it viable
+And even when they discover what's possible, there's a second gap: **turning funding into action**. A funder shouldn't need to become a round operator to deploy capital effectively. They need to find the right mechanism, find the right people to execute it, and **delegate the operational details** — while retaining meaningful oversight and voice in how their capital is allocated.
 
-Each actor operates in isolation. The information that would connect them — demand signals, mechanism fit, coalition potential — doesn't flow between them.
+Today's landscape fails on both counts:
 
-This is the coordination failure that mechanism cartography addresses.
+- A **funder** with $50K for watershed monitoring doesn't know what mechanisms exist, let alone which platforms support them. Even if they figure it out, they'd need to run the round themselves or find someone who will.
+- A **builder** creating open-source soil sensors has to apply to 15 different rounds and hope one matches — with no visibility into where funders are gathering or what's even possible beyond traditional grants.
+- A **round operator** wants to run a climate funding round but has no way to signal "I'm ready to operate this if the capital shows up" — and no visibility into whether enough funders and builders exist to make it viable.
+
+Each actor operates in isolation. The information that would connect them — what's possible, where capital is gathering, who can execute — doesn't flow between them.
+
+This is the coordination failure that mechanism cartography addresses. Not just "which mechanism?" but **"what's possible, who's in, and who runs it?"**
 
 ## The Reflexive Loop
 
