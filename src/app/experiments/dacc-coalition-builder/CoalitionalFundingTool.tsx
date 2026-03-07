@@ -383,7 +383,7 @@ export default function CoalitionalFundingTool() {
       const dataBytes = encoder.encode(attractorData);
 
       // ABI encode: stake(bytes) = 0x7a66c02b + offset(32) + length(32) + data(padded)
-      const fnSig = "0x7a66c02b";
+      const fnSig = "0x2d1e0c02";
       const offset = "0000000000000000000000000000000000000000000000000000000000000020";
       const len = dataBytes.length.toString(16).padStart(64, "0");
       let hexBytes = Array.from(dataBytes).map((b) => b.toString(16).padStart(2, "0")).join("");
