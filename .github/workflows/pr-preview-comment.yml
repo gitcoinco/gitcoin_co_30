@@ -1,0 +1,46 @@
+name: Comment preview link on content PRs
+
+on:
+  pull_request:
+    types: [opened, synchronize]
+    branches: [main]
+
+jobs:
+  preview-comment:
+    runs-on: ubuntu-latest
+    permissions:
+      pull-requests: write
+    steps:
+      - name: Check for content file and comment preview link
+        uses: actions/github-script@v7
+        with:
+          script: |
+            const { data: files } = await github.rest.pulls.listFiles({
+              ...context.repo,
+              pull_number: context.payload.pull_request.number,
+            });
+
+            const hasContentFile = files.some(f =>
+              /^src\/content\/(apps|mechanisms|research|case-studies|campaigns)\/.+\.md$/.test(f.filename)
+            );
+
+            if (!hasContentFile) return;
+
+            const pr = context.payload.pull_request.number;
+            const previewUrl = `https://explore.gitcoin.co/preview?pr=${pr}`;
+
+            // Avoid duplicate comments on synchronize
+            const { data: comments } = await github.rest.issues.listComments({
+              ...context.repo,
+              issue_number: pr,
+            });
+            const alreadyCommented = comments.some(c =>
+              c.body?.includes('/preview?pr=')
+            );
+            if (alreadyCommented) return;
+
+            await github.rest.issues.createComment({
+              ...context.repo,
+              issue_number: pr,
+              body: `**Preview:** ${previewUrl}`,
+            });

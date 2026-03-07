@@ -25,11 +25,14 @@ IMPORTANT: This template is automatically parsed by a script to generate content
 
 ## Banner Image
 <!--
-OPTIONAL: Add a banner image - it will be displayed at the top of the page.
-Recommended dimensions: 1600x900 pixels (16:9 aspect ratio)
-For sensemaking articles: use wider 3:1 aspect ratio (e.g., 1800x600 pixels)
-Formats: PNG or JPG only
-Generate one: https://octaviaan.github.io/Chladni-Particles/ (press R to randomize)
+OPTIONAL: You can pick your own banner using the Chladni Particles generator:
+  1. Go to https://explore.gitcoin.co/generator
+  2. Set Aspect to Landscape (or Wide for sensemaking articles)
+  3. Press R until you find a pattern you like
+  4. Press S to save the PNG, then attach it here
+
+Only images from the Chladni generator are accepted as banners — no screenshots or external images.
+If you skip this, a banner will be auto-generated for you.
 -->
 
 

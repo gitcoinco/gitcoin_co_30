@@ -204,11 +204,9 @@ node scripts/publish-content.js mechanism 123
 
 The scripts automatically handle both **banner** and **logo** images by parsing them from specific sections:
 
-- **Banner images**: Parsed from the `## Banner Image` section (optional)
-  - Wide format (16:9 or 2:1 aspect ratio recommended)
-  - **Format**: PNG or JPG only 
-  - Saved to `/public/content-images/<type>/<slug>/`
-  - Referenced in frontmatter as `banner` field
+- **Banner images**: Banners are generated using the **Chladni Particles generator** — this is the only accepted banner format. No other images (screenshots, external images, article previews) are accepted as banners.
+  - **Want to pick your own pattern?** Visit the generator at [explore.gitcoin.co/generator](https://explore.gitcoin.co/generator), set Aspect to Landscape, press **R** to cycle through patterns until you find one you like, then press **S** to save the PNG. Include it in your PR at `public/content-images/<type>/<slug>/banner.png`.
+  - If no banner is provided, one will be auto-generated.
 
 - **Logo images**: Parsed from the `## Logo` section (optional)
   - Square format (1:1 aspect ratio recommended)
