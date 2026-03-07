@@ -4,159 +4,30 @@ import { useState, useMemo, useCallback } from "react";
 
 /* ───────────────────────── DATA ───────────────────────── */
 
-interface Mechanism {
-  id: string;
-  name: string;
-  slug: string;
-  short: string;
-  tags: string[];
-  // scoring weights: community, trust, capital, speed, decentralization
-  fit: [number, number, number, number, number];
-  daccScore: number; // 0-100 — higher = more decentralizing
-  examples: string[];
-}
-
-const MECHANISMS: Mechanism[] = [
-  {
-    id: "qf",
-    name: "Quadratic Funding",
-    slug: "quadratic-funding",
-    short:
-      "Democratic matching where small contributions get amplified. Favors breadth of support over whale concentration.",
-    tags: ["public goods", "matching", "democratic", "community signal"],
-    fit: [90, 40, 60, 50, 95],
-    daccScore: 92,
-    examples: ["Gitcoin Grants", "clr.fund", "Octant"],
-  },
-  {
-    id: "retro",
-    name: "Retroactive Public Goods Funding",
-    slug: "retroactive-funding",
-    short:
-      "Fund projects after they've proven impact. Reduces risk by rewarding demonstrated value.",
-    tags: ["retroactive", "impact", "public goods", "evaluation"],
-    fit: [60, 70, 80, 30, 70],
-    daccScore: 68,
-    examples: ["Optimism RetroPGF", "Filecoin Funding the Commons"],
-  },
-  {
-    id: "conviction",
-    name: "Conviction Voting",
-    slug: "conviction-voting",
-    short:
-      "Continuous signal where staked tokens accumulate conviction over time. Patient capital wins.",
-    tags: ["continuous", "staking", "long-term", "patience"],
-    fit: [70, 60, 50, 20, 85],
-    daccScore: 88,
-    examples: ["1Hive Gardens", "Commons Stack"],
-  },
-  {
-    id: "direct",
-    name: "Direct Grants",
-    slug: "direct-grants",
-    short:
-      "Committee or individual decides allocation. Fast but centralized. Works when trust is high.",
-    tags: ["fast", "centralized", "committee", "trust-dependent"],
-    fit: [30, 90, 70, 90, 30],
-    daccScore: 25,
-    examples: ["Ethereum Foundation Grants", "Arbitrum STIP"],
-  },
-  {
-    id: "bounties",
-    name: "Bounties",
-    slug: "bounties",
-    short:
-      "Defined deliverables with fixed rewards. Clear scope, clear payout. Great for tasks, less for exploration.",
-    tags: ["task-based", "deliverable", "clear scope", "builder-friendly"],
-    fit: [40, 50, 40, 85, 60],
-    daccScore: 65,
-    examples: ["owockibot bounty board", "Gitcoin Bounties (legacy)", "Dework"],
-  },
-  {
-    id: "augmented-bonding",
-    name: "Augmented Bonding Curve",
-    slug: "augmented-bonding-curve",
-    short:
-      "Token bonding curve with funding tap. Continuous funding that scales with community conviction.",
-    tags: ["bonding curve", "continuous", "token", "automated"],
-    fit: [80, 30, 70, 40, 80],
-    daccScore: 78,
-    examples: ["Commons Stack", "Token Engineering Commons"],
-  },
-  {
-    id: "milestone",
-    name: "Milestone-Based Funding",
-    slug: "milestone-based-funding",
-    short:
-      "Capital released as project hits predefined milestones. Balances accountability with flexibility.",
-    tags: ["accountability", "staged", "milestones", "structured"],
-    fit: [40, 80, 70, 50, 45],
-    daccScore: 42,
-    examples: ["Compound Grants 2.0", "Protocol Labs RFPs"],
-  },
-  {
-    id: "dominance-assurance",
-    name: "Dominance Assurance Contract",
-    slug: "dominance-assurance-contract",
-    short:
-      "Crowdfunding where contributors get a bonus refund if the threshold isn't met. Incentivizes early commitment.",
-    tags: ["crowdfunding", "threshold", "assurance", "incentive"],
-    fit: [70, 30, 50, 60, 75],
-    daccScore: 82,
-    examples: ["Alex Tabarrok's proposal", "Experimental deployments"],
-  },
-  {
-    id: "quadratic-diplomacy",
-    name: "Quadratic Diplomacy",
-    slug: "quadratic-diplomacy",
-    short:
-      "Peer evaluation where team members allocate points to each other using quadratic voting. For internal allocation.",
-    tags: ["peer evaluation", "internal", "teams", "quadratic"],
-    fit: [50, 80, 30, 70, 70],
-    daccScore: 74,
-    examples: ["Bankless DAO", "Internal team allocation"],
-  },
-  {
-    id: "coalitional",
-    name: "Coalitional Funding",
-    slug: "coalitional-funding",
-    short:
-      "Multiple aligned funders coordinate around a shared domain, pool resources, and co-fund through a common mechanism.",
-    tags: ["coalition", "pooled", "coordinated", "multi-funder"],
-    fit: [85, 60, 90, 40, 80],
-    daccScore: 85,
-    examples: ["Gitcoin GG20 co-funding", "Protocol Guild"],
-  },
-  {
-    id: "harberger",
-    name: "Harberger Tax / SALSA",
-    slug: "harberger-tax-salsa",
-    short:
-      "Self-assessed licenses with continuous tax. Creates efficient allocation of shared resources.",
-    tags: ["property rights", "tax", "allocation", "shared resources"],
-    fit: [50, 40, 60, 50, 78],
-    daccScore: 76,
-    examples: ["Radical Markets", "Geo Web"],
-  },
-  {
-    id: "impact-certs",
-    name: "Impact Certificates",
-    slug: "impact-certificates",
-    short:
-      "Tradeable certificates representing verified impact. Creates a market for public goods outcomes.",
-    tags: ["impact", "certificates", "market", "tradeable"],
-    fit: [50, 50, 80, 40, 72],
-    daccScore: 70,
-    examples: ["Hypercerts", "Impact Market proposals"],
-  },
-];
-
 interface Domain {
   id: string;
   name: string;
   icon: string;
-  interest: number; // simulated interest count
-  subcategories: string[];
+  interest: number;
+  subcategories: Subcategory[];
+}
+
+interface Subcategory {
+  id: string;
+  name: string;
+  interest: number;
+}
+
+interface Project {
+  id: string;
+  name: string;
+  description: string;
+  domain: string;
+  subcategory: string;
+  funding: number;
+  backers: number;
+  status: "seeking" | "active" | "funded";
+  url?: string;
 }
 
 const DOMAINS: Domain[] = [
@@ -166,11 +37,11 @@ const DOMAINS: Domain[] = [
     icon: "🌍",
     interest: 147,
     subcategories: [
-      "Watershed monitoring",
-      "Carbon removal",
-      "Reforestation",
-      "Clean energy",
-      "Biodiversity",
+      { id: "watershed", name: "Watershed Monitoring", interest: 42 },
+      { id: "carbon", name: "Carbon Removal", interest: 38 },
+      { id: "reforestation", name: "Reforestation", interest: 31 },
+      { id: "clean-energy", name: "Clean Energy", interest: 24 },
+      { id: "biodiversity", name: "Biodiversity", interest: 12 },
     ],
   },
   {
@@ -179,11 +50,11 @@ const DOMAINS: Domain[] = [
     icon: "💻",
     interest: 234,
     subcategories: [
-      "Developer tools",
-      "Protocol infrastructure",
-      "Security audits",
-      "Documentation",
-      "SDKs & libraries",
+      { id: "dev-tools", name: "Developer Tools", interest: 67 },
+      { id: "protocol-infra", name: "Protocol Infrastructure", interest: 58 },
+      { id: "security", name: "Security Audits", interest: 44 },
+      { id: "docs", name: "Documentation", interest: 38 },
+      { id: "sdks", name: "SDKs & Libraries", interest: 27 },
     ],
   },
   {
@@ -192,11 +63,11 @@ const DOMAINS: Domain[] = [
     icon: "📚",
     interest: 89,
     subcategories: [
-      "Web3 education",
-      "Developer bootcamps",
-      "Content creation",
-      "Translations",
-      "Research",
+      { id: "web3-ed", name: "Web3 Education", interest: 34 },
+      { id: "bootcamps", name: "Developer Bootcamps", interest: 22 },
+      { id: "content", name: "Content Creation", interest: 18 },
+      { id: "translations", name: "Translations", interest: 9 },
+      { id: "research", name: "Research", interest: 6 },
     ],
   },
   {
@@ -205,11 +76,11 @@ const DOMAINS: Domain[] = [
     icon: "🏛️",
     interest: 112,
     subcategories: [
-      "Voting systems",
-      "DAO tooling",
-      "Treasury management",
-      "Delegation",
-      "Proposal frameworks",
+      { id: "voting", name: "Voting Systems", interest: 33 },
+      { id: "dao-tools", name: "DAO Tooling", interest: 29 },
+      { id: "treasury", name: "Treasury Management", interest: 24 },
+      { id: "delegation", name: "Delegation", interest: 16 },
+      { id: "proposals", name: "Proposal Frameworks", interest: 10 },
     ],
   },
   {
@@ -218,11 +89,11 @@ const DOMAINS: Domain[] = [
     icon: "🏦",
     interest: 178,
     subcategories: [
-      "Lending protocols",
-      "DEX improvements",
-      "Oracle networks",
-      "Risk management",
-      "Interoperability",
+      { id: "lending", name: "Lending Protocols", interest: 45 },
+      { id: "dex", name: "DEX Improvements", interest: 41 },
+      { id: "oracles", name: "Oracle Networks", interest: 38 },
+      { id: "risk", name: "Risk Management", interest: 32 },
+      { id: "interop", name: "Interoperability", interest: 22 },
     ],
   },
   {
@@ -231,11 +102,11 @@ const DOMAINS: Domain[] = [
     icon: "🏔️",
     interest: 63,
     subcategories: [
-      "Watershed DAOs",
-      "Local food systems",
-      "Community land trusts",
-      "Regenerative agriculture",
-      "Municipal coordination",
+      { id: "watershed-dao", name: "Watershed DAOs", interest: 18 },
+      { id: "food", name: "Local Food Systems", interest: 15 },
+      { id: "land-trust", name: "Community Land Trusts", interest: 12 },
+      { id: "regen-ag", name: "Regenerative Agriculture", interest: 11 },
+      { id: "municipal", name: "Municipal Coordination", interest: 7 },
     ],
   },
   {
@@ -244,11 +115,11 @@ const DOMAINS: Domain[] = [
     icon: "🤖",
     interest: 156,
     subcategories: [
-      "Alignment research",
-      "AI auditing",
-      "Open-source AI",
-      "Defensive tools",
-      "Agent coordination",
+      { id: "alignment", name: "Alignment Research", interest: 48 },
+      { id: "auditing", name: "AI Auditing", interest: 36 },
+      { id: "open-ai", name: "Open-Source AI", interest: 32 },
+      { id: "defensive", name: "Defensive Tools", interest: 24 },
+      { id: "agent-coord", name: "Agent Coordination", interest: 16 },
     ],
   },
   {
@@ -257,613 +128,608 @@ const DOMAINS: Domain[] = [
     icon: "🔐",
     interest: 94,
     subcategories: [
-      "Decentralized identity",
-      "Zero-knowledge proofs",
-      "Privacy tools",
-      "Sybil resistance",
-      "Attestations",
+      { id: "did", name: "Decentralized Identity", interest: 28 },
+      { id: "zk", name: "Zero-Knowledge Proofs", interest: 26 },
+      { id: "privacy-tools", name: "Privacy Tools", interest: 19 },
+      { id: "sybil", name: "Sybil Resistance", interest: 13 },
+      { id: "attestations", name: "Attestations", interest: 8 },
     ],
   },
 ];
 
-interface Attractor {
-  id: string;
-  domain: string;
-  title: string;
-  mechanism: string;
-  pledged: number;
-  target: number;
-  backers: number;
-  builders: number;
-  status: "forming" | "threshold_met" | "live";
-}
-
-const SAMPLE_ATTRACTORS: Attractor[] = [
-  {
-    id: "a1",
-    domain: "climate",
-    title: "Colorado River Watershed Monitoring",
-    mechanism: "qf",
-    pledged: 32000,
-    target: 50000,
-    backers: 12,
-    builders: 4,
-    status: "forming",
-  },
-  {
-    id: "a2",
-    domain: "oss",
-    title: "Ethereum Client Diversity",
-    mechanism: "retro",
-    pledged: 85000,
-    target: 75000,
-    backers: 23,
-    builders: 7,
-    status: "threshold_met",
-  },
-  {
-    id: "a3",
-    domain: "ai-safety",
-    title: "Open Source AI Auditing Tools",
-    mechanism: "bounties",
-    pledged: 15000,
-    target: 40000,
-    backers: 8,
-    builders: 11,
-    status: "forming",
-  },
-  {
-    id: "a4",
-    domain: "bioregional",
-    title: "Regenerative Ag Data Commons",
-    mechanism: "coalitional",
-    pledged: 120000,
-    target: 100000,
-    backers: 31,
-    builders: 9,
-    status: "live",
-  },
-  {
-    id: "a5",
-    domain: "governance",
-    title: "DAO Governance Research Hub",
-    mechanism: "conviction",
-    pledged: 22000,
-    target: 60000,
-    backers: 14,
-    builders: 3,
-    status: "forming",
-  },
+const SAMPLE_PROJECTS: Project[] = [
+  { id: "p1", name: "Colorado River Sensor Network", description: "Open-source water quality sensors for the Colorado River watershed, publishing data to a public knowledge commons.", domain: "climate", subcategory: "watershed", funding: 12000, backers: 8, status: "seeking" },
+  { id: "p2", name: "Soil Carbon Verification Protocol", description: "On-chain verification of soil carbon sequestration using satellite imagery + ground truth sampling.", domain: "climate", subcategory: "carbon", funding: 34000, backers: 15, status: "active" },
+  { id: "p3", name: "EVM Formal Verification Suite", description: "Automated formal verification tools for Solidity smart contracts, open-sourced under MIT.", domain: "oss", subcategory: "security", funding: 67000, backers: 42, status: "active" },
+  { id: "p4", name: "DAO Governance Analytics Dashboard", description: "Real-time analytics on DAO participation, voter turnout, and proposal outcomes across 50+ DAOs.", domain: "governance", subcategory: "dao-tools", funding: 18000, backers: 11, status: "seeking" },
+  { id: "p5", name: "Boulder Bioregional Data Commons", description: "Community-owned repository of ecological, economic, and governance data for the Front Range bioregion.", domain: "bioregional", subcategory: "watershed-dao", funding: 8000, backers: 6, status: "seeking" },
+  { id: "p6", name: "AI Model Audit Framework", description: "Open framework for red-teaming and auditing AI models for alignment risks, bias, and safety.", domain: "ai-safety", subcategory: "auditing", funding: 45000, backers: 23, status: "active" },
+  { id: "p7", name: "ZK-Passport Identity Layer", description: "Privacy-preserving identity verification using zero-knowledge proofs on government IDs.", domain: "identity", subcategory: "zk", funding: 82000, backers: 31, status: "funded" },
+  { id: "p8", name: "Regenerative Ag Yield Tracker", description: "Open data platform tracking yields, soil health, and economic outcomes of regenerative farms.", domain: "bioregional", subcategory: "regen-ag", funding: 5000, backers: 4, status: "seeking" },
+  { id: "p9", name: "Cross-Chain Oracle Standard", description: "Unified oracle interface standard enabling any chain to consume any data feed.", domain: "defi", subcategory: "oracles", funding: 55000, backers: 27, status: "active" },
+  { id: "p10", name: "Web3 Curriculum for Community Colleges", description: "Free, modular web3 curriculum designed for US community college adoption.", domain: "education", subcategory: "web3-ed", funding: 22000, backers: 14, status: "seeking" },
 ];
 
-/* ───────────────────── HELPERS ────────────────────── */
+/* ────────────────────── STEPS ─────────────────────── */
 
-function scoreMechanism(
-  m: Mechanism,
-  params: { community: number; trust: number; capital: number; speed: number; dacc: number }
-): number {
-  const { community, trust, capital, speed, dacc } = params;
-  const raw =
-    m.fit[0] * community +
-    m.fit[1] * trust +
-    m.fit[2] * capital +
-    m.fit[3] * speed +
-    m.fit[4] * dacc;
-  const max = 100 * (community + trust + capital + speed + dacc);
-  return max > 0 ? Math.round((raw / max) * 100) : 50;
-}
+type Step = "select" | "elaborate" | "projects" | "pledge";
 
-function badgeColor(score: number) {
-  if (score >= 75) return "bg-teal-500/15 text-teal-400";
-  if (score >= 50) return "bg-yellow-500/15 text-yellow-400";
-  return "bg-red-500/15 text-red-400";
-}
-
-function daccBadge(score: number) {
-  if (score >= 80) return { label: "d/acc ✓", cls: "bg-teal-500/15 text-teal-400" };
-  if (score >= 50) return { label: "d/acc ~", cls: "bg-yellow-500/15 text-yellow-400" };
-  return { label: "d/acc ✗", cls: "bg-red-500/15 text-red-400" };
-}
-
-function progressPct(pledged: number, target: number) {
-  return Math.min(100, Math.round((pledged / target) * 100));
-}
-
-function statusLabel(s: Attractor["status"]) {
-  if (s === "forming") return { text: "Forming", cls: "bg-yellow-500/15 text-yellow-400" };
-  if (s === "threshold_met")
-    return { text: "Threshold Met", cls: "bg-teal-500/15 text-teal-400" };
-  return { text: "Live Round", cls: "bg-purple-500/15 text-purple-400" };
+interface AttractorState {
+  domain: string | null;
+  subcategories: Set<string>;
+  freeText: string;
+  pledgeAmount: string;
+  selectedProjects: Set<string>;
 }
 
 /* ────────────────────── COMPONENT ─────────────────────── */
 
-type Tab = "discover" | "map" | "coalitions";
-
 export default function CoalitionalFundingTool() {
-  const [tab, setTab] = useState<Tab>("discover");
+  const [step, setStep] = useState<Step>("select");
+  const [attractor, setAttractor] = useState<AttractorState>({
+    domain: null,
+    subcategories: new Set(),
+    freeText: "",
+    pledgeAmount: "",
+    selectedProjects: new Set(),
+  });
 
-  // discover sliders
-  const [community, setCommunity] = useState(50);
-  const [trust, setTrust] = useState(50);
-  const [capital, setCapital] = useState(50);
-  const [speed, setSpeed] = useState(50);
-  const [dacc, setDacc] = useState(75);
+  const selectedDomain = useMemo(
+    () => DOMAINS.find((d) => d.id === attractor.domain),
+    [attractor.domain]
+  );
 
-  // interest signals
-  const [interested, setInterested] = useState<Set<string>>(new Set());
-  const [filterDomain, setFilterDomain] = useState<string>("all");
+  const matchingProjects = useMemo(() => {
+    if (!attractor.domain) return [];
+    return SAMPLE_PROJECTS.filter(
+      (p) =>
+        p.domain === attractor.domain &&
+        (attractor.subcategories.size === 0 ||
+          attractor.subcategories.has(p.subcategory))
+    );
+  }, [attractor.domain, attractor.subcategories]);
 
-  const toggleInterest = useCallback((domainId: string) => {
-    setInterested((prev) => {
-      const next = new Set(prev);
-      if (next.has(domainId)) next.delete(domainId);
-      else next.add(domainId);
-      return next;
+  const totalInterest = useMemo(() => {
+    if (!selectedDomain) return 0;
+    if (attractor.subcategories.size === 0) return selectedDomain.interest;
+    return selectedDomain.subcategories
+      .filter((s) => attractor.subcategories.has(s.id))
+      .reduce((sum, s) => sum + s.interest, 0);
+  }, [selectedDomain, attractor.subcategories]);
+
+  const selectDomain = useCallback((id: string) => {
+    setAttractor((prev) => ({
+      ...prev,
+      domain: id,
+      subcategories: new Set(),
+      selectedProjects: new Set(),
+    }));
+    setStep("elaborate");
+  }, []);
+
+  const toggleSubcategory = useCallback((id: string) => {
+    setAttractor((prev) => {
+      const next = new Set(prev.subcategories);
+      if (next.has(id)) next.delete(id);
+      else next.add(id);
+      return { ...prev, subcategories: next };
     });
   }, []);
 
-  const params = useMemo(
-    () => ({ community, trust, capital, speed, dacc }),
-    [community, trust, capital, speed, dacc]
-  );
+  const toggleProject = useCallback((id: string) => {
+    setAttractor((prev) => {
+      const next = new Set(prev.selectedProjects);
+      if (next.has(id)) next.delete(id);
+      else next.add(id);
+      return { ...prev, selectedProjects: next };
+    });
+  }, []);
 
-  const ranked = useMemo(() => {
-    return [...MECHANISMS]
-      .map((m) => ({ ...m, score: scoreMechanism(m, params) }))
-      .sort((a, b) => b.score - a.score);
-  }, [params]);
-
-  const filteredAttractors = useMemo(() => {
-    if (filterDomain === "all") return SAMPLE_ATTRACTORS;
-    return SAMPLE_ATTRACTORS.filter((a) => a.domain === filterDomain);
-  }, [filterDomain]);
+  const goBack = useCallback(() => {
+    if (step === "elaborate") setStep("select");
+    else if (step === "projects") setStep("elaborate");
+    else if (step === "pledge") setStep("projects");
+  }, [step]);
 
   return (
     <div className="min-h-screen bg-[#0a0a0f]">
       {/* Hero */}
-      <div className="max-w-5xl mx-auto px-4 pt-16 pb-8 text-center">
+      <div className="max-w-3xl mx-auto px-4 pt-16 pb-8 text-center">
         <p className="text-teal-400 font-mono text-sm tracking-widest uppercase mb-3">
           Experiment
         </p>
         <h1 className="text-4xl md:text-5xl font-bold text-white mb-4">
-          Coalitional Funding{" "}
-          <span className="text-teal-400">Cartography</span>
+          Fund What <span className="text-teal-400">Matters</span>
         </h1>
-        <p className="text-gray-400 text-lg max-w-2xl mx-auto">
-          Discover the right funding mechanism → find your coalition → deploy
-          capital together. A reflexive loop between discovery, coalition
-          formation, and funding.
+        <p className="text-gray-400 text-lg max-w-xl mx-auto">
+          Pick what you care about. Find projects and funders who care too.
+          Pool your capital. We handle the rest.
         </p>
-
-        {/* d/acc badge */}
-        <div className="mt-4 inline-flex items-center gap-2 rounded-full bg-teal-500/10 px-4 py-1.5 text-sm text-teal-400 border border-teal-500/20">
-          <span>🛡️</span>
-          <span>d/acc aligned — decentralize power, preserve human agency</span>
-        </div>
       </div>
 
-      {/* Tabs */}
-      <div className="max-w-5xl mx-auto px-4 mb-8">
-        <div className="flex gap-1 bg-[#14141f] rounded-xl p-1">
+      {/* Progress bar */}
+      <div className="max-w-3xl mx-auto px-4 mb-8">
+        <div className="flex items-center gap-2">
           {(
             [
-              ["discover", "🔍 Discover Mechanisms"],
-              ["map", "🗺️ Domain Map"],
-              ["coalitions", "🤝 Coalitions"],
-            ] as [Tab, string][]
-          ).map(([key, label]) => (
-            <button
-              key={key}
-              onClick={() => setTab(key)}
-              className={`flex-1 py-3 px-4 rounded-lg text-sm font-semibold transition-all ${
-                tab === key
-                  ? "bg-teal-500/15 text-teal-400"
-                  : "text-gray-400 hover:text-white hover:bg-white/5"
-              }`}
-            >
-              {label}
-            </button>
-          ))}
+              ["select", "What do you care about?"],
+              ["elaborate", "Get specific"],
+              ["projects", "Find projects"],
+              ["pledge", "Pledge & join"],
+            ] as [Step, string][]
+          ).map(([key, label], i) => {
+            const steps: Step[] = ["select", "elaborate", "projects", "pledge"];
+            const currentIdx = steps.indexOf(step);
+            const thisIdx = i;
+            const active = thisIdx <= currentIdx;
+            return (
+              <div key={key} className="flex-1">
+                <div className="flex items-center gap-2 mb-1.5">
+                  <div
+                    className={`w-7 h-7 rounded-full flex items-center justify-center text-xs font-bold transition-all ${
+                      active
+                        ? "bg-teal-500 text-black"
+                        : "bg-gray-800 text-gray-500"
+                    }`}
+                  >
+                    {i + 1}
+                  </div>
+                  {i < 3 && (
+                    <div
+                      className={`flex-1 h-0.5 transition-all ${
+                        thisIdx < currentIdx ? "bg-teal-500" : "bg-gray-800"
+                      }`}
+                    />
+                  )}
+                </div>
+                <p
+                  className={`text-[11px] ${active ? "text-gray-300" : "text-gray-600"}`}
+                >
+                  {label}
+                </p>
+              </div>
+            );
+          })}
         </div>
       </div>
 
-      <div className="max-w-5xl mx-auto px-4 pb-20">
-        {/* ─── DISCOVER TAB ─── */}
-        {tab === "discover" && (
+      <div className="max-w-3xl mx-auto px-4 pb-20">
+        {/* ─── STEP 1: SELECT DOMAIN ─── */}
+        {step === "select" && (
           <div>
-            {/* Sliders */}
-            <div className="bg-[#14141f] rounded-2xl p-6 mb-8 border border-gray-800">
-              <h2 className="text-lg font-bold text-white mb-1">
-                Your Context
-              </h2>
-              <p className="text-gray-500 text-sm mb-5">
-                Adjust sliders to match your funding scenario. The d/acc filter
-                weights decentralization.
-              </p>
-
-              {[
-                {
-                  label: "Community Size",
-                  value: community,
-                  set: setCommunity,
-                  low: "Small",
-                  high: "Large",
-                },
-                {
-                  label: "Trust Level",
-                  value: trust,
-                  set: setTrust,
-                  low: "Low",
-                  high: "High",
-                },
-                {
-                  label: "Capital Scale",
-                  value: capital,
-                  set: setCapital,
-                  low: "$1K",
-                  high: "$1M+",
-                },
-                {
-                  label: "Speed Needed",
-                  value: speed,
-                  set: setSpeed,
-                  low: "Patient",
-                  high: "Urgent",
-                },
-                {
-                  label: "Decentralization Priority",
-                  value: dacc,
-                  set: setDacc,
-                  low: "Pragmatic",
-                  high: "d/acc Max",
-                },
-              ].map(({ label, value, set, low, high }) => (
-                <div key={label} className="mb-5 last:mb-0">
-                  <div className="flex justify-between mb-1.5 text-sm">
-                    <span className="font-semibold text-white">{label}</span>
-                    <span className="text-teal-400 font-mono">{value}%</span>
+            <h2 className="text-xl font-bold text-white mb-2">
+              What do you want to fund?
+            </h2>
+            <p className="text-gray-500 text-sm mb-6">
+              Pick a domain. You&apos;ll narrow it down next.
+            </p>
+            <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
+              {DOMAINS.sort((a, b) => b.interest - a.interest).map((d) => (
+                <button
+                  key={d.id}
+                  onClick={() => selectDomain(d.id)}
+                  className={`text-left bg-[#14141f] rounded-xl p-4 border transition-all hover:border-teal-500/40 hover:bg-[#14141f]/80 ${
+                    attractor.domain === d.id
+                      ? "border-teal-500/60 bg-teal-500/5"
+                      : "border-gray-800"
+                  }`}
+                >
+                  <div className="flex items-center justify-between">
+                    <div className="flex items-center gap-3">
+                      <span className="text-2xl">{d.icon}</span>
+                      <div>
+                        <h3 className="font-semibold text-white text-sm">
+                          {d.name}
+                        </h3>
+                        <span className="text-xs text-gray-500 font-mono">
+                          {d.interest} funders interested
+                        </span>
+                      </div>
+                    </div>
+                    <span className="text-gray-600 text-lg">→</span>
                   </div>
-                  <div className="flex items-center gap-3">
-                    <span className="text-xs text-gray-500 w-16 text-right">
-                      {low}
-                    </span>
-                    <input
-                      type="range"
-                      min={0}
-                      max={100}
-                      value={value}
-                      onChange={(e) => set(Number(e.target.value))}
-                      className="flex-1 h-1.5 rounded-full appearance-none bg-gray-700 accent-teal-500 cursor-pointer [&::-webkit-slider-thumb]:w-4 [&::-webkit-slider-thumb]:h-4 [&::-webkit-slider-thumb]:rounded-full [&::-webkit-slider-thumb]:bg-teal-400 [&::-webkit-slider-thumb]:appearance-none [&::-webkit-slider-thumb]:shadow-[0_0_8px_rgba(2,226,172,0.4)]"
-                    />
-                    <span className="text-xs text-gray-500 w-16">{high}</span>
-                  </div>
-                </div>
+                </button>
               ))}
             </div>
+          </div>
+        )}
 
-            {/* Results */}
-            <h2 className="text-xl font-bold text-white mb-4">
-              Recommended Mechanisms
-            </h2>
-            <div className="space-y-4">
-              {ranked.map((m) => {
-                const dacc_info = daccBadge(m.daccScore);
+        {/* ─── STEP 2: ELABORATE ─── */}
+        {step === "elaborate" && selectedDomain && (
+          <div>
+            <button
+              onClick={goBack}
+              className="text-gray-500 text-sm mb-4 hover:text-teal-400 transition-colors flex items-center gap-1"
+            >
+              ← Back
+            </button>
+            <div className="flex items-center gap-3 mb-2">
+              <span className="text-3xl">{selectedDomain.icon}</span>
+              <h2 className="text-xl font-bold text-white">
+                {selectedDomain.name}
+              </h2>
+            </div>
+            <p className="text-gray-500 text-sm mb-6">
+              What specifically? Select areas that matter to you, or describe it
+              in your own words.
+            </p>
+
+            {/* Subcategories */}
+            <div className="flex flex-wrap gap-2 mb-6">
+              {selectedDomain.subcategories.map((s) => {
+                const selected = attractor.subcategories.has(s.id);
                 return (
-                  <div
-                    key={m.id}
-                    className="bg-[#14141f] rounded-2xl p-5 border border-gray-800 hover:border-teal-500/30 transition-all"
+                  <button
+                    key={s.id}
+                    onClick={() => toggleSubcategory(s.id)}
+                    className={`px-4 py-2 rounded-full text-sm font-medium transition-all ${
+                      selected
+                        ? "bg-teal-500/20 text-teal-400 border border-teal-500/40"
+                        : "bg-[#14141f] text-gray-400 border border-gray-700 hover:border-teal-500/30"
+                    }`}
                   >
-                    <div className="flex items-start justify-between gap-3 mb-2">
-                      <div>
-                        <a
-                          href={`/mechanisms/${m.slug}`}
-                          className="text-lg font-bold text-white hover:text-teal-400 transition-colors"
-                        >
-                          {m.name}
-                        </a>
-                        <div className="flex gap-2 mt-1.5">
-                          <span
-                            className={`text-xs font-semibold px-2.5 py-0.5 rounded-full ${badgeColor(m.score)}`}
-                          >
-                            {m.score}% fit
-                          </span>
-                          <span
-                            className={`text-xs font-semibold px-2.5 py-0.5 rounded-full ${dacc_info.cls}`}
-                          >
-                            {dacc_info.label} ({m.daccScore})
-                          </span>
-                        </div>
-                      </div>
-                    </div>
-                    <p className="text-gray-400 text-sm mb-3">{m.short}</p>
-                    <div className="flex items-center gap-2 mb-2">
-                      <div className="flex-1 h-1 bg-gray-700 rounded-full">
-                        <div
-                          className="h-1 bg-teal-500 rounded-full transition-all duration-500"
-                          style={{ width: `${m.score}%` }}
-                        />
-                      </div>
-                    </div>
-                    <div className="flex flex-wrap gap-1.5 mb-2">
-                      {m.tags.map((t) => (
-                        <span
-                          key={t}
-                          className="text-xs bg-gray-800 text-gray-400 px-2 py-0.5 rounded-md"
-                        >
-                          {t}
-                        </span>
-                      ))}
-                    </div>
-                    <p className="text-xs text-gray-500">
-                      Examples:{" "}
-                      {m.examples.map((e, i) => (
-                        <span key={e}>
-                          {i > 0 && ", "}
-                          <span className="text-gray-400">{e}</span>
-                        </span>
-                      ))}
-                    </p>
-                  </div>
+                    {s.name}
+                    <span className="ml-1.5 text-xs opacity-60">
+                      ({s.interest})
+                    </span>
+                  </button>
                 );
               })}
             </div>
-          </div>
-        )}
 
-        {/* ─── MAP TAB ─── */}
-        {tab === "map" && (
-          <div>
-            <div className="bg-[#14141f] rounded-2xl p-6 mb-8 border border-gray-800">
-              <h2 className="text-lg font-bold text-white mb-1">
-                Demand Signal Map
-              </h2>
-              <p className="text-gray-500 text-sm mb-6">
-                Where is funding interest clustering? Signal your interest to
-                help coalitions form. Numbers are aggregated anonymous queries.
-              </p>
+            {/* Free text elaboration */}
+            <div className="mb-6">
+              <label className="text-sm text-gray-400 block mb-2">
+                Describe what you want to fund (optional)
+              </label>
+              <textarea
+                value={attractor.freeText}
+                onChange={(e) =>
+                  setAttractor((prev) => ({
+                    ...prev,
+                    freeText: e.target.value,
+                  }))
+                }
+                placeholder="e.g., I want to fund open-source water quality sensors for the Colorado River Basin that publish data to a public commons..."
+                className="w-full bg-[#14141f] border border-gray-700 rounded-xl p-4 text-gray-200 text-sm placeholder-gray-600 focus:outline-none focus:border-teal-500/50 resize-none h-24"
+              />
+            </div>
 
-              <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-                {DOMAINS.sort((a, b) => b.interest - a.interest).map((d) => {
-                  const maxInterest = Math.max(...DOMAINS.map((x) => x.interest));
-                  const pct = Math.round((d.interest / maxInterest) * 100);
-                  const isInterested = interested.has(d.id);
-                  return (
-                    <div
-                      key={d.id}
-                      className="bg-[#1a1a2e] rounded-xl p-4 border border-gray-700/50 hover:border-teal-500/30 transition-all"
-                    >
-                      <div className="flex items-start justify-between mb-2">
-                        <div className="flex items-center gap-2">
-                          <span className="text-2xl">{d.icon}</span>
-                          <div>
-                            <h3 className="font-semibold text-white text-sm">
-                              {d.name}
-                            </h3>
-                            <span className="text-xs text-gray-500 font-mono">
-                              {d.interest + (isInterested ? 1 : 0)} interested
-                            </span>
-                          </div>
-                        </div>
-                        <button
-                          onClick={() => toggleInterest(d.id)}
-                          className={`text-xs px-3 py-1.5 rounded-full font-semibold transition-all ${
-                            isInterested
-                              ? "bg-teal-500/20 text-teal-400 border border-teal-500/30"
-                              : "bg-gray-700/50 text-gray-400 border border-gray-600/50 hover:border-teal-500/30"
-                          }`}
-                        >
-                          {isInterested ? "✓ Interested" : "+ I care"}
-                        </button>
-                      </div>
-                      {/* interest bar */}
-                      <div className="h-1.5 bg-gray-700 rounded-full mt-3 mb-3">
+            {/* Interest signal */}
+            <div className="bg-[#14141f] rounded-xl p-4 border border-gray-800 mb-6">
+              <div className="flex items-center justify-between">
+                <div>
+                  <p className="text-sm text-white font-semibold">
+                    Coalition signal
+                  </p>
+                  <p className="text-xs text-gray-500">
+                    {totalInterest} other funders are interested in{" "}
+                    {attractor.subcategories.size > 0
+                      ? "these areas"
+                      : "this domain"}
+                  </p>
+                </div>
+                <div className="flex items-center gap-2">
+                  <div className="flex -space-x-2">
+                    {[...Array(Math.min(5, Math.floor(totalInterest / 10)))].map(
+                      (_, i) => (
                         <div
-                          className="h-1.5 bg-teal-500/70 rounded-full transition-all duration-500"
-                          style={{ width: `${pct}%` }}
-                        />
-                      </div>
-                      <div className="flex flex-wrap gap-1">
-                        {d.subcategories.map((s) => (
-                          <span
-                            key={s}
-                            className="text-[10px] bg-gray-800 text-gray-500 px-1.5 py-0.5 rounded"
-                          >
-                            {s}
-                          </span>
-                        ))}
-                      </div>
-                    </div>
-                  );
-                })}
+                          key={i}
+                          className="w-7 h-7 rounded-full bg-gradient-to-br from-teal-500/40 to-teal-700/40 border-2 border-[#0a0a0f] flex items-center justify-center text-[10px] text-teal-400"
+                        >
+                          {String.fromCharCode(65 + i)}
+                        </div>
+                      )
+                    )}
+                  </div>
+                  <span className="text-xs text-gray-500">
+                    +{totalInterest}
+                  </span>
+                </div>
               </div>
             </div>
 
-            {/* The loop explanation */}
-            <div className="bg-[#14141f] rounded-2xl p-6 border border-gray-800">
-              <h2 className="text-lg font-bold text-white mb-4">
-                The Reflexive Loop
-              </h2>
-              <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
-                {[
-                  {
-                    n: "1",
-                    title: "Discover",
-                    desc: "Describe your problem. Find the right mechanism.",
-                    icon: "🔍",
-                  },
-                  {
-                    n: "2",
-                    title: "Coalesce",
-                    desc: "See who else cares. Signal your interest.",
-                    icon: "🤝",
-                  },
-                  {
-                    n: "3",
-                    title: "Fund",
-                    desc: "Pool capital. Deploy through the right mechanism.",
-                    icon: "💰",
-                  },
-                  {
-                    n: "4",
-                    title: "Learn",
-                    desc: "Track outcomes. Feed learnings back into the map.",
-                    icon: "📊",
-                  },
-                ].map(({ n, title, desc, icon }) => (
-                  <div
-                    key={n}
-                    className="text-center p-4 rounded-xl bg-[#1a1a2e] border border-gray-700/50"
-                  >
-                    <div className="text-3xl mb-2">{icon}</div>
-                    <div className="text-teal-400 font-mono text-xs mb-1">
-                      Stage {n}
-                    </div>
-                    <h3 className="font-bold text-white mb-1">{title}</h3>
-                    <p className="text-xs text-gray-500">{desc}</p>
-                  </div>
-                ))}
-              </div>
-              <div className="text-center mt-4">
-                <span className="text-teal-400 text-sm">
-                  ↻ Each loop makes the map smarter
-                </span>
-              </div>
-            </div>
+            <button
+              onClick={() => setStep("projects")}
+              className="w-full bg-teal-500/20 text-teal-400 border border-teal-500/30 py-3 rounded-xl font-semibold hover:bg-teal-500/30 transition-all"
+            >
+              Find projects →
+            </button>
           </div>
         )}
 
-        {/* ─── COALITIONS TAB ─── */}
-        {tab === "coalitions" && (
+        {/* ─── STEP 3: PROJECTS ─── */}
+        {step === "projects" && selectedDomain && (
           <div>
-            <div className="flex items-center justify-between mb-6">
-              <div>
-                <h2 className="text-xl font-bold text-white">
-                  Active Attractors
-                </h2>
-                <p className="text-gray-500 text-sm">
-                  Proto-rounds gathering energy. Pledge to help them reach
-                  threshold.
+            <button
+              onClick={goBack}
+              className="text-gray-500 text-sm mb-4 hover:text-teal-400 transition-colors flex items-center gap-1"
+            >
+              ← Back
+            </button>
+            <h2 className="text-xl font-bold text-white mb-1">
+              Projects seeking funding
+            </h2>
+            <p className="text-gray-500 text-sm mb-6">
+              These projects match what you care about. Select the ones you want
+              to back.
+            </p>
+
+            {matchingProjects.length === 0 ? (
+              <div className="bg-[#14141f] rounded-xl p-8 border border-gray-800 text-center">
+                <p className="text-gray-400 mb-2">
+                  No projects match yet — be the first to create an attractor.
+                </p>
+                <p className="text-xs text-gray-600">
+                  When you pledge, builders will find you.
                 </p>
               </div>
-              <select
-                value={filterDomain}
-                onChange={(e) => setFilterDomain(e.target.value)}
-                className="bg-[#14141f] border border-gray-700 rounded-lg px-3 py-2 text-sm text-gray-300 appearance-none cursor-pointer"
-              >
-                <option value="all">All domains</option>
-                {DOMAINS.map((d) => (
-                  <option key={d.id} value={d.id}>
-                    {d.icon} {d.name}
-                  </option>
-                ))}
-              </select>
-            </div>
-
-            <div className="space-y-4">
-              {filteredAttractors.map((a) => {
-                const pct = progressPct(a.pledged, a.target);
-                const st = statusLabel(a.status);
-                const mech = MECHANISMS.find((m) => m.id === a.mechanism);
-                const domain = DOMAINS.find((d) => d.id === a.domain);
-                return (
-                  <div
-                    key={a.id}
-                    className="bg-[#14141f] rounded-2xl p-5 border border-gray-800 hover:border-teal-500/30 transition-all"
-                  >
-                    <div className="flex items-start justify-between gap-3 mb-3">
-                      <div>
-                        <div className="flex items-center gap-2 mb-1">
-                          <span>{domain?.icon}</span>
-                          <h3 className="font-bold text-white">{a.title}</h3>
+            ) : (
+              <div className="space-y-3 mb-6">
+                {matchingProjects.map((p) => {
+                  const selected = attractor.selectedProjects.has(p.id);
+                  const statusColors = {
+                    seeking:
+                      "bg-yellow-500/15 text-yellow-400",
+                    active: "bg-teal-500/15 text-teal-400",
+                    funded: "bg-purple-500/15 text-purple-400",
+                  };
+                  return (
+                    <button
+                      key={p.id}
+                      onClick={() => toggleProject(p.id)}
+                      className={`w-full text-left bg-[#14141f] rounded-xl p-4 border transition-all ${
+                        selected
+                          ? "border-teal-500/50 bg-teal-500/5"
+                          : "border-gray-800 hover:border-gray-600"
+                      }`}
+                    >
+                      <div className="flex items-start justify-between gap-3 mb-2">
+                        <div>
+                          <div className="flex items-center gap-2">
+                            <h3 className="font-semibold text-white text-sm">
+                              {p.name}
+                            </h3>
+                            <span
+                              className={`text-[10px] font-semibold px-2 py-0.5 rounded-full ${statusColors[p.status]}`}
+                            >
+                              {p.status}
+                            </span>
+                          </div>
+                          <p className="text-xs text-gray-500 mt-1">
+                            {p.description}
+                          </p>
                         </div>
-                        <div className="flex gap-2">
-                          <span
-                            className={`text-xs font-semibold px-2.5 py-0.5 rounded-full ${st.cls}`}
-                          >
-                            {st.text}
-                          </span>
-                          {mech && (
-                            <span className="text-xs bg-gray-800 text-gray-400 px-2.5 py-0.5 rounded-full">
-                              via {mech.name}
+                        <div
+                          className={`w-5 h-5 rounded-md border-2 flex-shrink-0 mt-0.5 flex items-center justify-center transition-all ${
+                            selected
+                              ? "border-teal-500 bg-teal-500"
+                              : "border-gray-600"
+                          }`}
+                        >
+                          {selected && (
+                            <span className="text-black text-xs font-bold">
+                              ✓
                             </span>
                           )}
                         </div>
                       </div>
-                      <button
-                        className={`text-sm px-4 py-2 rounded-lg font-semibold transition-all ${
-                          a.status === "live"
-                            ? "bg-purple-500/20 text-purple-400 border border-purple-500/30"
-                            : "bg-teal-500/20 text-teal-400 border border-teal-500/30 hover:bg-teal-500/30"
-                        }`}
-                      >
-                        {a.status === "live" ? "Join Round →" : "Pledge"}
-                      </button>
-                    </div>
-
-                    {/* Progress */}
-                    <div className="mb-2">
-                      <div className="flex justify-between text-xs text-gray-500 mb-1">
+                      <div className="flex gap-4 text-xs text-gray-500">
                         <span>
-                          ${(a.pledged / 1000).toFixed(0)}K pledged of $
-                          {(a.target / 1000).toFixed(0)}K target
+                          💰 ${(p.funding / 1000).toFixed(0)}K raised
                         </span>
-                        <span>{pct}%</span>
+                        <span>👥 {p.backers} backers</span>
                       </div>
-                      <div className="h-2 bg-gray-700 rounded-full">
-                        <div
-                          className={`h-2 rounded-full transition-all duration-500 ${
-                            a.status === "live"
-                              ? "bg-purple-500"
-                              : a.status === "threshold_met"
-                                ? "bg-teal-400"
-                                : "bg-teal-500/70"
-                          }`}
-                          style={{ width: `${pct}%` }}
-                        />
-                      </div>
-                    </div>
+                    </button>
+                  );
+                })}
+              </div>
+            )}
 
-                    <div className="flex gap-6 text-xs text-gray-500">
-                      <span>
-                        👥 <span className="text-gray-300">{a.backers}</span>{" "}
-                        backers
-                      </span>
-                      <span>
-                        🔨 <span className="text-gray-300">{a.builders}</span>{" "}
-                        builders
-                      </span>
-                      <span>
-                        🏛️{" "}
-                        <span className="text-gray-300">{domain?.name}</span>
-                      </span>
-                    </div>
-                  </div>
-                );
-              })}
-            </div>
-
-            {/* CTA */}
-            <div className="mt-8 bg-[#14141f] rounded-2xl p-6 border border-teal-500/20 text-center">
-              <h3 className="text-lg font-bold text-white mb-2">
-                Don&apos;t see your domain?
-              </h3>
-              <p className="text-gray-400 text-sm mb-4">
-                Create an attractor to start gathering a coalition around what
-                you care about.
-              </p>
-              <button className="bg-teal-500/20 text-teal-400 border border-teal-500/30 px-6 py-2.5 rounded-lg font-semibold hover:bg-teal-500/30 transition-all">
-                + Create Attractor
-              </button>
-            </div>
+            <button
+              onClick={() => setStep("pledge")}
+              className="w-full bg-teal-500/20 text-teal-400 border border-teal-500/30 py-3 rounded-xl font-semibold hover:bg-teal-500/30 transition-all"
+            >
+              {attractor.selectedProjects.size > 0
+                ? `Pledge to ${attractor.selectedProjects.size} project${attractor.selectedProjects.size > 1 ? "s" : ""} →`
+                : "Pledge to this domain →"}
+            </button>
           </div>
         )}
 
-        {/* Footer note */}
-        <div className="mt-12 text-center">
+        {/* ─── STEP 4: PLEDGE ─── */}
+        {step === "pledge" && selectedDomain && (
+          <div>
+            <button
+              onClick={goBack}
+              className="text-gray-500 text-sm mb-4 hover:text-teal-400 transition-colors flex items-center gap-1"
+            >
+              ← Back
+            </button>
+            <h2 className="text-xl font-bold text-white mb-1">
+              Your attractor
+            </h2>
+            <p className="text-gray-500 text-sm mb-6">
+              Review and pledge. When enough funders gather, this becomes a live
+              funding round — we handle the mechanism and operations.
+            </p>
+
+            {/* Summary card */}
+            <div className="bg-[#14141f] rounded-xl p-5 border border-gray-800 mb-6">
+              <div className="flex items-center gap-2 mb-3">
+                <span className="text-2xl">{selectedDomain.icon}</span>
+                <h3 className="font-bold text-white">{selectedDomain.name}</h3>
+              </div>
+
+              {attractor.subcategories.size > 0 && (
+                <div className="mb-3">
+                  <p className="text-xs text-gray-500 mb-1.5">Focus areas:</p>
+                  <div className="flex flex-wrap gap-1.5">
+                    {selectedDomain.subcategories
+                      .filter((s) => attractor.subcategories.has(s.id))
+                      .map((s) => (
+                        <span
+                          key={s.id}
+                          className="text-xs bg-teal-500/10 text-teal-400 px-2.5 py-1 rounded-full"
+                        >
+                          {s.name}
+                        </span>
+                      ))}
+                  </div>
+                </div>
+              )}
+
+              {attractor.freeText && (
+                <div className="mb-3">
+                  <p className="text-xs text-gray-500 mb-1">Your focus:</p>
+                  <p className="text-sm text-gray-300 bg-[#1a1a2e] rounded-lg p-3">
+                    &ldquo;{attractor.freeText}&rdquo;
+                  </p>
+                </div>
+              )}
+
+              {attractor.selectedProjects.size > 0 && (
+                <div>
+                  <p className="text-xs text-gray-500 mb-1.5">
+                    Backing {attractor.selectedProjects.size} project
+                    {attractor.selectedProjects.size > 1 ? "s" : ""}:
+                  </p>
+                  <div className="space-y-1.5">
+                    {SAMPLE_PROJECTS.filter((p) =>
+                      attractor.selectedProjects.has(p.id)
+                    ).map((p) => (
+                      <div
+                        key={p.id}
+                        className="flex items-center gap-2 text-sm"
+                      >
+                        <span className="text-teal-500">•</span>
+                        <span className="text-gray-300">{p.name}</span>
+                      </div>
+                    ))}
+                  </div>
+                </div>
+              )}
+            </div>
+
+            {/* Pledge amount */}
+            <div className="mb-6">
+              <label className="text-sm text-gray-400 block mb-2">
+                How much do you want to pledge?
+              </label>
+              <div className="relative">
+                <span className="absolute left-4 top-1/2 -translate-y-1/2 text-gray-500">
+                  $
+                </span>
+                <input
+                  type="text"
+                  value={attractor.pledgeAmount}
+                  onChange={(e) =>
+                    setAttractor((prev) => ({
+                      ...prev,
+                      pledgeAmount: e.target.value.replace(/[^0-9]/g, ""),
+                    }))
+                  }
+                  placeholder="5,000"
+                  className="w-full bg-[#14141f] border border-gray-700 rounded-xl py-3 pl-8 pr-16 text-white text-lg font-mono focus:outline-none focus:border-teal-500/50"
+                />
+                <span className="absolute right-4 top-1/2 -translate-y-1/2 text-gray-500 text-sm">
+                  USDC
+                </span>
+              </div>
+              <p className="text-xs text-gray-600 mt-2">
+                No commitment until the round launches. Your pledge signals
+                intent and helps attract builders.
+              </p>
+            </div>
+
+            {/* Quick amounts */}
+            <div className="flex gap-2 mb-6">
+              {["1000", "5000", "10000", "25000", "50000"].map((amt) => (
+                <button
+                  key={amt}
+                  onClick={() =>
+                    setAttractor((prev) => ({ ...prev, pledgeAmount: amt }))
+                  }
+                  className={`flex-1 py-2 rounded-lg text-xs font-mono transition-all ${
+                    attractor.pledgeAmount === amt
+                      ? "bg-teal-500/20 text-teal-400 border border-teal-500/30"
+                      : "bg-[#14141f] text-gray-500 border border-gray-700 hover:border-gray-600"
+                  }`}
+                >
+                  ${Number(amt).toLocaleString()}
+                </button>
+              ))}
+            </div>
+
+            {/* Coalition info */}
+            <div className="bg-[#14141f] rounded-xl p-4 border border-gray-800 mb-6">
+              <h4 className="text-sm font-semibold text-white mb-2">
+                How this works
+              </h4>
+              <div className="space-y-2 text-xs text-gray-500">
+                <div className="flex gap-2">
+                  <span className="text-teal-400">1.</span>
+                  <span>
+                    Your pledge is recorded (no funds move yet)
+                  </span>
+                </div>
+                <div className="flex gap-2">
+                  <span className="text-teal-400">2.</span>
+                  <span>
+                    Other funders see your signal and join the coalition
+                  </span>
+                </div>
+                <div className="flex gap-2">
+                  <span className="text-teal-400">3.</span>
+                  <span>
+                    Builders register projects matching your attractor
+                  </span>
+                </div>
+                <div className="flex gap-2">
+                  <span className="text-teal-400">4.</span>
+                  <span>
+                    At threshold, a round operator launches the round — we
+                    pick the best mechanism for the context
+                  </span>
+                </div>
+                <div className="flex gap-2">
+                  <span className="text-teal-400">5.</span>
+                  <span>
+                    Fund deploys, projects build, outcomes feed back into the
+                    system
+                  </span>
+                </div>
+              </div>
+            </div>
+
+            {/* CTA */}
+            <button
+              className={`w-full py-3.5 rounded-xl font-semibold text-lg transition-all ${
+                attractor.pledgeAmount
+                  ? "bg-teal-500 text-black hover:bg-teal-400"
+                  : "bg-gray-800 text-gray-500 cursor-not-allowed"
+              }`}
+              disabled={!attractor.pledgeAmount}
+            >
+              {attractor.pledgeAmount
+                ? `Pledge $${Number(attractor.pledgeAmount).toLocaleString()} USDC`
+                : "Enter an amount to pledge"}
+            </button>
+            <p className="text-center text-xs text-gray-600 mt-3">
+              This is an experimental prototype.
+              Pledges are signals, not commitments.
+            </p>
+          </div>
+        )}
+
+        {/* Footer */}
+        <div className="mt-16 text-center">
           <p className="text-gray-600 text-xs">
-            This is an experimental prototype by{" "}
-            <a href="https://gitcoin.co" className="text-teal-500/60 hover:text-teal-400">
+            An experiment by{" "}
+            <a
+              href="https://gitcoin.co"
+              className="text-teal-500/60 hover:text-teal-400"
+            >
               Gitcoin
             </a>
             . Read the{" "}
@@ -871,14 +737,7 @@ export default function CoalitionalFundingTool() {
               href="/research/mechanism-cartography-from-discovery-to-coalitional-funding"
               className="text-teal-500/60 hover:text-teal-400"
             >
-              research article
-            </a>{" "}
-            or explore the{" "}
-            <a
-              href="https://mechanism-finder.vercel.app"
-              className="text-teal-500/60 hover:text-teal-400"
-            >
-              Mechanism Finder
+              research
             </a>
             .
           </p>
