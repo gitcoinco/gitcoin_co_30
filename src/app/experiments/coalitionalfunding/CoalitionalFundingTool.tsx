@@ -275,22 +275,43 @@ export default function CoalitionalFundingTool() {
         </p>
       </div>
 
-      {/* Progress */}
+      {/* Progress — clickable to jump back */}
       <div className="max-w-3xl mx-auto px-4 mb-6">
         <div className="flex items-center gap-1">
-          {stepLabels.map(([key, label], i) => (
-            <div key={key} className="flex-1 flex items-center gap-1">
-              <div className={`w-6 h-6 rounded-full flex items-center justify-center text-[10px] font-bold transition-all ${i <= stepIdx ? "bg-teal-500 text-black" : "bg-gray-800 text-gray-600"}`}>
-                {i + 1}
+          {stepLabels.map(([key, label], i) => {
+            const completed = i < stepIdx;
+            const current = i === stepIdx;
+            const canClick = completed;
+            return (
+              <div key={key} className="flex-1 flex items-center gap-1">
+                <button
+                  onClick={() => canClick && setStep(key)}
+                  disabled={!canClick}
+                  className={`w-6 h-6 rounded-full flex items-center justify-center text-[10px] font-bold transition-all ${
+                    current ? "bg-teal-500 text-black" : completed ? "bg-teal-500/60 text-black cursor-pointer hover:bg-teal-400" : "bg-gray-800 text-gray-600 cursor-default"
+                  }`}
+                >
+                  {completed ? "✓" : i + 1}
+                </button>
+                {i < 4 && <div className={`flex-1 h-px ${i < stepIdx ? "bg-teal-500" : "bg-gray-800"}`} />}
               </div>
-              {i < 4 && <div className={`flex-1 h-px ${i < stepIdx ? "bg-teal-500" : "bg-gray-800"}`} />}
-            </div>
-          ))}
+            );
+          })}
         </div>
         <div className="flex mt-1">
-          {stepLabels.map(([key, label], i) => (
-            <p key={key} className={`flex-1 text-[9px] ${i <= stepIdx ? "text-gray-400" : "text-gray-700"}`}>{label}</p>
-          ))}
+          {stepLabels.map(([key, label], i) => {
+            const canClick = i < stepIdx;
+            return (
+              <button
+                key={key}
+                onClick={() => canClick && setStep(key)}
+                disabled={!canClick}
+                className={`flex-1 text-[9px] text-left ${i <= stepIdx ? (canClick ? "text-gray-400 hover:text-teal-400 cursor-pointer" : "text-gray-400") : "text-gray-700 cursor-default"}`}
+              >
+                {label}
+              </button>
+            );
+          })}
         </div>
       </div>
 
