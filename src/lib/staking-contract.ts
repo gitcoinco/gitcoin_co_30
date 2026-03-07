@@ -9,8 +9,7 @@ export const IS_STAGING = process.env.NEXT_PUBLIC_STAGING === "1";
 
 // Sepolia deployment
 const SEPOLIA_CONTRACT = "0xd69B924c37489bc83AbEE1167f8d84916Ab2c6BB" as `0x${string}`;
-// TODO: deploy to mainnet and update this address
-const MAINNET_CONTRACT = "0x0000000000000000000000000000000000000000" as `0x${string}`;
+const MAINNET_CONTRACT = "0xd69B924c37489bc83AbEE1167f8d84916Ab2c6BB" as `0x${string}`;
 
 export const STAKING_CONTRACT_ADDRESS = IS_STAGING ? SEPOLIA_CONTRACT : MAINNET_CONTRACT;
 export const TARGET_CHAIN = IS_STAGING ? sepolia : mainnet;
