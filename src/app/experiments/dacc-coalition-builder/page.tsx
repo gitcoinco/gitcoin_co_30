@@ -1,3 +1,4 @@
+import { Suspense } from "react";
 import { Metadata } from "next";
 import { ListPageLayout, ListPageHeader } from "@/components/layouts";
 import { CoalitionsClient } from "./CoalitionsClient";
@@ -15,7 +16,9 @@ export default function CoalitionsPage() {
         title="d/acc Coalition Builder"
         description="Map the problem space, find allies, form coalitions, deploy targeted capital"
       />
-      <CoalitionsClient />
+      <Suspense>
+        <CoalitionsClient />
+      </Suspense>
     </ListPageLayout>
   );
 }
