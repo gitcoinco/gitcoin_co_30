@@ -26,6 +26,8 @@ relatedCampaigns: []
 banner: /content-images/research/practical-pluralism/banner.png
 ---
 
+> **TLDR:** Diversity of mechanisms and implementations — like Ethereum's client diversity — is a primitive for antifragile systems. Practical pluralism means building multiple funding mechanisms, multiple implementations, and multiple teams. Monocultures are fragile; diversity is resilience.
+
 **Type:** Perspective
 **Authors:** Auryn Macmillan (CLRFund) & Kevin Owocki (Gitcoin)
 **Originally published:** [Medium](https://medium.com/@owocki/practical-pluralism-322ab0a984c5), May 2022

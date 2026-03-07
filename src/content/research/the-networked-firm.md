@@ -27,6 +27,8 @@ relatedCampaigns: []
 banner: /content-images/research/the-networked-firm/banner.png
 ---
 
+> **TLDR:** AI and blockchain are turning rigid companies into adaptive networks — the cost of cognition and trust approach zero, enabling fluid organizational forms. The Networked Firm is a playbook for operating and allocating capital in this new era where coordination beats command.
+
 **Type:** Book
 **Authors:** Kevin Owocki, Daniel Stringer, Daniel Ospina
 **Published by:** [Allo Capital](https://www.allo.capital/resources/thenetworkedfirm)

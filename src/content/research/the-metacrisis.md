@@ -31,6 +31,8 @@ relatedCampaigns: []
 banner: /content-images/research/the-metacrisis/banner.png
 ---
 
+> **TLDR:** Humanity faces interconnected systemic crises — climate, AI, biodiversity, inequality — driven by the same generator functions: multipolar traps, perverse incentives, coordination failure. The solution isn't collapse or authoritarian control, but a third attractor: distributed coordination infrastructure that enables collective intelligence at scale.
+
 **Type:** Opinion
 **Authors:** Kevin Owocki
 **Source material:** [The Metacrisis with Daniel Schmachtenberger — Green Pill #26](https://www.youtube.com/watch?v=WVEP0zAK-xQ), July 2022

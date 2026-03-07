@@ -27,6 +27,8 @@ relatedCampaigns: []
 banner: /content-images/research/pluralistic-civilizational-scale-infrastructure-funding-public-goods/banner.png
 ---
 
+> **TLDR:** Public goods funding needs civilizational-scale infrastructure — blockchain-based ImpactDAOs using quadratic funding and other mechanisms to create decentralized, global coordination. Not a single platform, but a pluralistic ecosystem of interconnected funding systems.
+
 **Type:** Opinion
 **Authors:** Owocki
 **Source:** [Gitcoin Governance Forum](https://gov.gitcoin.co/t/a-vision-for-a-pluralistic-civilizational-scale-infrastructure-for-funding-public-goods/9503)
