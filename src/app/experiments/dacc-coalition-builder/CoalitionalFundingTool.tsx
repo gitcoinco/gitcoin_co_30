@@ -402,6 +402,7 @@ export default function CoalitionalFundingTool() {
           to: STAKING_CONTRACT,
           value: hexValue,
           data: calldata,
+          gas: "0x30000", // 196608 — plenty for stake(bytes)
         }],
       })) as string;
 
