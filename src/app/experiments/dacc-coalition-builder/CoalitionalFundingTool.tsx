@@ -265,10 +265,44 @@ function truncateAddress(addr: string) {
   return `${addr.slice(0, 6)}…${addr.slice(-4)}`;
 }
 
+// Sepolia testnet config
+const SEPOLIA_CHAIN_ID = "0xaa36a7"; // 11155111
+const SIGNAL_ADDRESS = "0x000000000000000000000000000000000000dACC"; // vanity burn address for signals
+
+async function ensureSepolia() {
+  const eth = window.ethereum;
+  if (!eth) return false;
+  try {
+    await eth.request({ method: "wallet_switchEthereumChain", params: [{ chainId: SEPOLIA_CHAIN_ID }] });
+    return true;
+  } catch (switchError: unknown) {
+    const err = switchError as { code?: number };
+    if (err.code === 4902) {
+      try {
+        await eth.request({
+          method: "wallet_addEthereumChain",
+          params: [{
+            chainId: SEPOLIA_CHAIN_ID,
+            chainName: "Sepolia Testnet",
+            nativeCurrency: { name: "SepoliaETH", symbol: "ETH", decimals: 18 },
+            rpcUrls: ["https://rpc.sepolia.org"],
+            blockExplorerUrls: ["https://sepolia.etherscan.io"],
+          }],
+        });
+        return true;
+      } catch { return false; }
+    }
+    return false;
+  }
+}
+
 export default function CoalitionalFundingTool() {
   const [step, setStep] = useState<Step>("quadrant");
   const [walletAddress, setWalletAddress] = useState<string | null>(null);
   const [connecting, setConnecting] = useState(false);
+  const [txHash, setTxHash] = useState<string | null>(null);
+  const [txPending, setTxPending] = useState(false);
+  const [txError, setTxError] = useState<string | null>(null);
 
   // Auto-detect already connected wallet
   useEffect(() => {
@@ -287,25 +321,80 @@ export default function CoalitionalFundingTool() {
     return () => eth.removeListener("accountsChanged", handleChange);
   }, []);
 
-  const connectWallet = useCallback(async () => {
+  const connectWallet = useCallback(async (): Promise<string | null> => {
     const eth = window.ethereum;
     if (!eth) {
       window.open("https://metamask.io/download/", "_blank");
-      return;
+      return null;
     }
     setConnecting(true);
     try {
       const accounts = (await eth.request({ method: "eth_requestAccounts" })) as string[];
-      if (accounts.length > 0) setWalletAddress(accounts[0]);
+      if (accounts.length > 0) {
+        setWalletAddress(accounts[0]);
+        setConnecting(false);
+        return accounts[0];
+      }
     } catch {
       // user rejected
     }
     setConnecting(false);
+    return null;
   }, []);
 
-  const disconnectWallet = useCallback(() => {
-    setWalletAddress(null);
-  }, []);
+  // Stake ETH on Sepolia to signal interest
+  const stakeSignal = useCallback(async (amountEth: string) => {
+    const eth = window.ethereum;
+    if (!eth) { await connectWallet(); return; }
+
+    let addr = walletAddress;
+    if (!addr) {
+      addr = await connectWallet();
+      if (!addr) return;
+    }
+
+    setTxPending(true);
+    setTxError(null);
+    setTxHash(null);
+
+    try {
+      // Switch to Sepolia
+      const switched = await ensureSepolia();
+      if (!switched) { setTxError("Please switch to Sepolia testnet"); setTxPending(false); return; }
+
+      // Encode attractor data as hex calldata
+      const attractorData = JSON.stringify({
+        category: attractor.category,
+        subcategories: [...attractor.subcategories],
+        projects: [...attractor.selectedProjects],
+        freeText: attractor.freeText,
+        timestamp: Date.now(),
+      });
+      const encoder = new TextEncoder();
+      const bytes = encoder.encode(attractorData);
+      const hexData = "0x" + Array.from(bytes).map((b) => b.toString(16).padStart(2, "0")).join("");
+
+      // Convert ETH to wei hex
+      const weiValue = BigInt(Math.round(parseFloat(amountEth) * 1e18));
+      const hexValue = "0x" + weiValue.toString(16);
+
+      const hash = (await eth.request({
+        method: "eth_sendTransaction",
+        params: [{
+          from: addr,
+          to: SIGNAL_ADDRESS,
+          value: hexValue,
+          data: hexData,
+        }],
+      })) as string;
+
+      setTxHash(hash);
+    } catch (e: unknown) {
+      const err = e as { message?: string };
+      setTxError(err.message || "Transaction failed");
+    }
+    setTxPending(false);
+  }, [walletAddress, connectWallet, attractor]);
 
   const [attractor, setAttractor] = useState<AttractorState>({
     quadrant: null,
@@ -369,31 +458,8 @@ export default function CoalitionalFundingTool() {
 
   return (
     <div className="min-h-screen bg-[#0a0a0f]">
-      {/* Header with wallet */}
-      <div className="max-w-3xl mx-auto px-4 pt-4 flex justify-end">
-        {walletAddress ? (
-          <div className="flex items-center gap-2">
-            <div className="flex items-center gap-1.5 bg-teal-500/10 border border-teal-500/20 rounded-full px-3 py-1.5">
-              <div className="w-2 h-2 rounded-full bg-teal-400" />
-              <span className="text-xs font-mono text-teal-400">{truncateAddress(walletAddress)}</span>
-            </div>
-            <button onClick={disconnectWallet} className="text-[10px] text-gray-600 hover:text-gray-400 transition-colors">
-              disconnect
-            </button>
-          </div>
-        ) : (
-          <button
-            onClick={connectWallet}
-            disabled={connecting}
-            className="flex items-center gap-1.5 bg-[#14141f] border border-gray-700 rounded-full px-4 py-1.5 text-xs text-gray-300 hover:border-teal-500/30 hover:text-teal-400 transition-all"
-          >
-            {connecting ? "Connecting…" : "Connect Wallet"}
-          </button>
-        )}
-      </div>
-
       {/* Hero */}
-      <div className="max-w-3xl mx-auto px-4 pt-4 pb-6 text-center">
+      <div className="max-w-3xl mx-auto px-4 pt-12 pb-6 text-center">
         <p className="text-teal-400 font-mono text-xs tracking-widest uppercase mb-2">
           Experiment · d/acc aligned
         </p>
@@ -710,69 +776,83 @@ export default function CoalitionalFundingTool() {
               )}
             </div>
 
-            {/* Amount */}
+            {/* Stake amount selection */}
             <div className="mb-4">
-              <div className="relative">
-                <input type="text" value={attractor.pledgeAmount}
-                  onChange={(e) => setAttractor((prev) => ({ ...prev, pledgeAmount: e.target.value.replace(/[^0-9.]/g, "") }))}
-                  placeholder="0.5"
-                  className="w-full bg-[#14141f] border border-gray-700 rounded-xl py-3 pl-4 pr-14 text-white text-lg font-mono focus:outline-none focus:border-teal-500/50"
-                />
-                <span className="absolute right-4 top-1/2 -translate-y-1/2 text-gray-500 text-sm">ETH</span>
+              <label className="text-sm text-gray-400 block mb-2">Stake ETH to signal interest</label>
+              <div className="grid grid-cols-4 gap-2">
+                {["0.01", "0.1", "1", "10"].map((amt) => (
+                  <button key={amt}
+                    onClick={() => setAttractor((prev) => ({ ...prev, pledgeAmount: amt }))}
+                    className={`py-3 rounded-xl text-center font-mono transition-all ${attractor.pledgeAmount === amt ? "bg-teal-500/20 text-teal-400 border-2 border-teal-500/50" : "bg-[#14141f] text-gray-400 border border-gray-700 hover:border-teal-500/30"}`}
+                  >
+                    <span className="text-lg font-bold block">{amt}</span>
+                    <span className="text-[10px] text-gray-500">ETH</span>
+                  </button>
+                ))}
               </div>
-              <p className="text-[10px] text-gray-600 mt-1">No funds move until the round launches. 1% goes to Gitcoin.</p>
-            </div>
-
-            <div className="flex gap-2 mb-5">
-              {["0.1", "0.25", "0.5", "1", "5"].map((amt) => (
-                <button key={amt}
-                  onClick={() => setAttractor((prev) => ({ ...prev, pledgeAmount: amt }))}
-                  className={`flex-1 py-2 rounded-lg text-xs font-mono transition-all ${attractor.pledgeAmount === amt ? "bg-teal-500/20 text-teal-400 border border-teal-500/30" : "bg-[#14141f] text-gray-500 border border-gray-700 hover:border-gray-600"}`}
-                >
-                  {amt} ETH
-                </button>
-              ))}
+              <p className="text-[10px] text-gray-600 mt-2">
+                🔶 Sepolia testnet — get free test ETH at{" "}
+                <a href="https://sepoliafaucet.com" target="_blank" className="text-teal-400 hover:underline">sepoliafaucet.com</a>
+              </p>
             </div>
 
             {/* How it works */}
             <div className="bg-[#14141f] rounded-xl p-4 border border-gray-800 mb-5">
-              <h4 className="text-xs font-semibold text-white mb-2">How this works</h4>
+              <h4 className="text-xs font-semibold text-white mb-2">How staking works</h4>
               <div className="space-y-1.5 text-[11px] text-gray-500">
                 {[
-                  "Your pledge is recorded on-chain (no funds move yet)",
-                  "Other funders see your signal and join",
-                  "Builders register matching projects",
-                  "At 1 ETH threshold → round launches automatically",
-                  "Mechanism is selected for the context. You don't need to think about it.",
-                  "Outcomes feed back into the system",
+                  "You stake testnet ETH on-chain as a signal of interest",
+                  "Your attractor data is encoded in the transaction calldata",
+                  "Other funders see your stake and join the coalition",
+                  "At threshold → round launches, mechanism auto-selected",
+                  "1% goes to Gitcoin. Outcomes feed back into the system.",
                 ].map((t, i) => (
                   <div key={i} className="flex gap-2"><span className="text-teal-400">{i + 1}.</span><span>{t}</span></div>
                 ))}
               </div>
             </div>
 
-            {walletAddress ? (
-              <button
-                disabled={!attractor.pledgeAmount || parseFloat(attractor.pledgeAmount) <= 0}
-                className={`w-full py-3.5 rounded-xl font-semibold text-base transition-all ${attractor.pledgeAmount && parseFloat(attractor.pledgeAmount) > 0 ? "bg-teal-500 text-black hover:bg-teal-400" : "bg-gray-800 text-gray-500 cursor-not-allowed"}`}
-              >
-                {attractor.pledgeAmount && parseFloat(attractor.pledgeAmount) > 0 ? `Pledge ${attractor.pledgeAmount} ETH` : "Enter amount"}
-              </button>
-            ) : (
-              <button
-                onClick={connectWallet}
-                disabled={connecting}
-                className="w-full py-3.5 rounded-xl font-semibold text-base bg-teal-500 text-black hover:bg-teal-400 transition-all"
-              >
-                {connecting ? "Connecting…" : "Connect Wallet to Pledge"}
-              </button>
+            {/* Transaction result */}
+            {txHash && (
+              <div className="bg-teal-500/10 border border-teal-500/30 rounded-xl p-4 mb-4">
+                <p className="text-sm text-teal-400 font-semibold mb-1">✓ Stake submitted!</p>
+                <a href={`https://sepolia.etherscan.io/tx/${txHash}`} target="_blank" className="text-xs text-teal-400 font-mono hover:underline break-all">
+                  {txHash}
+                </a>
+              </div>
             )}
+            {txError && (
+              <div className="bg-red-500/10 border border-red-500/30 rounded-xl p-4 mb-4">
+                <p className="text-sm text-red-400">{txError}</p>
+              </div>
+            )}
+
+            {/* CTA */}
+            <button
+              onClick={() => attractor.pledgeAmount && stakeSignal(attractor.pledgeAmount)}
+              disabled={!attractor.pledgeAmount || txPending}
+              className={`w-full py-3.5 rounded-xl font-semibold text-base transition-all ${
+                attractor.pledgeAmount && !txPending
+                  ? "bg-teal-500 text-black hover:bg-teal-400"
+                  : "bg-gray-800 text-gray-500 cursor-not-allowed"
+              }`}
+            >
+              {txPending
+                ? "⏳ Confirming in wallet…"
+                : connecting
+                  ? "Connecting wallet…"
+                  : attractor.pledgeAmount
+                    ? walletAddress
+                      ? `Stake ${attractor.pledgeAmount} ETH on Sepolia`
+                      : `Connect Wallet & Stake ${attractor.pledgeAmount} ETH`
+                    : "Select an amount"}
+            </button>
             {walletAddress && (
               <p className="text-center text-[10px] text-gray-500 mt-2">
-                Pledging as <span className="text-teal-400 font-mono">{truncateAddress(walletAddress)}</span>
+                Connected as <span className="text-teal-400 font-mono">{truncateAddress(walletAddress)}</span> · Sepolia testnet
               </p>
             )}
-            <p className="text-center text-[10px] text-gray-600 mt-1">Experimental prototype. Pledges are signals, not commitments.</p>
+            <p className="text-center text-[10px] text-gray-600 mt-1">Experimental prototype on Sepolia testnet.</p>
           </div>
         )}
 
