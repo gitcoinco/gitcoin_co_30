@@ -26,6 +26,8 @@ import { domains, quadrants, diagnosticChecklist, axes, type Domain } from "@/li
 import { STAKING_CONTRACT_ADDRESS, STAKING_CONTRACT_ABI } from "@/lib/staking-contract";
 import { DomainMap } from "./DomainMap";
 
+const ADMIN_ADDRESS = "0x00De4B13153673BCAE2616b67bf822500d325Fc3";
+
 const STAKE_TIERS = [
   { amount: "0.001", label: "0.001 ETH", description: "Light signal" },
   { amount: "0.01", label: "0.01 ETH", description: "Interested" },
@@ -57,7 +59,11 @@ export function CoalitionsClient() {
   const [selectedDiagnostics, setSelectedDiagnostics] = useState<Set<string>>(new Set());
   const [sortBy, setSortBy] = useState<"segment" | "alpha" | "raised" | "interest">("segment");
   const [domainTotals, setDomainTotals] = useState<Record<string, number>>({});
+  const [mode, setMode] = useState<"basic" | "advanced">("basic");
+  const [showAdmin, setShowAdmin] = useState(false);
   const searchDebounceRef = useRef<ReturnType<typeof setTimeout>>(null);
+
+  const isAdmin = address?.toLowerCase() === ADMIN_ADDRESS.toLowerCase();
 
   // Callback for DomainPercent to report onchain totals
   const reportDomainTotal = useCallback((domainId: string, ethAmount: number) => {
@@ -215,79 +221,127 @@ export function CoalitionsClient() {
 
   return (
     <div className="bg-gray-900">
-      {/* Step 1: Select your flavor of d/acc */}
-      <section className="border-b border-gray-700">
-        <div className="container-page py-5">
-          <div className="flex items-center gap-2 mb-3 text-sm">
-            <Shield className="w-4 h-4 text-teal-400" />
-            <span className="text-xs text-gray-500 uppercase tracking-wider mr-1">Step 1</span>
-            <span className="font-heading font-semibold text-gray-25">Select your flavor of d/acc</span>
-            {selectedDiagnostics.size > 0 && (
-              <span className="text-xs px-2 py-0.5 rounded-full bg-teal-500/10 text-teal-400">
-                {selectedDiagnostics.size}/4
-              </span>
-            )}
+      {/* Mode toggle */}
+      <div className="border-b border-gray-700">
+        <div className="container-page py-2 flex items-center gap-3">
+          <div className="flex items-center bg-gray-800 rounded-full p-0.5">
+            <button
+              onClick={() => setMode("basic")}
+              className={`px-3 py-1 rounded-full text-xs font-medium transition-colors ${
+                mode === "basic" ? "bg-gray-25 text-gray-900" : "text-gray-500 hover:text-gray-300"
+              }`}
+            >
+              Basic
+            </button>
+            <button
+              onClick={() => setMode("advanced")}
+              className={`px-3 py-1 rounded-full text-xs font-medium transition-colors ${
+                mode === "advanced" ? "bg-gray-25 text-gray-900" : "text-gray-500 hover:text-gray-300"
+              }`}
+            >
+              Advanced
+            </button>
           </div>
-          <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-3">
-            {diagnosticChecklist.map((item) => {
-              const Icon = diagnosticIcons[item.icon as keyof typeof diagnosticIcons];
-              const isSelected = selectedDiagnostics.has(item.id);
-              return (
-                <button
-                  key={item.id}
-                  onClick={() => toggleDiagnostic(item.id)}
-                  className={`p-3 rounded-lg text-left transition-all ${
-                    isSelected
-                      ? "bg-teal-500/10 border border-teal-500/50 ring-1 ring-teal-500/20"
-                      : "bg-gray-950 border border-gray-700 hover:border-gray-500"
-                  }`}
-                >
-                  <div className="flex items-center gap-2 mb-1.5">
-                    <div
-                      className={`w-5 h-5 rounded border flex items-center justify-center transition-colors ${
-                        isSelected
-                          ? "bg-teal-500 border-teal-500"
-                          : "border-gray-600"
-                      }`}
-                    >
-                      {isSelected && <Check className="w-3 h-3 text-gray-950" />}
+          {isAdmin && (
+            <button
+              onClick={() => setShowAdmin(!showAdmin)}
+              className={`ml-auto px-3 py-1 rounded-full text-xs font-medium transition-colors ${
+                showAdmin ? "bg-red-500/20 text-red-400 border border-red-500/30" : "bg-gray-800 text-gray-500 hover:text-gray-300"
+              }`}
+            >
+              {showAdmin ? "Hide Admin" : "Admin"}
+            </button>
+          )}
+        </div>
+      </div>
+
+      {/* Admin Panel */}
+      {showAdmin && isAdmin && (
+        <AdminPanel
+          interestCounts={interestCounts}
+          trending={trending}
+          address={address!}
+          onUpdate={refreshData}
+        />
+      )}
+
+      {/* Step 1: Select your flavor of d/acc (advanced only) */}
+      {mode === "advanced" && (
+        <section className="border-b border-gray-700">
+          <div className="container-page py-5">
+            <div className="flex items-center gap-2 mb-3 text-sm">
+              <Shield className="w-4 h-4 text-teal-400" />
+              <span className="text-xs text-gray-500 uppercase tracking-wider mr-1">Step 1</span>
+              <span className="font-heading font-semibold text-gray-25">Select your flavor of d/acc</span>
+              {selectedDiagnostics.size > 0 && (
+                <span className="text-xs px-2 py-0.5 rounded-full bg-teal-500/10 text-teal-400">
+                  {selectedDiagnostics.size}/4
+                </span>
+              )}
+            </div>
+            <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-3">
+              {diagnosticChecklist.map((item) => {
+                const Icon = diagnosticIcons[item.icon as keyof typeof diagnosticIcons];
+                const isSelected = selectedDiagnostics.has(item.id);
+                return (
+                  <button
+                    key={item.id}
+                    onClick={() => toggleDiagnostic(item.id)}
+                    className={`p-3 rounded-lg text-left transition-all ${
+                      isSelected
+                        ? "bg-teal-500/10 border border-teal-500/50 ring-1 ring-teal-500/20"
+                        : "bg-gray-950 border border-gray-700 hover:border-gray-500"
+                    }`}
+                  >
+                    <div className="flex items-center gap-2 mb-1.5">
+                      <div
+                        className={`w-5 h-5 rounded border flex items-center justify-center transition-colors ${
+                          isSelected
+                            ? "bg-teal-500 border-teal-500"
+                            : "border-gray-600"
+                        }`}
+                      >
+                        {isSelected && <Check className="w-3 h-3 text-gray-950" />}
+                      </div>
+                      <Icon className={`w-3.5 h-3.5 ${isSelected ? "text-teal-400" : "text-gray-500"}`} />
+                      <span className={`font-heading font-semibold text-sm ${isSelected ? "text-teal-300" : "text-gray-25"}`}>
+                        {item.label}
+                      </span>
                     </div>
-                    <Icon className={`w-3.5 h-3.5 ${isSelected ? "text-teal-400" : "text-gray-500"}`} />
-                    <span className={`font-heading font-semibold text-sm ${isSelected ? "text-teal-300" : "text-gray-25"}`}>
-                      {item.label}
-                    </span>
-                  </div>
-                  <p className="text-xs text-gray-400 font-serif italic pl-7">
-                    &ldquo;{item.question}&rdquo;
-                  </p>
-                </button>
-              );
-            })}
+                    <p className="text-xs text-gray-400 font-serif italic pl-7">
+                      &ldquo;{item.question}&rdquo;
+                    </p>
+                  </button>
+                );
+              })}
+            </div>
           </div>
-        </div>
-      </section>
+        </section>
+      )}
 
-      {/* Step 2: Domain Map */}
-      <section className="border-b border-gray-700">
-        <div className="container-page py-5">
-          <div className="flex items-center gap-2 mb-1">
-            <span className="text-xs text-gray-500 uppercase tracking-wider">Step 2</span>
-            <h2 className="text-sm font-heading font-semibold text-gray-25">Find your domain</h2>
+      {/* Step 2: Domain Map (advanced only) */}
+      {mode === "advanced" && (
+        <section className="border-b border-gray-700">
+          <div className="container-page py-5">
+            <div className="flex items-center gap-2 mb-1">
+              <span className="text-xs text-gray-500 uppercase tracking-wider">Step 2</span>
+              <h2 className="text-sm font-heading font-semibold text-gray-25">Find your domain</h2>
+            </div>
+            <p className="text-xs text-gray-500 mb-4">
+              {axes.y.description} &times; {axes.x.description}
+            </p>
+            <DomainMap
+              domains={domains}
+              interestCounts={interestCounts}
+              selectedQuadrant={selectedQuadrant}
+              onSelectQuadrant={setSelectedQuadrant}
+            />
           </div>
-          <p className="text-xs text-gray-500 mb-4">
-            {axes.y.description} &times; {axes.x.description}
-          </p>
-          <DomainMap
-            domains={domains}
-            interestCounts={interestCounts}
-            selectedQuadrant={selectedQuadrant}
-            onSelectQuadrant={setSelectedQuadrant}
-          />
-        </div>
-      </section>
+        </section>
+      )}
 
-      {/* Trending */}
-      {trending.length > 0 && (
+      {/* Trending (advanced only) */}
+      {mode === "advanced" && trending.length > 0 && (
         <section className="border-b border-gray-700">
           <div className="container-page py-4">
             <div className="flex items-center gap-2 mb-3">
@@ -317,29 +371,33 @@ export function CoalitionsClient() {
         </section>
       )}
 
-      {/* Search */}
-      <section className="border-b border-gray-700">
-        <div className="container-page py-4">
-          <form onSubmit={handleSearch} className="max-w-2xl">
-            <div className="relative">
-              <Search className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-gray-500" />
-              <input
-                type="text"
-                value={searchQuery}
-                onChange={(e) => handleSearchChange(e.target.value)}
-                placeholder="Search domains... (e.g. watershed monitoring, AI alignment)"
-                className="w-full bg-gray-950 border border-gray-700 rounded-lg pl-10 pr-4 py-2.5 text-sm text-gray-25 placeholder:text-gray-500 focus:outline-none focus:border-teal-500 transition-colors"
-              />
-            </div>
-          </form>
-        </div>
-      </section>
+      {/* Search (advanced only) */}
+      {mode === "advanced" && (
+        <section className="border-b border-gray-700">
+          <div className="container-page py-4">
+            <form onSubmit={handleSearch} className="max-w-2xl">
+              <div className="relative">
+                <Search className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-gray-500" />
+                <input
+                  type="text"
+                  value={searchQuery}
+                  onChange={(e) => handleSearchChange(e.target.value)}
+                  placeholder="Search domains... (e.g. watershed monitoring, AI alignment)"
+                  className="w-full bg-gray-950 border border-gray-700 rounded-lg pl-10 pr-4 py-2.5 text-sm text-gray-25 placeholder:text-gray-500 focus:outline-none focus:border-teal-500 transition-colors"
+                />
+              </div>
+            </form>
+          </div>
+        </section>
+      )}
 
-      {/* Step 3: Quadrant Filter + Domain Cards */}
+      {/* Quadrant Filter + Domain Cards */}
       <section className="sticky top-[72px] z-40 bg-gray-900 border-b border-gray-700">
         <div className="container-page py-2.5">
           <div className="flex items-center gap-2 flex-wrap">
-            <span className="text-xs text-gray-500 uppercase tracking-wider mr-1">Step 3</span>
+            {mode === "advanced" && (
+              <span className="text-xs text-gray-500 uppercase tracking-wider mr-1">Step 3</span>
+            )}
             <button
               onClick={() => setSelectedQuadrant(null)}
               className={`px-3 py-1.5 rounded-full text-xs font-medium transition-colors ${
