@@ -13,7 +13,7 @@ export default function CoalitionsPage() {
     <ListPageLayout>
       <ListPageHeader
         title="d/acc Coalition Builder"
-        description="Map the problem space, find allies, form coalitions, deploy capital"
+        description="Map the problem space, find allies, form coalitions, deploy targeted capital"
       />
       <CoalitionsClient />
     </ListPageLayout>

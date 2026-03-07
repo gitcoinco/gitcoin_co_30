@@ -2,18 +2,24 @@
 
 import { ReactNode, useState } from "react";
 import { WagmiProvider, createConfig, http } from "wagmi";
+import { mainnet, sepolia } from "wagmi/chains";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { injected } from "wagmi/connectors";
-import { TARGET_CHAIN } from "@/lib/staking-contract";
+import { IS_STAGING } from "@/lib/staking-contract";
 
-const config = createConfig({
-  chains: [TARGET_CHAIN],
-  connectors: [injected()],
-  transports: {
-    [TARGET_CHAIN.id]: http(),
-  },
-  ssr: true,
-});
+const config = IS_STAGING
+  ? createConfig({
+      chains: [sepolia],
+      connectors: [injected()],
+      transports: { [sepolia.id]: http() },
+      ssr: true,
+    })
+  : createConfig({
+      chains: [mainnet],
+      connectors: [injected()],
+      transports: { [mainnet.id]: http() },
+      ssr: true,
+    });
 
 export function WalletProvider({ children }: { children: ReactNode }) {
   const [queryClient] = useState(() => new QueryClient());

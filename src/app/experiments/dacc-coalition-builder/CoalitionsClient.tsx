@@ -12,6 +12,7 @@ import {
   Loader2,
   Wallet,
   ArrowDownToLine,
+  Activity,
 } from "lucide-react";
 import {
   useAccount,
@@ -225,6 +226,11 @@ export function CoalitionsClient() {
       {/* Mode toggle */}
       <div className="border-b border-gray-700">
         <div className="container-page py-2 flex items-center gap-3">
+          {IS_STAGING && (
+            <span className="text-[10px] px-2 py-0.5 rounded-full bg-yellow-500/10 text-yellow-400 border border-yellow-500/20">
+              Sepolia
+            </span>
+          )}
           <div className="flex items-center bg-gray-800 rounded-full p-0.5">
             <button
               onClick={() => setMode("basic")}
@@ -337,37 +343,6 @@ export function CoalitionsClient() {
               selectedQuadrant={selectedQuadrant}
               onSelectQuadrant={setSelectedQuadrant}
             />
-          </div>
-        </section>
-      )}
-
-      {/* Trending (advanced only) */}
-      {mode === "advanced" && trending.length > 0 && (
-        <section className="border-b border-gray-700">
-          <div className="container-page py-4">
-            <div className="flex items-center gap-2 mb-3">
-              <Flame className="w-4 h-4 text-orange-400" />
-              <h2 className="text-sm font-heading font-semibold text-gray-25">Trending</h2>
-            </div>
-            <div className="flex flex-wrap gap-2">
-              {trending.map((t) => {
-                const domain = domains.find((d) => d.id === t.domainId);
-                if (!domain) return null;
-                return (
-                  <button
-                    key={t.domainId}
-                    onClick={() => {
-                      setSelectedQuadrant(domain.quadrant);
-                      handleDomainClick(domain.id);
-                    }}
-                    className="px-3 py-1.5 rounded-full bg-gray-950 border border-gray-700 text-gray-200 text-xs hover:border-teal-500 transition-colors flex items-center gap-1.5"
-                  >
-                    {domain.name}
-                    <span className="text-xs text-orange-400">{t.queryCount}</span>
-                  </button>
-                );
-              })}
-            </div>
           </div>
         </section>
       )}
@@ -543,6 +518,19 @@ export function CoalitionsClient() {
 
       {/* My Positions */}
       <StakingPositions />
+
+      {/* Activity Feed */}
+      <ActivityFeed
+        activity={activity}
+        trending={trending}
+        onTrendingClick={(domainId) => {
+          const domain = domains.find((d) => d.id === domainId);
+          if (domain) {
+            setSelectedQuadrant(domain.quadrant);
+            handleDomainClick(domain.id);
+          }
+        }}
+      />
     </div>
   );
 }
@@ -665,6 +653,36 @@ function AdminPanel({
                 />
                 <button
                   onClick={() => clearInterest(d.id)}
+                  className="text-[10px] text-gray-600 hover:text-red-400"
+                  title="Reset to organic"
+                >
+                  x
+                </button>
+              </div>
+            ))}
+          </div>
+        </div>
+
+        {/* Stake amount overrides */}
+        <div>
+          <label className="text-xs text-gray-400 block mb-2">Stake amount overrides (ETH)</label>
+          <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-2">
+            {domains.map((d) => (
+              <div key={d.id} className="flex items-center gap-1.5 bg-gray-950 border border-gray-700 rounded-lg px-2 py-1.5">
+                <span className="text-[10px] text-gray-400 flex-1 truncate">{d.name}</span>
+                <input
+                  type="number"
+                  min={0}
+                  step={0.001}
+                  placeholder="ETH"
+                  className="w-16 bg-gray-800 border border-gray-600 rounded px-1 py-0.5 text-[10px] text-gray-25 text-center focus:outline-none focus:border-red-500"
+                  onBlur={(e) => {
+                    const val = parseFloat(e.target.value);
+                    if (!isNaN(val)) setStakeAmount(d.id, val);
+                  }}
+                />
+                <button
+                  onClick={() => clearStake(d.id)}
                   className="text-[10px] text-gray-600 hover:text-red-400"
                   title="Reset to organic"
                 >
@@ -898,5 +916,99 @@ function PositionCard({
         </button>
       )}
     </div>
+  );
+}
+
+// ── Activity Feed ─────────────────────────────────────────────────────────
+function ActivityFeed({
+  activity,
+  trending,
+  onTrendingClick,
+}: {
+  activity: { type: string; domainId: string; address: string; amount?: string; timestamp: number }[];
+  trending: { domainId: string; queryCount: number }[];
+  onTrendingClick: (domainId: string) => void;
+}) {
+  if (activity.length === 0 && trending.length === 0) return null;
+
+  const domainName = (id: string) => domains.find((d) => d.id === id)?.name || id;
+  const shortAddr = (addr: string) => `${addr.slice(0, 6)}...${addr.slice(-4)}`;
+  const timeAgo = (ts: number) => {
+    const diff = Date.now() - ts;
+    if (diff < 60_000) return "just now";
+    if (diff < 3600_000) return `${Math.floor(diff / 60_000)}m ago`;
+    if (diff < 86400_000) return `${Math.floor(diff / 3600_000)}h ago`;
+    return `${Math.floor(diff / 86400_000)}d ago`;
+  };
+
+  return (
+    <section className="border-t border-gray-600 py-12">
+      <div className="container-page">
+        <h2 className="text-lg font-heading font-semibold text-gray-25 mb-6 flex items-center gap-2">
+          <Activity className="w-5 h-5 text-teal-400" />
+          Activity
+        </h2>
+
+        {trending.length > 0 && (
+          <div className="mb-6">
+            <div className="flex items-center gap-2 mb-3">
+              <Flame className="w-4 h-4 text-orange-400" />
+              <h3 className="text-sm font-heading font-semibold text-gray-25">Trending</h3>
+            </div>
+            <div className="flex flex-wrap gap-2">
+              {trending.map((t) => {
+                const domain = domains.find((d) => d.id === t.domainId);
+                if (!domain) return null;
+                return (
+                  <button
+                    key={t.domainId}
+                    onClick={() => onTrendingClick(domain.id)}
+                    className="px-3 py-1.5 rounded-full bg-gray-950 border border-gray-700 text-gray-200 text-xs hover:border-teal-500 transition-colors flex items-center gap-1.5"
+                  >
+                    {domain.name}
+                    <span className="text-xs text-orange-400">{t.queryCount}</span>
+                  </button>
+                );
+              })}
+            </div>
+          </div>
+        )}
+
+        <div className="space-y-1.5 max-w-2xl">
+          {activity.map((entry, i) => (
+            <div
+              key={`${entry.timestamp}-${i}`}
+              className="flex items-center gap-3 py-2 px-3 rounded-lg bg-gray-950 border border-gray-800 text-xs"
+            >
+              <span
+                className={`w-1.5 h-1.5 rounded-full shrink-0 ${
+                  entry.type === "stake"
+                    ? "bg-teal-400"
+                    : entry.type === "withdraw"
+                      ? "bg-orange-400"
+                      : "bg-blue-400"
+                }`}
+              />
+              <span className="text-gray-400 font-mono">{shortAddr(entry.address)}</span>
+              <span className="text-gray-500">
+                {entry.type === "stake" && (
+                  <>
+                    staked <span className="text-teal-400 font-medium">{entry.amount} ETH</span> on
+                  </>
+                )}
+                {entry.type === "withdraw" && (
+                  <>
+                    withdrew <span className="text-orange-400 font-medium">{entry.amount} ETH</span> from
+                  </>
+                )}
+                {entry.type === "interest" && "signaled interest in"}
+              </span>
+              <span className="text-gray-300 font-medium truncate">{domainName(entry.domainId)}</span>
+              <span className="text-gray-600 ml-auto shrink-0">{timeAgo(entry.timestamp)}</span>
+            </div>
+          ))}
+        </div>
+      </div>
+    </section>
   );
 }

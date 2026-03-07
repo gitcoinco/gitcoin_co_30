@@ -4,10 +4,13 @@ import OpenAI from "openai";
 
 export const maxDuration = 30;
 
-const openaiClient = new OpenAI();
+function getOpenAIClient() {
+  return new OpenAI();
+}
 
 async function searchKnowledgeBase(query: string): Promise<string> {
   try {
+    const openaiClient = getOpenAIClient();
     const results = await openaiClient.vectorStores.search(
       process.env.OPENAI_VECTOR_STORE_ID!,
       { query, max_num_results: 5 },
