@@ -1,7 +1,5 @@
 import { NextRequest, NextResponse } from "next/server";
 
-const ADMIN_ADDRESS = "0x00De4B13153673BCAE2616b67bf822500d325Fc3";
-
 // In-memory store for MVP (production would use Supabase)
 const interestSignals: Record<string, Set<string>> = {};
 const stakes: { domainId: string; address: string; amount: string; txHash: string; timestamp: number }[] = [];
@@ -21,19 +19,11 @@ function pushActivity(entry: (typeof activityFeed)[number]) {
   if (activityFeed.length > 100) activityFeed.length = 100;
 }
 
-// Admin overrides
-const adminTrending: { domainId: string; queryCount: number }[] = [];
-const adminInterestOverrides: Record<string, number> = {};
-const adminStakeOverrides: Record<string, number> = {};
-
 // GET: retrieve interest counts, stakes, trending, and activity feed
 export async function GET() {
   const interests: Record<string, number> = {};
   for (const [domainId, ids] of Object.entries(interestSignals)) {
     interests[domainId] = ids.size;
-  }
-  for (const [domainId, count] of Object.entries(adminInterestOverrides)) {
-    interests[domainId] = count;
   }
 
   // Aggregate stakes per domain
@@ -45,32 +35,20 @@ export async function GET() {
     stakesByDomain[s.domainId].totalEth += parseFloat(s.amount);
     stakesByDomain[s.domainId].stakers += 1;
   }
-  // Apply admin stake overrides
-  for (const [domainId, eth] of Object.entries(adminStakeOverrides)) {
-    if (!stakesByDomain[domainId]) {
-      stakesByDomain[domainId] = { totalEth: 0, stakers: 0 };
-    }
-    stakesByDomain[domainId].totalEth = eth;
-  }
 
   // Trending
-  let trending: { domainId: string; queryCount: number }[];
-  if (adminTrending.length > 0) {
-    trending = adminTrending;
-  } else {
-    const sevenDaysAgo = Date.now() - 7 * 24 * 60 * 60 * 1000;
-    const recentQueries = queryLog.filter((q) => q.timestamp > sevenDaysAgo);
-    const queryCounts: Record<string, number> = {};
-    for (const q of recentQueries) {
-      if (q.domainId) {
-        queryCounts[q.domainId] = (queryCounts[q.domainId] || 0) + 1;
-      }
+  const sevenDaysAgo = Date.now() - 7 * 24 * 60 * 60 * 1000;
+  const recentQueries = queryLog.filter((q) => q.timestamp > sevenDaysAgo);
+  const queryCounts: Record<string, number> = {};
+  for (const q of recentQueries) {
+    if (q.domainId) {
+      queryCounts[q.domainId] = (queryCounts[q.domainId] || 0) + 1;
     }
-    trending = Object.entries(queryCounts)
-      .sort(([, a], [, b]) => b - a)
-      .slice(0, 5)
-      .map(([domainId, count]) => ({ domainId, queryCount: count }));
   }
+  const trending = Object.entries(queryCounts)
+    .sort(([, a], [, b]) => b - a)
+    .slice(0, 5)
+    .map(([domainId, count]) => ({ domainId, queryCount: count }));
 
   return NextResponse.json({
     interests,
@@ -78,14 +56,11 @@ export async function GET() {
     trending,
     activity: activityFeed.slice(0, 25),
     totalQueries: queryLog.length,
-    recentQueryCount: queryLog.filter((q) => q.timestamp > Date.now() - 7 * 24 * 60 * 60 * 1000).length,
-    adminTrending,
-    adminInterestOverrides,
-    adminStakeOverrides,
+    recentQueryCount: recentQueries.length,
   });
 }
 
-// POST: log a query, signal interest, record a stake, or admin actions
+// POST: log a query, signal interest, record a stake, or withdraw
 export async function POST(request: NextRequest) {
   const body = await request.json();
   const { action, domainId, query, address, amount, txHash } = body;
@@ -118,7 +93,7 @@ export async function POST(request: NextRequest) {
 
     return NextResponse.json({
       success: true,
-      count: adminInterestOverrides[domainId] ?? interestSignals[domainId].size,
+      count: interestSignals[domainId].size,
     });
   }
 
@@ -151,7 +126,7 @@ export async function POST(request: NextRequest) {
       success: true,
       totalEth,
       stakers: new Set(domainStakes.map((s) => s.address)).size,
-      interestCount: adminInterestOverrides[domainId] ?? interestSignals[domainId].size,
+      interestCount: interestSignals[domainId].size,
     });
   }
 
@@ -166,53 +141,6 @@ export async function POST(request: NextRequest) {
       amount,
       timestamp: Date.now(),
     });
-    return NextResponse.json({ success: true });
-  }
-
-  // ── Admin actions ──────────────────────────────────────────────────
-  if (!address || address.toLowerCase() !== ADMIN_ADDRESS.toLowerCase()) {
-    return NextResponse.json({ error: "Not authorized" }, { status: 403 });
-  }
-
-  if (action === "admin:set-trending") {
-    adminTrending.length = 0;
-    if (Array.isArray(body.trending)) {
-      adminTrending.push(...body.trending);
-    }
-    return NextResponse.json({ success: true, trending: adminTrending });
-  }
-
-  if (action === "admin:set-interest") {
-    if (!domainId || body.count === undefined) {
-      return NextResponse.json({ error: "domainId and count required" }, { status: 400 });
-    }
-    adminInterestOverrides[domainId] = Number(body.count);
-    return NextResponse.json({ success: true, domainId, count: body.count });
-  }
-
-  if (action === "admin:clear-interest") {
-    if (domainId) {
-      delete adminInterestOverrides[domainId];
-    } else {
-      Object.keys(adminInterestOverrides).forEach((k) => delete adminInterestOverrides[k]);
-    }
-    return NextResponse.json({ success: true });
-  }
-
-  if (action === "admin:set-stake") {
-    if (!domainId || body.ethAmount === undefined) {
-      return NextResponse.json({ error: "domainId and ethAmount required" }, { status: 400 });
-    }
-    adminStakeOverrides[domainId] = Number(body.ethAmount);
-    return NextResponse.json({ success: true, domainId, ethAmount: body.ethAmount });
-  }
-
-  if (action === "admin:clear-stake") {
-    if (domainId) {
-      delete adminStakeOverrides[domainId];
-    } else {
-      Object.keys(adminStakeOverrides).forEach((k) => delete adminStakeOverrides[k]);
-    }
     return NextResponse.json({ success: true });
   }
 
