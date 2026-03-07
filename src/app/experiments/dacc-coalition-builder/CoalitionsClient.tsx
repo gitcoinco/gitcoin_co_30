@@ -226,9 +226,9 @@ export function CoalitionsClient() {
   };
 
   return (
-    <div className="bg-gray-900">
+    <div className="bg-gray-900 relative">
       {/* Zoom control */}
-      <div className="border-b border-gray-700">
+      <div className="border-b border-gray-700 bg-gray-900/80 backdrop-blur-sm sticky top-[72px] z-50">
         <div className="container-page py-2.5 flex items-center gap-3">
           {IS_STAGING && (
             <span className="text-[10px] px-2 py-0.5 rounded-full bg-yellow-500/10 text-yellow-400 border border-yellow-500/20">
@@ -244,8 +244,8 @@ export function CoalitionsClient() {
                   setZoom(level);
                   if (level >= 3) { setSelectedQuadrant(null); setSearchQuery(""); }
                 }}
-                className={`px-3 py-1 rounded-full text-xs font-medium transition-colors ${
-                  zoom === level ? "bg-gray-25 text-gray-900" : "text-gray-500 hover:text-gray-300"
+                className={`px-3 py-1 rounded-full text-xs font-medium transition-all duration-200 ${
+                  zoom === level ? "bg-teal-500 text-gray-950 shadow-[0_0_8px_rgba(2,226,172,0.4)]" : "text-gray-500 hover:text-gray-300"
                 }`}
               >
                 {ZOOM_LABELS[level]}
@@ -258,8 +258,9 @@ export function CoalitionsClient() {
 
       {/* ═══ ZOOM 4x: Select your flavor of d/acc ═══ */}
       {zoom === 4 && (
-        <section className="py-6">
-          <div className="container-page">
+        <section className="relative py-6">
+          <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[400px] bg-teal-500/[0.03] blur-3xl rounded-full pointer-events-none" />
+          <div className="container-page relative">
             <h2 className="text-lg font-heading font-bold text-gray-25 mb-1">Select your flavor of d/acc</h2>
             <p className="text-sm text-gray-500 mb-5">Each flavor represents a different dimension of acceleration. Stake to signal which matters most to you.</p>
             <div className="grid md:grid-cols-2 gap-4">
@@ -270,10 +271,10 @@ export function CoalitionsClient() {
                 return (
                   <div
                     key={item.id}
-                    className={`rounded-xl border bg-gray-950 transition-all ${
+                    className={`rounded-xl border bg-gray-950 transition-all duration-300 ${
                       isExpanded
-                        ? "border-teal-500/50 ring-1 ring-teal-500/20"
-                        : "border-gray-700 hover:border-gray-500"
+                        ? "border-teal-500/50 ring-1 ring-teal-500/20 shadow-[0_0_20px_-5px_rgba(2,226,172,0.3)]"
+                        : "border-gray-700 hover:border-teal-500/30 hover:shadow-[0_0_16px_-4px_rgba(2,226,172,0.2)]"
                     }`}
                   >
                     <button
@@ -315,8 +316,9 @@ export function CoalitionsClient() {
 
       {/* ═══ ZOOM 3x: Fund a quadrant ═══ */}
       {zoom === 3 && (
-        <section className="py-6">
-          <div className="container-page">
+        <section className="relative py-6">
+          <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[400px] bg-teal-500/[0.03] blur-3xl rounded-full pointer-events-none" />
+          <div className="container-page relative">
             <div className="grid md:grid-cols-2 gap-4">
               {quadrants.map((q) => {
                 const qDomains = domains.filter((d) => d.quadrant === q.id);
@@ -325,8 +327,8 @@ export function CoalitionsClient() {
                 return (
                   <div
                     key={q.id}
-                    className={`rounded-xl border bg-gray-950 transition-all ${
-                      isExpanded ? `${q.borderColor} ring-1 ring-inset` : "border-gray-700 hover:border-gray-500"
+                    className={`rounded-xl border bg-gray-950 transition-all duration-300 ${
+                      isExpanded ? `${q.borderColor} ring-1 ring-inset shadow-[0_0_20px_-5px_rgba(2,226,172,0.25)]` : "border-gray-700 hover:border-gray-500 hover:shadow-[0_0_16px_-4px_rgba(2,226,172,0.15)]"
                     }`}
                   >
                     <button
@@ -379,7 +381,7 @@ export function CoalitionsClient() {
                                   handleStake(`quadrant:${q.id}`, tier.amount);
                                 }}
                                 disabled={!!stakingDomain}
-                                className="py-2 px-2 rounded-md border border-gray-700 hover:border-teal-500 bg-gray-900 transition-all text-center group disabled:opacity-50"
+                                className="py-2 px-2 rounded-md border border-gray-700 hover:border-teal-500 bg-gray-900 hover:shadow-[0_0_8px_-2px_rgba(2,226,172,0.3)] transition-all duration-200 text-center group disabled:opacity-50"
                               >
                                 <span className="text-xs font-heading font-bold text-teal-400 group-hover:text-teal-300">
                                   {tier.label}
@@ -464,12 +466,12 @@ export function CoalitionsClient() {
                   return (
                     <div
                       key={domain.id}
-                      className={`rounded-lg border bg-gray-950 transition-all ${
+                      className={`rounded-lg border bg-gray-950 transition-all duration-300 ${
                         isExpanded
-                          ? `${quadrant?.borderColor} ring-1 ring-inset`
+                          ? `${quadrant?.borderColor} ring-1 ring-inset shadow-[0_0_12px_-3px_rgba(2,226,172,0.3)]`
                           : isInterested
-                            ? "border-teal-500/30"
-                            : "border-gray-700 hover:border-gray-500"
+                            ? "border-teal-500/30 hover:shadow-[0_0_12px_-3px_rgba(2,226,172,0.2)]"
+                            : "border-gray-700 hover:border-gray-500 hover:shadow-[0_0_12px_-3px_rgba(2,226,172,0.15)]"
                       }`}
                     >
                       <button onClick={() => handleDomainClick(domain.id)} className="w-full p-4 text-left">
@@ -586,10 +588,10 @@ export function CoalitionsClient() {
                       return (
                         <div
                           key={projectId}
-                          className={`rounded-lg border bg-gray-950 transition-all ${
+                          className={`rounded-lg border bg-gray-950 transition-all duration-300 ${
                             isExpanded
-                              ? `${quadrant?.borderColor} ring-1 ring-inset`
-                              : "border-gray-700 hover:border-gray-500"
+                              ? `${quadrant?.borderColor} ring-1 ring-inset shadow-[0_0_12px_-3px_rgba(2,226,172,0.3)]`
+                              : "border-gray-700 hover:border-gray-500 hover:shadow-[0_0_12px_-3px_rgba(2,226,172,0.15)]"
                           }`}
                         >
                           <button
@@ -678,7 +680,7 @@ function StakeTierButtons({
               onStake(domainId, tier.amount);
             }}
             disabled={!!stakingDomain}
-            className="py-2 px-2 rounded-md border border-gray-700 hover:border-teal-500 bg-gray-900 transition-all text-center group disabled:opacity-50"
+            className="py-2 px-2 rounded-md border border-gray-700 hover:border-teal-500 bg-gray-900 hover:shadow-[0_0_8px_-2px_rgba(2,226,172,0.3)] transition-all duration-200 text-center group disabled:opacity-50"
           >
             <span className="text-xs font-heading font-bold text-teal-400 group-hover:text-teal-300">
               {tier.label}
@@ -796,7 +798,8 @@ function StakingPositions({ pendingTx }: { pendingTx: { domainId: string; hash: 
 
   if (!isConnected) {
     return (
-      <section className="border-t border-gray-600 py-16">
+      <section className="relative py-16">
+        <div className="absolute inset-x-0 top-0 h-px bg-gradient-to-r from-transparent via-gray-600 to-transparent" />
         <div className="container-page text-center">
           <Wallet className="w-8 h-8 text-gray-500 mx-auto mb-3" />
           <h2 className="text-lg font-heading font-semibold text-gray-25 mb-2">Your Positions</h2>
@@ -813,7 +816,9 @@ function StakingPositions({ pendingTx }: { pendingTx: { domainId: string; hash: 
   }
 
   return (
-    <section className="border-t border-gray-600 py-12">
+    <section className="relative py-12">
+      <div className="absolute inset-x-0 top-0 h-px bg-gradient-to-r from-transparent via-teal-500/40 to-transparent" />
+      <div className="absolute top-0 left-1/2 -translate-x-1/2 w-96 h-32 bg-teal-500/5 blur-3xl pointer-events-none" />
       <div className="container-page">
         <div className="flex items-center justify-between mb-6">
           <h2 className="text-lg font-heading font-semibold text-gray-25 flex items-center gap-2">
@@ -833,7 +838,7 @@ function StakingPositions({ pendingTx }: { pendingTx: { domainId: string; hash: 
         </div>
         <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-4">
           {pendingTx && (
-            <div className="rounded-xl border border-teal-500/30 bg-gray-950 p-4">
+            <div className="rounded-xl border border-teal-500/30 bg-gray-950 p-4 shadow-[0_0_20px_-5px_rgba(2,226,172,0.25)] animate-pulse">
               <div className="flex items-center gap-2 mb-2">
                 <Loader2 className="w-4 h-4 animate-spin text-teal-400" />
                 <h3 className="font-heading font-semibold text-gray-25 text-sm">Transaction Pending</h3>
@@ -932,7 +937,7 @@ function PositionCard({
   };
 
   return (
-    <div className={`rounded-xl border bg-gray-950 p-4 ${withdrawing ? "border-orange-500/30" : "border-gray-700"}`}>
+    <div className={`rounded-xl border bg-gray-950 p-4 transition-all duration-300 ${withdrawing ? "border-orange-500/30 shadow-[0_0_16px_-4px_rgba(251,146,60,0.2)]" : "border-gray-700 hover:border-gray-600 hover:shadow-[0_0_12px_-3px_rgba(2,226,172,0.15)]"}`}>
       <div className="flex items-center justify-between mb-1">
         <h3 className="font-heading font-semibold text-gray-25 text-sm">{domainName}</h3>
         <span className="text-sm font-heading font-bold text-teal-400">
@@ -1025,7 +1030,7 @@ function ActivityEntry({
     : `${Math.floor(diff / 86400_000)}d ago`;
 
   return (
-    <div className="flex items-center gap-3 py-2 px-3 rounded-lg bg-gray-950 border border-gray-800 text-xs">
+    <div className="flex items-center gap-3 py-2 px-3 rounded-lg bg-gray-950 border border-gray-800 text-xs transition-all duration-200 hover:border-gray-700 hover:bg-[linear-gradient(to_right,rgba(2,226,172,0.03),transparent)]">
       <span
         className={`w-1.5 h-1.5 rounded-full shrink-0 ${
           entry.type === "stake"
@@ -1102,7 +1107,8 @@ function ActivityFeed({
     : [];
 
   return (
-    <section className="border-t border-gray-600 py-12">
+    <section className="relative py-12">
+      <div className="absolute inset-x-0 top-0 h-px bg-gradient-to-r from-transparent via-gray-600 to-transparent" />
       <div className="container-page">
         {/* Your Activity — only when wallet connected and has activity */}
         {myActivity.length > 0 && (
