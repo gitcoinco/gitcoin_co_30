@@ -304,6 +304,15 @@ export default function CoalitionalFundingTool() {
   const [txPending, setTxPending] = useState(false);
   const [txError, setTxError] = useState<string | null>(null);
 
+  const [attractor, setAttractor] = useState<AttractorState>({
+    quadrant: null,
+    category: null,
+    subcategories: new Set(),
+    freeText: "",
+    pledgeAmount: "",
+    selectedProjects: new Set(),
+  });
+
   // Auto-detect already connected wallet
   useEffect(() => {
     const eth = window.ethereum;
@@ -395,15 +404,6 @@ export default function CoalitionalFundingTool() {
     }
     setTxPending(false);
   }, [walletAddress, connectWallet, attractor]);
-
-  const [attractor, setAttractor] = useState<AttractorState>({
-    quadrant: null,
-    category: null,
-    subcategories: new Set(),
-    freeText: "",
-    pledgeAmount: "",
-    selectedProjects: new Set(),
-  });
 
   const quadrantCategories = useMemo(
     () => attractor.quadrant ? CATEGORIES.filter((c) => c.quadrant === attractor.quadrant) : [],
