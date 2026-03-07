@@ -7,17 +7,31 @@ const interestSignals: Record<string, Set<string>> = {};
 const stakes: { domainId: string; address: string; amount: string; txHash: string; timestamp: number }[] = [];
 const queryLog: { query: string; timestamp: number; domainId?: string }[] = [];
 
+// Activity feed (last 100 entries, serve last 25)
+const activityFeed: {
+  type: "stake" | "withdraw" | "interest";
+  domainId: string;
+  address: string;
+  amount?: string;
+  timestamp: number;
+}[] = [];
+
+function pushActivity(entry: (typeof activityFeed)[number]) {
+  activityFeed.unshift(entry);
+  if (activityFeed.length > 100) activityFeed.length = 100;
+}
+
 // Admin overrides
 const adminTrending: { domainId: string; queryCount: number }[] = [];
 const adminInterestOverrides: Record<string, number> = {};
+const adminStakeOverrides: Record<string, number> = {};
 
-// GET: retrieve interest counts, stakes, and trending data
+// GET: retrieve interest counts, stakes, trending, and activity feed
 export async function GET() {
   const interests: Record<string, number> = {};
   for (const [domainId, ids] of Object.entries(interestSignals)) {
     interests[domainId] = ids.size;
   }
-  // Apply admin overrides
   for (const [domainId, count] of Object.entries(adminInterestOverrides)) {
     interests[domainId] = count;
   }
@@ -31,8 +45,15 @@ export async function GET() {
     stakesByDomain[s.domainId].totalEth += parseFloat(s.amount);
     stakesByDomain[s.domainId].stakers += 1;
   }
+  // Apply admin stake overrides
+  for (const [domainId, eth] of Object.entries(adminStakeOverrides)) {
+    if (!stakesByDomain[domainId]) {
+      stakesByDomain[domainId] = { totalEth: 0, stakers: 0 };
+    }
+    stakesByDomain[domainId].totalEth = eth;
+  }
 
-  // Use admin trending if set, otherwise compute from query log
+  // Trending
   let trending: { domainId: string; queryCount: number }[];
   if (adminTrending.length > 0) {
     trending = adminTrending;
@@ -55,10 +76,12 @@ export async function GET() {
     interests,
     stakes: stakesByDomain,
     trending,
+    activity: activityFeed.slice(0, 25),
     totalQueries: queryLog.length,
     recentQueryCount: queryLog.filter((q) => q.timestamp > Date.now() - 7 * 24 * 60 * 60 * 1000).length,
     adminTrending,
     adminInterestOverrides,
+    adminStakeOverrides,
   });
 }
 
@@ -86,6 +109,13 @@ export async function POST(request: NextRequest) {
     }
     interestSignals[domainId].add(userId);
 
+    pushActivity({
+      type: "interest",
+      domainId,
+      address: userId,
+      timestamp: Date.now(),
+    });
+
     return NextResponse.json({
       success: true,
       count: adminInterestOverrides[domainId] ?? interestSignals[domainId].size,
@@ -106,6 +136,14 @@ export async function POST(request: NextRequest) {
     }
     interestSignals[domainId].add(address);
 
+    pushActivity({
+      type: "stake",
+      domainId,
+      address,
+      amount,
+      timestamp: Date.now(),
+    });
+
     const domainStakes = stakes.filter((s) => s.domainId === domainId);
     const totalEth = domainStakes.reduce((sum, s) => sum + parseFloat(s.amount), 0);
 
@@ -117,13 +155,26 @@ export async function POST(request: NextRequest) {
     });
   }
 
+  if (action === "withdraw") {
+    if (!domainId || !address || !amount) {
+      return NextResponse.json({ error: "domainId, address, and amount required" }, { status: 400 });
+    }
+    pushActivity({
+      type: "withdraw",
+      domainId,
+      address,
+      amount,
+      timestamp: Date.now(),
+    });
+    return NextResponse.json({ success: true });
+  }
+
   // ── Admin actions ──────────────────────────────────────────────────
   if (!address || address.toLowerCase() !== ADMIN_ADDRESS.toLowerCase()) {
     return NextResponse.json({ error: "Not authorized" }, { status: 403 });
   }
 
   if (action === "admin:set-trending") {
-    // body.trending: { domainId: string; queryCount: number }[]
     adminTrending.length = 0;
     if (Array.isArray(body.trending)) {
       adminTrending.push(...body.trending);
@@ -132,7 +183,6 @@ export async function POST(request: NextRequest) {
   }
 
   if (action === "admin:set-interest") {
-    // body.domainId, body.count
     if (!domainId || body.count === undefined) {
       return NextResponse.json({ error: "domainId and count required" }, { status: 400 });
     }
@@ -145,6 +195,23 @@ export async function POST(request: NextRequest) {
       delete adminInterestOverrides[domainId];
     } else {
       Object.keys(adminInterestOverrides).forEach((k) => delete adminInterestOverrides[k]);
+    }
+    return NextResponse.json({ success: true });
+  }
+
+  if (action === "admin:set-stake") {
+    if (!domainId || body.ethAmount === undefined) {
+      return NextResponse.json({ error: "domainId and ethAmount required" }, { status: 400 });
+    }
+    adminStakeOverrides[domainId] = Number(body.ethAmount);
+    return NextResponse.json({ success: true, domainId, ethAmount: body.ethAmount });
+  }
+
+  if (action === "admin:clear-stake") {
+    if (domainId) {
+      delete adminStakeOverrides[domainId];
+    } else {
+      Object.keys(adminStakeOverrides).forEach((k) => delete adminStakeOverrides[k]);
     }
     return NextResponse.json({ success: true });
   }

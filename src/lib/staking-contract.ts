@@ -1,10 +1,19 @@
-// DaccCoalitionStaking contract — deployed on Sepolia
+// DaccCoalitionStaking contract
 // Operator: 0x00De4B13153673BCAE2616b67bf822500d325Fc3
 // Users can withdraw anytime before operator deploys.
 // Operator can withdraw to any wallet once domain reaches 1 ETH.
 
-// UPDATE THIS after deploying the contract:
-export const STAKING_CONTRACT_ADDRESS = "0xd69B924c37489bc83AbEE1167f8d84916Ab2c6BB" as `0x${string}`;
+import { sepolia, mainnet } from "wagmi/chains";
+
+export const IS_STAGING = process.env.NEXT_PUBLIC_STAGING === "1";
+
+// Sepolia deployment
+const SEPOLIA_CONTRACT = "0xd69B924c37489bc83AbEE1167f8d84916Ab2c6BB" as `0x${string}`;
+// TODO: deploy to mainnet and update this address
+const MAINNET_CONTRACT = "0x0000000000000000000000000000000000000000" as `0x${string}`;
+
+export const STAKING_CONTRACT_ADDRESS = IS_STAGING ? SEPOLIA_CONTRACT : MAINNET_CONTRACT;
+export const TARGET_CHAIN = IS_STAGING ? sepolia : mainnet;
 
 export const STAKING_CONTRACT_ABI = [
   {

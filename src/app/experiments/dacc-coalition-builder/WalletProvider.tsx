@@ -2,15 +2,15 @@
 
 import { ReactNode, useState } from "react";
 import { WagmiProvider, createConfig, http } from "wagmi";
-import { sepolia } from "wagmi/chains";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { injected } from "wagmi/connectors";
+import { TARGET_CHAIN } from "@/lib/staking-contract";
 
 const config = createConfig({
-  chains: [sepolia],
+  chains: [TARGET_CHAIN],
   connectors: [injected()],
   transports: {
-    [sepolia.id]: http(),
+    [TARGET_CHAIN.id]: http(),
   },
   ssr: true,
 });

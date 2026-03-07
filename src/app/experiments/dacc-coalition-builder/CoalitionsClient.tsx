@@ -21,9 +21,8 @@ import {
   useSwitchChain,
 } from "wagmi";
 import { parseEther, formatEther } from "viem";
-import { sepolia } from "wagmi/chains";
 import { domains, quadrants, diagnosticChecklist, axes, type Domain } from "@/lib/coalitions-data";
-import { STAKING_CONTRACT_ADDRESS, STAKING_CONTRACT_ABI } from "@/lib/staking-contract";
+import { STAKING_CONTRACT_ADDRESS, STAKING_CONTRACT_ABI, TARGET_CHAIN, IS_STAGING } from "@/lib/staking-contract";
 import { DomainMap } from "./DomainMap";
 
 const ADMIN_ADDRESS = "0x00De4B13153673BCAE2616b67bf822500d325Fc3";
@@ -61,6 +60,7 @@ export function CoalitionsClient() {
   const [domainTotals, setDomainTotals] = useState<Record<string, number>>({});
   const [mode, setMode] = useState<"basic" | "advanced">("basic");
   const [showAdmin, setShowAdmin] = useState(false);
+  const [activity, setActivity] = useState<{ type: string; domainId: string; address: string; amount?: string; timestamp: number }[]>([]);
   const searchDebounceRef = useRef<ReturnType<typeof setTimeout>>(null);
 
   const isAdmin = address?.toLowerCase() === ADMIN_ADDRESS.toLowerCase();
@@ -80,6 +80,7 @@ export function CoalitionsClient() {
       .then((data) => {
         setInterestCounts(data.interests || {});
         setTrending(data.trending || []);
+        setActivity(data.activity || []);
       })
       .catch(() => {});
   }, []);
@@ -141,9 +142,9 @@ export function CoalitionsClient() {
         return;
       }
 
-      // Switch to Sepolia first — return so user clicks again on correct chain
-      if (walletChainId !== sepolia.id) {
-        await switchChainAsync({ chainId: sepolia.id });
+      // Switch to target chain first — return so user clicks again on correct chain
+      if (walletChainId !== TARGET_CHAIN.id) {
+        await switchChainAsync({ chainId: TARGET_CHAIN.id });
         return;
       }
 
@@ -543,6 +544,138 @@ export function CoalitionsClient() {
       {/* My Positions */}
       <StakingPositions />
     </div>
+  );
+}
+
+// ── Admin Panel ──────────────────────────────────────────────────────────
+function AdminPanel({
+  interestCounts,
+  trending,
+  address,
+  onUpdate,
+}: {
+  interestCounts: Record<string, number>;
+  trending: { domainId: string; queryCount: number }[];
+  address: string;
+  onUpdate: () => void;
+}) {
+  const [trendingInput, setTrendingInput] = useState(
+    trending.map((t) => t.domainId).join(", ")
+  );
+
+  const saveTrending = () => {
+    const ids = trendingInput.split(",").map((s) => s.trim()).filter(Boolean);
+    const trendingData = ids.map((id) => ({ domainId: id, queryCount: 10 }));
+    fetch("/api/coalitions", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ action: "admin:set-trending", trending: trendingData, address }),
+    }).then(() => onUpdate());
+  };
+
+  const clearTrending = () => {
+    fetch("/api/coalitions", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ action: "admin:set-trending", trending: [], address }),
+    }).then(() => {
+      setTrendingInput("");
+      onUpdate();
+    });
+  };
+
+  const setInterest = (domainId: string, count: number) => {
+    fetch("/api/coalitions", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ action: "admin:set-interest", domainId, count, address }),
+    }).then(() => onUpdate());
+  };
+
+  const clearInterest = (domainId: string) => {
+    fetch("/api/coalitions", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ action: "admin:clear-interest", domainId, address }),
+    }).then(() => onUpdate());
+  };
+
+  const setStakeAmount = (domainId: string, ethAmount: number) => {
+    fetch("/api/coalitions", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ action: "admin:set-stake", domainId, ethAmount, address }),
+    }).then(() => onUpdate());
+  };
+
+  const clearStake = (domainId: string) => {
+    fetch("/api/coalitions", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ action: "admin:clear-stake", domainId, address }),
+    }).then(() => onUpdate());
+  };
+
+  return (
+    <section className="border-b border-red-500/20 bg-red-950/10">
+      <div className="container-page py-5 space-y-5">
+        <div className="flex items-center gap-2">
+          <span className="text-xs font-heading font-bold text-red-400 uppercase tracking-wider">Admin Panel</span>
+          <span className="text-[10px] text-gray-500">Only visible to operator</span>
+        </div>
+
+        {/* Trending control */}
+        <div>
+          <label className="text-xs text-gray-400 block mb-1">Trending domains (comma-separated IDs)</label>
+          <div className="flex gap-2">
+            <input
+              value={trendingInput}
+              onChange={(e) => setTrendingInput(e.target.value)}
+              placeholder="e.g. biodefense-health, zero-knowledge-systems"
+              className="flex-1 bg-gray-950 border border-gray-700 rounded-lg px-3 py-2 text-xs text-gray-25 placeholder:text-gray-600 focus:outline-none focus:border-red-500"
+            />
+            <button onClick={saveTrending} className="px-3 py-2 rounded-lg bg-red-500/20 text-red-400 text-xs hover:bg-red-500/30">
+              Set
+            </button>
+            <button onClick={clearTrending} className="px-3 py-2 rounded-lg bg-gray-800 text-gray-400 text-xs hover:bg-gray-700">
+              Clear
+            </button>
+          </div>
+          <p className="text-[10px] text-gray-600 mt-1">
+            Valid IDs: {domains.map((d) => d.id).join(", ")}
+          </p>
+        </div>
+
+        {/* Interest overrides */}
+        <div>
+          <label className="text-xs text-gray-400 block mb-2">Interest level overrides</label>
+          <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-2">
+            {domains.map((d) => (
+              <div key={d.id} className="flex items-center gap-1.5 bg-gray-950 border border-gray-700 rounded-lg px-2 py-1.5">
+                <span className="text-[10px] text-gray-400 flex-1 truncate">{d.name}</span>
+                <input
+                  type="number"
+                  min={0}
+                  defaultValue={interestCounts[d.id] || 0}
+                  className="w-12 bg-gray-800 border border-gray-600 rounded px-1 py-0.5 text-[10px] text-gray-25 text-center focus:outline-none focus:border-red-500"
+                  onBlur={(e) => {
+                    const val = parseInt(e.target.value);
+                    if (!isNaN(val)) setInterest(d.id, val);
+                  }}
+                />
+                <button
+                  onClick={() => clearInterest(d.id)}
+                  className="text-[10px] text-gray-600 hover:text-red-400"
+                  title="Reset to organic"
+                >
+                  x
+                </button>
+              </div>
+            ))}
+          </div>
+        </div>
+      </div>
+    </section>
   );
 }
 
