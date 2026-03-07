@@ -22,62 +22,62 @@ const QUADRANTS = {
 } as const;
 
 const CATEGORIES: Category[] = [
-  // Physical Defense
+  // ATOMS × SURVIVE
   {
-    id: "biosecurity", name: "Biosecurity", quadrant: "physical-defense", icon: "🧬",
-    interest: 82, trending: false,
+    id: "biodefense", name: "Biodefense & Health Systems", quadrant: "physical-defense", icon: "🧬",
+    interest: 94, trending: true,
     subcategories: [
-      { id: "pathogen-detect", name: "Pathogen Detection", interest: 34, trending: true },
-      { id: "biodefense-infra", name: "Biodefense Infrastructure", interest: 28, trending: false },
-      { id: "pandemic-prep", name: "Pandemic Preparedness", interest: 20, trending: false },
+      { id: "pathogen-surveillance", name: "Pathogen Surveillance", interest: 38, trending: true },
+      { id: "health-infra", name: "Health Infrastructure", interest: 32, trending: false },
+      { id: "open-pharma", name: "Open Pharma & DeSci", interest: 24, trending: true },
     ],
   },
   {
-    id: "clean-energy", name: "Clean Energy", quadrant: "physical-defense", icon: "⚡",
-    interest: 156, trending: true,
+    id: "open-hardware", name: "Open Source Hardware & Silicon", quadrant: "physical-defense", icon: "🔧",
+    interest: 78, trending: false,
     subcategories: [
-      { id: "solar-micro", name: "Solar Microgrids", interest: 52, trending: true },
-      { id: "energy-storage", name: "Energy Storage", interest: 48, trending: true },
-      { id: "nuclear-small", name: "Small Modular Reactors", interest: 34, trending: false },
-      { id: "grid-resilience", name: "Grid Resilience", interest: 22, trending: false },
+      { id: "open-silicon", name: "Open Silicon / RISC-V", interest: 34, trending: true },
+      { id: "secure-devices", name: "Secure Devices", interest: 26, trending: false },
+      { id: "open-os", name: "Open Operating Systems", interest: 18, trending: false },
     ],
   },
   {
-    id: "hardware", name: "Open Hardware", quadrant: "physical-defense", icon: "🔧",
-    interest: 67, trending: false,
+    id: "resilient-manufacturing", name: "Resilient Manufacturing", quadrant: "physical-defense", icon: "🏭",
+    interest: 52, trending: false,
     subcategories: [
-      { id: "risc-v", name: "RISC-V Ecosystem", interest: 31, trending: true },
-      { id: "sensor-networks", name: "Sensor Networks", interest: 22, trending: false },
-      { id: "fab-labs", name: "Fab Labs & Maker Spaces", interest: 14, trending: false },
+      { id: "distributed-fab", name: "Distributed Fabrication", interest: 22, trending: false },
+      { id: "salvage-reuse", name: "Salvage & Reuse", interest: 18, trending: false },
+      { id: "robotics", name: "Open Robotics", interest: 12, trending: true },
+    ],
+  },
+  {
+    id: "civic-tech", name: "Civic Tech", quadrant: "physical-defense", icon: "🏘️",
+    interest: 61, trending: false,
+    subcategories: [
+      { id: "community-resilience", name: "Community Resilience", interest: 24, trending: false },
+      { id: "urban-agriculture", name: "Urban Agriculture", interest: 21, trending: true },
+      { id: "social-infrastructure", name: "Social Infrastructure", interest: 16, trending: false },
     ],
   },
 
-  // Physical Coordination
+  // ATOMS × THRIVE
   {
-    id: "urban-planning", name: "Urban Planning", quadrant: "physical-coordination", icon: "🏙️",
-    interest: 73, trending: false,
+    id: "property-registries", name: "Property Rights & Registries", quadrant: "physical-coordination", icon: "🏠",
+    interest: 67, trending: false,
     subcategories: [
-      { id: "15min-city", name: "15-Minute Cities", interest: 28, trending: false },
-      { id: "public-transit", name: "Public Transit", interest: 25, trending: false },
-      { id: "housing", name: "Affordable Housing", interest: 20, trending: false },
+      { id: "land-registries", name: "Land Registries", interest: 28, trending: false },
+      { id: "property-platforms", name: "Property Platforms", interest: 22, trending: false },
+      { id: "cadastre", name: "Cadastre Systems", interest: 17, trending: false },
     ],
   },
   {
-    id: "supply-chains", name: "Supply Chains", quadrant: "physical-coordination", icon: "📦",
-    interest: 58, trending: false,
+    id: "decentralized-energy", name: "Decentralized Energy", quadrant: "physical-coordination", icon: "⚡",
+    interest: 143, trending: true,
     subcategories: [
-      { id: "food-systems", name: "Local Food Systems", interest: 24, trending: false },
-      { id: "regen-ag", name: "Regenerative Agriculture", interest: 22, trending: true },
-      { id: "fair-trade", name: "Fair Trade Infrastructure", interest: 12, trending: false },
-    ],
-  },
-  {
-    id: "health", name: "Health", quadrant: "physical-coordination", icon: "🏥",
-    interest: 91, trending: false,
-    subcategories: [
-      { id: "desci-health", name: "DeSci Health Research", interest: 38, trending: true },
-      { id: "community-health", name: "Community Health", interest: 31, trending: false },
-      { id: "open-pharma", name: "Open Pharma", interest: 22, trending: false },
+      { id: "energy-web", name: "Energy Web & Protocols", interest: 52, trending: true },
+      { id: "solar-micro", name: "Solar Microgrids", interest: 48, trending: true },
+      { id: "community-energy", name: "Community Energy", interest: 28, trending: false },
+      { id: "maker-spaces", name: "Maker Spaces & Fab Labs", interest: 15, trending: false },
     ],
   },
   {
@@ -85,75 +85,93 @@ const CATEGORIES: Category[] = [
     interest: 63, trending: true,
     subcategories: [
       { id: "watershed-dao", name: "Watershed DAOs", interest: 21, trending: true },
-      { id: "land-trust", name: "Community Land Trusts", interest: 18, trending: false },
+      { id: "regen-ag", name: "Regenerative Agriculture", interest: 18, trending: true },
       { id: "ecological-data", name: "Ecological Data Commons", interest: 15, trending: true },
-      { id: "municipal-coord", name: "Municipal Coordination", interest: 9, trending: false },
+      { id: "land-trust", name: "Community Land Trusts", interest: 9, trending: false },
     ],
   },
 
-  // Digital Defense
+  // BITS × SURVIVE
   {
-    id: "zk-privacy", name: "ZK & Privacy", quadrant: "digital-defense", icon: "🔒",
+    id: "comms-messaging", name: "Communication & Messaging", quadrant: "digital-defense", icon: "💬",
+    interest: 167, trending: true,
+    subcategories: [
+      { id: "p2p-messaging", name: "P2P Messaging", interest: 58, trending: true },
+      { id: "encrypted-comms", name: "Encrypted Communications", interest: 52, trending: false },
+      { id: "messaging-protocols", name: "Messaging Protocols", interest: 38, trending: true },
+      { id: "metadata-resistance", name: "Metadata Resistance", interest: 19, trending: false },
+    ],
+  },
+  {
+    id: "identity-attestation", name: "Decentralized Identity & Attestation", quadrant: "digital-defense", icon: "🪪",
+    interest: 134, trending: true,
+    subcategories: [
+      { id: "naming-systems", name: "Naming Systems (ENS)", interest: 42, trending: false },
+      { id: "proof-of-personhood", name: "Proof of Personhood", interest: 38, trending: true },
+      { id: "verifiable-creds", name: "Verifiable Credentials", interest: 32, trending: true },
+      { id: "attestation-infra", name: "Attestation Infrastructure (EAS)", interest: 22, trending: false },
+    ],
+  },
+  {
+    id: "formal-verification", name: "Formal Verification & Security", quadrant: "digital-defense", icon: "🛡️",
     interest: 189, trending: true,
     subcategories: [
-      { id: "zk-proofs", name: "Zero-Knowledge Proofs", interest: 72, trending: true },
-      { id: "encryption", name: "End-to-End Encryption", interest: 48, trending: false },
-      { id: "privacy-tools", name: "Privacy-Preserving Tools", interest: 41, trending: false },
-      { id: "mpc", name: "Multi-Party Computation", interest: 28, trending: true },
+      { id: "security-audits", name: "Security Audits", interest: 64, trending: false },
+      { id: "bug-bounties", name: "Bug Bounties", interest: 52, trending: true },
+      { id: "formal-methods", name: "Formal Methods", interest: 42, trending: true },
+      { id: "security-tools", name: "Security Tooling", interest: 31, trending: false },
     ],
   },
   {
-    id: "identity", name: "Decentralized Identity", quadrant: "digital-defense", icon: "🪪",
-    interest: 94, trending: false,
+    id: "zk-systems", name: "Zero-Knowledge Systems", quadrant: "digital-defense", icon: "🔒",
+    interest: 215, trending: true,
     subcategories: [
-      { id: "did", name: "DIDs & Verifiable Credentials", interest: 36, trending: false },
-      { id: "sybil", name: "Sybil Resistance", interest: 28, trending: true },
-      { id: "attestations", name: "Attestation Networks", interest: 18, trending: false },
-      { id: "self-sovereign", name: "Self-Sovereign Identity", interest: 12, trending: false },
+      { id: "zk-rollups", name: "ZK Rollups", interest: 72, trending: true },
+      { id: "zk-privacy", name: "ZK Privacy Tools", interest: 58, trending: true },
+      { id: "zk-infrastructure", name: "ZK Infrastructure", interest: 48, trending: false },
+      { id: "fhe", name: "Fully Homomorphic Encryption", interest: 37, trending: true },
     ],
   },
   {
-    id: "ai-safety", name: "AI Safety & Alignment", quadrant: "digital-defense", icon: "🤖",
-    interest: 203, trending: true,
+    id: "privacy-computation", name: "Privacy Preserving Computation", quadrant: "digital-defense", icon: "🔐",
+    interest: 108, trending: false,
     subcategories: [
-      { id: "alignment", name: "Alignment Research", interest: 64, trending: true },
-      { id: "ai-audit", name: "AI Auditing & Red-Teaming", interest: 52, trending: true },
-      { id: "open-ai-models", name: "Open-Source AI", interest: 48, trending: true },
-      { id: "defensive-ai", name: "Defensive AI Tools", interest: 39, trending: false },
+      { id: "mpc", name: "Multi-Party Computation", interest: 38, trending: true },
+      { id: "key-management", name: "Key Management", interest: 36, trending: false },
+      { id: "threshold-crypto", name: "Threshold Cryptography", interest: 34, trending: false },
     ],
   },
 
-  // Digital Coordination
+  // BITS × THRIVE
   {
-    id: "governance", name: "Governance & DAOs", quadrant: "digital-coordination", icon: "🏛️",
-    interest: 145, trending: false,
-    subcategories: [
-      { id: "voting-systems", name: "Voting Systems", interest: 42, trending: false },
-      { id: "dao-tooling", name: "DAO Tooling", interest: 38, trending: false },
-      { id: "quadratic-mechanisms", name: "Quadratic Mechanisms", interest: 35, trending: false },
-      { id: "prediction-markets", name: "Prediction Markets", interest: 30, trending: true },
-    ],
-  },
-  {
-    id: "public-goods", name: "Public Goods Funding", quadrant: "digital-coordination", icon: "🌐",
-    interest: 234, trending: true,
-    subcategories: [
-      { id: "retro-pgf", name: "Retroactive PGF", interest: 67, trending: true },
-      { id: "qf-rounds", name: "Quadratic Funding Rounds", interest: 58, trending: false },
-      { id: "impact-certs", name: "Impact Certificates", interest: 44, trending: true },
-      { id: "protocol-guild", name: "Protocol Guild / Drips", interest: 38, trending: false },
-      { id: "oss-sustainability", name: "OSS Sustainability", interest: 27, trending: false },
-    ],
-  },
-  {
-    id: "defi-infra", name: "DeFi Infrastructure", quadrant: "digital-coordination", icon: "🏦",
+    id: "governance-tooling", name: "Governance Tooling", quadrant: "digital-coordination", icon: "🏛️",
     interest: 178, trending: false,
     subcategories: [
-      { id: "lending", name: "Lending Protocols", interest: 45, trending: false },
-      { id: "dex", name: "DEX Improvements", interest: 41, trending: false },
-      { id: "oracles", name: "Oracle Networks", interest: 38, trending: false },
-      { id: "interop", name: "Cross-Chain Interop", interest: 32, trending: true },
-      { id: "risk-mgmt", name: "Risk Management", interest: 22, trending: false },
+      { id: "voting-frameworks", name: "Voting Frameworks", interest: 48, trending: false },
+      { id: "dao-tooling", name: "DAO Tooling", interest: 42, trending: false },
+      { id: "multisig", name: "Multisig & Treasury", interest: 38, trending: false },
+      { id: "delegation", name: "Delegation Systems", interest: 28, trending: false },
+      { id: "metagovernance", name: "Metagovernance", interest: 22, trending: true },
+    ],
+  },
+  {
+    id: "epistemic-infra", name: "Epistemic Infrastructure", quadrant: "digital-coordination", icon: "🔮",
+    interest: 142, trending: true,
+    subcategories: [
+      { id: "prediction-markets", name: "Prediction Markets", interest: 58, trending: true },
+      { id: "fact-checking", name: "Fact Checking & Verification", interest: 42, trending: true },
+      { id: "info-markets", name: "Information Markets", interest: 28, trending: false },
+      { id: "deep-safety", name: "Deep Safety & AI Alignment", interest: 14, trending: true },
+    ],
+  },
+  {
+    id: "monetary-infra", name: "Decentralized Monetary Infrastructure", quadrant: "digital-coordination", icon: "💰",
+    interest: 198, trending: false,
+    subcategories: [
+      { id: "stablecoins", name: "Stablecoins", interest: 62, trending: false },
+      { id: "decentralized-stablecoins", name: "Decentralized Stablecoins (DAI)", interest: 54, trending: false },
+      { id: "payment-rails", name: "Payment Rails", interest: 46, trending: true },
+      { id: "cbdc-alternatives", name: "CBDC Alternatives", interest: 36, trending: false },
     ],
   },
 ];
@@ -171,18 +189,53 @@ interface Project {
 }
 
 const PROJECTS: Project[] = [
-  { id: "p1", name: "Colorado River Sensor Network", description: "Open-source water quality sensors publishing data to a public knowledge commons.", category: "bioregional", subcategory: "watershed-dao", raised: 12000, backers: 8, daccScore: 88, status: "seeking" },
-  { id: "p2", name: "Soil Carbon Verification Protocol", description: "On-chain verification of soil carbon sequestration using satellite + ground truth.", category: "supply-chains", subcategory: "regen-ag", raised: 34000, backers: 15, daccScore: 76, status: "active" },
-  { id: "p3", name: "EVM Formal Verification Suite", description: "Automated formal verification for Solidity smart contracts. MIT licensed.", category: "public-goods", subcategory: "oss-sustainability", raised: 67000, backers: 42, daccScore: 91, status: "active" },
-  { id: "p4", name: "ZK-Passport Identity Layer", description: "Privacy-preserving identity verification using ZK proofs on government IDs.", category: "zk-privacy", subcategory: "zk-proofs", raised: 82000, backers: 31, daccScore: 94, status: "funded" },
-  { id: "p5", name: "Boulder Bioregional Data Commons", description: "Community-owned ecological, economic, and governance data for the Front Range.", category: "bioregional", subcategory: "ecological-data", raised: 8000, backers: 6, daccScore: 86, status: "seeking" },
-  { id: "p6", name: "AI Model Audit Framework", description: "Open framework for red-teaming AI models for alignment risks and bias.", category: "ai-safety", subcategory: "ai-audit", raised: 45000, backers: 23, daccScore: 89, status: "active" },
-  { id: "p7", name: "Decentralized Solar Microgrid DAO", description: "Community-owned solar microgrids with tokenized energy credits.", category: "clean-energy", subcategory: "solar-micro", raised: 28000, backers: 17, daccScore: 82, status: "seeking" },
-  { id: "p8", name: "Open Prediction Market Protocol", description: "Censorship-resistant prediction markets for governance signal.", category: "governance", subcategory: "prediction-markets", raised: 55000, backers: 27, daccScore: 78, status: "active" },
-  { id: "p9", name: "RISC-V Security Coprocessor", description: "Open-source hardware security module on RISC-V for key management.", category: "hardware", subcategory: "risc-v", raised: 19000, backers: 11, daccScore: 92, status: "seeking" },
-  { id: "p10", name: "Hypercerts Impact Market", description: "Marketplace for buying and selling verified impact certificates.", category: "public-goods", subcategory: "impact-certs", raised: 41000, backers: 19, daccScore: 74, status: "active" },
-  { id: "p11", name: "DeSci Clinical Trial DAO", description: "Decentralized clinical trials with patient-owned data and open results.", category: "health", subcategory: "desci-health", raised: 36000, backers: 14, daccScore: 85, status: "seeking" },
-  { id: "p12", name: "Sybil-Resistant Voting Protocol", description: "Novel sybil resistance using social graph analysis + ZK attestations.", category: "identity", subcategory: "sybil", raised: 22000, backers: 9, daccScore: 87, status: "seeking" },
+  // Atoms × Survive
+  { id: "p1", name: "Pathoplexus", description: "Open pathogen genomic surveillance platform for pandemic preparedness.", category: "biodefense", subcategory: "pathogen-surveillance", raised: 42000, backers: 18, daccScore: 88, status: "active" },
+  { id: "p2", name: "OpenWater", description: "Open-source medical imaging hardware for accessible diagnostics.", category: "biodefense", subcategory: "health-infra", raised: 28000, backers: 12, daccScore: 86, status: "seeking" },
+  { id: "p3", name: "GrapheneOS", description: "Privacy and security focused mobile OS built on Android Open Source Project.", category: "open-hardware", subcategory: "open-os", raised: 89000, backers: 156, daccScore: 95, status: "funded" },
+  { id: "p4", name: "ethOS (Freedom Factory)", description: "Ethereum-native mobile operating system for sovereign computing.", category: "open-hardware", subcategory: "secure-devices", raised: 34000, backers: 22, daccScore: 82, status: "active" },
+  { id: "p5", name: "K-scale Labs", description: "Open-source humanoid robots and distributed manufacturing.", category: "resilient-manufacturing", subcategory: "robotics", raised: 15000, backers: 8, daccScore: 78, status: "seeking" },
+  { id: "p6", name: "Better.SG", description: "Civic tech collective building public goods for Singapore.", category: "civic-tech", subcategory: "community-resilience", raised: 22000, backers: 14, daccScore: 84, status: "active" },
+  { id: "p7", name: "Edible Garden City", description: "Urban farming infrastructure for local food sovereignty.", category: "civic-tech", subcategory: "urban-agriculture", raised: 18000, backers: 11, daccScore: 80, status: "seeking" },
+
+  // Atoms × Thrive
+  { id: "p8", name: "Energy Web Foundation", description: "Open-source decentralized energy infrastructure and protocols.", category: "decentralized-energy", subcategory: "energy-web", raised: 120000, backers: 67, daccScore: 88, status: "funded" },
+  { id: "p9", name: "Power Ledger", description: "Peer-to-peer energy trading platform for decentralized grids.", category: "decentralized-energy", subcategory: "solar-micro", raised: 78000, backers: 45, daccScore: 82, status: "active" },
+  { id: "p10", name: "Colorado River Sensor Network", description: "Open-source water quality sensors publishing data to a public commons.", category: "bioregional", subcategory: "watershed-dao", raised: 12000, backers: 8, daccScore: 86, status: "seeking" },
+  { id: "p11", name: "Boulder Bioregional Data Commons", description: "Community-owned ecological and governance data for the Front Range.", category: "bioregional", subcategory: "ecological-data", raised: 8000, backers: 6, daccScore: 84, status: "seeking" },
+
+  // Bits × Survive
+  { id: "p12", name: "Waku", description: "Decentralized communication protocol for censorship-resistant messaging.", category: "comms-messaging", subcategory: "messaging-protocols", raised: 95000, backers: 52, daccScore: 94, status: "active" },
+  { id: "p13", name: "Status", description: "Private messaging, crypto wallet, and Web3 browser in one app.", category: "comms-messaging", subcategory: "p2p-messaging", raised: 180000, backers: 89, daccScore: 92, status: "funded" },
+  { id: "p14", name: "HOPR", description: "Incentivized mixnet for metadata-private communication.", category: "comms-messaging", subcategory: "metadata-resistance", raised: 64000, backers: 31, daccScore: 91, status: "active" },
+  { id: "p15", name: "SimpleX Chat", description: "First messaging platform without user identifiers of any kind.", category: "comms-messaging", subcategory: "encrypted-comms", raised: 42000, backers: 28, daccScore: 96, status: "active" },
+  { id: "p16", name: "Session", description: "End-to-end encrypted messenger using onion routing. No phone number required.", category: "comms-messaging", subcategory: "encrypted-comms", raised: 55000, backers: 34, daccScore: 93, status: "active" },
+  { id: "p17", name: "XMTP Labs", description: "Open protocol for secure web3 messaging between wallets.", category: "comms-messaging", subcategory: "messaging-protocols", raised: 72000, backers: 41, daccScore: 88, status: "active" },
+  { id: "p18", name: "ENS", description: "Decentralized naming system for wallets, websites, and more.", category: "identity-attestation", subcategory: "naming-systems", raised: 250000, backers: 312, daccScore: 94, status: "funded" },
+  { id: "p19", name: "Worldcoin", description: "Proof of personhood using iris biometrics for global identity.", category: "identity-attestation", subcategory: "proof-of-personhood", raised: 350000, backers: 178, daccScore: 58, status: "funded" },
+  { id: "p20", name: "Polygon ID", description: "Self-sovereign identity framework using ZK proofs.", category: "identity-attestation", subcategory: "verifiable-creds", raised: 85000, backers: 42, daccScore: 82, status: "active" },
+  { id: "p21", name: "EAS (Ethereum Attestation Service)", description: "Open infrastructure for making attestations on/off chain.", category: "identity-attestation", subcategory: "attestation-infra", raised: 38000, backers: 24, daccScore: 90, status: "active" },
+  { id: "p22", name: "Trail of Bits", description: "Security research and auditing for critical software infrastructure.", category: "formal-verification", subcategory: "security-audits", raised: 120000, backers: 56, daccScore: 88, status: "funded" },
+  { id: "p23", name: "OpenZeppelin", description: "Open-source smart contract security library and audit services.", category: "formal-verification", subcategory: "security-tools", raised: 95000, backers: 142, daccScore: 92, status: "funded" },
+  { id: "p24", name: "Immunefi", description: "Web3's leading bug bounty platform protecting $190B+ in funds.", category: "formal-verification", subcategory: "bug-bounties", raised: 78000, backers: 67, daccScore: 86, status: "active" },
+  { id: "p25", name: "Code4rena", description: "Competitive audit platform for smart contract security.", category: "formal-verification", subcategory: "bug-bounties", raised: 55000, backers: 89, daccScore: 84, status: "active" },
+  { id: "p26", name: "Aztec Network", description: "Privacy-first ZK rollup with encrypted smart contracts.", category: "zk-systems", subcategory: "zk-rollups", raised: 145000, backers: 78, daccScore: 92, status: "active" },
+  { id: "p27", name: "zkSync", description: "ZK rollup for scaling Ethereum with full EVM compatibility.", category: "zk-systems", subcategory: "zk-rollups", raised: 210000, backers: 156, daccScore: 86, status: "funded" },
+  { id: "p28", name: "StarkNet", description: "Permissionless ZK rollup using STARK proofs for scalability.", category: "zk-systems", subcategory: "zk-infrastructure", raised: 185000, backers: 134, daccScore: 88, status: "funded" },
+  { id: "p29", name: "Zama", description: "Open-source fully homomorphic encryption tools for developers.", category: "privacy-computation", subcategory: "mpc", raised: 62000, backers: 28, daccScore: 90, status: "active" },
+  { id: "p30", name: "ZenGo", description: "Keyless crypto wallet using MPC for threshold key management.", category: "privacy-computation", subcategory: "key-management", raised: 48000, backers: 35, daccScore: 78, status: "active" },
+
+  // Bits × Thrive
+  { id: "p31", name: "Aragon", description: "DAO framework for creating and managing on-chain organizations.", category: "governance-tooling", subcategory: "dao-tooling", raised: 125000, backers: 89, daccScore: 88, status: "funded" },
+  { id: "p32", name: "Safe", description: "Multi-signature smart account infrastructure for digital asset management.", category: "governance-tooling", subcategory: "multisig", raised: 180000, backers: 234, daccScore: 92, status: "funded" },
+  { id: "p33", name: "Tally", description: "Full-featured governance app for on-chain voting and delegation.", category: "governance-tooling", subcategory: "voting-frameworks", raised: 65000, backers: 42, daccScore: 84, status: "active" },
+  { id: "p34", name: "Compound Governor", description: "Open-source governance framework used by 100+ DAOs.", category: "governance-tooling", subcategory: "voting-frameworks", raised: 95000, backers: 67, daccScore: 90, status: "funded" },
+  { id: "p35", name: "Metagov", description: "Research collective building tools for online governance.", category: "governance-tooling", subcategory: "metagovernance", raised: 32000, backers: 18, daccScore: 86, status: "seeking" },
+  { id: "p36", name: "Polymarket", description: "Prediction market platform for real-world event forecasting.", category: "epistemic-infra", subcategory: "prediction-markets", raised: 140000, backers: 89, daccScore: 76, status: "funded" },
+  { id: "p37", name: "Metaculus", description: "Community prediction and forecasting platform for calibrated reasoning.", category: "epistemic-infra", subcategory: "prediction-markets", raised: 45000, backers: 34, daccScore: 88, status: "active" },
+  { id: "p38", name: "CheckMate SG", description: "Community-driven fact-checking and misinformation detection.", category: "epistemic-infra", subcategory: "fact-checking", raised: 18000, backers: 12, daccScore: 82, status: "seeking" },
+  { id: "p39", name: "Circle (USDC)", description: "Fully reserved stablecoin infrastructure for digital dollars.", category: "monetary-infra", subcategory: "stablecoins", raised: 280000, backers: 450, daccScore: 62, status: "funded" },
+  { id: "p40", name: "MakerDAO (DAI)", description: "Decentralized stablecoin backed by crypto collateral, governed by MKR holders.", category: "monetary-infra", subcategory: "decentralized-stablecoins", raised: 195000, backers: 312, daccScore: 86, status: "funded" },
 ];
 
 /* ────────────────────── COMPONENT ─────────────────────── */
