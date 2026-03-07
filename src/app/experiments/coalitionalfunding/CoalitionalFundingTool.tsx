@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, useMemo, useCallback } from "react";
+import { useState, useMemo, useCallback, useEffect } from "react";
 
 /* ───────────────────── d/acc TAXONOMY ───────────────────── */
 
@@ -251,8 +251,62 @@ interface AttractorState {
   selectedProjects: Set<string>;
 }
 
+declare global {
+  interface Window {
+    ethereum?: {
+      request: (args: { method: string; params?: unknown[] }) => Promise<unknown>;
+      on: (event: string, cb: (...args: unknown[]) => void) => void;
+      removeListener: (event: string, cb: (...args: unknown[]) => void) => void;
+    };
+  }
+}
+
+function truncateAddress(addr: string) {
+  return `${addr.slice(0, 6)}…${addr.slice(-4)}`;
+}
+
 export default function CoalitionalFundingTool() {
   const [step, setStep] = useState<Step>("quadrant");
+  const [walletAddress, setWalletAddress] = useState<string | null>(null);
+  const [connecting, setConnecting] = useState(false);
+
+  // Auto-detect already connected wallet
+  useEffect(() => {
+    const eth = window.ethereum;
+    if (!eth) return;
+    eth.request({ method: "eth_accounts" }).then((accounts) => {
+      const accs = accounts as string[];
+      if (accs.length > 0) setWalletAddress(accs[0]);
+    }).catch(() => {});
+
+    const handleChange = (...args: unknown[]) => {
+      const accounts = args[0] as string[];
+      setWalletAddress(accounts.length > 0 ? accounts[0] : null);
+    };
+    eth.on("accountsChanged", handleChange);
+    return () => eth.removeListener("accountsChanged", handleChange);
+  }, []);
+
+  const connectWallet = useCallback(async () => {
+    const eth = window.ethereum;
+    if (!eth) {
+      window.open("https://metamask.io/download/", "_blank");
+      return;
+    }
+    setConnecting(true);
+    try {
+      const accounts = (await eth.request({ method: "eth_requestAccounts" })) as string[];
+      if (accounts.length > 0) setWalletAddress(accounts[0]);
+    } catch {
+      // user rejected
+    }
+    setConnecting(false);
+  }, []);
+
+  const disconnectWallet = useCallback(() => {
+    setWalletAddress(null);
+  }, []);
+
   const [attractor, setAttractor] = useState<AttractorState>({
     quadrant: null,
     category: null,
@@ -315,8 +369,31 @@ export default function CoalitionalFundingTool() {
 
   return (
     <div className="min-h-screen bg-[#0a0a0f]">
+      {/* Header with wallet */}
+      <div className="max-w-3xl mx-auto px-4 pt-4 flex justify-end">
+        {walletAddress ? (
+          <div className="flex items-center gap-2">
+            <div className="flex items-center gap-1.5 bg-teal-500/10 border border-teal-500/20 rounded-full px-3 py-1.5">
+              <div className="w-2 h-2 rounded-full bg-teal-400" />
+              <span className="text-xs font-mono text-teal-400">{truncateAddress(walletAddress)}</span>
+            </div>
+            <button onClick={disconnectWallet} className="text-[10px] text-gray-600 hover:text-gray-400 transition-colors">
+              disconnect
+            </button>
+          </div>
+        ) : (
+          <button
+            onClick={connectWallet}
+            disabled={connecting}
+            className="flex items-center gap-1.5 bg-[#14141f] border border-gray-700 rounded-full px-4 py-1.5 text-xs text-gray-300 hover:border-teal-500/30 hover:text-teal-400 transition-all"
+          >
+            {connecting ? "Connecting…" : "Connect Wallet"}
+          </button>
+        )}
+      </div>
+
       {/* Hero */}
-      <div className="max-w-3xl mx-auto px-4 pt-12 pb-6 text-center">
+      <div className="max-w-3xl mx-auto px-4 pt-4 pb-6 text-center">
         <p className="text-teal-400 font-mono text-xs tracking-widest uppercase mb-2">
           Experiment · d/acc aligned
         </p>
@@ -674,13 +751,28 @@ export default function CoalitionalFundingTool() {
               </div>
             </div>
 
-            <button
-              disabled={!attractor.pledgeAmount || parseFloat(attractor.pledgeAmount) <= 0}
-              className={`w-full py-3.5 rounded-xl font-semibold text-base transition-all ${attractor.pledgeAmount && parseFloat(attractor.pledgeAmount) > 0 ? "bg-teal-500 text-black hover:bg-teal-400" : "bg-gray-800 text-gray-500 cursor-not-allowed"}`}
-            >
-              {attractor.pledgeAmount && parseFloat(attractor.pledgeAmount) > 0 ? `Pledge ${attractor.pledgeAmount} ETH` : "Enter amount"}
-            </button>
-            <p className="text-center text-[10px] text-gray-600 mt-2">Experimental prototype. Pledges are signals, not commitments.</p>
+            {walletAddress ? (
+              <button
+                disabled={!attractor.pledgeAmount || parseFloat(attractor.pledgeAmount) <= 0}
+                className={`w-full py-3.5 rounded-xl font-semibold text-base transition-all ${attractor.pledgeAmount && parseFloat(attractor.pledgeAmount) > 0 ? "bg-teal-500 text-black hover:bg-teal-400" : "bg-gray-800 text-gray-500 cursor-not-allowed"}`}
+              >
+                {attractor.pledgeAmount && parseFloat(attractor.pledgeAmount) > 0 ? `Pledge ${attractor.pledgeAmount} ETH` : "Enter amount"}
+              </button>
+            ) : (
+              <button
+                onClick={connectWallet}
+                disabled={connecting}
+                className="w-full py-3.5 rounded-xl font-semibold text-base bg-teal-500 text-black hover:bg-teal-400 transition-all"
+              >
+                {connecting ? "Connecting…" : "Connect Wallet to Pledge"}
+              </button>
+            )}
+            {walletAddress && (
+              <p className="text-center text-[10px] text-gray-500 mt-2">
+                Pledging as <span className="text-teal-400 font-mono">{truncateAddress(walletAddress)}</span>
+              </p>
+            )}
+            <p className="text-center text-[10px] text-gray-600 mt-1">Experimental prototype. Pledges are signals, not commitments.</p>
           </div>
         )}
 
