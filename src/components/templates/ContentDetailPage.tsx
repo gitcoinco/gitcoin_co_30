@@ -11,6 +11,7 @@ import {
 } from "@/components/layouts";
 import { Markdown } from "@/components/Markdown";
 import type { BaseContent } from "@/lib/types";
+import { Button } from "../ui";
 
 interface RelatedSection {
   title: string;
@@ -24,6 +25,8 @@ interface ContentDetailPageProps {
   breadcrumbHref: string;
   breadcrumbLabel: string;
   relatedSections?: RelatedSection[];
+  externalUrl?: string;
+  externalUrlLabel?: string;
 }
 
 function calcReadTime(text: string): number {
@@ -36,6 +39,8 @@ export default function ContentDetailPage({
   breadcrumbHref,
   breadcrumbLabel,
   relatedSections = [],
+  externalUrl,
+  externalUrlLabel = "Visit",
 }: ContentDetailPageProps) {
   const banner = item.banner || "/content-images/placeholder.png";
   const readTime = calcReadTime(item.description);
@@ -46,7 +51,7 @@ export default function ContentDetailPage({
       {banner && <HeroImage src={banner} alt={item.name} readTime={readTime} />}
 
       <PageHeader>
-        <div className="max-w-[850px] flex flex-col md:flex-row gap-6 md:gap-8 md:items-center">
+        <div className="flex flex-col md:flex-row gap-6 md:gap-8 md:items-center">
           {/* Logo (for apps) */}
           {item.logo && !item.banner && (
             <div className="flex-shrink-0">
@@ -63,9 +68,33 @@ export default function ContentDetailPage({
             <h1 className="text-3xl md:text-4xl font-bold text-gray-25 mb-2 md:mb-4">
               {item.name}
             </h1>
-            <p className="text-lg text-gray-500 max-w-2xl">
-              {item.shortDescription}
-            </p>
+            <div className="w-full flex flex-wrap gap-6 items-center justify-between">
+              <p className="text-lg text-gray-500 max-w-2xl">
+                {item.shortDescription}
+              </p>
+              {externalUrl && externalUrlLabel && (
+                <Button href={externalUrl} variant="secondary">
+                  <span className="flex items-center gap-2">
+                    {externalUrlLabel}
+                    <svg
+                      xmlns="http://www.w3.org/2000/svg"
+                      width="14"
+                      height="14"
+                      viewBox="0 0 24 24"
+                      fill="none"
+                      stroke="currentColor"
+                      strokeWidth="2"
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                    >
+                      <path d="M15 3h6v6" />
+                      <path d="M10 14 21 3" />
+                      <path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6" />
+                    </svg>
+                  </span>
+                </Button>
+              )}
+            </div>
           </div>
         </div>
       </PageHeader>

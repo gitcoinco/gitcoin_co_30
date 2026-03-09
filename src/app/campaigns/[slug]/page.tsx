@@ -77,6 +77,8 @@ export default async function CampaignDetailPage({ params }: PageProps) {
         item={campaign}
         breadcrumbHref="/campaigns"
         breadcrumbLabel="Back to Campaigns"
+        externalUrl={campaign.externalUrl}
+        externalUrlLabel="Visit Campaign"
         relatedSections={[
           {
             title: 'Related Apps',
