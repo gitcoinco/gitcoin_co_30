@@ -119,6 +119,7 @@ export function parseList(markdown: string, sectionName: string): string[] {
 
   return bulletPoints
     .map((point) => point.replace(/^-\s+/, "").trim())
+    .map((item) => item.replace(/^`(.*)`$/, "$1"))
     .filter((item) => item && item !== "-");
 }
 
