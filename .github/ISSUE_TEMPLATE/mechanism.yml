@@ -49,8 +49,8 @@ body:
     attributes:
       label: Banner Image
       description: |
-        Open https://gitcoin.co/generator in a new tab (cmd+click / ctrl+click) before filling this form.
-        press R to cycle through patterns until you find one you like → press S to save → drag the saved PNG here.
+        Open https://gitcoin.co/generator in a new tab (cmd+click / ctrl+click).
+        Press R to cycle through patterns until you find one you like → press S to save → drag the saved PNG here.
         Only images from the Chladni generator are accepted (no screenshots or external images).
       value: |
         <!-- Go to https://gitcoin.co/generator → press R to cycle patterns → press S to save → drag the PNG here. Only Chladni-generated PNGs accepted. -->
