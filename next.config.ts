@@ -2,7 +2,7 @@ import type { NextConfig } from "next";
 
 const nextConfig: NextConfig = {
   images: {
-    domains: ["images.unsplash.com"],
+    domains: ["images.unsplash.com", "raw.githubusercontent.com"],
   },
 
   // Prevent large packages from being bundled into serverless functions
@@ -11,7 +11,7 @@ const nextConfig: NextConfig = {
   experimental: {
     // outputFileTracingExcludes is valid but missing from the TS types
     // eslint-disable-next-line @typescript-eslint/no-explicit-any
-    ...(({
+    ...({
       outputFileTracingExcludes: {
         // Exclude the banner images and three.js from all serverless function
         // bundles — they are served as static files and don't need to be
@@ -22,7 +22,7 @@ const nextConfig: NextConfig = {
           "node_modules/@react-three/**",
         ],
       },
-    }) as any),
+    } as any),
   },
 
   async redirects() {
@@ -39,6 +39,10 @@ const nextConfig: NextConfig = {
       {
         source: "/generator",
         destination: "https://octaviaan.github.io/Chladni-Particles/",
+      },
+      {
+        source: "/generator/:path*",
+        destination: "https://octaviaan.github.io/Chladni-Particles/:path*",
       },
       // gitcoin.co rewrites
       // medium - on webflow

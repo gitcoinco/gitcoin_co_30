@@ -2,9 +2,16 @@
 id: '1772727445381'
 slug: ethereum-has-ens-for-people-what-about-everything-else
 name: "Ethereum Has ENS for People. What About Everything Else?"
-shortDescription: ""
+shortDescription: "Two companion ERCs (8185 + 8186) for mapping off-chain entities to Ethereum addresses and pre-funding them before registration."
 tags:
-
+  - identity
+  - public-goods
+  - funding
+  - ai-agents
+  - registry
+  - escrow
+  - ERC
+researchType: Opinion
 lastUpdated: '2026-03-05'
 relatedMechanisms:
   - quadratic-funding
