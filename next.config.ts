@@ -32,12 +32,17 @@ const nextConfig: NextConfig = {
         destination: "/research",
         permanent: true,
       },
+      {
+        source: "/generator",
+        destination: "/generator/",
+        permanent: false,
+      },
     ];
   },
   async rewrites() {
     return [
       {
-        source: "/generator",
+        source: "/generator/",
         destination: "https://octaviaan.github.io/Chladni-Particles/",
       },
       {
