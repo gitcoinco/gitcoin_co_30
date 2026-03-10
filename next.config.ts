@@ -37,10 +37,6 @@ const nextConfig: NextConfig = {
   async rewrites() {
     return [
       {
-        source: "/generator",
-        destination: "https://octaviaan.github.io/Chladni-Particles/",
-      },
-      {
         source: "/generator/:path*",
         destination: "https://octaviaan.github.io/Chladni-Particles/:path*",
       },
