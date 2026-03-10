@@ -17,7 +17,6 @@ endDate: '2025-10-28'
 lastUpdated: '2026-02-20'
 relatedMechanisms:
   - quadratic-funding
-  - quadratic-funding
 relatedApps:
 
 relatedCaseStudies:
