@@ -16,7 +16,6 @@ export {
   parseList,
   extractImages,
   extractImagesBySections,
-  extractPdfUrl,
   formatMarkdown,
   slugify,
 } from "../src/lib/parse-issue";
@@ -36,7 +35,7 @@ const ALLOWED_HOSTS = [
 ];
 const MAX_REDIRECTS = 5;
 const MAX_FILE_SIZE = 10 * 1024 * 1024;   // 10 MB for images
-const MAX_PDF_SIZE  = 100 * 1024 * 1024;  // 100 MB for PDFs
+
 
 function contentTypeToExt(contentType: string): string {
   if (contentType.includes("svg")) return ".svg";
@@ -136,67 +135,6 @@ export async function downloadImage(
   });
 }
 
-/** Download a PDF from a URL to a local file, enforcing a 100 MB size limit. */
-export async function downloadPdf(
-  url: string,
-  filepath: string,
-  redirectCount = 0,
-): Promise<void> {
-  if (redirectCount > MAX_REDIRECTS) {
-    throw new Error(`Too many redirects (>${MAX_REDIRECTS}) for ${url}`);
-  }
-
-  const parsed = new URL(url);
-  const isAllowed =
-    ALLOWED_HOSTS.some(
-      (h) => parsed.hostname === h || parsed.hostname.endsWith(`.${h}`),
-    ) ||
-    (parsed.hostname.startsWith("github-production-") &&
-      parsed.hostname.endsWith(".s3.amazonaws.com"));
-  if (!isAllowed) {
-    throw new Error(`Blocked download from untrusted host: ${parsed.hostname}`);
-  }
-
-  return new Promise((resolve, reject) => {
-    https.get(url, (response) => {
-      if (
-        response.statusCode &&
-        response.statusCode >= 300 &&
-        response.statusCode < 400 &&
-        response.headers.location
-      ) {
-        return downloadPdf(response.headers.location, filepath, redirectCount + 1)
-          .then(resolve)
-          .catch(reject);
-      }
-
-      const contentType = response.headers["content-type"] || "";
-      if (!contentType.includes("pdf") && !contentType.includes("octet-stream")) {
-        response.resume();
-        return reject(new Error(`Expected a PDF but got content-type "${contentType}" for ${url}`));
-      }
-
-      let downloaded = 0;
-      const file = fs.createWriteStream(filepath);
-
-      response.on("data", (chunk: Buffer) => {
-        downloaded += chunk.length;
-        if (downloaded > MAX_PDF_SIZE) {
-          response.destroy();
-          file.close();
-          fs.unlink(filepath, () => {});
-          reject(new Error(`PDF exceeds ${MAX_PDF_SIZE / 1024 / 1024} MB limit: ${url}`));
-        }
-      });
-
-      response.pipe(file);
-      file.on("finish", () => { file.close(); resolve(); });
-    }).on("error", (err) => {
-      fs.unlink(filepath, () => {});
-      reject(err);
-    });
-  });
-}
 
 /** Download and process images (banner, logo, and description images) */
 export async function processImages(

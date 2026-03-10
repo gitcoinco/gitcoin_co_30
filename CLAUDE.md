@@ -97,10 +97,9 @@ researchType: Report         # Optional — MUST be one of: Book | Report | Opin
                              # Validated by CI. Do not use other values.
 
 ctaUrl: '/content-images/research/{slug}/book.pdf'  # Optional — URL for a CTA button on the detail page
-                                                     # For PDFs: named book.pdf by convention, stored at
+                                                     # For PDFs in this repo: named book.pdf by convention, stored at
                                                      #   public/content-images/research/{slug}/book.pdf
-                                                     # When publishing via issue: drop the PDF in the PDF field of the issue form —
-                                                     #   the script downloads it and writes the local path automatically
+                                                     #   Add via PR — commit the PDF directly to that path (team only)
                                                      # For external links: use a full https:// URL
                                                      # Button label derived automatically: "Read {researchType}" (e.g. "Read Book")
 ```

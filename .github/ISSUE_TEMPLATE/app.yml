@@ -3,12 +3,17 @@ description: Submit a new app, platform, or funding tool to the directory
 title: "[App] Your app name here"
 labels: ["content", "app"]
 body:
-  - type: input
+  - type: textarea
     id: slug
     attributes:
       label: Slug
       description: "Optional — leave blank to auto-generate from title. Use the existing slug when updating content."
       placeholder: "gitcoin-grants-stack"
+      value: |
+        <!--
+        IMPORTANT: If editing this issue as raw markdown, do not rename or remove section headers (### Name).
+        They are used as parsing keys by the publishing automation — changing them will break content generation.
+        -->
     validations:
       required: false
 
@@ -21,12 +26,13 @@ body:
     validations:
       required: true
 
-  - type: input
+  - type: textarea
     id: tags
     attributes:
       label: Tags
       description: "Comma-separated tags"
-      placeholder: "grants, ethereum, quadratic"
+      value: |
+        <!-- Comma-separated tags, e.g: grants, ethereum, quadratic -->
     validations:
       required: true
 
@@ -43,8 +49,11 @@ body:
     attributes:
       label: Banner Image
       description: |
-        Go to https://gitcoin.co/generator → set Aspect to Landscape → press R to pick a pattern → press S to save → drag the PNG here.
+        Open https://gitcoin.co/generator in a new tab (cmd+click / ctrl+click).
+        Press R to cycle through patterns until you find one you like → press S to save → drag the saved PNG here.
         Only images from the Chladni generator are accepted (no screenshots or external images).
+      value: |
+        <!-- Go to https://gitcoin.co/generator → press R to cycle patterns → press S to save → drag the PNG here. Only Chladni-generated PNGs accepted. -->
     validations:
       required: true
 
@@ -56,6 +65,8 @@ body:
         Drag your logo PNG into this text area (GitHub will upload it automatically).
         Use the white/inverted version — logos are displayed on dark backgrounds.
         Square format, 256×256 or 512×512 px, PNG only.
+      value: |
+        <!-- Drag your white/inverted logo PNG here. Square format (256×256 or 512×512 px), PNG only, displayed on dark backgrounds. -->
     validations:
       required: true
 
@@ -77,7 +88,9 @@ body:
     id: related-apps
     attributes:
       label: Related Apps
-      description: "One slug per line (e.g. gitcoin-grants-stack)"
+      description: "Comma-separated slugs (e.g. gitcoin-grants-stack, octant)"
+      value: |
+        <!-- Comma-separated slugs, e.g: gitcoin-grants-stack, octant -->
     validations:
       required: false
 
@@ -85,7 +98,9 @@ body:
     id: related-mechanisms
     attributes:
       label: Related Mechanisms
-      description: "One slug per line (e.g. quadratic-funding)"
+      description: "Comma-separated slugs (e.g. quadratic-funding, direct-grants)"
+      value: |
+        <!-- Comma-separated slugs, e.g: quadratic-funding, direct-grants -->
     validations:
       required: false
 
@@ -93,7 +108,9 @@ body:
     id: related-case-studies
     attributes:
       label: Related Case Studies
-      description: "One slug per line"
+      description: "Comma-separated slugs"
+      value: |
+        <!-- Comma-separated slugs, e.g: gitcoin-gr15-case-study -->
     validations:
       required: false
 
@@ -101,7 +118,9 @@ body:
     id: related-research
     attributes:
       label: Related Research
-      description: "One slug per line"
+      description: "Comma-separated slugs"
+      value: |
+        <!-- Comma-separated slugs, e.g: my-research-slug -->
     validations:
       required: false
 
@@ -109,7 +128,9 @@ body:
     id: related-campaigns
     attributes:
       label: Related Campaigns
-      description: "One slug per line"
+      description: "Comma-separated slugs"
+      value: |
+        <!-- Comma-separated slugs, e.g: gg24, gg25 -->
     validations:
       required: false
 

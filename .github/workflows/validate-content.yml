@@ -2,8 +2,6 @@ name: Validate content
 
 on:
   pull_request:
-    paths:
-      - 'src/content/**'
   workflow_dispatch:  # Manual trigger — validates ALL content files
 
 jobs:
@@ -15,19 +13,27 @@ jobs:
     steps:
       - uses: actions/checkout@v4
 
-      - uses: actions/setup-node@v4
-        with:
-          node-version: 20
-          cache: npm
-
-      - run: npm ci
-
       - name: Get changed content files
         id: changed
         if: github.event_name == 'pull_request'
         uses: tj-actions/changed-files@v44
         with:
           files: 'src/content/**/*.md'
+
+      - name: Skip if no content files changed
+        if: github.event_name == 'pull_request' && steps.changed.outputs.any_changed != 'true'
+        run: |
+          echo "No content files changed — skipping validation."
+          exit 0
+
+      - uses: actions/setup-node@v4
+        if: github.event_name == 'workflow_dispatch' || steps.changed.outputs.any_changed == 'true'
+        with:
+          node-version: 20
+          cache: npm
+
+      - run: npm ci
+        if: github.event_name == 'workflow_dispatch' || steps.changed.outputs.any_changed == 'true'
 
       - name: Validate changed files
         id: validate
@@ -54,27 +60,10 @@ jobs:
             let output = '';
             try { output = fs.readFileSync('/tmp/validate-output.txt', 'utf8').trim(); } catch {}
 
-            const successBody = `${marker}
-            ✅ **Content validation passed!**`;
-
-            const failureBody = `${marker}
-            ## ❌ Content Validation Failed
-
-            \`\`\`
-            ${output}
-            \`\`\`
-
-            Fix the errors above and push again — validation will re-run automatically.`;
-
+            const successBody = `${marker}\n✅ **Content validation passed!**`;
+            const failureBody = `${marker}\n## ❌ Content Validation Failed\n\n\`\`\`\n${output}\n\`\`\`\n\nFix the errors above and push again — validation will re-run automatically.`;
             const body = outcome === 'failure' ? failureBody : successBody;
 
-            const { data: comments } = await github.rest.pulls.listReviewComments({
-              owner: context.repo.owner,
-              repo: context.repo.repo,
-              pull_number: context.issue.number,
-            });
-
-            // Use issue comments (not review comments) for the bot message
             const { data: issueComments } = await github.rest.issues.listComments({
               owner: context.repo.owner,
               repo: context.repo.repo,
@@ -83,13 +72,14 @@ jobs:
             const existing = issueComments.find(c => c.body?.includes(marker));
 
             if (existing) {
-              await github.rest.issues.updateComment({
+              await github.rest.issues.deleteComment({
                 owner: context.repo.owner,
                 repo: context.repo.repo,
                 comment_id: existing.id,
-                body,
               });
-            } else if (outcome === 'failure') {
+            }
+
+            if (existing || outcome === 'failure') {
               await github.rest.issues.createComment({
                 owner: context.repo.owner,
                 repo: context.repo.repo,
