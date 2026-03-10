@@ -2,7 +2,7 @@ name: Validate content issue
 
 on:
   issues:
-    types: [opened, edited]
+    types: [opened, edited, labeled]
   workflow_dispatch:
     inputs:
       issue_number:
@@ -80,7 +80,7 @@ jobs:
           set -o pipefail
           npx tsx scripts/validate-issue.ts ${{ steps.resolve.outputs.type }} /tmp/issue-body.md 2>&1 | tee /tmp/validate-output.txt
 
-      - name: Post or update validation comment
+      - name: Post validation comment
         if: steps.resolve.outputs.type != 'unknown'
         uses: actions/github-script@v7
         with:
@@ -88,7 +88,11 @@ jobs:
             const marker = '<!-- validate-issue-bot -->';
             const outcome = '${{ steps.validate.outcome }}';
             const issueNumber = parseInt('${{ steps.resolve.outputs.number }}');
+            const type = '${{ steps.resolve.outputs.type }}';
             const fs = require('fs');
+
+            const previewUrl = `https://www.gitcoin.co/preview?issue=${issueNumber}&type=${type}`;
+            const previewLine = `\n\n**Preview:** [View your submission](${previewUrl})`;
 
             let output = '';
             try { output = fs.readFileSync('/tmp/validate-output.txt', 'utf8').trim(); } catch {}
@@ -96,29 +100,14 @@ jobs:
             const hasWarnings = outcome === 'success' && output.length > 0;
 
             const successBody = hasWarnings
-              ? `${marker}
-            ✅ **Content validation passed** — but with reviewer notes:
+              ? `${marker}\n✅ **Content validation passed** — but with reviewer notes:\n\n\`\`\`\n${output}\n\`\`\`${previewLine}\n\nOnce reviewed and approved by a maintainer, your content will be published to the site.`
+              : `${marker}\n✅ **Content validation passed!** All required fields look good — this issue is ready to be reviewed.${previewLine}\n\nOnce reviewed and approved by a maintainer, your content will be published to the site.`;
 
-            \`\`\`
-            ${output}
-            \`\`\``
-              : `${marker}
-            ✅ **Content validation passed!** All required fields look good — this issue is ready to be reviewed.`;
-
-            const failureBody = `${marker}
-            ## ❌ Content Validation Issues
-
-            The following fields need attention before this submission can be reviewed:
-
-            \`\`\`
-            ${output}
-            \`\`\`
-
-            Please edit the issue to fix the issues above — validation will re-run automatically.`;
+            const failureBody = `${marker}\n## ❌ Content Validation Issues\n\nThe following fields need attention before this submission can be reviewed:\n\n\`\`\`\n${output}\n\`\`\`${previewLine}\n\nPlease edit the issue to fix the issues above — validation will re-run automatically.`;
 
             const body = outcome === 'success' ? successBody : failureBody;
 
-            // Find existing bot comment to update instead of creating a new one
+            // Delete existing bot comment and create a new one so contributors get notified
             const { data: comments } = await github.rest.issues.listComments({
               owner: context.repo.owner,
               repo: context.repo.repo,
@@ -127,24 +116,22 @@ jobs:
             const existing = comments.find(c => c.body?.includes(marker));
 
             if (existing) {
-              await github.rest.issues.updateComment({
+              await github.rest.issues.deleteComment({
                 owner: context.repo.owner,
                 repo: context.repo.repo,
                 comment_id: existing.id,
-                body,
-              });
-            } else if (outcome === 'failure' || hasWarnings) {
-              // Create a new comment on failure or when there are reviewer warnings
-              await github.rest.issues.createComment({
-                owner: context.repo.owner,
-                repo: context.repo.repo,
-                issue_number: issueNumber,
-                body,
               });
             }
 
+            await github.rest.issues.createComment({
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              issue_number: issueNumber,
+              body,
+            });
+
   revoke-approval:
-    # Remove 'approved' label and close the auto-generated PR when an approved issue is edited
+    # Remove 'approved' label and close+delete the auto-generated PR when an approved issue is edited
     if: |
       github.event_name == 'issues' &&
       github.event.action == 'edited' &&
@@ -153,6 +140,7 @@ jobs:
     permissions:
       issues: write
       pull-requests: write
+      contents: write
     steps:
       - uses: actions/github-script@v7
         with:
@@ -179,6 +167,17 @@ jobs:
                 pull_number: pr.number,
                 state: 'closed',
               });
+            }
+
+            // Delete the branch so the PR cannot be reopened
+            try {
+              await github.rest.git.deleteRef({
+                owner: context.repo.owner,
+                repo: context.repo.repo,
+                ref: `heads/${branch}`,
+              });
+            } catch {
+              // Branch may not exist yet — ignore
             }
 
             // Find who approved this issue (most recent 'approved' label event)

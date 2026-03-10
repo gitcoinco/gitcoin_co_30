@@ -80,18 +80,26 @@ if (contentType === "campaign") {
   validateCampaignDates(metadata.startDate, metadata.endDate, errors);
 }
 
-// Duplicate slugs in related lists
+// Validate related lists: duplicate slugs + malformed slugs (spaces = display name, not slug)
 const RELATED_SECTIONS = ["Related Apps", "Related Mechanisms", "Related Case Studies", "Related Research", "Related Campaigns"] as const;
+const SLUG_RE = /^[a-z0-9]+(?:-[a-z0-9]+)*$/;
 for (const section of RELATED_SECTIONS) {
   const items = parseList(body, section);
   const seen = new Set<string>();
   const dupes = new Set<string>();
+  const malformed: string[] = [];
   for (const item of items) {
     if (seen.has(item)) dupes.add(item);
     else seen.add(item);
+    if (!SLUG_RE.test(item)) malformed.push(item);
   }
   if (dupes.size > 0) {
     errors.push(`**${section}** contains duplicate slugs: ${[...dupes].join(", ")}`);
+  }
+  if (malformed.length > 0) {
+    errors.push(
+      `**${section}** contains invalid slug(s): ${malformed.map((s) => `\`${s}\``).join(", ")} — slugs must be lowercase kebab-case (e.g. \`gitcoin-grants-stack\`)`,
+    );
   }
 }
 

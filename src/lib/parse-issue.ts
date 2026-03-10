@@ -33,8 +33,8 @@ export interface ParsedImage {
 // Placeholder GitHub issue forms write for unfilled optional fields
 export const NO_RESPONSE = "_No response_";
 
-// Description can contain user ## headings, so it stops only at known structural sections
-const DESC_STOP = "\\n#{2,3} Related|\\n#{2,3} Submission|---|$";
+// Description can contain user headings and --- horizontal rules, so stop only at known structural sections
+const DESC_STOP = "\\n#{2,3} Related|\\n#{2,3} Submission|$";
 
 // --- Forms format helpers (### Heading) ---
 
@@ -43,7 +43,8 @@ function extractFormField(markdown: string, label: string): string {
     new RegExp(`(?:^|\\n)### ${label}[ \\t]*\\n+([\\s\\S]*?)(?=\\n### |\\n## |$)`),
   );
   if (!match) return "";
-  const value = match[1].trim();
+  // Strip HTML comments (used as inline instructions in textarea value: fields)
+  const value = match[1].replace(/<!--[\s\S]*?-->/g, "").trim();
   return value === NO_RESPONSE ? "" : value;
 }
 
@@ -59,7 +60,8 @@ function parseFormMetadata(markdown: string): IssueMetadata {
   const tags = extractFormField(markdown, "Tags");
   if (tags) {
     metadata.tags = tags
-      .split(",")
+      .split("\n")
+      .flatMap((line) => line.split(","))
       .map((t) => t.trim())
       .filter((t) => t);
   }
@@ -191,20 +193,28 @@ export function parseList(markdown: string, sectionName: string): string[] {
   );
   if (!section) return [];
 
+  // Helper: normalize a raw line into zero or more slugs
+  const normalizeLine = (line: string): string[] =>
+    line
+      .replace(/^-\s*/, "") // strip leading "- " or "-"
+      .split(",")            // handle comma-separated values
+      .map((s) => s.replace(/^`(.*)`$/, "$1").trim())
+      .filter((s) => s && s !== "-");
+
   // Legacy format: bullet points (- slug)
   const bulletPoints = section[1].match(/^-\s+(.+)$/gm);
   if (bulletPoints) {
-    return bulletPoints
-      .map((point) => point.replace(/^-\s+/, "").trim())
-      .map((item) => item.replace(/^`(.*)`$/, "$1"))
-      .filter((item) => item && item !== "-");
+    return bulletPoints.flatMap((point) =>
+      normalizeLine(point.replace(/^-\s+/, "").trim()),
+    );
   }
 
-  // Forms format: plain lines, one slug per line
+  // Forms format: plain lines, one slug per line (also handles -slug, comma-separated)
   return section[1]
     .split("\n")
     .map((l) => l.trim())
-    .filter((l) => l && l !== NO_RESPONSE && !l.startsWith("#"));
+    .filter((l) => l && l !== NO_RESPONSE && !l.startsWith("#") && !l.startsWith("<!--"))
+    .flatMap(normalizeLine);
 }
 
 /** Extract all images (markdown and HTML) from a markdown string */

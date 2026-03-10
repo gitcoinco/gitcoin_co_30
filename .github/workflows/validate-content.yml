@@ -83,13 +83,14 @@ jobs:
             const existing = issueComments.find(c => c.body?.includes(marker));
 
             if (existing) {
-              await github.rest.issues.updateComment({
+              await github.rest.issues.deleteComment({
                 owner: context.repo.owner,
                 repo: context.repo.repo,
                 comment_id: existing.id,
-                body,
               });
-            } else if (outcome === 'failure') {
+            }
+
+            if (existing || outcome === 'failure') {
               await github.rest.issues.createComment({
                 owner: context.repo.owner,
                 repo: context.repo.repo,

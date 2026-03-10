@@ -2,7 +2,14 @@ import type { NextConfig } from "next";
 
 const nextConfig: NextConfig = {
   images: {
-    domains: ["images.unsplash.com", "raw.githubusercontent.com"],
+    remotePatterns: [
+      { protocol: "https", hostname: "images.unsplash.com" },
+      { protocol: "https", hostname: "raw.githubusercontent.com" },
+      // GitHub-hosted issue attachment images (used in preview page)
+      { protocol: "https", hostname: "user-images.githubusercontent.com" },
+      { protocol: "https", hostname: "*.githubusercontent.com" },
+      { protocol: "https", hostname: "github-production-user-asset-*.s3.amazonaws.com" },
+    ],
   },
 
   // Prevent large packages from being bundled into serverless functions
