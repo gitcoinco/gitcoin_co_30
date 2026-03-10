@@ -1,7 +1,4 @@
-import fs from "node:fs";
-import path from "node:path";
 import { publishContent } from "./publish-content";
-import { downloadPdf, extractPdfUrl } from "./shared-utils";
 import type { IssueMetadata } from "../src/lib/parse-issue";
 import { RESEARCH_TYPES } from "../src/lib/types";
 
@@ -13,11 +10,9 @@ if (!issueNumber) {
 }
 
 publishContent("research", issueNumber, {
-  parseCustomFields: (issueBody) => ({
-    pdfUrl: extractPdfUrl(issueBody),
-  }),
+  parseCustomFields: () => ({}),
 
-  addCustomFrontmatter: async (customData, metadata, slug) => {
+  addCustomFrontmatter: async (_customData, metadata, _slug) => {
     const m = metadata as unknown as IssueMetadata;
     const lines: string[] = [];
 
@@ -32,18 +27,7 @@ publishContent("research", issueNumber, {
       }
     }
 
-    const pdfUrl = customData.pdfUrl as string;
-    if (pdfUrl) {
-      const imagesDir = path.join(process.cwd(), "public", "content-images", "research", slug);
-      fs.mkdirSync(imagesDir, { recursive: true });
-      const localPath = path.join(imagesDir, "book.pdf");
-      console.log(`📄 Downloading PDF...`);
-      await downloadPdf(pdfUrl, localPath);
-      console.log(`  ✓ book.pdf (${(fs.statSync(localPath).size / 1024 / 1024).toFixed(1)} MB)`);
-      lines.push(`ctaUrl: '/content-images/research/${slug}/book.pdf'`);
-    } else if (m.ctaUrl) {
-      lines.push(`ctaUrl: '${m.ctaUrl}'`);
-    }
+    if (m.ctaUrl) lines.push(`ctaUrl: '${m.ctaUrl}'`);
 
     return lines.join("\n");
   },

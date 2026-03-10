@@ -16,7 +16,7 @@ This is the easiest way to contribute. The content is automatically formatted an
    - [Submit a Campaign](https://github.com/gitcoinco/gitcoin_co_30/issues/new?template=campaign.yml)
 
 2. **Fill out the form** — required fields are enforced by GitHub. Optional fields can be left blank.
-   - **Banner Image**: go to [gitcoin.co/generator](https://gitcoin.co/generator) → set Aspect to Landscape → press `R` to pick a pattern → `S` to save → drag the PNG into the Banner Image field. Required.
+   - **Banner Image**: go to [gitcoin.co/generator](https://gitcoin.co/generator) → press `R` to pick a pattern → `S` to save → drag the PNG into the Banner Image field. Required.
    - **Logo** (apps only): drag your white/inverted PNG logo into the Logo field.
    - **Description**: write full markdown content in the Description field.
 
@@ -185,6 +185,5 @@ npm run build
 
 **`ctaUrl`** (research and campaigns, optional)
 - URL for a CTA button shown on the research detail page; the button label is derived automatically from `researchType` (e.g. `Book` → "Read Book")
-- For PDFs: store the file at `public/content-images/research/{slug}/book.pdf` and set `ctaUrl: '/content-images/research/{slug}/book.pdf'`
+- For PDFs hosted in this repo: commit the file to `public/content-images/research/{slug}/book.pdf` via PR (team only) and set `ctaUrl: '/content-images/research/{slug}/book.pdf'`
 - For external links: use a full `https://` URL
-- When submitting via GitHub issue: drag the PDF into the **PDF** field of the issue form — it will be downloaded and hosted automatically

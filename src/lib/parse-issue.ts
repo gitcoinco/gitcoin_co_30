@@ -277,18 +277,6 @@ export function extractImagesBySections(issueBody: string) {
   return { bannerImages, logoImages, descriptionImages };
 }
 
-/** Extract the first PDF URL from a ## or ### PDF section (markdown link or bare URL) */
-export function extractPdfUrl(markdown: string): string {
-  const section = markdown.match(
-    /#{2,3} PDF\s+(?:<!--[\s\S]*?-->[ \t]*)?([\s\S]*?)(?=\n#{2,3} [^#]|---|$)/,
-  );
-  if (!section) return "";
-  const content = section[1];
-  const mdLink = content.match(/\[[^\]]*\]\((https?:\/\/[^\s)]+\.pdf[^\s)]*)\)/i);
-  if (mdLink) return mdLink[1];
-  const bareUrl = content.match(/https?:\/\/\S+\.pdf\S*/i);
-  return bareUrl ? bareUrl[0].replace(/[)\]>]+$/, "") : "";
-}
 
 /** Format markdown content (preserve line breaks, bold headings) */
 export function formatMarkdown(content: string): string {

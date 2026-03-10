@@ -70,7 +70,7 @@ body:
     id: cta-url
     attributes:
       label: CTA URL
-      description: "Optional — external link for the CTA button (e.g. https://example.com/report). For PDFs, use the PDF field below instead."
+      description: "Optional — external link for the CTA button (e.g. a hosted PDF, arXiv page, publisher site)."
       placeholder: "https://example.com/report"
     validations:
       required: false
@@ -80,18 +80,11 @@ body:
     attributes:
       label: Banner Image
       description: |
-        Go to https://gitcoin.co/generator → set Aspect to Landscape → press R to pick a pattern → press S to save → drag the PNG here.
+        Open https://gitcoin.co/generator in a new tab (cmd+click / ctrl+click) before filling this form.
+        press R to cycle through patterns until you find one you like → press S to save → drag the saved PNG here.
         Only images from the Chladni generator are accepted (no screenshots or external images).
     validations:
       required: true
-
-  - type: textarea
-    id: pdf
-    attributes:
-      label: PDF
-      description: "Optional — drag a PDF file here to attach it. The publish script will download it and set the CTA URL automatically."
-    validations:
-      required: false
 
   - type: textarea
     id: description
@@ -151,5 +144,3 @@ body:
           required: true
         - label: My description is complete and written in Markdown
           required: true
-        - label: If I attached a PDF, I used the PDF field above (not the CTA URL field)
-          required: false

@@ -88,7 +88,8 @@ body:
     attributes:
       label: Banner Image
       description: |
-        Go to https://gitcoin.co/generator → set Aspect to Landscape → press R to pick a pattern → press S to save → drag the PNG here.
+        Open https://gitcoin.co/generator in a new tab (cmd+click / ctrl+click) before filling this form.
+        press R to cycle through patterns until you find one you like → press S to save → drag the saved PNG here.
         Only images from the Chladni generator are accepted (no screenshots or external images).
     validations:
       required: true
