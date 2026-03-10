@@ -20,7 +20,7 @@ relatedResearch:
 
 relatedCampaigns:
 
-externalUrl: 'https://thedao.fund'
+ctaUrl: 'https://thedao.fund'
 matchingPoolUsd: '$220M+'
 projectsCount: 'TBD'
 startDate: '2026-01-29'

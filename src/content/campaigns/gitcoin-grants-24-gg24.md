@@ -10,7 +10,7 @@ tags:
   - GG24
   - domain allocators
 featured: false
-externalUrl: https://grants.gitcoin.co
+ctaUrl: https://grants.gitcoin.co
 matchingPoolUsd: '$1.8M'
 startDate: '2025-10-14'
 endDate: '2025-10-28'

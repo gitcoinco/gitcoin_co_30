@@ -19,7 +19,7 @@ relatedResearch:
 
 relatedCampaigns:
 
-externalUrl: 'https://grants.gitcoin.co'
+ctaUrl: 'https://grants.gitcoin.co'
 matchingPoolUsd: '$1.5M'
 projectsCount: '326+'
 startDate: '2024-04-23'
