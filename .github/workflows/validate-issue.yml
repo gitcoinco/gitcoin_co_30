@@ -27,9 +27,8 @@ jobs:
       - uses: actions/setup-node@v4
         with:
           node-version: 20
-          cache: npm
 
-      - run: npm ci
+      - run: npm install --no-save tsx gray-matter --no-audit --no-fund
 
       - name: Resolve issue data
         id: resolve

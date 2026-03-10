@@ -30,9 +30,8 @@ jobs:
         if: github.event_name == 'workflow_dispatch' || steps.changed.outputs.any_changed == 'true'
         with:
           node-version: 20
-          cache: npm
 
-      - run: npm ci
+      - run: npm install --no-save tsx gray-matter --no-audit --no-fund
         if: github.event_name == 'workflow_dispatch' || steps.changed.outputs.any_changed == 'true'
 
       - name: Validate changed files
