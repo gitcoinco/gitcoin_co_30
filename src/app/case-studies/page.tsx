@@ -8,6 +8,7 @@ import {
   CategoryContent,
 } from "@/components/layouts";
 import { caseStudies } from "@/content/case-studies";
+import { getSensemakingFor } from "@/content/research";
 import SectionHeader from "@/components/ui/SectionHeader";
 
 export const metadata: Metadata = pageSeo.caseStudies;
@@ -20,7 +21,7 @@ export default function CaseStudiesPage() {
         description="Analysis of a funding experiment"
       />
 
-      <SensemakingSection category="case-studies" />
+      <SensemakingSection article={getSensemakingFor("case-studies")} />
 
       <section className="section">
         <div className="container-page">

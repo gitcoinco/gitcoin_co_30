@@ -6,7 +6,7 @@ import {
   SensemakingSection,
   CategoryContent,
 } from "@/components/layouts";
-import { research } from "@/content/research";
+import { research, getSensemakingFor } from "@/content/research";
 import SectionHeader from "@/components/ui/SectionHeader";
 import { pageSeo } from "@/lib/page-seo";
 import { RESEARCH_TYPES } from "@/lib/types";
@@ -25,7 +25,7 @@ export default function ResearchPage() {
         description="Analysis, reports, or trend pieces"
       />
 
-      <SensemakingSection category="research" />
+      <SensemakingSection article={getSensemakingFor("research")} />
 
       <section className="mb-16 md:mb-24 mt-3">
         <div className="container-page">

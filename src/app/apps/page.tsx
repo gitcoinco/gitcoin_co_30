@@ -7,6 +7,7 @@ import {
 } from "@/components/layouts";
 import { AppCard } from "@/components/cards";
 import { apps, getFeaturedApps } from "@/content/apps";
+import { getSensemakingFor } from "@/content/research";
 import SectionHeader from "@/components/ui/SectionHeader";
 import { pageSeo } from "@/lib/page-seo";
 
@@ -18,7 +19,7 @@ export default function AppsPage() {
     <ListPageLayout>
       <ListPageHeader title="Apps" description="Funding platforms, DAOs, grant programs"/>
 
-      <SensemakingSection category="apps" />
+      <SensemakingSection article={getSensemakingFor("apps")} />
 
       <section className="section container-page">
         <SectionHeader

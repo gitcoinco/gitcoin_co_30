@@ -7,6 +7,7 @@ import {
   CategoryContent,
 } from "@/components/layouts";
 import { mechanisms } from "@/content/mechanisms";
+import { getSensemakingFor } from "@/content/research";
 import SectionHeader from "@/components/ui/SectionHeader";
 import { pageSeo } from "@/lib/page-seo";
 
@@ -20,7 +21,7 @@ export default function MechanismsPage() {
         description="Funding mechanisms and approaches"
       />
 
-      <SensemakingSection category="mechanisms" />
+      <SensemakingSection article={getSensemakingFor("mechanisms")} />
 
       <section className="section">
         <div className="container-page">

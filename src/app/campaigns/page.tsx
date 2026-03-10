@@ -9,6 +9,7 @@ import {
 } from "@/components/layouts";
 import { CampaignCard } from "@/components/cards";
 import { campaigns, getFeaturedCampaigns } from "@/content/campaigns";
+import { getSensemakingFor } from "@/content/research";
 import SectionHeader from "@/components/ui/SectionHeader";
 import { pageSeo } from "@/lib/page-seo";
 
@@ -23,7 +24,7 @@ export default function CampaignsPage() {
         description="Active or upcoming funding rounds"
       />
 
-      <SensemakingSection category="campaigns" />
+      <SensemakingSection article={getSensemakingFor("campaigns")} />
 
       <section className="section container-page">
         <SectionHeader
