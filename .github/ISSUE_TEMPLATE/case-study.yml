@@ -62,12 +62,18 @@ body:
     attributes:
       label: Description
       description: "Full description. Markdown is supported."
-      placeholder: |
-        Describe the case study, including:
-        - Background
-        - What was done
-        - Results
-        - Key lessons
+      value: |
+        <!--
+        Full description of the case study. Markdown is supported.
+
+        Suggested sections:
+        - **Background**: Context and goals
+        - **What was done**: Approach, mechanism used, scale
+        - **Results**: Outcomes, numbers, impact
+        - **Key lessons**: What worked, what didn't
+
+        Delete this comment and write your description below.
+        -->
     validations:
       required: true
 

@@ -99,7 +99,14 @@ body:
     attributes:
       label: Description
       description: "Full description. Markdown is supported."
-      placeholder: "Describe the research, its methodology, findings, and key takeaways."
+      value: |
+        <!--
+        Full description of the research. Markdown is supported.
+
+        Include: methodology, key findings, and main takeaways.
+
+        Delete this comment and write your description below.
+        -->
     validations:
       required: true
 

@@ -75,12 +75,20 @@ body:
     attributes:
       label: Description
       description: "Full description. Markdown is supported."
-      placeholder: |
-        Describe the app, including:
+      value: |
+        <!--
+        Full description of the app. Markdown is supported.
+
+        Suggested details to include:
         - **Category**: Platform | DAO | Grant Program | Fund | Primitive
         - **Status**: Active | Deprecated | Upcoming
-        - **Website**: URL
+        - **Website**: https://...
         - **Blockchains**: Ethereum, Optimism, etc.
+        - **Funding Volume**: e.g., $10M distributed
+        - **Social Links**: Twitter, Discord, GitHub
+
+        Delete this comment and write your description below.
+        -->
     validations:
       required: true
 

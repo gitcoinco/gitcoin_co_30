@@ -30,9 +30,8 @@ jobs:
         if: github.event_name == 'workflow_dispatch' || steps.changed.outputs.any_changed == 'true'
         with:
           node-version: 20
-          cache: npm
 
-      - run: npm ci
+      - run: npm install --no-save tsx gray-matter --no-audit --no-fund
         if: github.event_name == 'workflow_dispatch' || steps.changed.outputs.any_changed == 'true'
 
       - name: Validate changed files
@@ -60,8 +59,17 @@ jobs:
             let output = '';
             try { output = fs.readFileSync('/tmp/validate-output.txt', 'utf8').trim(); } catch {}
 
+            // Detect if this PR was auto-generated from an issue
+            const branchName = context.payload.pull_request?.head?.ref || '';
+            const issueMatch = branchName.match(/^publish\/issue-(\d+)$/);
+            const linkedIssue = issueMatch ? issueMatch[1] : null;
+
+            const fixNote = linkedIssue
+              ? `\n\nThis PR was auto-generated from issue #${linkedIssue}. [Edit the issue](https://github.com/${context.repo.owner}/${context.repo.repo}/issues/${linkedIssue}) to fix the errors above — removing and re-adding the \`approved\` label will regenerate the PR automatically.`
+              : `\n\nFix the errors above and push again — validation will re-run automatically.`;
+
             const successBody = `${marker}\n✅ **Content validation passed!**`;
-            const failureBody = `${marker}\n## ❌ Content Validation Failed\n\n\`\`\`\n${output}\n\`\`\`\n\nFix the errors above and push again — validation will re-run automatically.`;
+            const failureBody = `${marker}\n## ❌ Content Validation Failed\n\n\`\`\`\n${output}\n\`\`\`${fixNote}`;
             const body = outcome === 'failure' ? failureBody : successBody;
 
             const { data: issueComments } = await github.rest.issues.listComments({
@@ -79,14 +87,12 @@ jobs:
               });
             }
 
-            if (existing || outcome === 'failure') {
-              await github.rest.issues.createComment({
-                owner: context.repo.owner,
-                repo: context.repo.repo,
-                issue_number: context.issue.number,
-                body,
-              });
-            }
+            await github.rest.issues.createComment({
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              issue_number: context.issue.number,
+              body,
+            });
 
       - name: Fail if validation failed
         if: steps.validate.outcome == 'failure'

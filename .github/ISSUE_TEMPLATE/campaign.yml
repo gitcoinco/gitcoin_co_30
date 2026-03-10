@@ -107,7 +107,14 @@ body:
     attributes:
       label: Description
       description: "Full description. Markdown is supported."
-      placeholder: "Describe the campaign, its goals, what was funded, and key outcomes."
+      value: |
+        <!--
+        Full description of the campaign. Markdown is supported.
+
+        Include: goals, what was funded, participating projects, key outcomes, and impact.
+
+        Delete this comment and write your description below.
+        -->
     validations:
       required: true
 

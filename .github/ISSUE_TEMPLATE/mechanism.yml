@@ -62,13 +62,19 @@ body:
     attributes:
       label: Description
       description: "Full description. Markdown is supported."
-      placeholder: |
-        Describe the mechanism, including:
-        - How it works
-        - Advantages
-        - Limitations
-        - Best used for
-        - Examples
+      value: |
+        <!--
+        Full description of the mechanism. Markdown is supported.
+
+        Suggested sections:
+        - **How it works**: ...
+        - **Advantages**: ...
+        - **Limitations**: ...
+        - **Best used for**: ...
+        - **Examples**: ...
+
+        Delete this comment and write your description below.
+        -->
     validations:
       required: true
 
