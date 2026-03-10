@@ -2,8 +2,6 @@ name: Validate content
 
 on:
   pull_request:
-    paths:
-      - 'src/content/**/*.md'
   workflow_dispatch:  # Manual trigger — validates ALL content files
 
 jobs:
