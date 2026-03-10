@@ -9,6 +9,9 @@ export async function GET() {
   );
 
   return new Response(modified, {
-    headers: { "Content-Type": "text/html" },
+    headers: {
+      "Content-Type": "text/html",
+      "X-Robots-Tag": "noindex",
+    },
   });
 }
