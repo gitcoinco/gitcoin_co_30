@@ -49,6 +49,11 @@ jobs:
 
             **Preview:** https://www.gitcoin.co/preview?issue=${{ github.event.issue.number }}&type=${{ steps.detect.outputs.type }}
 
+            **Reviewer checklist:**
+            - [ ] Review the generated `.md` file for correctness
+            - [ ] Generate banner if missing: check out this branch, run `npm run banner:auto`, commit and push
+            - [ ] Set `featured: true` in frontmatter if this should be featured (team only)
+
             Closes #${{ github.event.issue.number }}
 
       - name: Comment on issue
@@ -59,5 +64,5 @@ jobs:
             await github.rest.issues.createComment({
               ...context.repo,
               issue_number: context.issue.number,
-              body: `Content published! A pull request has been created and is ready for review.`,
+              body: `A pull request has been created and is ready for review.`,
             });

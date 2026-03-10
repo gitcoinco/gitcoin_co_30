@@ -27,7 +27,7 @@ jobs:
             if (!hasContentFile) return;
 
             const pr = context.payload.pull_request.number;
-            const previewUrl = `https://explore.gitcoin.co/preview?pr=${pr}`;
+            const previewUrl = `https://gitcoin.co/preview?pr=${pr}`;
 
             // Avoid duplicate comments on synchronize
             const { data: comments } = await github.rest.issues.listComments({

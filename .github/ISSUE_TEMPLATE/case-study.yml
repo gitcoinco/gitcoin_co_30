@@ -1,0 +1,113 @@
+name: Case Study Submission
+description: Submit a case study to the directory
+title: "[Case Study] Your case study title here"
+labels: ["content", "case-study"]
+body:
+  - type: input
+    id: slug
+    attributes:
+      label: Slug
+      description: "Optional — leave blank to auto-generate from title. Use the existing slug when updating content."
+      placeholder: "gitcoin-gr15-case-study"
+    validations:
+      required: false
+
+  - type: input
+    id: short-description
+    attributes:
+      label: Short Description
+      description: "One-line summary shown in cards and search"
+      placeholder: "How Gitcoin Grants Round 15 distributed $4M to public goods"
+    validations:
+      required: true
+
+  - type: input
+    id: tags
+    attributes:
+      label: Tags
+      description: "Comma-separated tags"
+      placeholder: "grants, quadratic, ethereum"
+    validations:
+      required: true
+
+  - type: checkboxes
+    id: featured
+    attributes:
+      label: Featured
+      description: "Team only — leave unchecked. Gitcoin team sets this during publishing."
+      options:
+        - label: Feature this case study on the homepage
+
+  - type: textarea
+    id: banner-image
+    attributes:
+      label: Banner Image
+      description: |
+        Go to https://gitcoin.co/generator → set Aspect to Landscape → press R to pick a pattern → press S to save → drag the PNG here.
+        Only images from the Chladni generator are accepted (no screenshots or external images).
+    validations:
+      required: true
+
+  - type: textarea
+    id: description
+    attributes:
+      label: Description
+      description: "Full description. Markdown is supported."
+      placeholder: |
+        Describe the case study, including:
+        - Background
+        - What was done
+        - Results
+        - Key lessons
+    validations:
+      required: true
+
+  - type: textarea
+    id: related-apps
+    attributes:
+      label: Related Apps
+      description: "One slug per line (e.g. gitcoin-grants-stack)"
+    validations:
+      required: false
+
+  - type: textarea
+    id: related-mechanisms
+    attributes:
+      label: Related Mechanisms
+      description: "One slug per line (e.g. quadratic-funding)"
+    validations:
+      required: false
+
+  - type: textarea
+    id: related-case-studies
+    attributes:
+      label: Related Case Studies
+      description: "One slug per line"
+    validations:
+      required: false
+
+  - type: textarea
+    id: related-research
+    attributes:
+      label: Related Research
+      description: "One slug per line"
+    validations:
+      required: false
+
+  - type: textarea
+    id: related-campaigns
+    attributes:
+      label: Related Campaigns
+      description: "One slug per line"
+    validations:
+      required: false
+
+  - type: checkboxes
+    id: checklist
+    attributes:
+      label: Submission Checklist
+      options:
+        - label: My short description is accurate and fits in one line
+          required: true
+        - label: My description is complete and written in Markdown
+          required: true

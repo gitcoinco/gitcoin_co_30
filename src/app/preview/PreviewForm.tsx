@@ -3,22 +3,13 @@
 import { useState, useEffect } from "react";
 import { useSearchParams } from "next/navigation";
 import {
-  DetailPageLayout,
-  Breadcrumb,
-  HeroImage,
-  PageHeader,
-  TwoColumnLayout,
-  TagsSection,
-  MetadataSection,
-} from "@/components/layouts/DetailPageLayout";
-import { Markdown } from "@/components/Markdown";
-import {
   AppCard,
   MechanismCard,
   CaseStudyCard,
   ResearchCard,
   CampaignCard,
 } from "@/components/cards";
+import ContentDetailPage from "@/components/templates/ContentDetailPage";
 import type { BaseContent } from "@/lib/types";
 
 const CONTENT_TYPES = [
@@ -28,6 +19,9 @@ const CONTENT_TYPES = [
   { value: "case-study", label: "Case Study" },
   { value: "campaign", label: "Campaign" },
 ];
+
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
+type PreviewContent = BaseContent & { description: string; [key: string]: any };
 
 export default function PreviewForm() {
   const searchParams = useSearchParams();
@@ -42,10 +36,7 @@ export default function PreviewForm() {
     searchParams.get("type") || "mechanism",
   );
   const [prFiles, setPrFiles] = useState<string[] | null>(null);
-  // eslint-disable-next-line @typescript-eslint/no-explicit-any
-  const [content, setContent] = useState<
-    (BaseContent & { [key: string]: any }) | null
-  >(null);
+  const [content, setContent] = useState<PreviewContent | null>(null);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState("");
 
@@ -123,7 +114,7 @@ export default function PreviewForm() {
       {/* Persistent disclaimer */}
       <div className="bg-yellow-950 border-b-2 border-yellow-600">
         <div className="container-page py-3 flex items-center gap-3 text-sm text-yellow-300">
-          <span className="text-yellow-500 text-base flex-shrink-0">⚠</span>
+          <span className="text-yellow-500 text-base shrink-0">⚠</span>
           <span>
             <strong>This is not an official Gitcoin page.</strong> This is an
             internal tool for reviewing community contributions before they are
@@ -248,8 +239,7 @@ export default function PreviewForm() {
 
       {/* Preview */}
       {content && (
-        <div>
-          {/* Preview banner */}
+        <>
           <div className="bg-yellow-900/30 border-b border-yellow-700/50">
             <div className="container-page py-2 text-center text-sm text-yellow-300">
               Previewing{" "}
@@ -258,111 +248,58 @@ export default function PreviewForm() {
             </div>
           </div>
 
-          <DetailPageLayout>
-            <Breadcrumb href="/preview" label="Back to Preview" />
-
-            {content.banner && (
-              <HeroImage src={content.banner} alt={content.name} />
-            )}
-
-            <PageHeader>
-              <div className="flex flex-col md:flex-row gap-6 md:gap-8">
-                {content.logo && !content.banner && (
-                  <div className="flex-shrink-0">
-                    <img
-                      src={content.logo}
-                      alt={`${content.name} logo`}
-                      className="w-20 h-20 rounded-2xl object-cover bg-gray-800"
-                    />
-                  </div>
-                )}
-                <div className="flex-1">
-                  <h1 className="text-3xl md:text-4xl font-bold text-gray-25 mb-2 md:mb-4">
-                    {content.name}
-                  </h1>
-                  <p className="text-lg text-gray-500 max-w-2xl">
-                    {content.shortDescription}
-                  </p>
-                </div>
-              </div>
-            </PageHeader>
-
-            <div className="max-w-[850px] mx-auto">
-              <div className="space-y-8">
-                <article className="p-8 md:p-10">
-                  <Markdown content={content.description} />
-                </article>
-
-                {/* Related items — rendered as cards when they exist */}
-                {content.resolvedApps?.length > 0 && (
-                  <div>
-                    <h2 className="text-2xl font-bold text-gray-25 mb-4">
-                      Related Apps
-                    </h2>
-                    <div className="grid md:grid-cols-2 gap-4">
-                      {content.resolvedApps.map((app: any) => (
-                        <AppCard key={app.slug} app={app} />
-                      ))}
-                    </div>
-                  </div>
-                )}
-                {content.resolvedMechanisms?.length > 0 && (
-                  <div>
-                    <h2 className="text-2xl font-bold text-gray-25 mb-4">
-                      Related Mechanisms
-                    </h2>
-                    <div className="grid md:grid-cols-2 gap-4">
-                      {content.resolvedMechanisms.map((m: any) => (
-                        <MechanismCard key={m.slug} mechanism={m} />
-                      ))}
-                    </div>
-                  </div>
-                )}
-                {content.resolvedCaseStudies?.length > 0 && (
-                  <div>
-                    <h2 className="text-2xl font-bold text-gray-25 mb-4">
-                      Related Case Studies
-                    </h2>
-                    <div className="grid md:grid-cols-2 gap-4">
-                      {content.resolvedCaseStudies.map((cs: any) => (
-                        <CaseStudyCard key={cs.slug} caseStudy={cs} />
-                      ))}
-                    </div>
-                  </div>
-                )}
-                {content.resolvedResearch?.length > 0 && (
-                  <div>
-                    <h2 className="text-2xl font-bold text-gray-25 mb-4">
-                      Related Research
-                    </h2>
-                    <div className="grid md:grid-cols-2 gap-4">
-                      {content.resolvedResearch.map((r: any) => (
-                        <ResearchCard key={r.slug} research={r} />
-                      ))}
-                    </div>
-                  </div>
-                )}
-                {content.resolvedCampaigns?.length > 0 && (
-                  <div>
-                    <h2 className="text-2xl font-bold text-gray-25 mb-4">
-                      Related Campaigns
-                    </h2>
-                    <div className="grid md:grid-cols-2 gap-4">
-                      {content.resolvedCampaigns.map((c: any) => (
-                        <CampaignCard key={c.slug} campaign={c} />
-                      ))}
-                    </div>
-                  </div>
-                )}
-              </div>
-
-              <div className="space-y-6">
-                {content.tags.length > 0 && <TagsSection tags={content.tags} />}
-                <MetadataSection lastUpdated={content.lastUpdated} />
-              </div>
-            </div>
-          </DetailPageLayout>
-        </div>
+          <ContentDetailPage
+            item={content}
+            breadcrumbHref="/preview"
+            breadcrumbLabel="Back to Preview"
+            ctaUrl={content.ctaUrl}
+            ctaLabel={
+              content.researchType
+                ? `Read ${content.researchType}`
+                : content.ctaUrl
+                  ? "Visit"
+                  : undefined
+            }
+            showSuggestEdit={false}
+            relatedSections={[
+              {
+                title: "Related Apps",
+                items: (content.resolvedApps ?? []).map(
+                  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+                  (app: any) => <AppCard key={app.slug} app={app} />,
+                ),
+              },
+              {
+                title: "Related Mechanisms",
+                items: (content.resolvedMechanisms ?? []).map(
+                  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+                  (m: any) => <MechanismCard key={m.slug} mechanism={m} />,
+                ),
+              },
+              {
+                title: "Related Case Studies",
+                items: (content.resolvedCaseStudies ?? []).map(
+                  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+                  (cs: any) => <CaseStudyCard key={cs.slug} caseStudy={cs} />,
+                ),
+              },
+              {
+                title: "Related Research",
+                items: (content.resolvedResearch ?? []).map(
+                  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+                  (r: any) => <ResearchCard key={r.slug} research={r} />,
+                ),
+              },
+              {
+                title: "Related Campaigns",
+                items: (content.resolvedCampaigns ?? []).map(
+                  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+                  (c: any) => <CampaignCard key={c.slug} campaign={c} />,
+                ),
+              },
+            ]}
+          />
+        </>
       )}
     </>
   );

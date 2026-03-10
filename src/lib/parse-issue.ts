@@ -2,7 +2,13 @@
  * Shared parsing functions for GitHub issue bodies.
  * Used by both the publish scripts and the /api/preview route.
  * Pure functions — no fs, path, or network dependencies.
+ *
+ * Supports two formats:
+ *   - GitHub issue forms (new): ### Heading\n\ncontent
+ *   - Legacy markdown templates (old): ## Metadata + - **Key**: value
  */
+
+import { SENSEMAKING_CATEGORIES } from './types';
 
 export interface IssueMetadata {
   slug?: string;
@@ -11,7 +17,7 @@ export interface IssueMetadata {
   featured?: boolean;
   sensemakingFor?: string;
   researchType?: string;
-  externalUrl?: string;
+  ctaUrl?: string;
   matchingPoolUsd?: string;
   projectsCount?: string;
   startDate?: string;
@@ -24,11 +30,74 @@ export interface ParsedImage {
   markdown: string;
 }
 
+// Placeholder GitHub issue forms write for unfilled optional fields
+export const NO_RESPONSE = "_No response_";
+
 // Description can contain user ## headings, so it stops only at known structural sections
-const DESC_STOP = "\\n## Related|\\n## Submission|---|$";
+const DESC_STOP = "\\n#{2,3} Related|\\n#{2,3} Submission|---|$";
+
+// --- Forms format helpers (### Heading) ---
+
+function extractFormField(markdown: string, label: string): string {
+  const match = markdown.match(
+    new RegExp(`(?:^|\\n)### ${label}[ \\t]*\\n+([\\s\\S]*?)(?=\\n### |\\n## |$)`),
+  );
+  if (!match) return "";
+  const value = match[1].trim();
+  return value === NO_RESPONSE ? "" : value;
+}
+
+function parseFormMetadata(markdown: string): IssueMetadata {
+  const metadata: IssueMetadata = {};
+
+  const slug = extractFormField(markdown, "Slug");
+  if (slug) metadata.slug = slug;
+
+  const desc = extractFormField(markdown, "Short Description");
+  if (desc) metadata.shortDescription = desc;
+
+  const tags = extractFormField(markdown, "Tags");
+  if (tags) {
+    metadata.tags = tags
+      .split(",")
+      .map((t) => t.trim())
+      .filter((t) => t);
+  }
+
+  const featured = extractFormField(markdown, "Featured");
+  if (featured.includes("[x]")) metadata.featured = true;
+
+  const sensemakingFor = extractFormField(markdown, "Sensemaking For").toLowerCase().trim();
+  if (sensemakingFor && (SENSEMAKING_CATEGORIES as readonly string[]).includes(sensemakingFor)) {
+    metadata.sensemakingFor = sensemakingFor;
+  }
+
+  const researchType = extractFormField(markdown, "Research Type");
+  if (researchType) metadata.researchType = researchType;
+
+  const ctaUrl = extractFormField(markdown, "CTA URL");
+  if (ctaUrl) metadata.ctaUrl = ctaUrl;
+
+  const matchingPoolUsd = extractFormField(markdown, "Matching Pool USD");
+  if (matchingPoolUsd) metadata.matchingPoolUsd = matchingPoolUsd;
+
+  const projectsCount = extractFormField(markdown, "Projects Count");
+  if (projectsCount) metadata.projectsCount = projectsCount;
+
+  const startDate = extractFormField(markdown, "Start Date");
+  if (startDate) metadata.startDate = startDate;
+
+  const endDate = extractFormField(markdown, "End Date");
+  if (endDate) metadata.endDate = endDate;
+
+  return metadata;
+}
+
+// --- Legacy format helpers (## Metadata + - **Key**: value) ---
 
 function extractField(content: string, label: string): string {
-  const match = content.match(new RegExp(`\\*\\*${label}\\*\\*:[ \\t]*(.+)`));
+  // Match both bold (**Key**: value) and plain (Key: value) formats
+  const match = content.match(new RegExp(`\\*{0,2}${label}\\*{0,2}:[ \\t]*(.+)`));
   if (!match) return "";
   // For markdown links [text](url), extract the url for URL fields, text otherwise
   const linkMatch = match[1].match(/\[([^\]]*)\]\(([^)]*)\)/);
@@ -38,8 +107,7 @@ function extractField(content: string, label: string): string {
   return match[1].trim();
 }
 
-/** Parse the ## Metadata section from a GitHub issue body */
-export function parseMetadata(markdown: string): IssueMetadata {
+function parseLegacyMetadata(markdown: string): IssueMetadata {
   const capitalize = (str: string) =>
     str ? str[0].toUpperCase() + str.slice(1) : "";
 
@@ -67,17 +135,15 @@ export function parseMetadata(markdown: string): IssueMetadata {
   const featured = extractField(content, "Featured").toLowerCase();
   if (featured === "true") metadata.featured = true;
 
-  const VALID_SENSEMAKING = ["mechanisms", "apps", "campaigns", "case-studies", "research"];
   const sensemakingFor = extractField(content, "Sensemaking For").toLowerCase().trim();
-  if (VALID_SENSEMAKING.includes(sensemakingFor)) metadata.sensemakingFor = sensemakingFor;
+  if ((SENSEMAKING_CATEGORIES as readonly string[]).includes(sensemakingFor)) metadata.sensemakingFor = sensemakingFor;
 
   const researchType = extractField(content, "Research Type").toLowerCase();
-
   if (researchType && typeof researchType === "string")
     metadata.researchType = capitalize(researchType);
 
-  const externalUrl = extractField(content, "External URL");
-  if (externalUrl) metadata.externalUrl = externalUrl;
+  const ctaUrl = extractField(content, "CTA URL");
+  if (ctaUrl) metadata.ctaUrl = ctaUrl;
 
   const matchingPoolUsd = extractField(content, "Matching Pool USD");
   if (matchingPoolUsd) metadata.matchingPoolUsd = matchingPoolUsd;
@@ -94,33 +160,51 @@ export function parseMetadata(markdown: string): IssueMetadata {
   return metadata;
 }
 
-/** Parse a named ## section from the issue body */
+// --- Public API ---
+
+/** Parse metadata from a GitHub issue body. Supports both forms and legacy formats. */
+export function parseMetadata(markdown: string): IssueMetadata {
+  // GitHub issue forms use ### headings; legacy templates use ## Metadata + **Key**: value
+  if (/(?:^|\n)### (?:Short Description|Slug|Tags|Description)/.test(markdown)) {
+    return parseFormMetadata(markdown);
+  }
+  return parseLegacyMetadata(markdown);
+}
+
+/** Parse a named ## or ### section from the issue body */
 export function parseSection(markdown: string, sectionName: string): string {
-  const stop = sectionName === "Description" ? DESC_STOP : "\\n## [^#]|---|$";
+  const stop = sectionName === "Description" ? DESC_STOP : "\\n#{2,3} [^#]|---|$";
   const section = markdown.match(
     new RegExp(
-      `## ${sectionName}\\s+(?:<!--[\\s\\S]*?-->[ \\t]*)?([\\s\\S]*?)(?=${stop})`,
+      `#{2,3} ${sectionName}\\s+(?:<!--[\\s\\S]*?-->[ \\t]*)?([\\s\\S]*?)(?=${stop})`,
     ),
   );
   return section ? section[1].trim() : "";
 }
 
-/** Parse a bullet-point list from a named ## section */
+/** Parse a bullet-point or line-per-item list from a named ## or ### section */
 export function parseList(markdown: string, sectionName: string): string[] {
   const section = markdown.match(
     new RegExp(
-      `## ${sectionName}\\s+(?:<!--[\\s\\S]*?-->[ \\t]*)?([\\s\\S]*?)(?=\\n## [^#]|---|$)`,
+      `#{2,3} ${sectionName}\\s+(?:<!--[\\s\\S]*?-->[ \\t]*)?([\\s\\S]*?)(?=\\n#{2,3} [^#]|---|$)`,
     ),
   );
   if (!section) return [];
 
+  // Legacy format: bullet points (- slug)
   const bulletPoints = section[1].match(/^-\s+(.+)$/gm);
-  if (!bulletPoints) return [];
+  if (bulletPoints) {
+    return bulletPoints
+      .map((point) => point.replace(/^-\s+/, "").trim())
+      .map((item) => item.replace(/^`(.*)`$/, "$1"))
+      .filter((item) => item && item !== "-");
+  }
 
-  return bulletPoints
-    .map((point) => point.replace(/^-\s+/, "").trim())
-    .map((item) => item.replace(/^`(.*)`$/, "$1"))
-    .filter((item) => item && item !== "-");
+  // Forms format: plain lines, one slug per line
+  return section[1]
+    .split("\n")
+    .map((l) => l.trim())
+    .filter((l) => l && l !== NO_RESPONSE && !l.startsWith("#"));
 }
 
 /** Extract all images (markdown and HTML) from a markdown string */
@@ -148,14 +232,14 @@ export function extractImages(markdown: string): ParsedImage[] {
   return images;
 }
 
-/** Extract the first image URL from a named section */
+/** Extract the first image URL from a named ## or ### section */
 export function extractFirstImage(
   markdown: string,
   sectionName: string,
 ): string {
   const section = markdown.match(
     new RegExp(
-      `## ${sectionName}\\s+(?:<!--[\\s\\S]*?-->[ \\t]*)?([\\s\\S]*?)(?=\\n## [^#]|$)`,
+      `#{2,3} ${sectionName}\\s+(?:<!--[\\s\\S]*?-->[ \\t]*)?([\\s\\S]*?)(?=\\n#{2,3} [^#]|$)`,
     ),
   );
   if (!section) return "";
@@ -174,23 +258,36 @@ export function extractImagesBySections(issueBody: string) {
   const descriptionImages: ParsedImage[] = [];
 
   const bannerSection = issueBody.match(
-    /## Banner Image\s+(?:<!--.*?-->[ \t]*)?([\s\S]*?)(?=\n## [^#]|$)/,
+    /#{2,3} Banner Image\s+(?:<!--.*?-->[ \t]*)?([\s\S]*?)(?=\n#{2,3} [^#]|$)/,
   );
   if (bannerSection) bannerImages.push(...extractImages(bannerSection[1]));
 
   const logoSection = issueBody.match(
-    /## Logo\s+(?:<!--.*?-->[ \t]*)?([\s\S]*?)(?=\n## [^#]|$)/,
+    /#{2,3} Logo\s+(?:<!--.*?-->[ \t]*)?([\s\S]*?)(?=\n#{2,3} [^#]|$)/,
   );
   if (logoSection) logoImages.push(...extractImages(logoSection[1]));
 
   const descSection = issueBody.match(
     new RegExp(
-      `## Description\\s+(?:<!--[\\s\\S]*?-->[ \\t]*)?([\\s\\S]*?)(?=${DESC_STOP})`,
+      `#{2,3} Description\\s+(?:<!--[\\s\\S]*?-->[ \\t]*)?([\\s\\S]*?)(?=${DESC_STOP})`,
     ),
   );
   if (descSection) descriptionImages.push(...extractImages(descSection[1]));
 
   return { bannerImages, logoImages, descriptionImages };
+}
+
+/** Extract the first PDF URL from a ## or ### PDF section (markdown link or bare URL) */
+export function extractPdfUrl(markdown: string): string {
+  const section = markdown.match(
+    /#{2,3} PDF\s+(?:<!--[\s\S]*?-->[ \t]*)?([\s\S]*?)(?=\n#{2,3} [^#]|---|$)/,
+  );
+  if (!section) return "";
+  const content = section[1];
+  const mdLink = content.match(/\[[^\]]*\]\((https?:\/\/[^\s)]+\.pdf[^\s)]*)\)/i);
+  if (mdLink) return mdLink[1];
+  const bareUrl = content.match(/https?:\/\/\S+\.pdf\S*/i);
+  return bareUrl ? bareUrl[0].replace(/[)\]>]+$/, "") : "";
 }
 
 /** Format markdown content (preserve line breaks, bold headings) */

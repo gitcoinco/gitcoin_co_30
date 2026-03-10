@@ -1,0 +1,126 @@
+name: App Submission
+description: Submit a new app, platform, or funding tool to the directory
+title: "[App] Your app name here"
+labels: ["content", "app"]
+body:
+  - type: input
+    id: slug
+    attributes:
+      label: Slug
+      description: "Optional — leave blank to auto-generate from title. Use the existing slug when updating content."
+      placeholder: "gitcoin-grants-stack"
+    validations:
+      required: false
+
+  - type: input
+    id: short-description
+    attributes:
+      label: Short Description
+      description: "One-line summary shown in cards and search"
+      placeholder: "A decentralized grants platform for public goods funding"
+    validations:
+      required: true
+
+  - type: input
+    id: tags
+    attributes:
+      label: Tags
+      description: "Comma-separated tags"
+      placeholder: "grants, ethereum, quadratic"
+    validations:
+      required: true
+
+  - type: checkboxes
+    id: featured
+    attributes:
+      label: Featured
+      description: "Team only — leave unchecked. Gitcoin team sets this during publishing."
+      options:
+        - label: Feature this app on the homepage
+
+  - type: textarea
+    id: banner-image
+    attributes:
+      label: Banner Image
+      description: |
+        Go to https://gitcoin.co/generator → set Aspect to Landscape → press R to pick a pattern → press S to save → drag the PNG here.
+        Only images from the Chladni generator are accepted (no screenshots or external images).
+    validations:
+      required: true
+
+  - type: textarea
+    id: logo
+    attributes:
+      label: Logo
+      description: |
+        Drag your logo PNG into this text area (GitHub will upload it automatically).
+        Use the white/inverted version — logos are displayed on dark backgrounds.
+        Square format, 256×256 or 512×512 px, PNG only.
+    validations:
+      required: true
+
+  - type: textarea
+    id: description
+    attributes:
+      label: Description
+      description: "Full description. Markdown is supported."
+      placeholder: |
+        Describe the app, including:
+        - **Category**: Platform | DAO | Grant Program | Fund | Primitive
+        - **Status**: Active | Deprecated | Upcoming
+        - **Website**: URL
+        - **Blockchains**: Ethereum, Optimism, etc.
+    validations:
+      required: true
+
+  - type: textarea
+    id: related-apps
+    attributes:
+      label: Related Apps
+      description: "One slug per line (e.g. gitcoin-grants-stack)"
+    validations:
+      required: false
+
+  - type: textarea
+    id: related-mechanisms
+    attributes:
+      label: Related Mechanisms
+      description: "One slug per line (e.g. quadratic-funding)"
+    validations:
+      required: false
+
+  - type: textarea
+    id: related-case-studies
+    attributes:
+      label: Related Case Studies
+      description: "One slug per line"
+    validations:
+      required: false
+
+  - type: textarea
+    id: related-research
+    attributes:
+      label: Related Research
+      description: "One slug per line"
+    validations:
+      required: false
+
+  - type: textarea
+    id: related-campaigns
+    attributes:
+      label: Related Campaigns
+      description: "One slug per line"
+    validations:
+      required: false
+
+  - type: checkboxes
+    id: checklist
+    attributes:
+      label: Submission Checklist
+      options:
+        - label: My short description is accurate and fits in one line
+          required: true
+        - label: My description is complete and written in Markdown
+          required: true
+        - label: Logo is the **white/inverted version** in PNG format (not full-colour — it appears on a dark background)
+          required: true

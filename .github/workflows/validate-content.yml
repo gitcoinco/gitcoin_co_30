@@ -1,0 +1,103 @@
+name: Validate content
+
+on:
+  pull_request:
+    paths:
+      - 'src/content/**'
+  workflow_dispatch:  # Manual trigger — validates ALL content files
+
+jobs:
+  validate:
+    runs-on: ubuntu-latest
+    permissions:
+      pull-requests: write
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 20
+          cache: npm
+
+      - run: npm ci
+
+      - name: Get changed content files
+        id: changed
+        if: github.event_name == 'pull_request'
+        uses: tj-actions/changed-files@v44
+        with:
+          files: 'src/content/**/*.md'
+
+      - name: Validate changed files
+        id: validate
+        if: github.event_name == 'pull_request' && steps.changed.outputs.any_changed == 'true'
+        continue-on-error: true
+        shell: bash
+        run: |
+          set -o pipefail
+          npx tsx scripts/validate-content.ts ${{ steps.changed.outputs.all_changed_files }} 2>&1 | tee /tmp/validate-output.txt
+
+      - name: Validate all files
+        if: github.event_name == 'workflow_dispatch'
+        run: npx tsx scripts/validate-content.ts
+
+      - name: Post or update PR comment
+        if: github.event_name == 'pull_request' && steps.changed.outputs.any_changed == 'true'
+        uses: actions/github-script@v7
+        with:
+          script: |
+            const marker = '<!-- validate-content-bot -->';
+            const outcome = '${{ steps.validate.outcome }}';
+            const fs = require('fs');
+
+            let output = '';
+            try { output = fs.readFileSync('/tmp/validate-output.txt', 'utf8').trim(); } catch {}
+
+            const successBody = `${marker}
+            ✅ **Content validation passed!**`;
+
+            const failureBody = `${marker}
+            ## ❌ Content Validation Failed
+
+            \`\`\`
+            ${output}
+            \`\`\`
+
+            Fix the errors above and push again — validation will re-run automatically.`;
+
+            const body = outcome === 'failure' ? failureBody : successBody;
+
+            const { data: comments } = await github.rest.pulls.listReviewComments({
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              pull_number: context.issue.number,
+            });
+
+            // Use issue comments (not review comments) for the bot message
+            const { data: issueComments } = await github.rest.issues.listComments({
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              issue_number: context.issue.number,
+            });
+            const existing = issueComments.find(c => c.body?.includes(marker));
+
+            if (existing) {
+              await github.rest.issues.updateComment({
+                owner: context.repo.owner,
+                repo: context.repo.repo,
+                comment_id: existing.id,
+                body,
+              });
+            } else if (outcome === 'failure') {
+              await github.rest.issues.createComment({
+                owner: context.repo.owner,
+                repo: context.repo.repo,
+                issue_number: context.issue.number,
+                body,
+              });
+            }
+
+      - name: Fail if validation failed
+        if: steps.validate.outcome == 'failure'
+        run: exit 1

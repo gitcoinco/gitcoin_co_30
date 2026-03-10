@@ -1,0 +1,155 @@
+name: Campaign Submission
+description: Submit a funding round or campaign to the directory
+title: "[Campaign] Your campaign name here"
+labels: ["content", "campaign"]
+body:
+  - type: input
+    id: slug
+    attributes:
+      label: Slug
+      description: "Optional — leave blank to auto-generate from title. Use the existing slug when updating content."
+      placeholder: "gg24"
+    validations:
+      required: false
+
+  - type: input
+    id: short-description
+    attributes:
+      label: Short Description
+      description: "One-line summary shown in cards and search"
+      placeholder: "Gitcoin Grants Round 24 — funding public goods with $1.5M matching"
+    validations:
+      required: true
+
+  - type: input
+    id: tags
+    attributes:
+      label: Tags
+      description: "Comma-separated tags"
+      placeholder: "grants, ethereum, quadratic"
+    validations:
+      required: true
+
+  - type: input
+    id: external-url
+    attributes:
+      label: CTA URL
+      description: "Optional — link to the campaign or round"
+      placeholder: "https://grants.gitcoin.co"
+    validations:
+      required: false
+
+  - type: input
+    id: matching-pool-usd
+    attributes:
+      label: Matching Pool USD
+      description: "Optional — total matching pool as a display string"
+      placeholder: "$1.5M"
+    validations:
+      required: false
+
+  - type: input
+    id: projects-count
+    attributes:
+      label: Projects Count
+      description: "Optional — number of projects funded"
+      placeholder: "265"
+    validations:
+      required: false
+
+  - type: input
+    id: start-date
+    attributes:
+      label: Start Date
+      description: "Optional — campaign start date"
+      placeholder: "2024-08-07"
+    validations:
+      required: false
+
+  - type: input
+    id: end-date
+    attributes:
+      label: End Date
+      description: "Optional — campaign end date. Leave blank for ongoing campaigns."
+      placeholder: "2024-08-21"
+    validations:
+      required: false
+
+  - type: checkboxes
+    id: featured
+    attributes:
+      label: Featured
+      description: "Team only — leave unchecked. Gitcoin team sets this during publishing."
+      options:
+        - label: Feature this campaign on the homepage
+
+  - type: textarea
+    id: banner-image
+    attributes:
+      label: Banner Image
+      description: |
+        Go to https://gitcoin.co/generator → set Aspect to Landscape → press R to pick a pattern → press S to save → drag the PNG here.
+        Only images from the Chladni generator are accepted (no screenshots or external images).
+    validations:
+      required: true
+
+  - type: textarea
+    id: description
+    attributes:
+      label: Description
+      description: "Full description. Markdown is supported."
+      placeholder: "Describe the campaign, its goals, what was funded, and key outcomes."
+    validations:
+      required: true
+
+  - type: textarea
+    id: related-apps
+    attributes:
+      label: Related Apps
+      description: "One slug per line (e.g. gitcoin-grants-stack)"
+    validations:
+      required: false
+
+  - type: textarea
+    id: related-mechanisms
+    attributes:
+      label: Related Mechanisms
+      description: "One slug per line (e.g. quadratic-funding)"
+    validations:
+      required: false
+
+  - type: textarea
+    id: related-case-studies
+    attributes:
+      label: Related Case Studies
+      description: "One slug per line"
+    validations:
+      required: false
+
+  - type: textarea
+    id: related-research
+    attributes:
+      label: Related Research
+      description: "One slug per line"
+    validations:
+      required: false
+
+  - type: textarea
+    id: related-campaigns
+    attributes:
+      label: Related Campaigns
+      description: "One slug per line"
+    validations:
+      required: false
+
+  - type: checkboxes
+    id: checklist
+    attributes:
+      label: Submission Checklist
+      options:
+        - label: My short description is accurate and fits in one line
+          required: true
+        - label: My description is complete and written in Markdown
+          required: true
+        - label: Start/end dates are in YYYY-MM-DD format (or left blank if ongoing)
+          required: false

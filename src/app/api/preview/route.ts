@@ -84,7 +84,7 @@ async function parseContentFile(filename: string, ref: string, headers: Record<s
   );
   if (!fileRes.ok) throw new Error(`GitHub API error: ${fileRes.status}`);
   const fileData = await fileRes.json();
-  const raw = Buffer.from(fileData.content, "base64").toString("utf8");
+  const raw = Buffer.from(fileData.content, "base64").toString("utf8").replace(/\r\n/g, "\n");
   const { data, content: description } = matter(raw);
 
   const relatedAppSlugs: string[] = data.relatedApps ?? [];
@@ -189,20 +189,23 @@ export async function GET(req: Request) {
     return Response.json({ error: "Issue has no content" }, { status: 400 });
   }
 
-  const metadata = parseMetadata(issueData.body);
+  // Normalize line endings — GitHub issue bodies can use \r\n which breaks section-boundary regexes
+  const body = issueData.body.replace(/\r\n/g, "\n");
+
+  const metadata = parseMetadata(body);
   const titlePrefix = new RegExp(`^\\[${config.label}\\]\\s*`, "i");
   const name = issueData.title.replace(titlePrefix, "");
   const slug = metadata.slug || slugify(name);
 
-  const description = parseSection(issueData.body, "Description");
-  const banner = extractFirstImage(issueData.body, "Banner Image");
-  const logo = extractFirstImage(issueData.body, "Logo");
+  const description = parseSection(body, "Description");
+  const banner = extractFirstImage(body, "Banner Image");
+  const logo = extractFirstImage(body, "Logo");
 
-  const relatedAppSlugs = parseList(issueData.body, "Related Apps");
-  const relatedMechanismSlugs = parseList(issueData.body, "Related Mechanisms");
-  const relatedCaseStudySlugs = parseList(issueData.body, "Related Case Studies");
-  const relatedResearchSlugs = parseList(issueData.body, "Related Research");
-  const relatedCampaignSlugs = parseList(issueData.body, "Related Campaigns");
+  const relatedAppSlugs = parseList(body, "Related Apps");
+  const relatedMechanismSlugs = parseList(body, "Related Mechanisms");
+  const relatedCaseStudySlugs = parseList(body, "Related Case Studies");
+  const relatedResearchSlugs = parseList(body, "Related Research");
+  const relatedCampaignSlugs = parseList(body, "Related Campaigns");
 
   const content = {
     id: "preview",
