@@ -29,7 +29,7 @@ export default function CampaignsPage() {
       <section className="section container-page">
         <SectionHeader
           title="Featured Campaigns"
-          subtitle="What's happening now in Ethereum funding
+          subtitle="What's happening now in Ethereum/AI funding
 
 "
         />
