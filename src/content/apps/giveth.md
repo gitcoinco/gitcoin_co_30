@@ -2,11 +2,10 @@
 id: '1772306626644'
 slug: giveth
 name: "Giveth"
-shortDescription: "A zero-fee, multichain crypto donation platform with quadratic funding and donor token rewards."
 logo: /content-images/apps/giveth/logo.png
 tags:
   - quadratic
-  - public-goods
+  - public goods
   - multichain
 lastUpdated: '2026-02-28'
 relatedMechanisms:
