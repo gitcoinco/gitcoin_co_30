@@ -148,3 +148,144 @@ The d/acc Market Map provides a lens for evaluating that structure.
 - [**My techno-optimism** – Vitalik Buterin](https://vitalik.eth.limo/general/2023/11/27/techno_optimism.html)  
 - [**d/acc: one year later** – Vitalik Buterin](https://vitalik.eth.limo/general/2025/01/05/dacc2.html)  
 - [**Introducing def/acc at EF** – Entrepreneur First](https://www.joinef.com/posts/introducing-def-acc-at-ef/)
+## d/acc Market Map Directory
+
+The following directory lists projects featured in the d/acc Market Map above, organized by category. Each entry links to the project's primary website. Categories follow the vertical groupings shown in the infographic.
+
+> **Note:** This directory is a community contribution. A small number of projects visible in the infographic were omitted because their websites could not be confirmed at the time of submission (parked domains, 404 errors, or unidentifiable entities). If you spot an error or a missing project, please open an issue or submit a PR.
+
+### Atoms
+
+#### Biodefense & Health Systems
+
+- **OpenWater** — https://www.openwater.health
+- **OSLUV** — https://www.osluv.org
+- **Pathoplexus** — https://pathoplexus.org
+- **Varro** — https://varrobio.com
+
+#### Resilient Manufacturing
+
+- **K-Scale Labs** — https://kscale.dev
+- **SalvageGarden** — https://salvagegarden.org
+- **Simula** — https://simulavr.com
+
+#### Open Source Hardware & Silicon
+
+- **GrapheneOS** — https://grapheneos.org
+- **Freedom Factory (ethOS)** — https://ethosmobile.org
+
+#### Civic Tech
+
+- **Better.SG** — https://better.sg
+- **Edible Garden City** — https://www.ediblegardencity.com
+
+#### Property Rights & Registries
+
+- **Dubai Property Platform** — https://dubailand.gov.ae
+- **Rwanda Cadastre** — https://www.land.gov.rw
+
+#### Decentralized Energy
+
+- **Energy Web Foundation** — https://www.energyweb.org
+- **Power Ledger** — https://www.powerledger.io
+
+### Communication & Messaging
+
+- **Waku** — https://waku.org
+- **HOPR** — https://hoprnet.org
+- **Status** — https://status.app
+- **SimpleXChat** — https://simplex.chat
+- **Session** — https://getsession.org
+- **XMTP Labs** — https://xmtp.org
+
+### Bits
+
+#### Decentralized Identity & Attestation
+
+- **ENS** — https://ens.domains
+- **Worldcoin** — https://world.org
+- **Privado ID (formerly Polygon ID)** — https://www.privado.id
+- **Buenos Aires QuarkID** — https://quarkid.org
+- **EAS** — https://attest.org
+
+#### Formal Verification & Security
+
+- **Trail of Bits** — https://www.trailofbits.com
+- **OpenZeppelin** — https://www.openzeppelin.com
+- **Spearbit (Cantina)** — https://cantina.xyz/solutions/spearbit
+- **Immunefi** — https://immunefi.com
+- **Code4rena** — https://code4rena.com
+
+#### Zero-Knowledge Systems
+
+- **Aztec Network** — https://aztec.network
+- **zkSync** — https://zksync.io
+- **TACEO** — https://taceo.io
+- **StarkNet** — https://starknet.io
+
+#### Privacy Preserving Computation
+
+- **Fireblocks** — https://www.fireblocks.com
+- **Zama** — https://www.zama.ai
+
+#### Governance Tooling
+
+- **Compound Governor** — https://compound.finance
+- **Aragon** — https://aragon.org
+- **Safe** — https://safe.global
+- **Tally** — https://www.tally.xyz
+- **Ready (formerly Argent)** — https://www.ready.co
+- **Metagov** — https://metagov.org
+
+#### Epistemic Infrastructure
+
+- **DeepSafe** — https://deepsafe.network
+- **CheckMate** — https://checkmate.sg
+- **Metaculus** — https://www.metaculus.com
+- **Polymarket** — https://polymarket.com
+
+#### Decentralized Monetary Infrastructure
+
+- **Circle** — https://www.circle.com
+- **Sky (formerly MakerDAO)** — https://sky.money
+- **Ethena** — https://ethena.fi
+
+#### Democratic Funding Systems
+
+- **Gitcoin** — https://gitcoin.co
+- **Octant** — https://octant.build
+
+#### Streaming & Treasury
+
+- **Sablier** — https://sablier.com
+- **Superfluid** — https://www.superfluid.finance
+
+#### Data Availability & Storage
+
+- **EigenDA** — https://www.eigenlayer.xyz
+- **The Graph** — https://thegraph.com
+- **Celestia** — https://celestia.org
+- **Filecoin** — https://filecoin.io
+- **SubSquid** — https://subsquid.io
+- **Arweave** — https://arweave.org
+- **Radicle** — https://radicle.xyz
+
+#### Cross-Chain Infrastructure
+
+- **UniswapX** — https://uniswap.org
+- **LayerZero** — https://layerzero.network
+- **Axelar** — https://axelar.network
+- **CoW Protocol** — https://cow.fi
+- **Wormhole** — https://wormhole.com
+
+#### Oracle Networks
+
+- **Chronicle** — https://chroniclelabs.org
+- **Pyth** — https://pyth.network
+- **Chainlink** — https://chain.link
+- **RedStone** — https://redstone.finance
+
+#### Ecosystem Connectors
+
+- **Foresight Institute** — https://foresight.org
+- **Plurality Institute** — https://www.plurality.institute
