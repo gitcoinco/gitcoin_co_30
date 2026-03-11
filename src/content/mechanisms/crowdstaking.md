@@ -53,8 +53,8 @@ Crowdstaking generates continuous funding from idle capital without requiring su
 
 ## Examples and Use Cases
 
-### Breadchain Cooperative Funding
-Breadchain's yield-generating vaults support post-capitalist cooperatives — supporters stake assets, and yields fund regenerative initiatives.
+### Bread Cooperative Funding
+Bread Cooperative's yield-generating vaults support post-capitalist cooperatives — supporters stake assets, and yields fund regenerative initiatives.
 
 ### Protocol Builder Grants
 Protocol staking pools where ETH yield funds ecosystem builder grants, creating sustainable funding without treasury drawdown.
@@ -64,5 +64,5 @@ Regional mutual aid networks use stablecoin yields for community services — he
 
 ## Further Reading
 
-- [Allo Capital — Breadchain Crowdstaking](https://www.allo.capital/mechanisms/breadchain-crowdstaking)
-- [Breadchain Cooperative](https://breadchain.xyz/)
+- [Allo Capital — Bread Cooperative Crowdstaking](https://www.allo.capital/mechanisms/breadchain-crowdstaking)
+- [Bread Cooperative](https://bread.coop/)
