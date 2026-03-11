@@ -23,7 +23,7 @@ export interface BaseContent {
 export interface App extends BaseContent {}
 export interface Mechanism extends BaseContent {}
 export interface CaseStudy extends BaseContent {}
-export const RESEARCH_TYPES = ['Book', 'Report', 'Opinion', 'Analysis', 'Perspective'] as const;
+export const RESEARCH_TYPES = ['Book', 'Report', 'Opinion', 'Analysis', 'Perspective', 'Essay'] as const;
 export type ResearchType = typeof RESEARCH_TYPES[number];
 
 export const SENSEMAKING_CATEGORIES = ['mechanisms', 'apps', 'campaigns', 'case-studies', 'research'] as const;
