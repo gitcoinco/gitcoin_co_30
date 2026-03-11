@@ -19,6 +19,8 @@ relatedApps:
 banner: /content-images/research/ethereum-public-goods-funding-sources-the-next-era/banner.png
 ---
 
+> **TLDR:** Where the money comes from shapes how it flows. Ethereum public goods funding moved from flush treasuries in bull markets to leaner, more strategic sources in bear markets. The next era requires diversified funding — from protocol revenue to onchain value capture — not just foundation grants.
+
 **Type:** Perspective
 **Authors:** @owocki
 

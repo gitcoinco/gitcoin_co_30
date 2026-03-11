@@ -24,6 +24,8 @@ relatedCampaigns: []
 banner: /content-images/research/the-gitcoin-gitcoindao-egregore-is-emerging/banner.png
 ---
 
+> **TLDR:** Gitcoin's transformation from centralized platform to DAO as an emerging egregore — a collective intelligence greater than its parts. The roadmap frames three optimization problems: technology, community, and capital allocation, with long-term scenarios ranging from niche funder to civilizational-scale infrastructure.
+
 **Type:** Opinion
 **Authors:** Owocki
 **Source:** [Gitcoin Governance Forum](https://gov.gitcoin.co/t/the-gitcoin-gitcoindao-egregore-is-emerging/8200)
