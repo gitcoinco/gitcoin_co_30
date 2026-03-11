@@ -2,6 +2,9 @@
 
 ## Standing Rules
 
+### Subagents must always receive CLAUDE.md context
+
+Subagents (launched via the Agent tool) start with zero context. Whenever launching a subagent, always copy the full contents of CLAUDE.md into the subagent prompt. This ensures rules like image downloading, frontmatter schemas, and content conventions are followed.
 ### 1. Keep documentation in sync — always
 
 Whenever frontmatter schemas, field names, valid enum values, or content conventions change, you **must** update **all four** in the same change:
