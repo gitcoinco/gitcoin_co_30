@@ -7,8 +7,12 @@ on:
 jobs:
   validate:
     runs-on: ubuntu-latest
+    # Read-only is intentional — write permissions are handled by the
+    # validate-content-comment workflow via workflow_run, so that fork PRs
+    # (which always get a read-only token on pull_request) can still get
+    # validation comments posted on them.
     permissions:
-      pull-requests: write
+      contents: read
 
     steps:
       - uses: actions/checkout@v4
@@ -19,12 +23,6 @@ jobs:
         uses: tj-actions/changed-files@v44
         with:
           files: 'src/content/**/*.md'
-
-      - name: Skip if no content files changed
-        if: github.event_name == 'pull_request' && steps.changed.outputs.any_changed != 'true'
-        run: |
-          echo "No content files changed — skipping validation."
-          exit 0
 
       - uses: actions/setup-node@v4
         if: github.event_name == 'workflow_dispatch' || steps.changed.outputs.any_changed == 'true'
@@ -47,52 +45,30 @@ jobs:
         if: github.event_name == 'workflow_dispatch'
         run: npx tsx scripts/validate-content.ts
 
-      - name: Post or update PR comment
-        if: github.event_name == 'pull_request' && steps.changed.outputs.any_changed == 'true'
-        uses: actions/github-script@v7
+      # Save PR metadata as an artifact so validate-content-comment can read it.
+      # Must run before "Fail if validation failed" so the artifact is always uploaded
+      # even when validation fails.
+      - name: Save PR metadata for comment workflow
+        if: github.event_name == 'pull_request'
+        run: |
+          mkdir -p /tmp/pr-info
+          echo "${{ github.event.pull_request.number }}" > /tmp/pr-info/pr-number.txt
+          echo "${{ github.event.pull_request.head.ref }}"  > /tmp/pr-info/branch.txt
+          if [ "${{ steps.changed.outputs.any_changed }}" != "true" ]; then
+            echo "skip" > /tmp/pr-info/outcome.txt
+            echo ""     > /tmp/pr-info/output.txt
+          else
+            echo "${{ steps.validate.outcome }}" > /tmp/pr-info/outcome.txt
+            cp /tmp/validate-output.txt /tmp/pr-info/output.txt 2>/dev/null || echo "" > /tmp/pr-info/output.txt
+          fi
+
+      - name: Upload PR metadata artifact
+        if: github.event_name == 'pull_request'
+        uses: actions/upload-artifact@v4
         with:
-          script: |
-            const marker = '<!-- validate-content-bot -->';
-            const outcome = '${{ steps.validate.outcome }}';
-            const fs = require('fs');
-
-            let output = '';
-            try { output = fs.readFileSync('/tmp/validate-output.txt', 'utf8').trim(); } catch {}
-
-            // Detect if this PR was auto-generated from an issue
-            const branchName = context.payload.pull_request?.head?.ref || '';
-            const issueMatch = branchName.match(/^publish\/issue-(\d+)$/);
-            const linkedIssue = issueMatch ? issueMatch[1] : null;
-
-            const fixNote = linkedIssue
-              ? `\n\nThis PR was auto-generated from issue #${linkedIssue}. [Edit the issue](https://github.com/${context.repo.owner}/${context.repo.repo}/issues/${linkedIssue}) to fix the errors above — removing and re-adding the \`approved\` label will regenerate the PR automatically.`
-              : `\n\nFix the errors above and push again — validation will re-run automatically.`;
-
-            const successBody = `${marker}\n✅ **Content validation passed!**`;
-            const failureBody = `${marker}\n## ❌ Content Validation Failed\n\n\`\`\`\n${output}\n\`\`\`${fixNote}`;
-            const body = outcome === 'failure' ? failureBody : successBody;
-
-            const { data: issueComments } = await github.rest.issues.listComments({
-              owner: context.repo.owner,
-              repo: context.repo.repo,
-              issue_number: context.issue.number,
-            });
-            const existing = issueComments.find(c => c.body?.includes(marker));
-
-            if (existing) {
-              await github.rest.issues.deleteComment({
-                owner: context.repo.owner,
-                repo: context.repo.repo,
-                comment_id: existing.id,
-              });
-            }
-
-            await github.rest.issues.createComment({
-              owner: context.repo.owner,
-              repo: context.repo.repo,
-              issue_number: context.issue.number,
-              body,
-            });
+          name: pr-info
+          path: /tmp/pr-info/
+          retention-days: 1
 
       - name: Fail if validation failed
         if: steps.validate.outcome == 'failure'
