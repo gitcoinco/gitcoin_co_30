@@ -137,3 +137,7 @@ At maximum success, regenerative communities globally would access infrastructur
 ---
 
 **Authored by:** Monty Merlin Bryant, Afolabi Aiyeloja, and the Regen Coordination Council on behalf of ReFi DAO, Greenpill Network, and Regen Coordination
+
+---
+
+*Source: [Original post on Gitcoin Governance Forum](https://gov.gitcoin.co/t/ai-impactqf-regen-coordination-global-gg23-retrospective/20385)*

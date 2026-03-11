@@ -176,3 +176,7 @@ Looking ahead, this round marks a starting point rather than a conclusion. There
     *   Domain Announcement: Interop Standards, Infrastructure & Analytics
 *   Mapping Interop Landscape:
     *   GG24 Update: Inside the Interop Standards, Infra & Analytics Round
+
+---
+
+*Source: [Original post on Gitcoin Governance Forum](https://gov.gitcoin.co/t/gg24-interop-round-retrospective/24936)*

@@ -109,3 +109,7 @@ Research funding appears adequate or projects integrate research with developmen
 - Improve fundraising strategy with dedicated specialists
 - Implement latest Privote frontend and MACI V3 to address user experience challenges
 - Enhance proof-of-personhood processes with better instructions, in-app minting options, and alternative tools like ZKPassport
+
+---
+
+*Source: [Original post on Gitcoin Governance Forum](https://gov.gitcoin.co/t/gg24-privacy-round-retrospective/24836)*

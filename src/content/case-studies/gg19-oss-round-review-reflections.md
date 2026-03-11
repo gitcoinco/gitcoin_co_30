@@ -47,3 +47,7 @@ Technical limitations including lack of multisig, DEX availability, and bridging
 ## Conclusions
 
 Despite friction and market conditions, GG19 succeeded in raising over $600,000 from thousands of donors, meeting program goals.
+
+---
+
+*Source: [Original post on Gitcoin Governance Forum](https://gov.gitcoin.co/t/gg19-oss-round-review-reflections/17278)*

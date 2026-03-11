@@ -85,3 +85,7 @@ Support included:
 **Conclusion**
 
 The organizers expressed gratitude to all participants and positioned this round as foundational, envisioning future rounds where "Web3 technology powered by Public Good Funding catalyzes social and economic change."
+
+---
+
+*Source: [Original post on Gitcoin Governance Forum](https://gov.gitcoin.co/t/retrospective-public-goods-africa-independent-grant-round-in-gg19/17294)*

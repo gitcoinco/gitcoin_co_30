@@ -60,3 +60,7 @@ We are bullish on what teams can achieve with some funding and clear objectives 
 Meta Pool DAO is committed to continue supporting initiatives in emerging markets, now with a focus on the builders!
 
 GR19 here we come!
+
+---
+
+*Source: [Original post on Gitcoin Governance Forum](https://gov.gitcoin.co/t/retrospective-of-the-latam-round-and-next-steps-for-meta-pool-dao/16821)*

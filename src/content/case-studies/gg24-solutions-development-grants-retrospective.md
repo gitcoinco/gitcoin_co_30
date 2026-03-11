@@ -178,3 +178,7 @@ We'll also work with existing and prospective partners to explore the right stra
 A warm thanks goes out to the program supporters, donors, reviewers and donors - thanks to your efforts, we're able to continue to accelerate real-world developments on Ethereum.
 
 This is just the start!
+
+---
+
+*Source: [Original post on Gitcoin Governance Forum](https://gov.gitcoin.co/t/gg24-solutions-development-grants-retrospective/24894)*

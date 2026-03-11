@@ -265,3 +265,7 @@ Dreamers journey video separated in chapters
 A heartfelt thank you to Gitcoin and the GG Team for entrusting Let's GROW DAO with the opportunity to represent their brand and values through the Onboarding Program—for the second round in a row. It was a valuable learning experience and a meaningful way to deepen our connection with the broader community.
 
 Public Goods are Great
+
+---
+
+*Source: [Original post on Gitcoin Governance Forum](https://gov.gitcoin.co/t/gg23-onboarding-education-program-retrospective/20650)*

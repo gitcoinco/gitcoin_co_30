@@ -161,3 +161,7 @@ We were unable to collect grantee feedback in time for this report but will coll
 This round has shown that combining Quadratic Funding with Retroactive Funding presents an exciting opportunity for incentivizing long-term impact. We are committed to refining our approach and ensuring alignment with both token engineering and OP ecosystem.
 
 We look forward to the Retro Round, where we will continue this journey of funding impactful projects and rewarding meaningful outcomes.
+
+---
+
+*Source: [Original post on Gitcoin Governance Forum](https://gov.gitcoin.co/t/gg21-retrospective-token-engineering-the-superchain/19375)*

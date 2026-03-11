@@ -48,3 +48,7 @@ The team observed greater variance in matching distributions compared to round o
 Reflecting on sustainability, the operators indicated comfort paying "a 2-3% fee on the GMV of this round" to support Gitcoin's platform.
 
 The retrospective highlighted positive ecosystem developments, including Grassroots Economics regrants and increased project onboarding through initiatives like GainForest's program.
+
+---
+
+*Source: [Original post on Gitcoin Governance Forum](https://gov.gitcoin.co/t/gg22-retrospective-ma-earth-grants-round/19692)*

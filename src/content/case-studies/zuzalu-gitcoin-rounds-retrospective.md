@@ -68,3 +68,7 @@ Previous rounds faced significant obstacles with passport stamps and Sybil resis
 - 50-300 anticipated residents
 
 The author proposes event caps around 150-300 residents, noting "a lot of the magic of the original Zuzalu is that it was close to a Dunbar sized number."
+
+---
+
+*Source: [Original post on Gitcoin Governance Forum](https://gov.gitcoin.co/t/retrospective-of-the-zuzalu-gitcoin-rounds-and-suggestions/18933)*

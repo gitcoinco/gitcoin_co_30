@@ -81,3 +81,7 @@ Participation required joining the Gitcoin Grants Garden, signing the Community 
 ## Conclusion
 
 The round demonstrated conviction voting's viability as an alternative to traditional quadratic funding for sustainable, community-driven public goods allocation.
+
+---
+
+*Source: [Original post on Gitcoin Governance Forum](https://gov.gitcoin.co/t/gitcoin-grants-garden-gg23-retrospective/20720)*

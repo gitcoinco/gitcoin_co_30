@@ -63,3 +63,7 @@ Implementation requires: publicly disclosed funding results, sufficient time bet
 **What's Next**
 
 Future grant rounds should integrate data science contests and prediction markets. Gitcoin's business opportunity involves becoming a platform where tested models are queried by funders for allocation guidance.
+
+---
+
+*Source: [Original post on Gitcoin Governance Forum](https://gov.gitcoin.co/t/gg23-predictive-funding-challenge-retrospective/25163)*

@@ -57,3 +57,7 @@ Of 18 GG21 participants, only 9 applied for retroactive funding. Six projects pr
 The program acknowledged three areas for refinement: narrowing focus on the OP Superchain limited participation; milestone development lacked structured review checkpoints; and the AI evaluation process proved more complex than anticipated.
 
 Future iterations may shift resources toward larger retroactive pools with enhanced milestone management support.
+
+---
+
+*Source: [Original post on Gitcoin Governance Forum](https://gov.gitcoin.co/t/gg23-token-engineering-the-superchain-part-2-a-retrospective/20946)*

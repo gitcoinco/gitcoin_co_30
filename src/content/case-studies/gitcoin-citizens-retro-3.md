@@ -51,3 +51,7 @@ Around 100 applications were submitted; 61 were accepted. Common rejection reaso
 **Overall Assessment**
 
 The retrospective indicated sensible donation distribution, equitable representation across various contributor types, and successful community engagement through the retroactive funding mechanism.
+
+---
+
+*Source: [Original post on Gitcoin Governance Forum](https://gov.gitcoin.co/t/gitcoin-citizens-retro-3-early-retrospective/18637)*

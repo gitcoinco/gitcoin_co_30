@@ -77,3 +77,7 @@ The round adopted Contribution-Conscious Contribution Matching (COCM) instead of
 - Track impact using milestones on Karma GAP
 - Enhance education and outreach for future rounds
 - Refine mechanisms to grow the ecosystem
+
+---
+
+*Source: [Original post on Gitcoin Governance Forum](https://gov.gitcoin.co/t/gg22-retrospective-allo-builders-advancement-round/19677)*

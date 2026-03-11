@@ -129,3 +129,7 @@ Overall, this round provided critical insights and valuable lessons that we're a
     *   ERC-20 and ERC-721 parameters and weights
     *   Slider for weight between COCM and QF results
 *   Modifying Matching Pool Size (lower) During Round: Allo Protocol
+
+---
+
+*Source: [Original post on Gitcoin Governance Forum](https://gov.gitcoin.co/t/gg21-retrospective-opencivics-collaborative-research-round/19313)*

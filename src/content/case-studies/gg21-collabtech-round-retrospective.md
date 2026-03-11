@@ -49,3 +49,7 @@ Three significant challenges emerged:
 ## Conclusions and Recommendations
 
 The team observed promising fund reallocation patterns but noted that "qualitative challenges encountered are significant and put into question the validity of the quantitative insights." Future iterations would require dedicated resources for education and product development.
+
+---
+
+*Source: [Original post on Gitcoin Governance Forum](https://gov.gitcoin.co/t/gg21-retrospective-collabtech-round-by-rndao/19317)*

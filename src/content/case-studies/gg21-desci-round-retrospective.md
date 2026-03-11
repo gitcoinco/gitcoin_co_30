@@ -253,3 +253,7 @@ We extend our deepest gratitude to our sponsors who made the GG21 DeSci Round po
 Without your support, this round wouldn't have had the transformative effect it did on the DeSci community. We look forward to collaborating with you again in the future!
 
 We are gathering funds for the coming DeSci Round. Please support and help us to continue funding DeSci.
+
+---
+
+*Source: [Original post on Gitcoin Governance Forum](https://gov.gitcoin.co/t/gg21-retrospective-desci-round/19465)*

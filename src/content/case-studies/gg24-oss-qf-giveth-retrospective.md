@@ -150,3 +150,7 @@ Thanks for every OSS builder, donor and community member who contributed to this
 A special thanks to @MathildaDV @Sov @owocki for bringing this opportunity to Giveth; to Team Tiger and @rohit for your exceptional work curating projects and refining eligibility; to @onworks for all the marketing support, and to Giveth's @yegor @griff Ashley & Anamarija for working tirelessly to deliver these rounds.
 
 GG24 was a major cross-ecosystem effort, and its success was possible because of you. We hope to see you all in future rounds!
+
+---
+
+*Source: [Original post on Gitcoin Governance Forum](https://gov.gitcoin.co/t/gg24-oss-qf-on-giveth-retrospective/24890)*

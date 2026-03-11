@@ -130,3 +130,7 @@ The round highlighted the diversity and depth of bioregional projects, showcasin
 By bringing together 14 bioregional organizing teams, hundreds of donors, and thousands of contributions, the round successfully bridged worlds—connecting bioregional communities with web3 tools and narratives while introducing web3 communities to the transformative power of bioregionalism. This mutual exchange laid the groundwork for further experimentation, iteration, and growth.
 
 As this round concludes, it is not the end of the journey but the continuation of a movement that seeks to weave together the global and the local, the technological and the ecological, the visionary and the practical. The BioFi Pathfinders Grant Round has raised not only funds but also the critical importance of bioregionalism in a rapidly changing world, setting a powerful precedent for what is possible when communities come together to co-create a regenerative future.
+
+---
+
+*Source: [Original post on Gitcoin Governance Forum](https://gov.gitcoin.co/t/gg22-retrospective-biofi-pathfinders-round/19691)*

@@ -135,3 +135,7 @@ Outcomes:
 
 Reflection:
 We recognize the trade-offs in our chosen method. While it successfully mitigated some gaming attempts, it potentially impacted legitimate projects. This experience provides valuable insights for refining our approach in future rounds.
+
+---
+
+*Source: [Original post on Gitcoin Governance Forum](https://gov.gitcoin.co/t/gg21-retrospective-asia-round/19422)*

@@ -55,3 +55,7 @@ Over $9,000 was raised, with VoiceDeck receiving the highest amount ($1,745), At
 ### Matching Funders
 
 Three organizations provided $60,000 in matching funds: Gitcoin, Thank ARB, and Protocol Labs.
+
+---
+
+*Source: [Original post on Gitcoin Governance Forum](https://gov.gitcoin.co/t/retrospective-of-the-hypercerts-ecosystem-round-during-gg20/18908)*

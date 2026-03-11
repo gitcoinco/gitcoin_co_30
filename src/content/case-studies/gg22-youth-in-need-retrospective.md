@@ -56,3 +56,7 @@ I also recently had the joy of returning to Ava's House kids shelter by Chiang M
 I plan to be back in January to visit New Hope Shelter in Ecuador (@newhopeshelter on x) and see how the community is doing including Damaris who is in process of being adopted
 
 Incredibly glad to know this awesome ecosystem and mechanism for funding kids shelters and educational projects!
+
+---
+
+*Source: [Original post on Gitcoin Governance Forum](https://gov.gitcoin.co/t/gg22-youth-in-need-retrospective/19652)*

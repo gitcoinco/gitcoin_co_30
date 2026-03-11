@@ -151,3 +151,7 @@ As we look forward to the next phases of the Regen Coordi-Nation program, our fo
 ### Thank you!
 
 I want to personally express immense gratitude to Celo, Gitcoin, and the whole community of people and projects that are driving this space forward. Thank you to everyone who has been part of this journey and we're excited about what lies ahead… Lets grow!
+
+---
+
+*Source: [Original post on Gitcoin Governance Forum](https://gov.gitcoin.co/t/gg21-retrospective-regen-coordi-nation-genesis/19309)*

@@ -137,3 +137,7 @@ We'll continue developing tools like our on-chain registry, reputation system, a
 ## Conclusion
 
 We appreciate the opportunity in GG21 and will continue to do our part in enhancing discovery and accountability across Web3 grants and incentives.
+
+---
+
+*Source: [Original post on Gitcoin Governance Forum](https://gov.gitcoin.co/t/gg21-retrospective-web3-grants-advancement/19336)*
