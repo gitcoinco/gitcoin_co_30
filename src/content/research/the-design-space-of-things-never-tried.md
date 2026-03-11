@@ -39,7 +39,7 @@ relatedCaseStudies: []
 
 The 20th century gave us four great coordination failures:
 
-**Communism** tried to achieve collective ownership and equitable distribution — but inserted a state as intermediary, and the intermediary ate the mission. Every attempt at Marx's stateless, classless society produced the most powerful states in human history.
+**Communism** tried to achieve "[from each according to his ability, to each according to his needs](https://en.wikipedia.org/wiki/From_each_according_to_his_ability,_to_each_according_to_his_needs)" — but inserted a state as intermediary, and the intermediary ate the mission. Every attempt at Marx's stateless, classless society produced the most powerful states in human history.
 
 **Capitalism** tried to coordinate complex economies through markets — but externalized costs to ecosystems, future generations, and the commons. Every attempt to reform it (ESG, CSR, carbon credits, impact investing) worked within its extractive logic. Capitalism with adjectives is still capitalism.
 
@@ -80,13 +80,15 @@ The design space of things never tried is the top-right quadrant. And it has fou
 
 Marx's actual goals — worker ownership of productive means, equitable distribution, abolition of class — aren't inherently authoritarian. They're coordination problems. The state was Marx's coordination technology because it was the only one available.
 
+Marx's formula — "from each according to his ability, to each according to his needs" — is the most ambitious coordination problem ever articulated. Every implementation outsourced it to a state bureaucracy, which inevitably optimized for its own survival instead.
+
 Crypto offers an alternative: **DAOs as digital worker cooperatives.** Token-based ownership, transparent governance, programmable profit-sharing, no corporate hierarchy. The means of production, collectively owned, with no intermediary to corrupt.
 
 The coordination primitives that make this possible:
 
 - **Smart contracts** for trustless resource allocation (no bureaucrat, no corruption vector)
 - **Onchain contribution tracking** for credibly neutral records of who did what
-- **Quadratic funding** for voluntary redistribution without state coercion
+- **Quadratic funding** — "from each according to his ability" (voluntary contributions) matched to "each according to his needs" (quadratic amplification of community preference) — redistribution without state coercion
 - **Reputation systems** for accountability without police
 
 Kropotkin envisioned mutual aid and voluntary cooperation. He was right about the method, wrong about the timing. You couldn't scale stateless coordination without trustless infrastructure. Now you can.

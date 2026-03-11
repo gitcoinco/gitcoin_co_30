@@ -29,7 +29,7 @@ relatedResearch:
 relatedCaseStudies: []
 ---
 
-*"Real communism has never been tried." It's the meme that launched a thousand dorm-room arguments. But what if it's literally true—not as a defense of the Soviet Union, but as a precise technical claim? What if every implementation failed because they all inserted a state where none was supposed to exist?*
+*"[From each according to his ability, to each according to his needs.](https://en.wikipedia.org/wiki/From_each_according_to_his_ability,_to_each_according_to_his_needs)" Marx's most famous line. The most ambitious coordination problem ever articulated. And the one no implementation has ever actually attempted — because every one inserted a state where none was supposed to exist.*
 
 ## The Meme Is Right (Just Not How You Think)
 
@@ -47,7 +47,7 @@ Marx's actual objectives were straightforward:
 
 1. **Workers own the means of production** — Those who create value control the tools and infrastructure
 2. **Abolition of class** — No structural divide between owners and laborers
-3. **Distribution based on contribution and need** — "From each according to ability, to each according to need"
+3. **"From each according to his ability, to each according to his needs"** — Not equal distribution, but *equitable* distribution: contribute what you can, receive what you need
 4. **Collective decision-making** — Democratic control over economic resources
 5. **Ending alienation** — Workers connected to the product of their labor
 
@@ -119,7 +119,7 @@ Marx needed a way to track contributions without a bureaucracy. Onchain activity
 
 ### The Allocation Problem → Programmable Money
 
-Marx needed a way to distribute resources without a planning committee. Smart contracts allocate automatically based on transparent rules—**no central planner, no bureaucrat, no opportunity for corruption**.
+"From each according to his ability, to each according to his needs" requires knowing what people contribute and what they need — then matching the two. Marx had no mechanism for this besides a state planning committee. Smart contracts allocate automatically based on transparent rules—**no central planner, no bureaucrat, no opportunity for corruption**.
 
 ### The Governance Problem → Onchain Voting
 
@@ -135,13 +135,13 @@ Marx needed worker ownership without state ownership. DAOs are **digital worker 
 
 ### The Public Goods Problem → Quadratic Funding
 
-Marx needed a way to fund collective needs without taxation. Quadratic funding (pioneered by Gitcoin, based on Buterin/Hitzig/Weyl) is mathematically redistributive yet completely voluntary. Communities signal what they value, matching amplifies collective preferences, public goods get funded. **Stateless redistribution.**
+"From each according to his ability" — people contribute what they can. "To each according to his needs" — matching funds amplify what communities actually need. Quadratic funding (pioneered by Gitcoin, based on Buterin/Hitzig/Weyl) is Marx's formula encoded in math: mathematically redistributive yet completely voluntary. Communities signal what they value, matching amplifies collective preferences, public goods get funded. **Stateless redistribution.** The formula made real — without a state to corrupt it.
 
 ## It's Already Happening
 
 Stateless communism has never been tried—but it's being prototyped right now:
 
-**Gitcoin** has distributed **over $60 million** to public goods through quadratic funding. No state. No central authority. Voluntary participation producing redistributive outcomes through mechanism design. This is what stateless communism looks like in practice.
+**Gitcoin** has distributed **over $60 million** to public goods through quadratic funding. No state. No central authority. From each according to his ability (voluntary contributions), to each according to community-expressed needs (quadratic matching). This is what stateless communism looks like in practice.
 
 **Optimism's RetroPGF** funds projects after they've proven their value—retroactive public goods funding without a planning committee deciding winners in advance.
 
@@ -222,6 +222,8 @@ Marx diagnosed capitalism's contradictions correctly. He just didn't have the ri
 **Now we can.**
 
 The means of production can be collectively owned—not by a state, but by the people who use them. Resources can be distributed equitably—not by force, but by incentive alignment. Decisions can be made collectively—not by a party elite, but by transparent onchain governance.
+
+"From each according to his ability, to each according to his needs." For 150 years, this was a slogan. Now it's a smart contract.
 
 Stateless communism has never been tried. **Let's try it.**
 
