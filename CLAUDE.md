@@ -1,5 +1,13 @@
 # Gitcoin 30 — Instructions for Claude
 
+## Standing Rules
+
+### Subagents must always receive CLAUDE.md context
+
+Subagents (launched via the Agent tool) start with zero context. Whenever launching a subagent, always copy the full contents of CLAUDE.md into the subagent prompt. This ensures rules like image downloading, frontmatter schemas, and content conventions are followed.
+
+---
+
 ## Project Overview
 
 A directory of public goods funding mechanisms, apps, campaigns, research, and case studies in the Ethereum ecosystem. Built with Next.js (App Router), React, Tailwind CSS v4, TypeScript.
