@@ -116,6 +116,7 @@ function validateFile(filePath: string, contentType: ContentDir): string[] {
   }
 
   // Required base fields
+  if (!data.id) errors.push("Missing required field: id");
   if (!data.name) errors.push("Missing required field: name");
   if (!data.shortDescription) errors.push("Missing required field: shortDescription");
   if (!data.lastUpdated) {
@@ -124,14 +125,30 @@ function validateFile(filePath: string, contentType: ContentDir): string[] {
     errors.push(`lastUpdated "${data.lastUpdated}" is not in YYYY-MM-DD format`);
   }
 
-  // Tags must be an array
-  if (data.tags !== undefined && !Array.isArray(data.tags)) {
+  // Tags are required and must be an array
+  if (!data.tags) {
+    errors.push("Missing required field: tags");
+  } else if (!Array.isArray(data.tags)) {
     errors.push("tags must be an array");
   }
 
-  // Banner and logo must exist on disk if set
-  checkPathExists("banner", data.banner, errors);
-  checkPathExists("logo", data.logo, errors);
+  // Banner is required and must exist on disk
+  if (!data.banner) {
+    errors.push("Missing required field: banner — run `npm run banner:auto` to generate one automatically, or `npm run banner:pick <type> <slug>` to select one interactively");
+  } else {
+    checkPathExists("banner", data.banner, errors);
+  }
+
+  // Logo is required for apps and must exist on disk
+  if (contentType === "apps") {
+    if (!data.logo) {
+      errors.push("Missing required field: logo (apps must have a logo)");
+    } else {
+      checkPathExists("logo", data.logo, errors);
+    }
+  } else {
+    checkPathExists("logo", data.logo, errors);
+  }
 
   // Logo must be square
   if (data.logo) {
