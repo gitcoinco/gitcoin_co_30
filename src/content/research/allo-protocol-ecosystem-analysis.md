@@ -18,6 +18,8 @@ relatedApps:
 banner: /content-images/research/allo-protocol-ecosystem-analysis/banner.png
 ---
 
+> **TLDR:** Allo Protocol is Lego blocks for funding mechanisms — modular, multi-chain infrastructure that lets anyone build custom capital allocation systems without starting from scratch. Plug in a strategy (QF, direct grants, milestones), spin up a pool, ship.
+
 **Type:** Analysis
 **Authors:** Gitcoin Research
 

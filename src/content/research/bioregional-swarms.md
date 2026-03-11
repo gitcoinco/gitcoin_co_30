@@ -21,6 +21,8 @@ sensemakingFor: "mechanisms"
 banner: /content-images/research/bioregional-swarms/banner.png
 ---
 
+> **TLDR:** Bioregions — watersheds, ecosystems, shared fates — are the real units of coordination. Add capital allocation, AI swarms for distributed intelligence, and knowledge commons, and you get a new model: decision-making rooted in place, not political borders.
+
 **Type:** Perspective
 **Authors:** Kevin Owocki
 **Source:** [Farcaster](https://warpcast.com/owocki)
