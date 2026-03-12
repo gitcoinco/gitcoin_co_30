@@ -7,11 +7,11 @@ import {
   PageHeader,
   TwoColumnLayout,
   TagsSection,
-  MetadataSection,
   SuggestEditButton,
 } from "@/components/layouts";
 import { Markdown } from "@/components/Markdown";
 import type { BaseContent } from "@/lib/types";
+import { calcReadTime } from "@/lib/utils";
 import { Button } from "../ui";
 
 interface RelatedSection {
@@ -29,11 +29,8 @@ interface ContentDetailPageProps {
   ctaUrl?: string;
   ctaLabel?: string;
   showSuggestEdit?: boolean;
-}
-
-function calcReadTime(text: string): number {
-  const wordCount = text.trim().split(/\s+/).filter(Boolean).length;
-  return Math.max(1, Math.ceil(wordCount / 200));
+  showDate?: boolean;
+  contentBefore?: ReactNode;
 }
 
 export default function ContentDetailPage({
@@ -44,6 +41,8 @@ export default function ContentDetailPage({
   ctaUrl,
   ctaLabel = "Visit",
   showSuggestEdit = true,
+  showDate = true,
+  contentBefore,
 }: ContentDetailPageProps) {
   const banner = item.banner || "/content-images/placeholder.png";
   const readTime = calcReadTime(item.description);
@@ -51,7 +50,7 @@ export default function ContentDetailPage({
     <DetailPageLayout>
       <Breadcrumb href={breadcrumbHref} label={breadcrumbLabel} />
 
-      {banner && <HeroImage src={banner} alt={item.name} readTime={readTime} />}
+      {banner && <HeroImage src={banner} alt={item.name} />}
 
       <PageHeader>
         <div className="flex flex-col md:flex-row gap-6 md:gap-8 md:items-center">
@@ -74,11 +73,20 @@ export default function ContentDetailPage({
               {item.name}
             </h1>
             <div className="w-full flex flex-wrap gap-6 items-center justify-between">
-              <p className="text-lg text-gray-500 max-w-2xl">
-                {item.shortDescription}
-              </p>
+              <div>
+                <p className="text-lg text-gray-500 max-w-2xl">
+                  {item.shortDescription}
+                </p>
+                <p className="mt-3 text-sm text-gray-500">
+                  {readTime} min read{showDate && ` · ${new Date(item.lastUpdated).toLocaleDateString("en-US", { year: "numeric", month: "long", day: "numeric" })}`}
+                </p>
+              </div>
               {ctaUrl && ctaLabel && (
-                <Button href={ctaUrl} variant="secondary" external={ctaUrl.startsWith('http')}>
+                <Button
+                  href={ctaUrl}
+                  variant="secondary"
+                  external={ctaUrl.startsWith("http")}
+                >
                   <span className="flex items-center gap-2">
                     {ctaLabel}
                     <svg
@@ -106,6 +114,7 @@ export default function ContentDetailPage({
 
       <section className="max-w-[850px] mx-auto container-page section">
         <div className="space-y-8">
+          {contentBefore}
           <article className="">
             <Markdown content={item.description} />
           </article>
@@ -134,7 +143,6 @@ export default function ContentDetailPage({
               contentPath={`${breadcrumbHref.slice(1)}/${item.slug}.md`}
             />
           )}
-          <MetadataSection lastUpdated={item.lastUpdated} />
         </div>
       </section>
     </DetailPageLayout>

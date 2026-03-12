@@ -83,6 +83,7 @@ export default async function AppDetailPage({ params }: PageProps) {
         item={app}
         breadcrumbHref="/apps"
         breadcrumbLabel="Back to Apps"
+        showDate={false}
         relatedSections={[
           {
             title: 'Related Apps',

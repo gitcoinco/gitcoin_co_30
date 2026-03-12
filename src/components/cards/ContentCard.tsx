@@ -1,6 +1,8 @@
 import Link from "next/link";
 import Image from "next/image";
 import TagsList from "../ui/TagsList";
+import ReadTimeBadge from "../ui/ReadTimeBadge";
+import { formatRelativeDate } from "@/lib/utils";
 
 interface ContentCardProps {
   href: string;
@@ -12,6 +14,8 @@ interface ContentCardProps {
   logo?: string;
   banner?: string;
   bannerHeight?: string;
+  readTime?: number;
+  date?: string;
 }
 
 export default function ContentCard({
@@ -24,6 +28,8 @@ export default function ContentCard({
   logo,
   banner = "/content-images/placeholder.png",
   bannerHeight,
+  readTime,
+  date,
 }: ContentCardProps) {
   const isBanner = layout === "banner";
 
@@ -51,6 +57,7 @@ export default function ContentCard({
                 className="object-cover group-hover:scale-105 transition-transform duration-300"
               />
               <div className="absolute inset-0 bg-linear-to-b from-transparent to-gray-950 group-hover:opacity-0 transition-all duration-500" />
+              {readTime !== undefined && <ReadTimeBadge minutes={readTime} />}
             </div>
           )}
 
@@ -77,13 +84,14 @@ export default function ContentCard({
             </h3>
           </div>
 
-          <p className="text-gray-300 font-serif text-sm mb-4 line-clamp-3 flex-grow">
+          <p className="text-gray-300 font-serif text-sm line-clamp-3 flex-grow">
             {shortDescription}
           </p>
+          {date && <p className="text-xs text-gray-500 text-right mt-2">{formatRelativeDate(date)}</p>}
         </>
 
         {/* Tags */}
-        <div className="pt-5 border-t border-gray-500/60 h-[3.7rem]">
+        <div className="pt-4 border-t border-gray-500/60 h-[3.7rem] mt-3">
           <TagsList tags={tags} />
         </div>
       </div>
