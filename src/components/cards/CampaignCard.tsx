@@ -11,25 +11,14 @@ interface CampaignCardProps {
   ctaLabel?: string;
 }
 
-function getTimelineLabel(startDate?: string, endDate?: string): string | null {
-  if (!endDate) return null;
-  const now = new Date();
-  const end = new Date(endDate);
-  const start = startDate ? new Date(startDate) : null;
+function fmtMonth(dateStr: string) {
+  return new Date(dateStr).toLocaleDateString("en-US", { month: "short", year: "numeric" });
+}
 
-  if (end < now) return "Ended";
-  if (start && start > now) {
-    const days = Math.ceil(
-      (start.getTime() - now.getTime()) / (1000 * 60 * 60 * 24),
-    );
-    return days === 1 ? "Starts in 1 day" : `Starts in ${days} days`;
-  }
-
-  const days = Math.ceil(
-    (end.getTime() - now.getTime()) / (1000 * 60 * 60 * 24),
-  );
-  if (days < 1) return "Ends today";
-  return days === 1 ? "1 day left" : `${days} days left`;
+function getDateRange(startDate?: string, endDate?: string): string | null {
+  if (!startDate) return null;
+  const end = endDate ? fmtMonth(endDate) : "Ongoing";
+  return `${fmtMonth(startDate)} – ${end}`;
 }
 
 function getStatusBadge(
@@ -76,7 +65,7 @@ export default function CampaignCard({
   ctaLabel = "Visit campaign",
 }: CampaignCardProps) {
   const campaignUrl = `/campaigns/${campaign.slug}`;
-  const timelineLabel = getTimelineLabel(campaign.startDate, campaign.endDate);
+  const dateRange = getDateRange(campaign.startDate, campaign.endDate);
   const statusBadge = getStatusBadge(campaign.startDate, campaign.endDate);
 
   const metrics = [
@@ -90,10 +79,10 @@ export default function CampaignCard({
       label: "Projects",
       value: campaign.projectsCount,
     },
-    timelineLabel && {
+    dateRange && {
       icon: Calendar,
-      label: "Timeline",
-      value: timelineLabel,
+      label: "Period",
+      value: dateRange,
     },
   ].filter(Boolean) as { icon: LucideIcon; label: string; value: string }[];
 
@@ -139,6 +128,7 @@ export default function CampaignCard({
       layout="banner"
       banner={campaign.banner}
       bannerHeight="h-48"
+      date={campaign.startDate}
     />
   );
 }

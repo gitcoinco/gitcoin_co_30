@@ -15,6 +15,7 @@ import type {
 } from "@/lib/types";
 import TagsList from "@/components/ui/TagsList";
 import InitialAvatar from "@/components/ui/InitialAvatar";
+import { formatRelativeDate } from "@/lib/utils";
 import AppCard from "@/components/cards/AppCard";
 import MechanismCard from "@/components/cards/MechanismCard";
 import ResearchCard from "@/components/cards/ResearchCard";
@@ -68,20 +69,29 @@ const BASE_HREFS: Record<ContentType, string> = {
 
 // ─── Helpers ──────────────────────────────────────────────────────────────────
 
+function sortKey(item: BaseContent): string {
+  return (item as Campaign).startDate ?? item.lastUpdated;
+}
+
+// Active = campaign that hasn't ended yet (no endDate or endDate in the future)
+function isActive(item: BaseContent): boolean {
+  const endDate = (item as Campaign).endDate;
+  if (endDate === undefined) return false; // not a campaign
+  return !endDate || new Date(endDate) > new Date();
+}
+
 function sortItems(items: BaseContent[], sort: SortOption): BaseContent[] {
   const sorted = [...items];
   if (sort === "newest")
-    return sorted.sort((a, b) => b.lastUpdated.localeCompare(a.lastUpdated));
+    return sorted.sort((a, b) => {
+      const aActive = isActive(a);
+      const bActive = isActive(b);
+      if (aActive !== bActive) return aActive ? -1 : 1;
+      return sortKey(b).localeCompare(sortKey(a));
+    });
   if (sort === "oldest")
-    return sorted.sort((a, b) => a.lastUpdated.localeCompare(b.lastUpdated));
+    return sorted.sort((a, b) => sortKey(a).localeCompare(sortKey(b)));
   return sorted.sort((a, b) => a.name.localeCompare(b.name));
-}
-
-function formatDate(dateStr: string) {
-  return new Date(dateStr).toLocaleDateString("en-US", {
-    year: "numeric",
-    month: "short",
-  });
 }
 
 // ─── Sub-components ───────────────────────────────────────────────────────────
@@ -147,10 +157,12 @@ function ListRow({
   item,
   href,
   preferLogo,
+  showDate,
 }: {
   item: BaseContent;
   href: string;
   preferLogo: boolean;
+  showDate: boolean;
 }) {
   return (
     <Link href={href}>
@@ -163,9 +175,11 @@ function ListRow({
             <h3 className="font-semibold text-gray-25 line-clamp-3 text-base sm:text-2xl">
               {item.name}
             </h3>
-            <span className="text-xs text-gray-500 shrink-0 tabular-nums">
-              {formatDate(item.lastUpdated)}
-            </span>
+            {showDate && (
+              <span className="text-xs text-gray-500 shrink-0 tabular-nums">
+                {formatRelativeDate((item as Campaign).startDate ?? item.lastUpdated)}
+              </span>
+            )}
           </div>
           <p className="text-sm text-gray-300 font-serif mt-0.5 line-clamp-2 sm:line-clamp-4">
             {item.shortDescription}
@@ -304,6 +318,7 @@ export function CategoryContent({
   const sorted = useMemo(() => sortItems(filtered, sort), [filtered, sort]);
   const baseHref = BASE_HREFS[type];
   const preferLogo = type === "app";
+  const showDate = type !== "app";
 
   return (
     <div>
@@ -353,6 +368,7 @@ export function CategoryContent({
               item={item}
               href={`${baseHref}/${item.slug}`}
               preferLogo={preferLogo}
+              showDate={showDate}
             />
           ))}
         </div>

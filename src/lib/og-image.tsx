@@ -1,6 +1,7 @@
 import { ImageResponse } from "next/og";
 import fs from "fs";
 import path from "path";
+import { calcReadTime } from "./utils";
 
 export const OG_SIZE = { width: 1200, height: 630 };
 
@@ -46,10 +47,6 @@ function loadFonts() {
   return { fontRegular: _fontRegular, fontBold: _fontBold };
 }
 
-export function calcReadTime(text: string): number {
-  const wordCount = text.trim().split(/\s+/).filter(Boolean).length;
-  return Math.max(1, Math.ceil(wordCount / 200));
-}
 
 interface OgImageParams {
   name: string;
