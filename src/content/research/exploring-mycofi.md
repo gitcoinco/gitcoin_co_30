@@ -24,6 +24,7 @@ relatedResearch:
   - capturing-value-like-a-slime-mold
 relatedCampaigns: []
 banner: /content-images/research/exploring-mycofi/banner.png
+ctaUrl: /content-images/research/exploring-mycofi/mycofi.pdf
 ---
 
 **Type:** Book

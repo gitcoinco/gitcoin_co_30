@@ -25,6 +25,7 @@ relatedResearch:
   - bioregional-swarms
 relatedCampaigns: []
 banner: /content-images/research/ethereum-localism/banner.png
+ctaUrl: /content-images/research/ethereum-localism/ethereum-localism.pdf
 ---
 
 **Type:** Book

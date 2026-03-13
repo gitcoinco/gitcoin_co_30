@@ -25,6 +25,7 @@ relatedResearch:
   - pathways-to-regeneration
 relatedCampaigns: []
 banner: /content-images/research/grassroots-economics/banner.png
+ctaUrl: /content-images/research/grassroots-economics/grassroots-economics.pdf
 ---
 
 **Type:** Book

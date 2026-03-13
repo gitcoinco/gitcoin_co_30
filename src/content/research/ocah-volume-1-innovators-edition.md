@@ -26,6 +26,7 @@ relatedResearch:
   - onchain-capital-allocation-neural-networks-allonets
 relatedCampaigns: []
 banner: /content-images/research/ocah-volume-1-innovators-edition/banner.png
+ctaUrl: /content-images/research/ocah-volume-1-innovators-edition/onchain-capital-allocation-v1.pdf
 ---
 
 > **TLDR:** The builder's handbook for onchain capital allocation — covers composability, modular design, and implementation pathways for protocol developers and DAO architects. A technical deep-dive into the mechanisms, primitives, and patterns that make decentralized funding infrastructure work.
