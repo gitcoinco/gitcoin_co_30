@@ -80,26 +80,28 @@ export default async function ResearchDetailPage({ params }: PageProps) {
         item={r}
         breadcrumbHref="/research"
         breadcrumbLabel="Back to Research"
+        ctaUrl={r.ctaUrl}
+        ctaLabel={r.researchType ? `Read ${r.researchType}` : 'Read'}
       relatedSections={[
         {
           title: 'Related Apps',
-          items: relatedApps.map((app) => <AppCard key={app.id} app={app} />),
+          items: relatedApps.map((app) => <AppCard key={app.slug} app={app} />),
         },
         {
           title: 'Related Mechanisms',
-          items: relatedMechanisms.map((m) => <MechanismCard key={m.id} mechanism={m} />),
+          items: relatedMechanisms.map((m) => <MechanismCard key={m.slug} mechanism={m} />),
         },
         {
           title: 'Related Case Studies',
-          items: relatedCaseStudies.map((cs) => <CaseStudyCard key={cs.id} caseStudy={cs} />),
+          items: relatedCaseStudies.map((cs) => <CaseStudyCard key={cs.slug} caseStudy={cs} />),
         },
         {
           title: 'Related Research',
-          items: relatedResearch.map((res) => <ResearchCard key={res.id} research={res} />),
+          items: relatedResearch.map((res) => <ResearchCard key={res.slug} research={res} />),
         },
         {
           title: 'Related Campaigns',
-          items: relatedCampaigns.map((c) => <CampaignCard key={c.id} campaign={c} />),
+          items: relatedCampaigns.map((c) => <CampaignCard key={c.slug} campaign={c} />),
         },
       ]}
       />

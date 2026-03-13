@@ -1,14 +1,13 @@
 import { Metadata } from "next";
-import { AppCard } from "@/components/cards";
 import {
   ListPageLayout,
   ListPageHeader,
-  FilterBar,
-  ResultsBar,
-  ItemsGrid,
   SensemakingSection,
+  CategoryContent,
 } from "@/components/layouts";
+import { AppCard } from "@/components/cards";
 import { apps, getFeaturedApps } from "@/content/apps";
+import { getSensemakingFor } from "@/content/research";
 import SectionHeader from "@/components/ui/SectionHeader";
 import { pageSeo } from "@/lib/page-seo";
 
@@ -20,7 +19,7 @@ export default function AppsPage() {
     <ListPageLayout>
       <ListPageHeader title="Apps" description="Funding platforms, DAOs, grant programs"/>
 
-      <SensemakingSection category="apps" />
+      <SensemakingSection article={getSensemakingFor("apps")} />
 
       <section className="section container-page">
         <SectionHeader
@@ -29,7 +28,7 @@ export default function AppsPage() {
         />
         <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-3">
           {featuredApps.map((app) => (
-            <AppCard key={app.id} app={app} variant="home" />
+            <AppCard key={app.slug} app={app} variant="home" />
           ))}
         </div>
       </section>
@@ -40,11 +39,7 @@ export default function AppsPage() {
             title="All Apps"
             subtitle="Explore the complete collection"
           />
-          <ItemsGrid>
-            {apps.map((app) => (
-              <AppCard key={app.id} app={app} />
-            ))}
-          </ItemsGrid>
+          <CategoryContent items={apps} type="app" itemLabel="apps" />
         </div>
       </section>
     </ListPageLayout>

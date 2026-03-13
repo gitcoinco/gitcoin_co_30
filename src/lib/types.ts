@@ -23,12 +23,19 @@ export interface BaseContent {
 export interface App extends BaseContent {}
 export interface Mechanism extends BaseContent {}
 export interface CaseStudy extends BaseContent {}
+export const RESEARCH_TYPES = ['Book', 'Report', 'Opinion', 'Analysis', 'Perspective', 'Essay'] as const;
+export type ResearchType = typeof RESEARCH_TYPES[number];
+
+export const SENSEMAKING_CATEGORIES = ['mechanisms', 'apps', 'campaigns', 'case-studies', 'research'] as const;
+export type SensemakingCategory = typeof SENSEMAKING_CATEGORIES[number];
+
 export interface Research extends BaseContent {
   sensemakingFor?: string;
-  researchType?: string;
+  researchType?: ResearchType;
+  ctaUrl?: string;
 }
 export interface Campaign extends BaseContent {
-  externalUrl?: string;
+  ctaUrl?: string;
   matchingPoolUsd?: string;
   projectsCount?: string;
   startDate?: string;

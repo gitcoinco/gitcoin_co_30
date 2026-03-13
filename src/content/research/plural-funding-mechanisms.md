@@ -20,6 +20,8 @@ sensemakingFor: "mechanisms"
 banner: /content-images/research/plural-funding-mechanisms/banner.png
 ---
 
+> **TLDR:** No single funding mechanism is optimal for all situations. Quadratic funding is democratic but Sybil-vulnerable. Retroactive funding rewards impact but doesn't bootstrap. Direct grants are flexible but centralized. A healthy ecosystem uses multiple approaches — plurality is a feature, not a bug.
+
 **Type:** Perspective
 **Authors:** Kevin Owocki
 

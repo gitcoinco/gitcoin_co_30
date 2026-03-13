@@ -84,12 +84,12 @@ export const pageSeo = {
   ),
   apps: meta(
     "Apps Directory",
-    "Explore funding platforms, DAOs, grant programs, and primitives in the Ethereum ecosystem.",
+    "Explore funding platforms, DAOs, grant programs, and primitives in the AI/Ethereum ecosystem.",
     "/apps",
   ),
   research: meta(
     "Research & Trends",
-    "Analysis of capital flows, mechanism performance, and ecosystem shifts in Ethereum funding.",
+    "Analysis of capital flows, mechanism performance, and ecosystem shifts in AI/Ethereum funding.",
     "/research",
   ),
   campaigns: meta(

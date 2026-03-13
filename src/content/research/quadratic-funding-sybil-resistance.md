@@ -17,6 +17,8 @@ relatedApps:
 banner: /content-images/research/quadratic-funding-sybil-resistance/banner.png
 ---
 
+> **TLDR:** Quadratic funding's democratic power creates strong incentives for fake identities (sybils) to game matching formulas. Gitcoin Passport uses verifiable credential stamps, MACI provides cryptographic privacy, and the arms race between protection and attacks continues to evolve.
+
 **Type:** Analysis
 **Authors:** Gitcoin Research
 

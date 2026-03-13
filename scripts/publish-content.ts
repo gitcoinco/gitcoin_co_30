@@ -65,7 +65,8 @@ interface CustomOptions {
   addCustomFrontmatter?: (
     customData: Record<string, unknown>,
     metadata: Record<string, unknown>,
-  ) => string;
+    slug: string,
+  ) => Promise<string> | string;
 }
 
 export async function publishContent(
@@ -100,6 +101,22 @@ export async function publishContent(
   console.log(`${config.emoji} Creating ${contentType}: ${slug}`);
 
   const description = parseSection(issue.body, "Description");
+
+  // Warn if required fields could not be parsed — typically means issue body formatting is off.
+  // The PR validation will catch anything that slips through to the committed file.
+  const parseWarnings: string[] = [];
+  if (!metadata.shortDescription)
+    parseWarnings.push("shortDescription — expected '- **Short Description**: ...' or '### Short Description' section");
+  if (!metadata.tags?.length)
+    parseWarnings.push("tags — expected '- **Tags**: tag1, tag2' or '### Tags' section");
+  if (!description)
+    parseWarnings.push("description — ## Description or ### Description section not found");
+
+  if (parseWarnings.length > 0) {
+    console.warn("\n⚠️  Some fields could not be parsed from the issue — review the generated file:");
+    for (const w of parseWarnings) console.warn(`   • ${w}`);
+    console.warn();
+  }
   const relatedMechanisms = parseList(issue.body, "Related Mechanisms");
   const relatedApps = parseList(issue.body, "Related Apps");
   const relatedCaseStudies = parseList(issue.body, "Related Case Studies");
@@ -149,7 +166,6 @@ slug: ${slug}
 name: "${issue.title.replace(titlePrefix, "").replace(/"/g, '\\"')}"
 shortDescription: "${(metadata.shortDescription || "").replace(/"/g, '\\"')}"`;
 
-
   if (banner) frontmatter += `\nbanner: ${banner}`;
   if (logo) frontmatter += `\nlogo: ${logo}`;
   if (metadata.featured) frontmatter += `\nfeatured: true`;
@@ -170,9 +186,10 @@ relatedCampaigns:
 ${yamlList(relatedCampaigns)}`;
 
   if (customOptions.addCustomFrontmatter) {
-    const customFrontmatter = customOptions.addCustomFrontmatter(
+    const customFrontmatter = await customOptions.addCustomFrontmatter(
       customData,
       metadata as unknown as Record<string, unknown>,
+      slug,
     );
     if (customFrontmatter) {
       frontmatter += "\n" + customFrontmatter;

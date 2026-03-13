@@ -1,28 +1,17 @@
 import { Metadata } from "next";
-import { MechanismCard } from "@/components/cards";
 import {
   ListPageLayout,
   ListPageHeader,
-  FilterBar,
-  ResultsBar,
-  ItemsGrid,
   CTASection,
   SensemakingSection,
+  CategoryContent,
 } from "@/components/layouts";
 import { mechanisms } from "@/content/mechanisms";
+import { getSensemakingFor } from "@/content/research";
 import SectionHeader from "@/components/ui/SectionHeader";
 import { pageSeo } from "@/lib/page-seo";
 
 export const metadata: Metadata = pageSeo.mechanisms;
-
-const categories = [
-  { value: "all", label: "All" },
-  { value: "allocation", label: "Allocation" },
-  { value: "voting", label: "Voting" },
-  { value: "streaming", label: "Streaming" },
-  { value: "trust", label: "Trust-based" },
-  { value: "hybrid", label: "Hybrid" },
-];
 
 export default function MechanismsPage() {
   return (
@@ -32,17 +21,13 @@ export default function MechanismsPage() {
         description="Funding mechanisms and approaches"
       />
 
-      <SensemakingSection category="mechanisms" />
+      <SensemakingSection article={getSensemakingFor("mechanisms")} />
 
       <section className="section">
         <div className="container-page">
           <SectionHeader title="All Mechanisms" subtitle="" />
 
-          <ItemsGrid>
-            {mechanisms.map((mechanism) => (
-              <MechanismCard key={mechanism.id} mechanism={mechanism} />
-            ))}
-          </ItemsGrid>
+          <CategoryContent items={mechanisms} type="mechanism" itemLabel="mechanisms" />
         </div>
       </section>
 

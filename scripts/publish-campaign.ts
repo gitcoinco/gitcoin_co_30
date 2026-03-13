@@ -12,7 +12,7 @@ publishContent("campaign", issueNumber, {
   addCustomFrontmatter: (_customData, metadata) => {
     const m = metadata as unknown as IssueMetadata;
     const lines: string[] = [];
-    if (m.externalUrl) lines.push(`externalUrl: '${m.externalUrl}'`);
+    if (m.ctaUrl) lines.push(`ctaUrl: '${m.ctaUrl}'`);
     if (m.matchingPoolUsd)
       lines.push(`matchingPoolUsd: '${m.matchingPoolUsd}'`);
     if (m.projectsCount) lines.push(`projectsCount: '${m.projectsCount}'`);

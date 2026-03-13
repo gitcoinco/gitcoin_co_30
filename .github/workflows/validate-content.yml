@@ -1,0 +1,75 @@
+name: Validate content
+
+on:
+  pull_request:
+  workflow_dispatch:  # Manual trigger — validates ALL content files
+
+jobs:
+  validate:
+    runs-on: ubuntu-latest
+    # Read-only is intentional — write permissions are handled by the
+    # validate-content-comment workflow via workflow_run, so that fork PRs
+    # (which always get a read-only token on pull_request) can still get
+    # validation comments posted on them.
+    permissions:
+      contents: read
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Get changed content files
+        id: changed
+        if: github.event_name == 'pull_request'
+        uses: tj-actions/changed-files@v44
+        with:
+          files: 'src/content/**/*.md'
+
+      - uses: actions/setup-node@v4
+        if: github.event_name == 'workflow_dispatch' || steps.changed.outputs.any_changed == 'true'
+        with:
+          node-version: 20
+
+      - run: npm install --no-save tsx gray-matter --no-audit --no-fund
+        if: github.event_name == 'workflow_dispatch' || steps.changed.outputs.any_changed == 'true'
+
+      - name: Validate changed files
+        id: validate
+        if: github.event_name == 'pull_request' && steps.changed.outputs.any_changed == 'true'
+        continue-on-error: true
+        shell: bash
+        run: |
+          set -o pipefail
+          npx tsx scripts/validate-content.ts ${{ steps.changed.outputs.all_changed_files }} 2>&1 | tee /tmp/validate-output.txt
+
+      - name: Validate all files
+        if: github.event_name == 'workflow_dispatch'
+        run: npx tsx scripts/validate-content.ts
+
+      # Save PR metadata as an artifact so validate-content-comment can read it.
+      # Must run before "Fail if validation failed" so the artifact is always uploaded
+      # even when validation fails.
+      - name: Save PR metadata for comment workflow
+        if: github.event_name == 'pull_request'
+        run: |
+          mkdir -p /tmp/pr-info
+          echo "${{ github.event.pull_request.number }}" > /tmp/pr-info/pr-number.txt
+          echo "${{ github.event.pull_request.head.ref }}"  > /tmp/pr-info/branch.txt
+          if [ "${{ steps.changed.outputs.any_changed }}" != "true" ]; then
+            echo "skip" > /tmp/pr-info/outcome.txt
+            echo ""     > /tmp/pr-info/output.txt
+          else
+            echo "${{ steps.validate.outcome }}" > /tmp/pr-info/outcome.txt
+            cp /tmp/validate-output.txt /tmp/pr-info/output.txt 2>/dev/null || echo "" > /tmp/pr-info/output.txt
+          fi
+
+      - name: Upload PR metadata artifact
+        if: github.event_name == 'pull_request'
+        uses: actions/upload-artifact@v4
+        with:
+          name: pr-info
+          path: /tmp/pr-info/
+          retention-days: 1
+
+      - name: Fail if validation failed
+        if: steps.validate.outcome == 'failure'
+        run: exit 1

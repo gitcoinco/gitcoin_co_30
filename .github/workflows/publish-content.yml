@@ -12,6 +12,8 @@ jobs:
       contents: write
       pull-requests: write
       issues: write
+      checks: write
+
     steps:
       - uses: actions/checkout@v4
 
@@ -37,7 +39,24 @@ jobs:
         if: steps.detect.outputs.type
         run: npx tsx scripts/publish-${{ steps.detect.outputs.type }}.ts ${{ github.event.issue.number }}
 
+      - name: Find created content file
+        id: find-file
+        if: steps.detect.outputs.type
+        run: |
+          file=$(git status --short src/content/ | awk '{print $2}' | head -1)
+          echo "file=$file" >> "$GITHUB_OUTPUT"
+
+      - name: Validate content file
+        id: validate
+        if: steps.find-file.outputs.file
+        continue-on-error: true
+        shell: bash
+        run: |
+          set -o pipefail
+          npx tsx scripts/validate-content.ts ${{ steps.find-file.outputs.file }} 2>&1 | tee /tmp/validate-output.txt
+
       - name: Create pull request
+        id: create-pr
         if: steps.detect.outputs.type
         uses: peter-evans/create-pull-request@v6
         with:
@@ -49,7 +68,57 @@ jobs:
 
             **Preview:** https://www.gitcoin.co/preview?issue=${{ github.event.issue.number }}&type=${{ steps.detect.outputs.type }}
 
+            **Reviewer checklist:**
+            - [ ] Review the generated `.md` file for correctness
+            - [ ] Generate banner if missing: check out this branch, run `npm run banner:auto`, commit and push
+            - [ ] Set `featured: true` in frontmatter if this should be featured (team only)
+
             Closes #${{ github.event.issue.number }}
+
+      - name: Comment validation result on PR
+        if: steps.create-pr.outputs.pull-request-number && steps.find-file.outputs.file
+        uses: actions/github-script@v7
+        with:
+          script: |
+            const marker = '<!-- validate-content-bot -->';
+            const outcome = '${{ steps.validate.outcome }}';
+            const prNumber = parseInt('${{ steps.create-pr.outputs.pull-request-number }}');
+            const fs = require('fs');
+
+            let output = '';
+            try { output = fs.readFileSync('/tmp/validate-output.txt', 'utf8').trim(); } catch {}
+
+            const issueNumber = '${{ github.event.issue.number }}';
+            const successBody = `${marker}\n✅ **Content validation passed!**`;
+            const failureBody = `${marker}\n## ❌ Content Validation Failed\n\n\`\`\`\n${output}\n\`\`\`\n\n[Edit issue #${issueNumber}](https://github.com/${context.repo.owner}/${context.repo.repo}/issues/${issueNumber}) to fix the errors above — removing and re-adding the \`approved\` label will regenerate this PR automatically.`;
+            const body = outcome === 'failure' ? failureBody : successBody;
+
+            await github.rest.issues.createComment({
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              issue_number: prNumber,
+              body,
+            });
+
+      - name: Report validation check on PR
+        if: steps.create-pr.outputs.pull-request-head-sha
+        uses: actions/github-script@v7
+        with:
+          script: |
+            const outcome = '${{ steps.validate.outcome }}';
+            const conclusion = outcome === 'failure' ? 'failure' : 'success';
+            await github.rest.checks.create({
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              name: 'Validate content / validate',
+              head_sha: '${{ steps.create-pr.outputs.pull-request-head-sha }}',
+              status: 'completed',
+              conclusion,
+              output: {
+                title: conclusion === 'success' ? '✅ Content validation passed' : '❌ Content validation failed',
+                summary: conclusion === 'success' ? 'All content fields are valid.' : 'See PR comment for details.',
+              },
+            });
 
       - name: Comment on issue
         if: steps.detect.outputs.type
@@ -59,5 +128,5 @@ jobs:
             await github.rest.issues.createComment({
               ...context.repo,
               issue_number: context.issue.number,
-              body: `Content published! A pull request has been created and is ready for review.`,
+              body: `A pull request has been created and is ready for review.`,
             });

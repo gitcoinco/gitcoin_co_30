@@ -1,5 +1,8 @@
 import Link from "next/link";
+import Image from "next/image";
 import TagsList from "../ui/TagsList";
+import ReadTimeBadge from "../ui/ReadTimeBadge";
+import { formatRelativeDate } from "@/lib/utils";
 
 interface ContentCardProps {
   href: string;
@@ -11,6 +14,8 @@ interface ContentCardProps {
   logo?: string;
   banner?: string;
   bannerHeight?: string;
+  readTime?: number;
+  date?: string;
 }
 
 export default function ContentCard({
@@ -23,6 +28,8 @@ export default function ContentCard({
   logo,
   banner = "/content-images/placeholder.png",
   bannerHeight,
+  readTime,
+  date,
 }: ContentCardProps) {
   const isBanner = layout === "banner";
 
@@ -42,21 +49,26 @@ export default function ContentCard({
             <div
               className={`relative ${bannerHeight || "aspect-video"} -mx-6 -mt-6 mb-4 overflow-hidden rounded-t-xl`}
             >
-              <img
+              <Image
                 src={banner}
                 alt={name}
-                className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
+                fill
+                sizes="(max-width: 768px) 100vw, (max-width: 1024px) 50vw, 33vw"
+                className="object-cover group-hover:scale-105 transition-transform duration-300"
               />
               <div className="absolute inset-0 bg-linear-to-b from-transparent to-gray-950 group-hover:opacity-0 transition-all duration-500" />
+              {readTime !== undefined && <ReadTimeBadge minutes={readTime} />}
             </div>
           )}
 
           <div className="flex items-center gap-4 mb-4 min-h-16">
             {layout === "logo" && logo ? (
-              <img
+              <Image
                 src={logo}
                 alt={`${name} logo`}
-                className="w-12 h-12 rounded-lg object-cover bg-gray-800"
+                width={48}
+                height={48}
+                className="rounded-lg object-cover bg-gray-800"
               />
             ) : layout === "logo" ? (
               <div className="w-12 h-12 rounded-lg border border-gray-25 flex items-center justify-center flex-shrink-0">
@@ -72,13 +84,14 @@ export default function ContentCard({
             </h3>
           </div>
 
-          <p className="text-gray-300 font-serif text-sm mb-4 line-clamp-3 flex-grow">
+          <p className="text-gray-300 font-serif text-sm line-clamp-3 flex-grow">
             {shortDescription}
           </p>
+          {date && <p className="text-xs text-gray-500 text-right mt-2">{formatRelativeDate(date)}</p>}
         </>
 
         {/* Tags */}
-        <div className="pt-5 border-t border-gray-500/60 h-[3.7rem]">
+        <div className="pt-4 border-t border-gray-500/60 h-[3.7rem] mt-3">
           <TagsList tags={tags} />
         </div>
       </div>

@@ -1,5 +1,6 @@
 import ContentCard from './ContentCard'
 import type { CaseStudy } from '@/lib/types'
+import { calcReadTime } from '@/lib/utils'
 
 interface CaseStudyCardProps {
   caseStudy: CaseStudy
@@ -14,6 +15,8 @@ export default function CaseStudyCard({ caseStudy }: CaseStudyCardProps) {
       tags={caseStudy.tags}
       layout="banner"
       banner={caseStudy.banner}
+      readTime={calcReadTime(caseStudy.description)}
+      date={caseStudy.lastUpdated}
     />
   )
 }

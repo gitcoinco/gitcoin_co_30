@@ -21,6 +21,7 @@
 
 # Dev
 .next/
+**/.next/
 
 
 # Debug

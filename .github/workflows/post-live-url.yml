@@ -32,7 +32,7 @@ jobs:
               /^src\/content\/(apps|mechanisms|research|case-studies|campaigns)\/(.+)\.md$/
             );
 
-            core.setOutput('url', `https://explore.gitcoin.co/${type}/${slug}`);
+            core.setOutput('url', `https://gitcoin.co/${type}/${slug}`);
 
       - name: Comment on PR and issue
         if: steps.detect.outputs.url

@@ -1,0 +1,171 @@
+name: Research Submission
+description: Submit a research article or report to the directory
+title: "[Research] Your research title here"
+labels: ["content", "research"]
+body:
+  - type: textarea
+    id: slug
+    attributes:
+      label: Slug
+      description: "Optional — leave blank to auto-generate from title. Use the existing slug when updating content."
+      placeholder: "quadratic-funding-analysis-2024"
+      value: |
+        <!--
+        IMPORTANT: If editing this issue as raw markdown, do not rename or remove section headers (### Name).
+        They are used as parsing keys by the publishing automation — changing them will break content generation.
+        -->
+    validations:
+      required: false
+
+  - type: input
+    id: short-description
+    attributes:
+      label: Short Description
+      description: "One-line summary shown in cards and search"
+      placeholder: "An analysis of quadratic funding outcomes across 10 grant rounds"
+    validations:
+      required: true
+
+  - type: textarea
+    id: tags
+    attributes:
+      label: Tags
+      description: "Comma-separated tags"
+      value: |
+        <!-- Comma-separated tags, e.g: quadratic, analysis, public-goods -->
+    validations:
+      required: true
+
+  - type: dropdown
+    id: research-type
+    attributes:
+      label: Research Type
+      description: "Optional — categorize the type of research"
+      options:
+        - Book
+        - Report
+        - Opinion
+        - Analysis
+        - Perspective
+    validations:
+      required: false
+
+  - type: dropdown
+    id: sensemaking-for
+    attributes:
+      label: Sensemaking For
+      description: "Team only — leave blank. Gitcoin team sets this during publishing."
+      options:
+        - mechanisms
+        - apps
+        - campaigns
+        - case-studies
+        - research
+    validations:
+      required: false
+
+  - type: checkboxes
+    id: featured
+    attributes:
+      label: Featured
+      description: "Team only — leave unchecked. Gitcoin team sets this during publishing."
+      options:
+        - label: Feature this research on the homepage
+
+  - type: input
+    id: cta-url
+    attributes:
+      label: CTA URL
+      description: "Optional — external link for the CTA button (e.g. a hosted PDF, arXiv page, publisher site)."
+      placeholder: "https://example.com/report"
+    validations:
+      required: false
+
+  - type: textarea
+    id: banner-image
+    attributes:
+      label: Banner Image
+      description: |
+        Open https://gitcoin.co/generator in a new tab (cmd+click / ctrl+click).
+        Press R to cycle through patterns until you find one you like → press S to save → drag the saved PNG here.
+        Only images from the Chladni generator are accepted (no screenshots or external images).
+      value: |
+        <!-- Go to https://gitcoin.co/generator → press R to cycle patterns → press S to save → drag the PNG here. Only Chladni-generated PNGs accepted. -->
+    validations:
+      required: true
+
+  - type: textarea
+    id: description
+    attributes:
+      label: Description
+      description: "Full description. Markdown is supported."
+      value: |
+        <!--
+        Full description of the research. Markdown is supported.
+
+        Include: methodology, key findings, and main takeaways.
+
+        Delete this comment and write your description below.
+        -->
+    validations:
+      required: true
+
+  - type: textarea
+    id: related-apps
+    attributes:
+      label: Related Apps
+      description: "Comma-separated slugs (e.g. gitcoin-grants-stack, octant)"
+      value: |
+        <!-- Comma-separated slugs, e.g: gitcoin-grants-stack, octant -->
+    validations:
+      required: false
+
+  - type: textarea
+    id: related-mechanisms
+    attributes:
+      label: Related Mechanisms
+      description: "Comma-separated slugs (e.g. quadratic-funding, direct-grants)"
+      value: |
+        <!-- Comma-separated slugs, e.g: quadratic-funding, direct-grants -->
+    validations:
+      required: false
+
+  - type: textarea
+    id: related-case-studies
+    attributes:
+      label: Related Case Studies
+      description: "Comma-separated slugs"
+      value: |
+        <!-- Comma-separated slugs, e.g: gitcoin-gr15-case-study -->
+    validations:
+      required: false
+
+  - type: textarea
+    id: related-research
+    attributes:
+      label: Related Research
+      description: "Comma-separated slugs"
+      value: |
+        <!-- Comma-separated slugs, e.g: my-research-slug -->
+    validations:
+      required: false
+
+  - type: textarea
+    id: related-campaigns
+    attributes:
+      label: Related Campaigns
+      description: "Comma-separated slugs"
+      value: |
+        <!-- Comma-separated slugs, e.g: gg24, gg25 -->
+    validations:
+      required: false
+
+  - type: checkboxes
+    id: checklist
+    attributes:
+      label: Submission Checklist
+      options:
+        - label: My short description is accurate and fits in one line
+          required: true
+        - label: My description is complete and written in Markdown
+          required: true

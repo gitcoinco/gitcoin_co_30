@@ -1,12 +1,11 @@
-import { getSensemakingFor } from '@/content/research'
+import type { Research } from '@/lib/types'
 import { ResearchCard } from '@/components/cards'
 
 interface SensemakingSectionProps {
-  category: string
+  article: Research | undefined
 }
 
-export default function SensemakingSection({ category }: SensemakingSectionProps) {
-  const article = getSensemakingFor(category)
+export default function SensemakingSection({ article }: SensemakingSectionProps) {
   if (!article) return null
 
   return (

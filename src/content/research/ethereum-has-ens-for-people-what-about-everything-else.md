@@ -2,9 +2,16 @@
 id: '1772727445381'
 slug: ethereum-has-ens-for-people-what-about-everything-else
 name: "Ethereum Has ENS for People. What About Everything Else?"
-shortDescription: ""
+shortDescription: "Two companion ERCs (8185 + 8186) for mapping off-chain entities to Ethereum addresses and pre-funding them before registration."
 tags:
-
+  - identity
+  - public-goods
+  - funding
+  - ai-agents
+  - registry
+  - escrow
+  - ERC
+researchType: Opinion
 lastUpdated: '2026-03-05'
 relatedMechanisms:
   - quadratic-funding
@@ -20,6 +27,8 @@ relatedCampaigns:
 
 banner: /content-images/research/ethereum-has-ens-for-people-what-about-everything-else/banner.png
 ---
+
+> **TLDR:** ENS solved identity for people, but GitHub repos, npm packages, and YouTube channels still don't have Ethereum addresses. Every funding protocol rebuilds this plumbing from scratch. Two new ERCs propose shared primitives so protocols can send money to "the maintainers of React" without custom infrastructure.
 
 # Ethereum Has ENS for People. What About Everything Else?
 
