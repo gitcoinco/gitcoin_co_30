@@ -283,6 +283,59 @@ Lowercase, hyphen-separated. Follow existing conventions from similar files — 
 
 ---
 
+## Content Quality Standards
+
+### Source Requirements
+
+Every quantitative claim must include a primary source. Do not write "Gitcoin has distributed $60M+" without linking or citing the source dataset, report, or on-chain reference. Acceptable sources: on-chain data, published reports, official announcements, academic papers. If a stat cannot be sourced, either find the source or remove the claim.
+
+### Tone Profiles by Content Type
+
+The model's voice should adapt to the content type being written:
+
+| Content Type | Tone | Framing |
+|-------------|------|---------|
+| **Research** | Analytical, exploratory, evidence-based. Present findings and let the reader draw conclusions. Avoid definitives ("the evidence is clear", "this proves", "undeniably"). Prefer "the data suggests", "one interpretation is", "this points toward". |
+| **Mechanism** | Technical, precise, neutral. Describe how it works, tradeoffs, and design parameters. No advocacy — just the mechanism. |
+| **Case Study** | Narrative, grounded in specifics. What happened, what worked, what didn't, what we learned. Let the story carry the argument. |
+| **App** | Descriptive, practical. What it does, how to use it, where it fits in the ecosystem. Keep it functional. |
+| **Campaign** | Factual, concise. Dates, amounts, participants, outcomes. |
+
+**Banned patterns across all types:**
+- "The evidence is clear that..." — present the evidence, let the reader decide
+- "It is undeniable that..." — if it were undeniable you wouldn't need to say so
+- "This groundbreaking..." — let the reader judge significance
+- "Revolutionary approach..." — describe the approach, skip the adjective
+- Unsourced superlatives ("the largest", "the first", "the most") — source it or soften it
+
+### SEO & AI Search Optimization
+
+All content should be optimized for both traditional search engines and AI-powered search (ChatGPT, Perplexity, Google AI Overviews):
+
+1. **Title & slug:** Include the primary keyword naturally. Prefer specific, descriptive titles over clever/abstract ones. "Quadratic Funding: How Democratic Matching Works" > "The Shape of Money"
+2. **shortDescription:** Write as a complete, self-contained answer to the implicit question. This is what AI search surfaces. 150-200 chars, keyword-rich.
+3. **First paragraph:** Answer the "what is this about?" question immediately. AI search and featured snippets pull from the first 2-3 sentences.
+4. **Headers (H2/H3):** Use question-format headers where natural ("How does quadratic funding work?", "What are the tradeoffs?"). These map directly to search queries.
+5. **Structured data:** Use tables, numbered lists, and definition patterns where appropriate. These are preferred by both Google and AI search for extraction.
+6. **Internal linking:** Link to related mechanisms, apps, case studies, and research using relative paths. This builds topical authority and helps AI crawlers map relationships.
+7. **Tags:** Use established tag vocabulary. Tags feed the site's filtering and help search engines understand content taxonomy.
+8. **Keyword targeting:** Identify one primary keyword and 2–3 secondary keywords before writing. Primary keyword appears in title, first paragraph, and at least one H2. Secondary keywords appear naturally in body copy.
+9. **Semantic coverage:** Include the full semantic field around the primary keyword — related terms, named variants, adjacent concepts — rather than repeating the same phrase. Aim for topical depth, not keyword density.
+10. **Direct answer patterns:** At least one section should follow: question as H2/H3 → direct one-sentence answer → supporting explanation. Optimizes for featured snippet and AI Overview extraction.
+11. **Entity naming:** Use full canonical names on first use for people, protocols, organizations, and events. ("Vitalik Buterin" not "Vitalik," "Optimism RetroPGF" not "RetroPGF.")
+
+### Verification Pass
+
+Before finalizing any content, perform a second pass specifically to:
+
+1. **Flag unverified stats:** Search for any numbers, percentages, dollar amounts, or quantitative claims. Each must have an inline source (link, citation, or footnote). Flag any that don't.
+2. **Check framework consistency:** Does this piece use terminology consistently with the rest of the site? Cross-reference `src/content/mechanisms/` for canonical mechanism names. Don't call it "retroactive funding" in one place and "retroPGF" in another without explaining the relationship.
+3. **Validate slugs:** Every `relatedMechanisms`, `relatedApps`, `relatedCaseStudies`, `relatedResearch`, and `relatedCampaigns` entry must correspond to an actual file in the repo. Run `ls src/content/{type}/` to verify.
+4. **Check link targets:** Internal links to `/mechanisms/xyz` or `/research/xyz` must use slugs that exist. External links should be to stable URLs (not tweets that may be deleted, not paywalled content).
+5. **Tone audit:** Re-read for any definitive/superlative language that crept in. Apply the tone profile for the content type.
+
+---
+
 ## Development
 
 ```bash
