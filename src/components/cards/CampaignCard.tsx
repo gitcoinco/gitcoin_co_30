@@ -98,7 +98,7 @@ export default function CampaignCard({
             {campaign.name}
           </h3>
           <div className="flex flex-col w-full justify-between flex-grow mb-4">
-            <p className="mt-4 text-lg sm:text-xl text-gray-300 font-serif line-clamp-3">
+            <p className="mt-4 text-lg sm:text-xl text-gray-300 font-serif line-clamp-3 min-h-[5.25rem]">
               {campaign.shortDescription}
             </p>
 

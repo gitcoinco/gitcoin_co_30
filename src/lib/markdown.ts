@@ -60,6 +60,7 @@ function parseBaseContent(data: any, content: string, slug: string): App | Mecha
     relatedCaseStudies: data.relatedCaseStudies || [],
     relatedResearch: data.relatedResearch || [],
     relatedCampaigns: data.relatedCampaigns || [],
+    authors: data.authors || [],
   }
 }
 

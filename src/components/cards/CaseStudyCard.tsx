@@ -7,6 +7,7 @@ interface CaseStudyCardProps {
 }
 
 export default function CaseStudyCard({ caseStudy }: CaseStudyCardProps) {
+  const authors = caseStudy.authors?.length ? caseStudy.authors : ["Gitcoin Research"]
   return (
     <ContentCard
       href={`/case-studies/${caseStudy.slug}`}
@@ -17,6 +18,7 @@ export default function CaseStudyCard({ caseStudy }: CaseStudyCardProps) {
       banner={caseStudy.banner}
       readTime={calcReadTime(caseStudy.description)}
       date={caseStudy.lastUpdated}
+      authors={authors}
     />
   )
 }

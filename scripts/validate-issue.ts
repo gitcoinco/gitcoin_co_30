@@ -18,6 +18,7 @@ import {
   validateResearchType,
   validateSensemakingFor,
   validateCampaignDates,
+  validateAuthors,
 } from "./content-validators";
 
 const [contentType, bodyFile] = process.argv.slice(2);
@@ -101,6 +102,16 @@ for (const section of RELATED_SECTIONS) {
       `**${section}** contains invalid slug(s): ${malformed.map((s) => `\`${s}\``).join(", ")} — slugs must be lowercase kebab-case (e.g. \`gitcoin-grants-stack\`)`,
     );
   }
+}
+
+// Authors: optional field — validate names against authors.json
+if (metadata.authors && metadata.authors.length > 0) {
+  const authorNames = metadata.authors.map((a) => a.name);
+  // Reconstruct raw lines to check for empty-name-before-| format errors
+  const rawLines = metadata.authors.map((a) =>
+    a.social ? `${a.name} | ${a.social}` : a.name,
+  );
+  validateAuthors(authorNames, rawLines, errors, warnings);
 }
 
 // Warn if team-only fields were set by the submitter

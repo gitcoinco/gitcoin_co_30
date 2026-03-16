@@ -12,6 +12,56 @@ import {
   slugify,
 } from "../src/lib/parse-issue";
 import { processImages } from "./shared-utils";
+import type { Author } from "../src/lib/types";
+
+const AUTHORS_PATH = path.join(process.cwd(), "src", "data", "authors.json");
+
+function loadAuthors(): Author[] {
+  try {
+    return JSON.parse(fs.readFileSync(AUTHORS_PATH, "utf8")) as Author[];
+  } catch {
+    return [];
+  }
+}
+
+function saveAuthors(authors: Author[]): void {
+  fs.writeFileSync(AUTHORS_PATH, JSON.stringify(authors, null, 2) + "\n");
+}
+
+/**
+ * Sync new authors from an issue to authors.json.
+ * - New author (not in list): adds entry, logs info.
+ * - Existing author with new social: updates social, logs warning.
+ * Returns the list of author names for the frontmatter.
+ */
+function syncAuthors(entries: Array<{ name: string; social?: string }>): string[] {
+  if (entries.length === 0) return [];
+
+  const knownAuthors = loadAuthors();
+  let changed = false;
+
+  for (const entry of entries) {
+    const existing = knownAuthors.find(
+      (a) => a.name.toLowerCase() === entry.name.toLowerCase(),
+    );
+    if (!existing) {
+      knownAuthors.push({ name: entry.name, social: entry.social });
+      console.log(`   ✚ Added new author to authors.json: ${entry.name}`);
+      changed = true;
+    } else if (entry.social && entry.social !== existing.social) {
+      console.warn(
+        `   ⚠️  Author "${entry.name}" already exists in authors.json with social "${existing.social ?? "(none)"}". ` +
+          `Submitted social "${entry.social}" — updating.`,
+      );
+      existing.social = entry.social;
+      changed = true;
+    }
+  }
+
+  if (changed) saveAuthors(knownAuthors);
+
+  return entries.map((e) => e.name);
+}
 
 const GITHUB_TOKEN = process.env.GITHUB_TOKEN;
 const REPO = "gitcoinco/gitcoin_co_30";
@@ -123,6 +173,8 @@ export async function publishContent(
   const relatedResearch = parseList(issue.body, "Related Research");
   const relatedCampaigns = parseList(issue.body, "Related Campaigns");
 
+  const authors = syncAuthors(metadata.authors ?? []);
+
   const customData = customOptions.parseCustomFields
     ? customOptions.parseCustomFields(issue.body)
     : {};
@@ -170,10 +222,14 @@ shortDescription: "${(metadata.shortDescription || "").replace(/"/g, '\\"')}"`;
   if (logo) frontmatter += `\nlogo: ${logo}`;
   if (metadata.featured) frontmatter += `\nfeatured: true`;
 
+  const authorsYaml = authors.length > 0
+    ? `\nauthors:\n${authors.map((a) => `  - "${a.replace(/"/g, '\\"')}"`).join("\n")}`
+    : "";
+
   frontmatter += `
 tags:
 ${tagsYaml}
-lastUpdated: '${new Date().toISOString().split("T")[0]}'
+lastUpdated: '${new Date().toISOString().split("T")[0]}'${authorsYaml}
 relatedMechanisms:
 ${yamlList(relatedMechanisms)}
 relatedApps:

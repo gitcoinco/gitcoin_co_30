@@ -16,6 +16,7 @@ interface ContentCardProps {
   bannerHeight?: string;
   readTime?: number;
   date?: string;
+  authors?: string[];
 }
 
 export default function ContentCard({
@@ -30,6 +31,7 @@ export default function ContentCard({
   bannerHeight,
   readTime,
   date,
+  authors,
 }: ContentCardProps) {
   const isBanner = layout === "banner";
 
@@ -87,7 +89,16 @@ export default function ContentCard({
           <p className="text-gray-300 font-serif text-sm line-clamp-3 flex-grow">
             {shortDescription}
           </p>
-          {date && <p className="text-xs text-gray-500 text-right mt-2">{formatRelativeDate(date)}</p>}
+          {(authors || date) && (
+            <div className="flex items-center justify-between mt-2 gap-2">
+              {authors && (
+                <p className="text-xs text-gray-300 truncate">
+                  By {authors.join(", ")}
+                </p>
+              )}
+              {date && <p className="text-xs text-gray-300 shrink-0 ml-auto">{formatRelativeDate(date)}</p>}
+            </div>
+          )}
         </>
 
         {/* Tags */}
