@@ -30,7 +30,7 @@ export type ContentType =
   | "research"
   | "case-study"
   | "campaign";
-type SortOption = "newest" | "oldest" | "alpha" | "read-time" | "author";
+type SortOption = "newest" | "oldest" | "alpha" | "read-time" | "read-time-desc" | "author";
 type ViewOption = "grid" | "list";
 
 export interface FilterOption {
@@ -57,7 +57,8 @@ const SORT_LABELS: Record<SortOption, string> = {
   newest: "Newest first",
   oldest: "Oldest first",
   alpha: "Title (A–Z)",
-  "read-time": "Shortest read",
+  "read-time": "Read time (asc)",
+  "read-time-desc": "Read time (desc)",
   "author": "Author (A–Z)",
 };
 
@@ -65,9 +66,9 @@ const SORT_LABELS: Record<SortOption, string> = {
 const AVAILABLE_SORTS: Record<ContentType, SortOption[]> = {
   app: ["newest", "oldest", "alpha"],
   campaign: ["newest", "oldest", "alpha"],
-  mechanism: ["newest", "oldest", "alpha", "read-time"],
-  research: ["newest", "oldest", "alpha", "read-time", "author"],
-  "case-study": ["newest", "oldest", "alpha", "read-time", "author"],
+  mechanism: ["newest", "oldest", "alpha", "read-time", "read-time-desc"],
+  research: ["newest", "oldest", "alpha", "read-time", "read-time-desc", "author"],
+  "case-study": ["newest", "oldest", "alpha", "read-time", "read-time-desc", "author"],
 };
 
 const BASE_HREFS: Record<ContentType, string> = {
@@ -106,9 +107,9 @@ function sortItems(items: BaseContent[], sort: SortOption): BaseContent[] {
     });
   if (sort === "oldest")
     return sorted.sort((a, b) => sortKey(a).localeCompare(sortKey(b)));
-  if (sort === "read-time") {
+  if (sort === "read-time" || sort === "read-time-desc") {
     const withTime = sorted.map((item) => ({ item, t: calcReadTime(item.description) }));
-    withTime.sort((a, b) => a.t - b.t);
+    withTime.sort((a, b) => sort === "read-time" ? a.t - b.t : b.t - a.t);
     return withTime.map(({ item }) => item);
   }
   if (sort === "author")
