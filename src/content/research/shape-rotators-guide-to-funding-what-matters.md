@@ -29,12 +29,13 @@ relatedResearch:
   - plural-funding-mechanisms
 relatedCampaigns: []
 banner: /content-images/research/shape-rotators-guide-to-funding-what-matters/banner.png
+authors:
+  - Kevin Owocki
 ---
 
 > **TLDR:** Capital allocation mechanisms exist in a multi-dimensional design space — retroactive vs. proactive, centralized vs. distributed, sybil-resistant vs. permissionless. Shape rotators visualize these trade-offs. No single mechanism wins; the goal is mapping the territory and choosing tools that fit your context.
 
 **Type:** Perspective
-**Authors:** Kevin Owocki
 **Originally published:** [Gitcoin Governance Forum](https://gov.gitcoin.co/t/shape-rotators-guide-to-funding-what-matters/17174), November 2023
 
 ## TLDR

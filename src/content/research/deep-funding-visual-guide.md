@@ -23,12 +23,13 @@ relatedResearch:
   - plural-funding-mechanisms
 relatedCampaigns: []
 banner: /content-images/research/deep-funding-visual-guide/banner.png
+authors:
+  - Kevin Owocki
 ---
 
 > **TLDR:** Deep Funding skips the "evaluate every project" bottleneck by mapping value as a dependency graph, letting competing AI models fill in the weights, then randomly spot-checking with humans. Result: fund entire software ecosystems at scale without lobbying or popularity contests.
 
 **Type:** Report
-**Authors:** Kevin Owocki
 
 **Sources:**
 - [Deep Funding Governance Post](https://gov.gitcoin.co/t/deep-funding-a-visual-guide-in-3-easy-steps/19765)

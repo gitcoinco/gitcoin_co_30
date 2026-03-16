@@ -23,10 +23,11 @@ relatedResearch:
   - networks-vs-hierarchies
 relatedCampaigns: []
 banner: /content-images/research/the-evolution-of-surplus-distribution/banner.png
+authors:
+  - Kevin Owocki
 ---
 
 **Type:** Opinion
-**Authors:** Kevin Owocki
 **Originally published:** [Allo Capital Research](https://research.allo.capital/t/the-evolution-of-surplus-distribution-from-hunter-gatherers-to-onchain-systems/332), May 2025
 
 **TLDR** - The history of human economic organization can be understood through how societies have generated and distributed surplus resources. Each era introduced new mechanisms that expanded who could participate in allocation decisions — from communal sharing to hierarchical command to markets to platforms to programmable onchain systems.

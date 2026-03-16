@@ -32,10 +32,11 @@ relatedResearch:
   - plural-funding-mechanisms
 relatedCampaigns: []
 banner: /content-images/research/69-trends-in-2025-era-dao-design/banner.png
+authors:
+  - Kevin Owocki
 ---
 
 **Type:** Report
-**Authors:** Kevin Owocki
 **Originally published:** [Allo Capital Research](https://research.allo.capital/t/69-trends-in-2025-era-dao-design/32), December 2024
 
 **TLDR** - A survey of 69 trends across seven categories shaping the DAO design landscape in 2025: AI integration, financial mechanisms, governance models, info finance, infrastructure, organization models, and token economics.

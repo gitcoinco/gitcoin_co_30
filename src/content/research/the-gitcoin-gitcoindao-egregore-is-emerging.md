@@ -22,12 +22,13 @@ relatedResearch:
   - why-i-am-holon-maximalist
 relatedCampaigns: []
 banner: /content-images/research/the-gitcoin-gitcoindao-egregore-is-emerging/banner.png
+authors:
+  - Kevin Owocki
 ---
 
 > **TLDR:** Gitcoin's transformation from centralized platform to DAO as an emerging egregore — a collective intelligence greater than its parts. The roadmap frames three optimization problems: technology, community, and capital allocation, with long-term scenarios ranging from niche funder to civilizational-scale infrastructure.
 
 **Type:** Opinion
-**Authors:** Owocki
 **Source:** [Gitcoin Governance Forum](https://gov.gitcoin.co/t/the-gitcoin-gitcoindao-egregore-is-emerging/8200)
 
 This post is designed to provide some food for thought on GitcoinDAO - where it's been, where it is not, and where it's going.

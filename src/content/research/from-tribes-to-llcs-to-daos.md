@@ -26,12 +26,13 @@ relatedCaseStudies: []
 relatedCampaigns: []
 researchType: Opinion
 banner: /content-images/research/from-tribes-to-llcs-to-daos/banner.png
+authors:
+  - Kevin Owocki
 ---
 
 > **TLDR:** Humans organized as egalitarian tribes, then feudal hierarchies, then corporations. DAOs are the next chapter — reviving collective decision-making and shared ownership through blockchain, but without the inefficiencies that doomed earlier attempts at democratic coordination.
 
 **Type:** Opinion
-**Author:** @owocki
 **Originally published:** [X Article](https://x.com/owocki/status/1881709547070365890) — January 21, 2025
 
 ---

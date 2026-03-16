@@ -27,10 +27,11 @@ relatedResearch:
   - practical-pluralism
 relatedCampaigns: []
 banner: /content-images/research/exploring-the-capital-allocation-design-space/banner.png
+authors:
+  - Kevin Owocki
 ---
 
 **Type:** Opinion
-**Authors:** Kevin Owocki
 **Originally published:** [Allo Capital Research](https://research.allo.capital/t/how-should-we-be-exploring-the-capital-allocation-design-space/85), December 2024
 
 **TLDR** - One of Gitcoin's challenges is balancing depth vs. breadth in exploring capital allocation designs. Gitcoin fell behind projects such as Protocol Guild and Optimism, but still holds significant influence and resources. Future exploration should focus on building interconnected networks, partnerships, and fostering a pluralistic ecosystem — because a network is more fit for purpose to explore frontiers than an organization is.

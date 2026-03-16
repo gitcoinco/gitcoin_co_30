@@ -15,6 +15,9 @@ relatedMechanisms:
 relatedApps: []
 sensemakingFor: "mechanisms"
 banner: /content-images/research/fair-fees-dynamic-formula-value-creation-capture/banner.png
+authors:
+  - Kevin Owocki
+  - Devansh Mehta
 ---
 
 **Type:** Research

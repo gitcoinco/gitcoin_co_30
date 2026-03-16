@@ -20,10 +20,11 @@ relatedResearch:
   - practical-pluralism
 relatedCampaigns: []
 banner: /content-images/research/meaning-awareness/banner.png
+authors:
+  - Kevin Owocki
 ---
 
 **Type:** Opinion
-**Authors:** Kevin Owocki
 **Originally published:** [Allo Capital Research](https://research.allo.capital/t/meaning-awareness-we-need-new-ways-to-find-what-actually-matters/379), June 2025
 
 **TLDR** - The transformation of liberalism from meaningful philosophy to algorithmic manipulation reveals why we need better methods for distinguishing genuine importance from attention-grabbing content. Our systems have gotten incredibly good at measuring clicks, purchases, and engagement, but terrible at distinguishing between what captures attention and what creates fulfillment. We need new approaches — not just better technology, but better thinking about meaningful living in our connected world.

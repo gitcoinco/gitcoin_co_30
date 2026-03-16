@@ -19,10 +19,11 @@ relatedMechanisms:
 relatedApps: []
 sensemakingFor: "mechanisms"
 banner: /content-images/research/bioregional-swarms/banner.png
+authors:
+  - Kevin Owocki
 ---
 
 **Type:** Perspective
-**Authors:** Kevin Owocki
 **Source:** [Farcaster](https://warpcast.com/owocki)
 
 ## The Problem with Nation-States

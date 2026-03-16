@@ -20,10 +20,12 @@ relatedMechanisms:
 relatedApps: []
 sensemakingFor: "mechanisms"
 banner: /content-images/research/coalitional-funding-2026-era-primitive/banner.png
+authors:
+  - Kevin Owocki
+  - Griff Green
 ---
 
 **Type:** Perspective
-**Authors:** Kevin Owocki, Griff Green
 
 ## Overview
 

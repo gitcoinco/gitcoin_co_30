@@ -20,10 +20,11 @@ relatedResearch:
   - dopamine-driven-web3
 relatedCampaigns: []
 banner: /content-images/research/liberating-attention/banner.png
+authors:
+  - Kevin Owocki
 ---
 
 **Type:** Opinion
-**Authors:** Kevin Owocki
 **Originally published:** [Allo Capital Research](https://research.allo.capital/t/liberating-attention-humanitys-scarcest-resource/333), May 2025
 
 **TLDR** - Human attention is our most precious cognitive resource, processing only 50 bits per second from millions of inputs. Tech companies exploit attention vulnerabilities through algorithms designed for engagement rather than wellbeing. Understanding these mechanisms empowers us to reclaim cognitive autonomy through mindfulness, environment design, and community support — transforming attention from a passive target for exploitation into an active force for self-determination. Let's reallocate our attention.

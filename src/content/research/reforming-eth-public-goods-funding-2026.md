@@ -32,10 +32,11 @@ relatedResearch:
   - state-of-public-goods-funding-2024
 relatedCampaigns: []
 banner: /content-images/research/reforming-eth-public-goods-funding-2026/banner.png
+authors:
+  - Kevin Owocki
 ---
 
 **Type:** Perspective
-**Authors:** Kevin Owocki
 **Date:** December 2025
 
 **Sources:**

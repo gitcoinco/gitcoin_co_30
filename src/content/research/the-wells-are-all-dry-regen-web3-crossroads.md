@@ -22,12 +22,13 @@ relatedResearch:
   - state-of-public-goods-funding-2024
   - ethereum-public-goods-funding-sources-the-next-era
 banner: /content-images/research/the-wells-are-all-dry-regen-web3-crossroads/banner.png
+authors:
+  - Kevin Owocki
 ---
 
 > **TLDR:** Regen web3's wells have run dry — years of subsidized grants didn't produce sustainable adoption. The path forward: pivot from vibes-driven funding to building revenue-generating applications with real product-market fit. The grants era is over; the earn-your-keep era begins.
 
 **Type:** Perspective
-**Author:** Owocki
 **Published:** December 2025
 
 ## Overview

@@ -26,12 +26,14 @@ relatedResearch:
   - state-of-public-goods-funding-2024
 relatedCampaigns: []
 banner: /content-images/research/web3-funding-fatigue/banner.png
+authors:
+  - Vengist
+  - Kevin Owocki
 ---
 
 > **TLDR:** Fragmented funding processes create fatigue for grantees (applying to dozens of rounds) and funders (evaluating endless proposals). Aggregation-based solutions like self-curated registries, guilds, and Protocol Guild reduce coordination overhead by pooling projects and funders.
 
 **Type:** Report
-**Authors:** Vengist, Owocki
 **Source:** [Gitcoin Governance Forum](https://gov.gitcoin.co/t/web3-funding-fatigue-a-growing-problem/19423)
 
 ## Summary

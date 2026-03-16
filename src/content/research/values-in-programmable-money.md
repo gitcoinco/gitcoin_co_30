@@ -25,10 +25,11 @@ relatedResearch:
   - the-evolution-of-surplus-distribution
 relatedCampaigns: []
 banner: /content-images/research/values-in-programmable-money/banner.png
+authors:
+  - Kevin Owocki
 ---
 
 **Type:** Report
-**Authors:** Kevin Owocki
 **Originally published:** [Allo Capital Research](https://research.allo.capital/t/values-in-programmable-money-embedding-human-values-in-digital-currency/330), May 2025
 
 **TLDR** - Programmable money transforms currency from a passive exchange tool into an active carrier of ethical, social, political, environmental, and cultural values, allowing us to explicitly encode our collective intentions into monetary systems. Projects like Gitcoin (public goods funding), KlimaDAO (environmental impact), and GoodDollar (universal basic income) already demonstrate practical implementations.
