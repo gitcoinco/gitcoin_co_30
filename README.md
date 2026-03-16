@@ -179,7 +179,7 @@ npm run build
 
 
 **`researchType`** (research only, optional)
-- Must be one of: `Book`, `Report`, `Opinion`, `Analysis`, `Perspective`
+- Must be one of: `Book`, `Report`, `Opinion`, `Analysis`, `Perspective`, `Essay`
 - Validated by CI — other values will fail the PR check
 - Enables filter tabs on the /research page
 

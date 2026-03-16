@@ -35,7 +35,6 @@ authors:
 
 > **TLDR:** Capital allocation mechanisms exist in a multi-dimensional design space — retroactive vs. proactive, centralized vs. distributed, sybil-resistant vs. permissionless. Shape rotators visualize these trade-offs. No single mechanism wins; the goal is mapping the territory and choosing tools that fit your context.
 
-**Type:** Perspective
 **Originally published:** [Gitcoin Governance Forum](https://gov.gitcoin.co/t/shape-rotators-guide-to-funding-what-matters/17174), November 2023
 
 ## TLDR
@@ -50,7 +49,7 @@ The post examines how different design criteria have shaped various funding expe
 
 As a [shape rotator](https://www.urbandictionary.com/define.php?term=shape%20rotator), I love cartography. Cartography (the study and practice of making and using maps) allows for visual understanding of what's around us. A picture is worth a thousand words, which means that by visualizing abstract concepts, more of us can get on the same page faster & at higher fidelity than we would otherwise.
 
-The objective of this post is to cartography the design space in & around Gitcoin's mission (To Fund What Matters).
+The objective of [this post](https://gov.gitcoin.co/t/how-might-we-scale-gitcoins-impact-from-50mm-gmv-to-500m-gmv/16697) is to cartography the design space in & around Gitcoin's mission (To Fund What Matters).
 
 ![Empirical vs A Priori Knowledge](/content-images/research/shape-rotators-guide-to-funding-what-matters/01-empirical-knowledge.png)
 
@@ -107,7 +106,7 @@ Of course, this doesn't tell the full story. If you were to add a 2nd axis showi
 
 ## The Present
 
-Over the course of 2022, more players entered the space and we began to see the rise of retroactive public goods funding experiments like Optimism RPGF and very simple but effective mechanisms like the Protocol Guild's self curating registry.
+Over the course of 2022, more players entered the space and we began to see the rise of [retroactive public goods funding experiments](https://gov.gitcoin.co/t/devconnect-zuzalu-istanbul-takeaways-for-gitcoin/17159#h-2-new-market-leaders-7) like Optimism RPGF and very simple but effective mechanisms like the [Protocol Guild](https://protocol-guild.readthedocs.io/en/latest/)'s self curating registry.
 
 Trying to further map the design space, adding another 3rd dimension... Looks like this:
 

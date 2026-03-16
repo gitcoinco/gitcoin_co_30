@@ -10,6 +10,7 @@ tags:
   - dao
   - decentralization
 lastUpdated: '2021-08-10'
+researchType: Opinion
 relatedMechanisms:
   - quadratic-funding
   - retroactive-funding
@@ -28,7 +29,6 @@ authors:
 
 > **TLDR:** Gitcoin's transformation from centralized platform to DAO as an emerging egregore — a collective intelligence greater than its parts. The roadmap frames three optimization problems: technology, community, and capital allocation, with long-term scenarios ranging from niche funder to civilizational-scale infrastructure.
 
-**Type:** Opinion
 **Source:** [Gitcoin Governance Forum](https://gov.gitcoin.co/t/the-gitcoin-gitcoindao-egregore-is-emerging/8200)
 
 This post is designed to provide some food for thought on GitcoinDAO - where it's been, where it is not, and where it's going.
@@ -41,7 +41,7 @@ _Warning: This post packs my 4 yr of xp in working on Gitcoin down to 6-7 pages.
 
 _**Not financial or tax advice.** This post is strictly educational and is not investment advice or a solicitation to buy or sell any assets or to make any financial decisions. This newsletter is not tax advice. Talk to your accountant. Do your own research._
 
-### The Gitcoin Egregore
+### The Gitcoin [Egregore](https://en.wikipedia.org/wiki/Egregore)
 
 ![Egregore concept art by Matt Chu](/content-images/research/the-gitcoin-gitcoindao-egregore-is-emerging/egregore-concept-art.jpeg)
 
@@ -109,7 +109,7 @@ As a way of aligning incentives and truly deepening our ecosystem impact, I envi
 
 #### 3. Decentralization
 
-I am extremely proud that when Gitcoin launched in 2017, we were focused on our core [mission](https://gitcoin.co/mission) of economically empowering software engineers to build/fund public goods. We ignored the trend of the time, which was to write a lengthy whitepaper and do an ICO.
+I am extremely proud that when Gitcoin launched in 2017, we were focused on our core mission of economically empowering software engineers to build/fund public goods. We ignored the trend of the time, which was to write a lengthy whitepaper and do an ICO.
 
 As a result, we have had a [ton of positive impact](https://gitcoin.co/results) on the world. It was an amazing feeling at EthCC to have 2 dozen hackers from across the ecosystem come up to me to shake my hand and say "hey Gitcoin had an impact on my life, awesome." It feels great to have helped facilitate the delivery of $26mm to OSS devs across the world.
 
@@ -130,7 +130,7 @@ That means finding practical and regulatorily compliant ways of decentralizing t
 
 #### Network Effects
 
-I'm a big believer in network effects. The more funders that are available in the Gitcoin network, the better the network is for community members. The more community members are in the network, the better it is for funders.
+I'm a big believer in [network effects](https://www.investopedia.com/terms/n/network-effect.asp#:~:text=The%20network%20effect%20is%20a,of%20a%20good%20or%20service.&text=Initially%2C%20there%20were%20few%20users,military%20and%20some%20research%20scientists.). The more funders that are available in the Gitcoin network, the better the network is for community members. The more community members are in the network, the better it is for funders.
 
 As this flywheel spins, we're able to create impact, pull more data, and create more legitimacy.
 
@@ -166,7 +166,7 @@ We have also seen the launch of several workstreams within the DAO, each propose
 
 - _Decentralize Gitcoin_ - a group of builders focused on decentralizing Gitcoin's software stack, starting with Grants.
 - _Moonshot collective_ - a group of builders focused on rapid prototyping software tools for the DAO and for the ecosystem.
-- _Anti Fraud_ - a group of community members focused on preventing fraud in Quadratic Funding.
+- _Anti Fraud_ - a group of community members focused on preventing fraud in [Quadratic Funding](https://wtfisqf.com/).
 - _Stewards_ - the group focused on governing GitcoinDAO end-to-end.
 - _Public goods funding/treasury management_ - the workstream focused on an infinite time horizon for our mission.
 - _MMM_ - a decentralized memes, merch, and marketing workstream.
@@ -201,7 +201,7 @@ One of my big realizations in Q2 2021 is the way the HoldingCo built software in
 
 ![Conway's Law: DAO products vs HoldingCo products](/content-images/research/the-gitcoin-gitcoindao-egregore-is-emerging/conways-law-products.jpeg)
 
-What I think is super cool about building software in this way is how scalable it is. Through the [Moonshot Collective](https://moonshotcollective.space) we've seen a half dozen new projects spring up, each with their own decentralized, modular, approach to solving a problem that exists in GitcoinDAO.
+What I think is super cool about building software in this way is how scalable it is. Through the Moonshot Collective we've seen a half dozen new projects spring up, each with their own decentralized, modular, approach to solving a problem that exists in GitcoinDAO.
 
 - dKudos, dQuests - a decentralized version of Gitcoin's existing tools.
 - NFT Dance Off - a tokenized dance off project that funds public goods.
@@ -221,7 +221,7 @@ I think our model of GitcoinDAO of DAOs could be further extended if Gitcoin was
 
 There's an old cliche that "Rome wasn't built in a day".
 
-The same is true of Decentralized Gitcoin. It'll take time for this opportunity to unfurl. There will be setbacks, there will be breakthroughs. There will be tears of sorrow and there will be tears of joy. In the end, we will prevail because [our mission](https://gitcoin.co/mission) is worth it.
+The same is true of Decentralized Gitcoin. It'll take time for this opportunity to unfurl. There will be setbacks, there will be breakthroughs. There will be tears of sorrow and there will be tears of joy. In the end, we will prevail because our mission is worth it.
 
 ![Roadmap showing phases of development](/content-images/research/the-gitcoin-gitcoindao-egregore-is-emerging/roadmap-phases.jpeg)
 
@@ -251,7 +251,7 @@ Please keep in mind as you read these visions that we would need to coordinate t
 
 #### A - Large experiment in Quadratic Funding
 
-[Quadratic Funding](https://wtfisqf.com/) is at the heart of our mission to build/fund public goods. Having:
+[Quaxdratic Funding](https://wtfisqf.com/) is at the heart of our mission to build/fund public goods. Having:
 
 1. [run 10 rounds of Gitcoin Grants worth $13mm](https://gitcoin.co/results),
 2. [experimented with taking QF to main street](https://medium.com/@katiebrenjohnson/downtown-stimulus-program-review-e89f67e29f4f),
@@ -279,7 +279,7 @@ Here is an example dataset that shows the 250k contributions from the contributi
 
 If you want to build a developer ecosystem, then you're going to need access to developers. Everyone and their brother is building a blockchain-based ecosystem, and there aren't enough developers to go around.
 
-What if we could build a giant funnel of developers who are entering the ecosystem and [learning](https://gitcoin.co/learn), [earning](https://gitcoin.co/earn), and [connecting](https://gitcoin.co/connect) with each other along the way?
+What if we could build a giant funnel of developers who are entering the ecosystem and learning, earning, and connecting with each other along the way?
 
 #### C. We are funding open source software
 
@@ -342,7 +342,7 @@ The end result is a DAO of DAOs, an interconnected fabric of DAOs with aligned i
 
 #### G. A moonshot collective
 
-I've been having a lot of fun running [Moonshot Collective](https://moonshotcollective.space) with Austin Griffith.
+I've been having a lot of fun running Moonshot Collective with Austin Griffith.
 
 Not only is it a lot of fun to hang out with other builders -- it's an amazing privilege and opportunity to be sitting at the intersection of so much talent, capital, and opportunities.
 
@@ -378,7 +378,7 @@ Along the way, GitcoinDAO is bringing Capital, Talent, and Ideas to the table. A
 
 The end result is a generalized innovation machine to build coordination tools, to market validate them, and (if successful), eventually grow and decentralize them.
 
-BIG IDEA ALERT - Right now Gitcoin is known for Gitcoin Grants, which is based on a really powerful coordination mechanism, quadratic funding. But what if instead of building ONE coordination mechanism, we built a generalized generator function of ALL coordination! If GitcoinDAO can successfully be a Schelling point for builders of all types of coordination tools, then we could help solve some of the [systemic coordination problems in the world](https://www.youtube.com/watch?v=903tHM4RA9k).
+BIG IDEA ALERT - Right now Gitcoin is known for Gitcoin Grants, which is based on a really powerful coordination mechanism, quadratic funding. But what if instead of building ONE coordination mechanism, we built a generalized generator function of ALL coordination! If GitcoinDAO can successfully be a [Schelling point](https://en.wikipedia.org/wiki/Focal_point_(game_theory)#:~:text=In%20game%20theory%2C%20a%20focal,Strategy%20of%20Conflict%20(1960).) for builders of all types of coordination tools, then we could help solve some of the [systemic coordination problems in the world](https://www.youtube.com/watch?v=903tHM4RA9k).
 
 #### H - A Crypto-Native United Nations
 
@@ -390,13 +390,13 @@ Gitcoin's mission is global. If you are a member of the crypto ecosystem, or of 
 
 If you zoom out and think about it, there is an inclusivity to that that is extremely profound.
 
-For GLOBAL public goods, the world perhaps needs a modern (webscale) Schelling point to coordinate around some of the biggest problems that exist in coordination in the world today.
+For GLOBAL public goods, the world perhaps needs a modern (webscale) Schelling point#:~:text=In%20game%20theory%2C%20a%20focal,Strategy%20of%20Conflict%20(1960).) to coordinate around some of the biggest problems that exist in coordination in the world today.
 
 One possible outcome is that Gitcoin becomes a kind of Crypto-UN. This is perhaps far fetched, but imagine a place where diverse sets of actors come together to coordinate -- that can mean it's where they find developers/creatives, they practice diplomacy (perhaps in the form of governance rights swaps), they find _live players_ who can work in their ecosystem, or perhaps engage in a way that is positive sum but has not been invented yet. After all, Ethereum is a hotbed of coordination; it is possible that the optimal webscale coordination mechanisms for global coordination have not been invented yet.
 
 Of course its sort of silly to call this outcome a "Crypto-Era United Nations", which is a totally [skeuomorphic](https://en.wikipedia.org/wiki/Skeuomorph) way of thinking about this problem space. After all, we don't call cars "modern horse and buggy-carts". This all begs the question "what diplomacy is in 2021+?" After all, the UN was built in the early to mid 1900s, and diplomacy in the Industrial age is certainly not how diplomacy will be practiced in the Information Age.
 
-BIG IDEA - If we truly believe [It's all Coordination](https://www.youtube.com/watch?v=KpXPym_m_wA), then it would make sense that we believe there will emerge a [Schelling point](https://en.wikipedia.org/wiki/Focal_point_(game_theory)) - a common ground where different ecosystem actors can come together to practice diplomacy and coordinate deeply with each other.
+BIG IDEA - If we truly believe [It's all Coordination](https://www.youtube.com/watch?v=KpXPym_m_wA), then it would make sense that we believe there will emerge a Schelling point) - a common ground where different ecosystem actors can come together to practice diplomacy and coordinate deeply with each other.
 
 #### I - EPCOT of the Metaverse
 
@@ -434,7 +434,7 @@ Just for fun, and to spur some imagination in the responses, I'm leaving you wit
 
 ![Matt Chu - Egregore artwork](/content-images/research/the-gitcoin-gitcoindao-egregore-is-emerging/egregore-concept-art.jpeg)
 
-#### The Daily Bestiary - The Egregore
+#### [The Daily Bestiary](https://dailybestiary.blogspot.com/) - The Egregore
 
 ![The Daily Bestiary - Egregore illustration](/content-images/research/the-gitcoin-gitcoindao-egregore-is-emerging/daily-bestiary-egregore.jpeg)
 

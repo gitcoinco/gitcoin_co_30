@@ -101,7 +101,7 @@ sensemakingFor: mechanisms   # Team only — set by Gitcoin team. Marks this as 
                              # Only one article per category should have this set
                              # Use a wider 3:1 banner (e.g. 1800×600px) for sensemaking articles
 
-researchType: Report         # Optional — MUST be one of: Book | Report | Opinion | Analysis | Perspective
+researchType: Report         # Optional — MUST be one of: Book | Report | Opinion | Analysis | Perspective | Essay
                              # Validated by CI. Do not use other values.
 
 ctaUrl: '/content-images/research/{slug}/book.pdf'  # Optional — URL for a CTA button on the detail page
