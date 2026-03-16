@@ -28,7 +28,6 @@ relatedCampaigns: []
 banner: /content-images/research/collective-intelligence-protocols-for-thinking-together/banner.png
 ---
 
-**Type:** Report
 **Authors:** Gitcoin Research
 
 **Sources:**

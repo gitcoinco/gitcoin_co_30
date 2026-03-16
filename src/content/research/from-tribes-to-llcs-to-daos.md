@@ -32,7 +32,6 @@ authors:
 
 > **TLDR:** Humans organized as egalitarian tribes, then feudal hierarchies, then corporations. DAOs are the next chapter — reviving collective decision-making and shared ownership through blockchain, but without the inefficiencies that doomed earlier attempts at democratic coordination.
 
-**Type:** Opinion
 **Originally published:** [X Article](https://x.com/owocki/status/1881709547070365890) — January 21, 2025
 
 ---

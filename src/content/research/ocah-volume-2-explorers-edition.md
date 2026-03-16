@@ -32,7 +32,6 @@ authors:
 
 > **TLDR:** A practical guide to experimenting with onchain capital allocation for communities and DAOs — covers voting-based, market-driven, and reputation-weighted mechanisms. Less technical theory, more "here's how to actually try this in your community."
 
-**Type:** Book
 **Published by:** [Allo Capital](https://www.allo.capital/resources/Ocah2)
 
 ![OCAH Volume 2 Cover](/content-images/research/ocah-volume-2-explorers-edition/cover.jpg)

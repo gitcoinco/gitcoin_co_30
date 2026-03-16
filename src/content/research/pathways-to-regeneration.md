@@ -29,7 +29,6 @@ authors:
   - Stephen DeMeulenaere
 ---
 
-**Type:** Book
 **Published by:** [Allo Capital](https://www.allo.capital/resources/pathways-to-regeneration)
 
 ![Pathways to Regeneration Cover](/content-images/research/pathways-to-regeneration/cover.jpg)

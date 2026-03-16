@@ -10,6 +10,7 @@ tags:
   - governance
   - modular
 lastUpdated: '2025-08-06'
+researchType: Opinion
 relatedMechanisms:
   - quadratic-funding
   - retroactive-funding
@@ -30,7 +31,6 @@ authors:
 
 > **TLDR:** Gitcoin should evolve from a grants program into a modular ecosystem where builders compete to develop funding mechanisms — inspired by BitTensor's evolutionary model. Gitcoin provides distribution, builders bring innovation, and the best mechanisms win through natural selection.
 
-**Type:** Opinion
 **Source:** [Gitcoin Governance Forum](https://gov.gitcoin.co/t/temp-check-gitcoin-3-3-3-3-an-evolutionary-arena-for-capital-allocation/22680)
 
 ## Overview

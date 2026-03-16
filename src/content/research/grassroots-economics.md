@@ -27,7 +27,6 @@ relatedCampaigns: []
 banner: /content-images/research/grassroots-economics/banner.png
 ---
 
-**Type:** Book
 **Published by:** [Allo Capital](https://www.allo.capital/resources/grassroots-economics-book)
 
 ![Grassroots Economics Cover](/content-images/research/grassroots-economics/cover.png)

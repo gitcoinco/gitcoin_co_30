@@ -20,7 +20,6 @@ sensemakingFor: "mechanisms"
 banner: /content-images/research/biofi-bioregional-finance-web3/banner.png
 ---
 
-**Type:** Research
 **Authors:** Allo Capital Research
 **Source:** [Allo Capital Forum](https://research.allo.capital/t/biofi-bioregional-finance-powered-by-web3/347)
 

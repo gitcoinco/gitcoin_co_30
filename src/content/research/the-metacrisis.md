@@ -35,7 +35,6 @@ authors:
 
 > **TLDR:** Humanity faces interconnected systemic crises — climate, AI, biodiversity, inequality — driven by the same generator functions: multipolar traps, perverse incentives, coordination failure. The solution isn't collapse or authoritarian control, but a third attractor: distributed coordination infrastructure that enables collective intelligence at scale.
 
-**Type:** Opinion
 **Source material:** [The Metacrisis with Daniel Schmachtenberger — Green Pill #26](https://www.youtube.com/watch?v=WVEP0zAK-xQ), July 2022
 
 **TLDR** — The metacrisis is the totality of interconnected existential risks humanity faces — climate collapse, AI misalignment, biodiversity loss, weapons proliferation, meaning crisis — all driven by the same underlying generator functions: multipolar traps, perverse incentives, and coordination failure. Exponential technology has supercharged these dynamics. The path forward is neither catastrophe nor authoritarian control, but a third attractor: distributed coordination systems that internalize externalities, align incentives, and enable collective action at scale. This is what onchain coordination mechanisms are being built to do.

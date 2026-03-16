@@ -10,8 +10,7 @@ tags:
   - grants
   - investments
   - signal detection
-researchType:
-  - Analysis
+researchType: Analysis
 lastUpdated: '2025-12-05'
 relatedMechanisms:
   - quadratic-funding
@@ -31,7 +30,6 @@ authors:
 
 > **TLDR:** A counterfactual: what if Gitcoin's $767K in early matching grants were seed-stage equity? Conservative estimates suggest a ~$20M portfolio today. The data shows Gitcoin's quadratic funding was remarkably effective at signal detection — finding winners before the market did.
 
-**Type:** Analysis
 **Date:** November 2025
 
 **Sources:**

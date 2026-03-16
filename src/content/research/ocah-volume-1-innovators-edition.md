@@ -32,7 +32,6 @@ authors:
 
 > **TLDR:** The builder's handbook for onchain capital allocation — covers composability, modular design, and implementation pathways for protocol developers and DAO architects. A technical deep-dive into the mechanisms, primitives, and patterns that make decentralized funding infrastructure work.
 
-**Type:** Book
 **Published by:** [Allo Capital](https://www.allo.capital/resources/ocah1)
 
 ![OCAH Volume 1 Cover](/content-images/research/ocah-volume-1-innovators-edition/cover.png)

@@ -10,6 +10,7 @@ tags:
   - funding fatigue
   - aggregation
 lastUpdated: '2024-09-24'
+researchType: Report
 relatedMechanisms:
   - quadratic-funding
   - direct-grants
@@ -33,7 +34,6 @@ authors:
 
 > **TLDR:** Fragmented funding processes create fatigue for grantees (applying to dozens of rounds) and funders (evaluating endless proposals). Aggregation-based solutions like self-curated registries, guilds, and Protocol Guild reduce coordination overhead by pooling projects and funders.
 
-**Type:** Report
 **Source:** [Gitcoin Governance Forum](https://gov.gitcoin.co/t/web3-funding-fatigue-a-growing-problem/19423)
 
 ## Summary

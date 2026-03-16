@@ -30,7 +30,6 @@ authors:
 
 > **TLDR:** Hyperstitions are fictions that make themselves real — ideas that, by circulating through culture, create the conditions for their own truth. Onchain systems encode these shared beliefs into infrastructure, turning coordination narratives into executable reality.
 
-**Type:** Opinion
 
 ## The Idea That Builds Itself
 

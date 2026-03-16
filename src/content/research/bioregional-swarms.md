@@ -9,8 +9,7 @@ tags:
   - coordination
   - knowledge commons
   - regeneration
-researchType:
-  - Perspective
+researchType: Perspective
 lastUpdated: '2026-02-25'
 relatedMechanisms:
   - conviction-voting
@@ -23,7 +22,6 @@ authors:
   - Kevin Owocki
 ---
 
-**Type:** Perspective
 **Source:** [Farcaster](https://warpcast.com/owocki)
 
 ## The Problem with Nation-States

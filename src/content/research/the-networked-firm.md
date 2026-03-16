@@ -33,7 +33,6 @@ authors:
 
 > **TLDR:** AI and blockchain are turning rigid companies into adaptive networks — the cost of cognition and trust approach zero, enabling fluid organizational forms. The Networked Firm is a playbook for operating and allocating capital in this new era where coordination beats command.
 
-**Type:** Book
 **Published by:** [Allo Capital](https://www.allo.capital/resources/thenetworkedfirm)
 
 ![The Networked Firm Cover](/content-images/research/the-networked-firm/cover.jpg)

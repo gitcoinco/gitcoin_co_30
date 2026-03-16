@@ -26,7 +26,6 @@ relatedCampaigns: []
 banner: /content-images/research/exploring-mycofi/banner.png
 ---
 
-**Type:** Book
 **Published by:** [Allo Capital](https://www.allo.capital/resources/mycofi)
 
 ![MycoFi Cover](/content-images/research/exploring-mycofi/cover.png)

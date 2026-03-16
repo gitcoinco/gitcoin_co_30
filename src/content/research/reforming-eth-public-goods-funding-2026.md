@@ -11,8 +11,7 @@ tags:
   - deep funding
   - open source
   - privacy
-researchType:
-  - Perspective
+researchType: Perspective
 lastUpdated: '2025-12-05'
 relatedMechanisms:
   - quadratic-funding
@@ -36,7 +35,6 @@ authors:
   - Kevin Owocki
 ---
 
-**Type:** Perspective
 **Date:** December 2025
 
 **Sources:**

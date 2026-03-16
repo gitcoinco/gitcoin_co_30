@@ -30,7 +30,6 @@ authors:
   - Kevin Owocki
 ---
 
-**Type:** Opinion
 **Originally published:** [Allo Capital Research](https://research.allo.capital/t/onchain-capital-allocation-neural-networks-allonets/84), December 2024
 
 **TLDR** - Neural networks excel at recognizing patterns and making predictions from complex data. The concept of onchain capital allocation neural networks (AlloNets) draws lessons from neural networks to envision interconnected, adaptive decision-making and resource distribution in onchain ecosystems — optimizing capital distribution for public goods funding, collective action, and ecosystem growth.

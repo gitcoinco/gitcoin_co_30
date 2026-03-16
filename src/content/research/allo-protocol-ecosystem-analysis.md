@@ -8,6 +8,7 @@ tags:
   - infrastructure
   - capital allocation
 lastUpdated: '2024-12-25'
+researchType: Analysis
 relatedMechanisms:
   - quadratic-funding
   - direct-grants
@@ -18,7 +19,6 @@ relatedApps:
 banner: /content-images/research/allo-protocol-ecosystem-analysis/banner.png
 ---
 
-**Type:** Analysis
 **Authors:** Gitcoin Research
 
 **Sources:**

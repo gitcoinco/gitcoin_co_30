@@ -20,7 +20,6 @@ authors:
   - Devansh Mehta
 ---
 
-**Type:** Research
 **Authors:** Kevin Owocki, Devansh Mehta, inspiration from Vitalik Buterin
 **Source:** [Allo Capital Research](https://research.allo.capital/t/fair-fees-a-dynamic-formula-for-balancing-value-creation-and-value-capture/322)
 **Spreadsheet:** [Fee Formula Calculator](https://docs.google.com/spreadsheets/d/189KZ2zpFyf18XOV9jWL7mgDiLy9aylS_vVzvCFK_Rlc/edit?gid=1466396196#gid=1466396196)

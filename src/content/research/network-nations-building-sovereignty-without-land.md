@@ -29,7 +29,6 @@ banner: /content-images/research/network-nations-building-sovereignty-without-la
 
 > **TLDR:** Network nations are digitally-native communities constructing functional sovereignty without territorial claims — pop-up cities, blockchain governance, coordinated identity systems. Not metaphorical nations, but actual experiments in self-governance beyond the nation-state.
 
-**Type:** Report
 **Authors:** Gitcoin Research
 
 ---

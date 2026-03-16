@@ -10,8 +10,7 @@ tags:
   - go-to-market
   - ecosystem health
   - '2025'
-researchType:
-  - Perspective
+researchType: Perspective
 lastUpdated: '2025-12-01'
 relatedMechanisms:
   - quadratic-funding
@@ -28,7 +27,6 @@ authors:
 
 > **TLDR:** Regen web3's wells have run dry — years of subsidized grants didn't produce sustainable adoption. The path forward: pivot from vibes-driven funding to building revenue-generating applications with real product-market fit. The grants era is over; the earn-your-keep era begins.
 
-**Type:** Perspective
 **Published:** December 2025
 
 ## Overview

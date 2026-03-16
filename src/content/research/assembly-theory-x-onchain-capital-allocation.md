@@ -29,7 +29,6 @@ authors:
   - Kevin Owocki
 ---
 
-**Type:** Opinion
 **Originally published:** [Allo Capital Research](https://research.allo.capital/t/assembly-theory-x-onchain-capital-allocation-a-powerful-approach-to-allo-design-space-exploration/87), December 2024
 
 **TLDR** - Assembly Theory explains how complexity (and innovation) emerges by combining simpler components through incremental steps. Applied to Web3 funding infrastructure, it reveals a powerful approach to systematically exploring the capital allocation design space through modular, composable building blocks — much like how Minecraft's simple blocks enable infinite creative potential.

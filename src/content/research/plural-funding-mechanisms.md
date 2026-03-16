@@ -7,8 +7,7 @@ tags:
   - mechanism design
   - plurality
   - public goods
-researchType:
-  - Perspective
+researchType: Perspective
 lastUpdated: '2024-12-25'
 relatedMechanisms:
   - quadratic-funding
@@ -24,7 +23,6 @@ authors:
 
 > **TLDR:** No single funding mechanism is optimal for all situations. Quadratic funding is democratic but Sybil-vulnerable. Retroactive funding rewards impact but doesn't bootstrap. Direct grants are flexible but centralized. A healthy ecosystem uses multiple approaches — plurality is a feature, not a bug.
 
-**Type:** Perspective
 
 ## The Plurality Thesis
 

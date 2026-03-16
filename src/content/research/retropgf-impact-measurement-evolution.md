@@ -9,6 +9,7 @@ tags:
   - evaluation
   - optimism
 lastUpdated: '2024-12-25'
+researchType: Analysis
 relatedMechanisms:
   - retroactive-funding
   - attestation-based
@@ -19,7 +20,6 @@ banner: /content-images/research/retropgf-impact-measurement-evolution/banner.pn
 
 > **TLDR:** Optimism iterated impact measurement across four RetroPGF rounds — from fuzzy "impact" vibes to structured evaluation frameworks, category-specific metrics, and citizen panels. The lesson: measuring public goods impact requires continuous experimentation, not a single perfect formula.
 
-**Type:** Analysis
 **Authors:** Gitcoin Research
 
 **Sources:**

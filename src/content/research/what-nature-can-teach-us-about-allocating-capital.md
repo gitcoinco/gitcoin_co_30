@@ -31,7 +31,6 @@ authors:
 
 > **TLDR:** Nature has 3.8 billion years of R&D on resilient capital allocation — diversity, decentralization, redundancy, feedback loops, symbiosis. Ecosystems don't optimize for efficiency; they optimize for adaptability. Biomimicry offers capital allocation principles that actually work at scale.
 
-**Type:** Opinion
 **Source:** [Allo Capital Forum](https://research.allo.capital/t/what-nature-can-teach-us-about-allocating-capital/313)
 
 ## TL;DR

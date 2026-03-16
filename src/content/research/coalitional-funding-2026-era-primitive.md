@@ -8,8 +8,7 @@ tags:
   - coordination
   - public goods
   - mechanism design
-researchType:
-  - Perspective
+researchType: Perspective
 lastUpdated: '2026-01-06'
 relatedMechanisms:
   - coalitional-funding
@@ -25,7 +24,6 @@ authors:
   - Griff Green
 ---
 
-**Type:** Perspective
 
 ## Overview
 

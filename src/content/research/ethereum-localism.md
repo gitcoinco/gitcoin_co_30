@@ -27,7 +27,6 @@ relatedCampaigns: []
 banner: /content-images/research/ethereum-localism/banner.png
 ---
 
-**Type:** Book
 **Published by:** [Allo Capital](https://www.allo.capital/resources/ethereum-localism-book)
 
 ![Ethereum Localism Cover](/content-images/research/ethereum-localism/cover.png)

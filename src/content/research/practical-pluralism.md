@@ -31,7 +31,6 @@ authors:
 
 > **TLDR:** Diversity of mechanisms and implementations — like Ethereum's client diversity — is a primitive for antifragile systems. Practical pluralism means building multiple funding mechanisms, multiple implementations, and multiple teams. Monocultures are fragile; diversity is resilience.
 
-**Type:** Perspective
 **Originally published:** [Medium](https://medium.com/@owocki/practical-pluralism-322ab0a984c5), May 2022
 
 The Ethereum network is secured by block producers (currently miners, soon to be replaced by validators). They are the foundation of consensus in the Ethereum network, upon which there are trillions of dollars of assets and untold untapped potential for human coordination.

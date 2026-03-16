@@ -25,7 +25,6 @@ authors:
   - Kevin Owocki
 ---
 
-**Type:** Opinion
 **Originally published:** [Allo Capital Research](https://research.allo.capital/t/dopamine-driven-web3/414), June 2025
 
 **TLDR** - Stop Designing for Rational Users, Start Optimizing for Psychology. Web3 apps fail at mass adoption because they assume perfectly rational users. Instead, applications should leverage dopamine psychology — the same principles powering addictive traditional apps — to create rewarding experiences that feel intuitive rather than overwhelming.
