@@ -1,18 +1,27 @@
 import { convertToModelMessages, streamText, UIMessage } from "ai";
 import { openai } from "@ai-sdk/openai";
 import OpenAI from "openai";
+import fs from "node:fs";
+import path from "node:path";
 
 export const maxDuration = 30;
 
 const openaiClient = new OpenAI();
 
+// Loaded once at startup from src/data/chatbot-context.md.
+const GITCOIN_CONTEXT = fs.readFileSync(
+  path.join(process.cwd(), "src/data/chatbot-context.md"),
+  "utf8",
+).trim();
+
 async function searchKnowledgeBase(query: string): Promise<string> {
   try {
     const results = await openaiClient.vectorStores.search(
       process.env.OPENAI_VECTOR_STORE_ID!,
-      { query, max_num_results: 5 },
+      { query, max_num_results: 8 },
     );
 
+    console.log("[chat] Vector search raw results:", results.data.length);
     if (!results.data.length) return "";
 
     return results.data
@@ -24,8 +33,65 @@ async function searchKnowledgeBase(query: string): Promise<string> {
       )
       .join("\n\n---\n\n");
   } catch (err) {
-    console.error("[chat] Vector store search failed:", err);
+    console.error("[chat] Vector store search FAILED:", JSON.stringify(err));
     return "";
+  }
+}
+
+/**
+ * Use gpt-4o-mini to rewrite the user's message into an optimal standalone
+ * search query, taking into account the recent conversation context.
+ * This ensures follow-up messages retrieve the right chunks rather than returning noise.
+ */
+async function buildSearchQuery(messages: UIMessage[]): Promise<string> {
+  const reversed = [...messages].reverse();
+
+  const lastUser = reversed.find((m) => m.role === "user");
+  const userText = lastUser?.parts
+    .filter((p) => p.type === "text")
+    .map((p) => (p.type === "text" ? p.text : ""))
+    .join(" ")
+    .trim() ?? "";
+
+  if (!userText) return "";
+
+  // Build a short conversation summary for the rewriter
+  const recentTurns = messages
+    .slice(-6) // last 3 exchanges
+    .map((m) => {
+      const text = m.parts
+        .filter((p) => p.type === "text")
+        .map((p) => (p.type === "text" ? p.text : ""))
+        .join(" ")
+        .slice(0, 300);
+      return `${m.role === "user" ? "User" : "Assistant"}: ${text}`;
+    })
+    .join("\n");
+
+  try {
+    const response = await openaiClient.chat.completions.create({
+      model: "gpt-4o-mini",
+      messages: [
+        {
+          role: "system",
+          content:
+            "You rewrite user messages into optimal standalone search queries for a vector database about public goods funding and web3. Extract the core topic — ignore URL paths, question words, and filler. Output ONLY the search query — no explanation, no quotes. Max 20 words.",
+        },
+        {
+          role: "user",
+          content: `Conversation so far:\n${recentTurns}\n\nRewrite the last user message as a standalone search query:`,
+        },
+      ],
+      max_tokens: 40,
+      temperature: 0,
+    });
+
+    const rewritten = response.choices[0]?.message?.content?.trim() ?? userText;
+    console.log("[chat] Query rewrite:", userText, "→", rewritten);
+    return rewritten;
+  } catch {
+    // Fall back to raw user message if rewrite fails
+    return userText;
   }
 }
 
@@ -35,18 +101,9 @@ export async function POST(req: Request) {
 
     console.log("[chat] Received", messages.length, "messages");
 
-    // Extract the latest user message for vector search
-    const lastUserMessage = [...messages]
-      .reverse()
-      .find((m) => m.role === "user");
-    const query = lastUserMessage
-      ? lastUserMessage.parts
-          .filter((p) => p.type === "text")
-          .map((p) => (p.type === "text" ? p.text : ""))
-          .join(" ")
-      : "";
+    const query = await buildSearchQuery(messages);
+    console.log("[chat] Search query:", query);
 
-    console.log("[chat] Searching knowledge base for:", query);
     const context = await searchKnowledgeBase(query);
     console.log("[chat] Context length:", context.length);
     if (context) {
@@ -54,26 +111,48 @@ export async function POST(req: Request) {
     }
 
     const result = streamText({
-      model: openai("gpt-4o-mini"),
-      system: `You are the AI assistant for Gitcoin's public goods funding directory — a website covering funding mechanisms, apps/platforms, case studies, research, and campaigns in the Ethereum and web3 ecosystem.
+      model: openai("gpt-4o"),
+      system: `You are the AI assistant embedded on gitcoin.co — this website IS the official Gitcoin site. You help people explore the directory of funding mechanisms, platforms, case studies, research, campaigns, and books. Never tell users to "check the official Gitcoin site" — they are already on it. Instead, link them to the relevant section of this directory.
 
-Your scope is strictly limited to:
-- Public goods funding, quadratic funding, retroactive funding, grants, and related funding mechanisms
-- Ethereum, web3, DAOs, and blockchain governance as they relate to funding
-- Gitcoin, Optimism, Arbitrum, and other ecosystem projects covered on this site
-- Apps, platforms, and tools listed on this site
+## Site context
 
-You must decline ANY question that is not directly related to the topics above. This includes general tech concepts (APIs, authentication, databases), companies outside web3 (LinkedIn, Google, etc.), and anything unrelated to public goods funding. For these, respond: "I'm not able to help with that — I'm specifically designed to answer questions about public goods funding and the web3 ecosystem. Is there anything funding-related I can assist you with?"
+${GITCOIN_CONTEXT}
 
-Guidelines:
-1. Always check the knowledge base context below first. When it contains relevant information, use it as your primary source and link to the relevant pages.
-2. Each context chunk starts with metadata like [Content Type: mechanisms] [Slug: quadratic-funding] [Page URL: /mechanisms/quadratic-funding]. Use the Page URL to create markdown links, e.g. [Quadratic Funding](/mechanisms/quadratic-funding).
-3. Use only relative URLs starting with / (never absolute URLs like https://gitcoin.co/...).
-4. You may use general knowledge only for foundational blockchain/web3 concepts (e.g. "what is Ethereum?", "what is a DAO?", "what is a smart contract?"). Still link to relevant pages from the context when available.
-5. Do not fabricate specific statistics, funding amounts, project counts, or data. Only cite numbers that appear in the context.
-6. Be concise and helpful. Use short paragraphs and markdown formatting.
+## Section browse links — always use these when mentioning a section
 
-${context ? `Knowledge base context:\n\n${context}` : "No relevant context found in the knowledge base."}`,
+| Section | Browse link |
+|---------|-------------|
+| Mechanisms | [/mechanisms](/mechanisms) |
+| Apps | [/apps](/apps) |
+| Case Studies | [/case-studies](/case-studies) |
+| Research | [/research](/research) |
+| Campaigns | [/campaigns](/campaigns) |
+
+Every bullet point or sentence that mentions one of these sections MUST include its browse link. No exceptions.
+
+## Instructions
+- Prioritise content from this directory when answering. Always link to relevant pages when available.
+- When a user asks what books, mechanisms, apps, case studies, or research is available, list items from the retrieved context. Do not rely on a memorized list — items in the directory change over time.
+- You can answer general questions about web3, blockchain, and funding concepts when helpful — but ground answers in the directory content wherever possible.
+- For Gitcoin-specific facts not covered in the "About" section above (live rounds, recent announcements, updated stats): use only the retrieved context. If not available, say you don't have current details and link to the relevant section of this directory.
+- Decline only questions clearly unrelated to funding, the new internet, or this directory (cooking, general programming, unrelated companies, etc.).
+- When users ask about earning money, bounties, hackathons, or applying for grants FROM Gitcoin: do NOT answer from training memory. Gitcoin's old Bounties, Hackathons, and Grants programs are no longer active. Always redirect to the Contributing section in the Site Context above.
+
+## Links and citations
+- Retrieved chunks start with \`[Content Type: X] [Slug: Y] [Page URL: /X/Y]\` — always use \`[Page URL]\` to create internal links, e.g. [Quadratic Funding](/mechanisms/quadratic-funding)
+- Links already present in the Site Context section above are valid — use them freely
+- If a chunk contains \`ctaUrl:\`, that is the direct read/download link — always surface it when a user asks to read or access the content. Use the content name as link text, e.g. [Read The Networked Firm](ctaUrl) — never use "here" or "this link" as link text
+- Always link to the page URL ([Page URL]) when discussing a specific item, in addition to any CTA link
+- Use only relative URLs (starting with /) for internal pages — never absolute URLs or links recalled from training memory
+- If you cannot determine a link from context, say so rather than guessing
+- Never render a URL or path inside code backticks — always use markdown links: [text](/path)
+
+## Response style
+- Be concise. Use short paragraphs and markdown formatting (headers, bullets) for longer answers
+- Don't fabricate statistics or counts — only cite numbers present in the retrieved context or the "About" section above
+- Follow-up questions ("where is this from?", "can I read it?", "give me a link", "tell me more") always refer to the current conversation — never refuse them
+
+${context ? `## Retrieved context\n\n${context}` : "## Retrieved context\n\nNothing specific retrieved for this query. Answer from the Site Context above and general web3 knowledge where helpful. Do not fabricate statistics, counts, or specific claims — only cite numbers from the Site Context. If the user is asking about a specific item in the directory and you can infer its URL from the slug pattern, always link to it."}`,
       messages: await convertToModelMessages(messages),
       onError: ({ error }) => {
         console.error("[chat] Stream error:", error);
