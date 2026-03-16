@@ -22,6 +22,8 @@ relatedCaseStudies:
 relatedCampaigns:
   - gitcoin-grants-22-gg22
 banner: /content-images/case-studies/gg22-biofi-pathfinders-retrospective/banner.png
+authors:
+  - Benjamin Life
 ---
 
 ## BioFi Pathfinders Grant Round: Retrospective Analysis and Reflections

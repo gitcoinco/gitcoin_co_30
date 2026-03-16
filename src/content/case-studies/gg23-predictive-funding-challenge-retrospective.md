@@ -19,11 +19,13 @@ relatedResearch: []
 relatedCampaigns:
   - gitcoin-grants-23-gg23
 banner: /content-images/case-studies/gg23-predictive-funding-challenge-retrospective/banner.png
+authors:
+  - Devansh Mehta
 ---
 
 **TL;DR**
 
-Gitcoin conducted a predictive funding experiment during GG23 where data scientists forecasted how $1.5M in grants would be distributed. Eleven models were submitted within a 36-hour window, with the winning entry achieving an error score of 0.016—substantially better than random prediction (~0.04). The initiative demonstrated that predictive modeling and prediction markets can enhance grant scalability, detect anomalies, and engage technical communities.
+Gitcoin conducted a predictive funding experiment during GG23 w[here](https://joinpond.ai/modelfactory/detail/5249184) data scientists forecasted how $1.5M in grants would be distributed. Eleven models were submitted within a 36-hour window, with the winning entry achieving an error score of 0.016—substantially better than random prediction (~0.04). The initiative demonstrated that predictive modeling and prediction markets can enhance grant scalability, detect anomalies, and engage technical communities.
 
 **Background**
 

@@ -20,19 +20,21 @@ relatedResearch: []
 relatedCampaigns:
   - gitcoin-grants-23-gg23
 banner: /content-images/case-studies/gg23-gitcoin-grants-garden-retrospective/banner.png
+authors:
+  - Paul Glavin
 ---
 
 ## Overview
 
-The Gitcoin Grants Garden GG23 Community Round transitioned from Quadratic Funding to Conviction Voting, supported by $30k in matching funds from Gitcoin, 1Hive, and Celo Public Goods. The initiative funded 21 communities across Ethereum open source software, pop-up cities, DeSci, climate initiatives, and political activism.
+The [Gitcoin Grants Garden](https://app.gardens.fund/gardens/10/0x1eba7a6a72c894026cd654ac5cdcf83a46445b08/0xd3345828914b740fddd1b8ae4f4d2ce03d1e0960) GG23 Community Round transitioned from Quadratic Funding to Conviction Voting, supported by $30k in matching funds from [Gitcoin](https://x.com/gitcoin), [1Hive](https://x.com/1HiveOrg), and [Celo Public Goods](https://x.com/CeloPublicGoods). The initiative funded 21 communities across Ethereum open source software, pop-up cities, DeSci, climate initiatives, and political activism.
 
 ## Key Financial Results
 
 **Total Funding:** $60,659
 - Community contributions: $25,900
-- Gitcoin: $20,990
-- 1Hive: $10,744
-- Celo Public Goods: $3,000
+- [Gitcoin](https://x.com/gitcoin): $20,990
+- [1Hive](https://x.com/1HiveOrg): $10,744
+- [Celo Public Goods](https://x.com/CeloPublicGoods): $3,000
 
 **Matching Distribution:**
 - $18,000 matching funds distributed
@@ -53,7 +55,7 @@ Three governance tracks operated with distinct purposes:
 2. **Allo.Capital Builder's Fund:** Milestone-based support for capital allocation builders
 3. **Signaling Pools:** Non-financial governance for ecosystem alignment, pain point identification, and Council elections
 
-Participation required joining the Gitcoin Grants Garden, signing the Community Covenant, and staking 1 $GTC.
+Participation required joining the [Gitcoin Grants Garden](https://app.gardens.fund/gardens/10/0x1eba7a6a72c894026cd654ac5cdcf83a46445b08/0xd3345828914b740fddd1b8ae4f4d2ce03d1e0960), signing the Community Covenant, and staking 1 $GTC.
 
 ![Matching funding for communities diagram showing round structure](/content-images/case-studies/gg23-gitcoin-grants-garden-retrospective/01-matching-funding-communities-diagram.jpeg)
 

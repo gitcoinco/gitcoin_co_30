@@ -22,6 +22,8 @@ relatedResearch:
 relatedCampaigns:
   - gg24-upcoming
 banner: /content-images/case-studies/gg24-first-funding-round-of-gitcoin-3-0/banner.png
+authors:
+  - Mathilda DV
 ---
 
 Gitcoin Grants 24 (GG24) marked the debut of Gitcoin's 3.0 architecture in a live funding round, distributing over $1.8 million across six thematic domains during October and November 2025. Rather than Gitcoin centrally operating every round, GG24 introduced the **Domain Allocator model**, in which community-appointed operators independently designed, managed, and evaluated rounds within their problem area. The result was a plural, network-first coordination engine that combined quadratic funding, conviction voting, retroactive funding, MACI private voting, Deep Funding, and peer-reviewed hypercerts in a single grants cycle.
@@ -30,18 +32,18 @@ Gitcoin Grants 24 (GG24) marked the debut of Gitcoin's 3.0 architecture in a liv
 
 Since its inception in 2019, Gitcoin Grants has been the flagship experiment in onchain quadratic funding. Through 23 prior rounds the program distributed tens of millions of dollars to open-source software and public goods. However, by GG23, a tension had become clear: Gitcoin was simultaneously building the infrastructure (Allo Protocol, Grants Stack) and operating the rounds that ran on it. This dual role created bottlenecks, limited the diversity of funding mechanisms used, and concentrated decision-making around a single team.
 
-The Gitcoin 3.0 roadmap, articulated throughout 2024 and early 2025, proposed a structural shift. Gitcoin would retain responsibility for one or two OSS domains while opening four to six additional domains for external community operators. Each domain would target a specific challenge facing Ethereum, from privacy to interoperability, and each operator would choose the mechanism best suited to their problem space. The thesis was that no single allocation method fits every category of public good, and that decentralizing round operations would increase legitimacy, participation, and funding quality.
+The Gitcoin 3.0 roadmap, articulated throughout 2024 and early 2025, proposed a structural shift. Gitcoin would retain responsibility for one or two OSS domains while opening four to six additional domains for external community operators. Each domain would target a specific challenge facing Et[here](https://snapshot.box/#/s:gitcoindao.eth/proposal/0xa7919dff7f637c19f9d536da367b43d94a4ee68e846998877cdbb37c63f59976)um, from privacy to interoperability, and each operator would choose the mechanism best suited to their problem space. The thesis was that no single allocation method fits every category of public good, and that decentralizing round operations would increase legitimacy, participation, and funding quality.
 
 ## The Mechanism / Program
 
 GG24 ran from mid-October through November 2025 and was organized into six domains, each with its own budget, matching commitment, and co-funding from ecosystem partners:
 
 1. **Developer Tooling & Infrastructure** -- Quadratic funding on Giveth with $200K matching on Arbitrum.
-2. **Interop Standards, Infra & Analytics** -- Quadratic funding on Giveth with $100K matching on Celo.
-3. **Privacy** -- Dedicated round using MACI private voting to protect donor preferences.
-4. **Public Goods R&D** -- Funding academic and applied research through peer-reviewed hypercerts and direct grants.
+2. **[Interop Standards, Infra & Analytics](https://gov.gitcoin.co/t/gg24-interop-standards-infra-and-analytics-domain-proposal/23770)** -- Quadratic funding on Giveth with $100K matching on Celo.
+3. **[Privacy](https://gov.gitcoin.co/t/the-case-for-privacy-gg24-maci-allo-capital/22491/10)** -- Dedicated round using MACI private voting to protect donor preferences.
+4. **[Public Goods R&D](https://gov.gitcoin.co/t/gg24-public-goods-r-d-domain-proposal/23774)** -- Funding academic and applied research through peer-reviewed hypercerts and direct grants.
 5. **Solutions Development** -- Direct grants and milestone-based funding for targeted development work.
-6. **Targeted Development & Adoption** -- Conviction voting and retroactive rewards to fund scalable innovation.
+6. **[Targeted Development & Adoption](https://gov.gitcoin.co/t/gg24-targeted-development-and-adoption-domain-proposal/23766)** -- Conviction voting and retroactive rewards to fund scalable innovation.
 
 Gitcoin contributed $1.175 million in matching funds, and external partners contributed roughly $632,500, making GG24 the first Gitcoin round where more than a third of matching capital came from outside the core DAO treasury. Donation rounds for the QF domains ran October 14-28, 2025, with evaluation and payout phases extending into November.
 

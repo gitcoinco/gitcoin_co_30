@@ -18,11 +18,13 @@ relatedCaseStudies: []
 relatedResearch: []
 relatedCampaigns: []
 banner: /content-images/case-studies/gg19-oss-round-review-reflections/banner.png
+authors:
+  - Sejal Rekhan
+  - Ben West
 ---
 
 # GG19 OSS Round Review: Reflections
 
-**Original Post by sejalrekhan and M0nkeyFl0wer**
 
 ---
 

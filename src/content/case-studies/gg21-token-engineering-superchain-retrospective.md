@@ -21,11 +21,13 @@ relatedCaseStudies:
 relatedCampaigns:
   - gitcoin-grants-21-gg21
 banner: /content-images/case-studies/gg21-token-engineering-superchain-retrospective/banner.png
+authors:
+  - Moni_boo
 ---
 
 ## Introduction
 
-**Token Engineering the Superchain Grants Round: Summer/Fall 2024** was designed as a dual-phase initiative to advance token engineering within the Optimism and broader Superchain ecosystems. The first phase, completed in August 2024, was a Tunable Quadratic Funding (TQF) round aimed at funding high-potential projects. The second phase, a Retroactive Funding round, is scheduled for later this year to reward grantees based on completed milestones and demonstrated impact.
+**Token Engineering the Superchain Grants Round: Summer/Fall 2024** was designed as a [dual-phase initiative](https://medium.com/token-engineering-commons/token-engineering-the-superchain-8a8acdca826b) to advance token engineering within the Optimism and broader Superchain ecosystems. The first phase, completed in August 2024, was a [Tunable Quadratic Funding (TQF)](https://medium.com/token-engineering-commons/expertise-and-quadratic-funding-bd4f0c5c3e23) round aimed at funding high-potential projects. The second phase, a Retroactive Funding round, is scheduled for later this year to reward grantees based on completed milestones and demonstrated impact.
 
 ## Grant Round Objectives
 
@@ -54,7 +56,7 @@ The grant round targeted projects advancing token engineering through various me
 
 ## Setup and Management
 
-The TQF round built on the lessons learned from previous rounds, further refining the Tunable Quadratic Funding (TQF) approach. This round also introduced new criteria for evaluating the potential impact within the OP ecosystem. By incorporating token engineering expertise signals (TEA NFT credentials, $TEC holdings) and boosting them with Optimism Delegate, Badgeholder and $OP holdings as signals, TQF ensured funding aligned with stakeholders knowledgeable in both token engineering and OP ecosystems.
+The TQF round built on the lessons learned from previous rounds, further refining the [Tunable Quadratic Funding (TQF)](https://medium.com/token-engineering-commons/expertise-and-quadratic-funding-bd4f0c5c3e23) approach. This round also introduced new criteria for evaluating the potential impact within the OP ecosystem. By incorporating token engineering expertise signals (TEA NFT credentials, $TEC holdings) and boosting them with Optimism Delegate, Badgeholder and $OP holdings as signals, TQF ensured funding aligned with stakeholders knowledgeable in both token engineering and OP ecosystems.
 
 ## Challenges and Solutions
 
@@ -140,7 +142,7 @@ This focus on refining guidance, streamlining processes, and enhancing grantee s
 Key Successes from the 2024 TQF Round:
 
 * **Strong alignment with Superchain objectives:** despite being a more focused round, the projects selected demonstrated clear potential to impact both token engineering and the broader OP ecosystem.
-* **Optimized use of Tunable Quadratic Funding (TQF):** this round successfully built upon the TQF model, incorporating expertise signals from Optimism delegates and badge holders. This enhanced the quality of decision-making and ensured funding aligned with community priorities, demonstrating the power of fine-tuned quadratic funding mechanisms.
+* **Optimized use of [Tunable Quadratic Funding (TQF)](https://medium.com/token-engineering-commons/expertise-and-quadratic-funding-bd4f0c5c3e23):** this round successfully built upon the TQF model, incorporating expertise signals from Optimism delegates and badge holders. This enhanced the quality of decision-making and ensured funding aligned with community priorities, demonstrating the power of fine-tuned quadratic funding mechanisms.
 * **Increased returning grantees:** we saw a 22% increase in returning grantees, which indicates that previous participants continue to see value in our rounds. These returning projects showed strong progress and further alignment with OP ecosystem goals, solidifying their role as key contributors to both token engineering and Superchain.
 
 ## Next Steps: Preparing for Retroactive Funding Round

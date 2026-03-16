@@ -22,6 +22,8 @@ relatedResearch: []
 relatedCampaigns:
   - gitcoin-grants-23-gg23
 banner: /content-images/case-studies/gg23-token-engineering-superchain-part-2-retrospective/banner.png
+authors:
+  - natesuits
 ---
 
 ## Introduction & Overview

@@ -21,6 +21,8 @@ relatedResearch:
   - state-of-public-goods-funding-2024
 relatedCampaigns: []
 banner: /content-images/case-studies/greenpill-hypercerts-experiment-impact-certificates-in-practice/banner.png
+authors:
+  - Sejal Rekhan
 ---
 
 In late 2023, the GreenPill Network ran one of the first real-world experiments combining hypercerts with quadratic funding, enabling its global network of local chapters to mint onchain impact certificates for their community activities and receive funding based on demonstrated contributions. The experiment, conducted during Gitcoin Grants Round 19 (GG19), used a custom fork of Grants Stack integrated with the Hypercerts protocol, built in collaboration with RaidGuild and the Hypercerts team. While the round was modest in scale -- 170 donors contributing $552 in direct donations plus $2,237 in matching -- it generated foundational lessons about the practicalities of impact certificate design, minting workflows, and evaluation that have shaped subsequent hypercerts development.

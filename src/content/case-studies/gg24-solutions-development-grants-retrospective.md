@@ -24,6 +24,8 @@ relatedResearch:
 relatedCampaigns:
   - gitcoin-grants-24-gg24
 banner: /content-images/case-studies/gg24-solutions-development-grants-retrospective/banner.png
+authors:
+  - LuukDAO
 ---
 
 ## Context & Objectives
@@ -32,19 +34,19 @@ The **Solutions Development Grants Program** is one of the three GG24 programs o
 
 This round was designed to accelerate Ethereum-powered solutions tackling real-world challenges aligned with the **UN Sustainable Development Goals (SDGs)**. With a total allocation of up to **$155K in milestone-based grants** – slightly lower than the initial $182.5K as a result of TDA Domain stakeholder optimising internal budgets based on rounds priorities and potential – the program targeted proven, onchain MVP-stage projects capable of measurable impact and expansion into new markets.
 
-Based on the Ethereum For The World Sensemaking Report and the TDA Domain Proposal, the program is optimised for real-world impact, scalability, and ecosystem legitimacy to **accelerate the development of new SDG-aligned features or enable expansion into new markets**, maximising Ethereum's impact on global sustainable development.
+Based on the [Ethereum For The World Sensemaking Report](https://gov.gitcoin.co/t/ethereum-for-the-world-sensemaking-report/21123) and the [TDA Domain Proposal](https://gov.gitcoin.co/t/gg24-targeted-development-and-adoption-domain-proposal/23766), the program is optimised for real-world impact, scalability, and ecosystem legitimacy to **accelerate the development of new SDG-aligned features or enable expansion into new markets**, maximising Ethereum's impact on global sustainable development.
 
 ## Partners & Ecosystem Context
 
 We're grateful for the dedicated and value-aligned partners that supported the SDG Program and the larger TDA Domain. Through their contribution of resources, network, and expertise, we were able to run this program successfully:
 
-* **Gitcoin:** A public goods funding platform and ecosystem enabler for open-source and Ethereum-aligned projects.
+* **[Gitcoin](https://www.gitcoin.co/):** A public goods funding platform and ecosystem enabler for open-source and Ethereum-aligned projects.
 
-* **EF Ecosystem Support Program (ESP):** Supports Builders on Ethereum creating public goods for the Ethereum ecosystem.
+* **[EF Ecosystem Support Program (ESP)](https://esp.ethereum.foundation/):** Supports Builders on Ethereum creating public goods for the Ethereum ecosystem.
 
-* **Celo Public Goods (CeloPG):** A public goods and growth partner for the Celo ecosystem, a leading Ethereum L2 and the forefront of impact and real-world solutions.
+* **[Celo Public Goods (CeloPG)](https://www.celopg.eco/):** A public goods and growth partner for the [Celo](https://celo.org/) ecosystem, a leading Ethereum L2 and the forefront of impact and real-world solutions.
 
-* **Ma Earth:** Ma Earth shares ideas and builds tools for planetary health and regeneration—combining education with grant funding to resource those directly caring for land and life.
+* **[Ma Earth](https://maearth.com/):** [Ma Earth](https://maearth.com/) shares ideas and builds tools for planetary health and regeneration—combining education with grant funding to resource those directly caring for land and life.
 
 ## Program Stats
 
@@ -57,7 +59,7 @@ We're grateful for the dedicated and value-aligned partners that supported the S
 
 ## Round Design & Mechanism
 
-The program's primary allocation method was a direct, milestone-based grant application. **Karma** served as the **technical backbone** for registration, reporting, review, and milestone tracking. The platform proved to be an effective and versatile solution - at a very reasonable cost of $2,5k USD for this round.
+The program's primary allocation method was a direct, milestone-based grant application. **[Karma](https://www.karmahq.xyz/)** served as the **technical backbone** for registration, reporting, review, and milestone tracking. The platform proved to be an effective and versatile solution - at a very reasonable cost of $2,5k USD for this round.
 
 ### Allocation Process
 
@@ -95,7 +97,7 @@ Below is a snapshot of the **19 approved projects**, their request amount and th
 | $20,000 | 8.0 |
 | $20,000 | 8.3 |
 
-**Milestone-Based Allocation (4 months):** Tranche payments were allocated based on verified progress via Karma. All projects received a 20% kick-off grant at the moment of allocation decision and will be able to unlock the remaining budget based on the successful submission of their milestones by March, with a **retro round** planned for additional rewards to top performers.
+**Milestone-Based Allocation (4 months):** Tranche payments were allocated based on verified progress via [Karma](https://www.karmahq.xyz/). All projects received a 20% kick-off grant at the moment of allocation decision and will be able to unlock the remaining budget based on the successful submission of their milestones by March, with a **retro round** planned for additional rewards to top performers.
 
 **In total, the pre-application and review phase spanned approximately 5 weeks.** The first kick-off payment was made soon after. The program will last slightly more than 4 months, meaning **over 80% of the time and resources from grantees will be post-decision and approval**, which we believe is great development and highly effective relative to traditional programs where projects spend months in the proposal and review stage.
 

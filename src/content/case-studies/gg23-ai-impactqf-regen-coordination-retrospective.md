@@ -25,11 +25,14 @@ relatedResearch:
 relatedCampaigns:
   - gitcoin-grants-23-gg23
 banner: /content-images/case-studies/gg23-ai-impactqf-regen-coordination-retrospective/banner.png
+authors:
+  - Monty Merlin Bryant
+  - Afolabi Aiyeloja
+  - Regen Coordination Council
 ---
 
 ## AI ImpactQF + Regen Coordination Global GG23 Retrospective
 
-**By Monty Merlin Bryant, Afolabi Aiyeloja, & the Regen Coordination Council**
 On behalf of ReFi DAO, Greenpill Network, and Regen Coordination
 
 ![Regen Coordination Network](/content-images/case-studies/gg23-ai-impactqf-regen-coordination-retrospective/01-regen-coordination-network.jpeg)
@@ -41,7 +44,7 @@ The **Regen Coordination Global GG23** round distributed **$96,000 in matching**
 **Key Results:**
 - 579 unique donors
 - $10,817 in contributions
-- $90,000 in matching funds distributed, plus $6,000 allocated via DeepGov partnership
+- $90,000 in matching funds distributed, plus $6,000 allocated via [DeepGov](https://www.deepgov.org/) partnership
 
 This global round ran alongside regional experiments in the Mediterranean and Rio de Janeiro, supporting a coordinated network of regenerative public goods funding. Altogether, these rounds allocated **$159,732** across 2025 programs.
 
@@ -51,9 +54,9 @@ This global round ran alongside regional experiments in the Mediterranean and Ri
 
 The round combined three innovations:
 
-### 1) Common Approach to Impact Measurement
+### 1) [Common Approach](https://www.commonapproach.org/) to Impact Measurement
 
-**CIDS (Common Impact Data Standard)** enabled structured, machine-readable impact data through:
+**[CIDS (Common Impact Data Standard)](https://www.commonapproach.org/common-impact-data-standard/)** enabled structured, machine-readable impact data through:
 - Flexible representation of any impact model
 - Interoperability between systems and standards
 - Integration of Impact Management Project dimensions
@@ -80,7 +83,7 @@ Evaluations assessed five criteria:
 
 ![Output deliverables metrics](/content-images/case-studies/gg23-ai-impactqf-regen-coordination-retrospective/05-output-deliverables-metrics.jpeg)
 
-Each project received scores on a 1-10 scale with detailed narratives. A **Coordination Council** (ReFi DAO, Celo Public Goods, Greenpill Network members) then reviewed all AI reports, providing at least three independent human reviews per project.
+Each project received scores on a 1-10 scale with detailed narratives. A **[Coordination Council](https://www.notion.so/celopg/Regen-Coordination-Global-GG23-1972e7251f2f802b9c8ef0a29fa8e6e2?pvs=4#1b32e7251f2f805dbfe0da6fbc1728c1)** (ReFi DAO, Celo Public Goods, Greenpill Network members) then reviewed all AI reports, providing at least three independent human reviews per project.
 
 This reflects the principle: "AI as the engine, humans as the steering wheel."
 
@@ -117,9 +120,9 @@ Projects with strong community backing and high impact (Kokonut Network, Gainfor
 
 **Testimonials:**
 
-> "A great round and amazing to receive the feedback after evaluation" — @ReFiPhangan
+> "A great round and amazing to receive the feedback after evaluation" — [@ReFiPhangan](https://x.com/ReFiPhangan/status/1919785605728276948)
 
-> "Good to see it going beyond wisdom of the crowds" — @solarpunkmaxi
+> "Good to see it going beyond wisdom of the crowds" — [@solarpunkmaxi](https://x.com/solarpunkmaxi/status/1920005642095341620)
 
 ---
 
@@ -145,7 +148,7 @@ GG23 was the first Karma GAP usecase with Common Impact Data Standard reporting.
 
 The dual-model approach produced consistent, high-quality reports supporting rigorous scoring and actionable feedback. However, current processes required manual data scraping, detailed prompt design, individual project cycling, manual review, and score compilation.
 
-**Next steps:** Build agent-based review flows, deeper prompt tuning, automation and productization with KarmaGAP and DeepGov partners.
+**Next steps:** Build agent-based review flows, deeper prompt tuning, automation and productization with KarmaGAP and [DeepGov](https://www.deepgov.org/) partners.
 
 ### 5. Increasing Cross-Pollination and Collaboration
 
@@ -155,7 +158,7 @@ Evaluations revealed high collaboration potential. Some projects showed strong l
 - Allow projects to attribute shared impact across collaborators
 - Introduce peer review and endorsement tools
 - Host collaboration-focused workshops
-- Use the Regen Coordination Hub for cross-pollination
+- Use the [Regen Coordination Hub](https://hub.greenpill.network/t/protocol-amendment-rebrand-the-greenpill-hub-into-the-regen-coordination-forum/203/3) for cross-pollination
 
 ---
 
@@ -165,13 +168,13 @@ Evaluations revealed high collaboration potential. Some projects showed strong l
 
 ### 1) Strengthening Governance and Community Participation
 
-Evolving from initial partnership (Celo Public Goods, Greenpill Network, ReFi DAO) toward transparent, participatory governance. Plans include launching a Regen Coordination Hub, regular coordination calls, and co-created documentation defining council roles and processes.
+Evolving from initial partnership (Celo Public Goods, Greenpill Network, ReFi DAO) toward transparent, participatory governance. Plans include launching a [Regen Coordination Hub](https://hub.greenpill.network/t/protocol-amendment-rebrand-the-greenpill-hub-into-the-regen-coordination-forum/203/3), regular coordination calls, and co-created documentation defining council roles and processes.
 
 ### 2) Automating and Productizing the ImpactQF Stack
 
 With Gitcoin Grants Stack winding down, Regen Coordination explores an integrated stack combining:
 - **Karma GAP** — core data layer with CIDS standardization
-- **DeepGov** — AI agent workflows and evaluation interfaces
+- **[DeepGov](https://www.deepgov.org/)** — AI agent workflows and evaluation interfaces
 - **Self.xyz** — privacy-preserving identity verification for sybil-resistance
 - **Allo Protocol** — underlying distribution contracts
 - **Mainstream payment integrations** — cards, PayPal, Apple Pay for fiat onboarding
@@ -189,7 +192,7 @@ Within **Gitcoin 3.0's Dedicated Domain Allocation**, Regen Coordination aspires
 
 Beyond crypto-native sources (Ethereum, Octant), opportunities exist blending Web3 infrastructure with local governance, public institutions, and place-based finance. This could unlock capital from municipal governments, public agencies, foundations, and institutions.
 
-**Live example:** Partnership with **Zazelenimo** (urban greening in Split, Croatia) blending participatory funding with 3:1 local municipal match. Early institutional discussions include **UNDP** partnerships exploring onchain tooling alignment with global sustainability frameworks.
+**Live example:** Partnership with **Zazelenimo** (urban greening in Split, Croatia) blending participatory funding with 3:1 local municipal match. Early institutional discussions include **[UNDP](https://www.undp.org/)** partnerships exploring onchain tooling alignment with global sustainability frameworks.
 
 ---
 

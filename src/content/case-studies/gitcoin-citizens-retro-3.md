@@ -19,15 +19,16 @@ relatedResearch: []
 relatedCampaigns:
   - gitcoin-grants-20-gg20
 banner: /content-images/case-studies/gitcoin-citizens-retro-3/banner.png
+authors:
+  - Distributed Doge
 ---
 
 # Gitcoin Citizens Retro #3 - Early Retrospective
 
-**Posted by DistributedDoge | April 19, 2024, 8:31am**
 
 ## How did Citizens #3 round go?
 
-It turns out **Gitcoin Citizens #3** round was quite successful, so as we are waiting for matching payouts, I wanted to share brief retrospective here which answers some questions that I was curious about.
+It turns out **Gitcoin Citizens #3** round was quite successful, so as we are waiting for matching payouts, I wanted to share brief retrospective [here](https://x.com/GitcoinCitizens/status/1776912812255694995) which answers some questions that I was curious about.
 
 Big thanks to [@umarkhaneth](https://gov.gitcoin.co/u/umarkhaneth), [@ghostffcode](https://gov.gitcoin.co/u/ghostffcode) and RegenData.xyz for making it easy to explore round data, and folks working on ReportCards for creating a great tool to browse round summaries.
 
@@ -70,7 +71,7 @@ Lets compare money recieved with each recipient against number of individual don
 
 What I find encouraging, is that although some citizens were given less money (**so far** - matching is yet to be dispersed) they still got fair share of attention from donors.
 
-We can contrast this with previous round, where decrease in dollar value received followed decrease in number of donations obtained by each grantee.
+We can contrast this with previous round, w[here](https://x.com/GitcoinCitizens/status/1776912812255694995) decrease in dollar value received followed decrease in number of donations obtained by each grantee.
 
 **Gitcoin Citizens #2 - value and number of donations**
 

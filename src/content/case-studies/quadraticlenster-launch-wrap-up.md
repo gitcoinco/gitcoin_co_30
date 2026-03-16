@@ -19,6 +19,8 @@ relatedResearch:
   - quadratic-funding-powered-social-network
 relatedCampaigns: []
 banner: /content-images/case-studies/quadraticlenster-launch-wrap-up/banner.png
+authors:
+  - Kevin Owocki
 ---
 
 **Source:** [Gitcoin Governance Forum](https://gov.gitcoin.co/t/quadraticlenster-xyz-launch-wrap-up/15962)
@@ -31,7 +33,7 @@ QuadraticLenster.xyz was a pilot integration merging Quadratic Funding (QF) with
 
 The project aimed to replace "likes" with tips that could be magnified through algorithmic matching. A $10,000 matching pool demonstrated how small contributions — a $1 tip could potentially reach $100+ in impact when combined with community support.
 
-Stani Kulechov of Aave Companies endorsed the approach, noting that communities needed platforms enabling positive-sum behavior aligned toward collective goals.
+Stani Kulechov of [Aave Companies](https://aave.com/) endorsed the approach, noting that communities needed platforms enabling positive-sum behavior aligned toward collective goals.
 
 [![QuadraticLenster launch talk presentation](/content-images/case-studies/quadraticlenster-launch-wrap-up/launch-talk-thumbnail.jpeg)](https://www.youtube.com/watch?v=-zT9l63LkEU)
 

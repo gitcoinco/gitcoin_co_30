@@ -19,6 +19,8 @@ relatedCaseStudies: []
 relatedResearch: []
 relatedCampaigns: []
 banner: /content-images/case-studies/gg-latam-round-retrospective/banner.png
+authors:
+  - Claudio - Meta Pool
 ---
 
 # Retrospective of the LATAM Round and Next Steps for Meta Pool DAO

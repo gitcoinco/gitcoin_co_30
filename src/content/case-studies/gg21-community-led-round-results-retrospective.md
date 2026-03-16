@@ -22,9 +22,10 @@ relatedResearch:
 relatedCampaigns:
   - gitcoin-grants-21-gg21
 banner: /content-images/case-studies/gg21-community-led-round-results-retrospective/banner.png
+authors:
+  - Mathilda DV
 ---
 
-**By MathildaDV | September 5, 2024**
 
 ---
 

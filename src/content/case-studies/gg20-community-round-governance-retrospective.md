@@ -23,6 +23,8 @@ relatedResearch:
 relatedCampaigns:
   - gitcoin-grants-20-gg20
 banner: /content-images/case-studies/gg20-community-round-governance-retrospective/banner.png
+authors:
+  - Matthew Hamilton
 ---
 
 # GG20 Community Round Governance: A Retrospective
