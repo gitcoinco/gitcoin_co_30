@@ -27,6 +27,7 @@ banner: /content-images/research/pathways-to-regeneration/banner.png
 authors:
   - Scott Morris
   - Stephen DeMeulenaere
+ctaUrl: /content-images/research/pathways-to-regeneration/pathways-to-regeneration.pdf
 ---
 
 **Published by:** [Allo Capital](https://www.allo.capital/resources/pathways-to-regeneration)

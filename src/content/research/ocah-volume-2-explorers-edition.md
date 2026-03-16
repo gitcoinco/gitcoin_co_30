@@ -28,6 +28,8 @@ relatedCampaigns: []
 banner: /content-images/research/ocah-volume-2-explorers-edition/banner.png
 authors:
   - Kevin Owocki
+ctaUrl: /content-images/research/ocah-volume-2-explorers-edition/onchain-capital-allocation-v2.pdf
+
 ---
 
 > **TLDR:** A practical guide to experimenting with onchain capital allocation for communities and DAOs — covers voting-based, market-driven, and reputation-weighted mechanisms. Less technical theory, more "here's how to actually try this in your community."

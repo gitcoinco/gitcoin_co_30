@@ -25,6 +25,7 @@ relatedResearch:
   - pathways-to-regeneration
 relatedCampaigns: []
 banner: /content-images/research/grassroots-economics/banner.png
+ctaUrl: /content-images/research/grassroots-economics/grassroots-economics.pdf
 ---
 
 **Published by:** [Allo Capital](https://www.allo.capital/resources/grassroots-economics-book)
