@@ -19,7 +19,6 @@ relatedApps:
 banner: /content-images/research/allo-protocol-ecosystem-analysis/banner.png
 ---
 
-**Authors:** Gitcoin Research
 
 **Sources:**
 - [Allo Protocol Docs](https://docs.allo.gitcoin.co)

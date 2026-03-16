@@ -27,7 +27,6 @@ researchType: Report
 banner: /content-images/research/antifragile-by-design-lessons-from-decentralized-resilience/banner.png
 ---
 
-**Authors:** Gitcoin Research
 
 ---
 

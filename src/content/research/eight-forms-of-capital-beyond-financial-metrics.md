@@ -30,7 +30,6 @@ banner: /content-images/research/eight-forms-of-capital-beyond-financial-metrics
 
 > **TLDR:** Public goods funding obsesses over financial capital while ignoring seven others: social, experiential, intellectual, living, cultural, spiritual, and material. The Eight Forms of Capital reveal what we fail to measure, we fail to value — and what we fail to value, we fail to fund.
 
-**Authors:** Gitcoin Research
 
 **Sources:**
 - [Ethan Roland & Gregory Landua — Regenerative Enterprise: Optimizing for Multi-capital Abundance](https://www.regenterprise.com/regenerative-enterprise-chapter-2-the-eight-forms-of-capital/)

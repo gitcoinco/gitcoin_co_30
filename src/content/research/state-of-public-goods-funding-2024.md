@@ -24,7 +24,6 @@ banner: /content-images/research/state-of-public-goods-funding-2024/banner.png
 
 > **TLDR:** A comprehensive snapshot of Ethereum public goods funding in 2024 — capital flows by mechanism (QF, RetroPGF, streaming), ecosystem trends, and emerging patterns. The data shows diversification of funding sources and maturation of onchain allocation infrastructure.
 
-**Authors:** Gitcoin Research
 **Timeframe:** 2024
 
 **Data Visualizations:**
