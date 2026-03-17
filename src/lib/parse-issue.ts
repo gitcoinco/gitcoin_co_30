@@ -106,7 +106,8 @@ function extractField(content: string, label: string): string {
   if (linkMatch) {
     return /url/i.test(label) ? linkMatch[2].trim() : linkMatch[1].trim();
   }
-  return match[1].trim();
+  // Strip backtick code spans 
+  return match[1].trim().replace(/^`(.*)`$/, "$1");
 }
 
 function parseLegacyMetadata(markdown: string): IssueMetadata {
@@ -198,7 +199,7 @@ export function parseList(markdown: string, sectionName: string): string[] {
     line
       .replace(/^-\s*/, "") // strip leading "- " or "-"
       .split(",")            // handle comma-separated values
-      .map((s) => s.replace(/^`(.*)`$/, "$1").trim())
+      .map((s) => s.replace(/^`(.*)`$/, "$1").replace(/^"(.*)"$/, "$1").trim())
       .filter((s) => s && s !== "-");
 
   // Legacy format: bullet points (- slug)
