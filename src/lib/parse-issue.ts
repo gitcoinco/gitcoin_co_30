@@ -198,10 +198,17 @@ export function parseAuthorEntries(raw: string): Array<{ name: string; social?: 
 /** Parse metadata from a GitHub issue body. Supports both forms and legacy formats. */
 export function parseMetadata(markdown: string): IssueMetadata {
   // GitHub issue forms use ### headings; legacy templates use ## Metadata + **Key**: value
-  if (/(?:^|\n)### (?:Short Description|Slug|Tags|Description)/.test(markdown)) {
-    return parseFormMetadata(markdown);
+  const metadata = /(?:^|\n)### (?:Short Description|Slug|Tags|Description)/.test(markdown)
+    ? parseFormMetadata(markdown)
+    : parseLegacyMetadata(markdown);
+
+  // Always try ### Authors regardless of format — old issues may have it added manually
+  if (!metadata.authors) {
+    const authorsRaw = extractFormField(markdown, "Authors");
+    if (authorsRaw) metadata.authors = parseAuthorEntries(authorsRaw);
   }
-  return parseLegacyMetadata(markdown);
+
+  return metadata;
 }
 
 /** Parse a named ## or ### section from the issue body */
