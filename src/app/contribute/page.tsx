@@ -83,6 +83,52 @@ export default function ContributePage() {
                 What We Accept
               </h2>
             </div>
+          </div>
+        </div>
+      </section>
+
+      <section className="section">
+        <div className="container-page">
+          <div className="max-w-4xl mx-auto">
+            <div className="flex items-center gap-3 mb-8">
+              <div className="w-10 h-10 rounded-lg bg-gray-25/10 flex items-center justify-center">
+                <CheckCircle className="w-5 h-5 text-gray-25" />
+              </div>
+              <h2 className="text-2xl font-bold text-gray-25">
+                Quality Standards
+              </h2>
+            </div>
+          </div>
+        </div>
+      </section>
+    </div>
+  );
+}
+
+const ContentTypesSection = () => {
+  return (
+    <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
+      {contentTypes.map((item) => (
+        <ContributeCard key={item.type} {...item} />
+      ))}
+    </div>
+  );
+};
+
+const QualityStandardsSection = () => {
+  return (
+    <ul className="space-y-3">
+      {qualityStandards.map((standard, index) => (
+        <li key={index} className="flex items-start gap-3">
+          <CheckCircle className="w-5 h-5 text-green-500 mt-0.5 flex-shrink-0" />
+          <span className="text-gray-300">{standard}</span>
+        </li>
+      ))}
+    </ul>
+  );
+};
+              </h2>
+            </div>
             <div className="card mb-6">
               <div className="flex items-start gap-3 mb-4">
                 <AlertCircle className="w-5 h-5 text-teal-500 mt-0.5 flex-shrink-0" />
