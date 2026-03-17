@@ -202,14 +202,11 @@ function validateFile(filePath: string, contentType: ContentDir): { errors: stri
     );
   }
 
-  // Authors validation (optional field — only validated when present)
-  if (data.authors !== undefined) {
-    validateAuthors(
-      Array.isArray(data.authors) ? (data.authors as string[]) : undefined,
-      undefined,
-      errors,
-      warnings,
-    );
+  // Authors validation (required field)
+  if (data.authors === undefined || !Array.isArray(data.authors) || (data.authors as string[]).length === 0) {
+    errors.push("authors: required — must list at least one author");
+  } else {
+    validateAuthors(data.authors as string[], undefined, errors, warnings);
   }
 
   return { errors, warnings };

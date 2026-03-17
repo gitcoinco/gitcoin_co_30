@@ -104,8 +104,10 @@ for (const section of RELATED_SECTIONS) {
   }
 }
 
-// Authors: optional field — validate names against authors.json
-if (metadata.authors && metadata.authors.length > 0) {
+// Authors: required field — validate names against authors.json
+if (!metadata.authors || metadata.authors.length === 0) {
+  errors.push("**Authors** is required — please add at least one author");
+} else {
   const authorNames = metadata.authors.map((a) => a.name);
   // Reconstruct raw lines to check for empty-name-before-| format errors
   const rawLines = metadata.authors.map((a) =>
