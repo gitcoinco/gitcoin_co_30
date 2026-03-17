@@ -22,6 +22,7 @@ export interface IssueMetadata {
   projectsCount?: string;
   startDate?: string;
   endDate?: string;
+  authors?: Array<{ name: string; social?: string }>;
 }
 
 export interface ParsedImage {
@@ -92,6 +93,9 @@ function parseFormMetadata(markdown: string): IssueMetadata {
   const endDate = extractFormField(markdown, "End Date");
   if (endDate) metadata.endDate = endDate;
 
+  const authorsRaw = extractFormField(markdown, "Authors");
+  if (authorsRaw) metadata.authors = parseAuthorEntries(authorsRaw);
+
   return metadata;
 }
 
@@ -160,7 +164,33 @@ function parseLegacyMetadata(markdown: string): IssueMetadata {
   const endDate = extractField(content, "End Date");
   if (endDate) metadata.endDate = endDate;
 
+  const authorsRaw = extractField(content, "Authors");
+  if (authorsRaw) metadata.authors = parseAuthorEntries(authorsRaw);
+
   return metadata;
+}
+
+// --- Authors helpers ---
+
+/**
+ * Parse the authors textarea value into `{ name, social? }` entries.
+ * Each line is either "Name" or "Name | https://social.url".
+ */
+export function parseAuthorEntries(raw: string): Array<{ name: string; social?: string }> {
+  return raw
+    .split("\n")
+    .map((line) => line.trim())
+    .filter((line) => line && line !== NO_RESPONSE && !line.startsWith("<!--"))
+    .map((line) => {
+      const pipeIdx = line.indexOf("|");
+      if (pipeIdx !== -1) {
+        const name = line.slice(0, pipeIdx).trim();
+        const social = line.slice(pipeIdx + 1).trim();
+        return { name, social: social || undefined };
+      }
+      return { name: line.trim() };
+    })
+    .filter((entry) => entry.name.length > 0);
 }
 
 // --- Public API ---

@@ -31,11 +31,12 @@ relatedResearch:
   - state-of-public-goods-funding-2024
 relatedCampaigns:
   - gg24-upcoming
+authors:
+  - "Kevin Owocki"
 banner: /content-images/research/mechanism-pluralism-survival-requirement/banner.png
 ---
 
 **Type:** Report
-**Authors:** Gitcoin Research
 **Published:** March 2026
 
 **TLDR** -- After analyzing 76 documented funding mechanisms across the Ethereum ecosystem, the evidence is clear: no single mechanism handles all allocation contexts well. The programs producing the best outcomes -- Optimism, GG24, Protocol Guild -- deliberately compose multiple mechanisms into coherent stacks. Mechanism monoculture creates single points of capture, just as client monoculture creates single points of failure.

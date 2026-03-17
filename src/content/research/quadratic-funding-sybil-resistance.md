@@ -9,18 +9,19 @@ tags:
   - quadratic funding
   - security
 lastUpdated: '2024-12-25'
+researchType: Analysis
 relatedMechanisms:
   - quadratic-funding
 relatedApps:
   - gitcoin-grants-stack
   - clr-fund
 banner: /content-images/research/quadratic-funding-sybil-resistance/banner.png
+authors:
+  - "Kevin Owocki"
 ---
 
 > **TLDR:** Quadratic funding's democratic power creates strong incentives for fake identities (sybils) to game matching formulas. Gitcoin Passport uses verifiable credential stamps, MACI provides cryptographic privacy, and the arms race between protection and attacks continues to evolve.
 
-**Type:** Analysis
-**Authors:** Gitcoin Research
 
 **Sources:**
 - [Gitcoin Passport](https://passport.gitcoin.co)

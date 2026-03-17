@@ -10,6 +10,7 @@ tags:
   - "public goods"
   - "protocol design"
 lastUpdated: "2026-02-25"
+researchType: Analysis
 relatedMechanisms:
   - direct-grants
 relatedApps:
@@ -20,12 +21,12 @@ relatedResearch:
 relatedCaseStudies: []
 relatedCampaigns: []
 banner: /content-images/research/eip-1890-and-eip-6969-lessons-from-in-protocol-funding/banner.png
+authors:
+  - Kevin Owocki
 ---
 
 > **TLDR:** EIP 1890 and EIP 6969 both tried to enshrine public goods funding into Ethereum's protocol — and both failed. The lesson: you can't hardcode allocation logic into a credibly neutral base layer. Protocol funding needs new architecture, not protocol amendments.
 
-**Type:** Analysis
-**Authors:** @owocki
 
 
 **Sources:**

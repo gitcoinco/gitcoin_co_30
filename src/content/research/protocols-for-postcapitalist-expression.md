@@ -22,10 +22,10 @@ relatedResearch:
   - practical-pluralism
 relatedCampaigns: []
 banner: /content-images/research/protocols-for-postcapitalist-expression/banner.png
+authors:
+  - Kevin Owocki
 ---
 
-**Type:** Opinion
-**Authors:** Kevin Owocki
 **Originally published:** [Allo Capital Research](https://research.allo.capital/t/review-recap-protocols-for-postcapitalist-expression/384), June 2025
 
 ![Book cover — Protocols for Postcapitalist Expression](/content-images/research/protocols-for-postcapitalist-expression/01-book-cover.jpeg)

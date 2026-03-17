@@ -9,8 +9,7 @@ tags:
   - coordination
   - knowledge commons
   - regeneration
-researchType:
-  - Perspective
+researchType: Perspective
 lastUpdated: '2026-02-25'
 relatedMechanisms:
   - conviction-voting
@@ -19,10 +18,10 @@ relatedMechanisms:
 relatedApps: []
 sensemakingFor: "mechanisms"
 banner: /content-images/research/bioregional-swarms/banner.png
+authors:
+  - Kevin Owocki
 ---
 
-**Type:** Perspective
-**Authors:** Kevin Owocki
 **Source:** [Farcaster](https://warpcast.com/owocki)
 
 ## The Problem with Nation-States

@@ -10,6 +10,7 @@ tags:
   - coordination
   - pluralism
 lastUpdated: '2022-03-22'
+researchType: Opinion
 relatedMechanisms:
   - quadratic-funding
   - quadratic-voting
@@ -22,12 +23,12 @@ relatedResearch:
   - plural-funding-mechanisms
 relatedCampaigns: []
 banner: /content-images/research/why-i-am-holon-maximalist/banner.png
+authors:
+  - Kevin Owocki
 ---
 
 > **TLDR:** Holons are wholes that are simultaneously parts — individuals belong to overlapping communities (work, volunteer, digital networks). Expanding quadratic funding across these nested circles compounds impact and creates pluralistic, interconnected funding infrastructure instead of isolated grant programs.
 
-**Type:** Opinion
-**Authors:** Owocki
 **Source:** [Gitcoin Governance Forum](https://gov.gitcoin.co/t/why-i-am-holon-maximalist/10152)
 
 ## What is a Holon?

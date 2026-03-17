@@ -20,6 +20,8 @@ relatedResearch: []
 relatedCampaigns:
   - gitcoin-grants-23-gg23
 banner: /content-images/case-studies/gg23-onboarding-education-program-retrospective/banner.png
+authors:
+  - Wasabi
 ---
 
 **Gitcoin RFP GG23 Retrospective**
@@ -45,7 +47,7 @@ We also organized a [**Karma GAP Workshop**](https://youtu.be/-xMLKmNxOxc) focus
 
 | Partner | Role | Experience | Value Add | Opportunity | Highlight |
 |---------|------|-----------|----------|-------------|-----------|
-| Antonio Avocado | Grants Impact Reporting via Karma GAP | Fun and rewarding | Contributed to workshops and helped track milestones | Fewer onboarding sessions needed; scheduling could improve | Karma GAP Workshop video now available |
+| Antonio Avocado | Grants Impact Reporting via Karma GAP | Fun and rewarding | Contributed to workshops and helped track milestones | Fewer onboarding sessions needed; scheduling could improve | [Karma GAP Workshop](https://youtu.be/-xMLKmNxOxc) video now available |
 | Donny Lewis | Application Support, Marketing, Markdown, QF Explainers | Structured and community-centered | Enabled layered support options, enhanced community trust | Improve Discord discoverability & start earlier for more promotion | Praised the coordination and impact of video content |
 | Guru Vishwas | Markdown & Application Process Guide | Smooth and informative | Helped target new builders with relevant resources | Use mass emails and periodic reminders to boost engagement | Praised strategic focus and execution |
 | Karla Nwaeke | Grant Marketing, QF Explainers, Application How-To | Intense, immersive, creatively fulfilling | Educated grantees through well-received videos | Better communication of office hours and locations | Believes program impact was 4x greater than GG22 |

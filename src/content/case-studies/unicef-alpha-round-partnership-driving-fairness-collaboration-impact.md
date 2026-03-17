@@ -20,9 +20,10 @@ relatedResearch:
 
 relatedCampaigns:
 
+authors:
+  - Mashal Waqar
 ---
 
-*Written by Mashal Waqar*
 
 While non-profit organizations and social impact-driven organizations face numerous challenges in today's world, one of the most critical is easy access to capital. Many organizations struggle to resource their goals and make a lasting impact on the communities they serve.
 

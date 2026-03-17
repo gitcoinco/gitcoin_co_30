@@ -26,9 +26,10 @@ relatedResearch:
 relatedCampaigns: []
 banner: /content-images/research/ethereum-localism/banner.png
 ctaUrl: /content-images/research/ethereum-localism/ethereum-localism.pdf
+authors:
+  - "Kevin Owocki"
 ---
 
-**Type:** Book
 **Published by:** [Allo Capital](https://www.allo.capital/resources/ethereum-localism-book)
 
 ![Ethereum Localism Cover](/content-images/research/ethereum-localism/cover.png)

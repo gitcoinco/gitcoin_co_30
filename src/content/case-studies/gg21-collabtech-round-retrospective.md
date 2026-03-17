@@ -20,6 +20,8 @@ relatedResearch: []
 relatedCampaigns:
   - gitcoin-grants-21-gg21
 banner: /content-images/case-studies/gg21-collabtech-round-retrospective/banner.png
+authors:
+  - Daniel Ospina
 ---
 
 ## Insights & Learning

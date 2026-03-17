@@ -14,6 +14,7 @@ import {
   validateResearchType,
   validateSensemakingFor,
   validateCampaignDates,
+  validateAuthors,
 } from "./content-validators";
 
 const ROOT = process.cwd();
@@ -23,9 +24,10 @@ const PUBLIC_DIR = path.join(ROOT, "public");
 const CONTENT_TYPES = ["apps", "mechanisms", "research", "case-studies", "campaigns"] as const;
 type ContentDir = typeof CONTENT_TYPES[number];
 
-interface ValidationError {
+interface ValidationResult {
   file: string;
   errors: string[];
+  warnings: string[];
 }
 
 // --- Image dimension helpers (no external dependency) ---
@@ -96,8 +98,9 @@ function findDuplicates(arr: unknown[]): string[] {
 
 // --- Core validation ---
 
-function validateFile(filePath: string, contentType: ContentDir): string[] {
+function validateFile(filePath: string, contentType: ContentDir): { errors: string[]; warnings: string[] } {
   const errors: string[] = [];
+  const warnings: string[] = [];
   const filename = path.basename(filePath, ".md");
   const raw = fs.readFileSync(filePath, "utf8");
 
@@ -105,7 +108,7 @@ function validateFile(filePath: string, contentType: ContentDir): string[] {
   try {
     ({ data } = matter(raw));
   } catch {
-    return ["Could not parse frontmatter YAML"];
+    return { errors: ["Could not parse frontmatter YAML"], warnings: [] };
   }
 
   // Slug must match filename
@@ -199,7 +202,14 @@ function validateFile(filePath: string, contentType: ContentDir): string[] {
     );
   }
 
-  return errors;
+  // Authors validation (required field)
+  if (data.authors === undefined || !Array.isArray(data.authors) || (data.authors as string[]).length === 0) {
+    errors.push("authors: required — must list at least one author");
+  } else {
+    validateAuthors(data.authors as string[], undefined, errors, warnings);
+  }
+
+  return { errors, warnings };
 }
 
 // --- File resolution ---
@@ -238,21 +248,38 @@ if (files.length === 0) {
   process.exit(0);
 }
 
-const failures: ValidationError[] = [];
+const failures: ValidationResult[] = [];
 
 for (const { filePath, contentType } of files) {
-  const errors = validateFile(filePath, contentType);
-  if (errors.length > 0) {
-    failures.push({ file: path.relative(ROOT, filePath), errors });
+  const { errors, warnings } = validateFile(filePath, contentType);
+  if (errors.length > 0 || warnings.length > 0) {
+    failures.push({ file: path.relative(ROOT, filePath), errors, warnings });
   }
 }
 
-if (failures.length === 0) {
-  console.log(`✓ All ${files.length} content file(s) are valid.`);
+const errorFiles = failures.filter((f) => f.errors.length > 0);
+const warnFiles = failures.filter((f) => f.warnings.length > 0);
+
+if (warnFiles.length > 0) {
+  console.warn(`\n⚠️  Warnings for ${warnFiles.length} file(s):\n`);
+  for (const { file, warnings } of warnFiles) {
+    console.warn(`  ${file}`);
+    for (const w of warnings) {
+      console.warn(`    • ${w}`);
+    }
+  }
+}
+
+if (errorFiles.length === 0) {
+  if (warnFiles.length === 0) {
+    console.log(`✓ All ${files.length} content file(s) are valid.`);
+  } else {
+    console.log(`\n✓ All ${files.length} content file(s) are valid (${warnFiles.length} warning(s) above).`);
+  }
   process.exit(0);
 } else {
-  console.error(`\n✗ Validation failed for ${failures.length} file(s):\n`);
-  for (const { file, errors } of failures) {
+  console.error(`\n✗ Validation failed for ${errorFiles.length} file(s):\n`);
+  for (const { file, errors } of errorFiles) {
     console.error(`  ${file}`);
     for (const err of errors) {
       console.error(`    • ${err}`);

@@ -31,11 +31,12 @@ relatedResearch:
 relatedCampaigns:
   - protocol-guild-ongoing
   - thedao-security-fund
+authors:
+  - "Kevin Owocki"
 banner: /content-images/research/structural-funding-beyond-grants/banner.png
 ---
 
 **Type:** Report
-**Authors:** Gitcoin Research
 **Published:** March 2026
 
 **TLDR** -- The grant-funding model that sustained Ethereum public goods from 2018 to 2024 depended on flush treasury balances, bull-market enthusiasm, and small enough ecosystems that vibes-based evaluation worked. Those conditions no longer hold. The successor model embeds funding into protocol economics: MEV taxes, staking yield routing, sequencer revenue commitments, and dependency-based revenue splits. These aren't philanthropy -- they're rational infrastructure investment by parties who depend on the infrastructure.

@@ -19,6 +19,8 @@ relatedResearch: []
 relatedCampaigns:
   - gitcoin-grants-22-gg22
 banner: /content-images/case-studies/gg22-youth-in-need-retrospective/banner.png
+authors:
+  - Noah Chon Lee
 ---
 
 Here are the round results with COCM matching for the Youth in Need round:
@@ -39,7 +41,7 @@ Mozhi Rinpoche
 
 Reflections:
 
--Adding images is really time consuming and difficult. Heading to imgbb.com and copying URL to input markdown formatting of ![imagename]imageurl.png is a pain. Would be ideal if there was an "insert image" button somehow
+-Adding images is really time consuming and difficult. Heading to [imgbb.com](http://imgbb.com) and copying URL to input markdown formatting of ![imagename]imageurl.png is a pain. Would be ideal if there was an "insert image" button somehow
 But including the images seemed really important so people could know who are the kids who are supporting
 
 -Did a google form for applications and then I manually added those projects onchain, which took way more time than expected. Would be ideal if we could have web2 login so people could make a profile and then we had gasless transactions for them creating their project in builder. We had grantees who had enough crypto knowledge to receive funds, but not enough to figure out gas and switching chains and such.

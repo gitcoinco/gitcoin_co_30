@@ -10,6 +10,7 @@ tags:
   - exploration
   - public goods
 lastUpdated: '2023-11-28'
+researchType: Opinion
 relatedMechanisms:
   - quadratic-funding
   - retroactive-funding
@@ -24,10 +25,10 @@ relatedResearch:
   - plural-funding-mechanisms
 relatedCampaigns: []
 banner: /content-images/research/capturing-value-like-a-slime-mold/banner.png
+authors:
+  - Kevin Owocki
 ---
 
-**Type:** Opinion
-**Authors:** Owocki
 **Source:** [Gitcoin Governance Forum](https://gov.gitcoin.co/t/capturing-value-like-a-slime-mold/17190)
 
 ## TLDR
@@ -46,7 +47,7 @@ When encountering food sources like bacteria or organic matter, slime molds exte
 
 ## Application to Capital Allocation
 
-Gitcoin operates within a multidimensional design space containing multiple billion-dollar opportunities for crowdfunding mechanisms.
+Gitcoin operates within a [multidimensional design space](https://gov.gitcoin.co/t/shape-rotators-guide-to-funding-what-matters/17174) containing multiple billion-dollar opportunities for crowdfunding mechanisms.
 
 ![Multidimensional design space map showing funding mechanism opportunities](/content-images/research/capturing-value-like-a-slime-mold/design-space-map.png)
 

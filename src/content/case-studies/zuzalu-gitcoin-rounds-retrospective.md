@@ -19,9 +19,10 @@ relatedResearch: []
 relatedCampaigns:
   - gitcoin-grants-20-gg20
 banner: /content-images/case-studies/zuzalu-gitcoin-rounds-retrospective/banner.png
+authors:
+  - Noah Chon Lee
 ---
 
-**Original Post by noahchonlee (June 4, 2024)**
 
 There have been multiple Zuzalu Gitcoin rounds:
 

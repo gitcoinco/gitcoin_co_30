@@ -15,7 +15,7 @@ import type {
 } from "@/lib/types";
 import TagsList from "@/components/ui/TagsList";
 import InitialAvatar from "@/components/ui/InitialAvatar";
-import { formatRelativeDate } from "@/lib/utils";
+import { formatRelativeDate, calcReadTime } from "@/lib/utils";
 import AppCard from "@/components/cards/AppCard";
 import MechanismCard from "@/components/cards/MechanismCard";
 import ResearchCard from "@/components/cards/ResearchCard";
@@ -30,7 +30,7 @@ export type ContentType =
   | "research"
   | "case-study"
   | "campaign";
-type SortOption = "newest" | "oldest" | "alpha";
+type SortOption = "newest" | "oldest" | "alpha" | "read-time" | "read-time-desc" | "author";
 type ViewOption = "grid" | "list";
 
 export interface FilterOption {
@@ -56,7 +56,19 @@ interface CategoryContentProps {
 const SORT_LABELS: Record<SortOption, string> = {
   newest: "Newest first",
   oldest: "Oldest first",
-  alpha: "Name (A–Z)",
+  alpha: "Title (A–Z)",
+  "read-time": "Read time (asc)",
+  "read-time-desc": "Read time (desc)",
+  "author": "Author (A–Z)",
+};
+
+// Which sort options apply to each content type
+const AVAILABLE_SORTS: Record<ContentType, SortOption[]> = {
+  app: ["newest", "oldest", "alpha"],
+  campaign: ["newest", "oldest", "alpha"],
+  mechanism: ["newest", "oldest", "alpha", "read-time", "read-time-desc"],
+  research: ["newest", "oldest", "alpha", "read-time", "read-time-desc", "author"],
+  "case-study": ["newest", "oldest", "alpha", "read-time", "read-time-desc", "author"],
 };
 
 const BASE_HREFS: Record<ContentType, string> = {
@@ -80,6 +92,10 @@ function isActive(item: BaseContent): boolean {
   return !endDate || new Date(endDate) > new Date();
 }
 
+function itemAuthors(item: BaseContent): string[] {
+  return item.authors ?? [];
+}
+
 function sortItems(items: BaseContent[], sort: SortOption): BaseContent[] {
   const sorted = [...items];
   if (sort === "newest")
@@ -91,6 +107,15 @@ function sortItems(items: BaseContent[], sort: SortOption): BaseContent[] {
     });
   if (sort === "oldest")
     return sorted.sort((a, b) => sortKey(a).localeCompare(sortKey(b)));
+  if (sort === "read-time" || sort === "read-time-desc") {
+    const withTime = sorted.map((item) => ({ item, t: calcReadTime(item.description) }));
+    withTime.sort((a, b) => sort === "read-time" ? a.t - b.t : b.t - a.t);
+    return withTime.map(({ item }) => item);
+  }
+  if (sort === "author")
+    return sorted.sort((a, b) =>
+      itemAuthors(a)[0].localeCompare(itemAuthors(b)[0]),
+    );
   return sorted.sort((a, b) => a.name.localeCompare(b.name));
 }
 
@@ -158,11 +183,15 @@ function ListRow({
   href,
   preferLogo,
   showDate,
+  showAuthor,
+  showReadTime,
 }: {
   item: BaseContent;
   href: string;
   preferLogo: boolean;
   showDate: boolean;
+  showAuthor: boolean;
+  showReadTime: boolean;
 }) {
   return (
     <Link href={href}>
@@ -184,11 +213,13 @@ function ListRow({
           <p className="text-sm text-gray-300 font-serif mt-0.5 line-clamp-2 sm:line-clamp-4">
             {item.shortDescription}
           </p>
-          {/* {item.tags.length > 0 && (
-            <div className="mt-2">
-              <TagsList tags={item.tags} maxTags={2} size="sm" />
-            </div>
-          )} */}
+          {(showAuthor || showReadTime) && (
+            <p className="text-xs text-gray-500 mt-1.5">
+              {showAuthor && `By ${itemAuthors(item).join(", ")}`}
+              {showAuthor && showReadTime && " · "}
+              {showReadTime && `${calcReadTime(item.description)} min read`}
+            </p>
+          )}
         </div>
       </div>
     </Link>
@@ -198,9 +229,11 @@ function ListRow({
 function SortDropdown({
   sort,
   onChange,
+  available,
 }: {
   sort: SortOption;
   onChange: (v: SortOption) => void;
+  available: SortOption[];
 }) {
   return (
     <DropdownMenu.Root modal={false}>
@@ -214,20 +247,59 @@ function SortDropdown({
           sideOffset={4}
           className="z-50 min-w-40 rounded-lg border border-gray-600 bg-gray-950 p-1 shadow-lg shadow-black/40"
         >
-          {(Object.entries(SORT_LABELS) as [SortOption, string][]).map(
-            ([value, label]) => (
+          {available.map((value) => (
+            <DropdownMenu.Item
+              key={value}
+              onSelect={() => onChange(value)}
+              className="flex items-center justify-between gap-4 px-3 py-2 text-sm rounded-md text-gray-300 hover:text-gray-25 hover:bg-gray-800 cursor-pointer outline-none"
+            >
+              {SORT_LABELS[value]}
+              {sort === value && (
+                <Check className="w-3.5 h-3.5 text-teal-400" />
+              )}
+            </DropdownMenu.Item>
+          ))}
+        </DropdownMenu.Content>
+      </DropdownMenu.Portal>
+    </DropdownMenu.Root>
+  );
+}
+
+function AuthorFilter({
+  authors,
+  active,
+  onChange,
+}: {
+  authors: string[];
+  active: string;
+  onChange: (v: string) => void;
+}) {
+  return (
+    <DropdownMenu.Root modal={false}>
+      <DropdownMenu.Trigger className="flex items-center gap-2 px-3 py-1.5 rounded-lg border border-gray-600 bg-gray-950 text-gray-300 text-sm hover:border-gray-400 hover:text-gray-25 transition-colors cursor-pointer outline-none data-[state=open]:border-teal-500 data-[state=open]:text-gray-25">
+        {active === "all" ? "All authors" : active}
+        <ChevronDown className="w-3.5 h-3.5 text-gray-500" />
+      </DropdownMenu.Trigger>
+      <DropdownMenu.Portal>
+        <DropdownMenu.Content
+          align="end"
+          sideOffset={4}
+          className="z-50 min-w-44 rounded-lg overflow-hidden border border-gray-600 bg-gray-950 shadow-lg shadow-black/40"
+        >
+          <div className="max-h-72 overflow-y-auto p-1">
+            {["all", ...authors].map((value) => (
               <DropdownMenu.Item
                 key={value}
                 onSelect={() => onChange(value)}
                 className="flex items-center justify-between gap-4 px-3 py-2 text-sm rounded-md text-gray-300 hover:text-gray-25 hover:bg-gray-800 cursor-pointer outline-none"
               >
-                {label}
-                {sort === value && (
-                  <Check className="w-3.5 h-3.5 text-teal-400" />
+                {value === "all" ? "All authors" : value}
+                {active === value && (
+                  <Check className="w-3.5 h-3.5 text-teal-400 shrink-0" />
                 )}
               </DropdownMenu.Item>
-            ),
-          )}
+            ))}
+          </div>
         </DropdownMenu.Content>
       </DropdownMenu.Portal>
     </DropdownMenu.Root>
@@ -296,6 +368,8 @@ function FilterTabs({
 
 // ─── Main component ───────────────────────────────────────────────────────────
 
+const AUTHOR_FILTER_TYPES: ContentType[] = ["research", "case-study"];
+
 export function CategoryContent({
   items,
   type,
@@ -306,19 +380,40 @@ export function CategoryContent({
   const [sort, setSort] = useState<SortOption>("newest");
   const [view, setView] = useState<ViewOption>("grid");
   const [activeFilter, setActiveFilter] = useState<string>("all");
+  const [activeAuthor, setActiveAuthor] = useState<string>("all");
+
+  const showAuthorFilter = AUTHOR_FILTER_TYPES.includes(type);
+  const availableSorts = AVAILABLE_SORTS[type];
+
+  // Unique sorted authors across all items (only for types that support it)
+  const uniqueAuthors = useMemo(() => {
+    if (!showAuthorFilter) return [];
+    const seen = new Set<string>();
+    for (const item of items) {
+      for (const a of itemAuthors(item)) seen.add(a);
+    }
+    return Array.from(seen).sort();
+  }, [items, showAuthorFilter]);
+
+  const authorFiltered = useMemo(() => {
+    if (!showAuthorFilter || activeAuthor === "all") return items;
+    return items.filter((item) => itemAuthors(item).includes(activeAuthor));
+  }, [items, showAuthorFilter, activeAuthor]);
 
   const filtered = useMemo(
     () =>
       !filters || activeFilter === "all"
-        ? items
-        : items.filter((item) => (item as any)[filters.key] === activeFilter),
-    [items, filters, activeFilter],
+        ? authorFiltered
+        : authorFiltered.filter((item) => (item as any)[filters.key] === activeFilter),
+    [authorFiltered, filters, activeFilter],
   );
 
   const sorted = useMemo(() => sortItems(filtered, sort), [filtered, sort]);
   const baseHref = BASE_HREFS[type];
   const preferLogo = type === "app";
   const showDate = type !== "app";
+  const showReadTime = (["mechanism", "research", "case-study"] as ContentType[]).includes(type);
+  const showAuthor = (["research", "case-study"] as ContentType[]).includes(type);
 
   return (
     <div>
@@ -337,7 +432,14 @@ export function CategoryContent({
           </p>
         )}
         <div className="flex items-center gap-2">
-          <SortDropdown sort={sort} onChange={setSort} />
+          {showAuthorFilter && uniqueAuthors.length > 1 && (
+            <AuthorFilter
+              authors={uniqueAuthors}
+              active={activeAuthor}
+              onChange={setActiveAuthor}
+            />
+          )}
+          <SortDropdown sort={sort} onChange={setSort} available={availableSorts} />
           <ViewToggle view={view} onChange={setView} />
         </div>
       </div>
@@ -369,6 +471,8 @@ export function CategoryContent({
               href={`${baseHref}/${item.slug}`}
               preferLogo={preferLogo}
               showDate={showDate}
+              showAuthor={showAuthor}
+              showReadTime={showReadTime}
             />
           ))}
         </div>

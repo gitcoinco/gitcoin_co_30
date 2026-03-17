@@ -21,6 +21,8 @@ relatedResearch: []
 relatedCampaigns:
   - gitcoin-grants-21-gg21
 banner: /content-images/case-studies/gg21-web3-grants-advancement-retrospective/banner.png
+authors:
+  - Sov
 ---
 
 **Cartographer Syndicate's Web3 Grants Ecosystem Advancement Round**
@@ -64,7 +66,7 @@ Our round supported several infrastructure projects that are advancing our visio
 - On-chain grant registry: We've continued to develop and expand the first on-chain grant registry on Arbitrum using Allo Protocol. This registry is a foundation for increasing grant discoverability and transparency across the ecosystem.
 - Trustful: We have partnered with Blockful to develop a grants reputation system that will help build accountability in the grants ecosystem. This system aligns with our mission to explore and chart grants by providing context and credibility metrics for grant programs (a space we believe is lacking in systems today).
 - Ecosystem.Vision & WelcomeOnchain: Showcasing how third-party tools can leverage our open registry. These platforms offer views into the Web3 ecosystem. They can now provide their user base current with grant program data without the overhead of curation.
-- x23: We've supported the creation of a grants news aggregator to keep the community informed and engaged. This tool builds upon Crypto Grant Wire by offering enhanced features and functionality, including automated program updates and the ability for other community members to contribute to the feed.
+- x23: We've supported the creation of a grants news aggregator to keep the community informed and engaged. This tool builds upon [Crypto Grant Wire](https://t.me/cryptograntwire) by offering enhanced features and functionality, including automated program updates and the ability for other community members to contribute to the feed.
 
 These projects aren't just isolated tools but interconnected components of a broader infrastructure, making the entire grants and incentives ecosystem more transparent and accessible.
 

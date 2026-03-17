@@ -24,10 +24,10 @@ relatedResearch:
   - values-in-programmable-money
 relatedCampaigns: []
 banner: /content-images/research/from-mutual-aid-to-welfare-state/banner.png
+authors:
+  - Kevin Owocki
 ---
 
-**Type:** Report
-**Authors:** Kevin Owocki
 **Originally published:** [Allo Capital Research](https://research.allo.capital/t/from-mutual-aid-to-welfare-state-and-back-again-the-renaissance-of-localist-capital-allocation-in-2025/314), April 2025
 
 **TLDR** - Before the New Deal, Americans relied on local fraternal organizations and mutual aid societies for social welfare. These community-based systems served up to half of adult males and provided comprehensive services including healthcare, insurance, elderly care, and financial assistance. The Great Depression overwhelmed these local systems, leading to centralized federal programs. As centralized systems face mounting challenges in 2025, emerging technologies — particularly blockchain, DAOs, and AI — offer potential for "neo-localism" that combines democratic governance and community responsiveness with modern digital scale.

@@ -34,6 +34,9 @@ relatedResearch:
 relatedCampaigns:
 
 banner: /content-images/apps/markee/banner.png
+
+authors:
+  - Paul Glavin
 ---
 
 - **Category**: Platform | Primitive  

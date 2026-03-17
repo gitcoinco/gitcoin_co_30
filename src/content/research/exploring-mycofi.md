@@ -25,9 +25,10 @@ relatedResearch:
 relatedCampaigns: []
 banner: /content-images/research/exploring-mycofi/banner.png
 ctaUrl: /content-images/research/exploring-mycofi/mycofi.pdf
+authors:
+  - "Kevin Owocki"
 ---
 
-**Type:** Book
 **Published by:** [Allo Capital](https://www.allo.capital/resources/mycofi)
 
 ![MycoFi Cover](/content-images/research/exploring-mycofi/cover.png)

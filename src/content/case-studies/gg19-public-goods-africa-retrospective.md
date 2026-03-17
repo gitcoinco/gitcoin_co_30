@@ -18,11 +18,12 @@ relatedCaseStudies: []
 relatedResearch: []
 relatedCampaigns: []
 banner: /content-images/case-studies/gg19-public-goods-africa-retrospective/banner.png
+authors:
+  - thinkDecade
 ---
 
 # Retrospective: Public Goods Africa Independent Grant Round in GG19
 
-**Posted by thinkDecade on December 18, 2023**
 
 ## Summary
 

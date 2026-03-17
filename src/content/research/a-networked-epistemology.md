@@ -31,10 +31,10 @@ relatedCaseStudies: []
 relatedCampaigns: []
 researchType: Opinion
 banner: /content-images/research/a-networked-epistemology/banner.png
+authors:
+  - Kevin Owocki
 ---
 
-**Type:** Opinion
-**Author:** @owocki
 **Originally published:** [X Article](https://x.com/owocki/status/1900199355778269568) — March 13, 2025
 **Series:** Part 2 of 3
 

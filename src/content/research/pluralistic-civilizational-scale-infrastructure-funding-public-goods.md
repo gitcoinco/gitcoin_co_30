@@ -11,6 +11,7 @@ tags:
   - infrastructure
   - pluralism
 lastUpdated: '2021-12-24'
+researchType: Opinion
 relatedMechanisms:
   - quadratic-funding
   - quadratic-voting
@@ -25,12 +26,12 @@ relatedResearch:
   - plural-funding-mechanisms
 relatedCampaigns: []
 banner: /content-images/research/pluralistic-civilizational-scale-infrastructure-funding-public-goods/banner.png
+authors:
+  - Kevin Owocki
 ---
 
 > **TLDR:** Public goods funding needs civilizational-scale infrastructure — blockchain-based ImpactDAOs using quadratic funding and other mechanisms to create decentralized, global coordination. Not a single platform, but a pluralistic ecosystem of interconnected funding systems.
 
-**Type:** Opinion
-**Authors:** Owocki
 **Source:** [Gitcoin Governance Forum](https://gov.gitcoin.co/t/a-vision-for-a-pluralistic-civilizational-scale-infrastructure-for-funding-public-goods/9503)
 
 ![A Vision for Pluralistic Civilizational-Scale Infrastructure for Funding Public Goods](/content-images/research/pluralistic-civilizational-scale-infrastructure-funding-public-goods/01-header-vision.jpeg)
@@ -58,7 +59,7 @@ These issues transcend national boundaries and demand alternative coordination m
 
 An **ImpactDAO** is any DAO that provides a positive externality, especially positive externalities for the public not captured by any group. Examples include:
 
-- **Proof Of Humanity** — creates sybil resistance infrastructure
+- **Proof Of Humanity** — creates [sybil resistance](https://en.wikipedia.org/wiki/Sybil_attack) infrastructure
 - **KlimaDAO** — funds carbon capture initiatives
 - **GitcoinDAO** — allocates resources to other public goods
 
@@ -72,7 +73,7 @@ A key insight involves how ImpactDAOs can layer upon each other, creating positi
 
 ![Positive externalities flowing through the ImpactDAO stack](/content-images/research/pluralistic-civilizational-scale-infrastructure-funding-public-goods/07-positive-externalities-stack.jpeg)
 
-During Gitcoin Grants Round 12, projects appearing in multiple funding rounds experienced substantial matching multiplication effects.
+During [Gitcoin Grants Round 12](https://gov.gitcoin.co/t/proposal-gitcoin-gr12-matching-pool-allocations/9007), projects appearing in multiple funding rounds experienced substantial matching multiplication effects.
 
 ![Quadratic Funding force multiplication — from fan to jet engine](/content-images/research/pluralistic-civilizational-scale-infrastructure-funding-public-goods/08-qf-fan-to-jet-engine.png)
 
@@ -122,7 +123,7 @@ The vision sketches how Ethereum-based public goods could eventually expand beyo
 3. **Sustainable funding** — ensuring adequate capital sources beyond quarterly hustling
 4. **Matthew Effect** — preventing wealth concentration and elite capture
 5. **Humility about technology** — recognizing that financial systems enable rather than replace local action
-6. **Keynesian beauty contests** — acknowledging market dynamics that may not reflect true value
+6. **[Keynesian beauty contests](https://en.wikipedia.org/wiki/Keynesian_beauty_contest)** — acknowledging market dynamics that may not reflect true value
 
 ## Glen Weyl's Critique
 
@@ -141,4 +142,4 @@ Weyl proposed instead targeting specific communities where administrators unders
 
 ## Key Takeaway
 
-The post articulates an ambitious but contested vision. While ImpactDAOs could eventually address civilizational-scale problems, community-focused applications may prove more realistic and ethically sound. The debate reflects fundamental tensions between decentralization ideology and practical social coordination realities. The goal is creating a stigmergic feedback loop — indirect coordination through environmental modification — that increases the probability of addressing humanity's largest challenges.
+The post articulates an ambitious but contested vision. While ImpactDAOs could eventually address civilizational-scale problems, community-focused applications may prove more realistic and ethically sound. The debate reflects fundamental tensions between decentralization ideology and practical social coordination realities. The goal is creating a [stigmergic](https://en.wikipedia.org/wiki/Stigmergy) feedback loop — indirect coordination through environmental modification — that increases the probability of addressing humanity's largest challenges.

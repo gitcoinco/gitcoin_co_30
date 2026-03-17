@@ -30,11 +30,13 @@ relatedResearch:
   - state-of-public-goods-funding-2024
 relatedCampaigns:
   - gitcoin-grants-20-gg20
+authors:
+  - "Kevin Owocki"
 banner: /content-images/research/grantee-to-funder-flywheel/banner.png
 ---
 
 **Type:** Report
-**Authors:** Gitcoin Research
+
 **Published:** March 2026
 
 **TLDR** -- The strongest empirical argument for public goods funding is not any individual grant outcome -- it is the documented flywheel from grantee to funder. Plasma Group received modest QF support and became Optimism, which distributes 60M+ OP for public goods. 1inch received a $50K grant and gave back $3M. Pocket Network received Optimism funds and redistributed them through its own RetroPGF. This flywheel, if it compounds, transforms public goods funding from a charitable expense into a self-reinforcing investment.

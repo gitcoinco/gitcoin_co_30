@@ -19,6 +19,8 @@ relatedResearch: []
 relatedCampaigns:
   - gitcoin-grants-20-gg20
 banner: /content-images/case-studies/gg20-hypercerts-ecosystem-round-retrospective/banner.png
+authors:
+  - Holke
 ---
 
 ## First ever Hypercerts Ecosystem Round
@@ -76,7 +78,7 @@ The foundation plans follow-up with all projects to provide support and assess f
 
 ## Get involved
 
-Interested parties can contact the foundation at team [at] hypercerts.org to join as funders, contributors, or new projects.
+Interested parties can contact the foundation at team [at] [hypercerts.org](http://hypercerts.org) to join as funders, contributors, or new projects.
 
 ---
 

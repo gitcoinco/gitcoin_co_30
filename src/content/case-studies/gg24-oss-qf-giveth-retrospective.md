@@ -21,20 +21,22 @@ relatedResearch: []
 relatedCampaigns:
   - gitcoin-grants-24-gg24
 banner: /content-images/case-studies/gg24-oss-qf-giveth-retrospective/banner.png
+authors:
+  - Lauren Luz
 ---
 
 ## 1. Context & Partnership Overview
 
-As part of Gitcoin's multi-mechanism approach for GG24, Giveth and Gitcoin partnered to run Quadratic Funding rounds for two Open Source Software (OSS) domains:
+As part of Gitcoin's [multi-mechanism approach](https://www.gitcoin.co/blog/gitcoin-grants-23-retro) for [GG24](https://gov.gitcoin.co/t/gg24-oss-quadratic-funding-results/24782), [Giveth and Gitcoin partnered](https://gov.gitcoin.co/t/partnership-gitcoin-x-giveth-quadratic-funding-for-oss-domain-in-gg24/23013) to run Quadratic Funding rounds for two Open Source Software (OSS) domains:
 
-* Developer Tooling & Infrastructure
-* Interop Standards, Infra & Analytics.
+* [Developer Tooling & Infrastructure](https://gov.gitcoin.co/t/gitcoin-oss-domain-developer-tooling-core-infrastructure-gg24-sensemaking-report/23022)
+* [Interop Standards, Infra & Analytics.](https://gov.gitcoin.co/t/domain-announcement-interop-standards-infrastructure-analytics/24631)
 
 Gitcoin provided the matching pool and defined eligibility criteria alongside Team Tiger and @rohit.
 
 Giveth handled the operational execution: project onboarding, round operations, donation UX, quadratic calculations, and fund distribution.
 
-The full eligibility, sybil protection, and matching logic is documented in the GG24 QF results post.
+The full eligibility, sybil protection, and matching logic is documented in the [GG24 QF results post](https://gov.gitcoin.co/t/gg24-oss-quadratic-funding-results/24782).
 
 ## 2. Round Results Overview
 
@@ -53,9 +55,9 @@ This also marked:
 
 ## 3. Comparative Analysis Across Gitcoin & Giveth Rounds
 
-To understand GG24 performance in context, we compared it to:
+To understand [GG24](https://gov.gitcoin.co/t/gg24-oss-quadratic-funding-results/24782) performance in context, we compared it to:
 
-* Gitcoin OSS rounds GG23 and GG22
+* Gitcoin OSS rounds [GG23](https://gov.gitcoin.co/t/gg23-oss-program-quadratic-funding-results/20334) and [GG22](https://gov.gitcoin.co/t/gg22-oss-program-matching-results/19645)
 * Three Giveth-hosted public goods QF rounds in 2025
 
 ### 3.1 Summary Table
@@ -63,11 +65,11 @@ To understand GG24 performance in context, we compared it to:
 | Round | Matching | Donations | Ratio | Rounds | Projects | # Donations | # Donors | Dates | Platform |
 |-------|----------|-----------|-------|--------|----------|-------------|----------|-------|----------|
 | **GG24** | **$300k** | **$36,657** | **12.22%** | **2** | **64** | **3,042** | **1,286** | **Oct 2025** | **Giveth** |
-| GG23 | $600k | $95,278 | 15.88% | 3 | 235 | 30,856 | 9,991 | Apr 2025 | Gitcoin |
-| GG22 | $1.518M | $294,972 | 19.43% | 12 | 496 | 132,338 | 28,190 | Oct/Nov 2024 | Gitcoin |
-| Causes | $40k | $4,596 | 11.47% | 1 | 45 | 611 | 232 | Sept/Oct 2025 | Giveth |
-| ENS × Octant Public Goods | $80k | $28,890 | 36.11% | 1 | 103 | 2,886 | 744 | Mar/Apr 2025 | Giveth |
-| Loving on Public Goods | $100k | $53,762 | 53.76% | 1 | 129 | 3,773 | 862 | Jan/Feb 2025 | Giveth |
+| [GG23](https://gov.gitcoin.co/t/gg23-oss-program-quadratic-funding-results/20334) | $600k | $95,278 | 15.88% | 3 | 235 | 30,856 | 9,991 | Apr 2025 | Gitcoin |
+| [GG22](https://gov.gitcoin.co/t/gg22-oss-program-matching-results/19645) | $1.518M | $294,972 | 19.43% | 12 | 496 | 132,338 | 28,190 | Oct/Nov 2024 | Gitcoin |
+| [Causes](https://forum.giveth.io/t/causes-qf-round-results-wrap-up-september-10-october-2-2025/2117) | $40k | $4,596 | 11.47% | 1 | 45 | 611 | 232 | Sept/Oct 2025 | Giveth |
+| [ENS × Octant Public Goods](https://forum.giveth.io/t/ens-x-octant-public-goods-round-results-wrap-up-march-18-april-1-2025/2003) | $80k | $28,890 | 36.11% | 1 | 103 | 2,886 | 744 | Mar/Apr 2025 | Giveth |
+| [Loving on Public Goods](https://forum.giveth.io/t/loving-on-public-goods-qf-round-results-wrap-up-january-28-february-14-2025/1975) | $100k | $53,762 | 53.76% | 1 | 129 | 3,773 | 862 | Jan/Feb 2025 | Giveth |
 
 ## 4. Key Insights From the Data
 
@@ -84,7 +86,7 @@ This smaller scope shaped donor behavior and overall volume.
 GG24's crowdfunding-to-matching ratio (**12.22%**) was:
 
 * below GG23 and GG22
-* roughly comparable to the recent Giveth Causes round
+* roughly comparable to the recent Giveth [Causes](https://forum.giveth.io/t/causes-qf-round-results-wrap-up-september-10-october-2-2025/2117) round
 * lower than earlier 2025 Giveth public goods rounds
 
 Donor numbers trending down could be reflective of current public goods funding sentiments. Nonetheless, **$36,657** in donations is strong given the narrower scope and platform migration.
@@ -106,7 +108,7 @@ GG24's tightly curated scope resulted in fewer total donations.
 
 GG24 mirrored a broader trend many operators observed in 2025:
 
-* public goods funding has slowed across platforms
+* public goods funding has [slowed across platforms](https://x.com/owocki/status/1993335520131535196?s=20)
 * donation fatigue is real
 * market volatility impacts small-dollar donor participation
 
@@ -114,7 +116,7 @@ Despite this, GG24's turnout was healthy and showed meaningful system resilience
 
 ## 5. Key Learnings & Future Improvements
 
-*(Synthesized from User Feedback, Survey data + Operator Retrospective)*
+*(Synthesized from User Feedback, [Survey data](https://giveth.typeform.com/gg24qfsurvey) + Operator Retrospective)*
 
 This section reflects what mattered most across donors, grantees, and operational teams.
 

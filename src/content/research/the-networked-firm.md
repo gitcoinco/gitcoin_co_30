@@ -25,13 +25,15 @@ relatedResearch:
   - 69-trends-in-2025-era-dao-design
 relatedCampaigns: []
 banner: /content-images/research/the-networked-firm/banner.png
+authors:
+  - Kevin Owocki
+  - Daniel Stringer
+  - Daniel Ospina
 ctaUrl: https://allocapital.metalabel.com/record_dvc23nccdarkaobcv?variantId=1
 ---
 
 > **TLDR:** AI and blockchain are turning rigid companies into adaptive networks — the cost of cognition and trust approach zero, enabling fluid organizational forms. The Networked Firm is a playbook for operating and allocating capital in this new era where coordination beats command.
 
-**Type:** Book
-**Authors:** Kevin Owocki, Daniel Stringer, Daniel Ospina
 **Published by:** [Allo Capital](https://www.allo.capital/resources/thenetworkedfirm)
 
 ![The Networked Firm Cover](/content-images/research/the-networked-firm/cover.jpg)

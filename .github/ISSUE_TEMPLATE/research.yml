@@ -47,6 +47,7 @@ body:
         - Opinion
         - Analysis
         - Perspective
+        - Essay
     validations:
       required: false
 
@@ -107,6 +108,22 @@ body:
 
         Delete this comment and write your description below.
         -->
+    validations:
+      required: true
+
+  - type: textarea
+    id: authors
+    attributes:
+      label: Authors
+      description: |
+        Required. One author per line.
+        Use your exact display name from the authors list: https://github.com/gitcoinco/gitcoin_co_30/blob/main/src/data/authors.json
+        To add yourself: use `Your Name` (if already listed) or `Your Name | https://your.social` (if new — we'll add you automatically).
+      placeholder: |
+        Jane Smith
+        John Doe | https://twitter.com/johndoe
+      value: |
+        <!-- One author per line. Format: Name  or  Name | https://social.url -->
     validations:
       required: true
 

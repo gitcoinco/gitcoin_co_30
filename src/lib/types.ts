@@ -1,5 +1,11 @@
 // Content Types for Gitcoin.co Funding Directory
 
+// Author entry in src/data/authors.json
+export interface Author {
+  name: string;
+  social?: string;
+}
+
 // Base content interface - shared by all content types
 export interface BaseContent {
   id: string;
@@ -12,6 +18,7 @@ export interface BaseContent {
   tags: string[];
   lastUpdated: string;
   featured?: boolean;
+  authors?: string[];
   relatedApps?: string[];
   relatedMechanisms?: string[];
   relatedCaseStudies?: string[];

@@ -19,6 +19,8 @@ relatedResearch: []
 relatedCampaigns:
   - gitcoin-grants-24-gg24
 banner: /content-images/case-studies/gg24-privacy-round-retrospective/banner.png
+authors:
+  - John Guilding
 ---
 
 ## Context & Objectives

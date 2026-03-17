@@ -8,6 +8,7 @@ tags:
   - infrastructure
   - capital allocation
 lastUpdated: '2024-12-25'
+researchType: Analysis
 relatedMechanisms:
   - quadratic-funding
   - direct-grants
@@ -16,10 +17,10 @@ relatedApps:
   - allo-protocol
   - gitcoin-grants-stack
 banner: /content-images/research/allo-protocol-ecosystem-analysis/banner.png
+authors:
+  - "Kevin Owocki"
 ---
 
-**Type:** Analysis
-**Authors:** Gitcoin Research
 
 **Sources:**
 - [Allo Protocol Docs](https://docs.allo.gitcoin.co)

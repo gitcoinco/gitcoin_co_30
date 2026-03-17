@@ -21,13 +21,14 @@ relatedCaseStudies:
 relatedCampaigns:
   - gitcoin-grants-22-gg22
 banner: /content-images/case-studies/gg22-ma-earth-grants-round-retrospective/banner.png
+authors:
+  - Matthew Hamilton
 ---
 
-**Posted by metahands on November 29, 2024**
 
 **Thank you** Gitcoin for enabling us to host our second Ma Earth Grants Round, to support regenerative land and ocean projects in #GG22. We'd also like to acknowledge @MathildaDV @umarkhaneth @wasabi and @jon-spark-eco who were responsive to our questions and needs while operating the round.
 
-Overall, things went smoothly. We raised over $30,000 in crowdfunding from 931 donors, in addition to the $200k matching pool provided by Biome Trust, Naia Trust, and Gitcoin. All of these funds were distributed to 30 regenerative projects, carefully selected by our panel from an initial set of 110 applications.
+Overall, things went smoothly. We raised over $30,000 in crowdfunding from 931 donors, in addition to the $200k matching pool provided by [Biome Trust](https://biometrust.earth), Naia Trust, and Gitcoin. All of these funds were distributed to 30 regenerative projects, carefully selected by our panel from an initial set of 110 applications.
 
 You can see our round recap [here](https://blog.maearth.com/grants-round-2-recap), and Gitcoin report card [here](https://reportcards.gitcoin.co/42161/643).
 
@@ -49,7 +50,7 @@ In reflecting on the QF experience more broadly, we are left thinking about this
 
 The team at Grassroots Economics generously regranted $10k of their proceeds from the Ma Earth Grants Round to a [Landscape Regenerators pool on Sarafu](https://sarafu.network/pools/0x8322691F378022e18F9D1f346f217118AA861831), using Commitment Pooling with blockchain functionality. This is another example of a 'regenerative finance' experiment we are excited to be part of.
 
-We witnessed participants in our round actively onboarding other projects into Gitcoin. For example, GainForest supported communities in their "Road to Gitcoin" program. AgroforestDAO facilitated workshops to help agroforestry projects apply for the Ma Earth round. New network connections are also being made around tooling, impact tracking, bioregionalism, and more.
+We witnessed participants in our round actively onboarding other projects into Gitcoin. For example, [GainForest](https://gainforest.earth/) supported communities in their "Road to Gitcoin" program. [AgroforestDAO](https://agroforestdao.web.app/) facilitated workshops to help agroforestry projects apply for the Ma Earth round. New network connections are also being made around tooling, impact tracking, bioregionalism, and more.
 
 We recorded several conversations at Devcon around web3 grants programs, including with Owocki, ReFiDAO, Celo Public Goods, Grassroots Economics, Metrics Garden, and Octant. Those will be posted on [YouTube](https://www.youtube.com/@maearthmedia) and our [website](https://maearth.com) soon, as part of our series _The Regeneration Will Be Funded_.
 

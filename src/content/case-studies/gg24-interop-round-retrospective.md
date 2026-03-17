@@ -22,6 +22,8 @@ relatedResearch: []
 relatedCampaigns:
   - gitcoin-grants-24-gg24
 banner: /content-images/case-studies/gg24-interop-round-retrospective/banner.png
+authors:
+  - Rohit Malekar
 ---
 
 **tl;dr**
@@ -175,13 +177,13 @@ Looking ahead, this round marks a starting point rather than a conclusion. There
 ## Related:
 
 *   Sensemaking Documentation:
-    *   GG24 Sensemaking: Open Data Standards, Infrastructure & Analytics for Ethereum
-    *   GG: Open Intents & Agent Infrastructure
-    *   GG24 Interop Standards, Infra and Analytics Domain Proposal
+    *   [GG24 Sensemaking: Open Data Standards, Infrastructure & Analytics for Ethereum](https://gov.gitcoin.co/t/gg24-sensemaking-open-data-standards-infrastructure-analytics-for-ethereum/23000)
+    *   [GG: Open Intents & Agent Infrastructure](https://docs.google.com/document/d/1ioffOHx5mrveepyXz226yy83wgD9DcKVqePGg7tpNR0/edit?tab=t.0#heading=h.n20ghxwm76up)
+    *   [GG24 Interop Standards, Infra and Analytics Domain Proposal](https://gov.gitcoin.co/t/gg24-interop-standards-infra-and-analytics-domain-proposal/23770)
 *   Domain Definition:
-    *   Domain Announcement: Interop Standards, Infrastructure & Analytics
+    *   [Domain Announcement: Interop Standards, Infrastructure & Analytics](https://gov.gitcoin.co/t/domain-announcement-interop-standards-infrastructure-analytics/24631)
 *   Mapping Interop Landscape:
-    *   GG24 Update: Inside the Interop Standards, Infra & Analytics Round
+    *   [GG24 Update: Inside the Interop Standards, Infra & Analytics Round](https://gov.gitcoin.co/t/gg24-update-inside-the-interop-standards-infra-analytics-round/24749)
 
 ---
 

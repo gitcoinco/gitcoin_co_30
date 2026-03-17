@@ -26,6 +26,9 @@ relatedResearch:
 relatedCampaigns:
 
 banner: /content-images/research/ethereum-has-ens-for-people-what-about-everything-else/banner.png
+
+authors: 
+  - Carl Barrdahl
 ---
 
 > **TLDR:** ENS solved identity for people, but GitHub repos, npm packages, and YouTube channels still don't have Ethereum addresses. Every funding protocol rebuilds this plumbing from scratch. Two new ERCs propose shared primitives so protocols can send money to "the maintainers of React" without custom infrastructure.
@@ -106,7 +109,7 @@ The code is written. The [reference implementation](https://github.com/carlbarrd
 
 - **ERC PR:** [ethereum/ERCs#1580](https://github.com/ethereum/ERCs/pull/1580)  
 - **Reference implementation:** [ethereum-canonical-registry](https://github.com/carlbarrdahl/ethereum-canonical-registry)  
-- **Ethereum Magicians:** [Discussion thread](https://ethereum-magicians.org/c/ercs/57)  
+- **[Ethereum Magicians](https://ethereum-magicians.org/t/erc-8182-off-chain-entity-registry-erc-8183-claimable-escrow/27899):** [Discussion thread](https://ethereum-magicians.org/c/ercs/57)  
 - **Gitcoin Forum:** [Discussion thread](https://gov.gitcoin.co/t/ethereum-has-ens-for-people-what-about-everything-else/25152)
 
 We're looking for feedback on the verifier interface, the identifier scheme, and which protocols should integrate first.

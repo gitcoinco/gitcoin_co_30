@@ -21,6 +21,8 @@ relatedResearch:
 relatedCampaigns:
   - gitcoin-grants-21-gg21
 banner: /content-images/case-studies/gg21-desci-round-retrospective/banner.png
+authors:
+  - Swiftevo
 ---
 
 ## Grant Program Impact Report: DeSci Round GG21
@@ -77,7 +79,7 @@ Cornerstone #3, 20 Aug
 
 #### Feedback from Stewards and Community:
 
-**Steward Deen's Feedback:**
+**Steward [Deen](https://x.com/DeenSomally)'s Feedback:**
 
 *   Positive Aspects:
     *   Open Criteria: The round's open criteria allowed a wide range of projects to apply, fostering diversity in the DeSci community.
@@ -88,7 +90,7 @@ Cornerstone #3, 20 Aug
     *   Anchoring Bias: In the review process, if one steward reviewed a project early, it could influence the scores of other stewards. This created the potential for bias in evaluation.
     *   Due Diligence for Certain Projects: Some projects that appeared suspicious or possibly fraudulent were rated above 0 by certain stewards. However, the average score ensured these projects were ultimately not successful.
     *   Robust Criteria: In previous discussions, the group considered requiring a KarmaGAP profile for applicants, but this was deemed unfair to new projects. The consensus was to focus on educational content next time, providing a 1-page guide for applicants, encouraging them to create a KarmaGAP profile and remain active on X.
-    *   Steward Education on Funding Mechanisms: Deen suggested a clearer explanation for stewards about how the Gitcoin matching system works. The fact that matching funds are not split equally among all approved projects should be made explicit from the start.
+    *   Steward Education on Funding Mechanisms: [Deen](https://x.com/DeenSomally) suggested a clearer explanation for stewards about how the Gitcoin matching system works. The fact that matching funds are not split equally among all approved projects should be made explicit from the start.
 
 **Steward Hamzat III's Feedback:**
 
@@ -99,7 +101,7 @@ Cornerstone #3, 20 Aug
     *   Clearer Criteria Definition: Before the round begins, it would be beneficial to collectively establish the categories of projects we aim to fund, along with other criteria like requiring an X profile for applying projects or a KarmaGAP profile for returning ones.
     *   Better Communication of Criteria: These criteria should be communicated clearly via AMAs and through a concise information packet that applicants must review before submitting their applications.
 
-**Steward Scott's Feedback:**
+**Steward [Scott](https://x.com/0xthefuture)'s Feedback:**
 
 *   What we did better:
 
@@ -111,7 +113,7 @@ Cornerstone #3, 20 Aug
 *   2.  Stewardship onboarding and or Round roadmap brainstorm before round begins to identify more ways to provide support and strategy.
 *   3.  Exploring potential ways and methods grantees can raise more funding for their projects during and most likely after the round, sharing resources, organizing workshops or launch a DeSci Business Development series to educate scientists and founders on how to structure, expand and lead teams to success.
 
-**Steward Zaff's feedback**
+**Steward [Zaff](https://x.com/0xZaff)'s feedback**
 
 *   What we did better:
 
@@ -125,7 +127,7 @@ Simplifying the Scoring Process: I felt that the scoring process, especially usi
 
 Providing more supporting documents, along with detailed FAQs for the grantee communities would be a good idea. I believe this would make the application process clearer, help answer common questions, and ensure applicants are better informed before submitting their proposals.
 
-**Coordinator godfather's Feedback**
+**Coordinator [godfather](https://x.com/0x_borme)'s Feedback**
 
 *   What we did well:
 
@@ -166,7 +168,7 @@ We received three replies at this moment.
 
 *   Multi-Language Support:
 
-    *   The DeSci round made efforts to engage non-English speakers by hosting a Chinese AMA (held in the Asia timezone) and posting round announcements in Chinese. One Chinese-language DeSci project was submitted, and a dedicated Telegram group was set up by working group member Twone to support seven potential Chinese DeSci projects.
+    *   The DeSci round made efforts to engage non-English speakers by hosting a Chinese AMA (held in the Asia timezone) and posting round announcements in Chinese. One Chinese-language DeSci project was submitted, and a dedicated Telegram group was set up by working group member [Twone](https://x.com/tokyo10086) to support seven potential Chinese DeSci projects.
         *   [DeSci Round 21 AMA in Chinese](https://x.com/DeSci_Round_Ops/status/1819054578710860240)
         *   [DeSci Round Announcement in Chinese](https://x.com/DeSci_Round_Ops/status/1781361625863233853)
     *   DeSci LATAM also contributed by sharing their project in Spanish, helping to broaden the reach across Latin American communities.

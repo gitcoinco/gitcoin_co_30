@@ -43,11 +43,12 @@ relatedResearch:
 relatedCampaigns:
   - protocol-guild-ongoing
   - thedao-security-fund
+authors:
+  - "Kevin Owocki"
 banner: /content-images/research/post-capitalist-substrate-of-the-abundance-economy/banner.png
 ---
 
 **Type:** Opinion
-**Authors:** Gitcoin Research
 **Published:** March 2026
 
 **TLDR** -- Capitalism solved the allocation problem for private goods: price signals coordinate production and consumption with remarkable efficiency. But it fails systematically for public goods, commons, care work, ecological regeneration, and anything whose value cannot be captured by the entity that produces it. The Ethereum ecosystem is quietly assembling the substrate for a different economic grammar -- one where value flows to what matters, not just to what's priced. This is not utopian speculation. The primitives exist today: quadratic funding, retroactive rewards, token streaming, protocol-embedded revenue sharing, autonomous treasuries, and community currencies. What's emerging is not the abolition of markets but their completion -- an economy that can finally account for abundance.

@@ -15,6 +15,7 @@ export default function ResearchCard({
   variant = "default",
 }: ResearchCardProps) {
   const readTime = calcReadTime(research.description);
+  const authors = research.authors ?? [];
 
   if (variant === "sensemaking") {
     return (
@@ -49,7 +50,7 @@ export default function ResearchCard({
             <p className="sm:max-w-[60%] mt-2 text-sm text-gray-300 font-serif">
               {research.shortDescription}
             </p>
-            <p className="mt-2 text-xs text-gray-500 text-right">{formatRelativeDate(research.lastUpdated)}</p>
+            <p className="mt-2 text-xs text-gray-300 text-right">{formatRelativeDate(research.lastUpdated)}</p>
             <div className="mt-4 flex justify-end">
               <Button
                 variant="ghost"
@@ -91,10 +92,13 @@ export default function ResearchCard({
           <h3 className="-translate-y-1/2 text-md sm:text-xl md:text-2xl text-center font-bold h-18 flex items-center overflow-visible">
             <span className="line-clamp-3">{research.name}</span>
           </h3>
-          <p className="text-xs text-gray-400 font-serif line-clamp-4 mb-1">
+          <p className="text-sm text-gray-300 font-serif line-clamp-4 mb-2">
             {research.shortDescription}
           </p>
-          <p className="text-xs text-gray-500 text-right mb-2">{formatRelativeDate(research.lastUpdated)}</p>
+          <div className="flex items-center justify-between mb-2 gap-2">
+            <p className="text-xs text-gray-300 truncate">By {authors.join(", ")}</p>
+            <p className="text-xs text-gray-300 shrink-0">{formatRelativeDate(research.lastUpdated)}</p>
+          </div>
           <Button
             variant="ghost"
             className="mt-auto pt-4 w-full flex items-center justify-center gap-3"

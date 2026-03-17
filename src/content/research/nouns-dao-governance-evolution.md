@@ -10,6 +10,7 @@ tags:
   - prop house
   - token curated registry
 lastUpdated: '2026-02-25'
+researchType: Analysis
 relatedMechanisms:
   - auction-based-treasury-funding
   - token-curated-registry
@@ -20,12 +21,12 @@ relatedCaseStudies:
 relatedResearch:
 relatedCampaigns:
 banner: /content-images/research/nouns-dao-governance-evolution/banner.png
+authors:
+  - "Kevin Owocki"
 ---
 
 > **TLDR:** Nouns DAO evolved from direct proposals (bottleneck) to Prop House (faster but still manual) to Flows.wtf (continuous, curated funding). The arc: from reactive treasury management to proactive capital deployment infrastructure. A case study in onchain governance iteration.
 
-**Type:** Analysis
-**Authors:** Gitcoin Research
 
 **Sources:**
 - [Nouns DAO](https://nouns.wtf/)

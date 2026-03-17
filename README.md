@@ -179,7 +179,7 @@ npm run build
 
 
 **`researchType`** (research only, optional)
-- Must be one of: `Book`, `Report`, `Opinion`, `Analysis`, `Perspective`
+- Must be one of: `Book`, `Report`, `Opinion`, `Analysis`, `Perspective`, `Essay`
 - Validated by CI — other values will fail the PR check
 - Enables filter tabs on the /research page
 
@@ -187,3 +187,9 @@ npm run build
 - URL for a CTA button shown on the research detail page; the button label is derived automatically from `researchType` (e.g. `Book` → "Read Book")
 - For PDFs hosted in this repo: commit the file to `public/content-images/research/{slug}/book.pdf` via PR (team only) and set `ctaUrl: '/content-images/research/{slug}/book.pdf'`
 - For external links: use a full `https://` URL
+
+**`authors`** (all content types, required)
+- Array of author display names — must exactly match entries in [`src/data/authors.json`](src/data/authors.json)
+- To add a new author, add `{ "name": "Your Name", "social": "https://..." }` to `authors.json` in the same PR
+- Via GitHub Issues: use the **Authors** field — one name per line. Use `Name` for existing authors or `Name | https://social.url` to add yourself (the publish script adds new authors to `authors.json` automatically)
+- CI will block PRs with author names not found in `authors.json` (close matches produce a warning instead)
