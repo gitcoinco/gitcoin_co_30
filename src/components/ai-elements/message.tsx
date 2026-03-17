@@ -30,6 +30,8 @@ import {
   useState,
 } from "react";
 import { Streamdown } from "streamdown";
+import rehypeSanitize, { defaultSchema } from "rehype-sanitize";
+import type { PluggableList } from "unified";
 
 export type MessageProps = HTMLAttributes<HTMLDivElement> & {
   from: UIMessage["role"];
@@ -324,6 +326,11 @@ export type MessageResponseProps = ComponentProps<typeof Streamdown>;
 
 const streamdownPlugins = { cjk, code, math, mermaid };
 
+// Use sanitize-only rehype pipeline (no harden) — harden blocks external https links
+// like ctaUrl book download links. rehype-sanitize already blocks dangerous protocols
+// (javascript:, data:, etc.) so security is preserved.
+const chatRehypePlugins: PluggableList = [[rehypeSanitize, defaultSchema]];
+
 export const MessageResponse = memo(
   ({ className, ...props }: MessageResponseProps) => (
     <Streamdown
@@ -332,6 +339,7 @@ export const MessageResponse = memo(
         className
       )}
       plugins={streamdownPlugins}
+      rehypePlugins={chatRehypePlugins}
       {...props}
     />
   ),
