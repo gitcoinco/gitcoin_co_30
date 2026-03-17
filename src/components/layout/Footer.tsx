@@ -30,6 +30,7 @@ const socialLinks: SocialLink[] = [
 ];
 
 const exploreLinks: FooterLink[] = [
+  { title: "Ecosystem Map", href: "/ecosystem-map" },
   { title: "Campaigns", href: "/campaigns" },
   { title: "Research", href: "/research" },
   { title: "Apps", href: "/apps" },

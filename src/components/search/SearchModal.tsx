@@ -135,6 +135,7 @@ export default function SearchModal() {
                 <p className="px-4 py-2 text-xs text-gray-500">Suggestions</p>
                 <ul>
                   {[
+                    { label: "Ecosystem Map", href: "/ecosystem-map" },
                     { label: "Apps", href: "/apps" },
                     { label: "Mechanisms", href: "/mechanisms" },
                     { label: "Case Studies", href: "/case-studies" },

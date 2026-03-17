@@ -23,6 +23,7 @@ const aboutItems: DropdownItem[] = [
 ];
 
 const navLinks = [
+  { label: "Ecosystem Map", href: "/ecosystem-map" },
   { label: "Research", href: "/research" },
   { label: "Apps", href: "/apps" },
   { label: "Mechanisms", href: "/mechanisms" },

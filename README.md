@@ -128,6 +128,7 @@ npm run build
 
 **Other**
 - `npm run sync-docs` - Sync content files from src/content to OpenAI vector store for AI chat
+- `npm run export:ecosystem-map` - Export graph data as `public/data/ecosystem-map.json` plus node/edge CSV files
 
 
 ## Content Guidelines

@@ -102,6 +102,11 @@ export const pageSeo = {
     "Learn from real funding experiments. Explore what worked, what didn't, and the lessons learned.",
     "/case-studies",
   ),
+  ecosystemMap: meta(
+    "Ecosystem Map",
+    "Explore the relationship graph connecting apps, mechanisms, research, campaigns, and case studies.",
+    "/ecosystem-map",
+  ),
   contribute: meta(
     "Contribution Guide",
     "Learn how to contribute high-quality content to the Gitcoin Funding Directory.",

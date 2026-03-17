@@ -15,6 +15,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
     { url: `${BASE_URL}/research`,     changeFrequency: "weekly",  priority: 0.8 },
     { url: `${BASE_URL}/case-studies`, changeFrequency: "weekly",  priority: 0.8 },
     { url: `${BASE_URL}/campaigns`,    changeFrequency: "weekly",  priority: 0.8 },
+    { url: `${BASE_URL}/ecosystem-map`, changeFrequency: "weekly", priority: 0.8 },
     { url: `${BASE_URL}/contribute`,   changeFrequency: "monthly", priority: 0.5 },
     { url: `${BASE_URL}/submit`,       changeFrequency: "monthly", priority: 0.5 },
   ];
