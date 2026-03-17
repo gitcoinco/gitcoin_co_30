@@ -26,6 +26,8 @@ relatedResearch:
 relatedCaseStudies: []
 relatedCampaigns: []
 banner: /content-images/research/collective-intelligence-protocols-for-thinking-together/banner.png
+authors:
+  - "Kevin Owocki"
 ---
 
 

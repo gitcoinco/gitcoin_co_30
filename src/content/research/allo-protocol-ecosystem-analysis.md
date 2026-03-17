@@ -17,6 +17,8 @@ relatedApps:
   - allo-protocol
   - gitcoin-grants-stack
 banner: /content-images/research/allo-protocol-ecosystem-analysis/banner.png
+authors:
+  - "Kevin Owocki"
 ---
 
 

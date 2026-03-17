@@ -25,6 +25,8 @@ relatedResearch:
   - protocols-for-postcapitalist-expression
 relatedCampaigns: []
 banner: /content-images/research/summer-of-protocols-what-protocol-theory-teaches-about-coordination/banner.png
+authors:
+  - "Kevin Owocki"
 ---
 
 > **TLDR:** The Ethereum Foundation-funded Summer of Protocols united 33 researchers to ask: what is a protocol, really? Their answer: protocols are civilization's dark matter — invisible coordination infrastructure that shapes everything from traffic patterns to Ethereum itself. Understanding protocols reshapes how we design public goods funding.

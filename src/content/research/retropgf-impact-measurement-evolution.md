@@ -16,6 +16,8 @@ relatedMechanisms:
 relatedApps:
   - optimism-retropgf
 banner: /content-images/research/retropgf-impact-measurement-evolution/banner.png
+authors:
+  - "Kevin Owocki"
 ---
 
 > **TLDR:** Optimism iterated impact measurement across four RetroPGF rounds — from fuzzy "impact" vibes to structured evaluation frameworks, category-specific metrics, and citizen panels. The lesson: measuring public goods impact requires continuous experimentation, not a single perfect formula.

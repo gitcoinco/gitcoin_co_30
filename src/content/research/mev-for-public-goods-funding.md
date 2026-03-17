@@ -23,6 +23,8 @@ relatedResearch:
 relatedCaseStudies: []
 relatedCampaigns: []
 banner: /content-images/research/mev-for-public-goods-funding/banner.png
+authors:
+  - "Kevin Owocki"
 ---
 
 > **TLDR:** Maximal Extractable Value is a hidden tax on every Ethereum transaction — searchers, builders, and validators extract billions annually. Instead of letting it leak into private pockets, MEV could be redirected to fund the public goods infrastructure that makes Ethereum valuable in the first place.
