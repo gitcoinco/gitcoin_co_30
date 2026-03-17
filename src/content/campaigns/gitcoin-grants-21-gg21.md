@@ -7,7 +7,7 @@ featured: false
 tags:
   - quadratic
   - democratic
-  - community
+  - 'community'
 lastUpdated: '2026-02-13'
 relatedMechanisms:
 
