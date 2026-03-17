@@ -83,29 +83,37 @@ export default function ContentDetailPage({
                 <p className="text-lg text-gray-300 max-w-2xl">
                   {item.shortDescription}
                 </p>
+              
                 <p className="mt-3 text-sm text-gray-300">
-                  By{" "}
-                  {authors.map((name, i) => {
-                    const social = authorSocials[name];
-                    return (
-                      <span key={name}>
-                        {i > 0 && ", "}
-                        {social ? (
-                          <Link
-                            href={social}
-                            target="_blank"
-                            rel="noopener noreferrer"
-                            className="hover:text-teal-400 transition-colors underline underline-offset-3"
-                          >
-                            {name}
-                          </Link>
-                        ) : (
-                          name
-                        )}
-                      </span>
-                    );
-                  })}
-                  {" "}· {readTime} min read{showDate && ` · ${new Date(item.lastUpdated).toLocaleDateString("en-US", { year: "numeric", month: "long", day: "numeric" })}`}
+                  {authors.length > 0 && (
+                    <>
+                      By{" "}
+                      {authors.map((name, i) => {
+                        const social = authorSocials[name];
+                        return (
+                          <span key={name}>
+                            {i > 0 && ", "}
+                            {social ? (
+                              <Link
+                                href={social}
+                                target="_blank"
+                                rel="noopener noreferrer"
+                                className="hover:text-teal-400 transition-colors underline underline-offset-3"
+                              >
+                                {name}
+                              </Link>
+                            ) : (
+                              name
+                            )}
+                          </span>
+                        );
+                      })}{" "}
+                      {"· "}
+                    </>
+                  )}
+                  {readTime} min read
+                  {showDate &&
+                    ` · ${new Date(item.lastUpdated).toLocaleDateString("en-US", { year: "numeric", month: "long", day: "numeric" })}`}
                 </p>
               </div>
               {ctaUrl && ctaLabel && (
