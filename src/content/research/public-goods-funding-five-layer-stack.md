@@ -33,11 +33,12 @@ relatedResearch:
   - state-of-public-goods-funding-2024
 relatedCampaigns:
   - gg24-upcoming
+authors:
+  - "Kevin Owocki"
 banner: /content-images/research/public-goods-funding-five-layer-stack/banner.png
 ---
 
 **Type:** Report
-**Authors:** Gitcoin Research
 **Published:** March 2026
 
 **TLDR** -- Public goods funding is not a single problem with a single solution. It is a stack of five interdependent layers: formation (where does money come from?), allocation (who decides who gets funded?), execution (how does money move?), attribution (who did what?), and accountability (did it work?). Every failed or underperforming funding program can be diagnosed as having a gap in one of these layers. The most effective programs -- Optimism, Protocol Guild, GG24 -- are the ones that have assembled coherent stacks across all five.

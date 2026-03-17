@@ -48,7 +48,7 @@ export default function ContentDetailPage({
 }: ContentDetailPageProps) {
   const banner = item.banner || "/content-images/placeholder.png";
   const readTime = calcReadTime(item.description);
-  const authors = item.authors?.length ? item.authors : ["Gitcoin Research"];
+  const authors = item.authors ?? [];
   const authorSocials = Object.fromEntries(
     authorsData.map((a) => [a.name, (a as { name: string; social?: string }).social]),
   );

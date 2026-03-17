@@ -29,11 +29,12 @@ relatedResearch:
   - reforming-eth-public-goods-funding-2026
 relatedCampaigns:
   - gitcoin-grants-22-gg22
+authors:
+  - "Kevin Owocki"
 banner: /content-images/research/identity-infrastructure-binding-constraint/banner.png
 ---
 
 **Type:** Report
-**Authors:** Gitcoin Research
 **Published:** March 2026
 
 **TLDR** -- Every democratic funding mechanism -- quadratic funding, quadratic voting, UBI, participatory budgeting, conviction voting -- requires the ability to distinguish unique humans from manufactured identities. The sophistication of allocation algorithms has outrun the identity infrastructure that supports them. Without solving Sybil resistance, no amount of mechanism design will produce trustworthy outcomes. This is the binding constraint on the entire field.

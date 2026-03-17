@@ -29,11 +29,12 @@ relatedResearch:
   - the-great-interregnum-where-capital-flows-after-institutional-breakdown
   - d-acc-market-map
 relatedCampaigns: []
+authors:
+  - "Kevin Owocki"
 banner: /content-images/research/civilizational-stakes-coordination-capacity/banner.png
 ---
 
 **Type:** Opinion
-**Authors:** Gitcoin Research
 **Published:** March 2026
 
 **TLDR** -- The Ethereum public goods funding ecosystem is often framed as a niche technical concern: how do we fund open source software? This framing is accurate but dangerously narrow. The coordination capacity being built -- the ability for strangers to pool resources toward shared goals without central authorities -- is a general-purpose capability that civilization will need to navigate the converging crises of climate change, AI risk, institutional erosion, and epistemic fragmentation. Public goods funding is a rehearsal for coordination at civilizational scale.

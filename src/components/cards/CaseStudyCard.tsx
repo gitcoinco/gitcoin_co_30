@@ -7,7 +7,7 @@ interface CaseStudyCardProps {
 }
 
 export default function CaseStudyCard({ caseStudy }: CaseStudyCardProps) {
-  const authors = caseStudy.authors?.length ? caseStudy.authors : ["Gitcoin Research"]
+  const authors = caseStudy.authors ?? []
   return (
     <ContentCard
       href={`/case-studies/${caseStudy.slug}`}

@@ -29,11 +29,12 @@ relatedResearch:
 relatedCampaigns:
   - gitcoin-grants-23-gg23
   - gg24-upcoming
+authors:
+  - "Kevin Owocki"
 banner: /content-images/research/retroactive-funding-most-scalable-pattern/banner.png
 ---
 
 **Type:** Report
-**Authors:** Gitcoin Research
 **Published:** March 2026
 
 **TLDR** -- Retroactive funding -- allocating capital based on demonstrated outcomes rather than proposals -- has become the most widely adopted new mechanism in public goods funding. Its spread from Optimism (60M+ OP) to Filecoin (1M+ FIL) to Celo to Pocket Network demonstrates genuine portability. Three properties drive its scalability: lower cognitive cost, open-source tooling, and cascade dynamics. But incumbency bias, evaluation quality, and cash-flow timing remain unsolved challenges.

@@ -116,7 +116,7 @@ body:
     attributes:
       label: Authors
       description: |
-        Optional. One author per line.
+        Required. One author per line.
         Use your exact display name from the authors list: https://github.com/gitcoinco/gitcoin_co_30/blob/main/src/data/authors.json
         To add yourself: use `Your Name` (if already listed) or `Your Name | https://your.social` (if new — we'll add you automatically).
       placeholder: |
@@ -125,7 +125,7 @@ body:
       value: |
         <!-- One author per line. Format: Name  or  Name | https://social.url -->
     validations:
-      required: false
+      required: true
 
   - type: textarea
     id: related-apps

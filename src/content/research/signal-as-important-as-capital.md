@@ -30,11 +30,12 @@ relatedResearch:
   - plural-funding-mechanisms
 relatedCampaigns:
   - gitcoin-grants-23-gg23
+authors:
+  - "Kevin Owocki"
 banner: /content-images/research/signal-as-important-as-capital/banner.png
 ---
 
 **Type:** Report
-**Authors:** Gitcoin Research
 **Published:** March 2026
 
 **TLDR** -- Quadratic funding rounds are commonly evaluated by how many dollars they distribute. This misses at least half their value. The democratic preference data QF generates -- who the community believes is doing valuable work, and how broadly that belief is held -- is an independent public good that has legitimized contested protocol changes, strengthened policy advocacy, sustained builder motivation, and demonstrated to traditional institutions that community-driven allocation works.

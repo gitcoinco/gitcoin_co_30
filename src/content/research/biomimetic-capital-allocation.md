@@ -28,11 +28,12 @@ relatedResearch:
   - biofi-bioregional-finance-web3
   - bioregional-swarms
 relatedCampaigns: []
+authors:
+  - "Kevin Owocki"
 banner: /content-images/research/biomimetic-capital-allocation/banner.png
 ---
 
 **Type:** Report
-**Authors:** Gitcoin Research
 **Published:** March 2026
 
 **TLDR** -- 3.8 billion years of biological evolution have already solved most of the problems that capital allocation designers face: distributed resource routing, adaptive response to changing conditions, symbiotic value exchange, resilience without central control. Mycelial networks, slime mold foraging, bioregional nutrient cycling, and evolutionary antifragility aren't poetic metaphors for onchain systems -- they are engineering blueprints with specific, actionable design patterns.

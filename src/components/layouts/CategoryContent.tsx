@@ -93,7 +93,7 @@ function isActive(item: BaseContent): boolean {
 }
 
 function itemAuthors(item: BaseContent): string[] {
-  return item.authors?.length ? item.authors : ["Gitcoin Research"];
+  return item.authors ?? [];
 }
 
 function sortItems(items: BaseContent[], sort: SortOption): BaseContent[] {

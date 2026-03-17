@@ -15,7 +15,7 @@ export default function ResearchCard({
   variant = "default",
 }: ResearchCardProps) {
   const readTime = calcReadTime(research.description);
-  const authors = research.authors?.length ? research.authors : ["Gitcoin Research"];
+  const authors = research.authors ?? [];
 
   if (variant === "sensemaking") {
     return (

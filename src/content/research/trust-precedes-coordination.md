@@ -27,11 +27,12 @@ relatedResearch:
   - what-nature-can-teach-us-about-allocating-capital
 relatedCampaigns:
   - protocol-guild-ongoing
+authors:
+  - "Kevin Owocki"
 banner: /content-images/research/trust-precedes-coordination/banner.png
 ---
 
 **Type:** Report
-**Authors:** Gitcoin Research
 **Published:** March 2026
 
 **TLDR** -- The most practically important insight in the entire public goods funding literature is also the most frequently ignored: trust precedes coordination, and coordination precedes capital allocation. You cannot skip the trust step. Mechanisms deployed among strangers consistently underperform mechanisms deployed within trusted communities. Small crews of 3-8 people are the irreducible atomic unit of effective coordination, and programs that invest in relational infrastructure outperform programs that invest only in mechanism design.
