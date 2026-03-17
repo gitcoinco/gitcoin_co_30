@@ -18,7 +18,8 @@ relatedMechanisms:
 relatedApps: []
 sensemakingFor: "mechanisms"
 banner: /content-images/research/biofi-bioregional-finance-web3/banner.png
-authors: Kevin Owocki
+authors:
+  - "Kevin Owocki"
 ---
 
 **Source:** [Allo Capital Forum](https://research.allo.capital/t/biofi-bioregional-finance-powered-by-web3/347)
