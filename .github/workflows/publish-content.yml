@@ -110,7 +110,7 @@ jobs:
             await github.rest.checks.create({
               owner: context.repo.owner,
               repo: context.repo.repo,
-              name: 'Validate content / validate',
+              name: 'validate',
               head_sha: '${{ steps.create-pr.outputs.pull-request-head-sha }}',
               status: 'completed',
               conclusion,

@@ -98,7 +98,7 @@ async function parseContentFile(filename: string, ref: string, headers: Record<s
     slug: data.slug,
     name: data.name,
     shortDescription: data.shortDescription ?? "",
-    description: description.trim(),
+    description: description?.trim() ?? "",
     banner: toRawUrl(data.banner, ref),
     logo: toRawUrl(data.logo, ref),
     tags: data.tags ?? [],
