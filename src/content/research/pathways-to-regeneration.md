@@ -24,6 +24,7 @@ relatedResearch:
   - biofi-bioregional-finance-web3
 relatedCampaigns: []
 banner: /content-images/research/pathways-to-regeneration/banner.png
+ctaUrl: /content-images/research/pathways-to-regeneration/pathways-to-regeneration.pdf
 ---
 
 **Type:** Book

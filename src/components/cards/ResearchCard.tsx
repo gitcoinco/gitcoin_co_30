@@ -2,7 +2,8 @@ import Link from "next/link";
 import Image from "next/image";
 import ContentCard from "./ContentCard";
 import type { Research } from "@/lib/types";
-import { Badge, Button } from "../ui";
+import { Badge, Button, ReadTimeBadge } from "../ui";
+import { calcReadTime, formatRelativeDate } from "@/lib/utils";
 
 interface ResearchCardProps {
   research: Research;
@@ -13,6 +14,8 @@ export default function ResearchCard({
   research,
   variant = "default",
 }: ResearchCardProps) {
+  const readTime = calcReadTime(research.description);
+
   if (variant === "sensemaking") {
     return (
       <Link href={`/research/${research.slug}`}>
@@ -29,6 +32,7 @@ export default function ResearchCard({
               className="object-cover"
             />
             <div className="absolute inset-0 bg-linear-to-b from-transparent to-gray-900" />
+            <ReadTimeBadge minutes={readTime} />
           </div>
           <div className="flex flex-1 flex-col py-6 px-10">
             <Badge
@@ -45,6 +49,7 @@ export default function ResearchCard({
             <p className="sm:max-w-[60%] mt-2 text-sm text-gray-300 font-serif">
               {research.shortDescription}
             </p>
+            <p className="mt-2 text-xs text-gray-500 text-right">{formatRelativeDate(research.lastUpdated)}</p>
             <div className="mt-4 flex justify-end">
               <Button
                 variant="ghost"
@@ -72,6 +77,7 @@ export default function ResearchCard({
             className="object-cover group-hover:scale-105 transition-transform duration-300"
           />
           <div className="absolute inset-0 bg-linear-to-b from-transparent to-gray-900 group-hover:opacity-0 transition-all duration-500" />
+          <ReadTimeBadge minutes={readTime} />
         </div>
         <div className="flex flex-1 flex-col px-4 pb-4">
           <Badge
@@ -85,9 +91,10 @@ export default function ResearchCard({
           <h3 className="-translate-y-1/2 text-md sm:text-xl md:text-2xl text-center font-bold h-18 flex items-center overflow-visible">
             <span className="line-clamp-3">{research.name}</span>
           </h3>
-          <p className="text-xs text-gray-400 font-serif line-clamp-4 mb-2">
+          <p className="text-xs text-gray-400 font-serif line-clamp-4 mb-1">
             {research.shortDescription}
           </p>
+          <p className="text-xs text-gray-500 text-right mb-2">{formatRelativeDate(research.lastUpdated)}</p>
           <Button
             variant="ghost"
             className="mt-auto pt-4 w-full flex items-center justify-center gap-3"

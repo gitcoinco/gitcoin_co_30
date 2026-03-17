@@ -24,6 +24,8 @@ relatedCampaigns: []
 banner: /content-images/research/revnets-retailism-autonomous-public-goods-funding/banner.png
 ---
 
+> **TLDR:** Revnets propose immutable, autonomous treasuries: deploy once, fund forever. No grants, no governance, no owners. Revenue flows in, project tokens flow out, and the math handles allocation — retailism as a mechanistic alternative to discretionary public goods funding.
+
 **Type:** Analysis
 **Authors:** @owocki
 

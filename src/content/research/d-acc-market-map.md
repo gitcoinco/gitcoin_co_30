@@ -22,6 +22,8 @@ relatedCampaigns:
 
 ---
 
+> **TLDR:** The d/acc Market Map charts the defensive acceleration ecosystem — technologies that favor defense over offense and distribute power instead of concentrating it. Organized across Atoms vs. Bits and Survive vs. Thrive, it's a coordination stack for resilience, from biosecurity to governance tooling.
+
 ## **What Is the d/acc Market Map?**
 
 The **d/acc Market Map** – sometimes written as the dacc Market Map – is a structured overview of the **defensive acceleration ecosystem**, mapping physical and digital systems that embody the principles of defensive acceleration. It answers a practical question: **Where does defensive acceleration exist in deployed systems today?**

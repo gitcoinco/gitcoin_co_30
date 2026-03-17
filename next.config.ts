@@ -20,10 +20,12 @@ const nextConfig: NextConfig = {
     // eslint-disable-next-line @typescript-eslint/no-explicit-any
     ...({
       outputFileTracingExcludes: {
+
         // Exclude the banner images and three.js from all serverless function
         // bundles — they are served as static files and don't need to be
         // bundled into functions like opengraph-image routes
         "**": [
+          './**/*.pdf',
           "public/content-images/**",
           "node_modules/three/**",
           "node_modules/@react-three/**",

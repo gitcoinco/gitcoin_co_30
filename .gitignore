@@ -35,6 +35,7 @@ yarn-error.log*
 
 # Vector store manifest
 scripts/.vector-manifest.json
+gitcoin_co_30/.next/
 
 # Vercel
 .vercel
