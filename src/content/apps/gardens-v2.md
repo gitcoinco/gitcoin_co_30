@@ -34,6 +34,8 @@ relatedResearch:
 relatedCampaigns:
 
 banner: /content-images/apps/gardens-v2/banner.png
+
+authors: Paul Glavin
 ---
 
 - **Category**: Platform  
