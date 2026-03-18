@@ -206,7 +206,7 @@ function validateFile(filePath: string, contentType: ContentDir): { errors: stri
   if (data.authors === undefined || !Array.isArray(data.authors) || (data.authors as string[]).length === 0) {
     errors.push("authors: required — must list at least one author");
   } else {
-    validateAuthors(data.authors as string[], undefined, errors, warnings);
+    validateAuthors(data.authors as string[], undefined, errors, warnings, "content");
   }
 
   return { errors, warnings };

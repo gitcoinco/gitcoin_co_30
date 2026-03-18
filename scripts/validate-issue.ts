@@ -113,7 +113,7 @@ if (!metadata.authors || metadata.authors.length === 0) {
   const rawLines = metadata.authors.map((a) =>
     a.social ? `${a.name} | ${a.social}` : a.name,
   );
-  validateAuthors(authorNames, rawLines, errors, warnings);
+  validateAuthors(authorNames, rawLines, errors, warnings, "issue");
 }
 
 // Warn if team-only fields were set by the submitter
