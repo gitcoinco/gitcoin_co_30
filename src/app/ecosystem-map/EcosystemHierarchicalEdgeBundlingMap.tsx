@@ -7,7 +7,7 @@ import {
   type HierarchyPointLink,
   type HierarchyPointNode,
 } from "d3-hierarchy";
-import { curveBundle, lineRadial, linkRadial } from "d3-shape";
+import { curveBundle, line, lineRadial, linkRadial } from "d3-shape";
 
 type EcosystemCategory = "apps" | "mechanisms" | "research" | "case-studies" | "campaigns";
 
@@ -61,18 +61,32 @@ type BundledEdge = {
   weight: number;
 };
 
+type BundlingLayoutMode = "radial" | "rectangular";
+
+type BundlingLayout = {
+  root: TreePointNode;
+  descendants: TreePointNode[];
+  links: HierarchyPointLink<BundleTreeNode>[];
+  nodeById: Map<string, TreePointNode>;
+  innerWidth: number;
+  innerHeight: number;
+};
+
 const LEAF_LABEL_FONT_SIZE = 14;
 const LEAF_LABEL_CONNECTED_FONT_SIZE = 14;
 const ZOOM_MIN = 0.8;
 const ZOOM_MAX = 3.5;
 const ZOOM_STEP = 1.15;
-const LEAF_ANGLE_JITTER = 0.1;
-const LEAF_RADIUS_JITTER = 0.1;
+const LEAF_ANGLE_JITTER = 0.01;
+const LEAF_RADIUS_JITTER = 0.01;
 const TREE_LINK_DIM_OPACITY = 0.03;
 const BUNDLE_LINK_DIM_OPACITY = 0.03;
 const NODE_DIM_OPACITY = 0.03;
 const PAN_DRAG_THRESHOLD = 4;
 const PIN_RESET_RADIUS = 12;
+const RECTANGULAR_ASPECT_RATIO = 2;
+const RECTANGULAR_PADDING_X = 100;
+const RECTANGULAR_PADDING_Y = 50;
 
 function polarToCartesian(angle: number, radius: number): { x: number; y: number } {
   const a = angle - Math.PI / 2;
@@ -119,6 +133,7 @@ export default function EcosystemHierarchicalEdgeBundlingMap({
   categoryOrder,
   categoryLabels,
 }: EcosystemHierarchicalEdgeBundlingMapProps) {
+  const [layoutMode, setLayoutMode] = useState<BundlingLayoutMode>("radial");
   const [hoveredLeafId, setHoveredLeafId] = useState<string | null>(null);
   const [pinnedLeafId, setPinnedLeafId] = useState<string | null>(null);
   const [zoom, setZoom] = useState(1);
@@ -134,8 +149,12 @@ export default function EcosystemHierarchicalEdgeBundlingMap({
   });
   const suppressNextClickRef = useRef(false);
   const activeLeafId = pinnedLeafId ?? hoveredLeafId;
+  const mapHeight =
+    layoutMode === "rectangular"
+      ? Math.max(420, Math.min(height, Math.round(width / RECTANGULAR_ASPECT_RATIO)))
+      : height;
 
-  const radial = useMemo(() => {
+  const layout = useMemo((): BundlingLayout => {
     const grouped = new Map<EcosystemCategory, PositionedNode[]>();
     for (const category of categoryOrder) grouped.set(category, []);
 
@@ -167,30 +186,93 @@ export default function EcosystemHierarchicalEdgeBundlingMap({
       })),
     };
 
-    const radius = Math.min(width, height) / 2 - 50;
     const root = hierarchy(rootData);
+
+    if (layoutMode === "radial") {
+      const radius = Math.min(width, mapHeight) / 2 - 50;
+      cluster<BundleTreeNode>()
+        .size([Math.PI * 2, radius - 34])
+        .separation((a, b) => (a.parent === b.parent ? 1 : 1.7))(root);
+
+      const descendants = root.descendants() as TreePointNode[];
+      for (const node of descendants) {
+        if (node.data.kind !== "leaf") continue;
+        const seed = hashString(node.data.id);
+        const angleJitter = (seeded01(seed ^ 0x91e10da5) - 0.5) * LEAF_ANGLE_JITTER;
+        const radiusJitter = (seeded01(seed ^ 0x85ebca6b) - 0.5) * LEAF_RADIUS_JITTER * 2;
+        node.x += angleJitter;
+        node.y = clamp(node.y + radiusJitter, 12, radius - 8);
+      }
+
+      const links = root.links() as HierarchyPointLink<BundleTreeNode>[];
+      const nodeById = new Map<string, TreePointNode>();
+      for (const node of descendants) nodeById.set(node.data.id, node);
+
+      return {
+        root: root as TreePointNode,
+        descendants,
+        links,
+        nodeById,
+        innerWidth: radius * 2,
+        innerHeight: radius * 2,
+      };
+    }
+
+    const innerWidth = Math.max(260, width - RECTANGULAR_PADDING_X * 2);
+    const innerHeight = Math.max(220, mapHeight - RECTANGULAR_PADDING_Y * 2);
+    const halfWidth = innerWidth / 2;
+    const halfHeight = innerHeight / 2;
+
     cluster<BundleTreeNode>()
-      .size([Math.PI * 2, radius - 34])
-      .separation((a, b) => (a.parent === b.parent ? 1 : 1.7))(root);
+      .size([Math.PI * 2, 1])
+      .separation((a, b) => (a.parent === b.parent ? 1 : 1.6))(root);
 
     const descendants = root.descendants() as TreePointNode[];
     for (const node of descendants) {
-      if (node.data.kind !== "leaf") continue;
+      if (node.data.kind === "root") {
+        node.x = halfWidth;
+        node.y = halfHeight;
+        continue;
+      }
+
       const seed = hashString(node.data.id);
-      const angleJitter = (seeded01(seed ^ 0x91e10da5) - 0.5) * LEAF_ANGLE_JITTER;
-      const radiusJitter = (seeded01(seed ^ 0x85ebca6b) - 0.5) * LEAF_RADIUS_JITTER * 2;
-      node.x += angleJitter;
-      node.y = clamp(node.y + radiusJitter, 12, radius - 8);
+      const angleJitter =
+        node.data.kind === "leaf"
+          ? (seeded01(seed ^ 0x91e10da5) - 0.5) * LEAF_ANGLE_JITTER * 0.7
+          : 0;
+      const radialJitter =
+        node.data.kind === "leaf"
+          ? (seeded01(seed ^ 0x85ebca6b) - 0.5) * LEAF_RADIUS_JITTER * 1.2
+          : 0;
+
+      const angle = node.x + angleJitter;
+      const radius = clamp(node.y + radialJitter, 0.14, 1);
+      const a = angle - Math.PI / 2;
+      const ux = Math.cos(a);
+      const uy = Math.sin(a);
+      const sideScale = 1 / Math.max(Math.abs(ux), Math.abs(uy), 1e-6);
+      const boundaryX = ux * sideScale * (halfWidth - 6);
+      const boundaryY = uy * sideScale * (halfHeight - 6);
+
+      node.x = halfWidth + boundaryX * radius;
+      node.y = halfHeight + boundaryY * radius;
     }
 
     const links = root.links() as HierarchyPointLink<BundleTreeNode>[];
     const nodeById = new Map<string, TreePointNode>();
     for (const node of descendants) nodeById.set(node.data.id, node);
 
-    return { root, descendants, links, nodeById };
-  }, [categoryLabels, categoryOrder, height, nodes, width]);
+    return {
+      root: root as TreePointNode,
+      descendants,
+      links,
+      nodeById,
+      innerWidth,
+      innerHeight,
+    };
+  }, [categoryLabels, categoryOrder, layoutMode, mapHeight, nodes, width]);
 
-  const bundledLine = useMemo(
+  const bundledLineRadial = useMemo(
     () =>
       lineRadial<TreePointNode>()
         .curve(curveBundle.beta(0.9))
@@ -199,7 +281,16 @@ export default function EcosystemHierarchicalEdgeBundlingMap({
     [],
   );
 
-  const treeLink = useMemo(
+  const bundledLineRectangular = useMemo(
+    () =>
+      line<TreePointNode>()
+        .curve(curveBundle.beta(0.9))
+        .x((d) => d.x)
+        .y((d) => d.y),
+    [],
+  );
+
+  const treeLinkRadial = useMemo(
     () =>
       linkRadial<HierarchyPointLink<BundleTreeNode>, TreePointNode>()
         .angle((d) => d.x)
@@ -210,12 +301,15 @@ export default function EcosystemHierarchicalEdgeBundlingMap({
   const bundledEdges = useMemo(() => {
     const rendered: BundledEdge[] = [];
     for (const edge of edges) {
-      const source = radial.nodeById.get(edge.sourceId);
-      const target = radial.nodeById.get(edge.targetId);
+      const source = layout.nodeById.get(edge.sourceId);
+      const target = layout.nodeById.get(edge.targetId);
       if (!source || !target) continue;
       if (!source.data.category || !target.data.category) continue;
       const pathNodes = source.path(target) as TreePointNode[];
-      const path = bundledLine(pathNodes);
+      const path =
+        layoutMode === "radial"
+          ? bundledLineRadial(pathNodes)
+          : bundledLineRectangular(pathNodes);
       if (!path) continue;
       rendered.push({
         id: edge.id,
@@ -228,7 +322,7 @@ export default function EcosystemHierarchicalEdgeBundlingMap({
       });
     }
     return rendered;
-  }, [bundledLine, edges, radial.nodeById]);
+  }, [bundledLineRadial, bundledLineRectangular, edges, layout.nodeById, layoutMode]);
 
   const edgesByLeafId = useMemo(() => {
     const map = new Map<string, Set<string>>();
@@ -276,10 +370,8 @@ export default function EcosystemHierarchicalEdgeBundlingMap({
     return counts;
   }, [bundledEdges]);
 
-  const activeLeaf = activeLeafId ? radial.nodeById.get(activeLeafId) ?? null : null;
-  const hoveredLeaf = hoveredLeafId ? radial.nodeById.get(hoveredLeafId) ?? null : null;
+  const activeLeaf = activeLeafId ? layout.nodeById.get(activeLeafId) ?? null : null;
   const activeAncestorIds = useMemo(() => collectAncestorIds(activeLeaf), [activeLeaf]);
-  const hoveredAncestorIds = useMemo(() => collectAncestorIds(hoveredLeaf), [hoveredLeaf]);
   const activeCategory = activeLeaf?.data.category ?? null;
   const activeName = activeLeaf?.data.name ?? null;
 
@@ -300,6 +392,16 @@ export default function EcosystemHierarchicalEdgeBundlingMap({
 
   function zoomBy(factor: number): void {
     setZoom((prev) => clamp(prev * factor, ZOOM_MIN, ZOOM_MAX));
+  }
+
+  function setNextLayout(mode: BundlingLayoutMode): void {
+    if (mode === layoutMode) return;
+    setLayoutMode(mode);
+    setZoom(1);
+    setPan({ x: 0, y: 0 });
+    setHoveredLeafId(null);
+    setPinnedLeafId(null);
+    suppressNextClickRef.current = false;
   }
 
   function handleWheel(event: React.WheelEvent<SVGSVGElement>): void {
@@ -334,18 +436,46 @@ export default function EcosystemHierarchicalEdgeBundlingMap({
     });
   }
 
-  function finishPan(
-    event: React.PointerEvent<SVGSVGElement>,
-  ): void {
+  function finishPan(): void {
     if (!panStateRef.current.active) return;
     suppressNextClickRef.current = panStateRef.current.moved;
     panStateRef.current.active = false;
     setIsPanning(false);
   }
 
+  const groupTransform =
+    layoutMode === "radial"
+      ? `translate(${width / 2 + pan.x} ${mapHeight / 2 + pan.y}) scale(${zoom})`
+      : `translate(${RECTANGULAR_PADDING_X + pan.x} ${RECTANGULAR_PADDING_Y + pan.y}) scale(${zoom})`;
+
   return (
     <div className="p-4 sm:p-6">
-      <div className="mb-4 flex flex-wrap items-center justify-end gap-3">
+      <div className="mb-4 flex flex-wrap items-center justify-between gap-3">
+        <div className="inline-flex rounded-md border border-gray-700 bg-gray-950 p-1">
+          <button
+            type="button"
+            onClick={() => setNextLayout("radial")}
+            className={`rounded px-2.5 py-1 text-xs font-mono ${
+              layoutMode === "radial"
+                ? "bg-teal-400 text-gray-950"
+                : "text-gray-300 hover:bg-gray-850"
+            }`}
+          >
+            Radial
+          </button>
+          <button
+            type="button"
+            onClick={() => setNextLayout("rectangular")}
+            className={`rounded px-2.5 py-1 text-xs font-mono ${
+              layoutMode === "rectangular"
+                ? "bg-teal-400 text-gray-950"
+                : "text-gray-300 hover:bg-gray-850"
+            }`}
+          >
+            Rectangular 2:1
+          </button>
+        </div>
+
         <p className="text-xs text-gray-400 font-mono">
           {pinnedLeafId
             ? `${activeEdgeIds.size} bundled links pinned · click pinned node to open, or linked nodes to open`
@@ -388,11 +518,11 @@ export default function EcosystemHierarchicalEdgeBundlingMap({
 
         <svg
           className="relative z-10"
-          viewBox={`0 0 ${width} ${height}`}
+          viewBox={`0 0 ${width} ${mapHeight}`}
           width="100%"
           height="auto"
           role="img"
-          aria-label="Ecosystem hierarchical edge bundling graph"
+          aria-label={`Ecosystem hierarchical edge bundling graph (${layoutMode} layout)`}
           onMouseLeave={() => setHoveredLeafId(null)}
           onClick={() => {
             if (suppressNextClickRef.current) {
@@ -414,10 +544,10 @@ export default function EcosystemHierarchicalEdgeBundlingMap({
             </linearGradient>
           </defs>
 
-          <rect x={0} y={0} width={width} height={height} fill="url(#ecosystem-bundle-bg)" fillOpacity={0.25} />
+          <rect x={0} y={0} width={width} height={mapHeight} fill="url(#ecosystem-bundle-bg)" fillOpacity={0.25} />
 
-          <g transform={`translate(${width / 2 + pan.x} ${height / 2 + pan.y}) scale(${zoom})`}>
-            {radial.links
+          <g transform={groupTransform}>
+            {layout.links
               .filter((link) => link.source.data.kind !== "root")
               .map((link, index) => {
                 const targetCategory = link.target.data.category;
@@ -430,7 +560,11 @@ export default function EcosystemHierarchicalEdgeBundlingMap({
                 return (
                   <path
                     key={`bundle-tree-link-${index}`}
-                    d={treeLink(link) ?? ""}
+                    d={
+                      layoutMode === "radial"
+                        ? treeLinkRadial(link) ?? ""
+                        : `M${link.source.x},${link.source.y}L${link.target.x},${link.target.y}`
+                    }
                     fill="none"
                     stroke={linkColor}
                     strokeOpacity={activeLeafId ? (active ? 1 : TREE_LINK_DIM_OPACITY) : 0.1}
@@ -463,9 +597,10 @@ export default function EcosystemHierarchicalEdgeBundlingMap({
               );
             })}
 
-            {radial.descendants.map((node) => {
+            {layout.descendants.map((node) => {
               if (node.data.kind === "root") return null;
-              const { x, y } = polarToCartesian(node.x, node.y);
+              const { x, y } =
+                layoutMode === "radial" ? polarToCartesian(node.x, node.y) : { x: node.x, y: node.y };
               const isLeaf = node.data.kind === "leaf";
               const isCategory = node.data.kind === "category";
               const isActiveLeaf = isLeaf && activeLeafId === node.data.id;
@@ -538,9 +673,9 @@ export default function EcosystemHierarchicalEdgeBundlingMap({
 
                   {isConnectedLeaf && (
                     <text
-                      x={node.x >= Math.PI ? -9 : 9}
+                      x={layoutMode === "radial" ? (node.x >= Math.PI ? -9 : 9) : node.x >= layout.innerWidth / 2 ? -9 : 9}
                       y={4}
-                      textAnchor={node.x >= Math.PI ? "end" : "start"}
+                      textAnchor={layoutMode === "radial" ? (node.x >= Math.PI ? "end" : "start") : node.x >= layout.innerWidth / 2 ? "end" : "start"}
                       fontSize={isActiveLeaf ? LEAF_LABEL_FONT_SIZE : LEAF_LABEL_CONNECTED_FONT_SIZE}
                       fontWeight={isActiveLeaf ? 700 : 500}
                       fill={isActiveLeaf ? categoryColor : "#FFFFFF"}
@@ -561,10 +696,11 @@ export default function EcosystemHierarchicalEdgeBundlingMap({
               );
             })}
 
-            {radial.descendants
+            {layout.descendants
               .filter((node) => node.data.kind === "leaf")
               .map((node) => {
-                const { x, y } = polarToCartesian(node.x, node.y);
+                const { x, y } =
+                  layoutMode === "radial" ? polarToCartesian(node.x, node.y) : { x: node.x, y: node.y };
                 const leafId = node.data.id;
                 return (
                   <circle
@@ -595,9 +731,12 @@ export default function EcosystemHierarchicalEdgeBundlingMap({
 
             {pinnedLeafId
               ? (() => {
-                  const pinnedLeaf = radial.nodeById.get(pinnedLeafId);
+                  const pinnedLeaf = layout.nodeById.get(pinnedLeafId);
                   if (!pinnedLeaf) return null;
-                  const point = polarToCartesian(pinnedLeaf.x, pinnedLeaf.y);
+                  const point =
+                    layoutMode === "radial"
+                      ? polarToCartesian(pinnedLeaf.x, pinnedLeaf.y)
+                      : { x: pinnedLeaf.x, y: pinnedLeaf.y };
                   return (
                     <g
                       key="bundle-pinned-reset-control"
