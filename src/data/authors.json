@@ -147,13 +147,19 @@
   {
     "name": "LuukDAO"
   },
-  { "name": "Regen Coordination Council"},
-  { 
+  {
+    "name": "Regen Coordination Council"
+  },
+  {
     "name": "Carl Barrdahl",
     "social": "https://x.com/CarlBarrdahl"
   },
   {
     "name": "Paul Glavin",
     "social": "https://x.com/Paul_Glavin"
+  },
+  {
+    "name": "Kenny",
+    "social": "https://x.com/kennyistyping"
   }
 ]
