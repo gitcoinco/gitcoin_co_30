@@ -250,8 +250,11 @@ export default function PreviewForm() {
 
           <ContentDetailPage
             item={content}
-            breadcrumbHref="/preview"
-            breadcrumbLabel="Back to Preview"
+            breadcrumbItems={[
+              { href: '/', label: 'Home' },
+              { href: '/preview', label: 'Preview' },
+              { label: content.slug },
+            ]}
             ctaUrl={content.ctaUrl}
             ctaLabel={
               content.researchType

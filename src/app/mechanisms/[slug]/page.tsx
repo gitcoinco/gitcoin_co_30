@@ -75,8 +75,11 @@ export default async function MechanismDetailPage({ params }: PageProps) {
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(articleJsonLd) }} />
       <ContentDetailPage
         item={mechanism}
-        breadcrumbHref="/mechanisms"
-        breadcrumbLabel="Back to Mechanisms"
+        breadcrumbItems={[
+          { href: '/', label: 'Home' },
+          { href: '/mechanisms', label: 'Mechanisms' },
+          { label: m.slug },
+        ]}
         relatedSections={[
           {
             title: 'Related Apps',

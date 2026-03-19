@@ -207,6 +207,10 @@
     @apply max-w-7xl mx-auto px-4 sm:px-6 lg:px-24;
   }
 
+  .detail-page-container {
+    @apply max-w-[850px] mx-auto px-4 sm:px-6 lg:px-24;
+  }
+
   /* Star decorative element */
   .star {
     @apply inline-block text-gray-25;

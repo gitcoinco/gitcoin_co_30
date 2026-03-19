@@ -104,8 +104,11 @@ export default async function CampaignDetailPage({ params }: PageProps) {
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(articleJsonLd) }} />
       <ContentDetailPage
         item={campaign}
-        breadcrumbHref="/campaigns"
-        breadcrumbLabel="Back to Campaigns"
+        breadcrumbItems={[
+          { href: '/', label: 'Home' },
+          { href: '/campaigns', label: 'Campaigns' },
+          { label: campaign.slug },
+        ]}
         ctaUrl={campaign.ctaUrl}
         ctaLabel="Visit Campaign"
         contentBefore={campaignStats}

@@ -81,8 +81,11 @@ export default async function AppDetailPage({ params }: PageProps) {
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(articleJsonLd) }} />
       <ContentDetailPage
         item={app}
-        breadcrumbHref="/apps"
-        breadcrumbLabel="Back to Apps"
+        breadcrumbItems={[
+          { href: '/', label: 'Home' },
+          { href: '/apps', label: 'Apps' },
+          { label: app.slug },
+        ]}
         showDate={false}
         relatedSections={[
           {

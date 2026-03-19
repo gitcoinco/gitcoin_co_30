@@ -1,7 +1,7 @@
 import Link from "next/link";
 import Image from "next/image";
 import {
-  ArrowLeft,
+  ChevronRight,
   Edit,
   ExternalLink,
   Twitter,
@@ -13,24 +13,31 @@ import { Button, Badge, SearchBar } from "@/components/ui";
 import CategoryIcon from "@/components/ui/CategoryIcon";
 import ChladniBackground from "@/components/ChladniBackground";
 
-interface BreadcrumbProps {
-  href: string;
+interface BreadcrumbItem {
+  href?: string;
   label: string;
 }
 
-export function Breadcrumb({ href, label }: BreadcrumbProps) {
+interface BreadcrumbProps {
+  items: BreadcrumbItem[];
+}
+
+export function Breadcrumb({ items }: BreadcrumbProps) {
   return (
-    <div className="bg-gray-950 border-b border-gray-600">
-      <div className="container-page py-4">
-        <Link
-          href={href}
-          className="inline-flex items-center gap-2 text-gray-500 hover:text-gray-25 transition-colors"
-        >
-          <ArrowLeft className="w-4 h-4" />
-          {label}
-        </Link>
-      </div>
-    </div>
+    <nav className="flex items-center gap-1 text-sm text-gray-500" aria-label="Breadcrumb">
+      {items.map((item, i) => (
+        <span key={i} className="flex items-center gap-1">
+          {i > 0 && <ChevronRight className="w-3.5 h-3.5 text-gray-600 shrink-0" />}
+          {item.href ? (
+            <Link href={item.href} className="hover:text-gray-25 transition-colors">
+              {item.label}
+            </Link>
+          ) : (
+            <span className="text-gray-400">{item.label}</span>
+          )}
+        </span>
+      ))}
+    </nav>
   );
 }
 

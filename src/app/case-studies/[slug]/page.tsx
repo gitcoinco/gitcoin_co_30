@@ -75,8 +75,11 @@ export default async function CaseStudyDetailPage({ params }: PageProps) {
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(articleJsonLd) }} />
       <ContentDetailPage
         item={caseStudy}
-        breadcrumbHref="/case-studies"
-        breadcrumbLabel="Back to Case Studies"
+        breadcrumbItems={[
+          { href: '/', label: 'Home' },
+          { href: '/case-studies', label: 'Case Studies' },
+          { label: cs.slug },
+        ]}
         relatedSections={[
           {
             title: 'Related Apps',
