@@ -41,6 +41,11 @@ const nextConfig: NextConfig = {
         destination: "/research",
         permanent: true,
       },
+      {
+        source: "/privacy",
+        destination: "/privacy-policy",
+        permanent: true,
+      },
     ];
   },
   async rewrites() {
@@ -55,37 +60,11 @@ const nextConfig: NextConfig = {
         source: "/blog",
         destination: "https://app.gitcoin.co/blog",
       },
-      // redo
-      {
-        source: "/program",
-        destination: "https://app.gitcoin.co/program",
-      },
-
-      {
-        source: "/updates",
-        destination: "https://app.gitcoin.co/updates",
-      },
 
       // redo
       {
         source: "/brand",
         destination: "https://app.gitcoin.co/brand",
-      },
-
-      // redo
-      {
-        source: "/partner",
-        destination: "https://app.gitcoin.co/partner",
-      },
-      // redo
-      {
-        source: "/privacy",
-        destination: "https://app.gitcoin.co/privacy-policy",
-      },
-      // redo
-      {
-        source: "/terms",
-        destination: "https://app.gitcoin.co/terms",
       },
 
       // impact.gitcoin.co rewrites
