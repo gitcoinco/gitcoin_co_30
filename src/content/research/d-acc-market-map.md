@@ -10,6 +10,7 @@ tags:
   - infrastructure
   - privacy
 lastUpdated: '2026-02-26'
+researchType: Analysis
 relatedMechanisms:
 
 relatedApps:

@@ -26,7 +26,7 @@ export default function AppsPage() {
           title="Featured Apps"
           subtitle="Essential platforms shaping Ethereum funding"
         />
-        <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-3">
+        <div className="grid gap-6 [grid-template-columns:repeat(auto-fit,minmax(300px,1fr))]">
           {featuredApps.map((app) => (
             <AppCard key={app.slug} app={app} variant="home" />
           ))}

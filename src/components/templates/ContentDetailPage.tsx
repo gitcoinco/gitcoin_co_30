@@ -61,8 +61,6 @@ export default function ContentDetailPage({
     breadcrumbItems.find((b) => b.href && b.href !== "/")?.href ?? "";
   return (
     <DetailPageLayout>
-      {banner && <HeroImage src={banner} alt={item.name} />}
-
       <section className="mb-16">
         {/* Header */}
         <div>
@@ -72,7 +70,7 @@ export default function ContentDetailPage({
             </div>
           </div>
 
-          <div className="border-b border-gray-700 pb-6 pt-8">
+          <div className="pb-6 pt-8">
             <div className="flex flex-col md:flex-row gap-6 md:gap-8 md:items-center detail-page-container">
               {/* Logo */}
               {item.logo && (
@@ -82,7 +80,7 @@ export default function ContentDetailPage({
                     alt={`${item.name} logo`}
                     width={80}
                     height={80}
-                    className="rounded-2xl object-cover bg-gray-900"
+                    className="rounded-2xl object-cover bg-gray-800"
                   />
                 </div>
               )}
@@ -138,8 +136,10 @@ export default function ContentDetailPage({
                   {ctaUrl && ctaLabel && (
                     <Button
                       href={ctaUrl}
+                      size="sm"
                       variant="secondary"
                       external={ctaUrl.startsWith("http")}
+                      className="ml-auto"
                     >
                       <span className="flex items-center gap-2">
                         {ctaLabel}
@@ -153,6 +153,7 @@ export default function ContentDetailPage({
           </div>
         </div>
 
+        <div className="detail-page-container">{banner && <HeroImage src={banner} alt={item.name}  />}</div>
         {/* Content */}
         <div className="space-y-8 detail-page-container pt-10 md:pt-16">
           {contentBefore}
@@ -170,7 +171,7 @@ export default function ContentDetailPage({
                   <h2 className="text-2xl font-bold text-gray-25 mb-4">
                     {section.title}
                   </h2>
-                  <div className="grid md:grid-cols-2 gap-4">
+                  <div className="grid gap-4" style={{ gridTemplateColumns: "repeat(auto-fill, minmax(280px, 1fr))" }}>
                     {section.items}
                   </div>
                 </div>

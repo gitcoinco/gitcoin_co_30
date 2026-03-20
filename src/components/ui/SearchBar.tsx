@@ -2,7 +2,7 @@
 
 import { useEffect, useState } from "react";
 import { Command, Search } from "lucide-react";
-import { useSearch } from "@/components/search/SearchProvider";
+import { useSearch } from "@/context/SearchContext";
 
 interface SearchBarProps {
   placeholder?: string;

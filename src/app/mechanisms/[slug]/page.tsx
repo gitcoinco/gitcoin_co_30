@@ -78,7 +78,7 @@ export default async function MechanismDetailPage({ params }: PageProps) {
         breadcrumbItems={[
           { href: '/', label: 'Home' },
           { href: '/mechanisms', label: 'Mechanisms' },
-          { label: m.slug },
+          { label: mechanism.name },
         ]}
         relatedSections={[
           {

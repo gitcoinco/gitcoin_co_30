@@ -4,7 +4,7 @@ import { useState, useEffect, useRef, useCallback } from "react";
 import { useRouter } from "next/navigation";
 import * as Dialog from "@radix-ui/react-dialog";
 import { Search, Hash, BookOpen, Sparkles } from "lucide-react";
-import { useSearch } from "./SearchProvider";
+import { useSearch } from "@/context/SearchContext";
 import type { SearchResultItem } from "@/app/api/search/route";
 import { Button } from "../ui";
 

@@ -84,7 +84,7 @@ export default async function AppDetailPage({ params }: PageProps) {
         breadcrumbItems={[
           { href: '/', label: 'Home' },
           { href: '/apps', label: 'Apps' },
-          { label: app.slug },
+          { label: app.name },
         ]}
         showDate={false}
         relatedSections={[

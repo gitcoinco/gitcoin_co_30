@@ -81,8 +81,8 @@ export default async function ResearchDetailPage({ params }: PageProps) {
         breadcrumbItems={[
           { href: '/', label: 'Home' },
           { href: '/research', label: 'Research' },
-          ...(r.researchType ? [{ label: r.researchType }] : []),
-          { label: r.slug },
+          ...(r.researchType ? [{ href: `/research?type=${r.researchType}`, label: r.researchType }] : []),
+          { label: r.name },
         ]}
         ctaUrl={r.ctaUrl}
         ctaLabel={r.researchType ? `Read ${r.researchType}` : 'Read'}

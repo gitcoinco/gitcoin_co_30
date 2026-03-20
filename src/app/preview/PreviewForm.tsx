@@ -253,7 +253,7 @@ export default function PreviewForm() {
             breadcrumbItems={[
               { href: '/', label: 'Home' },
               { href: '/preview', label: 'Preview' },
-              { label: content.slug },
+              { label: content.name },
             ]}
             ctaUrl={content.ctaUrl}
             ctaLabel={

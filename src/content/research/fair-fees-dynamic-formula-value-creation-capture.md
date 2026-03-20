@@ -13,6 +13,7 @@ relatedMechanisms:
   - quadratic-funding
   - direct-grants
 relatedApps: []
+researchType: Analysis
 sensemakingFor: "mechanisms"
 banner: /content-images/research/fair-fees-dynamic-formula-value-creation-capture/banner.png
 authors:

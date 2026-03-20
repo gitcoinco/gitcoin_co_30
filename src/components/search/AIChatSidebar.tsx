@@ -20,7 +20,7 @@ import {
   HelpCircle,
   BarChart3,
 } from "lucide-react";
-import { useSearch } from "./SearchProvider";
+import { useSearch } from "@/context/SearchContext";
 
 const SUGGESTED_QUESTIONS = [
   { icon: Zap, text: "What is quadratic funding?" },

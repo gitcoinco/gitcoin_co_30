@@ -19,3 +19,4 @@ export {
 
 export { default as SensemakingSection } from './SensemakingSection'
 export { CategoryContent } from './CategoryContent'
+export { AppSidebar } from './AppSidebar'

@@ -107,7 +107,7 @@ export default async function CampaignDetailPage({ params }: PageProps) {
         breadcrumbItems={[
           { href: '/', label: 'Home' },
           { href: '/campaigns', label: 'Campaigns' },
-          { label: campaign.slug },
+          { label: campaign.name },
         ]}
         ctaUrl={campaign.ctaUrl}
         ctaLabel="Visit Campaign"

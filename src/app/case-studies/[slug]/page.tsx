@@ -78,7 +78,7 @@ export default async function CaseStudyDetailPage({ params }: PageProps) {
         breadcrumbItems={[
           { href: '/', label: 'Home' },
           { href: '/case-studies', label: 'Case Studies' },
-          { label: cs.slug },
+          { label: caseStudy.name },
         ]}
         relatedSections={[
           {
