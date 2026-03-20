@@ -30,6 +30,7 @@ interface ContentDetailPageProps {
     description: string;
   };
   breadcrumbItems: BreadcrumbItem[];
+  sidebar?: ReactNode;
   relatedSections?: RelatedSection[];
   ctaUrl?: string;
   ctaLabel?: string;
@@ -41,6 +42,7 @@ interface ContentDetailPageProps {
 export default function ContentDetailPage({
   item,
   breadcrumbItems,
+  sidebar,
   relatedSections = [],
   ctaUrl,
   ctaLabel = "Visit",
@@ -60,7 +62,7 @@ export default function ContentDetailPage({
   const categoryHref =
     breadcrumbItems.find((b) => b.href && b.href !== "/")?.href ?? "";
   return (
-    <DetailPageLayout>
+    <DetailPageLayout sidebar={sidebar}>
       <section className="mb-16">
         {/* Header */}
         <div>

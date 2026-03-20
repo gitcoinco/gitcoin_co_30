@@ -6,6 +6,7 @@ import {
   SensemakingSection,
   CategoryContent,
 } from "@/components/layouts";
+import { AppSidebar } from "@/components/layouts/AppSidebar";
 import { mechanisms } from "@/content/mechanisms";
 import { getSensemakingFor } from "@/content/research";
 import SectionHeader from "@/components/ui/SectionHeader";
@@ -15,7 +16,7 @@ export const metadata: Metadata = pageSeo.mechanisms;
 
 export default function MechanismsPage() {
   return (
-    <ListPageLayout>
+    <ListPageLayout sidebar={<AppSidebar />}>
       <ListPageHeader
         title="Funding Mechanisms"
         description="Funding mechanisms and approaches"

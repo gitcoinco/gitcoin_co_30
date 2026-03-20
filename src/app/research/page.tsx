@@ -6,6 +6,7 @@ import {
   SensemakingSection,
   CategoryContent,
 } from "@/components/layouts";
+import { AppSidebar } from "@/components/layouts/AppSidebar";
 import { research, getSensemakingFor } from "@/content/research";
 import SectionHeader from "@/components/ui/SectionHeader";
 import { pageSeo } from "@/lib/page-seo";
@@ -36,7 +37,7 @@ export default async function ResearchPage({ searchParams }: PageProps) {
   const initialAuthor = params.author ?? "all";
 
   return (
-    <ListPageLayout>
+    <ListPageLayout sidebar={<AppSidebar />}>
       <ListPageHeader
         title="Research & Trends"
         description="Analysis, reports, or trend pieces"

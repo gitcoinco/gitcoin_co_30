@@ -2,6 +2,7 @@ import { Metadata } from 'next'
 import { notFound } from 'next/navigation'
 import { AppCard, MechanismCard, CaseStudyCard, ResearchCard, CampaignCard } from '@/components/cards'
 import ContentDetailPage from '@/components/templates/ContentDetailPage'
+import { AppSidebar } from '@/components/layouts/AppSidebar'
 import { getCampaignBySlug, campaigns } from '@/content/campaigns'
 import { getAppBySlug } from '@/content/apps'
 import { getMechanismBySlug } from '@/content/mechanisms'
@@ -103,6 +104,7 @@ export default async function CampaignDetailPage({ params }: PageProps) {
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumb) }} />
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(articleJsonLd) }} />
       <ContentDetailPage
+        sidebar={<AppSidebar />}
         item={campaign}
         breadcrumbItems={[
           { href: '/', label: 'Home' },

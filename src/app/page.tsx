@@ -1,6 +1,7 @@
 import { Metadata } from "next";
 import { pageSeo, siteDescription } from "@/lib/page-seo";
 import { ListPageLayout } from "@/components/layouts";
+import { AppSidebar } from "@/components/layouts/AppSidebar";
 import Link from "next/link";
 import {
   AppCard,
@@ -85,7 +86,7 @@ export default function HomePage() {
   const featuredResearch = getFeaturedResearch(4);
 
   return (
-    <ListPageLayout defaultCollapsed={true}>
+    <ListPageLayout sidebar={<AppSidebar defaultCollapsed={true} />}>
       <div className="bg-gray-900 text-gray-25" data-node-id="551:2185">
         <script
           type="application/ld+json"

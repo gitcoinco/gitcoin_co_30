@@ -7,6 +7,7 @@ import {
   SensemakingSection,
   CategoryContent,
 } from "@/components/layouts";
+import { AppSidebar } from "@/components/layouts/AppSidebar";
 import { CampaignCard } from "@/components/cards";
 import { campaigns, getFeaturedCampaigns } from "@/content/campaigns";
 import { getSensemakingFor } from "@/content/research";
@@ -18,7 +19,7 @@ export const metadata: Metadata = pageSeo.campaigns;
 export default function CampaignsPage() {
   const featuredCampaigns = getFeaturedCampaigns(2);
   return (
-    <ListPageLayout>
+    <ListPageLayout sidebar={<AppSidebar />}>
       <ListPageHeader
         title="Funding Campaigns"
         description="Active or upcoming funding rounds"

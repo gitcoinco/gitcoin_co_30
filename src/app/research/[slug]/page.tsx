@@ -2,6 +2,7 @@ import { Metadata } from 'next'
 import { notFound } from 'next/navigation'
 import { AppCard, MechanismCard, CaseStudyCard, ResearchCard, CampaignCard } from '@/components/cards'
 import ContentDetailPage from '@/components/templates/ContentDetailPage'
+import { AppSidebar } from '@/components/layouts/AppSidebar'
 import { getResearchBySlug, research } from '@/content/research'
 import { getAppBySlug } from '@/content/apps'
 import { getMechanismBySlug } from '@/content/mechanisms'
@@ -77,6 +78,7 @@ export default async function ResearchDetailPage({ params }: PageProps) {
         dangerouslySetInnerHTML={{ __html: JSON.stringify(articleJsonLd) }}
       />
       <ContentDetailPage
+        sidebar={<AppSidebar />}
         item={r}
         breadcrumbItems={[
           { href: '/', label: 'Home' },

@@ -10,8 +10,6 @@ import { ReactNode, ComponentType } from "react";
 import { Button, Badge, SearchBar } from "@/components/ui";
 import CategoryIcon from "@/components/ui/CategoryIcon";
 import ChladniBackground from "@/components/ChladniBackground";
-import { AppSidebar } from "./AppSidebar";
-
 export type { BreadcrumbItem, BreadcrumbProps } from "./Breadcrumb";
 export { Breadcrumb } from "./Breadcrumb";
 
@@ -30,12 +28,13 @@ export function HeroImage({ src, alt }: HeroImageProps) {
 
 interface DetailPageLayoutProps {
   children: ReactNode;
+  sidebar?: ReactNode;
 }
 
-export function DetailPageLayout({ children }: DetailPageLayoutProps) {
+export function DetailPageLayout({ children, sidebar }: DetailPageLayoutProps) {
   return (
     <div className="min-h-screen bg-gray-900 md:flex">
-      <AppSidebar />
+      {sidebar}
       <div className="flex-1 min-w-0">{children}</div>
     </div>
   );
@@ -242,13 +241,13 @@ export function SocialLinksSection({ links }: SocialLinksSectionProps) {
 
 interface ListPageLayoutProps {
   children: ReactNode;
-  defaultCollapsed?: boolean;
+  sidebar?: ReactNode;
 }
 
-export function ListPageLayout({ children, defaultCollapsed }: ListPageLayoutProps) {
+export function ListPageLayout({ children, sidebar }: ListPageLayoutProps) {
   return (
     <div className="min-h-screen bg-gray-900 md:flex">
-      <AppSidebar defaultCollapsed={defaultCollapsed} />
+      {sidebar}
       <div className="flex-1 min-w-0">{children}</div>
     </div>
   );
