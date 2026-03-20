@@ -89,7 +89,7 @@ export default function ContentDetailPage({
 
               <div className="flex-1">
                 {showDate && item.lastUpdated && (
-                  <p className="text-sm text-gray-500 mb-3 font-mono">
+                  <p className="text-sm text-gray-400 mb-3 font-mono">
                     {new Date(item.lastUpdated).toLocaleDateString("en-US", {
                       year: "numeric",
                       month: "short",
