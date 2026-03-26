@@ -260,7 +260,7 @@ interface ListPageHeaderProps {
 
 export function ListPageHeader({ title, description }: ListPageHeaderProps) {
   return (
-    <section className="relative -mt-[70px] pt-[70px] w-full">
+    <section className="relative -mt-[111px] pt-[111px] md:-mt-[70px] md:pt-[70px] w-full">
       <ChladniBackground variant="3" opacity={0.5} />
       <div className="absolute bottom-0 left-0 right-0 h-16 bg-gradient-to-t from-gray-900 to-transparent z-[1]" />
       <div className="relative z-10 pt-16 pb-28 w-full">

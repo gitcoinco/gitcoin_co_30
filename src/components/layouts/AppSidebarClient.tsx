@@ -260,7 +260,7 @@ function AppSidebarInner({
   return (
     <>
       {/* ── Mobile nav ─────────────────────────────────────────── */}
-      <div className="md:hidden sticky top-[70px] z-40 border-b border-gray-800 bg-gray-900">
+      <div className={`md:hidden sticky top-[70px] z-40 bg-gray-950/80 backdrop-blur-sm ${pathname === "/" ? "hidden" : ""}`}>
         <button
           className="flex items-center gap-1.5 px-4 py-3 text-gray-400 hover:text-gray-200 transition-colors cursor-pointer"
           onClick={() => setMobileOpen((o) => !o)}
