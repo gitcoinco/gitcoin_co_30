@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, useEffect, useLayoutEffect, useRef, Suspense } from "react";
+import { useState, useEffect, useLayoutEffect, useRef, useCallback, Suspense, memo } from "react";
 import { usePathname, useSearchParams } from "next/navigation";
 import Link from "next/link";
 import { ChevronRight, ChevronDown, ChevronLeft, Folder, FolderOpen } from "lucide-react";
@@ -14,6 +14,7 @@ export interface SidebarItem {
 export interface SidebarGroup {
   label: string;
   href: string;
+  type?: string;
   items: SidebarItem[];
 }
 
@@ -36,6 +37,128 @@ function SearchParamsReader({ onType }: { onType: (t: string | null) => void }) 
   useEffect(() => { onType(type); }, [type, onType]);
   return null;
 }
+
+// Module-level pure function
+function renderItems(
+  items: SidebarItem[],
+  attachRef: boolean,
+  onItemClick: (() => void) | undefined,
+  pathname: string,
+  activeItemRef: React.RefObject<HTMLAnchorElement>,
+) {
+  return items.map((item) => {
+    const isActive = pathname === item.href;
+    return (
+      <li key={item.href}>
+        <Link
+          href={item.href}
+          title={item.label}
+          onClick={onItemClick}
+          ref={attachRef && isActive ? activeItemRef : undefined}
+          className={`block text-sm py-1 px-1.5 rounded leading-snug truncate transition-colors ${
+            isActive ? "text-teal-400 font-medium" : "text-gray-300 hover:text-gray-25"
+          }`}
+        >
+          {item.label}
+        </Link>
+      </li>
+    );
+  });
+}
+
+interface SectionRowProps {
+  section: SidebarSection;
+  isExpanded: boolean;
+  pathname: string;
+  activeType: string | null;
+  attachRef: boolean;
+  onItemClick?: () => void;
+  onToggle: (label: string) => void;
+  activeItemRef: React.RefObject<HTMLAnchorElement>;
+  activeGroupRef: React.RefObject<HTMLAnchorElement>;
+  activeSectionRef: React.RefObject<HTMLAnchorElement>;
+}
+
+const SectionRow = memo(function SectionRow({
+  section, isExpanded, pathname, activeType, attachRef, onItemClick, onToggle,
+  activeItemRef, activeGroupRef, activeSectionRef,
+}: SectionRowProps) {
+  const isActiveSection = pathname === section.href || pathname.startsWith(section.href + "/");
+  const isExactSection = pathname === section.href;
+
+  return (
+    <div>
+      <div className="sticky top-0 z-10 relative">
+        <Link
+          href={section.href}
+          onClick={onItemClick}
+          ref={attachRef && isExactSection ? activeSectionRef : undefined}
+          className={`group flex items-center bg-gray-900 justify-between gap-1 py-1.5 w-full cursor-pointer transition-colors ${
+            isExactSection
+              ? "text-teal-400"
+              : isActiveSection
+              ? "text-gray-200 hover:text-gray-25"
+              : "text-gray-300 hover:text-gray-200"
+          }`}
+        >
+          <span className="flex items-center gap-1.5 text-sm font-mono uppercase tracking-widest whitespace-nowrap">
+            {isExpanded ? <FolderOpen className="size-3.5 shrink-0" /> : <Folder className="size-3.5 shrink-0" />}
+            {section.label}
+          </span>
+          <span className="shrink-0 p-0.5 text-gray-600 group-hover:text-gray-400 transition-colors">
+            {isExpanded ? <ChevronDown className="size-4" /> : <ChevronRight className="size-4" />}
+          </span>
+        </Link>
+        <button
+          onClick={(e) => { e.preventDefault(); e.stopPropagation(); onToggle(section.label); }}
+          className="absolute right-0 top-0 bottom-0 w-6 cursor-pointer"
+          aria-label={isExpanded ? `Collapse ${section.label}` : `Expand ${section.label}`}
+        />
+      </div>
+
+      <div className={`grid transition-[grid-template-rows] duration-300 ease-in-out ${isExpanded ? "grid-rows-[1fr]" : "grid-rows-[0fr]"}`}>
+        <div className="overflow-hidden">
+          <div className="border-l border-gray-800 ml-0.5 pl-2 pt-1 pb-3">
+            {section.groups && section.groups.length > 0 && (
+              <div className="space-y-2">
+                {section.groups.map((group) => {
+                  const isActiveGroup =
+                    pathname === section.href &&
+                    activeType === (group.type ?? null);
+                  return (
+                    <div
+                      key={group.href}
+                      className={`border-l-2 transition-colors pl-2 ${isActiveGroup ? "border-teal-500" : "border-transparent"}`}
+                    >
+                      <Link
+                        href={group.href}
+                        onClick={onItemClick}
+                        ref={attachRef && isActiveGroup ? activeGroupRef : undefined}
+                        className={`block text-sm font-mono py-1 px-1 rounded leading-snug transition-colors uppercase tracking-widest ${
+                          isActiveGroup ? "text-teal-400" : "text-gray-400 hover:text-gray-200"
+                        }`}
+                      >
+                        {group.label}
+                      </Link>
+                      <ul className="space-y-0.5 border-l border-gray-800 ml-1 pl-2 mt-0.5">
+                        {renderItems(group.items, attachRef, onItemClick, pathname, activeItemRef)}
+                      </ul>
+                    </div>
+                  );
+                })}
+              </div>
+            )}
+            {section.items && section.items.length > 0 && (
+              <ul className={`space-y-0.5 pl-2 ${section.groups?.length ? "mt-1" : ""}`}>
+                {renderItems(section.items, attachRef, onItemClick, pathname, activeItemRef)}
+              </ul>
+            )}
+          </div>
+        </div>
+      </div>
+    </div>
+  );
+});
 
 function AppSidebarInner({
   sections,
@@ -68,25 +191,16 @@ function AppSidebarInner({
   const widthTransition = isResizing ? "" : "transition-[width] duration-300 ease-in-out";
   const visibleWidth = collapsed ? 0 : sidebarWidth;
 
-  const renderItems = (items: SidebarItem[], attachRef: boolean, onItemClick?: () => void) =>
-    items.map((item) => {
-      const isActive = pathname === item.href;
-      return (
-        <li key={item.href}>
-          <Link
-            href={item.href}
-            title={item.label}
-            onClick={onItemClick}
-            ref={attachRef && isActive ? activeItemRef : undefined}
-            className={`block text-sm py-1 px-1.5 rounded leading-snug truncate transition-colors ${
-              isActive ? "text-teal-400 font-medium" : "text-gray-300 hover:text-gray-25"
-            }`}
-          >
-            {item.label}
-          </Link>
-        </li>
-      );
+  const toggleSection = useCallback((label: string) => {
+    setExpanded((prev) => {
+      const next = new Set(prev);
+      if (next.has(label)) next.delete(label);
+      else next.add(label);
+      return next;
     });
+  }, []);
+
+  const closeMobile = useCallback(() => setMobileOpen(false), []);
 
   const startResize = (e: React.MouseEvent) => {
     e.preventDefault();
@@ -130,99 +244,18 @@ function AppSidebarInner({
     isFirstScroll.current = false;
   }, [pathname, activeType]);
 
-  const toggleSection = (label: string) => {
-    setExpanded((prev) => {
-      const next = new Set(prev);
-      if (next.has(label)) next.delete(label);
-      else next.add(label);
-      return next;
-    });
-  };
-
   const homeClass = `block text-sm font-mono uppercase tracking-widest transition-colors whitespace-nowrap py-1.5 ${
     pathname === "/" ? "text-teal-400" : "text-gray-300 hover:text-gray-200"
   }`;
 
-  const renderSections = (attachRef: boolean, onItemClick?: () => void) =>
-    sections.map((section) => {
-      const isExpanded = expanded.has(section.label);
-      const isActiveSection = pathname === section.href || pathname.startsWith(section.href + "/");
-      const isExactSection = pathname === section.href;
-
-      return (
-        <div key={section.label}>
-          <div className="sticky top-0 z-10 relative">
-            <Link
-              href={section.href}
-              onClick={onItemClick}
-              ref={attachRef && isExactSection ? activeSectionRef : undefined}
-              className={`group flex items-center bg-gray-900 justify-between gap-1 py-1.5 w-full cursor-pointer transition-colors ${
-                isExactSection
-                  ? "text-teal-400"
-                  : isActiveSection
-                  ? "text-gray-200 hover:text-gray-25"
-                  : "text-gray-300 hover:text-gray-200"
-              }`}
-            >
-              <span className="flex items-center gap-1.5 text-sm font-mono uppercase tracking-widest whitespace-nowrap">
-                {isExpanded ? <FolderOpen className="size-3.5 shrink-0" /> : <Folder className="size-3.5 shrink-0" />}
-                {section.label}
-              </span>
-              <span className="shrink-0 p-0.5 text-gray-600 group-hover:text-gray-400 transition-colors">
-                {isExpanded ? <ChevronDown className="size-4" /> : <ChevronRight className="size-4" />}
-              </span>
-            </Link>
-            <button
-              onClick={(e) => { e.preventDefault(); e.stopPropagation(); toggleSection(section.label); }}
-              className="absolute right-0 top-0 bottom-0 w-6 cursor-pointer"
-              aria-label={isExpanded ? `Collapse ${section.label}` : `Expand ${section.label}`}
-            />
-          </div>
-
-          <div className={`grid transition-[grid-template-rows] duration-300 ease-in-out ${isExpanded ? "grid-rows-[1fr]" : "grid-rows-[0fr]"}`}>
-            <div className="overflow-hidden">
-              <div className="border-l border-gray-800 ml-0.5 pl-2 pt-1 pb-3">
-                {section.groups && section.groups.length > 0 && (
-                  <div className="space-y-2">
-                    {section.groups.map((group) => {
-                      const groupUrl = new URL(group.href, "http://x");
-                      const isActiveGroup =
-                        pathname === groupUrl.pathname &&
-                        activeType === groupUrl.searchParams.get("type");
-                      return (
-                        <div
-                          key={group.href}
-                          className={`border-l-2 transition-colors pl-2 ${isActiveGroup ? "border-teal-500" : "border-transparent"}`}
-                        >
-                          <Link
-                            href={group.href}
-                            onClick={onItemClick}
-                            ref={attachRef && isActiveGroup ? activeGroupRef : undefined}
-                            className={`block text-sm font-mono py-1 px-1 rounded leading-snug transition-colors uppercase tracking-widest ${
-                              isActiveGroup ? "text-teal-400" : "text-gray-400 hover:text-gray-200"
-                            }`}
-                          >
-                            {group.label}
-                          </Link>
-                          <ul className="space-y-0.5 border-l border-gray-800 ml-1 pl-2 mt-0.5">
-                            {renderItems(group.items, attachRef, onItemClick)}
-                          </ul>
-                        </div>
-                      );
-                    })}
-                  </div>
-                )}
-                {section.items && section.items.length > 0 && (
-                  <ul className={`space-y-0.5 pl-2 ${section.groups?.length ? "mt-1" : ""}`}>
-                    {renderItems(section.items, attachRef, onItemClick)}
-                  </ul>
-                )}
-              </div>
-            </div>
-          </div>
-        </div>
-      );
-    });
+  const sharedSectionProps = {
+    pathname,
+    activeType,
+    onToggle: toggleSection,
+    activeItemRef: activeItemRef as React.RefObject<HTMLAnchorElement>,
+    activeGroupRef: activeGroupRef as React.RefObject<HTMLAnchorElement>,
+    activeSectionRef: activeSectionRef as React.RefObject<HTMLAnchorElement>,
+  };
 
   return (
     <>
@@ -242,8 +275,19 @@ function AppSidebarInner({
           <div className="overflow-hidden">
             <div className="overflow-y-auto h-[calc(100dvh-8rem)] border-t border-gray-800">
               <nav className="px-4 py-4 space-y-4">
-                <Link href="/" onClick={() => setMobileOpen(false)} className={homeClass}>Home</Link>
-                <div className="space-y-4">{renderSections(false, () => setMobileOpen(false))}</div>
+                <Link href="/" onClick={closeMobile} className={homeClass}>Home</Link>
+                <div className="space-y-4">
+                  {sections.map((section) => (
+                    <SectionRow
+                      key={section.label}
+                      section={section}
+                      isExpanded={expanded.has(section.label)}
+                      attachRef={false}
+                      onItemClick={closeMobile}
+                      {...sharedSectionProps}
+                    />
+                  ))}
+                </div>
               </nav>
             </div>
           </div>
@@ -253,7 +297,7 @@ function AppSidebarInner({
       {mobileOpen && (
         <div
           className="md:hidden fixed inset-0 z-30 bg-gray-950/80 backdrop-blur-sm"
-          onClick={() => setMobileOpen(false)}
+          onClick={closeMobile}
           aria-hidden="true"
         />
       )}
@@ -277,7 +321,17 @@ function AppSidebarInner({
             <div ref={scrollContainerRef} className="h-full overflow-y-scroll" style={{ width: sidebarWidth }}>
               <div className="py-6 px-4 space-y-4">
                 <Link href="/" className={homeClass}>Home</Link>
-                <nav className="space-y-4">{renderSections(true)}</nav>
+                <nav className="space-y-4">
+                  {sections.map((section) => (
+                    <SectionRow
+                      key={section.label}
+                      section={section}
+                      isExpanded={expanded.has(section.label)}
+                      attachRef={true}
+                      {...sharedSectionProps}
+                    />
+                  ))}
+                </nav>
               </div>
             </div>
           </div>
@@ -314,6 +368,7 @@ export function AppSidebarClient({ sections, defaultCollapsed = false }: AppSide
 
   return (
     <>
+      {/* Only this tiny piece needs Suspense — everything else SSRs normally */}
       <Suspense>
         <SearchParamsReader onType={setActiveType} />
       </Suspense>
