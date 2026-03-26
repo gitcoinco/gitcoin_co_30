@@ -48,7 +48,7 @@ export default async function AppDetailPage({ params }: PageProps) {
   // Merge case studies from both relatedCaseStudies and getCaseStudiesByPlatform (backward compatibility)
   const caseStudiesFromPlatform = getCaseStudiesByPlatform(app.slug)
   const caseStudiesFromRelated = app.relatedCaseStudies?.map(slug => getCaseStudyBySlug(slug)).filter((cs): cs is NonNullable<typeof cs> => cs !== undefined) || []
-  const allCaseStudies = [...new Map([...caseStudiesFromPlatform, ...caseStudiesFromRelated].map(cs => [cs.id, cs])).values()]
+  const allCaseStudies = [...new Map([...caseStudiesFromPlatform, ...caseStudiesFromRelated].map(cs => [cs.slug, cs])).values()]
 
   const relatedResearch = app.relatedResearch?.map(slug => getResearchBySlug(slug)).filter((r): r is NonNullable<typeof r> => r !== undefined) || []
   const relatedCampaigns = app.relatedCampaigns?.map(slug => getCampaignBySlug(slug)).filter((c): c is NonNullable<typeof c> => c !== undefined) || []
@@ -83,26 +83,27 @@ export default async function AppDetailPage({ params }: PageProps) {
         item={app}
         breadcrumbHref="/apps"
         breadcrumbLabel="Back to Apps"
+        showDate={false}
         relatedSections={[
           {
             title: 'Related Apps',
-            items: relatedApps.map((a) => <AppCard key={a.id} app={a} />),
+            items: relatedApps.map((a) => <AppCard key={a.slug} app={a} />),
           },
           {
             title: 'Related Mechanisms',
-            items: relatedMechanisms.map((m) => <MechanismCard key={m.id} mechanism={m} />),
+            items: relatedMechanisms.map((m) => <MechanismCard key={m.slug} mechanism={m} />),
           },
           {
             title: 'Related Case Studies',
-            items: allCaseStudies.map((cs) => <CaseStudyCard key={cs.id} caseStudy={cs} />),
+            items: allCaseStudies.map((cs) => <CaseStudyCard key={cs.slug} caseStudy={cs} />),
           },
           {
             title: 'Related Research',
-            items: relatedResearch.map((r) => <ResearchCard key={r.id} research={r} />),
+            items: relatedResearch.map((r) => <ResearchCard key={r.slug} research={r} />),
           },
           {
             title: 'Related Campaigns',
-            items: relatedCampaigns.map((c) => <CampaignCard key={c.id} campaign={c} />),
+            items: relatedCampaigns.map((c) => <CampaignCard key={c.slug} campaign={c} />),
           },
         ]}
       />

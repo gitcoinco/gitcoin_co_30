@@ -2,7 +2,14 @@ import type { NextConfig } from "next";
 
 const nextConfig: NextConfig = {
   images: {
-    domains: ["images.unsplash.com"],
+    remotePatterns: [
+      { protocol: "https", hostname: "images.unsplash.com" },
+      { protocol: "https", hostname: "raw.githubusercontent.com" },
+      // GitHub-hosted issue attachment images (used in preview page)
+      { protocol: "https", hostname: "user-images.githubusercontent.com" },
+      { protocol: "https", hostname: "*.githubusercontent.com" },
+      { protocol: "https", hostname: "github-production-user-asset-*.s3.amazonaws.com" },
+    ],
   },
 
   // Prevent large packages from being bundled into serverless functions
@@ -11,18 +18,20 @@ const nextConfig: NextConfig = {
   experimental: {
     // outputFileTracingExcludes is valid but missing from the TS types
     // eslint-disable-next-line @typescript-eslint/no-explicit-any
-    ...(({
+    ...({
       outputFileTracingExcludes: {
+
         // Exclude the banner images and three.js from all serverless function
         // bundles — they are served as static files and don't need to be
         // bundled into functions like opengraph-image routes
         "**": [
+          './**/*.pdf',
           "public/content-images/**",
           "node_modules/three/**",
           "node_modules/@react-three/**",
         ],
       },
-    }) as any),
+    } as any),
   },
 
   async redirects() {
@@ -37,8 +46,8 @@ const nextConfig: NextConfig = {
   async rewrites() {
     return [
       {
-        source: "/generator",
-        destination: "https://octaviaan.github.io/Chladni-Particles/",
+        source: "/generator/:path*",
+        destination: "https://octaviaan.github.io/Chladni-Particles/:path*",
       },
       // gitcoin.co rewrites
       // medium - on webflow

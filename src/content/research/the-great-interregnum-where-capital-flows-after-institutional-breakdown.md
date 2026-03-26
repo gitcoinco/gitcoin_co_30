@@ -11,6 +11,7 @@ tags:
   - "web3"
   - "institutional design"
 lastUpdated: "2026-02-25"
+researchType: Analysis
 relatedMechanisms:
   - quadratic-funding
   - direct-grants
@@ -24,10 +25,15 @@ relatedResearch:
 relatedCaseStudies: []
 relatedCampaigns: []
 banner: /content-images/research/the-great-interregnum-where-capital-flows-after-institutional-breakdown/banner.png
+authors:
+  - Kevin Owocki
+  - exeunt
+  - Benjamin Life
+  - Vengist
 ---
 
-**Type:** Analysis
-**Authors:** @owocki, @exeuntdoteth, @omniharmonic, @0xd2_eth
+> **TLDR:** We're in an interregnum — old institutions still extract value but no longer serve most people. Capital seeks new legitimacy. Web3 coordination tools that enable fair value sharing could become the next attractor where power and investment flow. The question: where does capital go when the old world is dying and the new one isn't yet born?
+
 
 **Sources:**
 - [Bankless Protocol Sink Thesis](https://www.bankless.com)

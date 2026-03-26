@@ -26,9 +26,12 @@ relatedResearch:
   - our-choices-our-world-thriving-together
 relatedCampaigns: []
 banner: /content-images/research/microsolidarity-small-group-patterns-for-coordination/banner.png
+authors:
+  - "Kevin Owocki"
 ---
 
-**Type:** Report
+> **TLDR:** Society optimized for individuals and crowds, but ignored the small group — the crew you actually trust. Microsolidarity is a fractal coordination model: dyads, crews, teams, and congregations, each with distinct patterns. It's the missing infrastructure between "I" and "we."
+
 
 ## The Missing Middle
 

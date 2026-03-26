@@ -1,0 +1,200 @@
+name: Validate content issue
+
+on:
+  issues:
+    types: [opened, edited, labeled]
+  workflow_dispatch:
+    inputs:
+      issue_number:
+        description: Issue number to validate
+        required: true
+        type: number
+
+jobs:
+  validate:
+    # For issues trigger: only content-labelled issues
+    # For workflow_dispatch: always run (label check happens inside)
+    if: |
+      (github.event_name == 'issues' && contains(github.event.issue.labels.*.name, 'content')) ||
+      github.event_name == 'workflow_dispatch'
+    runs-on: ubuntu-latest
+    permissions:
+      issues: write
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 20
+
+      - run: npm install --no-save tsx gray-matter --no-audit --no-fund
+
+      - name: Resolve issue data
+        id: resolve
+        uses: actions/github-script@v7
+        with:
+          script: |
+            let number, body, labelNames;
+
+            if (context.eventName === 'workflow_dispatch') {
+              number = Number(context.payload.inputs.issue_number);
+              const { data: issue } = await github.rest.issues.get({
+                owner: context.repo.owner,
+                repo: context.repo.repo,
+                issue_number: number,
+              });
+              body = issue.body || '';
+              labelNames = issue.labels.map(l => typeof l === 'string' ? l : l.name);
+            } else {
+              number = context.issue.number;
+              body = context.payload.issue.body || '';
+              labelNames = context.payload.issue.labels.map(l => l.name);
+            }
+
+            if (!labelNames.includes('content')) {
+              core.setFailed('Issue does not have the "content" label — cannot validate');
+              return;
+            }
+
+            const fs = require('fs');
+            fs.writeFileSync('/tmp/issue-body.md', body);
+
+            let type = 'unknown';
+            if      (labelNames.includes('mechanism'))  type = 'mechanism';
+            else if (labelNames.includes('app'))        type = 'app';
+            else if (labelNames.includes('research'))   type = 'research';
+            else if (labelNames.includes('campaign'))   type = 'campaign';
+            else if (labelNames.includes('case-study')) type = 'case-study';
+
+            core.setOutput('number', String(number));
+            core.setOutput('type', type);
+
+      - name: Validate issue
+        id: validate
+        if: steps.resolve.outputs.type != 'unknown'
+        continue-on-error: true
+        shell: bash
+        run: |
+          set -o pipefail
+          npx tsx scripts/validate-issue.ts ${{ steps.resolve.outputs.type }} /tmp/issue-body.md 2>&1 | tee /tmp/validate-output.txt
+
+      - name: Post validation comment
+        if: steps.resolve.outputs.type != 'unknown'
+        uses: actions/github-script@v7
+        with:
+          script: |
+            const marker = '<!-- validate-issue-bot -->';
+            const outcome = '${{ steps.validate.outcome }}';
+            const issueNumber = parseInt('${{ steps.resolve.outputs.number }}');
+            const type = '${{ steps.resolve.outputs.type }}';
+            const fs = require('fs');
+
+            const previewUrl = `https://www.gitcoin.co/preview?issue=${issueNumber}&type=${type}`;
+            const previewLine = `\n\n**Preview:** [View your submission](${previewUrl})`;
+
+            let output = '';
+            try { output = fs.readFileSync('/tmp/validate-output.txt', 'utf8').trim(); } catch {}
+
+            const hasWarnings = outcome === 'success' && output.length > 0;
+
+            const successBody = hasWarnings
+              ? `${marker}\n✅ **Content validation passed** — but with reviewer notes:\n\n\`\`\`\n${output}\n\`\`\`${previewLine}\n\nOnce reviewed and approved by a maintainer, your content will be published to the site.`
+              : `${marker}\n✅ **Content validation passed!** All required fields look good — this issue is ready to be reviewed.${previewLine}\n\nOnce reviewed and approved by a maintainer, your content will be published to the site.`;
+
+            const failureBody = `${marker}\n## ❌ Content Validation Issues\n\nThe following fields need attention before this submission can be reviewed:\n\n\`\`\`\n${output}\n\`\`\`${previewLine}\n\nPlease edit the issue to fix the issues above — validation will re-run automatically.`;
+
+            const body = outcome === 'success' ? successBody : failureBody;
+
+            // Delete existing bot comment and create a new one so contributors get notified
+            const { data: comments } = await github.rest.issues.listComments({
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              issue_number: issueNumber,
+            });
+            const existing = comments.find(c => c.body?.includes(marker));
+
+            if (existing) {
+              await github.rest.issues.deleteComment({
+                owner: context.repo.owner,
+                repo: context.repo.repo,
+                comment_id: existing.id,
+              });
+            }
+
+            await github.rest.issues.createComment({
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              issue_number: issueNumber,
+              body,
+            });
+
+  revoke-approval:
+    # Remove 'approved' label and close+delete the auto-generated PR when an approved issue is edited
+    if: |
+      github.event_name == 'issues' &&
+      github.event.action == 'edited' &&
+      contains(github.event.issue.labels.*.name, 'approved')
+    runs-on: ubuntu-latest
+    permissions:
+      issues: write
+      pull-requests: write
+      contents: write
+    steps:
+      - uses: actions/github-script@v7
+        with:
+          script: |
+            await github.rest.issues.removeLabel({
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              issue_number: context.issue.number,
+              name: 'approved',
+            });
+
+            // Close the auto-generated publish PR for this issue (if still open)
+            const branch = `publish/issue-${context.issue.number}`;
+            const { data: prs } = await github.rest.pulls.list({
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              head: `${context.repo.owner}:${branch}`,
+              state: 'open',
+            });
+            for (const pr of prs) {
+              await github.rest.pulls.update({
+                owner: context.repo.owner,
+                repo: context.repo.repo,
+                pull_number: pr.number,
+                state: 'closed',
+              });
+            }
+
+            // Delete the branch so the PR cannot be reopened
+            try {
+              await github.rest.git.deleteRef({
+                owner: context.repo.owner,
+                repo: context.repo.repo,
+                ref: `heads/${branch}`,
+              });
+            } catch {
+              // Branch may not exist yet — ignore
+            }
+
+            // Find who approved this issue (most recent 'approved' label event)
+            const { data: events } = await github.rest.issues.listEvents({
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              issue_number: context.issue.number,
+            });
+            const approvalEvent = events
+              .filter(e => e.event === 'labeled' && e.label?.name === 'approved')
+              .pop();
+            const mention = approvalEvent?.actor?.login
+              ? `@${approvalEvent.actor.login}`
+              : 'The reviewer';
+
+            await github.rest.issues.createComment({
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              issue_number: context.issue.number,
+              body: `⚠️ ${mention} — this issue was edited after you approved it. The **approved** label has been removed and the publish PR has been closed. Please re-review before re-approving.`,
+            });

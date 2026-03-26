@@ -80,23 +80,23 @@ export default async function MechanismDetailPage({ params }: PageProps) {
         relatedSections={[
           {
             title: 'Related Apps',
-            items: relatedApps.map((app) => <AppCard key={app.id} app={app} />),
+            items: relatedApps.map((app) => <AppCard key={app.slug} app={app} />),
           },
           {
             title: 'Related Mechanisms',
-            items: relatedMechanisms.map((m) => <MechanismCard key={m.id} mechanism={m} />),
+            items: relatedMechanisms.map((m) => <MechanismCard key={m.slug} mechanism={m} />),
           },
           {
             title: 'Related Case Studies',
-            items: relatedCaseStudies.map((cs) => <CaseStudyCard key={cs.id} caseStudy={cs} />),
+            items: relatedCaseStudies.map((cs) => <CaseStudyCard key={cs.slug} caseStudy={cs} />),
           },
           {
             title: 'Related Research',
-            items: relatedResearch.map((r) => <ResearchCard key={r.id} research={r} />),
+            items: relatedResearch.map((r) => <ResearchCard key={r.slug} research={r} />),
           },
           {
             title: 'Related Campaigns',
-            items: relatedCampaigns.map((c) => <CampaignCard key={c.id} campaign={c} />),
+            items: relatedCampaigns.map((c) => <CampaignCard key={c.slug} campaign={c} />),
           },
         ]}
       />

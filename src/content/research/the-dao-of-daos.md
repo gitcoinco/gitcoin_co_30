@@ -26,10 +26,12 @@ relatedCaseStudies: []
 relatedCampaigns: []
 researchType: Opinion
 banner: /content-images/research/the-dao-of-daos/banner.png
+authors:
+  - Kevin Owocki
 ---
 
-**Type:** Opinion
-**Author:** @owocki
+> **TLDR:** A DAO of DAOs is an interconnected network where organizations collaborate through shared social, technical, and governance layers — moving beyond zero-sum competition to create ecosystems where DAOs collectively thrive through mutual support and interoperability.
+
 **Originally published:** [X Article](https://x.com/owocki/status/1879268830914265142) — January 14, 2025
 
 ---

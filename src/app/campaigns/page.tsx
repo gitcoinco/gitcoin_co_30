@@ -1,14 +1,15 @@
 import { Metadata } from "next";
-import { CampaignCard } from "@/components/cards";
 import {
   ListPageLayout,
   ListPageHeader,
   ItemsGrid,
   CTASection,
-  ResultsBar,
   SensemakingSection,
+  CategoryContent,
 } from "@/components/layouts";
+import { CampaignCard } from "@/components/cards";
 import { campaigns, getFeaturedCampaigns } from "@/content/campaigns";
+import { getSensemakingFor } from "@/content/research";
 import SectionHeader from "@/components/ui/SectionHeader";
 import { pageSeo } from "@/lib/page-seo";
 
@@ -23,19 +24,19 @@ export default function CampaignsPage() {
         description="Active or upcoming funding rounds"
       />
 
-      <SensemakingSection category="campaigns" />
+      <SensemakingSection article={getSensemakingFor("campaigns")} />
 
       <section className="section container-page">
         <SectionHeader
           title="Featured Campaigns"
-          subtitle="What's happening now in Ethereum funding
+          subtitle="What's happening now in Ethereum/AI funding
 
 "
         />
         <ItemsGrid columns={2}>
           {featuredCampaigns.map((campaign) => (
             <CampaignCard
-              key={campaign.id}
+              key={campaign.slug}
               campaign={campaign}
               variant="home"
             />
@@ -46,11 +47,7 @@ export default function CampaignsPage() {
       <section className="section">
         <div className="container-page">
           <SectionHeader title="All Campaigns" subtitle="" />
-          <ItemsGrid columns={2}>
-            {campaigns.map((campaign) => (
-              <CampaignCard key={campaign.id} campaign={campaign} />
-            ))}
-          </ItemsGrid>
+          <CategoryContent items={campaigns} type="campaign" columns={2} itemLabel="campaigns" />
         </div>
       </section>
 

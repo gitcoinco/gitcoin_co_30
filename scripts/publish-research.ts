@@ -1,5 +1,6 @@
 import { publishContent } from "./publish-content";
 import type { IssueMetadata } from "../src/lib/parse-issue";
+import { RESEARCH_TYPES } from "../src/lib/types";
 
 const issueNumber = process.argv[2];
 
@@ -9,13 +10,24 @@ if (!issueNumber) {
 }
 
 publishContent("research", issueNumber, {
-  addCustomFrontmatter: (_customData, metadata) => {
+  parseCustomFields: () => ({}),
+
+  addCustomFrontmatter: async (_customData, metadata, _slug) => {
     const m = metadata as unknown as IssueMetadata;
     const lines: string[] = [];
-    if (m.sensemakingFor) {
-      lines.push(`sensemakingFor: "${m.sensemakingFor}"`);
+
+    if (m.sensemakingFor) lines.push(`sensemakingFor: "${m.sensemakingFor}"`);
+
+    if (m.researchType) {
+      const normalized = m.researchType as string;
+      if (RESEARCH_TYPES.includes(normalized as any)) {
+        lines.push(`researchType: ${normalized}`);
+      } else {
+        console.warn(`⚠ Unknown researchType "${normalized}" — omitted. Valid values: ${RESEARCH_TYPES.join(", ")}`);
+      }
     }
-    if (m.researchType) lines.push(`researchType: "${m.researchType}"`);
+
+    if (m.ctaUrl) lines.push(`ctaUrl: '${m.ctaUrl}'`);
 
     return lines.join("\n");
   },

@@ -23,10 +23,10 @@ relatedResearch:
   - values-in-programmable-money
 relatedCampaigns: []
 banner: /content-images/research/from-chaos-to-coordination/banner.png
+authors:
+  - Kevin Owocki
 ---
 
-**Type:** Opinion
-**Authors:** Kevin Owocki
 **Originally published:** [Allo Capital Research](https://research.allo.capital/t/from-chaos-to-coordination-how-abundance-networks-can-transform-progressive-organizing/404), June 2025
 
 **TLDR** - The American left is stuck in a destructive cycle of fragmentation. Abundance networks offer a way out: coordination systems where individual success requires collective success, using democratic governance, shared ownership, and positive-sum incentives.

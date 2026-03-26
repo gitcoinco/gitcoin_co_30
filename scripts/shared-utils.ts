@@ -34,7 +34,8 @@ const ALLOWED_HOSTS = [
   "avatars.githubusercontent.com",
 ];
 const MAX_REDIRECTS = 5;
-const MAX_FILE_SIZE = 10 * 1024 * 1024; // 10 MB
+const MAX_FILE_SIZE = 10 * 1024 * 1024;   // 10 MB for images
+
 
 function contentTypeToExt(contentType: string): string {
   if (contentType.includes("svg")) return ".svg";
@@ -133,6 +134,7 @@ export async function downloadImage(
       });
   });
 }
+
 
 /** Download and process images (banner, logo, and description images) */
 export async function processImages(

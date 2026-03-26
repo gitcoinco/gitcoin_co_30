@@ -12,6 +12,56 @@ import {
   slugify,
 } from "../src/lib/parse-issue";
 import { processImages } from "./shared-utils";
+import type { Author } from "../src/lib/types";
+
+const AUTHORS_PATH = path.join(process.cwd(), "src", "data", "authors.json");
+
+function loadAuthors(): Author[] {
+  try {
+    return JSON.parse(fs.readFileSync(AUTHORS_PATH, "utf8")) as Author[];
+  } catch {
+    return [];
+  }
+}
+
+function saveAuthors(authors: Author[]): void {
+  fs.writeFileSync(AUTHORS_PATH, JSON.stringify(authors, null, 2) + "\n");
+}
+
+/**
+ * Sync new authors from an issue to authors.json.
+ * - New author (not in list): adds entry, logs info.
+ * - Existing author with new social: updates social, logs warning.
+ * Returns the list of author names for the frontmatter.
+ */
+function syncAuthors(entries: Array<{ name: string; social?: string }>): string[] {
+  if (entries.length === 0) return [];
+
+  const knownAuthors = loadAuthors();
+  let changed = false;
+
+  for (const entry of entries) {
+    const existing = knownAuthors.find(
+      (a) => a.name.toLowerCase() === entry.name.toLowerCase(),
+    );
+    if (!existing) {
+      knownAuthors.push({ name: entry.name, social: entry.social });
+      console.log(`   ✚ Added new author to authors.json: ${entry.name}`);
+      changed = true;
+    } else if (entry.social && entry.social !== existing.social) {
+      console.warn(
+        `   ⚠️  Author "${entry.name}" already exists in authors.json with social "${existing.social ?? "(none)"}". ` +
+          `Submitted social "${entry.social}" — updating.`,
+      );
+      existing.social = entry.social;
+      changed = true;
+    }
+  }
+
+  if (changed) saveAuthors(knownAuthors);
+
+  return entries.map((e) => e.name);
+}
 
 const GITHUB_TOKEN = process.env.GITHUB_TOKEN;
 const REPO = "gitcoinco/gitcoin_co_30";
@@ -65,7 +115,8 @@ interface CustomOptions {
   addCustomFrontmatter?: (
     customData: Record<string, unknown>,
     metadata: Record<string, unknown>,
-  ) => string;
+    slug: string,
+  ) => Promise<string> | string;
 }
 
 export async function publishContent(
@@ -100,11 +151,29 @@ export async function publishContent(
   console.log(`${config.emoji} Creating ${contentType}: ${slug}`);
 
   const description = parseSection(issue.body, "Description");
+
+  // Warn if required fields could not be parsed — typically means issue body formatting is off.
+  // The PR validation will catch anything that slips through to the committed file.
+  const parseWarnings: string[] = [];
+  if (!metadata.shortDescription)
+    parseWarnings.push("shortDescription — expected '- **Short Description**: ...' or '### Short Description' section");
+  if (!metadata.tags?.length)
+    parseWarnings.push("tags — expected '- **Tags**: tag1, tag2' or '### Tags' section");
+  if (!description)
+    parseWarnings.push("description — ## Description or ### Description section not found");
+
+  if (parseWarnings.length > 0) {
+    console.warn("\n⚠️  Some fields could not be parsed from the issue — review the generated file:");
+    for (const w of parseWarnings) console.warn(`   • ${w}`);
+    console.warn();
+  }
   const relatedMechanisms = parseList(issue.body, "Related Mechanisms");
   const relatedApps = parseList(issue.body, "Related Apps");
   const relatedCaseStudies = parseList(issue.body, "Related Case Studies");
   const relatedResearch = parseList(issue.body, "Related Research");
   const relatedCampaigns = parseList(issue.body, "Related Campaigns");
+
+  const authors = syncAuthors(metadata.authors ?? []);
 
   const customData = customOptions.parseCustomFields
     ? customOptions.parseCustomFields(issue.body)
@@ -149,15 +218,18 @@ slug: ${slug}
 name: "${issue.title.replace(titlePrefix, "").replace(/"/g, '\\"')}"
 shortDescription: "${(metadata.shortDescription || "").replace(/"/g, '\\"')}"`;
 
-
   if (banner) frontmatter += `\nbanner: ${banner}`;
   if (logo) frontmatter += `\nlogo: ${logo}`;
   if (metadata.featured) frontmatter += `\nfeatured: true`;
 
+  const authorsYaml = authors.length > 0
+    ? `\nauthors:\n${authors.map((a) => `  - "${a.replace(/"/g, '\\"')}"`).join("\n")}`
+    : "";
+
   frontmatter += `
 tags:
 ${tagsYaml}
-lastUpdated: '${new Date().toISOString().split("T")[0]}'
+lastUpdated: '${new Date().toISOString().split("T")[0]}'${authorsYaml}
 relatedMechanisms:
 ${yamlList(relatedMechanisms)}
 relatedApps:
@@ -170,9 +242,10 @@ relatedCampaigns:
 ${yamlList(relatedCampaigns)}`;
 
   if (customOptions.addCustomFrontmatter) {
-    const customFrontmatter = customOptions.addCustomFrontmatter(
+    const customFrontmatter = await customOptions.addCustomFrontmatter(
       customData,
       metadata as unknown as Record<string, unknown>,
+      slug,
     );
     if (customFrontmatter) {
       frontmatter += "\n" + customFrontmatter;

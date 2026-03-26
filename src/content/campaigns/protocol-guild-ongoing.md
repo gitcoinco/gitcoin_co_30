@@ -21,7 +21,7 @@ relatedResearch:
 
 relatedCampaigns:
 
-externalUrl: 'https://protocolguild.org'
+ctaUrl: 'https://protocolguild.org'
 matchingPoolUsd: '$100M+'
 projectsCount: '~190'
 startDate: '2022-05-01'

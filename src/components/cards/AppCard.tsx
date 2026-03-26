@@ -1,7 +1,8 @@
 import Link from "next/link";
+import Image from "next/image";
 import ContentCard from "./ContentCard";
 import type { App } from "@/lib/types";
-import { Badge, Button } from "../ui";
+import { Badge, Button, InitialAvatar } from "../ui";
 
 interface AppCardProps {
   app: App;
@@ -27,19 +28,15 @@ export default function AppCard({
             <Badge size="sm">{primaryTag}</Badge>
 
             {app.logo ? (
-              <img
+              <Image
                 src={app.logo}
                 alt={`${app.name} logo`}
-                className="mt-6 h-14 w-14 rounded-xl object-cover bg-gray-800 flex-shrink-0"
+                width={56}
+                height={56}
+                className="mt-6 rounded-xl object-cover bg-gray-800 shrink-0"
               />
             ) : (
-              <div
-                className="mt-6 h-14 w-14 rounded-xl border border-teal-500 flex-shrink-0 flex items-center justify-center"
-              >
-                <span className="text-3xl font-light text-teal-500 font-heading leading-none">
-                  {app.name.charAt(0).toUpperCase()}
-                </span>
-              </div>
+              <InitialAvatar name={app.name} className="mt-6 h-14 w-14" textClassName="text-3xl" />
             )}
 
             <h3 className="mt-5  md:text-2xl h-[48px] font-bold leading-none text-gray-25 font-heading">

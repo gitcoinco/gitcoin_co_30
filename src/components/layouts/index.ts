@@ -18,3 +18,4 @@ export {
 } from './DetailPageLayout'
 
 export { default as SensemakingSection } from './SensemakingSection'
+export { CategoryContent } from './CategoryContent'

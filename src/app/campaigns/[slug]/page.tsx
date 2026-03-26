@@ -69,6 +69,35 @@ export default async function CampaignDetailPage({ params }: PageProps) {
     },
   }
 
+  const formatDate = (d: string) =>
+    new Date(d).toLocaleDateString("en-US", { month: "short", day: "numeric", year: "numeric" });
+
+  const campaignStats = (campaign.matchingPoolUsd || campaign.projectsCount || campaign.startDate) ? (
+    <dl className="flex flex-wrap gap-x-10 gap-y-4 py-5 border-b border-gray-700">
+      {campaign.matchingPoolUsd && (
+        <div>
+          <dt className="text-xs text-gray-400 uppercase tracking-wider">Matching Pool</dt>
+          <dd className="mt-1 text-xl font-semibold text-gray-25">{campaign.matchingPoolUsd}</dd>
+        </div>
+      )}
+      {campaign.projectsCount && (
+        <div>
+          <dt className="text-xs text-gray-400 uppercase tracking-wider">Projects</dt>
+          <dd className="mt-1 text-xl font-semibold text-gray-25">{campaign.projectsCount}</dd>
+        </div>
+      )}
+      {campaign.startDate && (
+        <div>
+          <dt className="text-xs text-gray-400 uppercase tracking-wider">Period</dt>
+          <dd className="mt-1 text-xl font-semibold text-gray-25">
+            {formatDate(campaign.startDate)}
+            {campaign.endDate ? ` – ${formatDate(campaign.endDate)}` : " – Ongoing"}
+          </dd>
+        </div>
+      )}
+    </dl>
+  ) : undefined;
+
   return (
     <>
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumb) }} />
@@ -77,26 +106,29 @@ export default async function CampaignDetailPage({ params }: PageProps) {
         item={campaign}
         breadcrumbHref="/campaigns"
         breadcrumbLabel="Back to Campaigns"
+        ctaUrl={campaign.ctaUrl}
+        ctaLabel="Visit Campaign"
+        contentBefore={campaignStats}
         relatedSections={[
           {
             title: 'Related Apps',
-            items: relatedApps.map((app) => <AppCard key={app.id} app={app} />),
+            items: relatedApps.map((app) => <AppCard key={app.slug} app={app} />),
           },
           {
             title: 'Related Mechanisms',
-            items: relatedMechanisms.map((m) => <MechanismCard key={m.id} mechanism={m} />),
+            items: relatedMechanisms.map((m) => <MechanismCard key={m.slug} mechanism={m} />),
           },
           {
             title: 'Related Case Studies',
-            items: relatedCaseStudies.map((cs) => <CaseStudyCard key={cs.id} caseStudy={cs} />),
+            items: relatedCaseStudies.map((cs) => <CaseStudyCard key={cs.slug} caseStudy={cs} />),
           },
           {
             title: 'Related Research',
-            items: relatedResearch.map((r) => <ResearchCard key={r.id} research={r} />),
+            items: relatedResearch.map((r) => <ResearchCard key={r.slug} research={r} />),
           },
           {
             title: 'Related Campaigns',
-            items: relatedCampaigns.map((c) => <CampaignCard key={c.id} campaign={c} />),
+            items: relatedCampaigns.map((c) => <CampaignCard key={c.slug} campaign={c} />),
           },
         ]}
       />

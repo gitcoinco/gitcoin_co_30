@@ -2,6 +2,7 @@ import fs from 'fs'
 import path from 'path'
 import matter from 'gray-matter'
 import type { CaseStudy, App, Mechanism, Research, Campaign } from './types'
+import { RESEARCH_TYPES } from './types'
 
 const contentDirectory = path.join(process.cwd(), 'src', 'content')
 const caseStudiesDirectory = path.join(contentDirectory, 'case-studies')
@@ -59,6 +60,7 @@ function parseBaseContent(data: any, content: string, slug: string): App | Mecha
     relatedCaseStudies: data.relatedCaseStudies || [],
     relatedResearch: data.relatedResearch || [],
     relatedCampaigns: data.relatedCampaigns || [],
+    authors: data.authors || [],
   }
 }
 
@@ -118,7 +120,8 @@ function parseResearch(data: any, content: string, slug: string): Research {
   return {
     ...parseBaseContent(data, content, slug),
     sensemakingFor: data.sensemakingFor,
-    researchType: data.researchType
+    researchType: RESEARCH_TYPES.find(t => t.toLowerCase() === String(data.researchType ?? '').toLowerCase()) ?? undefined,
+    ctaUrl: data.ctaUrl,
   } as Research;
 }
 
@@ -137,7 +140,7 @@ export function getResearchItemFromMarkdown(slug: string): Research | undefined 
 function parseCampaign(data: any, content: string, slug: string): Campaign {
   return {
     ...parseBaseContent(data, content, slug),
-    externalUrl: data.externalUrl,
+    ctaUrl: data.ctaUrl,
     matchingPoolUsd: data.matchingPoolUsd,
     projectsCount: data.projectsCount,
     startDate: data.startDate,

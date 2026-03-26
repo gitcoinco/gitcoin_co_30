@@ -29,10 +29,12 @@ relatedResearch:
 relatedCaseStudies: []
 relatedCampaigns: []
 banner: /content-images/research/from-degen-to-regen-the-cultural-shift-in-crypto/banner.png
+authors:
+  - "Kevin Owocki"
 ---
 
-**Type:** Opinion
-**Authors:** Gitcoin Research
+> **TLDR:** Crypto culture evolved from "degen" speculation — aping into meme coins, treating portfolios like slot machines — toward "regen" public goods funding. The shift wasn't just about mechanisms; it was about narrative. GreenPill made regeneration a viable identity. The narrative matters as much as the tech.
+
 
 ## The Arc of Crypto Culture
 

@@ -22,10 +22,10 @@ relatedResearch:
   - exploring-the-capital-allocation-design-space
 relatedCampaigns: []
 banner: /content-images/research/networks-vs-hierarchies/banner.png
+authors:
+  - Kevin Owocki
 ---
 
-**Type:** Report
-**Authors:** Kevin Owocki
 **Originally published:** [Allo Capital Research](https://research.allo.capital/t/networks-vs-hierarchies-organizational-structures-in-the-digital-age/329), May 2025
 
 **TLDR** - Hierarchies offer stability but resist change, while networks enable innovation through distributed authority, lateral connections, and multidirectional information flows. DAOs use blockchain to create "networks on steroids" where code replaces managers. The future will blend hierarchy's clarity with network's flexibility.

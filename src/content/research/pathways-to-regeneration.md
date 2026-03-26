@@ -24,10 +24,12 @@ relatedResearch:
   - biofi-bioregional-finance-web3
 relatedCampaigns: []
 banner: /content-images/research/pathways-to-regeneration/banner.png
+authors:
+  - Scott Morris
+  - Stephen DeMeulenaere
+ctaUrl: /content-images/research/pathways-to-regeneration/pathways-to-regeneration.pdf
 ---
 
-**Type:** Book
-**Authors:** Scott Morris, Stephen DeMeulenaere
 **Published by:** [Allo Capital](https://www.allo.capital/resources/pathways-to-regeneration)
 
 ![Pathways to Regeneration Cover](/content-images/research/pathways-to-regeneration/cover.jpg)

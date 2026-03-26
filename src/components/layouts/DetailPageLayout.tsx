@@ -1,4 +1,5 @@
 import Link from "next/link";
+import Image from "next/image";
 import {
   ArrowLeft,
   Edit,
@@ -36,19 +37,13 @@ export function Breadcrumb({ href, label }: BreadcrumbProps) {
 interface HeroImageProps {
   src: string;
   alt: string;
-  readTime?: number;
 }
 
-export function HeroImage({ src, alt, readTime }: HeroImageProps) {
+export function HeroImage({ src, alt }: HeroImageProps) {
   return (
     <div className="h-64 md:h-80 bg-gray-950 relative overflow-hidden">
-      <img src={src} alt={alt} className="w-full h-full object-cover" />
+      <Image src={src} alt={alt} fill sizes="100vw" className="object-cover" />
       <div className="absolute inset-0 bg-linear-to-t from-gray-950 to-transparent" />
-      {readTime !== undefined && (
-        <div className="absolute top-4 right-4 bg-gray-900 backdrop-blur-sm text-gray-200 px-3 py-1.5 rounded-md">
-          {readTime} min read
-        </div>
-      )}
     </div>
   );
 }

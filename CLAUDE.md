@@ -1,5 +1,33 @@
 # Gitcoin 30 — Instructions for Claude
 
+## Standing Rules
+
+### Subagents must always receive CLAUDE.md context
+
+Subagents (launched via the Agent tool) start with zero context. Whenever launching a subagent, always copy the full contents of CLAUDE.md into the subagent prompt. This ensures rules like image downloading, frontmatter schemas, and content conventions are followed.
+### 1. Keep documentation in sync — always
+
+Whenever frontmatter schemas, field names, valid enum values, or content conventions change, you **must** update **all four** in the same change:
+
+1. **`CLAUDE.md`** — the authoritative schema reference (Frontmatter Schemas section below)
+2. **`README.md`** — the public-facing Metadata / Frontmatter Fields section
+3. **`.github/ISSUE_TEMPLATE/{type}.yml`** — the relevant issue template(s)
+4. **`scripts/validate-content.ts`** — add/update the corresponding validation logic
+
+Never update one without checking and updating the others.
+
+### 2. Enum values live in `src/lib/types.ts` — single source of truth
+
+`RESEARCH_TYPES` and `SENSEMAKING_CATEGORIES` are exported constants in `types.ts`. `parse-issue.ts`, `validate-content.ts`, and `content-validators.ts` import from there. Never duplicate these lists inline.
+
+### 3. Clean code
+
+- No dead code — remove hooks, props, or exports that nothing uses
+- No duplication — if two places need the same constant, export it from one source
+- Scripts stay consistent — publish scripts follow the same pattern: `parseCustomFields` captures data from the issue body, `addCustomFrontmatter` (async) processes and writes frontmatter fields including any file downloads
+
+---
+
 ## Project Overview
 
 A directory of public goods funding mechanisms, apps, campaigns, research, and case studies in the Ethereum ecosystem. Built with Next.js (App Router), React, Tailwind CSS v4, TypeScript.
@@ -36,6 +64,9 @@ tags:
   - tag-one
   - tag-two
 lastUpdated: 'YYYY-MM-DD'
+authors:                       # Always set when ingesting from an external source (see Ingesting section)
+  - "Jane Smith"               # Names must exactly match entries in src/data/authors.json
+  - "John Doe"                 # Add new authors to authors.json first if not already listed
 relatedMechanisms:
   - quadratic-funding
 relatedApps:
@@ -49,42 +80,52 @@ relatedCampaigns:
 ---
 ```
 
+> `authors` is required. Names must exactly match entries in `src/data/authors.json`. Add new authors to that file before referencing them. Validation errors on unknown authors block CI.
+>
 > All five `related*` fields are parsed from frontmatter and rendered as related content sections on detail pages.
 
 ### Apps — additional fields
 
 ```yaml
 logo: /content-images/apps/{slug}/logo.png   # Only if file exists — see Image Rules
-featured: true                               # Optional — surfaces in featured section on /apps and homepage
+featured: true                               # Team only — set by Gitcoin team. Surfaces in featured section on /apps and homepage
 ```
 
 Logo images for apps must be the **white/negative (inverted) version** of the app's logo. They are displayed on dark backgrounds — a full-colour logo will not render correctly.
 
-### Research — additional field
+### Research — additional fields
 
 ```yaml
-sensemakingFor: mechanisms   # Optional — marks this as the sensemaking article for a category page
+sensemakingFor: mechanisms   # Team only — set by Gitcoin team. Marks this as the sensemaking article for a category page
                              # Valid values: mechanisms | apps | campaigns | case-studies | research
                              # Only one article per category should have this set
                              # Use a wider 3:1 banner (e.g. 1800×600px) for sensemaking articles
 
-researchType: Report # Optional - can be Report | Opinion but not restricted to these values only
+researchType: Report         # Optional — MUST be one of: Book | Report | Opinion | Analysis | Perspective | Essay
+                             # Validated by CI. Do not use other values.
+
+ctaUrl: '/content-images/research/{slug}/book.pdf'  # Optional — URL for a CTA button on the detail page
+                                                     # For PDFs in this repo: named book.pdf by convention, stored at
+                                                     #   public/content-images/research/{slug}/book.pdf
+                                                     #   Add via PR — commit the PDF directly to that path (team only)
+                                                     # For external links: use a full https:// URL
+                                                     # Button label derived automatically: "Read {researchType}" (e.g. "Read Book")
 ```
 
 ### Campaigns — additional fields
 
 ```yaml
-featured: true                    # Optional — surfaces in featured section on /campaigns and homepage
-externalUrl: 'https://...'        # Link to the campaign/round
+featured: true                    # Team only — set by Gitcoin team. Surfaces in featured section on /campaigns and homepage
+ctaUrl: 'https://...'             # Link to the campaign/round
 matchingPoolUsd: '$1.5M'          # Total matching pool as a display string
 projectsCount: '265'              # Number of projects as a display string
 startDate: 'YYYY-MM-DD'
 endDate: 'YYYY-MM-DD'             # Leave as empty string '' for ongoing campaigns
 ```
 
-### featured field (all content types)
+### featured field (all content types) — team only
 
-`featured: true` is available on every content type. What it does per type:
+`featured: true` is set by the Gitcoin team only. What it does per type:
 - **apps** → shown in featured section on `/apps` page and on the homepage
 - **campaigns** → shown in featured section on `/campaigns` page and on the homepage
 - **research** → shown in featured section on the homepage
@@ -93,6 +134,12 @@ endDate: 'YYYY-MM-DD'             # Leave as empty string '' for ongoing campaig
 ---
 
 ## Image Rules — Read Carefully
+
+### Banners MUST be generated with the Chladni generator — no exceptions
+
+**Do not use any other image as a banner.** Do not use screenshots, article preview images, external images, or images sourced from the original article as the `banner` field. The only accepted banner format is a PNG generated by the Chladni Particles generator (`npm run banner:auto` or `npm run banner:pick`).
+
+If you have an image you want to include in the article body, embed it in the markdown content — it does not belong in the `banner` field.
 
 ### NEVER add banner/logo frontmatter without the actual file
 
@@ -110,6 +157,10 @@ Banners and logos are used as OG (Open Graph) images for social media previews. 
 App logos must be the **white/negative (inverted) version** — they are rendered on dark backgrounds. A full-colour or dark logo will not be visible.
 
 ### Image locations
+
+**Images MUST go under `public/content-images/`. Never place images inside `src/content/`.**
+
+The banner file must be named exactly `banner.png` or `banner.jpg` — not `article-preview.png`, `hero.png`, or anything else. The frontmatter path must match the actual file path exactly.
 
 ```
 public/content-images/
@@ -131,6 +182,12 @@ public/content-images/
 │       └── banner.png
 └── placeholder.png           # fallback shown when no banner/logo is set
 ```
+
+So for a research article with slug `my-article`, the only valid setup is:
+- File on disk: `public/content-images/research/my-article/banner.png`
+- Frontmatter: `banner: /content-images/research/my-article/banner.png`
+
+If these don't match exactly, the page breaks.
 
 ### Image dimensions
 
@@ -198,8 +255,10 @@ npm run publish-campaign <issue-number>
 
 ### Manual creation (what Claude should do)
 
+**Before creating the file, always ask:** "Who is the author of this article?" The `authors:` field is required — always set it. Check `src/data/authors.json` and add a new entry if the author is not already listed, then set `authors:` in the frontmatter.
+
 1. Create the file at `src/content/{category}/{slug}.md`
-2. Do **not** add `banner:` to the frontmatter — omit it entirely
+2. **Do not add `banner:` to the frontmatter — omit it entirely.** Banners are always generated by the Chladni generator; never use another image as a banner. Run `npm run banner:auto` after creating the file — it generates the banner and patches the frontmatter automatically.
 3. **Download inline images from the source article.** If the original article contains embedded images (diagrams, charts, figures, screenshots), download each one and save it to `public/content-images/{category}/{slug}/` with a descriptive filename (e.g. `diagram-1.png`, `funding-flow.png`). Reference them in the markdown body as `![Alt text](/content-images/{category}/{slug}/filename.png)`. Do **not** leave external URLs as image sources — always download and host locally.
 4. After creating all content files, run:
    ```bash
@@ -213,10 +272,29 @@ npm run publish-campaign <issue-number>
 
 When ingesting a post/article from an external URL (e.g. gov.gitcoin.co, blog posts, etc.):
 
+#### For Gitcoin Governance Forum (Discourse) posts — REQUIRED approach
+
+**Never use `WebFetch` on a Discourse post URL to get the body.** `WebFetch` returns plain text and strips all hyperlinks. Use the JSON API instead:
+
+```
+GET https://gov.gitcoin.co/t/{slug}/{id}.json
+```
+
+The response contains:
+- `post_stream.posts[0].cooked` — the full rendered HTML of the post body, with all links intact
+- `details.created_by.username` and `details.created_by.name` — the original author
+
+Convert `cooked` HTML to markdown, preserving ALL `<a href="...">text</a>` elements as `[text](url)` markdown links. Every inline link, every list item link, every "Related:" section link must be converted. Do not strip any links.
+
+**Author frontmatter:** Always add `authors:` frontmatter using the poster's display name from `details.created_by.name` (or `username` if name is blank). If the author is not yet in `src/data/authors.json`, add them. Use Twitter as the preferred social link if available; fall back to their Discourse profile (`https://gov.gitcoin.co/u/{username}`).
+
+#### For all external sources
+
 1. **Always download inline images.** Fetch the page, identify ALL images in the post body, and download the original/high-resolution versions to `public/content-images/{category}/{slug}/`. Use descriptive filenames (e.g. `01-diagram-name.png`, `02-chart-name.png`).
 2. **Reference images with local paths** in the markdown body — use `/content-images/{category}/{slug}/filename.png`, not the original external URLs. External image URLs can break or disappear over time.
-3. **Preserve the original structure** of the source content as closely as possible — keep headings, tables, lists, and image placement in their original positions rather than summarizing or reorganizing.
-4. Skip images that are purely navigational (avatars, UI chrome, social share buttons) — only download content-relevant images like diagrams, charts, screenshots, and illustrations.
+3. **Preserve ALL links.** Every hyperlink in the original must become a `[text](url)` markdown link. Never reduce a linked phrase to plain text. This includes inline links, list item links, and reference sections.
+4. **Preserve the original structure** of the source content as closely as possible — keep headings, tables, lists, and image placement in their original positions rather than summarizing or reorganizing.
+5. Skip images that are purely navigational (avatars, UI chrome, social share buttons) — only download content-relevant images like diagrams, charts, screenshots, and illustrations.
 
 ### Slugs
 
@@ -240,4 +318,7 @@ npm run dev                       # dev server
 npm run build                     # production build
 npm run lint
 npm run sync-docs                 # sync content to OpenAI vector store for AI chat
+npx tsx scripts/validate-content.ts          # validate all content files
+npx tsx scripts/validate-content.ts src/content/research/my-article.md  # validate one file
+npx tsx scripts/validate-issue.ts <type> <body-file>  # validate a GitHub issue body (types: app, mechanism, research, case-study, campaign)
 ```

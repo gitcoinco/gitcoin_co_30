@@ -26,10 +26,10 @@ relatedResearch:
 relatedCaseStudies: []
 relatedCampaigns: []
 banner: /content-images/research/collective-intelligence-protocols-for-thinking-together/banner.png
+authors:
+  - "Kevin Owocki"
 ---
 
-**Type:** Report
-**Authors:** Gitcoin Research
 
 **Sources:**
 - [Gordon Brander — Noosphere, a Protocol for Thought](https://newsletter.squishy.computer/p/noosphere-a-protocol-for-thought)

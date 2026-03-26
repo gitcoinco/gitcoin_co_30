@@ -19,9 +19,11 @@ relatedResearch:
 relatedCampaigns:
 
 banner: /content-images/case-studies/gitcoin-citizens-round-1-retroactive-quadratic-funding-for-community-contributions/banner.png
+authors:
+  - Umar Khan
 ---
 
-The Gitcoin Citizens Round 1 was the inaugural deployment of **retroactive quadratic funding** designed to reward non-technical community contributions with demonstrated impact. Running for two weeks in June 2023 with a 20,000 DAI matching pool, the round attracted over 17,000 donors and generated approximately 82,968 DAI in direct contributions—resulting in a roughly 4× amplification of matching funds.
+The [Gitcoin Citizens](https://gitcoin.notion.site/DAO-Citizen-Resource-Hub-7b83f9b5ca06487f84e0142d0180970a) Round 1 was the inaugural deployment of **retroactive quadratic funding** designed to reward non-technical community contributions with demonstrated impact. Running for two weeks in June 2023 with a 20,000 DAI matching pool, the round attracted over 17,000 donors and generated approximately 82,968 DAI in direct contributions—resulting in a roughly 4× amplification of matching funds.
 
 By allocating funds based on community donation behavior rather than prospective proposals, the round tested whether retroactive QF could surface meaningful signal about past contributions. The results suggest that even modest matching pools can catalyze significant participation and crowdfunding when impact is observable and legible to the community.
 
@@ -47,7 +49,7 @@ The round was operated by community program managers rather than a centralized g
 
 The Citizens Round generated approximately 102,968 DAI in total funding against a 20,000 DAI matching pool, representing a roughly 4× crowdfunding-to-matching ratio—the highest such multiplier recorded in a Gitcoin round at the time.
 
-More than 17,000 donors participated, far exceeding initial expectations of community contribution volume. The top three recipients were Karma (approximately 13,600 DAI), Biteye (approximately 10,400 DAI), and BanklessDAO's Gitcoin Citizens initiative (approximately 10,300 DAI).
+More than 17,000 donors participated, far exceeding initial expectations of community contribution volume. The top three recipients were Karma (approximately 13,600 DAI), Biteye (approximately 10,400 DAI), and BanklessDAO's [Gitcoin Citizens](https://gitcoin.notion.site/DAO-Citizen-Resource-Hub-7b83f9b5ca06487f84e0142d0180970a) initiative (approximately 10,300 DAI).
 
 The round demonstrated that retroactive quadratic funding can mobilize substantial participation and capital even with limited matching funds, provided contributors have visibility into past impact.
 
@@ -83,7 +85,7 @@ Post-round analysis indicated that over 50% of donors participated with speculat
 
 ## Conclusion
 
-The Gitcoin Citizens Round demonstrated that retroactive quadratic funding can be used to reward non-technical community contributions at scale, while generating meaningful participation and funding outcomes. By shifting allocation from speculative proposals to demonstrated impact, the round surfaced both the strengths and limitations of donation-based retroactive signaling.
+The [Gitcoin Citizens](https://gitcoin.notion.site/DAO-Citizen-Resource-Hub-7b83f9b5ca06487f84e0142d0180970a) Round demonstrated that retroactive quadratic funding can be used to reward non-technical community contributions at scale, while generating meaningful participation and funding outcomes. By shifting allocation from speculative proposals to demonstrated impact, the round surfaced both the strengths and limitations of donation-based retroactive signaling.
 
 As an early case study, the Citizens Round highlights key design considerations for future retroactive funding programs, including the importance of voter context, identity design, and signal quality. These insights are relevant to DAOs, protocols, and communities exploring retroactive funding mechanisms as a complement to prospective grants and committee-based allocation.
 

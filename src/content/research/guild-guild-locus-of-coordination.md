@@ -10,6 +10,7 @@ tags:
   - collective bargaining
   - governance
 lastUpdated: '2024-09-30'
+researchType: Report
 relatedMechanisms:
   - direct-grants
   - self-curated-registries
@@ -22,25 +23,32 @@ relatedResearch:
   - plural-funding-mechanisms
 relatedCampaigns: []
 banner: /content-images/research/guild-guild-locus-of-coordination/banner.png
+authors:
+  - Josh Tan
+  - James Waugh
+  - Rena O'Brien
+  - Kevin Owocki
+  - Vengist
+  - Michael Zargam
+  - Paul Wackerow
+  - Manu Alzuru
 ---
 
-**Type:** Report
-**Authors:** Josh Tan, James Waugh, Rena O'Brien, Kevin Owocki, Ven Gist, Michael Zargam, Paul Wackerow, Manu Alzuru
 **Source:** [Gitcoin Governance Forum](https://gov.gitcoin.co/t/guild-guild-a-locus-of-coordination-for-guilding/19452)
 
 ## TLDR
 
 ![Guild Guild concept overview](/content-images/research/guild-guild-locus-of-coordination/guild-concept-header.jpeg)
 
-1. **Guilds as Collective Power:** Historically used for collective bargaining and resource pooling, guilds now extend to digital communities like Protocol Guild, which supports Ethereum developers through aggregated funding.
-2. **Collective Bargaining Advantage:** Protocol Guild leverages group negotiating strength, enabling Ethereum core contributors to secure protocol and DAO funding for public goods.
+1. **Guilds as Collective Power:** Historically used for collective bargaining and resource pooling, guilds now extend to digital communities like [Protocol Guild](https://protocol-guild.readthedocs.io/), which supports Ethereum developers through aggregated funding.
+2. **Collective Bargaining Advantage:** [Protocol Guild](https://protocol-guild.readthedocs.io/) leverages group negotiating strength, enabling Ethereum core contributors to secure protocol and DAO funding for public goods.
 3. **Guild Guild Purpose:** Functions as a locus of coordination for guilding (creating, stewarding, enabling, or studying guilds), serving as a mechanism to establish and promote additional guilds.
 
 ## What is a Guild?
 
 A guild represents a community of individuals or groups that collaborate for a common purpose, pooling resources and efforts to achieve shared goals. Historically significant in trade and craft industries since the 11th century, guilds organized workers for collective bargaining on working conditions and compensation.
 
-In contemporary web3 contexts, the Protocol Guild exemplifies this evolved model. It creates mechanisms for rewarding Ethereum core contributors collectively, with treasuries accumulating millions of dollars distributed among developers.
+In contemporary web3 contexts, the [Protocol Guild](https://protocol-guild.readthedocs.io/) exemplifies this evolved model. It creates mechanisms for rewarding Ethereum core contributors collectively, with treasuries accumulating millions of dollars distributed among developers.
 
 ## Collective Bargaining Power
 
@@ -54,9 +62,9 @@ Key benefits include:
 
 ## The Need for More Guilds
 
-The Protocol Guild's success sparked broader discussions about expanding the guild model ecosystem-wide. Potential specialized guilds include:
+The [Protocol Guild](https://protocol-guild.readthedocs.io/)'s success sparked broader discussions about expanding the guild model ecosystem-wide. Potential specialized guilds include:
 
-- **Protocol Guild:** Original core contributor funding model
+- **[Protocol Guild](https://protocol-guild.readthedocs.io/):** Original core contributor funding model
 - **Dev Tooling Guild:** Developer tools creation and maintenance
 - **DAO Guild:** Governance standards, delegate organization, research coordination
 - **Security Guild:** Ethereum security specialization
@@ -65,11 +73,11 @@ The Protocol Guild's success sparked broader discussions about expanding the gui
 
 ![Vitalik Buterin on potential guild types in the Ethereum ecosystem](/content-images/research/guild-guild-locus-of-coordination/vitalik-guild-types.png)
 
-As guilds proliferate, "funder fatigue" becomes a concern, addressable through curated guild registries.
+As guilds proliferate, "[funder fatigue](https://gov.gitcoin.co/t/web3-funding-fatigue-a-growing-problem/19423/)" becomes a concern, addressable through curated guild registries.
 
 ## Guild Guild: A Guild Generator
 
-Guild Guild addresses ecosystem coordination needs by replicating and extending Protocol Guild's success. Operational approaches include:
+Guild Guild addresses ecosystem coordination needs by replicating and extending [Protocol Guild](https://protocol-guild.readthedocs.io/)'s success. Operational approaches include:
 
 1. Propagating guild-formation capabilities
 2. Simplifying organizational processes
@@ -105,7 +113,7 @@ Guilds establish stable loci of coordination — preserving adequate decentraliz
 
 ## Next Steps
 
-**Creating a Guild Generator:** Development priorities include optimizing smart contracts for diverse guild applications, modularizing Protocol Guild components for replicability, and encoding off-chain mechanisms into transferable recipes.
+**Creating a Guild Generator:** Development priorities include optimizing smart contracts for diverse guild applications, modularizing [Protocol Guild](https://protocol-guild.readthedocs.io/) components for replicability, and encoding off-chain mechanisms into transferable recipes.
 
 **Aggregating Guilds:** Anticipated guild proliferation requires accessible launch mechanisms. Qualifying communities should share Ethereum public goods commitment and purposeful coordination intention. Low barriers encourage experimentation, with the most legitimate experiments rising to the top through evolutionary selection.
 

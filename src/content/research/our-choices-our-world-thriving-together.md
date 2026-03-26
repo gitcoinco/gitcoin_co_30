@@ -28,10 +28,12 @@ relatedCaseStudies: []
 relatedCampaigns: []
 researchType: Opinion
 banner: /content-images/research/our-choices-our-world-thriving-together/banner.png
+authors:
+  - Kevin Owocki
 ---
 
-**Type:** Opinion
-**Author:** @owocki
+> **TLDR:** We have the agency to collectively shape our future — blockchain technology and new coordination mechanisms give us tools to choose a timeline where human thriving is maximized. The choices we make now determine which branch of the multiverse we inhabit.
+
 **Originally published:** [X Article](https://x.com/owocki/status/1899824794226639011) — March 12, 2025
 **Series:** Part 1 of 3
 

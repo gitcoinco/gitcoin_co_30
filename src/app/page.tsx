@@ -101,15 +101,14 @@ export default function HomePage() {
           <div className="pb-20 pt-16 md:pb-28 md:pt-24">
             <div className="flex flex-col mx-auto w-fit">
               <p className="mb-8 w-fit rounded-lg bg-gray-900 px-5 py-[10px] text-sm text-teal-500 font-mono">
-                Fund What Matters
+                Your Map of the Funding Trends in the Next Internet
               </p>
-              <h1 className="max-w-170 text-4xl sm:text-5xl/14 md:text-7xl/20 font-extrabold text-gray-25 font-heading">
-                The Map of the Funding Universe
+              <h1 className="max-w-180 text-4xl sm:text-5xl/14 md:text-7xl/20 font-extrabold text-gray-25 font-heading">
+                Fund What Matters
               </h1>
               <p className="mt-6 max-w-[732px] text-xl text-gray-100 font-serif">
                 Your trusted directory and reference library for funding
-                mechanisms, platforms, case studies, and research in the
-                Ethereum ecosystem.
+                mechanisms, platforms, case studies, and research in the new internet - informed by contemporary trends like crowdfunding, AI, Ethereum, open source software, stablecoins, decentralized networks, participatory budgeting, and collective action in the 21st century.
               </p>
 
               <div className="mt-8 w-full max-w-[732px]">
@@ -140,13 +139,13 @@ export default function HomePage() {
           >
             <SectionHeader
               title="Featured Campaigns"
-              subtitle="What's happening now in Ethereum funding"
+              subtitle="What's happening now in AI/Ethereum funding"
               href="/campaigns"
             />
             <div className="grid gap-5 lg:grid-cols-2">
               {featuredCampaigns.map((campaign) => (
                 <CampaignCard
-                  key={campaign.id}
+                  key={campaign.slug}
                   campaign={campaign}
                   variant="home"
                 />
@@ -188,7 +187,7 @@ export default function HomePage() {
               />
               <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-3">
                 {featuredApps.map((app) => (
-                  <AppCard key={app.id} app={app} variant="home" />
+                  <AppCard key={app.slug} app={app} variant="home" />
                 ))}
               </div>
             </div>
@@ -205,7 +204,7 @@ export default function HomePage() {
             <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-4">
               {featuredResearch.map((research) => (
                 <ResearchCard
-                  key={research.id}
+                  key={research.slug}
                   research={research}
                   variant="home"
                 />
@@ -227,9 +226,9 @@ export default function HomePage() {
               </h2>
               <p className="mx-auto mt-4 max-w-[730px] leading-7 text-gray-200">
                 This is a living knowledge base. Everyone can contribute, edit,
-                and help document what works in Ethereum funding. Join 500+
+                and help document what works in Ethereum/AI funding. Join 500+
                 funding mechanism experts building the definitive reference for
-                Ethereum public goods funding
+                Ethereum/AI enabled public goods funding
               </p>
             </div>
 

@@ -8,8 +8,7 @@ tags:
   - coordination
   - public goods
   - mechanism design
-researchType:
-  - Perspective
+researchType: Perspective
 lastUpdated: '2026-01-06'
 relatedMechanisms:
   - coalitional-funding
@@ -20,10 +19,11 @@ relatedMechanisms:
 relatedApps: []
 sensemakingFor: "mechanisms"
 banner: /content-images/research/coalitional-funding-2026-era-primitive/banner.png
+authors:
+  - Kevin Owocki
+  - Griff Green
 ---
 
-**Type:** Perspective
-**Authors:** Kevin Owocki, Griff Green
 
 ## Overview
 

@@ -1,27 +1,17 @@
 import { Metadata } from "next";
 import { pageSeo } from "@/lib/page-seo";
-import { CaseStudyCard } from "@/components/cards";
 import {
   ListPageLayout,
   ListPageHeader,
-  FilterBar,
-  ResultsBar,
-  ItemsGrid,
   CTASection,
   SensemakingSection,
+  CategoryContent,
 } from "@/components/layouts";
 import { caseStudies } from "@/content/case-studies";
+import { getSensemakingFor } from "@/content/research";
 import SectionHeader from "@/components/ui/SectionHeader";
 
 export const metadata: Metadata = pageSeo.caseStudies;
-
-const statusFilters = [
-  { value: "all", label: "All" },
-  { value: "success", label: "Success" },
-  { value: "partial", label: "Partial Success" },
-  { value: "ongoing", label: "Ongoing" },
-  { value: "failed", label: "Failed" },
-];
 
 export default function CaseStudiesPage() {
   return (
@@ -31,17 +21,13 @@ export default function CaseStudiesPage() {
         description="Analysis of a funding experiment"
       />
 
-      <SensemakingSection category="case-studies" />
+      <SensemakingSection article={getSensemakingFor("case-studies")} />
 
       <section className="section">
         <div className="container-page">
           <SectionHeader title="All Case Studies" subtitle="" />
 
-          <ItemsGrid>
-            {caseStudies.map((cs) => (
-              <CaseStudyCard key={cs.id} caseStudy={cs} />
-            ))}
-          </ItemsGrid>
+          <CategoryContent items={caseStudies} type="case-study" itemLabel="case studies" />
         </div>
       </section>
 
