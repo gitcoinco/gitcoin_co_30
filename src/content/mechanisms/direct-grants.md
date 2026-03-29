@@ -74,7 +74,7 @@ Direct grants work best when:
 
 **Ethereum Foundation Ecosystem Support Program (ESP)** is one of the longest-running direct grant programs in the ecosystem, launched in 2018 to support open-source public goods across developer tooling, cryptographic research, infrastructure, and community development. In late 2025, ESP shifted from an open application model to a proactive, wishlist-driven approach organized around Requests for Proposals, reflecting the scalability limits of committee review and a move toward tighter strategic alignment.
 
-**Arbitrum DAO Grants** operate through a Dedicated Domain Allocator (DDA) model, in which community-elected domain experts manage grants within specific focus areas using delegated budgets and independent review authority. This structure decentralizes decision-making while preserving expert judgment, demonstrating how direct grants can scale through pluralistic review rather than centralized committees.
+**Arbitrum DAO Grants** operate through a Dedicated Domain Allocator (DDA) models, in which community-elected domain experts manage grants within specific focus areas using delegated budgets and independent review authority. This structure decentralizes decision-making while preserving expert judgment, demonstrating how direct grants can scale through pluralistic review rather than centralized committees.
 
 **Polygon Community Grants** use a domain allocator structure spanning DeFi, AI agents, consumer applications, infrastructure, research, and community development. Allocators review proposals against published rubrics, with milestone-based payouts tied to deliverables, illustrating direct grants operating at protocol-ecosystem scale with structured governance oversight.
 
