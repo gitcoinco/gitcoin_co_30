@@ -19,4 +19,3 @@ export {
 
 export { default as SensemakingSection } from './SensemakingSection'
 export { CategoryContent } from './CategoryContent'
-export { default as PartnersMarqueeSection } from './PartnersMarqueeSection'

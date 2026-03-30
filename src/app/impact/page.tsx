@@ -1,14 +1,14 @@
 import type { Metadata } from "next";
 import Image from "next/image";
 import Link from "next/link";
-import { Heart, Link2, MessageCircle } from "lucide-react";
 import ImpactNumbersField from "@/components/impact/ImpactNumbersField";
 import ResponsiveImpactNumbersFieldMask from "@/components/impact/ResponsiveImpactNumbersFieldMask";
 import ScrollReveal from "@/components/impact/ScrollReveal";
+import PartnersMarqueeSection from "@/components/sections/PartnersMarqueeSection";
 import { getAppBySlug } from "@/content/apps";
 import { getCaseStudyBySlug } from "@/content/case-studies";
 import { Button, InitialAvatar } from "@/components/ui";
-import { CTASection, PartnersMarqueeSection } from "@/components/layouts";
+import { CTASection } from "@/components/layouts";
 import { pageSeo } from "@/lib/page-seo";
 import type { App, CaseStudy } from "@/lib/types";
 
@@ -29,17 +29,6 @@ type CaseStudyLayout = "compact" | "wide";
 type CaseStudyHighlight = {
   slug: string;
   layout: CaseStudyLayout;
-};
-
-type SocialCard = {
-  name: string;
-  handle: string;
-  avatar: string;
-  body: string[];
-  date: string;
-  likes: string;
-  replies: string;
-  accent?: string;
 };
 
 type ResolvedCaseStudyHighlight = CaseStudyHighlight & {
@@ -230,47 +219,6 @@ const caseStudyAssetOverrides: Record<string, CaseStudyAssetOverride> = {
   },
 };
 
-const socialCards: SocialCard[] = [
-  {
-    name: "vitalik.eth",
-    handle: "@VitalikButerin",
-    avatar: "/assets/impact/vitalik-avatar.png",
-    body: [
-      "IMO all donors to the gitcoin matching pool deserve to get big beautiful statues in the metaverse honoring their contributions.",
-    ],
-    date: "8:27 AM · Jun 23, 2022",
-    likes: "782",
-    replies: "Read 40 replies",
-  },
-  {
-    name: "sassal.eth/acc",
-    handle: "@sassal0x",
-    avatar: "/assets/impact/sassal-avatar.png",
-    body: [
-      "I would love to see more non-speculative Ethereum apps take off during this bear market.",
-      "So far the most popular ones I can think of are Gitcoin, POAP and ENS.",
-      "What else is there?",
-    ],
-    date: "4:09 AM · Jul 4, 2022",
-    likes: "619",
-    replies: "Read 146 replies",
-  },
-  {
-    name: "Lefteris Karapetsas",
-    handle: "@LefterisJP",
-    avatar: "/assets/impact/lefteris-avatar.png",
-    body: [
-      "Don't praise working for no money. This is not the spirit of #opensource.",
-      "Work should be paid, and work made in the open should even be paid more.",
-      "Let's find ways to sustainably fund #opensource.",
-    ],
-    date: "6:14 PM · Jun 20, 2022",
-    likes: "272",
-    replies: "Read 9 replies",
-    accent: "@gitcoin",
-  },
-];
-
 function Eyebrow({ children }: { children: React.ReactNode }) {
   return (
     <span className="group inline-flex rounded-md border border-teal-500/60 px-3 py-1 font-mono text-[11px] uppercase text-teal-500 transition-colors duration-200 hover:border-teal-400">
@@ -455,68 +403,6 @@ function CaseStudyCard({
         ) : null}
       </div>
     </article>
-  );
-}
-
-function SocialProofCard({
-  name,
-  handle,
-  avatar,
-  body,
-  date,
-  likes,
-  replies,
-  accent,
-}: SocialCard) {
-  return (
-    <div className="rounded-[12px] border border-[#cfd9de] bg-white p-3 text-[#0f1419] shadow-[0_4px_24px_rgba(0,0,0,0.12)]">
-      <div className="flex items-start gap-3">
-        <Image
-          src={avatar}
-          alt={name}
-          width={46}
-          height={46}
-          className="rounded-full"
-        />
-        <div className="min-w-0 flex-1">
-          <div className="flex items-center justify-between gap-3">
-            <div>
-              <p className="truncate text-sm font-bold leading-tight">{name}</p>
-              <p className="text-sm text-[#536471]">{handle}</p>
-            </div>
-            <span className="text-xl leading-none">𝕏</span>
-          </div>
-        </div>
-      </div>
-
-      <div className="mt-4 space-y-3 text-[14px] leading-[1.35]">
-        {body.map((paragraph) => (
-          <p key={paragraph}>{paragraph}</p>
-        ))}
-        {accent ? <p className="text-[#006fd6]">{accent}</p> : null}
-      </div>
-
-      <p className="mt-4 text-[13px] text-[#536471]">{date}</p>
-
-      <div className="mt-4 flex items-center gap-5 border-t border-[#cfd9de] pt-3 text-[13px] font-semibold text-[#536471]">
-        <span className="inline-flex items-center gap-2">
-          <Heart className="size-4 fill-[#f91880] text-[#f91880]" />
-          {likes}
-        </span>
-        <span className="inline-flex items-center gap-2">
-          <MessageCircle className="size-4 text-[#1d9bf0]" />
-          Reply
-        </span>
-        <span className="inline-flex items-center gap-2">
-          <Link2 className="size-4" />
-          Copy link
-        </span>
-      </div>
-
-      <div className="mt-3 rounded-full border border-[#cfd9de] py-2 text-center text-[13px] font-semibold text-[#006fd6]">
-        {replies}
-      </div>
-    </div>
   );
 }
 
@@ -735,17 +621,6 @@ export default function ImpactPage() {
           ))}
         </div>
       </section>
-
-      {/* <section className="mt-16 border-y border-teal-500/60 bg-[#201d19]">
-        <div className="container-page py-14">
-          <div className="grid gap-6 xl:grid-cols-3">
-            {socialCards.map((card) => (
-              <SocialProofCard key={card.handle} {...card} />
-            ))}
-          </div>
-        </div>
-      </section> */}
-
       <PartnersMarqueeSection
         title="Our Partners"
         description="We partner with some of the most impactful organizations fueling the future of open source software and public goods"

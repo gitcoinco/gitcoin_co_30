@@ -63,7 +63,7 @@ const IMPACT_FIELD_PRESETS = {
     drag: 0.85,
     speedLimit: 3.0,
     viewScale: 200,
-    color: "teal-500",
+    color: "#02E2AC",
     particleSize: 2.0,
     particleOpacity: 0.8,
     modeCount: 1,

@@ -1,8 +1,9 @@
 import type { Metadata } from "next";
 import Image from "next/image";
 import { ArrowUpRight } from "lucide-react";
+import PartnersMarqueeSection from "@/components/sections/PartnersMarqueeSection";
 import { Button } from "@/components/ui";
-import { CTASection, PartnersMarqueeSection } from "@/components/layouts";
+import { CTASection } from "@/components/layouts";
 import { pageSeo } from "@/lib/page-seo";
 
 export const metadata: Metadata = pageSeo.about;
