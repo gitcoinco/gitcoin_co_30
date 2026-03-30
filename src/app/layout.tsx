@@ -4,6 +4,7 @@ import localFont from "next/font/local";
 import { IBM_Plex_Mono, Inter, Source_Serif_4 } from "next/font/google";
 import "./globals.css";
 import { GoogleAnalytics } from "@next/third-parties/google";
+import Script from "next/script";
 import Header from "@/components/layout/Header";
 import Footer from "@/components/layout/Footer";
 import { SearchProvider } from "@/context/SearchContext";
@@ -123,6 +124,11 @@ export default function RootLayout({
         </SidebarProvider>
       </body>
       <GoogleAnalytics gaId="G-MYMQNTYY27" />
+      <Script
+        id="hs-script-loader"
+        src="//js.hs-scripts.com/21870089.js"
+        strategy="afterInteractive"
+      />
     </html>
   );
 }

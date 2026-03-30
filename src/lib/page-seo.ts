@@ -117,4 +117,29 @@ export const pageSeo = {
     "Gitcoin has been building tools since 2017 that enable communities to build, fund and protect what matters to them.",
     "/about"
   ),
+  program: meta(
+    "Grants Program",
+    "Gitcoin Grants is a seasonal funding initiative supporting early-stage builders through crowdfunding combined with quadratic matching grants.",
+    "/program"
+  ),
+  updates: meta(
+    "Get Updates",
+    "Subscribe to Gitcoin's newsletter for key updates and announcements.",
+    "/updates"
+  ),
+  partner: meta(
+    "Partner With Us",
+    "Partner with Gitcoin to support public goods funding in the Ethereum ecosystem.",
+    "/partner"
+  ),
+  privacyPolicy: meta(
+    "Privacy Policy",
+    "Gitcoin's privacy policy — how we collect, use, and protect your data.",
+    "/privacy-policy"
+  ),
+  terms: meta(
+    "Terms of Use",
+    "Gitcoin's terms of use governing access to Gitcoin Allo, Gitcoin.co, Grants Stack, Passport, and the Public Goods Network.",
+    "/terms"
+  ),
 };

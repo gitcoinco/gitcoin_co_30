@@ -8,7 +8,10 @@ const nextConfig: NextConfig = {
       // GitHub-hosted issue attachment images (used in preview page)
       { protocol: "https", hostname: "user-images.githubusercontent.com" },
       { protocol: "https", hostname: "*.githubusercontent.com" },
-      { protocol: "https", hostname: "github-production-user-asset-*.s3.amazonaws.com" },
+      {
+        protocol: "https",
+        hostname: "github-production-user-asset-*.s3.amazonaws.com",
+      },
     ],
   },
 
@@ -20,12 +23,11 @@ const nextConfig: NextConfig = {
     // eslint-disable-next-line @typescript-eslint/no-explicit-any
     ...({
       outputFileTracingExcludes: {
-
         // Exclude the banner images and three.js from all serverless function
         // bundles — they are served as static files and don't need to be
         // bundled into functions like opengraph-image routes
         "**": [
-          './**/*.pdf',
+          "./**/*.pdf",
           "public/content-images/**",
           "node_modules/three/**",
           "node_modules/@react-three/**",
@@ -39,6 +41,11 @@ const nextConfig: NextConfig = {
       {
         source: "/whitepaper",
         destination: "/research",
+        permanent: true,
+      },
+      {
+        source: "/privacy",
+        destination: "/privacy-policy",
         permanent: true,
       },
       {
@@ -60,37 +67,11 @@ const nextConfig: NextConfig = {
         source: "/blog",
         destination: "https://app.gitcoin.co/blog",
       },
-      // redo
-      {
-        source: "/program",
-        destination: "https://app.gitcoin.co/program",
-      },
-
-      {
-        source: "/updates",
-        destination: "https://app.gitcoin.co/updates",
-      },
 
       // redo
       {
         source: "/brand",
         destination: "https://app.gitcoin.co/brand",
-      },
-
-      // redo
-      {
-        source: "/partner",
-        destination: "https://app.gitcoin.co/partner",
-      },
-      // redo
-      {
-        source: "/privacy",
-        destination: "https://app.gitcoin.co/privacy-policy",
-      },
-      // redo
-      {
-        source: "/terms",
-        destination: "https://app.gitcoin.co/terms",
       },
 
       // impact.gitcoin.co rewrites

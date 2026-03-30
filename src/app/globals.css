@@ -412,6 +412,96 @@ input, textarea, select {
   animation: float 6s ease-in-out infinite;
 }
 
+/* ── HubSpot form overrides ─────────────────────────────────────────────── */
+/* Force full-width inputs and consistent dark styling across all HS forms  */
+.hs-form fieldset {
+  max-width: 100% !important;
+}
+.hs-form .hs-form-field {
+  margin-bottom: 1.25rem;
+}
+.hs-form label {
+  display: block;
+  font-size: 0.875rem;
+  font-weight: 600;
+  color: rgb(229 231 235);
+  margin-bottom: 0.375rem;
+}
+.hs-form .hs-input,
+.hs-form input[type="text"],
+.hs-form input[type="email"],
+.hs-form textarea {
+  width: 100% !important;
+  background: #2F2C28 !important;
+  border: 1px solid #46423D !important;
+  border-radius: 0.5rem !important;
+  padding: 0.75rem 1rem !important;
+  color: #FBFAF9 !important;
+  font-size: 0.875rem !important;
+  outline: none !important;
+  box-sizing: border-box !important;
+}
+.hs-form .hs-input:focus,
+.hs-form input[type="text"]:focus,
+.hs-form input[type="email"]:focus,
+.hs-form textarea:focus {
+  border-color: #02E2AC !important;
+  box-shadow: 0 0 0 2px rgba(2, 226, 172, 0.2) !important;
+}
+.hs-form .hs-input::placeholder {
+  color: #4b5563 !important;
+}
+.hs-form .hs-button,
+.hs-form input[type="submit"] {
+  background: #02E2AC !important;
+  color: #1C1A17 !important;
+  font-weight: 600 !important;
+  border: none !important;
+  border-radius: 0.5rem !important;
+  padding: 0.75rem 1.5rem !important;
+  cursor: pointer !important;
+  font-size: 0.875rem !important;
+  width: auto !important;
+  display: inline-block !important;
+  transition: background 400ms ease !important;
+}
+.hs-form .hs-button:hover,
+.hs-form input[type="submit"]:hover {
+  background: #A195F0 !important;
+}
+.hs-form .hs-form-booleancheckbox-display,
+.hs-form .hs-form-checkbox-display {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  color: rgb(209 213 219);
+  font-size: 0.875rem;
+  margin-bottom: 0.375rem;
+}
+.hs-form .hs-form-booleancheckbox-display input,
+.hs-form .hs-form-checkbox-display input {
+  width: 1rem !important;
+  height: 1rem !important;
+  accent-color: #02E2AC;
+  flex-shrink: 0;
+}
+.hs-form .hs-error-msgs {
+  list-style: none;
+  padding: 0;
+  margin: 0.25rem 0 0;
+}
+.hs-form .hs-error-msgs li label {
+  color: #f87171 !important;
+  font-weight: 400;
+  font-size: 0.75rem;
+}
+.hs-form .submitted-message {
+  color: #02E2AC;
+  font-weight: 600;
+  text-align: center;
+  padding: 1rem 0;
+}
+
 /* Icon hover effect - target SVG star */
 .icon-hover-container {
   @apply transition-all duration-300;
