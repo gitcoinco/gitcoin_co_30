@@ -6,20 +6,38 @@ import {
   SensemakingSection,
   CategoryContent,
 } from "@/components/layouts";
+import { AppSidebar } from "@/components/layouts/AppSidebar";
 import { research, getSensemakingFor } from "@/content/research";
 import SectionHeader from "@/components/ui/SectionHeader";
 import { pageSeo } from "@/lib/page-seo";
 import { RESEARCH_TYPES } from "@/lib/types";
+import type { SortOption } from "@/components/layouts/CategoryContent";
 
 export const metadata: Metadata = pageSeo.research;
 
-export default function ResearchPage() {
+const VALID_SORTS = ["newest", "oldest", "alpha", "read-time", "read-time-desc", "author"] as const;
+
+interface PageProps {
+  searchParams: Promise<{ type?: string; sort?: string; author?: string }>;
+}
+
+export default async function ResearchPage({ searchParams }: PageProps) {
+  const params = await searchParams;
+
   const filterOptions = RESEARCH_TYPES
     .filter((type) => research.some((r) => r.researchType === type))
     .map((type) => ({ value: type, label: type }));
 
+  const initialFilter = filterOptions.some((o) => o.value === params.type)
+    ? params.type!
+    : "all";
+  const initialSort: SortOption = VALID_SORTS.includes(params.sort as SortOption)
+    ? (params.sort as SortOption)
+    : "newest";
+  const initialAuthor = params.author ?? "all";
+
   return (
-    <ListPageLayout>
+    <ListPageLayout sidebar={<AppSidebar />}>
       <ListPageHeader
         title="Research & Trends"
         description="Analysis, reports, or trend pieces"
@@ -34,7 +52,10 @@ export default function ResearchPage() {
             items={research}
             type="research"
             itemLabel="articles"
-            filters={filterOptions.length > 0 ? { key: 'researchType', options: filterOptions } : undefined}
+            filters={filterOptions.length > 0 ? { key: "researchType", options: filterOptions } : undefined}
+            initialFilter={initialFilter}
+            initialSort={initialSort}
+            initialAuthor={initialAuthor}
           />
         </div>
       </section>

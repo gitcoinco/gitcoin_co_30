@@ -1,5 +1,7 @@
 import { Metadata } from "next";
 import { pageSeo, siteDescription } from "@/lib/page-seo";
+import { ListPageLayout } from "@/components/layouts";
+import { AppSidebar } from "@/components/layouts/AppSidebar";
 import Link from "next/link";
 import {
   AppCard,
@@ -84,190 +86,198 @@ export default function HomePage() {
   const featuredResearch = getFeaturedResearch(4);
 
   return (
-    <div className="bg-gray-900 text-gray-25" data-node-id="551:2185">
-      <script
-        type="application/ld+json"
-        dangerouslySetInnerHTML={{ __html: JSON.stringify(websiteJsonLd) }}
-      />
-      <script
-        type="application/ld+json"
-        dangerouslySetInnerHTML={{ __html: JSON.stringify(organizationJsonLd) }}
-      />
-      <section className="relative overflow-hidden -mt-[72px] pt-[72px]">
-        <ChladniBackground variant="1" opacity={0.8} />
-        <div className="absolute bottom-0 left-0 right-0 h-32 bg-gradient-to-t from-gray-900 to-transparent z-[1]" />
+    <ListPageLayout sidebar={<AppSidebar defaultCollapsed={true} />}>
+      <div className="bg-gray-900 text-gray-25" data-node-id="551:2185">
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(websiteJsonLd) }}
+        />
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{
+            __html: JSON.stringify(organizationJsonLd),
+          }}
+        />
+        <section className="relative overflow-hidden -mt-[70px] pt-[70px]">
+          <ChladniBackground variant="1" opacity={0.8} />
+          <div className="absolute bottom-0 left-0 right-0 h-32 bg-gradient-to-t from-gray-900 to-transparent z-[1]" />
 
-        <div className="relative z-10 mx-auto w-full max-w-[1216px] px-4 sm:px-6 lg:px-0">
-          <div className="pb-20 pt-16 md:pb-28 md:pt-24">
-            <div className="flex flex-col mx-auto w-fit">
-              <p className="mb-8 w-fit rounded-lg bg-gray-900 px-5 py-[10px] text-sm text-teal-500 font-mono">
-                Your Map of the Funding Trends in the Next Internet
-              </p>
-              <h1 className="max-w-180 text-4xl sm:text-5xl/14 md:text-7xl/20 font-extrabold text-gray-25 font-heading">
-                Fund What Matters
-              </h1>
-              <p className="mt-6 max-w-[732px] text-xl text-gray-100 font-serif">
-                Your trusted directory and reference library for funding
-                mechanisms, platforms, case studies, and research in the new internet - informed by contemporary trends like crowdfunding, AI, Ethereum, open source software, stablecoins, decentralized networks, participatory budgeting, and collective action in the 21st century.
-              </p>
+          <div className="relative z-10 mx-auto w-full max-w-[1276px] px-4 sm:px-6 lg:px-8">
+            <div className="pb-20 pt-16 md:pb-28 md:pt-24">
+              <div className="flex flex-col mx-auto w-fit">
+                <p className="mb-8 w-fit rounded-lg bg-gray-900 px-5 py-[10px] text-sm text-teal-500 font-mono">
+                  Your Map of the Funding Trends in the Next Internet
+                </p>
+                <h1 className="max-w-180 text-4xl sm:text-5xl/14 md:text-7xl/20 font-extrabold text-gray-25 font-heading">
+                  Fund What Matters
+                </h1>
+                <p className="mt-6 max-w-[732px] text-xl text-gray-100 font-serif">
+                  Your trusted directory and reference library for funding
+                  mechanisms, platforms, case studies, and research in the new
+                  internet - informed by contemporary trends like crowdfunding,
+                  AI, Ethereum, open source software, stablecoins, decentralized
+                  networks, participatory budgeting, and collective action in
+                  the 21st century.
+                </p>
 
-              <div className="mt-8 w-full max-w-[732px]">
-                <SearchBar
-                  placeholder="Search or ask anything..."
-                  className="w-full"
-                />
+                <div className="mt-8 w-full max-w-[732px]">
+                  <SearchBar
+                    placeholder="Search or ask anything..."
+                    className="w-full"
+                  />
+                </div>
               </div>
-            </div>
-            <div className="mt-30 flex flex-wrap items-center justify-center gap-4">
-              <Link href="/partner">
-                <Button variant="primary">Partner with us</Button>
-              </Link>
+              <div className="mt-30 flex flex-wrap items-center justify-center gap-4">
+                <Link href="/partner">
+                  <Button variant="primary">Partner with us</Button>
+                </Link>
 
-              <Link href="/contribute">
-                <Button variant="secondary">Submit content</Button>
-              </Link>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      <main>
-        {featuredCampaigns.length > 0 && (
-          <section
-            className="mx-auto w-full max-w-[1216px] px-4 py-16 sm:px-6 lg:px-0"
-            data-node-id="551:2292"
-          >
-            <SectionHeader
-              title="Featured Campaigns"
-              subtitle="What's happening now in AI/Ethereum funding"
-              href="/campaigns"
-            />
-            <div className="grid gap-5 lg:grid-cols-2">
-              {featuredCampaigns.map((campaign) => (
-                <CampaignCard
-                  key={campaign.slug}
-                  campaign={campaign}
-                  variant="home"
-                />
-              ))}
-            </div>
-          </section>
-        )}
-
-        <section
-          className="border-y border-gray-950 py-20"
-          data-node-id="551:2300"
-        >
-          <div className="mx-auto w-full max-w-[1216px] px-4 sm:px-6 lg:px-0">
-            <div className="mx-auto max-w-[980px] text-center">
-              <h2 className="text-balance text-[32px] font-extrabold text-gray-25 font-heading sm:text-[48px] lg:text-[64px]">
-                What We Curate
-              </h2>
-              <p className="mx-auto mt-3 max-w-[700px] text-sm text-gray-400 font-serif">
-                The comprehensive reference library for understanding
-                Ethereum&apos;s funding landscape
-              </p>
-            </div>
-
-            <div className="mt-12 grid gap-8 md:grid-cols-2 lg:grid-cols-3">
-              {curateCards.map((card) => (
-                <CategoriesCard key={card.title} card={card} />
-              ))}
+                <Link href="/contribute">
+                  <Button variant="secondary">Submit content</Button>
+                </Link>
+              </div>
             </div>
           </div>
         </section>
 
-        {featuredApps.length > 0 && (
-          <section className="py-16 bg-gray-800">
-            <div className="mx-auto w-full max-w-[1216px] px-4 sm:px-6 lg:px-0">
+        <main>
+          {featuredCampaigns.length > 0 && (
+            <section
+              className="mx-auto w-full max-w-[1276px] px-4 py-16 sm:px-6 lg:px-8"
+              data-node-id="551:2292"
+            >
               <SectionHeader
-                title="Featured Apps"
-                subtitle="Essential platforms shaping Ethereum funding"
-                href="/apps"
+                title="Featured Campaigns"
+                subtitle="What's happening now in AI/Ethereum funding"
+                href="/campaigns"
               />
-              <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-3">
-                {featuredApps.map((app) => (
-                  <AppCard key={app.slug} app={app} variant="home" />
+              <div className="grid gap-5 w-full [grid-template-columns:repeat(auto-fit,minmax(390px,1fr))]">
+                {featuredCampaigns.map((campaign) => (
+                  <CampaignCard
+                    key={campaign.slug}
+                    campaign={campaign}
+                    variant="home"
+                  />
+                ))}
+              </div>
+            </section>
+          )}
+
+          <section
+            className="border-y border-gray-950 py-20"
+            data-node-id="551:2300"
+          >
+            <div className="mx-auto w-full max-w-[1276px] px-4 sm:px-6 lg:px-8">
+              <div className="mx-auto max-w-[980px] text-center">
+                <h2 className="text-balance text-[32px] font-extrabold text-gray-25 font-heading sm:text-[48px] lg:text-[64px]">
+                  What We Curate
+                </h2>
+                <p className="mx-auto mt-3 max-w-[700px] text-sm text-gray-400 font-serif">
+                  The comprehensive reference library for understanding
+                  Ethereum&apos;s funding landscape
+                </p>
+              </div>
+
+              <div className="mt-12 grid gap-8 [grid-template-columns:repeat(auto-fill,minmax(340px,1fr))]">
+                {curateCards.map((card) => (
+                  <CategoriesCard key={card.title} card={card} />
                 ))}
               </div>
             </div>
           </section>
-        )}
 
-        {featuredResearch.length > 0 && (
-          <section className="mx-auto w-full max-w-[1216px] px-4 py-16 sm:px-6 lg:px-0">
-            <SectionHeader
-              title="Latest Research"
-              subtitle="Deep dives into funding mechanisms and trends"
-              href="/research"
-            />
-            <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-4">
-              {featuredResearch.map((research) => (
-                <ResearchCard
-                  key={research.slug}
-                  research={research}
-                  variant="home"
+          {featuredApps.length > 0 && (
+            <section className="py-16 bg-gray-800">
+              <div className="mx-auto w-full max-w-[1276px] px-4 sm:px-6 lg:px-8">
+                <SectionHeader
+                  title="Featured Apps"
+                  subtitle="Essential platforms shaping Ethereum funding"
+                  href="/apps"
                 />
-              ))}
+                <div className="grid gap-4 [grid-template-columns:repeat(auto-fill,minmax(320px,1fr))]">
+                  {featuredApps.map((app) => (
+                    <AppCard key={app.slug} app={app} variant="home" />
+                  ))}
+                </div>
+              </div>
+            </section>
+          )}
+
+          {featuredResearch.length > 0 && (
+            <section className="mx-auto w-full max-w-[1276px] px-4 py-16 sm:px-6 lg:px-8">
+              <SectionHeader
+                title="Latest Research"
+                subtitle="Deep dives into funding mechanisms and trends"
+                href="/research"
+              />
+              <div className="grid gap-4 [grid-template-columns:repeat(auto-fill,minmax(290px,1fr))]">
+                {featuredResearch.map((research) => (
+                  <ResearchCard
+                    key={research.slug}
+                    research={research}
+                    variant="home"
+                  />
+                ))}
+              </div>
+            </section>
+          )}
+
+          <section
+            className="relative border-y border-teal-500 py-16 bg-gray-950"
+            data-node-id="551:2341"
+          >
+            <div className="pointer-events-none absolute inset-x-0 -top-4 h-4 bg-gradient-to-b from-transparent to-teal-500/30" />
+            <div className="pointer-events-none absolute inset-x-0 -bottom-4 h-4 bg-gradient-to-t from-transparent to-teal-500/30" />
+            <div className="mx-auto w-full max-w-[1276px] px-4 sm:px-6 lg:px-8">
+              <div className="text-center">
+                <h2 className="text-[36px] leading-10 text-gray-25">
+                  Built by the Community
+                </h2>
+                <p className="mx-auto mt-4 max-w-[730px] leading-7 text-gray-200">
+                  This is a living knowledge base. Everyone can contribute,
+                  edit, and help document what works in Ethereum/AI funding.
+                  Join 500+ funding mechanism experts building the definitive
+                  reference for Ethereum/AI enabled public goods funding
+                </p>
+              </div>
+
+              <div className="mt-14 grid gap-8 md:grid-cols-3">
+                {[
+                  {
+                    icon: PencilLine,
+                    title: "Submit Content",
+                    copy: "Add apps, mechanisms, case studies, or research to the directory",
+                  },
+                  {
+                    icon: Users,
+                    title: "Edit & Improve",
+                    copy: "Help refine existing entries and keep information up to date",
+                  },
+                  {
+                    icon: Zap,
+                    title: "Quality First",
+                    copy: "Only well-researched, original submissions that meet our high standards are accepted",
+                  },
+                ].map((item) => (
+                  <article key={item.title} className="text-center">
+                    <div className="mx-auto flex h-16 w-16 items-center justify-center rounded-full border-2 border-teal-500">
+                      <item.icon className="h-8 w-8 text-teal-100" />
+                    </div>
+                    <h3 className="mt-3 text-[20px] leading-7">{item.title}</h3>
+                    <p className="mx-auto mt-2 max-w-[295px] text-base leading-6 text-gray-200">
+                      {item.copy}
+                    </p>
+                  </article>
+                ))}
+              </div>
+
+              <div className="mt-24 max-w-[796px] mx-auto">
+                <ContributeCard />
+              </div>
             </div>
           </section>
-        )}
-
-        <section
-          className="relative border-y border-teal-500 py-16 bg-gray-950"
-          data-node-id="551:2341"
-        >
-          <div className="pointer-events-none absolute inset-x-0 -top-4 h-4 bg-gradient-to-b from-transparent to-teal-500/30" />
-          <div className="pointer-events-none absolute inset-x-0 -bottom-4 h-4 bg-gradient-to-t from-transparent to-teal-500/30" />
-          <div className="mx-auto w-full max-w-[1216px] px-4 sm:px-6 lg:px-0">
-            <div className="text-center">
-              <h2 className="text-[36px] leading-10 text-gray-25">
-                Built by the Community
-              </h2>
-              <p className="mx-auto mt-4 max-w-[730px] leading-7 text-gray-200">
-                This is a living knowledge base. Everyone can contribute, edit,
-                and help document what works in Ethereum/AI funding. Join 500+
-                funding mechanism experts building the definitive reference for
-                Ethereum/AI enabled public goods funding
-              </p>
-            </div>
-
-            <div className="mt-14 grid gap-8 md:grid-cols-3">
-              {[
-                {
-                  icon: PencilLine,
-                  title: "Submit Content",
-                  copy: "Add apps, mechanisms, case studies, or research to the directory",
-                },
-                {
-                  icon: Users,
-                  title: "Edit & Improve",
-                  copy: "Help refine existing entries and keep information up to date",
-                },
-                {
-                  icon: Zap,
-                  title: "Quality First",
-                  copy: "Only well-researched, original submissions that meet our high standards are accepted",
-                },
-              ].map((item) => (
-                <article key={item.title} className="text-center">
-                  <div className="mx-auto flex h-16 w-16 items-center justify-center rounded-full border-2 border-teal-500">
-                    <item.icon className="h-8 w-8 text-teal-100" />
-                  </div>
-                  <h3 className="mt-3 text-[20px] leading-7">{item.title}</h3>
-                  <p className="mx-auto mt-2 max-w-[295px] text-base leading-6 text-gray-200">
-                    {item.copy}
-                  </p>
-                </article>
-              ))}
-            </div>
-
-            <div className="mt-24 max-w-[796px] mx-auto">
-              <ContributeCard />
-            </div>
-          </div>
-        </section>
-      </main>
-    </div>
+        </main>
+      </div>
+    </ListPageLayout>
   );
 }

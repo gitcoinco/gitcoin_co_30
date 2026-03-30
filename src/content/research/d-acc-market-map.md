@@ -10,6 +10,9 @@ tags:
   - infrastructure
   - privacy
 lastUpdated: '2026-02-26'
+researchType: Analysis
+authors:
+  - Kevin Owocki
 relatedMechanisms:
 
 relatedApps:

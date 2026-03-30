@@ -2,7 +2,7 @@
 
 import { useEffect } from "react";
 import { useSearchParams } from "next/navigation";
-import { useSearch } from "@/components/search/SearchProvider";
+import { useSearch } from "@/context/SearchContext";
 
 export default function SearchBridge() {
   const searchParams = useSearchParams();
