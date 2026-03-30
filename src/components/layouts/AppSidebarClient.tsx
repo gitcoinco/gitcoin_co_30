@@ -93,7 +93,7 @@ const SectionRow = memo(function SectionRow({
           href={section.href}
           onClick={onItemClick}
           ref={attachRef && isExactSection ? activeSectionRef : undefined}
-          className={`group flex items-center bg-gray-900 justify-between gap-1 py-1.5 w-full cursor-pointer transition-colors ${
+          className={`group flex items-center justify-between gap-1 py-1.5 w-full cursor-pointer transition-colors ${
             isExactSection
               ? "text-teal-400"
               : isActiveSection
