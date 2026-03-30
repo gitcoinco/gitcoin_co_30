@@ -213,10 +213,10 @@ function ListRow({
           <p className="text-sm text-gray-300 font-serif mt-0.5 line-clamp-2 sm:line-clamp-4">
             {item.shortDescription}
           </p>
-          {(showAuthor || showReadTime) && (
+          {((showAuthor && itemAuthors(item).length > 0) || showReadTime) && (
             <p className="text-xs text-gray-500 mt-1.5">
-              {showAuthor && `By ${itemAuthors(item).join(", ")}`}
-              {showAuthor && showReadTime && " · "}
+              {showAuthor && itemAuthors(item).length > 0 && `By ${itemAuthors(item).join(", ")}`}
+              {showAuthor && itemAuthors(item).length > 0 && showReadTime && " · "}
               {showReadTime && `${calcReadTime(item.description)} min read`}
             </p>
           )}

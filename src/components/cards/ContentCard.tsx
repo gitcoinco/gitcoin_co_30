@@ -89,9 +89,9 @@ export default function ContentCard({
           <p className="text-gray-300 font-serif text-sm line-clamp-3 flex-grow">
             {shortDescription}
           </p>
-          {(authors || date) && (
+          {(authors?.length || date) && (
             <div className="flex items-center justify-between mt-2 gap-2">
-              {authors && (
+              {authors && authors.length > 0 && (
                 <p className="text-xs text-gray-300 truncate">
                   By {authors.join(", ")}
                 </p>
