@@ -38,6 +38,7 @@ const exploreLinks: FooterLink[] = [
 ];
 
 const resourceLinks: FooterLink[] = [
+  { title: "Brand Assets", href: "/brand" },
   { title: "Impact", href: "https://impact.gitcoin.co", external: true },
   {
     title: "Grants Program",

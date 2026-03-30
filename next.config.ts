@@ -19,18 +19,18 @@ const nextConfig: NextConfig = {
     // outputFileTracingExcludes is valid but missing from the TS types
     // eslint-disable-next-line @typescript-eslint/no-explicit-any
     ...({
-      outputFileTracingExcludes: {
+  outputFileTracingExcludes: {
 
-        // Exclude the banner images and three.js from all serverless function
+    // Exclude the banner images and three.js from all serverless function
         // bundles — they are served as static files and don't need to be
         // bundled into functions like opengraph-image routes
-        "**": [
+    "**": [
           './**/*.pdf',
-          "public/content-images/**",
-          "node_modules/three/**",
-          "node_modules/@react-three/**",
-        ],
-      },
+      "public/content-images/**",
+      "node_modules/three/**",
+      "node_modules/@react-three/**",
+    ],
+  },
     } as any),
   },
 
@@ -68,12 +68,6 @@ const nextConfig: NextConfig = {
 
       // redo
       {
-        source: "/brand",
-        destination: "https://app.gitcoin.co/brand",
-      },
-
-      // redo
-      {
         source: "/partner",
         destination: "https://app.gitcoin.co/partner",
       },
@@ -90,11 +84,6 @@ const nextConfig: NextConfig = {
 
       // impact.gitcoin.co rewrites
 
-      // redo - high priority
-      {
-        source: "/impact",
-        destination: "https://impact.gitcoin.co",
-      },
       {
         source: "/impact/:path*",
         destination: "https://impact.gitcoin.co/impact/:path*",
