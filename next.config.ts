@@ -41,6 +41,11 @@ const nextConfig: NextConfig = {
         destination: "/research",
         permanent: true,
       },
+      {
+        source: "/contact",
+        destination: "/partner",
+        permanent: true,
+      },
     ];
   },
   async rewrites() {
