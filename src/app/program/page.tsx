@@ -433,7 +433,7 @@ export default function ProgramPage() {
             The largest and longest running web3 grants program
           </p>
         </div>
-        <div className="grid grid-cols-3 gap-3">
+        <div className="grid sm:grid-cols-3 gap-3">
           {stats.map((s) => (
             <div
               key={s.label}
