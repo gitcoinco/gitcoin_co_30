@@ -68,12 +68,6 @@ const nextConfig: NextConfig = {
 
       // redo
       {
-        source: "/brand",
-        destination: "https://app.gitcoin.co/brand",
-      },
-
-      // redo
-      {
         source: "/partner",
         destination: "https://app.gitcoin.co/partner",
       },
