@@ -264,6 +264,23 @@ function SectionHeading({
   );
 }
 
+function MetricValuePanel({ value, label }: HeroMetric) {
+  return (
+    <div className="w-full rounded-[16px] border border-gray-300/65 bg-gray-900 px-4 py-5 text-center">
+      <div className="font-mono text-[34px] leading-none text-gray-25 sm:text-[40px]">
+        {value}
+      </div>
+      <div className="mt-2 font-mono text-[12px] uppercase tracking-[0.14em] text-gray-25 sm:text-[14px]">
+        {label}
+      </div>
+    </div>
+  );
+}
+
+function MetricConnector({ className = "h-8" }: { className?: string }) {
+  return <div className={`w-px bg-gray-300/65 ${className}`} />;
+}
+
 function HeroMetricCard({ value, label }: HeroMetric) {
   return (
     <div className="flex flex-col items-center">
@@ -271,15 +288,8 @@ function HeroMetricCard({ value, label }: HeroMetric) {
         <ImpactNumbersField className="absolute inset-0" variant="hero" />
         <div className="absolute inset-0 bg-[#1f1c18]/14" />
       </div>
-      <div className="h-8 w-px bg-gray-300/65" />
-      <div className="w-full rounded-[16px] border border-gray-300/65 bg-gray-900 px-4 py-5 text-center">
-        <div className="font-mono text-[34px] leading-none text-gray-25 sm:text-[40px]">
-          {value}
-        </div>
-        <div className="mt-2 font-mono text-[12px] uppercase tracking-[0.14em] text-gray-25 sm:text-[14px]">
-          {label}
-        </div>
-      </div>
+      <MetricConnector />
+      <MetricValuePanel value={value} label={label} />
     </div>
   );
 }
@@ -287,15 +297,8 @@ function HeroMetricCard({ value, label }: HeroMetric) {
 function HeroMetricLabel({ value, label }: HeroMetric) {
   return (
     <div className="flex flex-col items-center">
-      <div className="h-8 w-px bg-gray-300/65" />
-      <div className="w-full rounded-[16px] border border-gray-300/65 bg-gray-900 px-4 py-5 text-center">
-        <div className="font-mono text-[34px] leading-none text-gray-25 sm:text-[40px]">
-          {value}
-        </div>
-        <div className="mt-2 font-mono text-[12px] uppercase tracking-[0.14em] text-gray-25 sm:text-[14px]">
-          {label}
-        </div>
-      </div>
+      <MetricConnector />
+      <MetricValuePanel value={value} label={label} />
     </div>
   );
 }
@@ -311,7 +314,7 @@ function NumberCard({ value, label }: NumberMetric) {
           </div>
         </div>
       </div>
-      <div className="h-[33px] w-px bg-gray-300/65" />
+      <MetricConnector className="h-[33px]" />
       <div className="flex h-[48px] w-full items-center justify-center rounded-[16px] border border-gray-300/65 bg-[#201d19] px-3">
         <div className="font-mono text-[14px] uppercase tracking-[0.05em] text-gray-25">
           {label}
@@ -403,6 +406,23 @@ function CaseStudyCard({
         ) : null}
       </div>
     </article>
+  );
+}
+
+function GrowthMilestoneTag({
+  children,
+  style,
+}: {
+  children: React.ReactNode;
+  style: React.CSSProperties;
+}) {
+  return (
+    <div
+      className="absolute -translate-x-1/2 rounded-[14px] border border-gray-300/70 bg-gray-900 px-4 py-2 font-mono text-base leading-none text-gray-200 shadow-[0_0_30px_var(--color-iris-500)] sm:text-[24px]"
+      style={style}
+    >
+      {children}
+    </div>
   );
 }
 
@@ -504,7 +524,6 @@ export default function ImpactPage() {
                 sizes="100vw"
                 className="object-cover opacity-60"
               />
-              {/* <div className="absolute inset-0 bg-[radial-gradient(circle_at_top_right,rgba(2,226,172,0.18),transparent_32%),linear-gradient(to_bottom,rgba(28,26,23,0.18),rgba(28,26,23,0.35))]" /> */}
 
               {growthMilestones.map((milestone, index) => (
                 <ScrollReveal
@@ -524,18 +543,16 @@ export default function ImpactPage() {
                       width: "2px",
                     }}
                   />
-                  <div
-                    className="absolute -translate-x-1/2 rounded-[14px] border border-gray-300/70 bg-gray-900 px-4 py-2 font-mono text-base sm:text-[22px] leading-none text-gray-200 shadow-[0_0_30px_var(--color-iris-500)] sm:text-[24px]"
+                  <GrowthMilestoneTag
                     style={{ left: milestone.left, top: milestone.top }}
                   >
                     {milestone.value}
-                  </div>
-                  <div
-                    className="absolute -translate-x-1/2 rounded-[14px] border border-gray-300/70 bg-gray-900 px-4 py-2 font-mono text-base sm:text-[22px] leading-none text-gray-200 shadow-[0_0_30px_var(--color-iris-500)] sm:text-[24px]"
+                  </GrowthMilestoneTag>
+                  <GrowthMilestoneTag
                     style={{ left: milestone.left, bottom: "-3%" }}
                   >
                     {milestone.year}
-                  </div>
+                  </GrowthMilestoneTag>
                 </ScrollReveal>
               ))}
             </div>
@@ -621,10 +638,7 @@ export default function ImpactPage() {
           ))}
         </div>
       </section>
-      <PartnersMarqueeSection
-        title="Our Partners"
-        description="We partner with some of the most impactful organizations fueling the future of open source software and public goods"
-      />
+      <PartnersMarqueeSection />
 
       <CTASection
         title="Ready to Contribute?"

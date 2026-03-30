@@ -15,6 +15,21 @@ type AssetCard = {
   reverse?: boolean;
 };
 
+const CHLADNI_PREVIEWS = [
+  {
+    src: "/assets/brand/chladni-1.png",
+    alt: "Cellular Gitcoin brand background",
+  },
+  {
+    src: "/assets/brand/chladni-2.png",
+    alt: "Circular Gitcoin brand background",
+  },
+  {
+    src: "/assets/brand/chladni-3.png",
+    alt: "Organic Gitcoin brand background",
+  },
+] as const;
+
 const assetCards: AssetCard[] = [
   {
     title: "Primary Logo",
@@ -44,6 +59,22 @@ const assetCards: AssetCard[] = [
     preview: "chladni",
   },
 ];
+
+function AssetPreviewFrame({
+  children,
+  className = "",
+}: {
+  children: React.ReactNode;
+  className?: string;
+}) {
+  return (
+    <div
+      className={`flex h-full items-center justify-center rounded-lg border border-gray-500 ${className}`}
+    >
+      {children}
+    </div>
+  );
+}
 
 function AssetDetails({
   title,
@@ -77,7 +108,7 @@ function AssetDetails({
 function AssetPreview({ preview }: Pick<AssetCard, "preview">) {
   if (preview === "wordmark") {
     return (
-      <div className="flex h-full items-center justify-center rounded-lg border border-gray-500 px-6 py-12">
+      <AssetPreviewFrame className="px-6 py-12">
         <div className="relative w-full max-w-[405px]">
           <Image
             src="/assets/brand/wordmark.svg"
@@ -88,13 +119,13 @@ function AssetPreview({ preview }: Pick<AssetCard, "preview">) {
             priority
           />
         </div>
-      </div>
+      </AssetPreviewFrame>
     );
   }
 
   if (preview === "helmet") {
     return (
-      <div className="flex h-full items-center justify-center rounded-lg border border-gray-500 px-6 py-12">
+      <AssetPreviewFrame className="px-6 py-12">
         <Image
           src="/assets/brand/helmet.svg"
           alt="Gitcoin helmet"
@@ -102,18 +133,14 @@ function AssetPreview({ preview }: Pick<AssetCard, "preview">) {
           height={158}
           className="h-auto w-[110px] transition-transform duration-300 hover:scale-[0.97] sm:w-[131px]"
         />
-      </div>
+      </AssetPreviewFrame>
     );
   }
 
   return (
     <div className="rounded-lg border border-gray-500 px-4 py-4 sm:px-[27px] sm:py-[20px]">
       <div className="grid grid-cols-1 gap-3 sm:grid-cols-3">
-        {[
-          { src: "/assets/brand/chladni-1.png", alt: "Cellular Gitcoin brand background" },
-          { src: "/assets/brand/chladni-2.png", alt: "Circular Gitcoin brand background" },
-          { src: "/assets/brand/chladni-3.png", alt: "Organic Gitcoin brand background" },
-        ].map((image) => (
+        {CHLADNI_PREVIEWS.map((image) => (
           <div
             key={image.src}
             className="relative aspect-[210/258] overflow-hidden rounded-lg"
