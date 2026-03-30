@@ -7,6 +7,7 @@ import {
   SensemakingSection,
   CategoryContent,
 } from "@/components/layouts";
+import { AppSidebar } from "@/components/layouts/AppSidebar";
 import { caseStudies } from "@/content/case-studies";
 import { getSensemakingFor } from "@/content/research";
 import SectionHeader from "@/components/ui/SectionHeader";
@@ -15,7 +16,7 @@ export const metadata: Metadata = pageSeo.caseStudies;
 
 export default function CaseStudiesPage() {
   return (
-    <ListPageLayout>
+    <ListPageLayout sidebar={<AppSidebar />}>
       <ListPageHeader
         title="Case Studies"
         description="Analysis of a funding experiment"

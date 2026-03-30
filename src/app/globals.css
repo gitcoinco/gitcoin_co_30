@@ -204,7 +204,15 @@
 
   /* Container */
   .container-page {
-    @apply max-w-7xl mx-auto px-4 sm:px-6 lg:px-24;
+    @apply max-w-[74rem] mx-auto;
+    padding-left: 1rem;
+    padding-right: 1rem;
+  }
+
+  .detail-page-container {
+    @apply max-w-[800px] mx-auto;
+    padding-left: 1rem;
+    padding-right: 1rem;
   }
 
   /* Star decorative element */
@@ -234,6 +242,24 @@
   .divider-stars::after {
     content: '';
     @apply flex-1 h-px bg-gray-800;
+  }
+}
+
+@media (min-width: 640px) {
+  .container-page, .detail-page-container {
+    padding-left: 1.5rem;
+    padding-right: 1.5rem;
+  }
+}
+
+@media (min-width: 1024px) {
+  .container-page {
+    padding-left: 3rem;
+    padding-right: 3rem;
+  }
+  .detail-page-container {
+    padding-left: 3rem;
+    padding-right: 3rem;
   }
 }
 

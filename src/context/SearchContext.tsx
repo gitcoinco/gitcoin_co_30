@@ -24,7 +24,7 @@ export function useSearch() {
   return ctx;
 }
 
-export default function SearchProvider({ children }: { children: React.ReactNode }) {
+export function SearchProvider({ children }: { children: React.ReactNode }) {
   const [modalOpen, setModalOpen] = useState(false);
   const [sidebarOpen, setSidebarOpen] = useState(false);
   const [initialQuery, setInitialQuery] = useState("");

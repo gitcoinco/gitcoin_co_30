@@ -5,6 +5,7 @@ import {
   SensemakingSection,
   CategoryContent,
 } from "@/components/layouts";
+import { AppSidebar } from "@/components/layouts/AppSidebar";
 import { AppCard } from "@/components/cards";
 import { apps, getFeaturedApps } from "@/content/apps";
 import { getSensemakingFor } from "@/content/research";
@@ -16,7 +17,7 @@ export const metadata: Metadata = pageSeo.apps;
 export default function AppsPage() {
   const featuredApps = getFeaturedApps(3);
   return (
-    <ListPageLayout>
+    <ListPageLayout sidebar={<AppSidebar />}>
       <ListPageHeader title="Apps" description="Funding platforms, DAOs, grant programs"/>
 
       <SensemakingSection article={getSensemakingFor("apps")} />
@@ -26,7 +27,7 @@ export default function AppsPage() {
           title="Featured Apps"
           subtitle="Essential platforms shaping Ethereum funding"
         />
-        <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-3">
+        <div className="grid gap-6 [grid-template-columns:repeat(auto-fit,minmax(300px,1fr))]">
           {featuredApps.map((app) => (
             <AppCard key={app.slug} app={app} variant="home" />
           ))}

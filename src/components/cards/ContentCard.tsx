@@ -92,11 +92,15 @@ export default function ContentCard({
           {(authors?.length || date) && (
             <div className="flex items-center justify-between mt-2 gap-2">
               {authors && authors.length > 0 && (
-                <p className="text-xs text-gray-300 truncate">
+                <p className="text-xs text-gray-300 truncate font-mono">
                   By {authors.join(", ")}
                 </p>
               )}
-              {date && <p className="text-xs text-gray-300 shrink-0 ml-auto">{formatRelativeDate(date)}</p>}
+              {date && (
+                <p className="text-xs text-gray-300 shrink-0 ml-auto font-mono">
+                  {formatRelativeDate(date)}
+                </p>
+              )}
             </div>
           )}
         </>

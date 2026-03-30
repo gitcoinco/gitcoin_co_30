@@ -2,6 +2,7 @@ import { Metadata } from 'next'
 import { notFound } from 'next/navigation'
 import { AppCard, MechanismCard, CaseStudyCard, ResearchCard, CampaignCard } from '@/components/cards'
 import ContentDetailPage from '@/components/templates/ContentDetailPage'
+import { AppSidebar } from '@/components/layouts/AppSidebar'
 import { getCaseStudyBySlug, caseStudies } from '@/content/case-studies'
 import { getAppBySlug } from '@/content/apps'
 import { getMechanismBySlug } from '@/content/mechanisms'
@@ -74,9 +75,13 @@ export default async function CaseStudyDetailPage({ params }: PageProps) {
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumb) }} />
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(articleJsonLd) }} />
       <ContentDetailPage
+        sidebar={<AppSidebar />}
         item={caseStudy}
-        breadcrumbHref="/case-studies"
-        breadcrumbLabel="Back to Case Studies"
+        breadcrumbItems={[
+          { href: '/', label: 'Home' },
+          { href: '/case-studies', label: 'Case Studies' },
+          { label: caseStudy.name },
+        ]}
         relatedSections={[
           {
             title: 'Related Apps',

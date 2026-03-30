@@ -132,10 +132,14 @@ const ChladniCanvas = ({ variant, opacity: opacityProp }) => {
     const getCanvasSize = () => {
       const el = mountRef.current;
       if (!el) return { width: window.innerWidth, height: window.innerHeight };
-      return { width: el.clientWidth, height: el.clientHeight };
+      // Always use full viewport width — sidebar just visually covers the left portion
+      return { width: window.innerWidth, height: el.clientHeight };
     };
 
-    const getAspect = () => window.innerWidth / window.innerHeight;
+    const getAspect = () => {
+      const { width, height } = getCanvasSize();
+      return height > 0 ? width / height : window.innerWidth / window.innerHeight;
+    };
 
     const allocateField = () => {
       const size = CONFIG.gridSize * CONFIG.gridSize;
@@ -502,8 +506,13 @@ const ChladniCanvas = ({ variant, opacity: opacityProp }) => {
   return (
     <div
       ref={mountRef}
-      className="absolute inset-0 pointer-events-none"
-      style={{ opacity: ready ? (opacityProp ?? 1) : 0, transition: "opacity 1s ease-in" }}
+      className="absolute top-0 bottom-0 pointer-events-none"
+      style={{
+        left: "calc(100% - 100vw)",
+        width: "100vw",
+        opacity: ready ? (opacityProp ?? 1) : 0,
+        transition: "opacity 1s ease-in",
+      }}
       aria-hidden="true"
     />
   );

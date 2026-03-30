@@ -1,6 +1,7 @@
 "use client";
 
 import { useState, useMemo } from "react";
+import { useRouter, usePathname } from "next/navigation";
 import Link from "next/link";
 import Image from "next/image";
 import { LayoutGrid, List, ChevronDown, Check } from "lucide-react";
@@ -13,7 +14,6 @@ import type {
   CaseStudy,
   Campaign,
 } from "@/lib/types";
-import TagsList from "@/components/ui/TagsList";
 import InitialAvatar from "@/components/ui/InitialAvatar";
 import { formatRelativeDate, calcReadTime } from "@/lib/utils";
 import AppCard from "@/components/cards/AppCard";
@@ -30,7 +30,13 @@ export type ContentType =
   | "research"
   | "case-study"
   | "campaign";
-type SortOption = "newest" | "oldest" | "alpha" | "read-time" | "read-time-desc" | "author";
+export type SortOption =
+  | "newest"
+  | "oldest"
+  | "alpha"
+  | "read-time"
+  | "read-time-desc"
+  | "author";
 type ViewOption = "grid" | "list";
 
 export interface FilterOption {
@@ -49,6 +55,9 @@ interface CategoryContentProps {
   columns?: 2 | 3;
   itemLabel?: string;
   filters?: FilterConfig;
+  initialFilter?: string;
+  initialSort?: SortOption;
+  initialAuthor?: string;
 }
 
 // ─── Constants ────────────────────────────────────────────────────────────────
@@ -59,7 +68,7 @@ const SORT_LABELS: Record<SortOption, string> = {
   alpha: "Title (A–Z)",
   "read-time": "Read time (asc)",
   "read-time-desc": "Read time (desc)",
-  "author": "Author (A–Z)",
+  author: "Author (A–Z)",
 };
 
 // Which sort options apply to each content type
@@ -67,8 +76,22 @@ const AVAILABLE_SORTS: Record<ContentType, SortOption[]> = {
   app: ["newest", "oldest", "alpha"],
   campaign: ["newest", "oldest", "alpha"],
   mechanism: ["newest", "oldest", "alpha", "read-time", "read-time-desc"],
-  research: ["newest", "oldest", "alpha", "read-time", "read-time-desc", "author"],
-  "case-study": ["newest", "oldest", "alpha", "read-time", "read-time-desc", "author"],
+  research: [
+    "newest",
+    "oldest",
+    "alpha",
+    "read-time",
+    "read-time-desc",
+    "author",
+  ],
+  "case-study": [
+    "newest",
+    "oldest",
+    "alpha",
+    "read-time",
+    "read-time-desc",
+    "author",
+  ],
 };
 
 const BASE_HREFS: Record<ContentType, string> = {
@@ -108,8 +131,11 @@ function sortItems(items: BaseContent[], sort: SortOption): BaseContent[] {
   if (sort === "oldest")
     return sorted.sort((a, b) => sortKey(a).localeCompare(sortKey(b)));
   if (sort === "read-time" || sort === "read-time-desc") {
-    const withTime = sorted.map((item) => ({ item, t: calcReadTime(item.description) }));
-    withTime.sort((a, b) => sort === "read-time" ? a.t - b.t : b.t - a.t);
+    const withTime = sorted.map((item) => ({
+      item,
+      t: calcReadTime(item.description),
+    }));
+    withTime.sort((a, b) => (sort === "read-time" ? a.t - b.t : b.t - a.t));
     return withTime.map(({ item }) => item);
   }
   if (sort === "author")
@@ -206,7 +232,9 @@ function ListRow({
             </h3>
             {showDate && (
               <span className="text-xs text-gray-500 shrink-0 tabular-nums">
-                {formatRelativeDate((item as Campaign).startDate ?? item.lastUpdated)}
+                {formatRelativeDate(
+                  (item as Campaign).startDate ?? item.lastUpdated,
+                )}
               </span>
             )}
           </div>
@@ -320,14 +348,14 @@ function ViewToggle({
     <div className="flex rounded-lg border border-gray-600 overflow-hidden">
       <button
         onClick={() => onChange("grid")}
-        className={`p-1.5 transition-colors ${view === "grid" ? activeClass : inactiveClass}`}
+        className={`cursor-pointer p-1.5 transition-colors ${view === "grid" ? activeClass : inactiveClass}`}
         aria-label="Grid view"
       >
         <LayoutGrid className="w-4 h-4" />
       </button>
       <button
         onClick={() => onChange("list")}
-        className={`p-1.5 transition-colors ${view === "list" ? activeClass : inactiveClass}`}
+        className={`cursor-pointer p-1.5 transition-colors ${view === "list" ? activeClass : inactiveClass}`}
         aria-label="List view"
       >
         <List className="w-4 h-4" />
@@ -353,7 +381,7 @@ function FilterTabs({
         <button
           key={value}
           onClick={() => onChange(value)}
-          className={`px-3 py-1.5 rounded-full text-sm transition-colors ${
+          className={`px-3 py-1.5 rounded-full text-sm transition-colors cursor-pointer ${
             active === value
               ? "bg-gray-25 text-gray-900 font-medium"
               : "bg-gray-800 text-gray-400 hover:text-gray-25"
@@ -376,11 +404,48 @@ export function CategoryContent({
   columns = 3,
   itemLabel = "items",
   filters,
+  initialFilter = "all",
+  initialSort = "newest",
+  initialAuthor = "all",
 }: CategoryContentProps) {
-  const [sort, setSort] = useState<SortOption>("newest");
+  const router = useRouter();
+  const pathname = usePathname();
+
+  const [sort, setSort] = useState<SortOption>(initialSort);
   const [view, setView] = useState<ViewOption>("grid");
-  const [activeFilter, setActiveFilter] = useState<string>("all");
-  const [activeAuthor, setActiveAuthor] = useState<string>("all");
+  const [activeFilter, setActiveFilter] = useState<string>(initialFilter);
+  const [activeAuthor, setActiveAuthor] = useState<string>(initialAuthor);
+
+  function buildUrl(overrides: {
+    filter?: string;
+    sort?: SortOption;
+    author?: string;
+  }) {
+    const f = overrides.filter ?? activeFilter;
+    const s = overrides.sort ?? sort;
+    const a = overrides.author ?? activeAuthor;
+    const params = new URLSearchParams();
+    if (f && f !== "all") params.set("type", f);
+    if (s && s !== "newest") params.set("sort", s);
+    if (a && a !== "all") params.set("author", a);
+    const qs = params.toString();
+    return `${pathname}${qs ? `?${qs}` : ""}`;
+  }
+
+  function handleFilterChange(value: string) {
+    setActiveFilter(value);
+    router.replace(buildUrl({ filter: value }), { scroll: false });
+  }
+
+  function handleSortChange(value: SortOption) {
+    setSort(value);
+    router.replace(buildUrl({ sort: value }), { scroll: false });
+  }
+
+  function handleAuthorChange(value: string) {
+    setActiveAuthor(value);
+    router.replace(buildUrl({ author: value }), { scroll: false });
+  }
 
   const showAuthorFilter = AUTHOR_FILTER_TYPES.includes(type);
   const availableSorts = AVAILABLE_SORTS[type];
@@ -404,7 +469,9 @@ export function CategoryContent({
     () =>
       !filters || activeFilter === "all"
         ? authorFiltered
-        : authorFiltered.filter((item) => (item as any)[filters.key] === activeFilter),
+        : authorFiltered.filter(
+            (item) => (item as any)[filters.key] === activeFilter,
+          ),
     [authorFiltered, filters, activeFilter],
   );
 
@@ -412,8 +479,12 @@ export function CategoryContent({
   const baseHref = BASE_HREFS[type];
   const preferLogo = type === "app";
   const showDate = type !== "app";
-  const showReadTime = (["mechanism", "research", "case-study"] as ContentType[]).includes(type);
-  const showAuthor = (["research", "case-study"] as ContentType[]).includes(type);
+  const showReadTime = (
+    ["mechanism", "research", "case-study"] as ContentType[]
+  ).includes(type);
+  const showAuthor = (["research", "case-study"] as ContentType[]).includes(
+    type,
+  );
 
   return (
     <div>
@@ -423,7 +494,7 @@ export function CategoryContent({
           <FilterTabs
             options={filters.options}
             active={activeFilter}
-            onChange={setActiveFilter}
+            onChange={handleFilterChange}
           />
         ) : (
           <p className="text-sm text-gray-500">
@@ -436,10 +507,14 @@ export function CategoryContent({
             <AuthorFilter
               authors={uniqueAuthors}
               active={activeAuthor}
-              onChange={setActiveAuthor}
+              onChange={handleAuthorChange}
             />
           )}
-          <SortDropdown sort={sort} onChange={setSort} available={availableSorts} />
+          <SortDropdown
+            sort={sort}
+            onChange={handleSortChange}
+            available={availableSorts}
+          />
           <ViewToggle view={view} onChange={setView} />
         </div>
       </div>
@@ -453,7 +528,10 @@ export function CategoryContent({
       {/* Grid view */}
       {view === "grid" && (
         <div
-          className={`grid md:grid-cols-2 ${columns === 3 ? "lg:grid-cols-3" : ""} gap-6`}
+          className="grid gap-6"
+          style={{
+            gridTemplateColumns: `repeat(auto-fill, minmax(${columns === 2 ? "380px" : "300px"}, 1fr))`,
+          }}
         >
           {sorted.map((item) => (
             <GridCard key={item.slug} item={item} type={type} />
