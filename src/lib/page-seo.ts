@@ -77,6 +77,11 @@ function metaHome(title: string, description: string): Metadata {
 
 export const pageSeo = {
   home: metaHome(siteTitle, siteDescription),
+  brand: meta(
+    "Brand Assets",
+    "Download Gitcoin logos and brand assets, and generate Gitcoin-aligned visuals.",
+    "/brand",
+  ),
   mechanisms: meta(
     "Funding Mechanisms",
     "Learn about quadratic funding, retroactive funding, conviction voting, and other funding mechanisms.",
@@ -116,5 +121,10 @@ export const pageSeo = {
     "About",
     "Gitcoin has been building tools since 2017 that enable communities to build, fund and protect what matters to them.",
     "/about"
+  ),
+  impact: meta(
+    "Impact",
+    "Explore Gitcoin's impact across funding rounds, case studies, ecosystem growth, and matching partners.",
+    "/impact"
   ),
 };
