@@ -181,7 +181,7 @@ function AppSidebarInner({
   const [expanded, setExpanded] = useState<Set<string>>(() => {
     const initial = new Set<string>();
     for (const s of sections) {
-      if (pathname === s.href || pathname.startsWith(s.href + "/")) {
+      if (pathname.startsWith(s.href + "/")) {
         initial.add(s.label);
       }
     }
