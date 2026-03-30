@@ -27,6 +27,11 @@ function sortNewest<T extends { lastUpdated: string }>(items: T[]): T[] {
   return [...items].sort((a, b) => b.lastUpdated.localeCompare(a.lastUpdated));
 }
 
+// Sort alphabetically by name
+function sortAlpha<T extends { name: string }>(items: T[]): T[] {
+  return [...items].sort((a, b) => a.name.localeCompare(b.name));
+}
+
 export function AppSidebar({ defaultCollapsed }: { defaultCollapsed?: boolean } = {}) {
   const sections = [
     {
@@ -52,12 +57,12 @@ export function AppSidebar({ defaultCollapsed }: { defaultCollapsed?: boolean } 
     {
       label: "Apps",
       href: "/apps",
-      items: sortNewest(apps).map((a) => ({ label: a.name, href: `/apps/${a.slug}` })),
+      items: sortAlpha(apps).map((a) => ({ label: a.name, href: `/apps/${a.slug}` })),
     },
     {
       label: "Mechanisms",
       href: "/mechanisms",
-      items: sortNewest(mechanisms).map((m) => ({ label: m.name, href: `/mechanisms/${m.slug}` })),
+      items: sortAlpha(mechanisms).map((m) => ({ label: m.name, href: `/mechanisms/${m.slug}` })),
     },
     {
       label: "Case Studies",
