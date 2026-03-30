@@ -327,9 +327,13 @@ code:not(pre code) {
 }
 
 /* Blockquotes - Playfair Display, white border */
-blockquote {
+blockquote:not(.twitter-tweet) {
   @apply border-l-2 border-gray-25 pl-6 my-6;
-  @apply text-xl italic text-gray-500;
+  @apply text-xl italic text-gray-300;
+}
+
+blockquote.twitter-tweet {
+  @apply text-gray-200 not-italic border-l-2 border-gray-500 pl-5 my-0;
 }
 
 /* Tables */
