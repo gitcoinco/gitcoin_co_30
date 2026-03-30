@@ -230,11 +230,7 @@ export default function AboutPage() {
             <p className="text-2xl font-heading font-bold uppercase">
               Our Impact
             </p>
-            <Button
-              href="https://impact.gitcoin.co"
-              external
-              variant="secondary"
-            >
+            <Button href="/impact" variant="secondary">
               Learn more
             </Button>
           </div>
@@ -302,11 +298,7 @@ export default function AboutPage() {
             <p className="text-2xl font-heading font-bold uppercase">
               Our Impact
             </p>
-            <Button
-              href="https://impact.gitcoin.co"
-              external
-              variant="secondary"
-            >
+            <Button href="/impact" variant="secondary">
               Learn more
             </Button>
           </div>
