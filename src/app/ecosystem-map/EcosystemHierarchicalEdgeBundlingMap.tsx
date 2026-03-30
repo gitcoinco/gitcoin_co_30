@@ -451,14 +451,14 @@ export default function EcosystemHierarchicalEdgeBundlingMap({
   return (
     <div className="p-4 sm:p-6">
       <div className="mb-4 flex flex-wrap items-center justify-between gap-3">
-        <div className="inline-flex rounded-md border border-gray-700 bg-gray-950 p-1">
+        <div className="inline-flex rounded-md border border-gray-700 bg-gray-700 p-1">
           <button
             type="button"
             onClick={() => setNextLayout("radial")}
             className={`rounded px-2.5 py-1 text-xs font-mono ${
               layoutMode === "radial"
                 ? "bg-teal-400 text-gray-950"
-                : "text-gray-300 hover:bg-gray-850"
+                : "text-gray-200 hover:bg-gray-600"
             }`}
           >
             Radial
@@ -469,27 +469,29 @@ export default function EcosystemHierarchicalEdgeBundlingMap({
             className={`rounded px-2.5 py-1 text-xs font-mono ${
               layoutMode === "rectangular"
                 ? "bg-teal-400 text-gray-950"
-                : "text-gray-300 hover:bg-gray-850"
+                : "text-gray-200 hover:bg-gray-600"
             }`}
           >
             Rectangular 2:1
           </button>
         </div>
 
-        <p className="text-xs text-gray-400 font-mono">
-          {pinnedLeafId
-            ? `${activeEdgeIds.size} bundled links pinned · click pinned node to open, or linked nodes to open`
-            : activeLeafId
-              ? `${activeEdgeIds.size} bundled links highlighted`
-              : "Hover leaves to preview bundles · click once to pin · click pinned leaf or linked leaves to open · click X to reset · drag to pan · scroll to zoom"}
-        </p>
+        {pinnedLeafId || activeLeafId ? (
+          <p className="text-xs text-gray-200 font-mono">
+            {pinnedLeafId
+              ? `${activeEdgeIds.size} bundled links pinned · click pinned node to open, or linked nodes to open`
+              : activeLeafId
+                ? `${activeEdgeIds.size} bundled links highlighted`
+                : null}
+          </p>
+        ) : null}
       </div>
 
       <div
         className="relative overflow-x-auto rounded-xl border border-gray-800 bg-gray-900"
         style={{ overscrollBehavior: "contain" }}
       >
-        <div className="absolute left-3 top-3 z-20 flex items-center gap-1 rounded-md border border-gray-700 bg-gray-950/85 p-1">
+        <div className="absolute left-3 top-3 z-20 flex items-center gap-1 rounded-md border border-gray-700 bg-gray-700 p-1">
           <button
             type="button"
             onClick={() => zoomBy(1 / ZOOM_STEP)}
@@ -774,7 +776,7 @@ export default function EcosystemHierarchicalEdgeBundlingMap({
         </svg>
 
         {activeName ? (
-          <div className="pointer-events-none absolute left-4 top-4 rounded bg-gray-950/80 px-2 py-1 text-[11px] text-gray-200 font-mono">
+          <div className="pointer-events-none absolute left-4 top-4 rounded bg-gray-700 px-2 py-1 text-[11px] text-gray-200 font-mono">
             {activeName}
           </div>
         ) : null}

@@ -2,9 +2,9 @@
 
 import { useState } from "react";
 import EcosystemVoronoiMap from "./EcosystemVoronoiMap";
-import EcosystemSphereMap from "./EcosystemSphereMap";
 import EcosystemHierarchicalEdgeBundlingMap from "./EcosystemHierarchicalEdgeBundlingMap";
 import EcosystemForceDirectedTreeMap from "./EcosystemForceDirectedTreeMap";
+import EcosystemZoomableTreemap from "./EcosystemZoomableTreemap";
 
 type EcosystemCategory = "apps" | "mechanisms" | "research" | "case-studies" | "campaigns";
 
@@ -40,9 +40,9 @@ interface EcosystemMapVisualizationSwitcherProps {
 
 type VisualizationMode =
   | "voronoi"
-  | "sphere"
   | "bundling"
-  | "force-tree";
+  | "force-tree"
+  | "zoomable-treemap";
 
 export default function EcosystemMapVisualizationSwitcher({
   nodes,
@@ -54,7 +54,7 @@ export default function EcosystemMapVisualizationSwitcher({
   categoryOrder,
   categoryLabels,
 }: EcosystemMapVisualizationSwitcherProps) {
-  const [mode, setMode] = useState<VisualizationMode>("sphere");
+  const [mode, setMode] = useState<VisualizationMode>("zoomable-treemap");
 
   return (
     <div>
@@ -69,17 +69,6 @@ export default function EcosystemMapVisualizationSwitcher({
           }`}
         >
           Voronoi Network
-        </button>
-        <button
-          type="button"
-          onClick={() => setMode("sphere")}
-          className={`rounded-md px-3 py-1.5 text-xs font-mono transition-colors ${
-            mode === "sphere"
-              ? "bg-teal-400 text-gray-950"
-              : "bg-gray-950 text-gray-300 hover:bg-gray-850"
-          }`}
-        >
-          3D Sphere
         </button>
         <button
           type="button"
@@ -102,6 +91,17 @@ export default function EcosystemMapVisualizationSwitcher({
           }`}
         >
           Force Tree
+        </button>
+        <button
+          type="button"
+          onClick={() => setMode("zoomable-treemap")}
+          className={`rounded-md px-3 py-1.5 text-xs font-mono transition-colors ${
+            mode === "zoomable-treemap"
+              ? "bg-teal-400 text-gray-950"
+              : "bg-gray-950 text-gray-300 hover:bg-gray-850"
+          }`}
+        >
+          Treemap
         </button>
       </div>
 
@@ -134,13 +134,22 @@ export default function EcosystemMapVisualizationSwitcher({
           categoryOrder={categoryOrder}
           categoryLabels={categoryLabels}
         />
+      ) : mode === "zoomable-treemap" ? (
+        <EcosystemZoomableTreemap
+          nodes={nodes}
+          width={width}
+          height={height}
+          categoryColors={categoryColors}
+          categoryOrder={categoryOrder}
+        />
       ) : (
-        <EcosystemSphereMap
+        <EcosystemVoronoiMap
           nodes={nodes}
           edges={edges}
           width={width}
           height={height}
           categoryColors={categoryColors}
+          categoryAnchors={categoryAnchors}
         />
       )}
     </div>
