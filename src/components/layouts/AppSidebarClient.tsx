@@ -93,7 +93,7 @@ const SectionRow = memo(function SectionRow({
           href={section.href}
           onClick={onItemClick}
           ref={attachRef && isExactSection ? activeSectionRef : undefined}
-          className={`group flex items-center justify-between gap-1 py-1.5 w-full cursor-pointer transition-colors ${
+          className={`group flex items-center bg-gray-900 justify-between gap-1 py-1.5 w-full cursor-pointer transition-colors ${
             isExactSection
               ? "text-teal-400"
               : isActiveSection
@@ -260,7 +260,7 @@ function AppSidebarInner({
   return (
     <>
       {/* ── Mobile nav ─────────────────────────────────────────── */}
-      <div className={`md:hidden sticky top-[70px] z-40 bg-gray-950/80 backdrop-blur-sm ${pathname === "/" ? "hidden" : ""}`}>
+      <div className={`md:hidden sticky top-[70px] z-40 bg-gray-900 backdrop-blur-sm ${pathname === "/" ? "hidden" : ""}`}>
         <button
           className="flex items-center gap-1.5 px-4 py-3 text-gray-400 hover:text-gray-200 transition-colors cursor-pointer"
           onClick={() => setMobileOpen((o) => !o)}
