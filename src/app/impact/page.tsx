@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 import Image from "next/image";
 import Link from "next/link";
-import ImpactNumbersField from "@/components/impact/ImpactNumbersField";
+import ResponsiveImpactHeroMetrics from "@/components/impact/ResponsiveImpactHeroMetrics";
 import ResponsiveImpactNumbersFieldMask from "@/components/impact/ResponsiveImpactNumbersFieldMask";
 import ScrollReveal from "@/components/impact/ScrollReveal";
 import PartnersMarqueeSection from "@/components/sections/PartnersMarqueeSection";
@@ -264,43 +264,8 @@ function SectionHeading({
   );
 }
 
-function MetricValuePanel({ value, label }: HeroMetric) {
-  return (
-    <div className="w-full rounded-[16px] border border-gray-300/65 bg-gray-900 px-4 py-5 text-center">
-      <div className="font-mono text-[34px] leading-none text-gray-25 sm:text-[40px]">
-        {value}
-      </div>
-      <div className="mt-2 font-mono text-[12px] uppercase tracking-[0.14em] text-gray-25 sm:text-[14px]">
-        {label}
-      </div>
-    </div>
-  );
-}
-
 function MetricConnector({ className = "h-8" }: { className?: string }) {
   return <div className={`w-px bg-gray-300/65 ${className}`} />;
-}
-
-function HeroMetricCard({ value, label }: HeroMetric) {
-  return (
-    <div className="flex flex-col items-center">
-      <div className="relative aspect-[1/1] w-full overflow-hidden rounded-[16px] border border-gray-300/65 bg-transparent">
-        <ImpactNumbersField className="absolute inset-0" variant="hero" />
-        <div className="absolute inset-0 bg-[#1f1c18]/14" />
-      </div>
-      <MetricConnector />
-      <MetricValuePanel value={value} label={label} />
-    </div>
-  );
-}
-
-function HeroMetricLabel({ value, label }: HeroMetric) {
-  return (
-    <div className="flex flex-col items-center">
-      <MetricConnector />
-      <MetricValuePanel value={value} label={label} />
-    </div>
-  );
 }
 
 function NumberCard({ value, label }: NumberMetric) {
@@ -418,7 +383,7 @@ function GrowthMilestoneTag({
 }) {
   return (
     <div
-      className="absolute -translate-x-1/2 rounded-[14px] border border-gray-300/70 bg-gray-900 px-4 py-2 font-mono text-base leading-none text-gray-200 shadow-[0_0_30px_var(--color-iris-500)] sm:text-[24px]"
+      className="absolute -translate-x-1/2 rounded-[14px] border border-gray-100 bg-gray-900 px-4 py-2 font-mono text-base leading-none text-gray-100 shadow-[0_0_30px_var(--color-gray-950)] sm:text-[20px]"
       style={style}
     >
       {children}
@@ -451,47 +416,7 @@ export default function ImpactPage() {
             </span>
           </h1>
 
-          <div className="mt-10 grid gap-5 md:hidden">
-            {heroMetrics.map((metric) => (
-              <HeroMetricCard key={metric.label} {...metric} />
-            ))}
-          </div>
-
-          <div className="mt-10 hidden md:block">
-            <div className="relative">
-              <div className="relative">
-                <ImpactNumbersField
-                  className="absolute inset-0"
-                  variant="hero"
-                />
-                <div
-                  className="pointer-events-none absolute inset-y-0 z-10 w-5 bg-gray-900"
-                  style={{ left: "calc((100% - 40px) / 3)" }}
-                />
-                <div
-                  className="pointer-events-none absolute inset-y-0 z-10 w-5 bg-gray-900"
-                  style={{ left: "calc((((100% - 40px) / 3) * 2) + 20px)" }}
-                />
-
-                <div className="relative grid grid-cols-3 gap-5">
-                  {heroMetrics.map((metric) => (
-                    <div
-                      key={metric.label}
-                      className="relative aspect-square overflow-hidden rounded-[16px] border border-gray-300/65 bg-transparent"
-                    >
-                      <div className="absolute inset-0 bg-[#1f1c18]/14" />
-                    </div>
-                  ))}
-                </div>
-              </div>
-
-              <div className="grid grid-cols-3 gap-5">
-                {heroMetrics.map((metric) => (
-                  <HeroMetricLabel key={metric.label} {...metric} />
-                ))}
-              </div>
-            </div>
-          </div>
+          <ResponsiveImpactHeroMetrics metrics={heroMetrics} />
         </div>
       </section>
 
@@ -514,7 +439,7 @@ export default function ImpactPage() {
         </div>
 
         <ScrollReveal className="mt-10" y={28} scale={0.985}>
-          <div className="relative overflow-visible rounded-[20px] border border-gray-300/65">
+          <div className="relative overflow-visible rounded-[4xl] border border-gray-300/65">
             <div className="relative aspect-[1053/674] min-h-[340px] w-full">
               <Image
                 src="/assets/impact/growth-chart-bg-new.png"
@@ -522,7 +447,7 @@ export default function ImpactPage() {
                 fill
                 priority
                 sizes="100vw"
-                className="object-cover opacity-60"
+                className="object-cover opacity-40 rounded-[4xl]"
               />
 
               {growthMilestones.map((milestone, index) => (
@@ -578,7 +503,7 @@ export default function ImpactPage() {
                 y={16}
                 scale={0.96}
               >
-                <div className="group relative origin-center overflow-hidden rounded-[12px] border border-gray-600 bg-gray-900 transition-all duration-300 ease-out hover:shadow-[0_0_128px_0px_var(--color-iris-500)] hover:z-50 hover:scale-[1.1] hover:border-iris-500">
+                <div className="group relative origin-center overflow-hidden rounded-[2xl] border border-gray-600 bg-gray-900 transition-all duration-300 ease-out hover:shadow-[0_0_128px_0px_var(--color-iris-500)] hover:z-50 hover:scale-[1.1] hover:border-iris-500">
                   <Image
                     src={item.src}
                     alt={item.alt}

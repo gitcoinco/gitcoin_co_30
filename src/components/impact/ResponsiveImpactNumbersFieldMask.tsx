@@ -1,4 +1,7 @@
+"use client";
+
 import ImpactNumbersField from "@/components/impact/ImpactNumbersField";
+import useMediaQuery from "@/components/impact/useMediaQuery";
 
 const desktopMaskSvg = encodeURIComponent(`
   <svg xmlns="http://www.w3.org/2000/svg" width="1096" height="250" viewBox="0 0 1096 250">
@@ -24,6 +27,8 @@ const desktopMask = `url("data:image/svg+xml,${desktopMaskSvg}")`;
 const mobileMask = `url("data:image/svg+xml,${mobileMaskSvg}")`;
 
 export default function ResponsiveImpactNumbersFieldMask() {
+  const isDesktop = useMediaQuery("(min-width: 640px)");
+
   return (
     <>
       <div
@@ -37,7 +42,7 @@ export default function ResponsiveImpactNumbersFieldMask() {
           maskSize: "100% 100%",
         }}
       >
-        <ImpactNumbersField className="size-full" />
+        {isDesktop === false ? <ImpactNumbersField className="size-full" /> : null}
       </div>
 
       <div
@@ -51,7 +56,7 @@ export default function ResponsiveImpactNumbersFieldMask() {
           maskSize: "100% 100%",
         }}
       >
-        <ImpactNumbersField className="size-full" />
+        {isDesktop === true ? <ImpactNumbersField className="size-full" /> : null}
       </div>
     </>
   );

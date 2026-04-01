@@ -36,7 +36,7 @@ const assetCards: AssetCard[] = [
     description:
       "For our logo, the wordmark is supreme. The wordmark should be used in almost all instances when representing the Gitcoin brand, unless a small or square size is required.",
     ctaLabel: "Download",
-    ctaHref: "/assets/brand/wordmark.svg",
+    ctaHref: "/assets/brand/wordmark-logo.zip",
     preview: "wordmark",
     download: true,
   },
@@ -45,7 +45,7 @@ const assetCards: AssetCard[] = [
     description:
       "The helmet icon is to be used sparingly as a standalone detail or a feature. Consider it the Gitcoin signature for important occasions.",
     ctaLabel: "Download",
-    ctaHref: "/assets/brand/helmet.svg",
+    ctaHref: "/assets/brand/helmet-logo.zip",
     preview: "helmet",
     download: true,
     reverse: true,

@@ -36,41 +36,41 @@ type ImpactFieldConfig = {
 
 const IMPACT_FIELD_PRESETS = {
   numbers: {
-    particleCount: 100000,
-    gridSize: 64,
+    particleCount: 10000,
+    gridSize: 32,
     settleStrength: 5.0,
     jitter: 0.1,
     drag: 0.85,
     speedLimit: 3.0,
-    viewScale: 200,
+    viewScale: 100,
     color: "#9900ff",
-    particleSize: 2.0,
-    particleOpacity: 0.4,
+    particleSize: 3.0,
+    particleOpacity: 0.6,
     modeCount: 1,
     mRange: { min: 2, max: 12 },
     nRange: { min: 2, max: 12 },
     phaseJitter: 0.5,
-    fieldScale: 0.5,
+    fieldScale: 0.8,
     waveTypeA: "CurvedStripes",
     waveTypeB: "Cartesian",
     waveMix: 0.5,
   },
   hero: {
-    particleCount: 100000,
-    gridSize: 64,
-    settleStrength: 5.0,
-    jitter: 0.1,
+    particleCount: 50000,
+    gridSize: 32,
+    settleStrength: 6.0,
+    jitter: 0.5,
     drag: 0.85,
     speedLimit: 3.0,
     viewScale: 200,
-    color: "#02E2AC",
-    particleSize: 2.0,
+    color: "#725CDF",
+    particleSize: 3.0,
     particleOpacity: 0.8,
     modeCount: 1,
     mRange: { min: 2, max: 12 },
     nRange: { min: 2, max: 12 },
     phaseJitter: 0.3,
-    fieldScale: 2.0,
+    fieldScale: 1.0,
     waveTypeA: "Web",
     waveTypeB: "Cartesian",
     waveMix: 0.7,
@@ -201,7 +201,7 @@ export default function ImpactNumbersField({
     const interactionEl = parentEl
       ? parentEl.childElementCount > 1
         ? parentEl
-        : parentEl.parentElement ?? parentEl
+        : (parentEl.parentElement ?? parentEl)
       : containerEl;
 
     let scene!: THREE.Scene;
