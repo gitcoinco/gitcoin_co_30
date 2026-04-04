@@ -37,17 +37,17 @@ Scale this pattern: compensation for maintaining riparian buffers along streams,
 
 Despite the compelling vision, bioregional finance faces fundamental challenges that make it a poor candidate for near-term investment:
 
-**The currency problem.** Any local bioregional token faces a basic economic reality: it can't buy your plane ticket or your laptop. People need dollars (or equivalent) for the vast majority of transactions. A local token is always less desirable to hold than a global currency because the global currency does more things. Someone can always just buy the local token with dollars, but not vice versa. As Schmachtenberger notes, "the dollar allows you to do more things — that's not going to replace the dollar." The only scenario where local currencies genuinely compete is full dollar collapse — which is a different and much more extreme situation.
+**The currency problem.** Any local bioregional token faces a basic economic reality: it can't buy your plane ticket or your laptop. People need dollars (or equivalent) for the vast majority of transactions. A local token is always less desirable to hold than a global currency because the global currency does more things. Someone can always just buy the local token with dollars, but not vice versa. The dollar simply allows you to do more things — a local token is not going to replace it. The only scenario where local currencies genuinely compete is full dollar collapse — which is a different and much more extreme situation.
 
 **The governance scale problem.** Bioregions are real ecological units, but they are not the only relevant governance scale. Some flows — like mining activity, atmospheric carbon, ocean currents — cannot be governed bioregionally because they operate at continental or global scales. Some flows — like neighborhood commerce — operate at scales much smaller than a bioregion. Getting governance at the right level for each type of flow requires sophisticated multi-scale systems that do not yet exist.
 
 **The TAM problem.** The total addressable market for bioregional finance is small. Environmentalists and local resilience advocates are passionate about it, but they represent less than 1% of the attention commanded by topics like AI job displacement. The novelty of what new technology can add to bioregional work is also limited — much of what needs to happen is physical, slow, and place-specific.
 
-**The time horizon problem.** Schmachtenberger's assessment is direct: "This is going to take 10 years to get interesting with a lot of budget." Bioregional finance is not something you can prototype cheaply and iterate quickly. It requires deep local relationships, ecological knowledge, regulatory navigation, and sustained investment over years before measurable outcomes emerge.
+**The time horizon problem.** The honest assessment is direct: this is going to take 10 years to get interesting, even with significant budget. Bioregional finance is not something you can prototype cheaply and iterate quickly. It requires deep local relationships, ecological knowledge, regulatory navigation, and sustained investment over years before measurable outcomes emerge.
 
 ## The Right Approach: Earn the Right
 
-The honest recommendation is not to abandon bioregional work, but to sequence it correctly. As Schmachtenberger advises: "Earn the right to do it by doing some other things where you get some ROI and you can ongoingly invest in this."
+The honest recommendation is not to abandon bioregional work, but to sequence it correctly. Earn the right to do it by succeeding at other things where you get ROI, and then ongoingly invest in this.
 
 Concretely, this means:
 

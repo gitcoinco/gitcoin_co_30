@@ -24,7 +24,7 @@ banner: /content-images/research/ai-job-displacement-the-most-urgent-crisis/bann
 
 Before we talk about AI taking jobs, we need to acknowledge that jobs were already broken.
 
-The median income relative to the median home cost has worsened 5x since 1970. Two-income households that didn't exist a generation ago still can't afford a mortgage. The number one reason young people aren't having kids is that they can't afford them — and a society where the economy is so bad that people stop having children is, as Daniel Schmachtenberger puts it, "the end of fucking civilization."
+The median income relative to the median home cost has worsened 5x since 1970. Two-income households that didn't exist a generation ago still can't afford a mortgage. The number one reason young people aren't having kids is that they can't afford them — and a society where the economy is so bad that people stop having children is witnessing the end of civilization in slow motion.
 
 The primary education system doesn't equip people for jobs. The post-secondary system saddles them with debt they can't pay off. People graduating with computer science degrees worth $150,000 in student loans are watching their field get automated before their first job interview.
 
@@ -32,7 +32,7 @@ AI taking your job is not a new crisis. It is the radical acceleration of a cris
 
 ## Why This Is the Tip of the Spear
 
-Among all AI risks — recursive self-improvement, autonomous weapons, ubiquitous surveillance — job displacement is the one that the most people will feel most viscerally, most soon. As Schmachtenberger frames it: "AI creating recursive self-improvement feels too sci-fi for most people. Autonomous drone swarms and automating the kill chain — scary but abstract. AI taking jobs? Most people can feel poverty."
+Among all AI risks — recursive self-improvement, autonomous weapons, ubiquitous surveillance — job displacement is the one that the most people will feel most viscerally, most soon. AI creating recursive self-improvement feels too sci-fi for most people. Autonomous drone swarms and automating the kill chain — scary but abstract. AI taking jobs? Most people can feel poverty.
 
 This is not the most existential AI risk in the long run. But it is the most legible, the most immediate, and the most mobilizing. It is the issue that could get on the news every night. It is the issue that could become a single-voter issue: protect our jobs or lose our vote.
 

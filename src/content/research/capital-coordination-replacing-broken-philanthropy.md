@@ -30,7 +30,7 @@ Writing a grant to the Ford Foundation requires that you already have significan
 
 Government grants are worse. Local government spending on commons work is riddled with corruption and administrative overhead. The people who most need funding — small organizations doing vital work — are the least equipped to navigate the application process.
 
-As Daniel Schmachtenberger puts it: the current system means you need "a lot of fucking money to be able to get a director of development who knows how to write that grant." The overhead of the philanthropic apparatus consumes resources that should be reaching the people and projects doing the actual work.
+The current system means you need a lot of money just to be able to hire a director of development who knows how to write that grant. The overhead of the philanthropic apparatus consumes resources that should be reaching the people and projects doing the actual work.
 
 ## The Network-Based Alternative
 

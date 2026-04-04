@@ -21,7 +21,7 @@ banner: /content-images/research/aligned-economic-systems-fixing-the-misaligned-
 
 ## We Already Have a Misaligned Superintelligence
 
-When people discuss AI alignment, they typically imagine a future scenario — a powerful artificial system with goals that diverge from human wellbeing. But as Daniel Schmachtenberger argues, we already live under the control of a misaligned superintelligence. It is the global financial system.
+When people discuss AI alignment, they typically imagine a future scenario — a powerful artificial system with goals that diverge from human wellbeing. But we already live under the control of a misaligned superintelligence. It is the global financial system.
 
 This is not metaphor. Oscar Lange, a contemporary of cybernetics pioneer Norbert Wiener, formally demonstrated that the pricing mechanism is Turing-complete. The accounting system — the series of all double ledgers and the protocols for transfer between them — constitutes a world computer. Nick Land pushed this idea furthest: "We will come to recognize that what we call the history of capitalism is an artificial intelligence sent back from the future to assemble itself from its enemies' resources."
 
@@ -42,7 +42,7 @@ When humans talk about "alignment" in the AI context, they are asking: how do we
 
 The system of incentives and deterrences that coordinates human behavior is the political economy — the combination of the economic system (incentives) and the legal system (deterrences). The economic system says "organ harvesting is profitable." The legal system says "organ harvesting is illegal." Together, they produce the actual coordination behavior.
 
-Crypto's original aspiration — programmable incentives and money — was implicitly an attempt to redesign this coordination mechanism. The question "what would a political economy that's aligned be?" is, as Schmachtenberger puts it, "the core crypto for good question."
+Crypto's original aspiration — programmable incentives and money — was implicitly an attempt to redesign this coordination mechanism. The question "what would a political economy that's aligned be?" is the core crypto-for-good question.
 
 ## Design Principles for Aligned Economics
 

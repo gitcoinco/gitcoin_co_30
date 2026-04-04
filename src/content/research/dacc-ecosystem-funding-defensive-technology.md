@@ -30,7 +30,7 @@ Nobody has comprehensively mapped the d/acc landscape. Nobody has vetted which p
 
 ## Cartography First
 
-The first step is mapping the terrain. Gitcoin's early cartography of the d/acc space uses two axes: atoms versus bits (physical tech versus digital tech) and survive versus thrive (basic defense versus regeneration). Schmachtenberger adds a critical third axis: **energy** — joules alongside atoms and bits — because the energy system is being captured and distorted in ways that are neither purely physical nor purely digital.
+The first step is mapping the terrain. Gitcoin's early cartography of the d/acc space uses two axes: atoms versus bits (physical tech versus digital tech) and survive versus thrive (basic defense versus regeneration). We propose a critical third axis: **energy** — joules alongside atoms and bits — because the energy system is being captured and distorted in ways that are neither purely physical nor purely digital.
 
 Under each bubble on the map, you need more than a label. You need a two-sentence description of the theory of change: what offense is this defending against, and how does the defense mechanism work? Without this, the map is decoration. With it, the map becomes a strategic instrument.
 
@@ -48,7 +48,7 @@ d/acc projects must be evaluated on three dimensions, not two:
 
 ## What Actually Reduces Harm
 
-Not everything labeled "defensive" is actually defensive. Schmachtenberger offers sharp criteria for evaluation:
+Not everything labeled "defensive" is actually defensive. Sharp criteria are needed for evaluation:
 
 **Anti-deepfake technology** — AI that can identify whether content is AI-generated — could be a multi-billion dollar company and is legitimately defensive. It uses the offensive technology (AI) against itself, which is the strongest form of defense.
 

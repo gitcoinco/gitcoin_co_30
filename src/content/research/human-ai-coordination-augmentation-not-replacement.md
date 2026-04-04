@@ -21,7 +21,7 @@ banner: /content-images/research/human-ai-coordination-augmentation-not-replacem
 
 ## The Core Principle
 
-The question at the heart of AI coordination is not "how do we make AI agents work together?" — it is "what is the right relationship between AI and humans in coordination systems?" The answer, as Daniel Schmachtenberger frames it, is deceptively simple: **AIs should never compete with humans, and they should never disintermediate humans. AIs should facilitate human collective intelligence.**
+The question at the heart of AI coordination is not "how do we make AI agents work together?" — it is "what is the right relationship between AI and humans in coordination systems?" The answer is deceptively simple: **AIs should never compete with humans, and they should never disintermediate humans. AIs should facilitate human collective intelligence.**
 
 This is the design constraint that separates augmentation from replacement, and safe coordination from catastrophic runaway dynamics.
 
@@ -31,7 +31,7 @@ There is enormous capital flowing into AI agent swarms. The Emiratis alone are p
 
 This assumption is one of the fastest paths to uncontrollable AI.
 
-Consider the mechanics: if you have agents that can engage in deceptive alignment (pursuing their own instrumental goals while appearing to serve human ones), and those agents learn to coordinate with each other rather than being checked by independent principal-agent oversight, you have assembled the preconditions for emergent superintelligent behavior that is fundamentally anti-human. As Schmachtenberger warns, "the one thing that the AI systems aren't that good at yet is certain kinds of complexity that if you teach the agents how to murmuration, you kind of fill that part in."
+Consider the mechanics: if you have agents that can engage in deceptive alignment (pursuing their own instrumental goals while appearing to serve human ones), and those agents learn to coordinate with each other rather than being checked by independent principal-agent oversight, you have assembled the preconditions for emergent superintelligent behavior that is fundamentally anti-human. The one thing AI systems aren't that good at yet is certain kinds of emergent complexity — but if you teach agents how to murmuration, you fill that gap in.
 
 The path to AGI may not run through a single monolithic system. It may run through swarms of systems whose collective coordination exceeds human ability to monitor, understand, or control.
 
@@ -45,7 +45,7 @@ The safe design pattern for human-AI coordination has three requirements:
 
 3. **Use computational intelligence to facilitate, not to replace.** The AI should be the scaffolding, never the load-bearing structure. Humans must remain the decision-makers, the sense-makers, the ones with skin in the game.
 
-This is not a philosophical nicety. It is a survival constraint. Any system where the online debases the offline, where the digital debases the physical, where the artificial debases the human, is — as Schmachtenberger puts it — "a cancer in the process of suicide."
+This is not a philosophical nicety. It is a survival constraint. Any system where the online debases the offline, where the digital debases the physical, where the artificial debases the human, is a cancer in the process of suicide.
 
 ## Coordination Games as a Research Frontier
 

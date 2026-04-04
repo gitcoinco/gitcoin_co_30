@@ -23,7 +23,7 @@ banner: /content-images/research/network-governance-beyond-techno-feudalism/bann
 
 Before the Industrial Revolution, there were no markets in the modern sense. The king was not rich because the poor bought his products — the king was rich because he forced the poor to produce for him. Voluntaryism-based markets emerged following the first Industrial Revolution. The third Industrial Revolution — the internet — is killing them.
 
-The mechanism is network effects. As Daniel Schmachtenberger explains: a railroad company does not just serve cities, it connects them. If you have *n* cities, the city-to-city relationships are *n*-squared. The value proposition is proportional to the square of the number of participants, not the number itself. At roughly 10% of total addressable market, a network reaches takeoff velocity where no competitor can catch up.
+The mechanism is network effects. A railroad company does not just serve cities — it connects them. If you have *n* cities, the city-to-city relationships are *n*-squared. The value proposition is proportional to the square of the number of participants, not the number itself. At roughly 10% of total addressable market, a network reaches takeoff velocity where no competitor can catch up.
 
 Building a railroad required massive physical infrastructure. What PayPal's founders realized — and this is why they knew Airbnb and Uber would follow — is that a smartphone app achieves the same *n*-squared effect without laying a single rail. Uber gets the monopolistic power of the railroads with just software.
 
@@ -61,6 +61,6 @@ The design challenge is creating networks that operate globally — capturing th
 
 ## The Stakes
 
-The fourth Industrial Revolution — AI — will capture the networks themselves. If network governance is not solved before AI systems become the primary agents within networks, the window for human-compatible governance closes permanently. The path leads to, as Schmachtenberger frames it, "a few kings and everyone else being pretty poor in the networks, but then those poor people actually being not even needing serf labor because they get replaced by AI and robots."
+The fourth Industrial Revolution — AI — will capture the networks themselves. If network governance is not solved before AI systems become the primary agents within networks, the window for human-compatible governance closes permanently. The path leads to a few kings and everyone else being pretty poor in the networks — and then those poor people not even being needed for serf labor, because they get replaced by AI and robots.
 
 The question of network governance is not a policy question. It is an existential one.
