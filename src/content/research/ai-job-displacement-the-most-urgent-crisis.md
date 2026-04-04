@@ -12,7 +12,6 @@ tags:
 lastUpdated: '2026-04-03'
 authors:
   - 'Kevin Owocki'
-  - 'Daniel Schmachtenberger'
 relatedResearch:
   - human-ai-coordination-augmentation-not-replacement
   - network-governance-beyond-techno-feudalism

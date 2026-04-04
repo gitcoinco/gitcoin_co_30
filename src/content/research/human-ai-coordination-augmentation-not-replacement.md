@@ -12,7 +12,6 @@ tags:
 lastUpdated: '2026-04-03'
 authors:
   - 'Kevin Owocki'
-  - 'Daniel Schmachtenberger'
 relatedResearch:
   - aligned-economic-systems-fixing-the-misaligned-superintelligence
   - ai-job-displacement-the-most-urgent-crisis
