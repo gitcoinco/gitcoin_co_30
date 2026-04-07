@@ -57,7 +57,7 @@
     "three": "^0.182.0",
     "typescript": "^5.9.3",
     "viem": "^2.47.10",
-    "wagmi": "^3.6.1",
+    "wagmi": "^2.19.5",
     "zod": "^4.3.6"
   },
   "devDependencies": {
