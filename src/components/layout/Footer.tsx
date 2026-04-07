@@ -9,7 +9,6 @@ import {
   type LucideIcon,
 } from "lucide-react";
 import ChladniBackground from "@/components/ChladniBackground";
-import MarkeeSign from "@/components/MarkeeSign";
 
 type FooterLink = {
   title: string;
@@ -134,8 +133,6 @@ export default function Footer() {
           <FooterLinkGroup title="Resources" links={resourceLinks} />
           <FooterLinkGroup title="Community" links={communityLinks} />
         </div>
-
-        <MarkeeSign />
 
         <div className="mt-10 flex flex-col gap-3 border-t border-gray-500 pt-4 text-sm text-gray-300 sm:flex-row sm:items-center sm:justify-between">
           <p>&copy; 2026 Gitcoin. Fund what matters.</p>

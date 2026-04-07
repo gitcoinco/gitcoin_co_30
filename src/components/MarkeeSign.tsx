@@ -111,12 +111,12 @@ export default function MarkeeSign() {
         data-markee-address={LEADERBOARD_ADDRESS.toLowerCase()}
         onClick={() => setModalOpen(true)}
         disabled={loading || error}
-        className="group relative mx-auto mt-6 mb-4 cursor-pointer w-full text-left"
+        className="group relative w-full text-left cursor-pointer"
         aria-label="Click to change the Markee message"
       >
         {/* Sign body */}
-        <div className="relative rounded border border-gray-700 bg-gray-800/40 px-6 py-5 hover:border-teal-500/50 transition-colors duration-200">
-          <p className="font-mono text-sm text-gray-300 group-hover:text-gray-100 transition-colors duration-200 leading-snug">
+        <div className="rounded border border-gray-700 bg-gray-800/40 px-4 py-3 hover:border-teal-500/50 transition-colors duration-200">
+          <p className="font-mono text-xs text-gray-300 group-hover:text-gray-100 transition-colors duration-200 leading-snug break-words">
             {loading ? (
               <span className="text-gray-500">loading...</span>
             ) : error ? (
@@ -126,7 +126,7 @@ export default function MarkeeSign() {
             )}
           </p>
           {data.name && !loading && (
-            <p className="mt-1.5 text-xs text-gray-500 group-hover:text-gray-400 transition-colors duration-200">
+            <p className="mt-1 text-xs text-gray-600 group-hover:text-gray-500 transition-colors duration-200">
               {data.name.startsWith("0x")
                 ? `${data.name.slice(0, 6)}...${data.name.slice(-4)}`
                 : data.name}
@@ -134,8 +134,8 @@ export default function MarkeeSign() {
           )}
         </div>
 
-        {/* Price badge -- hidden until hover (always visible on mobile) */}
-        <span className="absolute -bottom-3 left-1/2 -translate-x-1/2 rounded-full border border-gray-600 bg-gray-900 px-3 py-0.5 text-xs font-mono text-gray-400 opacity-0 group-hover:opacity-100 group-hover:border-teal-500/40 group-hover:text-teal-400 sm:opacity-0 opacity-100 border-teal-500/40 text-teal-400 transition-all duration-200 whitespace-nowrap">
+        {/* Price badge -- revealed on hover */}
+        <span className="absolute -bottom-3 left-1/2 -translate-x-1/2 rounded-full border border-gray-700 bg-gray-900 px-2.5 py-0.5 text-xs font-mono text-gray-500 opacity-0 group-hover:opacity-100 group-hover:border-teal-500/40 group-hover:text-teal-400 transition-all duration-200 whitespace-nowrap">
           {loading ? "..." : error ? "unavailable" : priceLabel}
         </span>
       </button>

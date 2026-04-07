@@ -5,6 +5,7 @@ import { usePathname, useSearchParams } from "next/navigation";
 import Link from "next/link";
 import { ChevronRight, ChevronDown, ChevronLeft, Folder, FolderOpen } from "lucide-react";
 import { useSidebar } from "@/context/SidebarContext";
+import MarkeeSign from "@/components/MarkeeSign";
 
 export interface SidebarItem {
   label: string;
@@ -319,9 +320,9 @@ function AppSidebarInner({
             style={{ width: visibleWidth }}
           >
             <div ref={scrollContainerRef} className="h-full overflow-y-scroll" style={{ width: sidebarWidth }}>
-              <div className="py-6 px-4 space-y-4">
+              <div className="py-6 px-4 flex flex-col min-h-full">
                 <Link href="/" className={homeClass}>Home</Link>
-                <nav className="space-y-4">
+                <nav className="space-y-4 mt-4">
                   {sections.map((section) => (
                     <SectionRow
                       key={section.label}
@@ -332,6 +333,9 @@ function AppSidebarInner({
                     />
                   ))}
                 </nav>
+                <div className="mt-auto pt-8 pb-6">
+                  <MarkeeSign />
+                </div>
               </div>
             </div>
           </div>
