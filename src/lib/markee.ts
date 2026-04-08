@@ -26,6 +26,16 @@ export const LEADERBOARD_ABI = [
     type: "function",
   },
   {
+    inputs: [{ name: "limit", type: "uint256" }],
+    name: "getTopMarkees",
+    outputs: [
+      { name: "topAddresses", type: "address[]" },
+      { name: "topFunds", type: "uint256[]" },
+    ],
+    stateMutability: "view",
+    type: "function",
+  },
+  {
     inputs: [
       { name: "_message", type: "string" },
       { name: "_name", type: "string" },
@@ -50,6 +60,23 @@ export const LEADERBOARD_ABI = [
     name: "updateMessage",
     outputs: [],
     stateMutability: "nonpayable",
+    type: "function",
+  },
+] as const;
+
+export const MARKEE_ABI = [
+  {
+    inputs: [],
+    name: "message",
+    outputs: [{ name: "", type: "string" }],
+    stateMutability: "view",
+    type: "function",
+  },
+  {
+    inputs: [],
+    name: "name",
+    outputs: [{ name: "", type: "string" }],
+    stateMutability: "view",
     type: "function",
   },
 ] as const;

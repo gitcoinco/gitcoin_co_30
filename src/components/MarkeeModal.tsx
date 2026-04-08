@@ -8,6 +8,8 @@ import {
   useAccount,
   useBalance,
   useChainId,
+  useReadContract,
+  useReadContracts,
   useSwitchChain,
   useWriteContract,
   useWaitForTransactionReceipt,
@@ -15,17 +17,12 @@ import {
 import { base } from "wagmi/chains";
 import {
   LEADERBOARD_ADDRESS,
-  LEADERBOARD_ADDRESS_LOWER,
   LEADERBOARD_ABI,
-  API_URL,
+  MARKEE_ABI,
 } from "@/lib/markee";
 
-type LeaderboardEntry = {
-  address: string;
-  message: string;
-  name: string;
-  totalFundsAdded: string;
-};
+const GARDENS_URL =
+  "https://app.gardens.fund/gardens/8453/0xce6b968c8bd130ca08f1fcc97b509a824380d867";
 
 interface MarkeeModalProps {
   minimumPrice: bigint;
@@ -56,8 +53,6 @@ export default function MarkeeModal({
   const [ethAmount, setEthAmount] = useState("");
   const [error, setError] = useState<string | null>(null);
   const [leaderboardOpen, setLeaderboardOpen] = useState(false);
-  const [leaderboard, setLeaderboard] = useState<LeaderboardEntry[]>([]);
-  const [leaderboardLoading, setLeaderboardLoading] = useState(false);
   const dialogRef = useRef<HTMLDialogElement>(null);
 
   const { address, isConnected } = useAccount();
@@ -77,6 +72,40 @@ export default function MarkeeModal({
   const { isLoading: isConfirming, isSuccess } =
     useWaitForTransactionReceipt({ hash });
 
+  // Leaderboard: read top 10 markees directly from contract
+  const { data: topMarkeesData, isPending: topMarkeesPending } = useReadContract({
+    address: LEADERBOARD_ADDRESS,
+    abi: LEADERBOARD_ABI,
+    functionName: "getTopMarkees",
+    args: [10n],
+    chainId: base.id,
+    query: { enabled: leaderboardOpen },
+  });
+
+  const topAddresses = (topMarkeesData as [`0x${string}`[], bigint[]] | undefined)?.[0] ?? [];
+  const topFunds = (topMarkeesData as [`0x${string}`[], bigint[]] | undefined)?.[1] ?? [];
+
+  const { data: markeeReadData, isPending: markeeDataPending } = useReadContracts({
+    contracts: topAddresses.flatMap((addr) => [
+      { address: addr, abi: MARKEE_ABI, functionName: "message" as const, chainId: base.id },
+      { address: addr, abi: MARKEE_ABI, functionName: "name" as const, chainId: base.id },
+    ]),
+    query: { enabled: topAddresses.length > 0 },
+  });
+
+  const leaderboardEntries = topAddresses
+    .map((addr, i) => ({
+      address: addr,
+      message: (markeeReadData?.[i * 2]?.result as string) ?? "",
+      name: (markeeReadData?.[i * 2 + 1]?.result as string) ?? "",
+      totalFundsAdded: topFunds[i]?.toString() ?? "0",
+    }))
+    .filter((e) => e.message);
+
+  const leaderboardLoading =
+    leaderboardOpen &&
+    (topMarkeesPending || (topAddresses.length > 0 && markeeDataPending));
+
   // Open dialog on mount
   useEffect(() => {
     dialogRef.current?.showModal();
@@ -92,35 +121,6 @@ export default function MarkeeModal({
   useEffect(() => {
     if (isSuccess) setTimeout(onSuccess, 1500);
   }, [isSuccess, onSuccess]);
-
-  // Fetch leaderboard from API
-  useEffect(() => {
-    if (!leaderboardOpen || leaderboard.length > 0) return;
-    setLeaderboardLoading(true);
-    fetch(API_URL)
-      .then((r) => {
-        if (!r.ok) throw new Error(`API ${r.status}`);
-        return r.json();
-      })
-      .then((json) => {
-        const lb = (json.leaderboards ?? []).find(
-          (l: { address: string }) =>
-            l.address.toLowerCase() === LEADERBOARD_ADDRESS_LOWER,
-        );
-        if (lb?.topMessage) {
-          setLeaderboard([
-            {
-              address: lb.topMarkeeAddress ?? "",
-              message: lb.topMessage,
-              name: lb.topMessageOwner ?? "",
-              totalFundsAdded: lb.topFundsAddedRaw ?? "0",
-            },
-          ]);
-        }
-      })
-      .catch(() => {})
-      .finally(() => setLeaderboardLoading(false));
-  }, [leaderboardOpen, leaderboard.length]);
 
   const takeTopSpotEth = trimZeros(
     parseFloat(formatEther(takeTopSpot)).toFixed(3),
@@ -138,6 +138,11 @@ export default function MarkeeModal({
 
   const insufficientBalance =
     isOnBase && balance && parsedAmount ? parsedAmount > balance.value : false;
+
+  const lowBalance =
+    isConnected && isOnBase && balance
+      ? balance.value < minimumPrice
+      : false;
 
   const isLoading = isPending || isConfirming;
   const isFormDirty =
@@ -201,23 +206,18 @@ export default function MarkeeModal({
   return (
     <dialog
       ref={dialogRef}
-      className="fixed inset-0 m-auto max-w-md w-full rounded-xl bg-gray-900 border border-gray-700 shadow-2xl p-0 max-h-[85vh] flex flex-col overflow-hidden backdrop:bg-black/60 backdrop:backdrop-blur-sm open:flex"
+      className="fixed inset-0 m-auto max-w-md sm:max-w-xl w-full rounded-xl bg-gray-900 border border-gray-700 shadow-2xl p-0 max-h-[85vh] flex flex-col overflow-hidden backdrop:bg-black/60 backdrop:backdrop-blur-sm open:flex"
       onClick={handleBackdropClick}
       onClose={() => onClose()}
     >
       {/* Header */}
-      <div className="sticky top-0 z-10 bg-gray-900 border-b border-gray-700 px-6 py-4 flex items-start justify-between gap-3">
-        <div>
-          <h3 className="text-base font-semibold text-gray-25">
-            Change the Gitcoin Sign
-          </h3>
-          <p className="text-xs text-gray-400 mt-0.5">
-            Pay ETH to set the featured message. 62% goes to Gitcoin.
-          </p>
-        </div>
+      <div className="sticky top-0 z-10 bg-gray-900 border-b border-gray-700 px-6 py-4 flex items-center justify-between gap-3">
+        <h3 className="text-base font-semibold text-gray-25">
+          Change Gitcoin&apos;s Markee Message
+        </h3>
         <button
           onClick={onClose}
-          className="flex-shrink-0 text-gray-400 hover:text-gray-200 transition-colors mt-0.5"
+          className="flex-shrink-0 text-gray-400 hover:text-gray-200 transition-colors"
           aria-label="Close"
         >
           <X className="h-5 w-5" />
@@ -228,7 +228,7 @@ export default function MarkeeModal({
         {/* Current message + leaderboard toggle */}
         <div className="rounded border border-gray-700 bg-gray-800/50 px-4 py-3">
           <p className="text-xs text-gray-500 mb-1">Current message</p>
-          <p className="font-mono text-sm text-gray-200 break-words">
+          <p className="font-mono text-sm text-gray-200 break-words text-center">
             {currentMessage}
           </p>
           <button
@@ -244,10 +244,10 @@ export default function MarkeeModal({
             <div className="mt-3 pt-3 border-t border-gray-700 space-y-2">
               {leaderboardLoading ? (
                 <p className="text-xs text-gray-500 font-mono">loading...</p>
-              ) : leaderboard.length === 0 ? (
+              ) : leaderboardEntries.length === 0 ? (
                 <p className="text-xs text-gray-500">No entries yet.</p>
               ) : (
-                leaderboard.map((entry) => (
+                leaderboardEntries.map((entry) => (
                   <div
                     key={entry.address}
                     className="flex items-start justify-between gap-2"
@@ -286,7 +286,7 @@ export default function MarkeeModal({
             </span>
           </label>
           <textarea
-            className="w-full rounded border border-gray-700 bg-gray-800 text-gray-100 placeholder:text-gray-600 font-mono text-sm px-3 py-2.5 resize-y min-h-[80px] focus:outline-none focus:border-teal-500/60 transition-colors"
+            className="w-full rounded border border-gray-700 bg-gray-800 text-gray-100 placeholder:text-gray-600 font-mono text-sm px-3 py-2.5 resize-y min-h-[80px] text-center focus:outline-none focus:border-teal-500/60 transition-colors"
             placeholder="this is a sign."
             value={message}
             maxLength={maxMessageLength}
@@ -389,8 +389,17 @@ export default function MarkeeModal({
               onClick={() => switchChainAsync({ chainId: base.id })}
               className="ml-3 text-xs font-semibold bg-yellow-500 text-black px-3 py-1.5 rounded hover:bg-yellow-400 transition-colors"
             >
-              Switch
+              Switch to Base
             </button>
+          </div>
+        )}
+
+        {/* Low balance */}
+        {lowBalance && (
+          <div className="rounded border border-red-500/30 bg-red-500/10 px-4 py-3">
+            <p className="text-sm text-red-400">
+              Your Base ETH balance is too low. You need at least {minEth} ETH to buy a message.
+            </p>
           </div>
         )}
 
@@ -410,7 +419,10 @@ export default function MarkeeModal({
         <div className="flex justify-center pt-1">
           {!isConnected ? (
             <button
-              onClick={() => openConnectModal?.()}
+              onClick={() => {
+                dialogRef.current?.close();
+                openConnectModal?.();
+              }}
               className="px-8 py-2.5 rounded bg-teal-500 text-gray-900 text-sm font-semibold hover:bg-teal-400 transition-colors"
             >
               Connect Wallet
@@ -418,7 +430,7 @@ export default function MarkeeModal({
           ) : (
             <button
               onClick={handleSubmit}
-              disabled={isLoading || isSuccess || insufficientBalance}
+              disabled={isLoading || isSuccess || insufficientBalance || lowBalance}
               className="px-8 py-2.5 rounded bg-teal-500 text-gray-900 text-sm font-semibold hover:bg-teal-400 disabled:opacity-40 disabled:cursor-not-allowed transition-colors"
             >
               {isPending
@@ -433,7 +445,16 @@ export default function MarkeeModal({
         </div>
 
         <p className="text-center text-xs text-gray-600 pb-1">
-          You will receive MARKEE tokens and become a Markee Network owner.
+          You&apos;ll receive MARKEE tokens with your purchase and co-own the{" "}
+          <a
+            href={GARDENS_URL}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="underline hover:text-gray-400 transition-colors"
+          >
+            Markee Network
+          </a>
+          .
         </p>
       </div>
     </dialog>
