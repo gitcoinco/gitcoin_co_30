@@ -185,7 +185,10 @@ export function parseAuthorEntries(raw: string): Array<{ name: string; social?: 
       const pipeIdx = line.indexOf("|");
       if (pipeIdx !== -1) {
         const name = line.slice(0, pipeIdx).trim();
-        const social = line.slice(pipeIdx + 1).trim();
+        const rawSocial = line.slice(pipeIdx + 1).trim();
+        // Strip markdown link syntax [text](url) → url
+        const mdLink = rawSocial.match(/^\[.*?\]\((https?:\/\/[^)]+)\)$/);
+        const social = mdLink ? mdLink[1] : rawSocial;
         return { name, social: social || undefined };
       }
       return { name: line.trim() };

@@ -1,7 +1,5 @@
-import Link from "next/link";
 import Image from "next/image";
 import {
-  ArrowLeft,
   Edit,
   ExternalLink,
   Twitter,
@@ -12,27 +10,8 @@ import { ReactNode, ComponentType } from "react";
 import { Button, Badge, SearchBar } from "@/components/ui";
 import CategoryIcon from "@/components/ui/CategoryIcon";
 import ChladniBackground from "@/components/ChladniBackground";
-
-interface BreadcrumbProps {
-  href: string;
-  label: string;
-}
-
-export function Breadcrumb({ href, label }: BreadcrumbProps) {
-  return (
-    <div className="bg-gray-950 border-b border-gray-600">
-      <div className="container-page py-4">
-        <Link
-          href={href}
-          className="inline-flex items-center gap-2 text-gray-500 hover:text-gray-25 transition-colors"
-        >
-          <ArrowLeft className="w-4 h-4" />
-          {label}
-        </Link>
-      </div>
-    </div>
-  );
-}
+export type { BreadcrumbItem, BreadcrumbProps } from "./Breadcrumb";
+export { Breadcrumb } from "./Breadcrumb";
 
 interface HeroImageProps {
   src: string;
@@ -41,19 +20,24 @@ interface HeroImageProps {
 
 export function HeroImage({ src, alt }: HeroImageProps) {
   return (
-    <div className="h-64 md:h-80 bg-gray-950 relative overflow-hidden">
-      <Image src={src} alt={alt} fill sizes="100vw" className="object-cover" />
-      <div className="absolute inset-0 bg-linear-to-t from-gray-950 to-transparent" />
+    <div className="h-64 md:h-80 bg-gray-950 relative overflow-hidden rounded-3xl">
+      <Image src={src} alt={alt} fill sizes="100vw" className="object-cover " />
     </div>
   );
 }
 
 interface DetailPageLayoutProps {
   children: ReactNode;
+  sidebar?: ReactNode;
 }
 
-export function DetailPageLayout({ children }: DetailPageLayoutProps) {
-  return <div className="min-h-screen bg-gray-900">{children}</div>;
+export function DetailPageLayout({ children, sidebar }: DetailPageLayoutProps) {
+  return (
+    <div className="min-h-screen bg-gray-900 md:flex">
+      {sidebar}
+      <div className="flex-1 min-w-0">{children}</div>
+    </div>
+  );
 }
 
 interface PageHeaderProps {
@@ -257,10 +241,16 @@ export function SocialLinksSection({ links }: SocialLinksSectionProps) {
 
 interface ListPageLayoutProps {
   children: ReactNode;
+  sidebar?: ReactNode;
 }
 
-export function ListPageLayout({ children }: ListPageLayoutProps) {
-  return <div className="min-h-screen bg-gray-900">{children}</div>;
+export function ListPageLayout({ children, sidebar }: ListPageLayoutProps) {
+  return (
+    <div className="min-h-screen bg-gray-900 md:flex">
+      {sidebar}
+      <div className="flex-1 min-w-0">{children}</div>
+    </div>
+  );
 }
 
 interface ListPageHeaderProps {
@@ -270,15 +260,17 @@ interface ListPageHeaderProps {
 
 export function ListPageHeader({ title, description }: ListPageHeaderProps) {
   return (
-    <section className="relative overflow-hidden -mt-[72px] pt-[72px] w-full">
+    <section className="relative -mt-[111px] pt-[111px] md:-mt-[70px] md:pt-[70px] w-full">
       <ChladniBackground variant="3" opacity={0.5} />
       <div className="absolute bottom-0 left-0 right-0 h-16 bg-gradient-to-t from-gray-900 to-transparent z-[1]" />
       <div className="relative z-10 pt-16 pb-28 w-full">
         <h1 className="text-3xl md:text-5xl font-heading text-gray-25 text-center font-light">
           {title}
         </h1>
-    
-        <p className="mt-4 text-center text-gray-200 max-w-2xl mx-auto sm:text-2xl font-serif">{description}</p>
+
+        <p className="mt-4 text-center text-gray-200 max-w-2xl mx-auto sm:text-2xl font-serif">
+          {description}
+        </p>
       </div>
     </section>
   );
@@ -355,7 +347,10 @@ interface ItemsGridProps {
 export function ItemsGrid({ children, columns = 3 }: ItemsGridProps) {
   return (
     <div
-      className={`grid md:grid-cols-2 ${columns === 3 ? "lg:grid-cols-3" : ""} gap-6`}
+      className="grid gap-6"
+      style={{
+        gridTemplateColumns: `repeat(auto-fill, minmax(${columns === 2 ? "380px" : "320px"}, 1fr))`,
+      }}
     >
       {children}
     </div>

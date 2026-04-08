@@ -80,7 +80,7 @@ relatedCampaigns:
 ---
 ```
 
-> `authors` is required. Names must exactly match entries in `src/data/authors.json`. Add new authors to that file before referencing them. Validation errors on unknown authors block CI.
+> `authors` is optional but recommended. Names must exactly match entries in `src/data/authors.json`. Add new authors to that file before referencing them. Missing `authors` produces a warning only and does not block CI. Unknown author names (not in `authors.json`) still produce an error and block CI.
 >
 > All five `related*` fields are parsed from frontmatter and rendered as related content sections on detail pages.
 

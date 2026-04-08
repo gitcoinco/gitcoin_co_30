@@ -2,6 +2,7 @@ import { Metadata } from 'next'
 import { notFound } from 'next/navigation'
 import { AppCard, CaseStudyCard, MechanismCard, ResearchCard, CampaignCard } from '@/components/cards'
 import ContentDetailPage from '@/components/templates/ContentDetailPage'
+import { AppSidebar } from '@/components/layouts/AppSidebar'
 import { getAppBySlug, apps } from '@/content/apps'
 import { getCaseStudiesByPlatform, getCaseStudyBySlug } from '@/content/case-studies'
 import { getMechanismBySlug } from '@/content/mechanisms'
@@ -80,9 +81,13 @@ export default async function AppDetailPage({ params }: PageProps) {
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumb) }} />
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(articleJsonLd) }} />
       <ContentDetailPage
+        sidebar={<AppSidebar />}
         item={app}
-        breadcrumbHref="/apps"
-        breadcrumbLabel="Back to Apps"
+        breadcrumbItems={[
+          { href: '/', label: 'Home' },
+          { href: '/apps', label: 'Apps' },
+          { label: app.name },
+        ]}
         showDate={false}
         relatedSections={[
           {

@@ -50,7 +50,7 @@ export default function ResearchCard({
             <p className="sm:max-w-[60%] mt-2 text-sm text-gray-300 font-serif">
               {research.shortDescription}
             </p>
-            <p className="mt-2 text-xs text-gray-300 text-right">{formatRelativeDate(research.lastUpdated)}</p>
+            <p className="mt-2 text-xs text-gray-300 text-right font-mono">{formatRelativeDate(research.lastUpdated)}</p>
             <div className="mt-4 flex justify-end">
               <Button
                 variant="ghost"
@@ -96,8 +96,8 @@ export default function ResearchCard({
             {research.shortDescription}
           </p>
           <div className="flex items-center justify-between mb-2 gap-2">
-            <p className="text-xs text-gray-300 truncate">By {authors.join(", ")}</p>
-            <p className="text-xs text-gray-300 shrink-0">{formatRelativeDate(research.lastUpdated)}</p>
+            <p className="text-xs text-gray-300 truncate font-mono">By {authors.join(", ")}</p>
+            <p className="text-xs text-gray-300 shrink-0 font-mono">{formatRelativeDate(research.lastUpdated)}</p>
           </div>
           <Button
             variant="ghost"

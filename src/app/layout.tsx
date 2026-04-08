@@ -4,11 +4,14 @@ import localFont from "next/font/local";
 import { IBM_Plex_Mono, Inter, Source_Serif_4 } from "next/font/google";
 import "./globals.css";
 import { GoogleAnalytics } from "@next/third-parties/google";
+import Script from "next/script";
 import Header from "@/components/layout/Header";
 import Footer from "@/components/layout/Footer";
-import SearchProvider from "@/components/search/SearchProvider";
+import { SearchProvider } from "@/context/SearchContext";
 import SearchModal from "@/components/search/SearchModal";
 import AIChatSidebar from "@/components/search/AIChatSidebar";
+import { ScrollToTop } from "@/components/layout/ScrollToTop";
+import { SidebarProvider } from "@/context/SidebarContext";
 
 const inter = Inter({
   subsets: ["latin"],
@@ -109,15 +112,23 @@ export default function RootLayout({
       className={`${inter.variable} ${bdoGrotesk.variable} ${source_serif.variable} ${ibm_plex_mono.variable}`}
     >
       <body className="min-h-screen flex flex-col">
+        <SidebarProvider>
         <SearchProvider>
+          <ScrollToTop />
           <Header />
-          <main className="flex-grow pt-[72px]">{children}</main>
+          <main className="flex-grow pt-[70px]">{children}</main>
           <Footer />
           <SearchModal />
           <AIChatSidebar />
         </SearchProvider>
+        </SidebarProvider>
       </body>
       <GoogleAnalytics gaId="G-MYMQNTYY27" />
+      <Script
+        id="hs-script-loader"
+        src="//js.hs-scripts.com/21870089.js"
+        strategy="afterInteractive"
+      />
     </html>
   );
 }

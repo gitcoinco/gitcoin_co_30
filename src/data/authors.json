@@ -4,7 +4,8 @@
     "social": "https://x.com/MontyMerlin"
   },
   {
-    "name": "Afolabi Aiyeloja"
+    "name": "Afolabi Aiyeloja",
+    "social": "https://afolabi.info"
   },
   {
     "name": "Matthew Hamilton",
@@ -147,13 +148,19 @@
   {
     "name": "LuukDAO"
   },
-  { "name": "Regen Coordination Council"},
-  { 
+  {
+    "name": "Regen Coordination Council"
+  },
+  {
     "name": "Carl Barrdahl",
     "social": "https://x.com/CarlBarrdahl"
   },
   {
     "name": "Paul Glavin",
     "social": "https://x.com/Paul_Glavin"
+  },
+  {
+    "name": "Kenny",
+    "social": "https://x.com/kennyistyping"
   }
 ]

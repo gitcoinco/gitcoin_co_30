@@ -51,25 +51,33 @@ function findCloseMatch(name: string, authors: Author[]): string | null {
 }
 
 /**
- * Validate the authors array from frontmatter or an issue body.
+ * Validate the authors field from a GitHub issue body or a content markdown file.
  *
- * Errors (blocks): name not in authors.json and no close match found, OR empty name before '|'
- * Warnings (non-blocking): name not found but a close match exists (likely a typo)
+ * Two contexts behave differently:
+ *   - 'issue'   : Only checks format (empty name before '|'). Does NOT check authors.json
+ *                 because the publish script adds new authors automatically.
+ *   - 'content' : Checks every name exists in authors.json. Used when validating PR files
+ *                 where authors.json must already be up to date.
+ *
+ * Errors (blocks): empty name before '|', OR (content only) name not in authors.json with no close match
+ * Warnings (non-blocking): (content only) name not found but a close match exists (likely a typo)
  *
  * @param authors   Array of author name strings to validate
- * @param rawLines  Optional raw textarea lines for '|' format parsing (used by issue validator)
+ * @param rawLines  Raw textarea lines in 'Name | https://social.url' format (issue context only)
  * @param errors    Array to push error messages into
  * @param warnings  Array to push warning messages into
+ * @param context   'issue' | 'content' — controls which checks run
  */
 export function validateAuthors(
   authors: string[] | undefined,
   rawLines: string[] | undefined,
   errors: string[],
   warnings: string[],
+  context: "issue" | "content",
 ): void {
   if (!authors || authors.length === 0) return;
 
-  // Check for empty names before '|' (only relevant when rawLines are provided)
+  // Format check: catch empty name before '|' (e.g. " | https://twitter.com/foo")
   if (rawLines) {
     for (const line of rawLines) {
       const pipeIdx = line.indexOf("|");
@@ -81,13 +89,15 @@ export function validateAuthors(
     }
   }
 
+  // Issue context: publish script handles syncing new authors to authors.json — no further checks
+  if (context === "issue") return;
+
+  // Content context: every name must already exist in authors.json
   const knownAuthors = loadAuthors();
 
   for (const name of authors) {
     if (!name) continue;
-    // Exact match
     if (knownAuthors.some((a) => a.name === name)) continue;
-    // Close match → warning
     const close = findCloseMatch(name, knownAuthors);
     if (close) {
       warnings.push(
