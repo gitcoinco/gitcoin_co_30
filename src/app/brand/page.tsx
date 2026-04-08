@@ -138,8 +138,8 @@ function AssetPreview({ preview }: Pick<AssetCard, "preview">) {
   }
 
   return (
-    <div className="rounded-lg border border-gray-500 px-4 py-4 sm:px-[27px] sm:py-5">
-      <div className="grid grid-cols-1 gap-3 sm:grid-cols-3">
+    <div className="flex h-full flex-col justify-center rounded-lg border border-gray-500 px-4 py-4 sm:px-[27px] sm:py-5">
+      <div className="grid grid-cols-3 gap-3">
         {CHLADNI_PREVIEWS.map((image) => (
           <div
             key={image.src}
@@ -179,10 +179,10 @@ export default function BrandPage() {
               key={card.title}
               className={`grid gap-4 lg:grid-cols-[398px_minmax(0,700px)] ${card.reverse ? "lg:grid-flow-dense" : ""}`}
             >
-              <div className={card.reverse ? "lg:col-start-2" : ""}>
+              <div className={`h-full ${card.reverse ? "lg:col-start-2" : ""}`}>
                 <AssetDetails {...card} />
               </div>
-              <div className={card.reverse ? "lg:col-start-1 lg:row-start-1" : ""}>
+              <div className={`h-full ${card.reverse ? "lg:col-start-1 lg:row-start-1" : ""}`}>
                 <AssetPreview preview={card.preview} />
               </div>
             </div>

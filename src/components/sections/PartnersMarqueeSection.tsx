@@ -85,11 +85,11 @@ export default function PartnersMarqueeSection({
   return (
     <section className="overflow-x-hidden py-16">
       <div className="mx-auto mb-14 w-full max-w-[908px] px-4 sm:px-6 lg:px-0">
-        <div className="flex flex-col gap-3 rounded-2xl border border-gray-300 bg-gray-800/40 px-8 py-6 md:flex-row md:items-start md:gap-14">
+        <div className="flex flex-col gap-3 rounded-2xl border border-gray-300 px-8 py-6 md:flex-row md:items-start md:gap-14">
           <h2 className="font-heading text-base font-bold whitespace-nowrap text-gray-25 sm:text-2xl">
             {title}
           </h2>
-          <p className="leading-relaxed text-gray-400">{description}</p>
+          <p className="leading-relaxed text-gray-300">{description}</p>
         </div>
       </div>
 

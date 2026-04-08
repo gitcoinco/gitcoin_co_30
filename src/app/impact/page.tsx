@@ -332,7 +332,7 @@ function CaseStudyCard({
           </div>
 
           <p
-            className={`mt-8 font-serif text-gray-200 ${isWide ? "max-w-70 text-xl leading-[1.05]" : "text-xl leading-[1.08]"}`}
+            className={`mt-8 font-serif text-gray-200 text-lg ${isWide ? "max-w-70" : ""}`}
           >
             {study.shortDescription}
           </p>
@@ -558,6 +558,7 @@ export default function ImpactPage() {
           ))}
         </div>
       </section>
+      
       <PartnersMarqueeSection />
 
       <CTASection
