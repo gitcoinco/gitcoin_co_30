@@ -30,7 +30,6 @@ const DEFAULT_DATA: SignData = {
 export default function MarkeeSign() {
   const [data, setData] = useState<SignData>(DEFAULT_DATA);
   const [loading, setLoading] = useState(true);
-  const [fetchError, setFetchError] = useState(false);
   const [modalOpen, setModalOpen] = useState(false);
 
   const { data: minimumPrice } = useReadContract({
@@ -67,7 +66,7 @@ export default function MarkeeSign() {
         });
       }
     } catch {
-      setFetchError(true);
+      // leave DEFAULT_DATA in place; modal still works via contract reads
     } finally {
       setLoading(false);
     }
@@ -92,7 +91,7 @@ export default function MarkeeSign() {
       <button
         data-markee-address={LEADERBOARD_ADDRESS_LOWER}
         onClick={() => setModalOpen(true)}
-        disabled={loading || fetchError}
+        disabled={loading}
         className="group relative w-full text-left cursor-pointer"
         aria-label="Click to change the Markee message"
       >
@@ -100,8 +99,6 @@ export default function MarkeeSign() {
           <p className="font-mono text-xs text-gray-300 group-hover:text-gray-100 transition-colors duration-200 leading-snug break-words">
             {loading ? (
               <span className="text-gray-500">loading...</span>
-            ) : fetchError ? (
-              <span className="text-gray-500">unavailable</span>
             ) : (
               data.message
             )}
@@ -117,7 +114,7 @@ export default function MarkeeSign() {
 
         {/* Price badge -- revealed on hover */}
         <span className="absolute -bottom-3 left-1/2 -translate-x-1/2 rounded-full border border-gray-700 bg-gray-900 px-2.5 py-0.5 text-xs font-mono text-gray-500 opacity-0 group-hover:opacity-100 group-hover:border-teal-500/40 group-hover:text-teal-400 transition-all duration-200 whitespace-nowrap">
-          {loading ? "..." : fetchError ? "unavailable" : priceLabel}
+          {loading ? "..." : priceLabel}
         </span>
       </button>
 
