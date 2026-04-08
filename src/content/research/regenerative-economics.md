@@ -36,6 +36,7 @@ relatedResearch:
   - biomimetic-capital-allocation
 relatedCaseStudies: []
 relatedCampaigns: []
+banner: /content-images/research/regenerative-economics/banner.png
 ---
 
 Regenerative economics is both a cultural movement and a set of concrete mechanisms that reimagine capital as a force for ecological and social renewal rather than extraction. In the Ethereum ecosystem, this manifests as community currencies, mutual credit systems, bioregional finance, localist coordination, and a deliberate shift from "degen" speculation toward "regen" public goods funding. The common thread: economic systems should strengthen the communities and ecosystems they operate within, not deplete them.

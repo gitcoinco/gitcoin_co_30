@@ -32,6 +32,7 @@ relatedResearch:
 relatedCaseStudies:
   - greenpill-hypercerts-experiment-impact-certificates-in-practice
 relatedCampaigns: []
+banner: /content-images/research/impact-measurement/banner.png
 ---
 
 Funding public goods is only half the challenge. The other half is knowing whether the funded work created value -- and for whom. Impact measurement in decentralized ecosystems has evolved from purely subjective badgeholder voting to sophisticated multi-layered systems combining social attestations, onchain analytics, tokenized impact claims, and metrics-based evaluation. The trend is toward composable measurement infrastructure where different signals reinforce each other.

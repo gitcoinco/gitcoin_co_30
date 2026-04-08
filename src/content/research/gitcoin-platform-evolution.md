@@ -34,6 +34,7 @@ relatedCampaigns:
   - gitcoin-grants-22-gg22
   - gitcoin-grants-23-gg23
   - gitcoin-grants-24-gg24
+banner: /content-images/research/gitcoin-platform-evolution/banner.png
 ---
 
 ## Overview

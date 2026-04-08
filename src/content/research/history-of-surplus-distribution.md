@@ -28,6 +28,7 @@ relatedResearch:
   - from-tribes-to-llcs-to-daos
 relatedCaseStudies: []
 relatedCampaigns: []
+banner: /content-images/research/history-of-surplus-distribution/banner.png
 ---
 
 ## Overview

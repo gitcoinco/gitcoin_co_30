@@ -28,6 +28,7 @@ relatedApps:
 relatedResearch: []
 relatedCaseStudies: []
 relatedCampaigns: []
+banner: /content-images/research/direct-grants-and-expert-allocation/banner.png
 ---
 
 ## Overview

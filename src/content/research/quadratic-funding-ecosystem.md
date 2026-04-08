@@ -33,6 +33,7 @@ relatedCaseStudies:
   - unicef-alpha-round-partnership-driving-fairness-collaboration-impact
   - shamba-network-equipping-smallholder-farmers-to-conserve-ecosystems
 relatedCampaigns: []
+banner: /content-images/research/quadratic-funding-ecosystem/banner.png
 ---
 
 ## Overview

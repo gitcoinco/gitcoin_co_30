@@ -25,6 +25,7 @@ relatedResearch:
   - quadratic-funding-sybil-resistance
 relatedCaseStudies: []
 relatedCampaigns: []
+banner: /content-images/research/sybil-resistance-identity/banner.png
 ---
 
 ## Overview

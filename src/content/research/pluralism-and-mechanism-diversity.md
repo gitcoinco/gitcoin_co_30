@@ -28,6 +28,7 @@ relatedResearch:
 relatedCaseStudies:
   - gg24-first-funding-round-of-gitcoin-3-0
 relatedCampaigns: []
+banner: /content-images/research/pluralism-and-mechanism-diversity/banner.png
 ---
 
 ## Overview

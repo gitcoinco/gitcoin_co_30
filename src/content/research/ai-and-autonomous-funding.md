@@ -29,6 +29,7 @@ relatedResearch:
   - d-acc-market-map
 relatedCaseStudies: []
 relatedCampaigns: []
+banner: /content-images/research/ai-and-autonomous-funding/banner.png
 ---
 
 Artificial intelligence is entering the public goods funding stack at multiple layers -- from augmenting human evaluators with data-driven insights to fully autonomous systems that allocate capital without human intervention. This represents a spectrum: at one end, AI surfaces information while humans retain final authority; at the other, models make binding funding decisions with minimal oversight. The frontier is defining where on this spectrum each type of funding decision belongs.

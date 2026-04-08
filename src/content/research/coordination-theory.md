@@ -31,6 +31,7 @@ relatedResearch:
   - summer-of-protocols-what-protocol-theory-teaches-about-coordination
 relatedCaseStudies: []
 relatedCampaigns: []
+banner: /content-images/research/coordination-theory/banner.png
 ---
 
 ## Overview

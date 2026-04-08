@@ -30,6 +30,7 @@ relatedResearch:
   - ethereum-public-goods-funding-sources-the-next-era
 relatedCaseStudies: []
 relatedCampaigns: []
+banner: /content-images/research/funding-landscape-2024/banner.png
 ---
 
 ## Overview

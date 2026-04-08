@@ -30,6 +30,7 @@ relatedResearch:
   - reforming-eth-public-goods-funding-2026
 relatedCaseStudies: []
 relatedCampaigns: []
+banner: /content-images/research/funding-sources-sustainability/banner.png
 ---
 
 ## Overview

@@ -31,6 +31,7 @@ relatedResearch:
   - 69-trends-in-2025-era-dao-design
 relatedCaseStudies: []
 relatedCampaigns: []
+banner: /content-images/research/dao-evolution/banner.png
 ---
 
 Decentralized Autonomous Organizations have undergone rapid evolutionary pressure since their emergence on Ethereum. From minimal viable frameworks with strong exit rights to perpetual auction treasuries to ephemeral governance containers, the DAO design space has expanded dramatically. This evolution reflects a broader arc in human organization -- from tribes to corporations to network-native structures -- and continues to accelerate as new primitives are composed and tested.

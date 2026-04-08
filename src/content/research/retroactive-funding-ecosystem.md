@@ -29,6 +29,7 @@ relatedCaseStudies:
   - gitcoin-citizens-round-1-retroactive-quadratic-funding-for-community-contributions
   - greenpill-hypercerts-experiment-impact-certificates-in-practice
 relatedCampaigns: []
+banner: /content-images/research/retroactive-funding-ecosystem/banner.png
 ---
 
 ## Overview

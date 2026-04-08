@@ -35,6 +35,7 @@ relatedResearch:
   - 69-trends-in-2025-era-dao-design
 relatedCaseStudies: []
 relatedCampaigns: []
+banner: /content-images/research/governance-mechanisms/banner.png
 ---
 
 Governance is the process by which groups make binding collective decisions. In decentralized ecosystems, the design space for governance mechanisms is vast -- spanning ancient practices revived through smart contracts, novel mathematical cost functions, prediction market hybrids, and continuous signaling systems. No single mechanism dominates; the choice of governance tool shapes what preferences are captured, who holds power, and how quickly decisions resolve.

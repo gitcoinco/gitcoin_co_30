@@ -32,6 +32,7 @@ relatedApps:
 relatedResearch: []
 relatedCaseStudies: []
 relatedCampaigns: []
+banner: /content-images/research/streaming-and-continuous-funding/banner.png
 ---
 
 The dominant model for funding public goods -- discrete grant rounds with lump-sum payments -- is giving way to continuous, per-second capital flows. Token streaming, conviction-based allocation, and autonomous treasury systems represent a fundamental shift: from funding as an event to funding as an ongoing relationship between capital and the work it supports.
