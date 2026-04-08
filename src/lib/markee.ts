@@ -6,7 +6,7 @@ export const LEADERBOARD_ADDRESS_LOWER = LEADERBOARD_ADDRESS.toLowerCase();
 export const BUY_URL =
   "https://markee.xyz/ecosystem/website/0x710dA4C477EDf1052Ea876aEEf3E153Fb040Fa9f";
 
-export const API_URL = "https://markee.xyz/api/openinternet/leaderboards";
+export const API_URL = "/api/markee/leaderboards";
 
 export const MIN_INCREMENT = BigInt("1000000000000000"); // 0.001 ETH
 
