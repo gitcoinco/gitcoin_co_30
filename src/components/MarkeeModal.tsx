@@ -21,6 +21,7 @@ import {
   BUY_URL,
   MIN_INCREMENT,
 } from "@/lib/markee";
+import { ModeratedContent, FlagButton } from "@/components/moderation";
 
 const GARDENS_URL =
   "https://app.gardens.fund/gardens/8453/0xce6b968c8bd130ca08f1fcc97b509a824380d867";
@@ -497,43 +498,54 @@ export default function MarkeeModal({
               <>
                 <div className="space-y-2">
                   {leaderboardEntries.slice(0, 5).map((entry, rank) => (
-                    <button
+                    <ModeratedContent
                       key={entry.address}
-                      type="button"
-                      onClick={() => {
-                        setSelectedAddr(entry.address);
-                        setBoostAmount("");
-                        setError(null);
-                      }}
-                      className={`w-full text-left rounded border px-4 py-3 transition-colors ${
-                        selectedAddr === entry.address
-                          ? "border-teal-500/60 bg-teal-500/10"
-                          : "border-gray-700 bg-gray-800/50 hover:border-gray-600"
-                      }`}
+                      chainId={base.id}
+                      markeeId={entry.address}
+                      className="rounded border transition-colors"
                     >
-                      <div className="flex items-start justify-between gap-2">
-                        <div className="flex-1 min-w-0">
-                          <p className="font-mono text-xs text-gray-200 break-words">
-                            {entry.message}
-                          </p>
-                          {entry.name && (
-                            <p className="text-xs text-gray-500 mt-0.5">
-                              {entry.name.startsWith("0x")
-                                ? `${entry.name.slice(0, 6)}...${entry.name.slice(-4)}`
-                                : entry.name}
+                      <button
+                        type="button"
+                        onClick={() => {
+                          setSelectedAddr(entry.address);
+                          setBoostAmount("");
+                          setError(null);
+                        }}
+                        className={`w-full text-left px-4 py-3 transition-colors ${
+                          selectedAddr === entry.address
+                            ? "border-teal-500/60 bg-teal-500/10"
+                            : "bg-gray-800/50 hover:border-gray-600"
+                        }`}
+                      >
+                        <div className="flex items-start justify-between gap-2">
+                          <div className="flex-1 min-w-0">
+                            <p className="font-mono text-xs text-gray-200 break-words">
+                              {entry.message}
                             </p>
-                          )}
+                            {entry.name && (
+                              <p className="text-xs text-gray-500 mt-0.5">
+                                {entry.name.startsWith("0x")
+                                  ? `${entry.name.slice(0, 6)}...${entry.name.slice(-4)}`
+                                  : entry.name}
+                              </p>
+                            )}
+                          </div>
+                          <div className="flex items-center gap-2 flex-shrink-0">
+                            {rank === 0 && (
+                              <span className="text-xs text-yellow-400 font-mono">#1</span>
+                            )}
+                            <span className="text-xs font-mono text-gray-400">
+                              {parseFloat(formatEther(entry.totalFundsAdded)).toFixed(3)} ETH
+                            </span>
+                            <FlagButton
+                              chainId={base.id}
+                              markeeId={entry.address}
+                              compact
+                            />
+                          </div>
                         </div>
-                        <div className="flex items-center gap-2 flex-shrink-0">
-                          {rank === 0 && (
-                            <span className="text-xs text-yellow-400 font-mono">#1</span>
-                          )}
-                          <span className="text-xs font-mono text-gray-400">
-                            {parseFloat(formatEther(entry.totalFundsAdded)).toFixed(3)} ETH
-                          </span>
-                        </div>
-                      </div>
-                    </button>
+                      </button>
+                    </ModeratedContent>
                   ))}
                 </div>
 
