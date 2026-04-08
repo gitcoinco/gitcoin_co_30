@@ -42,11 +42,15 @@ function trimZeros(value: string) {
   return value.replace(/(\.\d*?[1-9])0+$/, "$1").replace(/\.0+$/, "");
 }
 
-// Floor ETH string to 3 decimal places so clicking balance never exceeds actual balance
-function floorTo3(ethStr: string): string {
+// Floor to as many decimal places as fit within the 8-digit cap, rounding down
+// so the result never exceeds the actual balance.
+function floorToDigitCap(ethStr: string, cap = 8): string {
   const n = parseFloat(ethStr);
-  if (isNaN(n)) return "0";
-  return (Math.floor(n * 1000) / 1000).toString();
+  if (isNaN(n) || n <= 0) return "0";
+  const intDigits = Math.floor(n).toString().length;
+  const decimalPlaces = Math.max(0, cap - intDigits);
+  const factor = Math.pow(10, decimalPlaces);
+  return (Math.floor(n * factor) / factor).toString();
 }
 
 // Allow at most 8 digit characters total (before + after decimal)
@@ -373,7 +377,7 @@ export default function MarkeeModal({
                 {isOnBase && balanceEth && (
                   <button
                     type="button"
-                    onClick={() => { setEthAmount(floorTo3(balanceEth)); setError(null); }}
+                    onClick={() => { setEthAmount(floorToDigitCap(balanceEth)); setError(null); }}
                     className="text-xs text-gray-500 font-normal ml-2 underline hover:text-gray-300 transition-colors"
                   >
                     balance: {parseFloat(balanceEth).toFixed(3)} ETH
@@ -561,7 +565,7 @@ export default function MarkeeModal({
                         {isOnBase && balanceEth && (
                           <button
                             type="button"
-                            onClick={() => { setBoostAmount(floorTo3(balanceEth)); setError(null); }}
+                            onClick={() => { setBoostAmount(floorToDigitCap(balanceEth)); setError(null); }}
                             className="text-xs text-gray-500 font-normal ml-2 underline hover:text-gray-300 transition-colors"
                           >
                             balance: {parseFloat(balanceEth).toFixed(3)} ETH
