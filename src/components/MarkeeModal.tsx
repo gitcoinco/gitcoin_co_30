@@ -49,6 +49,11 @@ function floorTo3(ethStr: string): string {
   return (Math.floor(n * 1000) / 1000).toString();
 }
 
+// Allow at most 8 digit characters total (before + after decimal)
+function withinDigitCap(value: string): boolean {
+  return value.replace(/[^0-9]/g, "").length <= 8;
+}
+
 export default function MarkeeModal({
   minimumPrice,
   maxMessageLength,
@@ -418,7 +423,7 @@ export default function MarkeeModal({
                   value={ethAmount}
                   min="0"
                   step="any"
-                  onChange={(e) => { setEthAmount(e.target.value); setError(null); }}
+                  onChange={(e) => { if (withinDigitCap(e.target.value)) { setEthAmount(e.target.value); setError(null); } }}
                 />
               </div>
               {insufficientBalance && (
@@ -589,7 +594,7 @@ export default function MarkeeModal({
                           value={boostAmount}
                           min="0"
                           step="any"
-                          onChange={(e) => { setBoostAmount(e.target.value); setError(null); }}
+                          onChange={(e) => { if (withinDigitCap(e.target.value)) { setBoostAmount(e.target.value); setError(null); } }}
                         />
                       </div>
                       {insufficientBoostBalance && (
