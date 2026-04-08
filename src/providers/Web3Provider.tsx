@@ -16,7 +16,7 @@ if (!projectId) {
 
 const config = getDefaultConfig({
   appName: "Gitcoin",
-  projectId: projectId ?? "placeholder",
+  projectId: projectId || undefined,
   chains: [base],
   ssr: true,
 });
