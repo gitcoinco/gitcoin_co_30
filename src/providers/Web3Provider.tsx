@@ -7,12 +7,17 @@ import { RainbowKitProvider, getDefaultConfig } from "@rainbow-me/rainbowkit";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import "@rainbow-me/rainbowkit/styles.css";
 
+const projectId = process.env.NEXT_PUBLIC_WALLETCONNECT_PROJECT_ID;
+if (!projectId) {
+  console.error(
+    "[Markee] NEXT_PUBLIC_WALLETCONNECT_PROJECT_ID is not set — WalletConnect (mobile wallets) will not work. Get a free project ID at https://cloud.walletconnect.com",
+  );
+}
+
 const config = getDefaultConfig({
   appName: "Gitcoin",
-  // Get a free project ID at https://cloud.walletconnect.com
-  projectId: process.env.NEXT_PUBLIC_WALLETCONNECT_PROJECT_ID ?? "placeholder",
+  projectId: projectId ?? "placeholder",
   chains: [base],
-  transports: { [base.id]: http() },
   ssr: true,
 });
 

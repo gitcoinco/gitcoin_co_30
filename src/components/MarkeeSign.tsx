@@ -5,50 +5,32 @@ import { formatEther } from "viem";
 import { useReadContract } from "wagmi";
 import { base } from "wagmi/chains";
 import MarkeeModal from "./MarkeeModal";
-
-const LEADERBOARD_ADDRESS =
-  "0x710dA4C477EDf1052Ea876aEEf3E153Fb040Fa9f" as const;
-const API_URL = "https://markee.xyz/api/openinternet/leaderboards";
-const MIN_INCREMENT = BigInt("1000000000000000"); // 0.001 ETH
-
-const LEADERBOARD_ABI = [
-  {
-    inputs: [],
-    name: "minimumPrice",
-    outputs: [{ name: "", type: "uint256" }],
-    stateMutability: "view",
-    type: "function",
-  },
-  {
-    inputs: [],
-    name: "maxMessageLength",
-    outputs: [{ name: "", type: "uint256" }],
-    stateMutability: "view",
-    type: "function",
-  },
-] as const;
+import {
+  LEADERBOARD_ADDRESS,
+  LEADERBOARD_ADDRESS_LOWER,
+  LEADERBOARD_ABI,
+  API_URL,
+  MIN_INCREMENT,
+} from "@/lib/markee";
 
 type SignData = {
   topMarkeeAddress: string | null;
   message: string;
   name: string;
-  owner: string;
   totalFundsAdded: bigint;
 };
 
-const DEFAULT_MESSAGE = "this is a sign.";
 const DEFAULT_DATA: SignData = {
   topMarkeeAddress: null,
-  message: DEFAULT_MESSAGE,
+  message: "this is a sign.",
   name: "",
-  owner: "",
   totalFundsAdded: 0n,
 };
 
 export default function MarkeeSign() {
   const [data, setData] = useState<SignData>(DEFAULT_DATA);
   const [loading, setLoading] = useState(true);
-  const [error, setError] = useState(false);
+  const [fetchError, setFetchError] = useState(false);
   const [modalOpen, setModalOpen] = useState(false);
 
   const { data: minimumPrice } = useReadContract({
@@ -68,10 +50,11 @@ export default function MarkeeSign() {
   const fetchData = useCallback(async () => {
     try {
       const res = await fetch(API_URL);
+      if (!res.ok) throw new Error(`API ${res.status}`);
       const json = await res.json();
       const lb = (json.leaderboards ?? []).find(
         (l: { address: string }) =>
-          l.address.toLowerCase() === LEADERBOARD_ADDRESS.toLowerCase(),
+          l.address.toLowerCase() === LEADERBOARD_ADDRESS_LOWER,
       );
       if (!lb || !lb.topMessage || BigInt(lb.topFundsAddedRaw ?? "0") === 0n) {
         setData(DEFAULT_DATA);
@@ -80,12 +63,11 @@ export default function MarkeeSign() {
           topMarkeeAddress: lb.topMarkeeAddress ?? null,
           message: lb.topMessage,
           name: lb.topMessageOwner ?? "",
-          owner: lb.topMarkeeAddress ?? "",
           totalFundsAdded: BigInt(lb.topFundsAddedRaw ?? "0"),
         });
       }
     } catch {
-      setError(true);
+      setFetchError(true);
     } finally {
       setLoading(false);
     }
@@ -95,31 +77,30 @@ export default function MarkeeSign() {
     fetchData();
   }, [fetchData]);
 
-  const effectiveMin = minimumPrice ?? BigInt("3000000000000000"); // 0.003 ETH fallback
+  const effectiveMin = minimumPrice ?? BigInt("3000000000000000");
   const takeTopSpot =
     data.totalFundsAdded > 0n
       ? data.totalFundsAdded + MIN_INCREMENT
       : effectiveMin;
-  const hasMessages = data.totalFundsAdded > 0n;
-  const priceLabel = hasMessages
-    ? `${parseFloat(formatEther(takeTopSpot)).toFixed(3)} ETH to change`
-    : "be first!";
+  const priceLabel =
+    data.totalFundsAdded > 0n
+      ? `${parseFloat(formatEther(takeTopSpot)).toFixed(3)} ETH to change`
+      : "be first!";
 
   return (
     <>
       <button
-        data-markee-address={LEADERBOARD_ADDRESS.toLowerCase()}
+        data-markee-address={LEADERBOARD_ADDRESS_LOWER}
         onClick={() => setModalOpen(true)}
-        disabled={loading || error}
+        disabled={loading || fetchError}
         className="group relative w-full text-left cursor-pointer"
         aria-label="Click to change the Markee message"
       >
-        {/* Sign body */}
         <div className="rounded border border-gray-700 bg-gray-800/40 px-4 py-3 hover:border-teal-500/50 transition-colors duration-200">
           <p className="font-mono text-xs text-gray-300 group-hover:text-gray-100 transition-colors duration-200 leading-snug break-words">
             {loading ? (
               <span className="text-gray-500">loading...</span>
-            ) : error ? (
+            ) : fetchError ? (
               <span className="text-gray-500">unavailable</span>
             ) : (
               data.message
@@ -136,22 +117,18 @@ export default function MarkeeSign() {
 
         {/* Price badge -- revealed on hover */}
         <span className="absolute -bottom-3 left-1/2 -translate-x-1/2 rounded-full border border-gray-700 bg-gray-900 px-2.5 py-0.5 text-xs font-mono text-gray-500 opacity-0 group-hover:opacity-100 group-hover:border-teal-500/40 group-hover:text-teal-400 transition-all duration-200 whitespace-nowrap">
-          {loading ? "..." : error ? "unavailable" : priceLabel}
+          {loading ? "..." : fetchError ? "unavailable" : priceLabel}
         </span>
       </button>
 
       {modalOpen && (
         <MarkeeModal
-          leaderboardAddress={LEADERBOARD_ADDRESS}
           minimumPrice={effectiveMin}
           maxMessageLength={maxMessageLength ? Number(maxMessageLength) : 223}
           topFundsAdded={data.totalFundsAdded}
           takeTopSpot={takeTopSpot}
           currentMessage={data.message}
           currentName={data.name}
-          topMarkeeAddress={
-            data.topMarkeeAddress as `0x${string}` | null
-          }
           onClose={() => setModalOpen(false)}
           onSuccess={() => {
             setModalOpen(false);

@@ -13,40 +13,12 @@ import {
   useWaitForTransactionReceipt,
 } from "wagmi";
 import { base } from "wagmi/chains";
-
-const LEADERBOARD_ADDRESS =
-  "0x710dA4C477EDf1052Ea876aEEf3E153Fb040Fa9f" as const;
-const API_URL = "https://markee.xyz/api/openinternet/leaderboards";
-
-const LEADERBOARD_ABI = [
-  {
-    inputs: [
-      { name: "_message", type: "string" },
-      { name: "_name", type: "string" },
-    ],
-    name: "createMarkee",
-    outputs: [{ name: "markeeAddress", type: "address" }],
-    stateMutability: "payable",
-    type: "function",
-  },
-  {
-    inputs: [{ name: "markeeAddress", type: "address" }],
-    name: "addFunds",
-    outputs: [],
-    stateMutability: "payable",
-    type: "function",
-  },
-  {
-    inputs: [
-      { name: "markeeAddress", type: "address" },
-      { name: "_message", type: "string" },
-    ],
-    name: "updateMessage",
-    outputs: [],
-    stateMutability: "nonpayable",
-    type: "function",
-  },
-] as const;
+import {
+  LEADERBOARD_ADDRESS,
+  LEADERBOARD_ADDRESS_LOWER,
+  LEADERBOARD_ABI,
+  API_URL,
+} from "@/lib/markee";
 
 type LeaderboardEntry = {
   address: string;
@@ -56,14 +28,12 @@ type LeaderboardEntry = {
 };
 
 interface MarkeeModalProps {
-  leaderboardAddress: `0x${string}`;
   minimumPrice: bigint;
   maxMessageLength: number;
   topFundsAdded: bigint;
   takeTopSpot: bigint;
   currentMessage: string;
   currentName: string;
-  topMarkeeAddress: `0x${string}` | null;
   onClose: () => void;
   onSuccess: () => void;
 }
@@ -93,8 +63,7 @@ export default function MarkeeModal({
   const { address, isConnected } = useAccount();
   const chainId = useChainId();
   const { switchChainAsync } = useSwitchChain();
-  const { openConnectModal } = useConnectModal();
-  const [hiddenForConnect, setHiddenForConnect] = useState(false);
+  const { openConnectModal, connectModalOpen } = useConnectModal();
 
   const isOnBase = chainId === base.id;
 
@@ -104,17 +73,24 @@ export default function MarkeeModal({
     query: { enabled: !!address },
   });
 
-  const { writeContract, data: hash, isPending } = useWriteContract();
-  const { isLoading: isConfirming, isSuccess } = useWaitForTransactionReceipt({ hash });
+  const { writeContractAsync, data: hash, isPending } = useWriteContract();
+  const { isLoading: isConfirming, isSuccess } =
+    useWaitForTransactionReceipt({ hash });
 
+  // Open dialog on mount
   useEffect(() => {
     dialogRef.current?.showModal();
   }, []);
 
+  // Reopen dialog after RainbowKit connect modal closes
   useEffect(() => {
-    if (isSuccess) {
-      setTimeout(onSuccess, 1500);
+    if (!connectModalOpen && !dialogRef.current?.open) {
+      dialogRef.current?.showModal();
     }
+  }, [connectModalOpen]);
+
+  useEffect(() => {
+    if (isSuccess) setTimeout(onSuccess, 1500);
   }, [isSuccess, onSuccess]);
 
   // Fetch leaderboard from API
@@ -122,13 +98,15 @@ export default function MarkeeModal({
     if (!leaderboardOpen || leaderboard.length > 0) return;
     setLeaderboardLoading(true);
     fetch(API_URL)
-      .then((r) => r.json())
+      .then((r) => {
+        if (!r.ok) throw new Error(`API ${r.status}`);
+        return r.json();
+      })
       .then((json) => {
         const lb = (json.leaderboards ?? []).find(
           (l: { address: string }) =>
-            l.address.toLowerCase() === LEADERBOARD_ADDRESS.toLowerCase(),
+            l.address.toLowerCase() === LEADERBOARD_ADDRESS_LOWER,
         );
-        // For now surface top entry from API; full leaderboard requires subgraph
         if (lb?.topMessage) {
           setLeaderboard([
             {
@@ -162,7 +140,8 @@ export default function MarkeeModal({
     isOnBase && balance && parsedAmount ? parsedAmount > balance.value : false;
 
   const isLoading = isPending || isConfirming;
-  const isFormDirty = message.length > 0 || name.length > 0 || ethAmount.length > 0;
+  const isFormDirty =
+    message.length > 0 || name.length > 0 || ethAmount.length > 0;
 
   const validate = () => {
     if (!message.trim()) {
@@ -187,7 +166,6 @@ export default function MarkeeModal({
   const handleSubmit = async () => {
     setError(null);
     if (!validate() || !parsedAmount) return;
-
     if (!isConnected) {
       setError("Connect your wallet first.");
       return;
@@ -200,9 +178,8 @@ export default function MarkeeModal({
       }
       return;
     }
-
     try {
-      writeContract({
+      await writeContractAsync({
         address: LEADERBOARD_ADDRESS,
         abi: LEADERBOARD_ABI,
         functionName: "createMarkee",
@@ -226,7 +203,7 @@ export default function MarkeeModal({
       ref={dialogRef}
       className="fixed inset-0 m-auto max-w-md w-full rounded-xl bg-gray-900 border border-gray-700 shadow-2xl p-0 max-h-[85vh] flex flex-col overflow-hidden backdrop:bg-black/60 backdrop:backdrop-blur-sm open:flex"
       onClick={handleBackdropClick}
-      onClose={() => { if (!hiddenForConnect) onClose(); }}
+      onClose={() => onClose()}
     >
       {/* Header */}
       <div className="sticky top-0 z-10 bg-gray-900 border-b border-gray-700 px-6 py-4 flex items-start justify-between gap-3">
@@ -271,9 +248,14 @@ export default function MarkeeModal({
                 <p className="text-xs text-gray-500">No entries yet.</p>
               ) : (
                 leaderboard.map((entry) => (
-                  <div key={entry.address} className="flex items-start justify-between gap-2">
+                  <div
+                    key={entry.address}
+                    className="flex items-start justify-between gap-2"
+                  >
                     <div className="flex-1 min-w-0">
-                      <p className="font-mono text-xs text-gray-200 break-words">{entry.message}</p>
+                      <p className="font-mono text-xs text-gray-200 break-words">
+                        {entry.message}
+                      </p>
                       {entry.name && (
                         <p className="text-xs text-gray-500 mt-0.5">
                           {entry.name.startsWith("0x")
@@ -283,7 +265,10 @@ export default function MarkeeModal({
                       )}
                     </div>
                     <span className="text-xs font-mono text-gray-400 flex-shrink-0 mt-0.5">
-                      {parseFloat(formatEther(BigInt(entry.totalFundsAdded))).toFixed(3)} ETH
+                      {parseFloat(
+                        formatEther(BigInt(entry.totalFundsAdded)),
+                      ).toFixed(3)}{" "}
+                      ETH
                     </span>
                   </div>
                 ))
@@ -306,7 +291,10 @@ export default function MarkeeModal({
             value={message}
             maxLength={maxMessageLength}
             rows={3}
-            onChange={(e) => { setMessage(e.target.value); setError(null); }}
+            onChange={(e) => {
+              setMessage(e.target.value);
+              setError(null);
+            }}
           />
         </div>
 
@@ -337,11 +325,13 @@ export default function MarkeeModal({
             )}
           </label>
           <div className="grid grid-cols-3 gap-2">
-            {/* Take top spot */}
             {hasCompetition && (
               <button
                 type="button"
-                onClick={() => { setEthAmount(formatEther(takeTopSpot)); setError(null); }}
+                onClick={() => {
+                  setEthAmount(formatEther(takeTopSpot));
+                  setError(null);
+                }}
                 className={`flex flex-col items-center justify-center rounded px-2 py-2.5 border-2 transition-colors text-center ${
                   ethAmount === formatEther(takeTopSpot)
                     ? "border-yellow-400 bg-yellow-400/10"
@@ -356,12 +346,15 @@ export default function MarkeeModal({
                 </span>
               </button>
             )}
-            {/* Minimum */}
             <button
               type="button"
-              onClick={() => { setEthAmount(formatEther(minimumPrice)); setError(null); }}
+              onClick={() => {
+                setEthAmount(formatEther(minimumPrice));
+                setError(null);
+              }}
               className={`flex flex-col items-center justify-center rounded px-2 py-2.5 border transition-colors text-center ${
-                ethAmount === formatEther(minimumPrice) && ethAmount !== formatEther(takeTopSpot)
+                ethAmount === formatEther(minimumPrice) &&
+                ethAmount !== formatEther(takeTopSpot)
                   ? "border-gray-400 bg-gray-700"
                   : "border-gray-700 hover:border-gray-500 bg-gray-800"
               }`}
@@ -373,7 +366,6 @@ export default function MarkeeModal({
                 Minimum
               </span>
             </button>
-            {/* Custom */}
             <input
               type="number"
               className="rounded border border-gray-700 bg-gray-800 text-gray-100 placeholder:text-gray-600 font-mono text-xs text-center px-2 py-2.5 focus:outline-none focus:border-teal-500/60 transition-colors"
@@ -381,7 +373,10 @@ export default function MarkeeModal({
               value={ethAmount}
               min="0"
               step="any"
-              onChange={(e) => { setEthAmount(e.target.value); setError(null); }}
+              onChange={(e) => {
+                setEthAmount(e.target.value);
+                setError(null);
+              }}
             />
           </div>
         </div>
@@ -399,14 +394,12 @@ export default function MarkeeModal({
           </div>
         )}
 
-        {/* Error */}
         {error && (
           <p className="rounded border border-red-500/30 bg-red-500/10 px-3 py-2 text-sm text-red-400">
             {error}
           </p>
         )}
 
-        {/* Success */}
         {isSuccess && (
           <p className="rounded border border-teal-500/30 bg-teal-500/10 px-3 py-2 text-sm text-teal-400">
             Transaction confirmed! Refreshing...
@@ -417,11 +410,7 @@ export default function MarkeeModal({
         <div className="flex justify-center pt-1">
           {!isConnected ? (
             <button
-              onClick={() => {
-                setHiddenForConnect(true);
-                dialogRef.current?.close();
-                openConnectModal?.();
-              }}
+              onClick={() => openConnectModal?.()}
               className="px-8 py-2.5 rounded bg-teal-500 text-gray-900 text-sm font-semibold hover:bg-teal-400 transition-colors"
             >
               Connect Wallet
