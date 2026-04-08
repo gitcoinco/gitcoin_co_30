@@ -6,7 +6,11 @@ import path from "node:path";
 
 export const maxDuration = 30;
 
-const openaiClient = new OpenAI();
+let _openaiClient: OpenAI | null = null;
+function getOpenAIClient() {
+  if (!_openaiClient) _openaiClient = new OpenAI();
+  return _openaiClient;
+}
 
 // Loaded once at startup from src/data/chatbot-context.md.
 const GITCOIN_CONTEXT = fs.readFileSync(
@@ -16,7 +20,7 @@ const GITCOIN_CONTEXT = fs.readFileSync(
 
 async function searchKnowledgeBase(query: string): Promise<string> {
   try {
-    const results = await openaiClient.vectorStores.search(
+    const results = await getOpenAIClient().vectorStores.search(
       process.env.OPENAI_VECTOR_STORE_ID!,
       { query, max_num_results: 8 },
     );
@@ -69,7 +73,7 @@ async function buildSearchQuery(messages: UIMessage[]): Promise<string> {
     .join("\n");
 
   try {
-    const response = await openaiClient.chat.completions.create({
+    const response = await getOpenAIClient().chat.completions.create({
       model: "gpt-4o-mini",
       messages: [
         {
