@@ -7,7 +7,6 @@ import { formatEther, parseEther, UserRejectedRequestError } from "viem";
 import {
   useAccount,
   useBalance,
-  useChainId,
   useReadContract,
   useReadContracts,
   useSwitchChain,
@@ -43,6 +42,13 @@ function trimZeros(value: string) {
   return value.replace(/(\.\d*?[1-9])0+$/, "$1").replace(/\.0+$/, "");
 }
 
+// Floor ETH string to 3 decimal places so clicking balance never exceeds actual balance
+function floorTo3(ethStr: string): string {
+  const n = parseFloat(ethStr);
+  if (isNaN(n)) return "0";
+  return (Math.floor(n * 1000) / 1000).toString();
+}
+
 export default function MarkeeModal({
   minimumPrice,
   maxMessageLength,
@@ -61,12 +67,13 @@ export default function MarkeeModal({
   const [error, setError] = useState<string | null>(null);
   const dialogRef = useRef<HTMLDialogElement>(null);
 
-  const { address, isConnected } = useAccount();
-  const chainId = useChainId();
+  const { address, isConnected, chainId } = useAccount();
   const { switchChainAsync } = useSwitchChain();
   const { openConnectModal, connectModalOpen } = useConnectModal();
 
-  const isOnBase = chainId === base.id;
+  // Use account-bound chainId so it stays in sync with the connected wallet
+  // even when multiple wallet extensions are present
+  const isOnBase = isConnected && chainId === base.id;
 
   const { data: balance } = useBalance({
     address,
@@ -192,6 +199,11 @@ export default function MarkeeModal({
       });
     } catch (err: unknown) {
       if (err instanceof UserRejectedRequestError) return;
+      const msg = String(err).toLowerCase();
+      if (msg.includes("chain") || msg.includes("network") || msg.includes("mismatch")) {
+        setError("Wrong network. Please switch to Base and try again.");
+        return;
+      }
       setError("Transaction failed. Please try again.");
     }
   };
@@ -217,6 +229,11 @@ export default function MarkeeModal({
       });
     } catch (err: unknown) {
       if (err instanceof UserRejectedRequestError) return;
+      const msg = String(err).toLowerCase();
+      if (msg.includes("chain") || msg.includes("network") || msg.includes("mismatch")) {
+        setError("Wrong network. Please switch to Base and try again.");
+        return;
+      }
       setError("Transaction failed. Please try again.");
     }
   };
@@ -342,7 +359,7 @@ export default function MarkeeModal({
                 {isOnBase && balanceEth && (
                   <button
                     type="button"
-                    onClick={() => { setEthAmount(balanceEth); setError(null); }}
+                    onClick={() => { setEthAmount(floorTo3(balanceEth)); setError(null); }}
                     className="text-xs text-gray-500 font-normal ml-2 underline hover:text-gray-300 transition-colors"
                   >
                     balance: {parseFloat(balanceEth).toFixed(3)} ETH
@@ -502,16 +519,35 @@ export default function MarkeeModal({
                   ))}
                 </div>
 
+                {/* See more / edit link */}
+                <p className="text-xs text-gray-600 text-center">
+                  <a
+                    href={BUY_URL}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="underline hover:text-gray-400 transition-colors"
+                  >
+                    {leaderboardEntries.length > 5
+                      ? "See more messages and edit messages you own."
+                      : "Edit messages you own on the Markee app."}
+                  </a>
+                </p>
+
                 {/* Selected entry boost controls */}
                 {selectedEntry && (
                   <div className="space-y-3 pt-1">
+                    {isSelectedTop && (
+                      <p className="text-xs text-gray-400 bg-yellow-400/10 border border-yellow-400/30 rounded px-3 py-2">
+                        This message has the top spot. Add more funds to make it harder to reach.
+                      </p>
+                    )}
                     <div>
                       <label className="block text-sm font-medium text-gray-200 mb-2">
-                        ETH to Add
+                        Amount to Pay
                         {isOnBase && balanceEth && (
                           <button
                             type="button"
-                            onClick={() => { setBoostAmount(balanceEth); setError(null); }}
+                            onClick={() => { setBoostAmount(floorTo3(balanceEth)); setError(null); }}
                             className="text-xs text-gray-500 font-normal ml-2 underline hover:text-gray-300 transition-colors"
                           >
                             balance: {parseFloat(balanceEth).toFixed(3)} ETH
@@ -598,19 +634,6 @@ export default function MarkeeModal({
                   </div>
                 )}
 
-                {/* See more / edit link */}
-                <p className="text-xs text-gray-600 text-center pt-1">
-                  <a
-                    href={BUY_URL}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="underline hover:text-gray-400 transition-colors"
-                  >
-                    {leaderboardEntries.length > 5
-                      ? "See more messages and edit messages you own."
-                      : "Edit messages you own on the Markee app."}
-                  </a>
-                </p>
               </>
             )}
           </>
