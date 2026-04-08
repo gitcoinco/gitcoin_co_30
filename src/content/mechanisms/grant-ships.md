@@ -44,6 +44,14 @@ Grant Ships distribute grantmaking authority into parallel, autonomous units.
 - Poor fit for contexts requiring strict centralized oversight
 - Designed for recurring use, not one-time funding events
 
+## Design Considerations
+
+Grant Ships rely on composable infrastructure layers such as Allo Protocol for pool creation, strategy deployment, and fund distribution. This architectural dependency means that implementation quality, gas efficiency, and upgrade paths are tied to the underlying smart contract framework.
+
+Because ships operate autonomously, coordination overhead can increase as the fleet grows. Without strong reporting standards and shared data schemas, fragmentation risks emerge across independent ships.
+
+Additionally, steward selection and governance clarity are critical. While decentralization reduces bottlenecks, poorly defined stewardship models can introduce accountability gaps.
+
 ## Best Used When
 
 - Ecosystems have multiple funding needs across geographic regions or domains
@@ -65,3 +73,4 @@ Regenerative networks deploy bioregion-specific Grant Ships with local steward c
 ## Further Reading
 
 - [Allo Capital — Grant Ships](https://www.allo.capital/mechanisms/grant-ships)
+- [Allo Protocol Documentation](https://docs.allo.gitcoin.co/)
