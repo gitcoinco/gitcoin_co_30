@@ -5,6 +5,7 @@ import ResponsiveImpactHeroMetrics, { type HeroMetric } from "@/components/impac
 import ResponsiveImpactNumbersFieldMask from "@/components/impact/ResponsiveImpactNumbersFieldMask";
 import ScrollReveal from "@/components/impact/ScrollReveal";
 import PartnersMarqueeSection from "@/components/sections/PartnersMarqueeSection";
+import TweetsSection from "@/components/sections/TweetsSection";
 import { getAppBySlug } from "@/content/apps";
 import { getCaseStudyBySlug } from "@/content/case-studies";
 import { Button, InitialAvatar } from "@/components/ui";
@@ -558,8 +559,10 @@ export default function ImpactPage() {
           ))}
         </div>
       </section>
-      
+
       <PartnersMarqueeSection />
+
+      <TweetsSection />
 
       <CTASection
         title="Ready to Contribute?"
