@@ -2,20 +2,20 @@
 
 import { Fragment } from "react";
 import ImpactNumbersField from "@/components/impact/ImpactNumbersField";
-import useMediaQuery from "@/components/impact/useMediaQuery";
+import useMediaQuery from "@/hooks/useMediaQuery";
 
-type HeroMetric = {
+export type HeroMetric = {
   value: string;
   label: string;
 };
 
 function MetricValuePanel({ value, label }: HeroMetric) {
   return (
-    <div className="w-full rounded-[16px] border border-gray-300/65 bg-gray-900 px-4 py-5 text-center">
-      <div className="font-mono text-[34px] leading-none text-gray-25 sm:text-[40px]">
+    <div className="w-full rounded-3xl border border-gray-300/65 bg-gray-900 px-4 py-5 text-center">
+      <div className="font-mono text-[34px] leading-none text-gray-25 text-4xl xl:text-[40px]">
         {value}
       </div>
-      <div className="mt-2 font-mono text-[12px] uppercase tracking-[0.14em] text-gray-25 sm:text-[14px]">
+      <div className="mt-2 font-mono text-xs uppercase tracking-[0.14em] text-gray-25 sm:text-sm">
         {label}
       </div>
     </div>
@@ -29,8 +29,8 @@ function MetricConnector({ className = "h-8" }: { className?: string }) {
 function MobileHeroMetricCard({ value, label }: HeroMetric) {
   return (
     <div className="flex flex-col items-center">
-      <div className="relative aspect-square w-full overflow-hidden rounded-[16px] border border-gray-300/65 bg-transparent">
-        <div className="absolute inset-0 bg-[#1f1c18]/14" />
+      <div className="relative aspect-square w-full overflow-hidden rounded-3xl border border-gray-300/65 bg-transparent">
+        <div className="absolute inset-0 bg-gray-900/14" />
       </div>
       <div className="w-full bg-gray-900">
         <MetricConnector />
@@ -100,9 +100,9 @@ export default function ResponsiveImpactHeroMetrics({
               {metrics.map((metric) => (
                 <div
                   key={metric.label}
-                  className="relative aspect-square overflow-hidden rounded-[16px] border border-gray-300/65 bg-transparent"
+                  className="relative aspect-square overflow-hidden rounded-3xl border border-gray-300/65 bg-transparent"
                 >
-                  <div className="absolute inset-0 bg-[#1f1c18]/14" />
+                  <div className="absolute inset-0 bg-gray-900/14" />
                 </div>
               ))}
             </div>

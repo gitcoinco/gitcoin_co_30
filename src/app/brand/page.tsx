@@ -54,7 +54,7 @@ const assetCards: AssetCard[] = [
     title: "Assets",
     description:
       "Generate Gitcoin-aligned visuals in seconds. Use these assets to create graphics that stay consistent with the Gitcoin brand.",
-    ctaLabel: "Generate Assets",
+    ctaLabel: "Generate assets",
     ctaHref: "https://gitcoin.co/generator",
     preview: "chladni",
   },
@@ -138,12 +138,12 @@ function AssetPreview({ preview }: Pick<AssetCard, "preview">) {
   }
 
   return (
-    <div className="rounded-lg border border-gray-500 px-4 py-4 sm:px-[27px] sm:py-[20px]">
+    <div className="rounded-lg border border-gray-500 px-4 py-4 sm:px-[27px] sm:py-5">
       <div className="grid grid-cols-1 gap-3 sm:grid-cols-3">
         {CHLADNI_PREVIEWS.map((image) => (
           <div
             key={image.src}
-            className="relative aspect-[210/258] overflow-hidden rounded-lg"
+            className="relative aspect-210/258 overflow-hidden rounded-lg"
           >
             <Image
               src={image.src}
@@ -162,13 +162,13 @@ function AssetPreview({ preview }: Pick<AssetCard, "preview">) {
 export default function BrandPage() {
   return (
     <div className="min-h-screen bg-gray-900 text-gray-25">
-      <section className="mx-auto w-full max-w-[1099px] px-4 pb-20 pt-16 sm:px-6 sm:pt-24 lg:px-0">
+      <section className="mx-auto w-full max-w-[1099px] px-4 pb-20 pt-16 sm:px-6 sm:pt-24">
         <div className="max-w-[832px]">
           <h1 className="font-heading text-[44px] leading-[0.96] sm:text-[60px]">
             <span className="block font-bold text-teal-500">Our</span>
             <span className="block font-light text-teal-50">Brand Assets</span>
           </h1>
-          <p className="mt-4 max-w-[307px] font-serif text-lg leading-[1.25] text-gray-100 sm:text-[20px]">
+          <p className="mt-4 max-w-[307px] font-serif text-lg leading-[1.25] text-gray-100 sm:text-xl">
             Download our core brand assets, including logos and banners.
           </p>
         </div>

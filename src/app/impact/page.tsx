@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 import Image from "next/image";
 import Link from "next/link";
-import ResponsiveImpactHeroMetrics from "@/components/impact/ResponsiveImpactHeroMetrics";
+import ResponsiveImpactHeroMetrics, { type HeroMetric } from "@/components/impact/ResponsiveImpactHeroMetrics";
 import ResponsiveImpactNumbersFieldMask from "@/components/impact/ResponsiveImpactNumbersFieldMask";
 import ScrollReveal from "@/components/impact/ScrollReveal";
 import PartnersMarqueeSection from "@/components/sections/PartnersMarqueeSection";
@@ -13,11 +13,6 @@ import { pageSeo } from "@/lib/page-seo";
 import type { App, CaseStudy } from "@/lib/types";
 
 export const metadata: Metadata = pageSeo.impact;
-
-type HeroMetric = {
-  value: string;
-  label: string;
-};
 
 type NumberMetric = {
   value: string;
@@ -271,17 +266,17 @@ function MetricConnector({ className = "h-8" }: { className?: string }) {
 function NumberCard({ value, label }: NumberMetric) {
   return (
     <div className="flex w-full min-w-0 flex-col items-center">
-      <div className="relative h-[250px] w-full overflow-hidden rounded-[16px] border border-gray-300/65 bg-transparent">
-        <div className="absolute inset-0 bg-[#1f1c18]/18" />
+      <div className="relative h-62.5 w-full overflow-hidden rounded-3xl border border-gray-300/65 bg-transparent">
+        <div className="absolute inset-0 bg-gray-900/18" />
         <div className="absolute inset-x-0 top-1/2 -translate-y-1/2 text-center">
           <div className="font-mono text-[40px] leading-[0.925] text-gray-25">
             {value}
           </div>
         </div>
       </div>
-      <MetricConnector className="h-[33px]" />
-      <div className="flex h-[48px] w-full items-center justify-center rounded-[16px] border border-gray-300/65 bg-[#201d19] px-3">
-        <div className="font-mono text-[14px] uppercase tracking-[0.05em] text-gray-25">
+      <MetricConnector className="h-8.25" />
+      <div className="flex h-12 w-full items-center justify-center rounded-3xl border border-gray-300/65 bg-gray-900 px-3">
+        <div className="font-mono text-sm uppercase tracking-[0.05em] text-gray-25">
           {label}
         </div>
       </div>
@@ -307,15 +302,15 @@ function CaseStudyCard({
 
   return (
     <article
-      className={`group rounded-[14px] border border-gray-300/65 bg-[#1f1d19] transition-colors hover:border-teal-500/70 ${isWide ? "xl:col-span-2" : ""}`}
+      className={`group rounded-xl border border-gray-300/65 bg-gray-900 transition-colors hover:border-teal-500/70 ${isWide ? "xl:col-span-2" : ""}`}
     >
       <div
         className={`grid h-full ${isWide ? "lg:grid-cols-[320px_minmax(0,1fr)]" : ""}`}
       >
-        <div className="flex min-h-[250px] flex-col px-6 py-6 sm:px-8">
+        <div className="flex min-h-62.5 flex-col px-6 py-6 sm:px-8">
           <div className="flex items-center gap-4">
             {logo ? (
-              <div className="relative size-[50px] shrink-0 rounded-xl border border-gray-300/60 bg-gray-950 p-2">
+              <div className="relative size-12.5 shrink-0 rounded-xl border border-gray-300/60 bg-gray-950 p-2">
                 <Image
                   src={logo}
                   alt=""
@@ -327,17 +322,17 @@ function CaseStudyCard({
             ) : (
               <InitialAvatar
                 name={study.name}
-                className="size-[50px] rounded-xl border-gray-300/60 text-gray-100"
+                className="size-12.5 rounded-xl border-gray-300/60 text-gray-100"
                 textClassName="text-xl text-gray-100"
               />
             )}
             <span className="font-heading text-xl font-semibold text-gray-100">
-              {study.name.split(":")[0]}
+              {study.name.split(/[:—]/)[0]}
             </span>
           </div>
 
           <p
-            className={`mt-8 font-serif text-gray-200 ${isWide ? "max-w-[280px] text-[20px] leading-[1.05]" : "text-[20px] leading-[1.08]"}`}
+            className={`mt-8 font-serif text-gray-200 ${isWide ? "max-w-70 text-xl leading-[1.05]" : "text-xl leading-[1.08]"}`}
           >
             {study.shortDescription}
           </p>
@@ -356,7 +351,7 @@ function CaseStudyCard({
         {isWide ? (
           <Link
             href={`/case-studies/${study.slug}`}
-            className="relative hidden min-h-[300px] overflow-hidden rounded-r-[14px] border-l border-gray-300/65 lg:block"
+            className="relative hidden min-h-75 overflow-hidden rounded-r-xl border-l border-gray-300/65 lg:block"
             aria-label={`Read case study: ${study.name}`}
           >
             <Image
@@ -383,7 +378,7 @@ function GrowthMilestoneTag({
 }) {
   return (
     <div
-      className="absolute -translate-x-1/2 rounded-[14px] border border-gray-100 bg-gray-900 px-4 py-2 font-mono text-base leading-none text-gray-100 shadow-[0_0_30px_var(--color-gray-950)] sm:text-[20px]"
+      className="absolute -translate-x-1/2 rounded-xl border border-gray-100 bg-gray-900 px-4 py-2 font-mono text-base leading-none text-gray-100 shadow-[0_0_30px_var(--color-gray-950)] sm:text-xl"
       style={style}
     >
       {children}
@@ -408,7 +403,7 @@ export default function ImpactPage() {
   return (
     <div className="bg-gray-900 text-gray-25 py-8">
       <section className="container-page pb-14 pt-14 sm:pb-20 sm:pt-18">
-        <div className="mx-auto max-w-[1028px]">
+        <div className="mx-auto max-w-257">
           <h1 className="font-heading text-[34px] leading-[0.95] sm:text-[56px]">
             <span className="block text-teal-500">Empowering Communities</span>
             <span className="block font-light text-gray-100">
@@ -429,7 +424,7 @@ export default function ImpactPage() {
               <span className="block font-light text-gray-200">Our Impact</span>
             </h2>
           </div>
-          <p className="max-w-[560px] font-serif text-lg leading-[1.45] text-gray-300 lg:pt-2">
+          <p className="max-w-140 font-serif text-lg leading-[1.45] text-gray-300 lg:pt-2">
             Launched in 2019, Gitcoin Grants empowers people and collectives in
             web3 to direct funding toward projects and causes they believe in.
             What began as a focused experiment has grown into a durable engine
@@ -439,15 +434,15 @@ export default function ImpactPage() {
         </div>
 
         <ScrollReveal className="mt-10" y={28} scale={0.985}>
-          <div className="relative overflow-visible rounded-[4xl] border border-gray-300/65">
-            <div className="relative aspect-[1053/674] min-h-[340px] w-full">
+          <div className="relative overflow-visible rounded-4xl border border-gray-300/65">
+            <div className="relative aspect-1053/674 min-h-85 w-full">
               <Image
                 src="/assets/impact/growth-chart-bg-new.png"
                 alt=""
                 fill
                 priority
                 sizes="100vw"
-                className="object-cover opacity-40 rounded-[4xl]"
+                className="object-cover opacity-40 rounded-4xl"
               />
 
               {growthMilestones.map((milestone, index) => (
@@ -493,7 +488,7 @@ export default function ImpactPage() {
           centered
         />
 
-        <div className="mx-auto mt-10 max-w-[1124px] overflow-visible">
+        <div className="mx-auto mt-10 max-w-281 overflow-visible">
           <div className="grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-4">
             {raisingGrid.map((item, index) => (
               <ScrollReveal
@@ -503,7 +498,7 @@ export default function ImpactPage() {
                 y={16}
                 scale={0.96}
               >
-                <div className="group relative origin-center overflow-hidden rounded-[2xl] border border-gray-600 bg-gray-900 transition-all duration-300 ease-out hover:shadow-[0_0_128px_0px_var(--color-iris-500)] hover:z-50 hover:scale-[1.1] hover:border-iris-500">
+                <div className="group relative origin-center overflow-hidden rounded-2xl border border-gray-600 bg-gray-900 transition-all duration-300 ease-out hover:shadow-[0_0_128px_0px_var(--color-iris-500)] hover:z-50 hover:scale-[1.1] hover:border-iris-500">
                   <Image
                     src={item.src}
                     alt={item.alt}
@@ -520,7 +515,7 @@ export default function ImpactPage() {
       </section>
 
       <section className="container-page py-12">
-        <div className="max-w-[760px]">
+        <div className="max-w-190">
           <SectionHeading
             eyebrow="Our Impact"
             title="By the Numbers"
@@ -529,7 +524,7 @@ export default function ImpactPage() {
         </div>
 
         <div className="mt-12">
-          <div className="relative mx-auto w-full max-w-[1096px]">
+          <div className="relative mx-auto w-full max-w-274">
             <ResponsiveImpactNumbersFieldMask />
 
             <div className="relative grid grid-cols-2 sm:grid-cols-4 gap-8">

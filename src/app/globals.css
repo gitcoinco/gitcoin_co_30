@@ -401,3 +401,21 @@ input, textarea, select {
   fill: white !important;
   transform: scale(0.65);
 }
+
+/* Partners marquee */
+@keyframes partners-marquee {
+  from { transform: translateX(0); }
+  to { transform: translateX(-50%); }
+}
+
+.partners-marquee-fwd {
+  animation: partners-marquee 55s linear infinite;
+  display: flex;
+  width: max-content;
+}
+
+.partners-marquee-rev {
+  animation: partners-marquee 55s linear infinite reverse;
+  display: flex;
+  width: max-content;
+}

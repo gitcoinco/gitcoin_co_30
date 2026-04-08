@@ -10,24 +10,6 @@ type MarqueeRowConfig = {
   textClassName: string;
 };
 
-const MARQUEE_ANIMATION_STYLES = `
-  @keyframes partners-marquee {
-    from { transform: translateX(0); }
-    to { transform: translateX(-50%); }
-  }
-
-  .partners-marquee-fwd {
-    animation: partners-marquee 55s linear infinite;
-    display: flex;
-    width: max-content;
-  }
-
-  .partners-marquee-rev {
-    animation: partners-marquee 55s linear infinite reverse;
-    display: flex;
-    width: max-content;
-  }
-`;
 
 function repeatForMarquee<T>(items: readonly T[], repeatCount = 4) {
   return Array.from({ length: repeatCount }, () => items).flat();
@@ -102,8 +84,6 @@ export default function PartnersMarqueeSection({
 }: PartnersMarqueeSectionProps) {
   return (
     <section className="overflow-x-hidden py-16">
-      <style>{MARQUEE_ANIMATION_STYLES}</style>
-
       <div className="mx-auto mb-14 w-full max-w-[908px] px-4 sm:px-6 lg:px-0">
         <div className="flex flex-col gap-3 rounded-2xl border border-gray-300 bg-gray-800/40 px-8 py-6 md:flex-row md:items-start md:gap-14">
           <h2 className="font-heading text-base font-bold whitespace-nowrap text-gray-25 sm:text-2xl">

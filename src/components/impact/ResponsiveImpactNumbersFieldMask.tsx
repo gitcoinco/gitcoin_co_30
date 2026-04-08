@@ -1,7 +1,7 @@
 "use client";
 
 import ImpactNumbersField from "@/components/impact/ImpactNumbersField";
-import useMediaQuery from "@/components/impact/useMediaQuery";
+import useMediaQuery from "@/hooks/useMediaQuery";
 
 const desktopMaskSvg = encodeURIComponent(`
   <svg xmlns="http://www.w3.org/2000/svg" width="1096" height="250" viewBox="0 0 1096 250">
