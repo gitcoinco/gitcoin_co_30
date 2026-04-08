@@ -18,6 +18,7 @@ import { getFeaturedResearch } from "@/content/research";
 import SectionHeader from "@/components/ui/SectionHeader";
 import ContributeCard from "@/components/cards/ContributeCard";
 import { organizationJsonLd } from "@/lib/json-ld";
+import MarkeeSign from "@/components/MarkeeSign";
 
 export const metadata: Metadata = pageSeo.home;
 
@@ -105,6 +106,9 @@ export default function HomePage() {
           <div className="relative z-10 mx-auto w-full max-w-[1276px] px-4 sm:px-6 lg:px-8">
             <div className="pb-20 pt-16 md:pb-28 md:pt-24">
               <div className="flex flex-col mx-auto w-fit">
+                <div className="mb-4 w-full max-w-[732px] mx-auto">
+                  <MarkeeSign />
+                </div>
                 <p className="mb-8 w-fit rounded-lg bg-gray-900 px-5 py-[10px] text-sm text-teal-500 font-mono">
                   Your Map of the Funding Trends in the Next Internet
                 </p>

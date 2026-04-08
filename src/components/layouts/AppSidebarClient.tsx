@@ -5,7 +5,6 @@ import { usePathname, useSearchParams } from "next/navigation";
 import Link from "next/link";
 import { ChevronRight, ChevronDown, ChevronLeft, Folder, FolderOpen } from "lucide-react";
 import { useSidebar } from "@/context/SidebarContext";
-import MarkeeSign from "@/components/MarkeeSign";
 
 export interface SidebarItem {
   label: string;
@@ -333,9 +332,6 @@ function AppSidebarInner({
                     />
                   ))}
                 </nav>
-                <div className="mt-auto pt-8 pb-6">
-                  <MarkeeSign />
-                </div>
               </div>
             </div>
           </div>
