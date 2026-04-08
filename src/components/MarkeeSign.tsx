@@ -1,6 +1,7 @@
 "use client";
 
 import { useState, useEffect, useCallback } from "react";
+import { Eye } from "lucide-react";
 import { formatEther } from "viem";
 import { useReadContract } from "wagmi";
 import { base } from "wagmi/chains";
@@ -123,41 +124,46 @@ export default function MarkeeSign() {
           markeeId={data.topMarkeeAddress ?? ""}
           className="rounded border border-gray-700 bg-gray-800/40 hover:border-teal-500/50 transition-colors duration-200"
         >
-          <div className="px-4 py-3 flex items-start justify-between gap-2">
+          <div className="px-4 pt-3 pb-2 flex flex-col gap-1">
             {/* Clickable message area */}
-            <button
-              type="button"
-              onClick={() => setModalOpen(true)}
-              disabled={loading}
-              className="flex-1 min-w-0 text-left cursor-pointer"
-              aria-label="Click to change the Markee message"
-            >
-              <p className="font-mono text-xs text-gray-300 group-hover:text-gray-100 transition-colors duration-200 leading-snug break-words">
-                {loading ? (
-                  <span className="text-gray-500">loading...</span>
-                ) : (
-                  data.message
+            <div className="flex items-start justify-between gap-2">
+              <button
+                type="button"
+                onClick={() => setModalOpen(true)}
+                disabled={loading}
+                className="flex-1 min-w-0 text-left cursor-pointer"
+                aria-label="Click to change the Markee message"
+              >
+                <p className="font-mono text-xs text-gray-300 group-hover:text-gray-100 transition-colors duration-200 leading-snug break-words">
+                  {loading ? (
+                    <span className="text-gray-500">loading...</span>
+                  ) : (
+                    data.message
+                  )}
+                </p>
+                {data.name && !loading && (
+                  <p className="mt-1 text-xs text-gray-600 group-hover:text-gray-500 transition-colors duration-200">
+                    {data.name.startsWith("0x")
+                      ? `${data.name.slice(0, 6)}...${data.name.slice(-4)}`
+                      : data.name}
+                  </p>
                 )}
-              </p>
-              {data.name && !loading && (
-                <p className="mt-1 text-xs text-gray-600 group-hover:text-gray-500 transition-colors duration-200">
-                  {data.name.startsWith("0x")
-                    ? `${data.name.slice(0, 6)}...${data.name.slice(-4)}`
-                    : data.name}
-                </p>
+              </button>
+              {data.topMarkeeAddress && !loading && (
+                <FlagButton
+                  chainId={base.id}
+                  markeeId={data.topMarkeeAddress}
+                  compact
+                />
               )}
-              {viewCount !== null && !loading && (
-                <p className="mt-1 text-xs text-gray-500 group-hover:text-gray-400 transition-colors duration-200">
-                  {formatViews(viewCount)} views
-                </p>
-              )}
-            </button>
-            {data.topMarkeeAddress && !loading && (
-              <FlagButton
-                chainId={base.id}
-                markeeId={data.topMarkeeAddress}
-                compact
-              />
+            </div>
+            {viewCount !== null && !loading && (
+              <div className="flex justify-end">
+                <span className="flex items-center gap-1 text-xs text-gray-600 group-hover:text-gray-500 transition-colors duration-200">
+                  <Eye size={11} className="opacity-70" />
+                  {formatViews(viewCount)}
+                </span>
+              </div>
             )}
           </div>
         </ModeratedContent>
