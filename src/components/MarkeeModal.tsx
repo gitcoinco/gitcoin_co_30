@@ -148,9 +148,15 @@ export default function MarkeeModal({
     }
   }, [connectModalOpen]);
 
-  useEffect(() => {
-    if (isSuccess) setTimeout(onSuccess, 3000);
-  }, [isSuccess, onSuccess]);
+  // Don't auto-close on success -- let the user read the confirmation and close manually.
+  // Closing after success calls onSuccess() so MarkeeSign refreshes its data.
+  const handleClose = () => {
+    if (isSuccess) {
+      onSuccess();
+    } else {
+      onClose();
+    }
+  };
 
   const takeTopSpotEth = trimZeros(
     parseFloat(formatEther(takeTopSpot)).toFixed(3),
@@ -240,7 +246,7 @@ export default function MarkeeModal({
 
   const handleBackdropClick = (e: React.MouseEvent<HTMLDialogElement>) => {
     if (e.target !== dialogRef.current || isFormDirty) return;
-    onClose();
+    handleClose();
   };
 
   const balanceEth = balance ? formatEther(balance.value) : null;
@@ -250,7 +256,7 @@ export default function MarkeeModal({
       ref={dialogRef}
       className="fixed inset-0 m-auto max-w-md sm:max-w-xl w-full rounded-xl bg-gray-900 border border-gray-700 shadow-2xl p-0 max-h-[85vh] flex flex-col overflow-hidden backdrop:bg-black/60 backdrop:backdrop-blur-sm open:flex"
       onClick={handleBackdropClick}
-      onClose={() => onClose()}
+      onClose={handleClose}
     >
       {/* Header */}
       <div className="sticky top-0 z-10 bg-gray-900 border-b border-gray-700 px-6 py-4 flex items-center gap-3 justify-between">
@@ -262,7 +268,7 @@ export default function MarkeeModal({
           </h3>
         </div>
         <button
-          onClick={onClose}
+          onClick={handleClose}
           className="flex-shrink-0 text-gray-400 hover:text-gray-200 transition-colors"
           aria-label="Close"
         >
@@ -270,16 +276,17 @@ export default function MarkeeModal({
         </button>
       </div>
 
-      {/* Current message */}
-      <div className="px-6 pt-4 pb-0">
-        <div className="rounded border border-gray-700 bg-gray-800/50 px-4 py-3">
-          <p className="text-xs text-gray-500 mb-1">Current message</p>
-          <p className="font-mono text-sm text-gray-200 break-words">{currentMessage}</p>
-        </div>
-      </div>
+      {/* Current message + tabs -- hidden on success */}
+      {!isSuccess && (
+        <>
+          <div className="px-6 pt-4 pb-0">
+            <div className="rounded border border-gray-700 bg-gray-800/50 px-4 py-3">
+              <p className="text-xs text-gray-500 mb-1">Current message</p>
+              <p className="font-mono text-sm text-gray-200 break-words">{currentMessage}</p>
+            </div>
+          </div>
 
-      {/* Tab bar */}
-      <div className="px-6 pt-4 flex gap-1 flex-shrink-0">
+          <div className="px-6 pt-4 flex gap-1 flex-shrink-0">
         {(["buy", "boost"] as ModalTab[]).map((t) => (
           <button
             key={t}
@@ -293,7 +300,9 @@ export default function MarkeeModal({
             {t === "buy" ? "Buy a Message" : "Boost Existing Message"}
           </button>
         ))}
-      </div>
+          </div>
+        </>
+      )}
 
       {/* Tab content */}
       <div className="overflow-y-auto flex-1 px-6 py-5 space-y-4">
