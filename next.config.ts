@@ -68,19 +68,7 @@ const nextConfig: NextConfig = {
         destination: "https://app.gitcoin.co/blog",
       },
 
-      // redo
-      {
-        source: "/brand",
-        destination: "https://app.gitcoin.co/brand",
-      },
-
       // impact.gitcoin.co rewrites
-
-      // redo - high priority
-      {
-        source: "/impact",
-        destination: "https://impact.gitcoin.co",
-      },
       {
         source: "/impact/:path*",
         destination: "https://impact.gitcoin.co/impact/:path*",

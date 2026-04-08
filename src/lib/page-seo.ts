@@ -77,6 +77,11 @@ function metaHome(title: string, description: string): Metadata {
 
 export const pageSeo = {
   home: metaHome(siteTitle, siteDescription),
+  brand: meta(
+    "Brand Assets",
+    "Download Gitcoin logos and brand assets, and generate Gitcoin-aligned visuals.",
+    "/brand",
+  ),
   mechanisms: meta(
     "Funding Mechanisms",
     "Learn about quadratic funding, retroactive funding, conviction voting, and other funding mechanisms.",
@@ -115,31 +120,36 @@ export const pageSeo = {
   about: meta(
     "About",
     "Gitcoin has been building tools since 2017 that enable communities to build, fund and protect what matters to them.",
-    "/about"
+    "/about",
+  ),
+  impact: meta(
+    "Impact",
+    "Explore Gitcoin's impact across funding rounds, case studies, ecosystem growth, and matching partners.",
+    "/impact",
   ),
   program: meta(
     "Grants Program",
     "Gitcoin Grants is a seasonal funding initiative supporting early-stage builders through crowdfunding combined with quadratic matching grants.",
-    "/program"
+    "/program",
   ),
   updates: meta(
     "Get Updates",
     "Subscribe to Gitcoin's newsletter for key updates and announcements.",
-    "/updates"
+    "/updates",
   ),
   partner: meta(
     "Partner With Us",
     "Partner with Gitcoin to support public goods funding in the Ethereum ecosystem.",
-    "/partner"
+    "/partner",
   ),
   privacyPolicy: meta(
     "Privacy Policy",
     "Gitcoin's privacy policy — how we collect, use, and protect your data.",
-    "/privacy-policy"
+    "/privacy-policy",
   ),
   terms: meta(
     "Terms of Use",
     "Gitcoin's terms of use governing access to Gitcoin Allo, Gitcoin.co, Grants Stack, Passport, and the Public Goods Network.",
-    "/terms"
+    "/terms",
   ),
 };

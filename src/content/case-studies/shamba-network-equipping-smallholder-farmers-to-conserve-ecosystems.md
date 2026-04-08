@@ -2,7 +2,7 @@
 id: '1741190000000'
 slug: shamba-network-equipping-smallholder-farmers-to-conserve-ecosystems
 name: "Shamba Network: Equipping Smallholder Farmers to Conserve Ecosystems"
-shortDescription: "How Gitcoin Grants funded a D-MRV platform that enables smallholder farmers in the global south to receive fair compensation for carbon removal."
+shortDescription: "Equipping Smallholder Farmers to Conserve Ecosystems"
 tags:
   - climate
   - infrastructure

@@ -6,7 +6,16 @@ import path from "node:path";
 
 export const maxDuration = 30;
 
-const openaiClient = new OpenAI();
+let openaiClient: OpenAI | null = null;
+
+function getOpenAIClient(): OpenAI | null {
+  if (!process.env.OPENAI_API_KEY) {
+    return null;
+  }
+
+  openaiClient ??= new OpenAI({ apiKey: process.env.OPENAI_API_KEY });
+  return openaiClient;
+}
 
 // Loaded once at startup from src/data/chatbot-context.md.
 const GITCOIN_CONTEXT = fs.readFileSync(
@@ -15,9 +24,14 @@ const GITCOIN_CONTEXT = fs.readFileSync(
 ).trim();
 
 async function searchKnowledgeBase(query: string): Promise<string> {
+  const client = getOpenAIClient();
+  if (!client || !process.env.OPENAI_VECTOR_STORE_ID) {
+    return "";
+  }
+
   try {
-    const results = await openaiClient.vectorStores.search(
-      process.env.OPENAI_VECTOR_STORE_ID!,
+    const results = await client.vectorStores.search(
+      process.env.OPENAI_VECTOR_STORE_ID,
       { query, max_num_results: 8 },
     );
 
@@ -68,8 +82,13 @@ async function buildSearchQuery(messages: UIMessage[]): Promise<string> {
     })
     .join("\n");
 
+  const client = getOpenAIClient();
+  if (!client) {
+    return userText;
+  }
+
   try {
-    const response = await openaiClient.chat.completions.create({
+    const response = await client.chat.completions.create({
       model: "gpt-4o-mini",
       messages: [
         {
@@ -97,6 +116,16 @@ async function buildSearchQuery(messages: UIMessage[]): Promise<string> {
 
 export async function POST(req: Request) {
   try {
+    if (!process.env.OPENAI_API_KEY) {
+      return new Response(
+        JSON.stringify({ error: "Chat is not configured. Missing OPENAI_API_KEY." }),
+        {
+          status: 503,
+          headers: { "Content-Type": "application/json" },
+        },
+      );
+    }
+
     const { messages }: { messages: UIMessage[] } = await req.json();
 
     console.log("[chat] Received", messages.length, "messages");
