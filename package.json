@@ -62,6 +62,7 @@
     "zod": "^4.3.6"
   },
   "devDependencies": {
+    "@types/three": "^0.183.1",
     "playwright": "^1.58.2",
     "shadcn": "^3.8.4",
     "tsx": "^4.21.0",

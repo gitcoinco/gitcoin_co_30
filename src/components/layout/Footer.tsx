@@ -38,7 +38,8 @@ const exploreLinks: FooterLink[] = [
 ];
 
 const resourceLinks: FooterLink[] = [
-  { title: "Impact", href: "https://impact.gitcoin.co", external: true },
+  { title: "Brand Assets", href: "/brand" },
+  { title: "Impact", href: "/impact" },
   {
     title: "Grants Program",
     href: "https://grants.gitcoin.co",
@@ -102,7 +103,7 @@ function FooterLinkGroup({
 
 export default function Footer() {
   return (
-    <footer className="relative overflow-hidden">
+    <footer className="relative overflow-hidden px-4">
       <ChladniBackground variant="2" opacity={0.35} />
       <div className="absolute top-0 left-0 right-0 h-32 bg-gradient-to-b from-gray-900 to-transparent z-[1]" />
       <div className="relative z-10 mx-auto w-full max-w-[1216px] px-4 py-14 sm:px-6 lg:px-0">

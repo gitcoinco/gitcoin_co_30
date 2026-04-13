@@ -1,12 +1,28 @@
-import { ButtonHTMLAttributes, forwardRef } from "react";
+import {
+  AnchorHTMLAttributes,
+  ButtonHTMLAttributes,
+  forwardRef,
+} from "react";
 import Link from "next/link";
 
-interface ButtonProps extends ButtonHTMLAttributes<HTMLButtonElement> {
+type SharedButtonProps = {
   variant?: "primary" | "secondary" | "tertiary" | "ghost";
   size?: "xs" | "sm" | "md" | "lg";
   href?: string;
   external?: boolean;
-}
+};
+
+type ButtonAsButtonProps = SharedButtonProps &
+  ButtonHTMLAttributes<HTMLButtonElement> & {
+    href?: undefined;
+  };
+
+type ButtonAsLinkProps = SharedButtonProps &
+  AnchorHTMLAttributes<HTMLAnchorElement> & {
+    href: string;
+  };
+
+type ButtonProps = ButtonAsButtonProps | ButtonAsLinkProps;
 
 const Button = forwardRef<HTMLButtonElement, ButtonProps>(
   (
@@ -45,6 +61,8 @@ const Button = forwardRef<HTMLButtonElement, ButtonProps>(
     const combinedClassName = `${baseStyles} ${variants[variant]} ${sizes[size]} ${className}`;
 
     if (href) {
+      const linkProps = props as AnchorHTMLAttributes<HTMLAnchorElement>;
+
       if (external) {
         return (
           <a
@@ -53,24 +71,32 @@ const Button = forwardRef<HTMLButtonElement, ButtonProps>(
             rel="noopener noreferrer"
             className={combinedClassName}
             style={transitionStyle}
+            {...linkProps}
           >
             {children}
           </a>
         );
       }
       return (
-        <Link href={href} className={combinedClassName} style={transitionStyle}>
+        <Link
+          href={href}
+          className={combinedClassName}
+          style={transitionStyle}
+          {...linkProps}
+        >
           {children}
         </Link>
       );
     }
+
+    const buttonProps = props as ButtonHTMLAttributes<HTMLButtonElement>;
 
     return (
       <button
         ref={ref}
         className={combinedClassName}
         style={transitionStyle}
-        {...props}
+        {...buttonProps}
       >
         {children}
       </button>

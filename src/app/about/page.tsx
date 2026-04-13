@@ -1,11 +1,11 @@
 import type { Metadata } from "next";
 import Image from "next/image";
-import Script from "next/script";
 import { ArrowUpRight } from "lucide-react";
+import PartnersMarqueeSection from "@/components/sections/PartnersMarqueeSection";
+import TweetsSection from "@/components/sections/TweetsSection";
 import { Button } from "@/components/ui";
 import { CTASection } from "@/components/layouts";
 import { pageSeo } from "@/lib/page-seo";
-import Tweet from "@/components/Tweet";
 
 export const metadata: Metadata = pageSeo.about;
 
@@ -64,37 +64,9 @@ const timelineEvents = [
   },
 ];
 
-const partnerRow1 = ["Momus", "Ethereum Foundation", "Yearn", "Polygon", "ENS"];
-const partnerRow2 = [
-  "Chainlink",
-  "Balancer",
-  "Aragon",
-  "a16z",
-  "ForceDAO",
-  "Synthetix",
-];
-const partnerRow3 = [
-  "Schmidt Futures",
-  "OP Games",
-  "Celo",
-  "Binance",
-  "Anoma",
-  "Unlock Protocol",
-  "Stefan George",
-];
-
 export default function AboutPage() {
   return (
     <div className="bg-gray-900 text-gray-25 overflow-x-hidden">
-      <style>{`
-        @keyframes marquee {
-          from { transform: translateX(0); }
-          to   { transform: translateX(-50%); }
-        }
-        .marquee-fwd { animation: marquee 55s linear infinite; display: flex; width: max-content; }
-        .marquee-rev { animation: marquee 55s linear infinite reverse; display: flex; width: max-content; }
-      `}</style>
-
       {/* ── HERO ─────────────────────────────────────────────────────────── */}
       <section className="mx-auto w-full max-w-[1166px] px-4 pt-10 mb-16 sm:px-6 lg:px-0">
         <div className="relative h-[360px] overflow-hidden rounded-2xl">
@@ -259,11 +231,7 @@ export default function AboutPage() {
             <p className="text-2xl font-heading font-bold uppercase">
               Our Impact
             </p>
-            <Button
-              href="https://impact.gitcoin.co"
-              external
-              variant="secondary"
-            >
+            <Button href="/impact" variant="secondary">
               Learn more
             </Button>
           </div>
@@ -331,11 +299,7 @@ export default function AboutPage() {
             <p className="text-2xl font-heading font-bold uppercase">
               Our Impact
             </p>
-            <Button
-              href="https://impact.gitcoin.co"
-              external
-              variant="secondary"
-            >
+            <Button href="/impact" variant="secondary">
               Learn more
             </Button>
           </div>
@@ -418,141 +382,10 @@ export default function AboutPage() {
       </section>
 
       {/* ── PARTNERS ─────────────────────────────────────────────────────── */}
-      <section className="py-16">
-        {/* Header card */}
-        <div className="mx-auto w-full max-w-[908px] px-4 sm:px-6 lg:px-0 mb-14">
-          <div className="rounded-2xl border border-gray-300 bg-gray-800/40 px-8 py-6 flex flex-col md:flex-row md:items-start gap-3 md:gap-14">
-            <h2 className="text-base sm:text-2xl font-heading font-bold text-gray-25 whitespace-nowrap">
-              Our Partners
-            </h2>
-            <p className=" text-gray-400 leading-relaxed">
-              We partner with some of the most impactful organizations fueling
-              the future of open source software and public goods
-            </p>
-          </div>
-        </div>
-
-        <div className="flex flex-col gap-5 overflow-hidden">
-          {/* Row 1: very large heading font */}
-          <div className="overflow-hidden">
-            <div className="marquee-fwd">
-              {[
-                ...partnerRow1,
-                ...partnerRow1,
-                ...partnerRow1,
-                ...partnerRow1,
-              ].map((name, i) => (
-                <span
-                  key={i}
-                  className="text-[64px] md:text-[80px] lg:text-[88px] font-heading font-bold text-gray-25 whitespace-nowrap pr-20"
-                >
-                  {name}
-                </span>
-              ))}
-            </div>
-          </div>
-
-          {/* Row 2: large heading font, reverse direction */}
-          <div className="overflow-hidden">
-            <div className="marquee-rev">
-              {[
-                ...partnerRow2,
-                ...partnerRow2,
-                ...partnerRow2,
-                ...partnerRow2,
-              ].map((name, i) => (
-                <span
-                  key={i}
-                  className="text-[52px] md:text-[64px] lg:text-[72px] font-heading font-bold text-gray-25 whitespace-nowrap pr-16"
-                >
-                  {name}
-                </span>
-              ))}
-            </div>
-          </div>
-
-          <div className="overflow-hidden">
-            <div className="marquee-fwd">
-              {[
-                ...partnerRow3,
-                ...partnerRow3,
-                ...partnerRow3,
-                ...partnerRow3,
-              ].map((name, i) => (
-                <span
-                  key={i}
-                  className="text-2xl md:text-3xl font-mono font-semibold text-gray-25 whitespace-nowrap pr-12 tracking-wider"
-                >
-                  {name}
-                </span>
-              ))}
-            </div>
-          </div>
-        </div>
-      </section>
+      <PartnersMarqueeSection />
 
       {/* ── TWEETS ───────────────────────────────────────────────────────── */}
-      <section className="mx-auto w-full max-w-[1166px] px-4 py-16 sm:px-6 xl:px-0">
-        <div className="grid gap-x-6 gap-y-10 md:grid-cols-3">
-          <Tweet
-            url="https://twitter.com/VitalikButerin/status/1539887980776751107?ref_src=twsrc%5Etfw"
-            author="vitalik.eth (@VitalikButerin)"
-            date="June 23, 2022"
-            noConversation
-          >
-            IMO all donors to the gitcoin matching pool deserve to get big
-            beautiful statues in the metaverse honoring their contributions.
-          </Tweet>
-
-          <Tweet
-            url="https://twitter.com/LefterisJP/status/1538948370286489600?ref_src=twsrc%5Etfw"
-            author="Lefteris Karapetsas | Hiring for @rotkiapp (@LefterisJP)"
-            date="June 20, 2022"
-          >
-            Don&apos;t praise working for no money. This is not the spirit of{" "}
-            <a href="https://twitter.com/hashtag/opensource?src=hash&amp;ref_src=twsrc%5Etfw">
-              #opensource
-            </a>
-            .<br />
-            <br />
-            Work should be paid, and work made in the open should even be paid
-            more.
-            <br />
-            <br />
-            Instead of perpetuating the legend of the poor opensource maintainer
-            let&apos;s find ways to sustainably fund{" "}
-            <a href="https://twitter.com/hashtag/opensource?src=hash&amp;ref_src=twsrc%5Etfw">
-              #opensource
-            </a>
-            .<br />
-            <br />
-            ❤️{" "}
-            <a href="https://twitter.com/gitcoin?ref_src=twsrc%5Etfw">
-              @gitcoin
-            </a>
-          </Tweet>
-
-          <Tweet
-            url="https://twitter.com/sassal0x/status/1543809081630085121?ref_src=twsrc%5Etfw"
-            author="sassal.eth 🦇🔊 (@sassal0x)"
-            date="July 4, 2022"
-          >
-            I would love to see more non-speculative Ethereum apps take off
-            during this bear market.
-            <br />
-            <br />
-            So far the most popular ones I can think of (that have actual active
-            users) are Gitcoin, POAP and ENS.
-            <br />
-            <br />
-            What else is there?
-          </Tweet>
-        </div>
-      </section>
-      <Script
-        src="https://platform.twitter.com/widgets.js"
-        strategy="afterInteractive"
-      />
+      <TweetsSection />
 
       {/* ── CTA ──────────────────────────────────────────────────────────── */}
       <CTASection
