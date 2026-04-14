@@ -2,7 +2,6 @@
 
 import { useEffect, useRef, useState } from "react";
 import { X, CheckCircle } from "lucide-react";
-import { useConnectModal } from "@rainbow-me/rainbowkit";
 import { formatEther, parseEther, UserRejectedRequestError } from "viem";
 import {
   useAccount,
@@ -35,6 +34,15 @@ interface MarkeeModalProps {
   takeTopSpot: bigint;
   currentMessage: string;
   currentName: string;
+  message: string;
+  setMessage: (v: string) => void;
+  name: string;
+  setName: (v: string) => void;
+  ethAmount: string;
+  setEthAmount: (v: string) => void;
+  boostAmount: string;
+  setBoostAmount: (v: string) => void;
+  onConnectWallet: () => void;
   onClose: () => void;
   onSuccess: () => void;
 }
@@ -65,21 +73,25 @@ export default function MarkeeModal({
   topFundsAdded,
   takeTopSpot,
   currentMessage,
+  message,
+  setMessage,
+  name,
+  setName,
+  ethAmount,
+  setEthAmount,
+  boostAmount,
+  setBoostAmount,
+  onConnectWallet,
   onClose,
   onSuccess,
 }: MarkeeModalProps) {
   const [tab, setTab] = useState<ModalTab>("buy");
-  const [message, setMessage] = useState("");
-  const [name, setName] = useState("");
-  const [ethAmount, setEthAmount] = useState("");
-  const [boostAmount, setBoostAmount] = useState("");
   const [selectedAddr, setSelectedAddr] = useState<`0x${string}` | null>(null);
   const [error, setError] = useState<string | null>(null);
   const dialogRef = useRef<HTMLDialogElement>(null);
 
   const { address, isConnected, chainId } = useAccount();
   const { switchChainAsync } = useSwitchChain();
-  const { openConnectModal, connectModalOpen } = useConnectModal();
 
   // Use account-bound chainId so it stays in sync with the connected wallet
   // even when multiple wallet extensions are present
@@ -96,7 +108,7 @@ export default function MarkeeModal({
     useWaitForTransactionReceipt({ hash });
 
   // Leaderboard: read top 10 markees from contract (only when on boost tab)
-  const { data: topMarkeesData, isPending: topMarkeesPending } = useReadContract({
+  const { data: topMarkeesData, isPending: topMarkeesPending, isError: topMarkeesError } = useReadContract({
     address: LEADERBOARD_ADDRESS,
     abi: LEADERBOARD_ABI,
     functionName: "getTopMarkees",
@@ -110,7 +122,7 @@ export default function MarkeeModal({
   const topFundsArr =
     (topMarkeesData as [`0x${string}`[], bigint[]] | undefined)?.[1] ?? [];
 
-  const { data: markeeReadData, isPending: markeeDataPending } = useReadContracts({
+  const { data: markeeReadData, isPending: markeeDataPending, isError: markeeDataError } = useReadContracts({
     contracts: topAddresses.flatMap((addr) => [
       { address: addr, abi: MARKEE_ABI, functionName: "message" as const, chainId: base.id },
       { address: addr, abi: MARKEE_ABI, functionName: "name" as const, chainId: base.id },
@@ -127,7 +139,9 @@ export default function MarkeeModal({
     }))
     .filter((e) => e.message);
 
+  const leaderboardError = tab === "boost" && (topMarkeesError || markeeDataError);
   const leaderboardLoading =
+    !leaderboardError &&
     tab === "boost" &&
     (topMarkeesPending || (topAddresses.length > 0 && markeeDataPending));
 
@@ -150,13 +164,6 @@ export default function MarkeeModal({
   useEffect(() => {
     dialogRef.current?.showModal();
   }, []);
-
-  // Reopen dialog after RainbowKit connect modal closes
-  useEffect(() => {
-    if (!connectModalOpen && !dialogRef.current?.open) {
-      dialogRef.current?.showModal();
-    }
-  }, [connectModalOpen]);
 
   // Don't auto-close on success -- let the user read the confirmation and close manually.
   // Closing after success calls onSuccess() so MarkeeSign refreshes its data.
@@ -330,7 +337,7 @@ export default function MarkeeModal({
             >
               View on Basescan &rarr;
             </a>
-            <p className="text-xs text-gray-500">Refreshing in a moment...</p>
+            <p className="text-xs text-gray-500">Your message may take up to a minute to appear.</p>
           </div>
         )}
 
@@ -469,7 +476,7 @@ export default function MarkeeModal({
             <div className="flex justify-center pt-1">
               {!isConnected ? (
                 <button
-                  onClick={() => { dialogRef.current?.close(); openConnectModal?.(); }}
+                  onClick={onConnectWallet}
                   className="px-8 py-2.5 rounded bg-teal-500 text-gray-900 text-sm font-semibold hover:bg-teal-400 transition-colors"
                 >
                   Connect Wallet
@@ -491,7 +498,9 @@ export default function MarkeeModal({
         {!isSuccess && tab === "boost" && (
           <>
             {leaderboardLoading ? (
-              <p className="text-xs text-gray-500 font-mono py-2">loading...</p>
+              <p className="text-xs text-gray-500 font-mono py-2">Loading...</p>
+            ) : leaderboardError ? (
+              <p className="text-xs text-red-400 py-2">Failed to load messages. Please try again.</p>
             ) : leaderboardEntries.length === 0 ? (
               <p className="text-xs text-gray-500 py-2">No messages yet. Be the first!</p>
             ) : (
@@ -550,7 +559,7 @@ export default function MarkeeModal({
                 </div>
 
                 {/* See more / edit link */}
-                <p className="text-xs text-gray-600 text-center">
+                <p className="text-xs text-gray-500 text-center">
                   <a
                     href={BUY_URL}
                     target="_blank"
@@ -642,7 +651,7 @@ export default function MarkeeModal({
                     <div className="flex justify-center">
                       {!isConnected ? (
                         <button
-                          onClick={() => { dialogRef.current?.close(); openConnectModal?.(); }}
+                          onClick={onConnectWallet}
                           className="px-8 py-2.5 rounded bg-teal-500 text-gray-900 text-sm font-semibold hover:bg-teal-400 transition-colors"
                         >
                           Connect Wallet
@@ -674,7 +683,7 @@ export default function MarkeeModal({
       {/* Footer */}
       {!isSuccess && (
         <div className="px-6 pb-4 pt-0 flex-shrink-0">
-          <p className="text-center text-xs text-gray-600">
+          <p className="text-center text-xs text-gray-500">
             You&apos;ll receive MARKEE tokens with your purchase and co-own the{" "}
             <a
               href={GARDENS_URL}

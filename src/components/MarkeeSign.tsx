@@ -5,6 +5,7 @@ import { Eye } from "lucide-react";
 import { formatEther } from "viem";
 import { useReadContract } from "wagmi";
 import { base } from "wagmi/chains";
+import { useConnectModal } from "@rainbow-me/rainbowkit";
 import MarkeeModal from "./MarkeeModal";
 import { ModeratedContent, FlagButton } from "@/components/moderation";
 import {
@@ -41,6 +42,13 @@ export default function MarkeeSign() {
   const [loading, setLoading] = useState(true);
   const [modalOpen, setModalOpen] = useState(false);
   const [viewCount, setViewCount] = useState<number | null>(null);
+  const [message, setMessage] = useState("");
+  const [name, setName] = useState("");
+  const [ethAmount, setEthAmount] = useState("");
+  const [boostAmount, setBoostAmount] = useState("");
+  const [pendingReopenModal, setPendingReopenModal] = useState(false);
+
+  const { openConnectModal, connectModalOpen } = useConnectModal();
 
   const { data: minimumPrice } = useReadContract({
     address: LEADERBOARD_ADDRESS,
@@ -103,6 +111,20 @@ export default function MarkeeSign() {
     fetchData();
   }, [fetchData]);
 
+  // Reopen Markee modal after RainbowKit wallet connect modal closes
+  useEffect(() => {
+    if (!connectModalOpen && pendingReopenModal) {
+      setPendingReopenModal(false);
+      setModalOpen(true);
+    }
+  }, [connectModalOpen, pendingReopenModal]);
+
+  const handleConnectWallet = useCallback(() => {
+    setModalOpen(false);
+    setPendingReopenModal(true);
+    openConnectModal?.();
+  }, [openConnectModal]);
+
   const effectiveMin = minimumPrice ?? BigInt("3000000000000000");
   const takeTopSpot =
     data.totalFundsAdded > 0n
@@ -119,54 +141,52 @@ export default function MarkeeSign() {
         data-markee-address={LEADERBOARD_ADDRESS_LOWER}
         className="group relative w-full"
       >
-        <ModeratedContent
-          chainId={base.id}
-          markeeId={data.topMarkeeAddress ?? ""}
-          className="rounded border border-gray-700 bg-gray-800/40 hover:border-teal-500/50 transition-colors duration-200"
-        >
-          <div className="px-4 pt-3 pb-2 flex flex-col gap-1">
-            {/* Clickable message area */}
-            <div className="flex items-start justify-between gap-2">
-              <button
-                type="button"
-                onClick={() => setModalOpen(true)}
-                disabled={loading}
-                className="flex-1 min-w-0 text-left cursor-pointer"
-                aria-label="Click to change the Markee message"
-              >
-                <p className="font-mono text-xs text-gray-300 group-hover:text-gray-100 transition-colors duration-200 leading-snug break-words">
-                  {loading ? (
-                    <span className="text-gray-500">loading...</span>
-                  ) : (
-                    data.message
-                  )}
-                </p>
-                {data.name && !loading && (
-                  <p className="mt-1 text-xs text-gray-600 group-hover:text-gray-500 transition-colors duration-200">
-                    {data.name.startsWith("0x")
-                      ? `${data.name.slice(0, 6)}...${data.name.slice(-4)}`
-                      : data.name}
+        {/* eslint-disable-next-line jsx-a11y/click-events-have-key-events, jsx-a11y/no-static-element-interactions */}
+        <div onClick={() => !loading && setModalOpen(true)} className="cursor-pointer">
+          <ModeratedContent
+            chainId={base.id}
+            markeeId={data.topMarkeeAddress ?? ""}
+            className="rounded border border-gray-700 bg-gray-800/40 hover:border-teal-500/50 transition-colors duration-200"
+          >
+            <div className="px-4 pt-3 pb-2 flex flex-col gap-1">
+              <div className="flex items-start justify-between gap-2">
+                <div className="flex-1 min-w-0 text-left">
+                  <p className="font-mono text-xs text-gray-300 group-hover:text-gray-100 transition-colors duration-200 leading-snug break-words">
+                    {loading ? (
+                      <span className="text-gray-500">Loading...</span>
+                    ) : (
+                      data.message
+                    )}
                   </p>
+                  {data.name && !loading && (
+                    <p className="mt-1 text-xs text-gray-500 group-hover:text-gray-400 transition-colors duration-200">
+                      {data.name.startsWith("0x")
+                        ? `${data.name.slice(0, 6)}...${data.name.slice(-4)}`
+                        : data.name}
+                    </p>
+                  )}
+                </div>
+                {data.topMarkeeAddress && !loading && (
+                  <span onClick={(e) => e.stopPropagation()}>
+                    <FlagButton
+                      chainId={base.id}
+                      markeeId={data.topMarkeeAddress}
+                      compact
+                    />
+                  </span>
                 )}
-              </button>
-              {data.topMarkeeAddress && !loading && (
-                <FlagButton
-                  chainId={base.id}
-                  markeeId={data.topMarkeeAddress}
-                  compact
-                />
+              </div>
+              {viewCount !== null && !loading && (
+                <div className="flex justify-end">
+                  <span className="flex items-center gap-1 text-xs text-gray-500 group-hover:text-gray-400 transition-colors duration-200">
+                    <Eye size={11} className="opacity-70" />
+                    {formatViews(viewCount)}
+                  </span>
+                </div>
               )}
             </div>
-            {viewCount !== null && !loading && (
-              <div className="flex justify-end">
-                <span className="flex items-center gap-1 text-xs text-gray-600 group-hover:text-gray-500 transition-colors duration-200">
-                  <Eye size={11} className="opacity-70" />
-                  {formatViews(viewCount)}
-                </span>
-              </div>
-            )}
-          </div>
-        </ModeratedContent>
+          </ModeratedContent>
+        </div>
 
         {/* Price badge -- revealed on hover */}
         <span className="absolute -bottom-3 left-1/2 -translate-x-1/2 rounded-full border border-gray-700 bg-gray-900 px-2.5 py-0.5 text-xs font-mono text-gray-500 opacity-0 group-hover:opacity-100 group-hover:border-teal-500/40 group-hover:text-teal-400 transition-all duration-200 whitespace-nowrap pointer-events-none">
@@ -182,6 +202,15 @@ export default function MarkeeSign() {
           takeTopSpot={takeTopSpot}
           currentMessage={data.message}
           currentName={data.name}
+          message={message}
+          setMessage={setMessage}
+          name={name}
+          setName={setName}
+          ethAmount={ethAmount}
+          setEthAmount={setEthAmount}
+          boostAmount={boostAmount}
+          setBoostAmount={setBoostAmount}
+          onConnectWallet={handleConnectWallet}
           onClose={() => setModalOpen(false)}
           onSuccess={() => {
             setModalOpen(false);

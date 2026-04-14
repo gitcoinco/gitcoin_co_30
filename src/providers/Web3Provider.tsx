@@ -1,7 +1,7 @@
 "use client";
 
 import { ReactNode } from "react";
-import { WagmiProvider } from "wagmi";
+import { WagmiProvider, http } from "wagmi";
 import { base } from "wagmi/chains";
 import { RainbowKitProvider, getDefaultConfig } from "@rainbow-me/rainbowkit";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
@@ -14,10 +14,15 @@ if (!projectId) {
   );
 }
 
+const baseRpcUrl = process.env.NEXT_PUBLIC_BASE_RPC_URL;
+
 const config = getDefaultConfig({
   appName: "Gitcoin",
   projectId: projectId ?? "placeholder",
   chains: [base],
+  transports: {
+    [base.id]: baseRpcUrl ? http(baseRpcUrl) : http(),
+  },
   ssr: true,
 });
 
