@@ -12,6 +12,8 @@ import SearchModal from "@/components/search/SearchModal";
 import AIChatSidebar from "@/components/search/AIChatSidebar";
 import { ScrollToTop } from "@/components/layout/ScrollToTop";
 import { SidebarProvider } from "@/context/SidebarContext";
+import { Web3Provider } from "@/providers/Web3Provider";
+import { ModerationProvider } from "@/components/moderation";
 
 const inter = Inter({
   subsets: ["latin"],
@@ -112,6 +114,8 @@ export default function RootLayout({
       className={`${inter.variable} ${bdoGrotesk.variable} ${source_serif.variable} ${ibm_plex_mono.variable}`}
     >
       <body className="min-h-screen flex flex-col">
+        <Web3Provider>
+        <ModerationProvider>
         <SidebarProvider>
         <SearchProvider>
           <ScrollToTop />
@@ -122,6 +126,8 @@ export default function RootLayout({
           <AIChatSidebar />
         </SearchProvider>
         </SidebarProvider>
+        </ModerationProvider>
+        </Web3Provider>
       </body>
       <GoogleAnalytics gaId="G-MYMQNTYY27" />
       <Script
