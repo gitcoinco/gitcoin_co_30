@@ -104,7 +104,7 @@ export default function HomePage() {
           <div className="absolute bottom-0 left-0 right-0 h-32 bg-gradient-to-t from-gray-900 to-transparent z-[1]" />
 
           <div className="relative z-10 mx-auto w-full max-w-[1276px] px-4 sm:px-6 lg:px-8">
-            <div className="pb-20 pt-8 md:pb-28 md:pt-12">
+            <div className="pb-20 pt-4 md:pb-28 md:pt-6">
               <div className="flex flex-col mx-auto w-fit">
                 <div className="mb-8 w-full max-w-[732px] mx-auto">
                   <MarkeeSign />

@@ -21,6 +21,7 @@ import {
   MIN_INCREMENT,
 } from "@/lib/markee";
 import { ModeratedContent, FlagButton } from "@/components/moderation";
+import { Button } from "@/components/ui";
 
 const GARDENS_URL =
   "https://app.gardens.fund/gardens/8453/0xce6b968c8bd130ca08f1fcc97b509a824380d867";
@@ -197,9 +198,6 @@ export default function MarkeeModal({
     isConnected && isOnBase && balance ? balance.value < minimumPrice : false;
 
   const isLoading = isPending || isConfirming;
-  const isFormDirty =
-    message.length > 0 || name.length > 0 || ethAmount.length > 0 || boostAmount.length > 0;
-
   const handleBuySubmit = async () => {
     setError(null);
     if (!message.trim()) { setError("Message is required."); return; }
@@ -262,7 +260,7 @@ export default function MarkeeModal({
   };
 
   const handleBackdropClick = (e: React.MouseEvent<HTMLDialogElement>) => {
-    if (e.target !== dialogRef.current || isFormDirty) return;
+    if (e.target !== dialogRef.current) return;
     handleClose();
   };
 
@@ -297,7 +295,7 @@ export default function MarkeeModal({
       {!isSuccess && (
         <>
           <div className="px-6 pt-4 pb-0">
-            <div className="rounded border border-gray-700 bg-gray-800/50 px-4 py-3">
+            <div className="rounded-xl border border-gray-700 bg-gray-800/50 px-4 py-3">
               <p className="text-xs text-gray-500 mb-1">Current message</p>
               <p className="font-mono text-sm text-gray-200 break-words">{currentMessage}</p>
             </div>
@@ -323,7 +321,6 @@ export default function MarkeeModal({
 
       {/* Tab content */}
       <div className="overflow-y-auto flex-1 px-6 py-5 space-y-4">
-
         {/* Success state (both tabs) */}
         {isSuccess && (
           <div className="flex flex-col items-center justify-center py-8 gap-4 text-center">
@@ -348,7 +345,7 @@ export default function MarkeeModal({
             <div>
               <label className="block text-sm font-medium text-gray-200 mb-1.5">
                 Your Message{" "}
-                <span className="text-xs text-gray-500 font-normal">
+                <span className="text-xs text-gray-400 font-normal">
                   ({message.length}/{maxMessageLength})
                 </span>
               </label>
@@ -366,7 +363,9 @@ export default function MarkeeModal({
             <div>
               <label className="block text-sm font-medium text-gray-200 mb-1.5">
                 Your Name{" "}
-                <span className="text-xs text-gray-500 font-normal">(optional)</span>
+                <span className="text-xs text-gray-400 font-normal">
+                  (optional)
+                </span>
               </label>
               <input
                 type="text"
@@ -386,7 +385,7 @@ export default function MarkeeModal({
                   <button
                     type="button"
                     onClick={() => { setEthAmount(floorToDigitCap(balanceEth)); setError(null); }}
-                    className="text-xs text-gray-500 font-normal ml-2 underline hover:text-gray-300 transition-colors"
+                    className="text-xs text-gray-400 font-normal ml-2 underline hover:text-gray-300 transition-colors"
                   >
                     balance: {parseFloat(balanceEth).toFixed(3)} ETH
                   </button>
@@ -397,7 +396,7 @@ export default function MarkeeModal({
                   <button
                     type="button"
                     onClick={() => { setEthAmount(formatEther(takeTopSpot)); setError(null); }}
-                    className={`flex flex-col items-center justify-center rounded px-2 py-2.5 border-2 transition-colors text-center ${
+                    className={`flex flex-col items-center justify-center rounded-xl px-2 py-2.5 border-2 transition-colors text-center ${
                       ethAmount === formatEther(takeTopSpot)
                         ? "border-yellow-400 bg-yellow-400/10"
                         : "border-yellow-400/40 hover:border-yellow-400/70 bg-gray-800"
@@ -414,7 +413,7 @@ export default function MarkeeModal({
                 <button
                   type="button"
                   onClick={() => { setEthAmount(formatEther(minimumPrice)); setError(null); }}
-                  className={`flex flex-col items-center justify-center rounded px-2 py-2.5 border transition-colors text-center ${
+                  className={`flex flex-col items-center justify-center rounded-xl px-2 py-2.5 border transition-colors text-center ${
                     ethAmount === formatEther(minimumPrice) &&
                     ethAmount !== formatEther(takeTopSpot)
                       ? "border-gray-400 bg-gray-700"
@@ -430,7 +429,7 @@ export default function MarkeeModal({
                 </button>
                 <input
                   type="number"
-                  className="rounded border border-gray-700 bg-gray-800 text-gray-100 placeholder:text-gray-600 font-mono text-xs text-center px-2 py-2.5 focus:outline-none focus:border-teal-500/60 transition-colors"
+                  className="rounded-xl border border-gray-700 bg-gray-800 text-gray-100 placeholder:text-gray-600 font-mono text-xs text-center px-2 py-2.5 focus:outline-none focus:border-teal-500/60 transition-colors"
                   placeholder={takeTopSpotEth}
                   value={ethAmount}
                   min="0"
@@ -475,20 +474,21 @@ export default function MarkeeModal({
 
             <div className="flex justify-center pt-1">
               {!isConnected ? (
-                <button
-                  onClick={onConnectWallet}
-                  className="px-8 py-2.5 rounded bg-teal-500 text-gray-900 text-sm font-semibold hover:bg-teal-400 transition-colors"
-                >
-                  Connect Wallet
-                </button>
+                <Button onClick={onConnectWallet} size="sm">
+                  Connect wallet
+                </Button>
               ) : (
-                <button
+                <Button
+                  size="sm"
                   onClick={handleBuySubmit}
                   disabled={isLoading || insufficientBalance || lowBalance}
-                  className="px-8 py-2.5 rounded bg-teal-500 text-gray-900 text-sm font-semibold hover:bg-teal-400 disabled:opacity-40 disabled:cursor-not-allowed transition-colors"
                 >
-                  {isPending ? "Confirm in wallet..." : isConfirming ? "Confirming..." : "Buy Message"}
-                </button>
+                  {isPending
+                    ? "Confirm in wallet..."
+                    : isConfirming
+                      ? "Confirming..."
+                      : "Buy message"}
+                </Button>
               )}
             </div>
           </>
@@ -498,11 +498,11 @@ export default function MarkeeModal({
         {!isSuccess && tab === "boost" && (
           <>
             {leaderboardLoading ? (
-              <p className="text-xs text-gray-500 font-mono py-2">Loading...</p>
+              <p className="text-xs text-gray-400 font-mono py-2">Loading...</p>
             ) : leaderboardError ? (
               <p className="text-xs text-red-400 py-2">Failed to load messages. Please try again.</p>
             ) : leaderboardEntries.length === 0 ? (
-              <p className="text-xs text-gray-500 py-2">No messages yet. Be the first!</p>
+              <p className="text-xs text-gray-400 py-2">No messages yet. Be the first!</p>
             ) : (
               <>
                 <div className="space-y-2">
@@ -511,7 +511,11 @@ export default function MarkeeModal({
                       key={entry.address}
                       chainId={base.id}
                       markeeId={entry.address}
-                      className="rounded border transition-colors"
+                      className={`rounded-xl border transition-colors ${
+                        selectedAddr === entry.address
+                          ? "border-teal-600"
+                          : "border-gray-700 hover:border-gray-500"
+                      }`}
                     >
                       <button
                         type="button"
@@ -521,9 +525,7 @@ export default function MarkeeModal({
                           setError(null);
                         }}
                         className={`w-full text-left px-4 py-3 transition-colors ${
-                          selectedAddr === entry.address
-                            ? "border-teal-500/60 bg-teal-500/10"
-                            : "bg-gray-800/50 hover:border-gray-600"
+                          selectedAddr === entry.address ? "bg-teal-500/10" : ""
                         }`}
                       >
                         <div className="flex items-start justify-between gap-2">
@@ -532,7 +534,7 @@ export default function MarkeeModal({
                               {entry.message}
                             </p>
                             {entry.name && (
-                              <p className="text-xs text-gray-500 mt-0.5">
+                              <p className="text-xs text-gray-400 mt-0.5">
                                 {entry.name.startsWith("0x")
                                   ? `${entry.name.slice(0, 6)}...${entry.name.slice(-4)}`
                                   : entry.name}
@@ -559,12 +561,12 @@ export default function MarkeeModal({
                 </div>
 
                 {/* See more / edit link */}
-                <p className="text-xs text-gray-500 text-center">
+                <p className="text-xs text-gray-400 text-center">
                   <a
                     href={BUY_URL}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="underline hover:text-gray-400 transition-colors"
+                    className="underline hover:text-gray-300 transition-colors"
                   >
                     {leaderboardEntries.length > 5
                       ? "See more messages and edit messages you own."
@@ -598,7 +600,7 @@ export default function MarkeeModal({
                           <button
                             type="button"
                             onClick={() => { setBoostAmount(formatEther(boostTakeTopSpot)); setError(null); }}
-                            className={`flex flex-col items-center justify-center rounded px-2 py-2.5 border-2 transition-colors text-center ${
+                            className={`flex flex-col items-center justify-center rounded-xl px-2 py-2.5 border-2 transition-colors text-center ${
                               boostAmount === formatEther(boostTakeTopSpot)
                                 ? "border-yellow-400 bg-yellow-400/10"
                                 : "border-yellow-400/40 hover:border-yellow-400/70 bg-gray-800"
@@ -614,7 +616,7 @@ export default function MarkeeModal({
                         )}
                         <input
                           type="number"
-                          className="rounded border border-gray-700 bg-gray-800 text-gray-100 placeholder:text-gray-600 font-mono text-xs text-center px-2 py-2.5 focus:outline-none focus:border-teal-500/60 transition-colors"
+                          className="rounded-xl border border-gray-700 bg-gray-800 text-gray-100 placeholder:text-gray-600 font-mono text-xs text-center px-2 py-2.5 focus:outline-none focus:border-teal-500/60 transition-colors"
                           placeholder="0.001"
                           value={boostAmount}
                           min="0"
@@ -650,24 +652,24 @@ export default function MarkeeModal({
 
                     <div className="flex justify-center">
                       {!isConnected ? (
-                        <button
+                        <Button
                           onClick={onConnectWallet}
-                          className="px-8 py-2.5 rounded bg-teal-500 text-gray-900 text-sm font-semibold hover:bg-teal-400 transition-colors"
+                          size="sm"
                         >
-                          Connect Wallet
-                        </button>
+                          Connect wallet
+                        </Button>
                       ) : (
-                        <button
+                        <Button
+                        size="sm"
                           onClick={handleBoostSubmit}
                           disabled={isLoading || insufficientBoostBalance}
-                          className="px-8 py-2.5 rounded bg-teal-500 text-gray-900 text-sm font-semibold hover:bg-teal-400 disabled:opacity-40 disabled:cursor-not-allowed transition-colors"
                         >
                           {isPending
                             ? "Confirm in wallet..."
                             : isConfirming
                               ? "Confirming..."
-                              : "Add Funds to this Message"}
-                        </button>
+                              : "Add funds to this message"}
+                        </Button>
                       )}
                     </div>
                   </div>
@@ -683,7 +685,7 @@ export default function MarkeeModal({
       {/* Footer */}
       {!isSuccess && (
         <div className="px-6 pb-4 pt-0 flex-shrink-0">
-          <p className="text-center text-xs text-gray-500">
+          <p className="text-center text-xs text-gray-400">
             You&apos;ll receive MARKEE tokens with your purchase and co-own the{" "}
             <a
               href={GARDENS_URL}
