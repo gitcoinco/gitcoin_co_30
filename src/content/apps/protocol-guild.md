@@ -8,7 +8,7 @@ featured: true
 tags:
   - streaming
   - collective
-  - infrastructure
+  - infrastructure Protocol Guild is a collective of Ethereum core contributors.
 lastUpdated: '2026-02-13'
 relatedMechanisms:
 
