@@ -10,8 +10,6 @@ tags:
   - "grants"
   - "public-goods"
 lastUpdated: '2026-05-07'
-authors:
-  - "Gitcoin Team"
 relatedMechanisms:
 
 relatedApps:
@@ -90,5 +88,4 @@ We'll keep the community informed as deployment and harvesting milestones unfold
 
 ### Authors
 
-<!-- One author per line. Format: Name  or  Name | https://social.url -->  
-Gitcoin Team
+<!-- One author per line. Format: Name  or  Name | https://social.url -->
