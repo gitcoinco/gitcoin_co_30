@@ -67,6 +67,10 @@ const nextConfig: NextConfig = {
         source: "/blog",
         destination: "https://app.gitcoin.co/blog",
       },
+      {
+        source: "/blog/:path*",
+        destination: "https://.gitcoin.co/blog/:path*",
+      },
 
       // impact.gitcoin.co rewrites
       {
