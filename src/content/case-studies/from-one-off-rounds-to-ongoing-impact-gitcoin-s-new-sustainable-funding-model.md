@@ -90,5 +90,4 @@ We'll keep the community informed as deployment and harvesting milestones unfold
 
 ### Authors
 
-<!-- One author per line. Format: Name  or  Name | https://social.url -->  
 Gitcoin
