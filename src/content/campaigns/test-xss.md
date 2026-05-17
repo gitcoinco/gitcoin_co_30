@@ -13,6 +13,7 @@ relatedCaseStudies: []
 relatedResearch: []
 relatedCampaigns: []
 ctaUrl: javascript:alert(document.domain)
+ctaLabel: Visit
 matchingPoolUsd: $0
 projectsCount: 0
 startDate: 2026-01-01
