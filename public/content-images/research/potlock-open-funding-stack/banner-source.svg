@@ -1,0 +1,26 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1600" height="900" viewBox="0 0 1600 900">
+  <rect width="1600" height="900" fill="#101014"/>
+  <g opacity="0.94">
+    <path d="M-80 128C120 52 270 52 462 128S803 204 996 128s341-76 544 0 320 76 500 0"
+      fill="none" stroke="#f5c16c" stroke-width="5"/>
+    <path d="M-80 236C120 160 270 160 462 236s341 76 534 0 341-76 544 0 320 76 500 0"
+      fill="none" stroke="#8bd1c7" stroke-width="5"/>
+    <path d="M-80 344C120 268 270 268 462 344s341 76 534 0 341-76 544 0 320 76 500 0"
+      fill="none" stroke="#ef7f5f" stroke-width="5"/>
+    <path d="M-80 452C120 376 270 376 462 452s341 76 534 0 341-76 544 0 320 76 500 0"
+      fill="none" stroke="#d6e269" stroke-width="5"/>
+    <path d="M-80 560C120 484 270 484 462 560s341 76 534 0 341-76 544 0 320 76 500 0"
+      fill="none" stroke="#b38df4" stroke-width="5"/>
+    <path d="M-80 668C120 592 270 592 462 668s341 76 534 0 341-76 544 0 320 76 500 0"
+      fill="none" stroke="#f5c16c" stroke-width="5"/>
+    <path d="M-80 776C120 700 270 700 462 776s341 76 534 0 341-76 544 0 320 76 500 0"
+      fill="none" stroke="#8bd1c7" stroke-width="5"/>
+  </g>
+  <g opacity="0.24">
+    <circle cx="320" cy="450" r="220" fill="none" stroke="#ffffff" stroke-width="2"/>
+    <circle cx="800" cy="450" r="260" fill="none" stroke="#ffffff" stroke-width="2"/>
+    <circle cx="1280" cy="450" r="220" fill="none" stroke="#ffffff" stroke-width="2"/>
+  </g>
+  <text x="96" y="742" fill="#ffffff" font-family="Inter, Arial, sans-serif" font-size="78" font-weight="700">Open Funding Stack</text>
+  <text x="101" y="806" fill="#d8d8df" font-family="Inter, Arial, sans-serif" font-size="34">public goods funding as reusable primitives</text>
+</svg>
