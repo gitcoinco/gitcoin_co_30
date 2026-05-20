@@ -9,12 +9,19 @@ tags:
   - open
 lastUpdated: '2026-02-25'
 relatedMechanisms:
-
-relatedApps: []
+  - bounties
+  - direct-grants
+  - requests-for-proposals
+relatedApps:
+  - gitcoin-grants-stack
+  - allo-protocol
 relatedCaseStudies: []
-relatedResearch: []
+relatedResearch:
+  - ai-agents-and-public-goods-the-emerging-agentic-economy
 relatedCampaigns: []
 banner: /content-images/mechanisms/bounties/banner.png
+authors:
+  - vinaykrsinghal-stage
 ---
 
 **Bounties** are a task-based funding mechanism where a funder defines a task, sets a reward, and contributors claim the bounty by completing the work. It's a straightforward "you do this, you get that" model emphasizing speed, clarity, and minimal friction.
@@ -42,6 +49,8 @@ Bounties create a direct link between defined work and compensation.
 - Not suited for long-term relationship building
 - Poorly handles ambiguous or evolving requirements
 - Requires clear scope — if the task can't be well-defined, bounties won't work
+- Agent-compatible bounties need extra structure: explicit eligibility, deadlines, submission formats, prohibited behavior, and payment-claim rules so agents and human operators do not have to infer what is allowed.
+
 
 ## Best Used When
 
@@ -61,6 +70,10 @@ Community labs fund multi-language resource translations via bounties, allowing 
 ### Design and Graphics
 DAOs issue bounties for protocol explanatory graphics, social media assets, and UI/UX improvements.
 
+### Agent-Compatible Tasks
+As AI agents become capable of producing reviewable artifacts, bounties can be structured so agents handle bounded execution while humans retain accountability. Good fits include documentation updates, passive code review, public data analysis, ecosystem maps, and research briefs. These tasks work best when eligibility, deadlines, deliverable formats, and human payout or claim steps are explicit.
+
 ## Further Reading
 
 - [Allo Capital — Bounties](https://www.allo.capital/mechanisms/bounties)
+- [Gitcoin — AI Agents and Public Goods: The Emerging Agentic Economy](https://gitcoin.co/research/ai-agents-and-public-goods-the-emerging-agentic-economy)
