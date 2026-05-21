@@ -205,8 +205,13 @@ export async function processImages(
     const filepath = path.join(dir, filename);
     const publicPath = `${publicPrefix}/${filename}`;
 
-    await downloadImage(img.url, filepath);
-    return { filename, publicPath };
+    try {
+      await downloadImage(img.url, filepath);
+      return { filename, publicPath };
+    } catch (e: any) {
+      console.warn(`  ⚠️ Failed to download image from ${img.url}: ${e.message}`);
+      return { filename: "", publicPath: img.url };
+    }
   }
 
   // Process banner image — saved as {slug}/banner.png (converted from SVG if needed)
@@ -214,16 +219,21 @@ export async function processImages(
     const img = bannerImages[0];
     const urlExt = img.url.match(/\.(png|jpg|jpeg|gif|svg|webp)/i)?.[0];
     const tempPath = path.join(imagesDir, `banner_tmp`);
-    const detectedType = await downloadImage(img.url, tempPath);
-    let ext = urlExt || contentTypeToExt(detectedType);
-    let finalPath = path.join(imagesDir, `banner${ext}`);
-    fs.renameSync(tempPath, finalPath);
-    if (ext === ".svg") {
-      finalPath = await convertSvgToPng(finalPath);
-      ext = ".png";
+    try {
+      const detectedType = await downloadImage(img.url, tempPath);
+      let ext = urlExt || contentTypeToExt(detectedType);
+      let finalPath = path.join(imagesDir, `banner${ext}`);
+      fs.renameSync(tempPath, finalPath);
+      if (ext === ".svg") {
+        finalPath = await convertSvgToPng(finalPath);
+        ext = ".png";
+      }
+      banner = `/content-images/${contentType}/${slug}/banner${ext}`;
+      console.log(`  ✓ banner${ext} (banner)`);
+    } catch (e: any) {
+      console.warn(`  ⚠️ Failed to download banner from ${img.url}: ${e.message}`);
+      if (fs.existsSync(tempPath)) fs.unlinkSync(tempPath);
     }
-    banner = `/content-images/${contentType}/${slug}/banner${ext}`;
-    console.log(`  ✓ banner${ext} (banner)`);
   }
 
   // Process logo image — saved as {slug}/logo.png (converted from SVG if needed)
@@ -231,16 +241,21 @@ export async function processImages(
     const img = logoImages[0];
     const urlExt = img.url.match(/\.(png|jpg|jpeg|gif|svg|webp)/i)?.[0];
     const tempPath = path.join(imagesDir, `logo_tmp`);
-    const detectedType = await downloadImage(img.url, tempPath);
-    let ext = urlExt || contentTypeToExt(detectedType);
-    let finalPath = path.join(imagesDir, `logo${ext}`);
-    fs.renameSync(tempPath, finalPath);
-    if (ext === ".svg") {
-      finalPath = await convertSvgToPng(finalPath);
-      ext = ".png";
+    try {
+      const detectedType = await downloadImage(img.url, tempPath);
+      let ext = urlExt || contentTypeToExt(detectedType);
+      let finalPath = path.join(imagesDir, `logo${ext}`);
+      fs.renameSync(tempPath, finalPath);
+      if (ext === ".svg") {
+        finalPath = await convertSvgToPng(finalPath);
+        ext = ".png";
+      }
+      logo = `/content-images/${contentType}/${slug}/logo${ext}`;
+      console.log(`  ✓ logo${ext} (logo)`);
+    } catch (e: any) {
+      console.warn(`  ⚠️ Failed to download logo from ${img.url}: ${e.message}`);
+      if (fs.existsSync(tempPath)) fs.unlinkSync(tempPath);
     }
-    logo = `/content-images/${contentType}/${slug}/logo${ext}`;
-    console.log(`  ✓ logo${ext} (logo)`);
   }
 
   // Process description images
@@ -253,7 +268,9 @@ export async function processImages(
       `image-${i + 1}`,
       ".png",
     );
-    console.log(`  ✓ ${filename}`);
+    if (filename) {
+      console.log(`  ✓ ${filename}`);
+    }
     updatedMarkdown = updatedMarkdown.replace(
       img.markdown,
       `![${img.alt}](${publicPath})`,
