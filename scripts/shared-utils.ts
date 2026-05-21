@@ -32,6 +32,15 @@ const ALLOWED_HOSTS = [
   "raw.githubusercontent.com",
   "objects.githubusercontent.com",
   "avatars.githubusercontent.com",
+  "ipfs.io",
+  "arweave.net",
+  "i0.wp.com",
+  "i1.wp.com",
+  "i2.wp.com",
+  "wp.com",
+  "githubusercontent.com",
+  "icons.llamao.fi",
+  "llama.fi",
 ];
 const MAX_REDIRECTS = 5;
 const MAX_FILE_SIZE = 10 * 1024 * 1024;   // 10 MB for images
