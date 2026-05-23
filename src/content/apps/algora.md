@@ -12,6 +12,8 @@ tags:
   - maintainer-tools
 lastUpdated: '2026-05-24'
 authors: []
+banner: /content-images/apps/algora/banner.png
+logo: /content-images/apps/algora/logo.png
 relatedMechanisms:
   - bounties
   - direct-grants
