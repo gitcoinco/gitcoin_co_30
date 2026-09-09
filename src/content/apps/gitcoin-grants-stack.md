@@ -2,17 +2,19 @@
 id: '1770997159197'
 slug: gitcoin-grants-stack
 name: "Gitcoin Grants Stack"
-shortDescription: "Open-source grants platform powering quadratic funding, direct grants, and retroactive funding."
+shortDescription: "Gitcoin’s Allo-based grants UI (QF, direct grants, retro). Wound down May 2025; Allo contracts remain in maintenance."
 logo: /content-images/apps/gitcoin-grants-stack/logo.png
 tags:
   - quadratic
   - grants
   - multichain
-lastUpdated: '2026-02-13'
+lastUpdated: '2026-09-09'
 relatedMechanisms:
-
+  - quadratic-funding
+  - direct-grants
+  - retroactive-funding
 relatedApps:
-
+  - allo-protocol
 relatedCaseStudies:
 
 relatedResearch:
@@ -22,63 +24,61 @@ relatedCampaigns:
 banner: /content-images/apps/gitcoin-grants-stack/banner.png
 ---
 
-**Gitcoin Grants Stack** is an open-source grants management platform built on **Allo Protocol**. It provides shared infrastructure for creating and operating grants programs using multiple allocation mechanisms, including quadratic funding, direct grants, and retroactive funding.
+**Gitcoin Grants Stack** was the application layer on **Allo Protocol** for running grants programs: quadratic funding, direct grants, and retroactive funding, without writing custom allocation contracts.
 
-Designed as an application layer on top of programmable capital allocation primitives, Grants Stack enabled ecosystems to run grants programs without building custom smart contracts or bespoke tooling. The platform served as the primary infrastructure for the Gitcoin Grants Program from 2023 through May 2025 and supported dozens of ecosystem partner rounds across the Ethereum ecosystem.
+Gitcoin wound it down in **May 2025** (see [Grants Stack Winds Down](https://www.gitcoin.co/blog/grants-stack-winds-down--heres-whats-changing-and-what-to-expect)). This directory’s [Allo Protocol](/apps/allo-protocol) profile already says Allo then entered **maintenance**: contracts stay deployed and forkable, active product development does not. This page still `lastUpdated` **2026-02-13** and described Grants Stack in the present tense (“provides a no-code toolkit,” “program managers create and deploy rounds”) as if operators should launch new rounds on it today.
 
-## What This App Does
+They should not. Use this page as history of the 2023–2025 stack, not as a current grants product.
 
-Gitcoin Grants Stack provides a no-code toolkit for operating grants programs end-to-end, from round configuration and project applications through community contributions and fund distribution.
+## What This App Did
 
-In practice, it enables:
+Grants Stack sat on Allo’s primitives (recipient registration, pools, strategies, distribution) and exposed them as Manager, Explorer, and Builder apps.
 
-- **Grant program managers** to configure and launch funding rounds using multiple mechanisms without writing smart contracts  
-- **Project builders** to create persistent onchain profiles, apply to multiple programs, and build reusable funding history  
-- **Community members** to discover projects, contribute funds, and participate in allocation processes such as quadratic funding  
-- **Sybil resistance** through integrated **Gitcoin Passport** scoring, which gates eligibility and can weight matching outcomes  
-- **Ecosystem partners** to operate branded grants programs using shared infrastructure and configurable eligibility criteria
+In practice it let:
 
-This structure supports decentralized operation of grants programs, allowing ecosystems beyond Gitcoin to run funding programs using shared infrastructure.
+* **Program managers** configure rounds (QF, direct grants, retro) without writing Solidity
+* **Projects** keep an onchain profile and apply across rounds
+* **Donors** browse Explorer and check out across rounds/chains
+* **Operators** gate or weight matching with **Gitcoin Passport** / Connection-Oriented Cluster Matching (COCM)
 
-## Features
+It was the UI for Gitcoin Grants and partner rounds from 2023 through May 2025, including branded ecosystem rounds on several L2s.
 
-Grants Stack is built on **Allo Protocol**, a set of open-source smart contracts for programmable capital allocation. Allo provides the protocol layer—project registration, funding pool creation, and modular allocation strategies—while Grants Stack provides the application layer that translates these capabilities into user-facing workflows.
+## Features (historical)
 
-### Core Components
+Allo was the contract layer. Grants Stack was the UI:
 
-- **Manager:** Program managers create and deploy rounds, define eligibility criteria, set timelines, and manage applications. Rounds can be configured for quadratic funding, direct grants, or retroactive funding.  
-- **Explorer:** A public-facing interface where community members browse active rounds, discover projects, and make donations. Multi-round checkout enables contributions across multiple programs in a single transaction.  
-- **Builder:** Project owners create persistent profiles with onchain reputation, manage applications across rounds, and track funding history.  
-- **Gitcoin Passport Integration:** Aggregates verifiable identity signals to support Sybil resistance. Rounds can require minimum scores for eligibility or use attestation data to weight matching outcomes via Connection-Oriented Cluster Matching (COCM).
+* **Manager** — create rounds, eligibility, timelines, applications
+* **Explorer** — public round/project discovery and donations; multi-round checkout
+* **Builder** — persistent project profiles and application history
+* **Passport / COCM** — sybil resistance and matching weights
 
-### Platform Capabilities
+It ran on Ethereum mainnet plus L2s commonly used for Gitcoin rounds (Optimism, Arbitrum, Base, Polygon, Celo, zkSync, Scroll, Avalanche). The application layer was open-source and forkable.
 
-- **Multi-mechanism support:** Support for multiple allocation mechanisms, including quadratic funding, direct grants, retroactive funding, and additional allocation strategies.  
-- **Multichain deployment:** Deployed across Ethereum mainnet, Optimism, Arbitrum, Base, Polygon, Celo, zkSync, Scroll, and Avalanche.  
-- **Open-source and forkable:** The full application layer is open-source, enabling communities to fork, customize, or extend the platform.  
-- **Sybil defense at scale:** COCM applies social-graph-based adjustments to reduce matching influence from coordinated clusters.  
-- **Multichain checkout:** Contributors can donate across multiple rounds and chains within a single transaction flow.
+## What the wind-down is not
 
-## Use Cases
+* Not a claim that Allo contracts were deleted. They remain deployed; this directory’s Allo profile is the current protocol status.
+* Not a claim that quadratic funding disappeared. Other apps (for example Octant v2) run QF on their own stack.
+* Not an invitation to stand up a new Gitcoin-hosted Grants Stack round in 2026.
 
-### Protocol Foundations Running Ecosystem Grants
+## Use Cases (while it ran)
 
-Protocol foundations use Grants Stack to run ecosystem grants programs using shared infrastructure. Program operators configure eligibility, timelines, and allocation mechanisms while relying on built-in application management, Sybil resistance, and fund distribution. The platform supports partner-run rounds across multiple chains and funding priorities.
+### Protocol foundations
 
-### Open-Source Maintainers Seeking Community Funding
+Partner rounds used shared Manager/Explorer instead of bespoke grant UIs.
 
-Developers and small teams building open-source infrastructure apply to grants programs through a single persistent profile. Grants Stack enables projects to participate across multiple rounds and programs while accumulating reusable funding history and community support over time.
+### OSS maintainers
 
-### DAOs and Communities Allocating Treasury Capital
+A single Builder profile could apply across Gitcoin and partner rounds and keep donation history.
 
-DAOs and community organizations use Grants Stack to distribute treasury funds through structured grants programs. The platform supports both community-driven allocation and operator-managed grants, enabling branded or delegated rounds without requiring custom tooling.
+### DAOs allocating treasury
 
-### Multi-Mechanism Funding Programs
+QF or direct-grant rounds without custom contracts.
 
-Organizations running grants programs across different stages of project maturity use Grants Stack to deploy multiple allocation mechanisms within a single program. This allows early-stage discovery, targeted grants, and impact-based allocation to operate side by side under a shared operational framework.
+Those workflows ended as a Gitcoin-hosted product in May 2025.
 
 ## Further Reading
 
-- [**Gitcoin 2.0 Whitepaper** — Gitcoin.co](https://www.gitcoin.co/whitepaper/read)  
-- [**Gitcoin Grants Stack** — Gitcoin Blog](https://www.gitcoin.co/blog/gitcoin-grants-stack)  
-- [**Grants Stack Winds Down** — Gitcoin Blog](https://www.gitcoin.co/blog/grants-stack-winds-down--heres-whats-changing-and-what-to-expect)
+* [Grants Stack Winds Down](https://www.gitcoin.co/blog/grants-stack-winds-down--heres-whats-changing-and-what-to-expect)
+* [Allo Protocol](/apps/allo-protocol) (this directory; maintenance after the wind-down)
+* [Introducing Allo v2](https://www.gitcoin.co/blog/introducing-allo-v2)
+* [Gitcoin Grants Stack](https://www.gitcoin.co/blog/gitcoin-grants-stack) (historical product post)
