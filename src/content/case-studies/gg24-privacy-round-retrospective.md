@@ -14,6 +14,7 @@ relatedMechanisms:
   - quadratic-funding
 relatedApps:
   - gitcoin-grants-stack
+  - privote
 relatedCaseStudies: []
 relatedResearch: []
 relatedCampaigns:
