@@ -2,19 +2,20 @@
 id: '1772308124481'
 slug: octant
 name: "Octant"
-shortDescription: "Public goods funding platform that converts ETH staking rewards into community-governed grants."
+shortDescription: "Yield-funded public goods platform: lock community tokens to accrue WETH, then vote in quadratic funding rounds on a separate app."
 logo: /content-images/apps/octant/logo.png
 tags:
   - public-goods
   - quadratic
   - grants
-lastUpdated: '2026-02-28'
+lastUpdated: '2026-09-09'
 relatedMechanisms:
-
+  - quadratic-funding
 relatedApps:
-
+  - protocol-guild
+  - gitcoin-grants-stack
 relatedCaseStudies:
-
+  - from-one-off-rounds-to-ongoing-impact-gitcoin-s-new-sustainable-funding-model
 relatedResearch:
 
 relatedCampaigns:
@@ -22,69 +23,72 @@ relatedCampaigns:
 banner: /content-images/apps/octant/banner.png
 ---
 
-**Octant** is a participatory public goods funding platform developed by the Golem Foundation. It converts ETH staking rewards into recurring, community-governed grants. The Golem Foundation stakes 100,000 ETH from its treasury, with a portion of the staking yield allocated to Octant for distribution.
+**Octant** is a public goods funding stack from the Golem Foundation. It launched on Ethereum mainnet in August 2023 as a 90-day GLM-lock cycle (v1). In 2026 it moved to **Octant v2**: locking and rewards live in one app, funding rounds in another, and matching uses Proper Quadratic Funding (pQF) on new contracts.
 
-Users participate by locking GLM tokens (the ERC-20 token of the Golem Network) into the Octant smart contract. In return, they earn ETH rewards proportional to their time-weighted GLM lock. During each allocation window, participants choose whether to claim their ETH rewards or donate them to eligible public goods projects. Donations are amplified through a matched rewards pool funded by unclaimed rewards and foundation contributions.
+This directory page was last written on 2026-02-28, while Epoch 11 — the final v1 allocation window — was still open. It still described a single 90-day app, “eight allocation windows,” and a 2,340 ETH lifetime figure as if that were the live product. Those v1 facts belong in the archive, not in the current product description.
 
-Octant operates on a 90-day epoch cycle. At the end of each epoch, a two-week allocation window opens for reward distribution. Since launching on Ethereum mainnet in August 2023, Octant has completed eight allocation windows, distributing over 2,340 ETH to more than 80 public goods projects. Participants have claimed over 1,357 ETH in personal rewards.
+## What This Platform Does
 
-Beginning with Epoch 4 in 2024, Octant integrated quadratic funding into its matched rewards calculation. This change increased weight for projects with broad community support, reducing the influence of large individual allocations and improving allocation fairness.
-
-## **What This Platform Does**
-
-Octant creates a renewable public goods funding model by converting ETH staking yield into recurring, community-directed grants. Instead of relying on one-time philanthropy or treasury drawdowns, funding is generated continuously through staking rewards.
+Octant turns staking and DeFi yield into recurring, community-directed grants without spending down the principal that generates the yield.
 
 In practice, it enables:
 
-* **GLM holders** to earn ETH rewards by locking tokens and optionally direct those rewards toward public goods, with donations amplified through quadratic matching  
-* **Public goods projects** to receive recurring, community-driven funding on a predictable 90-day cycle without applying for traditional grants  
-* **Community governance** through participant proposals, project suggestions, eligibility criteria updates, and themed epochs  
-* **Mechanism experimentation** via structured experiments testing allocation mechanics, matching formulas, voter participation, and governance design  
-* **Sustainable infrastructure** that funds public goods from staking yield rather than depleting principal capital
+* **GLM (and other community-token) holders** to lock tokens non-custodially, accrue WETH, and either claim it or commit it as voting power
+* **Anyone with WETH** to enter a round without a prior lock, at the cost of a protocol-defined burn
+* **Public goods projects** to receive direct contributions plus a quadratic match, with the match **not guaranteed** and not necessarily the full advertised pool
+* **Capital providers** (Golem Foundation, and others including Gitcoin’s treasury vault) to route yield into rounds while keeping principal
 
-The model addresses the public goods free-rider problem by aligning incentives. GLM holders earn ETH regardless of donation decisions, while broader participation increases the size and impact of the matched pool.
+v1 used a claim-or-donate choice at the end of each 90-day epoch. v2 splits that into continuous reward accrual and discrete voting rounds.
 
-## **Features**
+## Features
 
-Octant operates as a web application on Ethereum mainnet. It combines GLM token locking, ETH staking reward generation, and community-directed fund allocation within a structured 90-day epoch cycle.
+Octant v2 is two applications plus an archive of v1:
 
-The Golem Foundation provides the staked ETH that generates the reward pool. Community participants determine how rewards are distributed.
+| App | Role |
+| --- | --- |
+| [glm.octant.app](https://glm.octant.app) / [octant.app](https://octant.app) | Lock community tokens, accrue and claim WETH |
+| [epoch.octant.app](https://epoch.octant.app) | Create and vote in funding rounds |
+| [v1.octant.app](https://v1.octant.app) | Legacy v1 UI |
 
-### **Core Components**
+v2 rewards began accruing on **1 April 2026**. Epoch 11 (18 Feb–4 Mar 2026) was the last v1 window; it sent donations to Protocol Guild and ran **without** Golem matching so matching capital could move to v2. Epoch 12 was the first full round on the v2 voting app and contracts. Octant’s blog (11 Aug 2026) announced Epoch 13 as a privacy-themed round with a **100 ETH** matching pool.
 
-* **GLM Locking:** Users lock a minimum of 100 GLM in a non-custodial smart contract to participate. Rewards are calculated using a time-weighted average based on the amount locked and duration. Users retain custody of their tokens and may withdraw at any time.  
-* **Epoch Cycle:** Each 90-day epoch accumulates staking rewards. A two-week allocation window follows, during which participants choose to claim their ETH rewards or donate them to eligible projects.  
-* **Matched Rewards:** User donations are amplified by a matched rewards pool composed of unclaimed user rewards and a portion of the Golem Foundation's staking yield allocation. Since Epoch 4, quadratic funding mechanics determine how matching is distributed, increasing weight for projects with broad contributor support.  
-* **Project Curation:** Eligible projects are curated by the Golem Foundation with community input. Participants may propose new projects, recommend eligibility criteria updates, and suggest thematic focus areas for future epochs.
+### Core Components
 
-### **Platform Capabilities**
+* **Non-custodial lock:** On the Golem Foundation instance, locking at least **100 GLM** accrues WETH. Tokens can be unlocked at any time. Accrual is shown over rolling **30-day** reward periods, not the old 90-day epoch. v2 accrued rewards do not expire and can be used in any compatible round.
+* **Two participation paths (operator-configured):** **Accrued Rewards** — 100% of the committed WETH becomes voting power. **Wallet WETH** — half becomes voting power; the other half is swapped to the round’s burn token and burned. You pick one path per round and cannot switch. The contribution **amount** is set once on-chain for that round; only the split across projects can change.
+* **Proper QF matching:** Direct contributions are always kept. The matching pool is an **upper bound**. If quadratic demand is below the pool, unused match returns to the round creator; if demand exceeds it, every project’s subsidy is scaled by `alpha`. A project with a single supporter gets **no** match. App estimates are projections and can fall below the burned amount.
+* **Voting UX:** Signup is one on-chain transaction; later votes and revotes are gasless EIP-712 messages to Octant’s sequencer. Simulation is required before submit. In Epoch 12, ballots were **public** — the ZK proof verifies the tally, it does not hide addresses or choices.
 
-* **Sustainable staking-based funding:** Funding is generated from ETH staking yield rather than treasury drawdowns, creating a renewable funding stream independent of principal depletion.  
-* **Quadratic funding integration:** Matched rewards use quadratic funding to amplify projects with broad community support over those backed by a small number of large donors.  
-* **Non-custodial design:** GLM locking is non-custodial. Participants maintain ownership and can withdraw tokens at any time.  
-* **Governance experimentation:** Each epoch can introduce mechanism experiments, including adjustments to matching formulas, participation rules, or anti-sybil design.  
-* **Open-source implementation:** The Octant smart contracts and platform code are open-source and available on GitHub.
+### What changed from the previous profile
 
-## **Use Cases**
+* Not a single 90-day “claim or donate” app.
+* Not “eight windows” — v1 continued through Epoch 11, then v2 rounds.
+* Lifetime 2,340 ETH / 1,357 ETH claimed / 80 projects was a v1-era snapshot, not a current official total (this update does not invent a replacement total).
+* Matching is pQF with an explicit unused-pool revert, not “the matched pool is always paid out.”
+* Gitcoin itself now uses Octant v2 yield-donating vaults for matching capital (see the related case study).
 
-### **Public Goods Projects Seeking Sustainable Funding**
+## Use Cases
 
-Open-source infrastructure teams, governance research organizations, and ecosystem tools use Octant as a renewable funding source. Projects funded through Octant include Protocol Guild, Gitcoin, Giveth, Drips, The Tor Project, rotki, BrightID, and Open Source Observer. Unlike one-time grant rounds, Octant provides a predictable 90-day allocation cycle.
+### GLM holders accruing WETH
 
-### **GLM Holders Earning Rewards While Supporting Public Goods**
+Lock ≥100 GLM at glm.octant.app, claim WETH or allocate it in a live round. Reducing the lock can cut future accrual. Safe multisig wallets can use the locking app as a Safe App.
 
-GLM token holders lock tokens to earn ETH rewards generated from the Golem Foundation's 100,000 staked ETH. During each epoch, participants decide whether to claim rewards or allocate them to projects. Quadratic matching increases the impact of donations directed toward broadly supported initiatives.
+### Voters without GLM
 
-### **Mechanism Designers Testing Governance Experiments**
+Wallet WETH lets someone enter epoch.octant.app without a lock. The 50% burn is the price of that path; matching is still not guaranteed.
 
-Octant functions as a live testing environment for public goods funding mechanisms. Epoch-level experiments may adjust voting mechanics, matching logic, or allocation structures. Participation and allocation data contribute to broader research in decentralized funding design.
+### Projects in themed rounds
 
-### **Ecosystem Organizations Co-Sponsoring Public Goods**
+v1 funded names such as Protocol Guild, Gitcoin, Giveth, Drips, rotki, and Open Source Observer. v2 rounds are operator-scheduled with a published matching method and project set. Epoch 13 was framed as privacy infrastructure.
 
-Organizations aligned with Octant's mission may propose themed epochs or collaborate on funding priorities. Through the governance process, external stakeholders can influence project selection and allocation focus areas alongside the Golem Foundation.
+### Treasuries that want yield, not spend-down
 
-## **Further Reading**
+Octant v2 vaults (ERC-4626 / Yearn v3 style) can send realized yield to an allocation address while the depositor keeps principal. Gitcoin’s May 2026 case study is this directory’s own example.
 
-* [**Introduction to Octant** – Octant Documentation](https://docs.octant.app/en-EN/)  
-* [**Announcing Octant** – Golem Foundation](https://golem.foundation/2023/08/08/announcing-octant.html)  
-* [**Octant: GitHub Repository** – Golem Foundation](https://github.com/golemfoundation/octant)
+## Further Reading
+
+* [Getting started with Octant v2](https://docs.octant.app/docs/users/getting-started/)
+* [Participating in a funding round](https://docs.octant.app/docs/users/octant-voting-app/participating-in-a-funding-round/)
+* [Epoch 11 and migration to v2](https://v1.docs.octant.app/en-EN/epoch11-and-migration-to-v2.html)
+* [Gitcoin: From One-Off Rounds to Ongoing Impact](/case-studies/from-one-off-rounds-to-ongoing-impact-gitcoin-s-new-sustainable-funding-model)
+* [Octant GitHub](https://github.com/golemfoundation/octant)
