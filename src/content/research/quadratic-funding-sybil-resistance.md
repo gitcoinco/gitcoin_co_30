@@ -12,6 +12,7 @@ lastUpdated: '2024-12-25'
 researchType: Analysis
 relatedMechanisms:
   - quadratic-funding
+  - maci
 relatedApps:
   - gitcoin-grants-stack
   - clr-fund

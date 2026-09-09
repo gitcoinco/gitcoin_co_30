@@ -12,6 +12,7 @@ tags:
 lastUpdated: '2025-11-14'
 relatedMechanisms:
   - quadratic-funding
+  - maci
 relatedApps:
   - gitcoin-grants-stack
 relatedCaseStudies: []
