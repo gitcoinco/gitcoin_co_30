@@ -1,0 +1,44 @@
+{
+  "slug": "onlydust",
+  "shortDescription": "Open-source contributor platform that helps projects attract, track, and reward external contributors.",
+  "description": "OnlyDust is an open-source contribution platform for maintainers, contributors, and ecosystems. It helps contributors discover projects and issues, helps maintainers attract and manage contributors, and supports rewards for eligible contributions when project budgets or ecosystem programs are available.\n\nThe platform is relevant to the Gitcoin Funding Directory because it connects open-source work with funding and contributor support. OnlyDust documentation describes project dashboards, contribution tracking, contributor rewards, open-source weeks, fellowship support, and ecosystem-backed programs.\n\nTypical workflow:\n1. A maintainer lists an open-source project and issues.\n2. Contributors discover suitable issues and apply or contribute.\n3. Work is tracked through GitHub-linked contribution data.\n4. Maintainers review completed work.\n5. Eligible contributors may receive rewards, grants, fellowship support, or other benefits depending on the project and program.",
+  "tags": [
+    "open-source",
+    "contributors",
+    "rewards",
+    "grants",
+    "github",
+    "maintainer-tools",
+    "ecosystem-funding"
+  ],
+  "featured": false,
+  "links": {
+    "website": "https://www.onlydust.com/",
+    "maintainers": "https://www.onlydust.com/maintainers",
+    "faq": "https://blog.onlydust.com/faq/",
+    "docs": "https://docs.onlydust.com/overview/how-do-we-flow"
+  },
+  "relatedApps": [
+    "gitcoin-grants-stack",
+    "karma-gap"
+  ],
+  "relatedMechanisms": [
+    "direct-grants",
+    "bounties",
+    "grants-programs",
+    "reputation"
+  ],
+  "strengths": [
+    "Focuses on onboarding and retaining real open-source contributors.",
+    "Uses GitHub activity as part of contributor and project workflows.",
+    "Supports maintainers with contributor visibility and contribution dashboards.",
+    "Includes reward flows for projects with available budget.",
+    "Hosts open-source weeks and fellowship programs that can channel funding to active contributors."
+  ],
+  "limitations": [
+    "Rewards are not guaranteed for every contribution.",
+    "Some funding depends on ecosystem programs, grants, or project budgets.",
+    "Contributors need to comply with project-specific contribution rules.",
+    "The model is broader than simple issue bounties, so payout timing can vary."
+  ]
+}
