@@ -1,0 +1,98 @@
+---
+slug: travelfi
+name: TravelFi
+short_description: A decentralized geo-social platform and travel rewards web application integrating OpenStreetMap data, offline PWA capabilities, and token-based incentives for community-driven exploration and crowdsourced POI mapping.
+description: |
+  # TravelFi: Project Documentation
+
+  ## Concept
+
+  TravelFi is a decentralized geosocial platform for travelers, combining interactive maps based on OpenStreetMap with a blockchain economy. The platform creates an independent ecosystem for the exchange of niche data, adapted to work in unstable internet conditions.
+
+  ## Product Demo
+  https://drive.google.com/file/d/1-WECv_pAtkrJqNUK_LF9o1pbySfmNgFx/view?usp=drive_link
+
+  ## GitHub Repository
+  https://github.com/omni395/travel_fi
+
+  ## Target Audience
+
+  Budget backpackers, digital nomads, solo travelers, and vanlife travelers.
+
+  ## Challenges
+
+  Traditional mapping services monetize user-generated content without providing direct benefits to the users. TravelFi implements a transparent blockchain incentive system, ensuring fair compensation for each participant's contribution. The platform's innovation lies in seamless Web3 integration: all technical aspects of cryptocurrency remain "under the hood." Users enjoy the benefits of a decentralized economy—rewards and data ownership—through a familiar and intuitive interface, without the barriers of complex wallet setup or key management.
+
+  ## Tech Stack
+
+  * **Backend:** Ruby on Rails 8.1, PostgreSQL + PostGIS.
+
+  * **Infrastructure:** Solid Stack (SolidQueue, SolidCable, SolidCache) — completely eliminating Redis.
+
+  * **Frontend:** Stimulus, StimulusReflex, CableReady, OpenLayers 10 (PWA with IndexedDB support).
+
+  * **Architecture:** WebSocket-first (asynchronous real-time updates, database as the single source of truth).
+
+  ## Point-of-Interest Data Categories (extensible)
+
+  * SIM/eSIM kiosks (tariffs, 24/7).
+
+  * Public restrooms and showers.
+
+  * Water refill stations.
+
+  * Laundries and storage lockers.
+
+  * Power outlets and workstations with internet access.
+
+  * ATMs and currency exchange offices.
+
+  * 24-hour pharmacies and first aid stations.
+
+  ## Web3 and Economy (TFT)
+
+  * **Tokenomics:** Closed system with a limited supply (1,000,000,000 TFT, 18 decimals). Tokens are awarded for activity (POIs, photos, comments), spent on premium features and DAO management.
+
+  * **Transactions:** EIP-2771 (Meta-transactions) standard. The platform acts as a relay; users do not pay a gas fee.
+
+  * **Security:** Automatic generation of custodial wallets on the backend (`OpenSSL::PKey::EC` secp256k1 + EIP-55), keys are encrypted via `ActiveSupport::MessageEncryptor`.
+
+  * **Security:** Vesting (locking) system to prevent fraud in referral payments and reward accrual.
+
+  ## Expected impact and benefits:
+
+  * Creation of an independent ecosystem for travelers, functioning even in unstable internet conditions thanks to offline mode.
+  * Fair compensation for participants for creating high-quality content about points of interest.
+  * Development of mass Web3 adoption through familiar user scenarios (maps and travel).
+
+  ## Roadmap for the future development of the project
+
+  1. **Production Launch:** Expanding the application's functionality, finalizing the current prototype, and debugging the logic.
+
+  2. **Telegram Mini App:** Integration into the messenger ecosystem for seamless access to cards and the TFT economy.
+
+  3. **TON Cross-chain Bridge:** Linking the EVM and TON networks (ERC-20 blocking -> Jetton release) to scale the project's economy.
+
+  ### Authors
+
+  Dmytro Tieriekhov | https://www.linkedin.com/in/dmytro-tieriekhov/
+tags:
+  - apps
+  - travel
+  - web3
+  - ton
+  - evm
+  - public-goods
+  - pwa
+featured: false
+banner_image_url: https://github.com/user-attachments/assets/70fe135b-598f-42ed-891a-278acf66e2a1
+logo_url: https://github.com/user-attachments/assets/4e740ab8-ba7c-47ff-86f7-84e68e9e64c1
+authors:
+  - name: Dmytro Tieriekhov
+    url: https://www.linkedin.com/in/dmytro-tieriekhov/
+related_apps: []
+related_mechanisms:
+  - quadratic-funding
+related_case_studies: []
+related_research: []
+related_campaigns: []
