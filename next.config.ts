@@ -54,8 +54,13 @@ const nextConfig: NextConfig = {
     return [
       {
         source: "/whitepaper",
-        destination: "/research",
-        permanent: true,
+        destination: "http://docs.love.fund/",
+        permanent: false,
+      },
+      {
+        source: "/whitepaper/:path*",
+        destination: "http://docs.love.fund/",
+        permanent: false,
       },
       {
         source: "/privacy",
