@@ -108,6 +108,22 @@ function sortKey(item: BaseContent): string {
   return (item as Campaign).startDate ?? item.lastUpdated;
 }
 
+// Creation time from the `id` frontmatter (a Unix timestamp). Some entries
+// use seconds, others Date.now() milliseconds, so normalise to ms.
+// Used to break ties between items sharing the same date, which otherwise
+// fall back to the loader's alphabetical order.
+function createdAt(item: BaseContent): number {
+  const n = Number(item.id);
+  if (!Number.isFinite(n) || n <= 0) return 0;
+  return n < 1e12 ? n * 1000 : n;
+}
+
+function compareByDate(a: BaseContent, b: BaseContent): number {
+  return (
+    sortKey(a).localeCompare(sortKey(b)) || createdAt(a) - createdAt(b)
+  );
+}
+
 // Active = campaign that hasn't ended yet (no endDate or endDate in the future)
 function isActive(item: BaseContent): boolean {
   const endDate = (item as Campaign).endDate;
@@ -126,10 +142,9 @@ function sortItems(items: BaseContent[], sort: SortOption): BaseContent[] {
       const aActive = isActive(a);
       const bActive = isActive(b);
       if (aActive !== bActive) return aActive ? -1 : 1;
-      return sortKey(b).localeCompare(sortKey(a));
+      return compareByDate(b, a);
     });
-  if (sort === "oldest")
-    return sorted.sort((a, b) => sortKey(a).localeCompare(sortKey(b)));
+  if (sort === "oldest") return sorted.sort(compareByDate);
   if (sort === "read-time" || sort === "read-time-desc") {
     const withTime = sorted.map((item) => ({
       item,
