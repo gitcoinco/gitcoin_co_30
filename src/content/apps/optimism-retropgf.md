@@ -2,17 +2,18 @@
 id: '1770997156898'
 slug: optimism-retropgf
 name: "Optimism RetroPGF"
-shortDescription: "Retroactive funding program allocating OP tokens to contributors based on demonstrated impact."
+shortDescription: "Optimism Collective retroactive OP grants (later branded Retro Funding). Paused since Season 9 (2026); not currently running rounds."
 logo: /content-images/apps/optimism-retropgf/logo.png
 tags:
   - retroactive
   - results-based
   - governance
-lastUpdated: '2026-02-13'
+lastUpdated: '2026-09-09'
 relatedMechanisms:
-
+  - retroactive-funding
 relatedApps:
-
+  - protocol-guild
+  - opensource-observer
 relatedCaseStudies:
 
 relatedResearch:
@@ -22,61 +23,63 @@ relatedCampaigns:
 banner: /content-images/apps/optimism-retropgf/banner.png
 ---
 
-**Optimism RetroPGF** is a retroactive public goods funding program operated by the Optimism Collective. It allocates OP tokens from the Optimism treasury to contributors who have already delivered measurable ecosystem impact. Funding decisions are made by badgeholders — governance-selected evaluators — using scoped evaluation processes that prioritize outcomes over proposals.
+**Optimism RetroPGF** (rebranded **Retro Funding**) was the Optimism Collective’s retroactive public goods program: OP from the treasury to contributors who had already delivered measurable Superchain / Ethereum impact. Badgeholders — governance-selected evaluators — scored completed work rather than proposals.
 
-Since launch, RetroPGF has distributed **over 60M OP tokens** to **hundreds of projects and contributors**, supporting open-source infrastructure, governance research, developer education, and long-term ecosystem maintenance. The program continues to evolve its evaluation methods, including increased use of metrics-informed analysis. A total of **850M OP (20% of total supply)** is reserved for public goods funding.
+**The program is paused.** On 8 January 2026 the Optimism Foundation’s Season 9 post stated that Retro Funding “will not run for at least the next 12 months,” so the Collective could focus on the OP Stack and reassess public-goods funding. The Collective Year 4 budget update (6 August 2026) confirmed: after Season 7 missions (Onchain Builders and Developer Tooling), **no new rounds or missions were initiated** in Year 4.
 
-## What This Program Does
+This directory page was last written on **2026-02-13** — after that pause — and still described RetroPGF as a live program that “continues to evolve.” Builders reading it as a current way to get OP would be wrong.
 
-Optimism RetroPGF allocates capital to individuals and teams that have already delivered measurable value to the Optimism ecosystem, Ethereum, and the broader web3 commons.
+## What This Program Did
 
-In practice, it enables:
+Retro Funding allocated capital after impact, not against a roadmap.
 
-- **Contributors** to be rewarded for past impact rather than future promises  
-- **Evaluators** to assess work based on demonstrated outcomes rather than proposed plans  
-- **Builders** to receive funding without requiring prospective grant applications  
-- **Public goods maintainers** to receive compensation for work that would not be sustained by traditional markets
+In practice it let:
 
-This structure shifts execution risk toward contributors while incentivizing durable, ecosystem-wide value creation.
+* **Contributors** get paid for past work instead of promises
+* **Badgeholders** (and, later, guest voters and metric ballots) judge outcomes
+* **Maintainers** of non-revenue infrastructure get a one-time OP grant with no vesting or milestones
 
-## Features
+It did **not** replace Grants Council prospective grants, and it is **not** open for applications while paused. Atlas still shows historical Superchain grant surfaces; the Foundation also noted Atlas itself is scheduled to shut on 18 September 2026.
 
-RetroPGF uses retroactive public goods funding as its primary allocation model: contributors apply after work is completed, badgeholders evaluate demonstrated impact, and funds are distributed as one-time OP token grants with no vesting or milestone obligations. Supporting components handle evaluation, signal aggregation, and scope definition.
+## Features (historical)
 
-### Core Components
+Rounds ran from RetroPGF 1 (2022) through Season 7 missions (2025). Evaluation moved from quadratic badgeholder votes, to median scoring, to metrics-informed ballots with Open Source Observer, plus experimental lists and guest voters. Categories included OP Stack, governance, onchain builders, and developer tooling.
 
-- **Badgeholder-based evaluation:** Governance-selected evaluators using contextual judgment rather than token-weighted voting. Guest voters have been introduced experimentally to study alternative evaluator selection models.  
-- **Metrics-informed evaluation:** Structured onchain metrics, developed with Open Source Observer, complement human judgment. This approach has expanded over time while retaining evaluator discretion.  
-- **Lists mechanism (experimental):** Domain experts curate lists of high-impact projects; other badgeholders may delegate evaluation weight to these lists.  
-- **Category-based allocation:** Rounds scoped into domains (e.g., OP Stack, governance, onchain builders) for comparable evaluation.
+### Numbers (Foundation, August 2026)
 
-### Program Characteristics
+* **Reserved:** 859M OP (~20% of supply) for retroactive public goods
+* **Committed to date:** 81.4M OP (9.5% of that reserve) after final Season 7 payouts
+* **Still unspent in the reserve:** 777.6M OP (90.5%), which Season 9 said may be partly re-allocated by a later Foundation proposal
+* Year 4 vs Year 3 Retro Funding circulating: **14.2M OP vs 20.3M OP** (−30%), with the drop attributed to the pause
 
-- **Treasury-backed funding:** Capital sourced from the Optimism Collective treasury, including the 850M OP (20% of total supply) reserved for public goods.  
-- **Iterative mechanism design:** Scope, voting mechanisms, and evaluation criteria evolve across rounds via governance discussion and published retrospectives.  
-- **No vesting or milestones:** Funds distributed as one-time OP grants with no formal obligations.  
-- **Governance oversight:** Operated by the Optimism Foundation, with defined roles for the Citizens' House and Token House in badgeholder selection, scope definition, and program evolution.
+The previous profile’s “over 60M OP to hundreds of projects” was a lower, older snapshot. This update does not invent a recipient count.
 
-## Use Cases
+### What the pause is not
 
-### Infrastructure Teams Seeking Sustainability
+* Not a claim that public goods funding is abandoned — Season 9 said public goods remain core and that alternatives will be assessed
+* Not advice to apply “as usual” through badgeholder rounds
+* Not the same as Grants Council / partner Superchain grants, which are separate programs
 
-Core protocol contributors, L2 researchers, and developer tooling teams use RetroPGF to receive compensation for work that benefits the broader ecosystem but lacks direct revenue models. Teams like Protocol Guild have used RetroPGF allocations to establish sustainable, ongoing funding models adopted across multiple chains.
+## Use Cases (while it ran)
 
-### Open-Source Builders Demonstrating Impact
+### Infrastructure and client teams
 
-Developers and small teams building open-source tools and public goods apply retroactively using evidence of completed work and adoption. RetroPGF enables builders to focus on delivery first and seek funding based on demonstrated adoption and usage rather than proposal writing.
+Protocol Guild, Geth/go-ethereum, Solidity, and similar OP Stack / L1 work received large allocations in several rounds as a way to pay work that has no dapp revenue.
 
-### Governance and Community Contributors
+### Onchain apps and developer tools (Season 7)
 
-Governance researchers, analysts, moderators, and community coordinators apply for recognition of contributions that are typically undervalued in traditional funding models. RetroPGF is well-suited to this work because its impact often becomes visible only over time.
+Later missions paid Superchain apps and toolchain software (compilers, libraries, debuggers) against demonstrated usage, with monthly distributions rather than a single RetroPGF-style dump.
 
-### Ecosystem Transparency and Accountability Projects
+### Analytics and governance tooling
 
-Analytics platforms, block explorers, and security research teams use RetroPGF to fund work that improves ecosystem transparency and informed decision-making. Projects like L2BEAT and Etherscan have received significant allocations for providing critical public infrastructure.
+L2BEAT, EAS, growthepie, and Open Source Observer-style metrics work showed up in governance and transparency rounds.
+
+None of those paths is a live Retro Funding round as of this update.
 
 ## Further Reading
 
-- [**Retroactive Public Goods Funding** — Vitalik Buterin](https://medium.com/ethereum-optimism/retroactive-public-goods-funding-33c9b7d00f0c)  
-- [**How Retro Funding Works** — Optimism Collective](https://community.optimism.io/citizens-house/how-retro-funding-works)  
-- [**Retro Funding 2025** — Optimism Blog](https://www.optimism.io/blog/retro-funding-2025)
+* [Season 9: From Experiment to Organization](https://optimism.io/blog/season-9-from-experiment-to-organization) (8 Jan 2026) — pause, ≥12 months
+* [Collective Year 4 Budget Update](https://gov.optimism.io/t/collective-year-4-budget-update-and-year-5-budget-outlook/10796) (6 Aug 2026) — 81.4M OP committed, no new missions
+* [How Retro Funding Works](https://community.optimism.io/citizens-house/how-retro-funding-works)
+* [Retroactive Public Goods Funding](https://medium.com/ethereum-optimism/retroactive-public-goods-funding-33c9b7d00f0c) — Vitalik Buterin
+* [Retro Funding 2025](https://www.optimism.io/blog/retro-funding-2025)
