@@ -10,7 +10,8 @@ tags:
 lastUpdated: '2026-02-25'
 relatedMechanisms:
 
-relatedApps: []
+relatedApps:
+  - questbook
 relatedCaseStudies: []
 relatedResearch: []
 relatedCampaigns: []
