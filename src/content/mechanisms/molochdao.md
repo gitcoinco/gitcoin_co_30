@@ -69,3 +69,4 @@ banner: /content-images/mechanisms/molochdao/banner.png
 
 - [MolochDAO Whitepaper](https://github.com/MolochVentures/moloch)
 - [Slaying Moloch — Ameen Soleimani](https://medium.com/@AmeenSol/moloch-dao-a-simple-yet-unforgiving-dao-b48f00c6cdfa)
+- [Rage-quit and exit rights (caper.network wiki)](https://caper.network/wiki/dao-governance/concepts/membership/rage-quit-and-exit-rights)
