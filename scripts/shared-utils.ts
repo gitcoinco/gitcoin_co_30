@@ -32,6 +32,7 @@ const ALLOWED_HOSTS = [
   "raw.githubusercontent.com",
   "objects.githubusercontent.com",
   "avatars.githubusercontent.com",
+  "i0.wp.com",
 ];
 const MAX_REDIRECTS = 5;
 const MAX_FILE_SIZE = 10 * 1024 * 1024;   // 10 MB for images
