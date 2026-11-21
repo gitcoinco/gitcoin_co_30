@@ -214,16 +214,20 @@ export async function processImages(
     const img = bannerImages[0];
     const urlExt = img.url.match(/\.(png|jpg|jpeg|gif|svg|webp)/i)?.[0];
     const tempPath = path.join(imagesDir, `banner_tmp`);
-    const detectedType = await downloadImage(img.url, tempPath);
-    let ext = urlExt || contentTypeToExt(detectedType);
-    let finalPath = path.join(imagesDir, `banner${ext}`);
-    fs.renameSync(tempPath, finalPath);
-    if (ext === ".svg") {
-      finalPath = await convertSvgToPng(finalPath);
-      ext = ".png";
+    try {
+      const detectedType = await downloadImage(img.url, tempPath);
+      let ext = urlExt || contentTypeToExt(detectedType);
+      let finalPath = path.join(imagesDir, `banner${ext}`);
+      fs.renameSync(tempPath, finalPath);
+      if (ext === ".svg") {
+        finalPath = await convertSvgToPng(finalPath);
+        ext = ".png";
+      }
+      banner = `/content-images/${contentType}/${slug}/banner${ext}`;
+      console.log(`  ✓ banner${ext} (banner)`);
+    } catch (e) {
+      console.warn(`⚠️ Failed to download banner from ${img.url}:`, (e as Error).message);
     }
-    banner = `/content-images/${contentType}/${slug}/banner${ext}`;
-    console.log(`  ✓ banner${ext} (banner)`);
   }
 
   // Process logo image — saved as {slug}/logo.png (converted from SVG if needed)
@@ -231,33 +235,41 @@ export async function processImages(
     const img = logoImages[0];
     const urlExt = img.url.match(/\.(png|jpg|jpeg|gif|svg|webp)/i)?.[0];
     const tempPath = path.join(imagesDir, `logo_tmp`);
-    const detectedType = await downloadImage(img.url, tempPath);
-    let ext = urlExt || contentTypeToExt(detectedType);
-    let finalPath = path.join(imagesDir, `logo${ext}`);
-    fs.renameSync(tempPath, finalPath);
-    if (ext === ".svg") {
-      finalPath = await convertSvgToPng(finalPath);
-      ext = ".png";
+    try {
+      const detectedType = await downloadImage(img.url, tempPath);
+      let ext = urlExt || contentTypeToExt(detectedType);
+      let finalPath = path.join(imagesDir, `logo${ext}`);
+      fs.renameSync(tempPath, finalPath);
+      if (ext === ".svg") {
+        finalPath = await convertSvgToPng(finalPath);
+        ext = ".png";
+      }
+      logo = `/content-images/${contentType}/${slug}/logo${ext}`;
+      console.log(`  ✓ logo${ext} (logo)`);
+    } catch (e) {
+      console.warn(`⚠️ Failed to download logo from ${img.url}:`, (e as Error).message);
     }
-    logo = `/content-images/${contentType}/${slug}/logo${ext}`;
-    console.log(`  ✓ logo${ext} (logo)`);
   }
 
   // Process description images
   for (let i = 0; i < allImages.length; i++) {
     const img = allImages[i];
-    const { filename, publicPath } = await downloadWithFilename(
-      img,
-      imagesDir,
-      `/content-images/${contentType}/${slug}`,
-      `image-${i + 1}`,
-      ".png",
-    );
-    console.log(`  ✓ ${filename}`);
-    updatedMarkdown = updatedMarkdown.replace(
-      img.markdown,
-      `![${img.alt}](${publicPath})`,
-    );
+    try {
+      const { filename, publicPath } = await downloadWithFilename(
+        img,
+        imagesDir,
+        `/content-images/${contentType}/${slug}`,
+        `image-${i + 1}`,
+        ".png",
+      );
+      console.log(`  ✓ ${filename}`);
+      updatedMarkdown = updatedMarkdown.replace(
+        img.markdown,
+        `![${img.alt}](${publicPath})`,
+      );
+    } catch (e) {
+      console.warn(`⚠️ Failed to download description image ${img.url}:`, (e as Error).message);
+    }
   }
 
   return { banner, logo, updatedMarkdown };
