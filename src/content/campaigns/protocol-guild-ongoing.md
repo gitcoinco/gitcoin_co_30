@@ -78,3 +78,4 @@ In 2025, Protocol Guild marked Ethereum's 10th anniversary of zero downtime — 
 - [**A Funding Framework for the Ethereum Commons** — Trent Van Epps](https://trent.mirror.xyz/Lehny46ZMdxMEow0XE_RgowV2ntkp30chJRWPCEYbGQ)
 - [**Protocol Guild Pledge** — Tim Beiko](https://tim.mirror.xyz/srVdVopOFhD_ZoRDR50x8n5wmW3aRJIrNEAkpyQ4_ng)
 - [**The Protocol Guild with Trent Van Epps** — GreenPill Podcast, Episode 10](https://greenpill.substack.com/p/10-the-protocol-guild-with-trent)
+pill request 
