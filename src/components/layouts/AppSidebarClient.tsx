@@ -319,9 +319,9 @@ function AppSidebarInner({
             style={{ width: visibleWidth }}
           >
             <div ref={scrollContainerRef} className="h-full overflow-y-scroll" style={{ width: sidebarWidth }}>
-              <div className="py-6 px-4 space-y-4">
+              <div className="py-6 px-4 flex flex-col min-h-full">
                 <Link href="/" className={homeClass}>Home</Link>
-                <nav className="space-y-4">
+                <nav className="space-y-4 mt-4">
                   {sections.map((section) => (
                     <SectionRow
                       key={section.label}
