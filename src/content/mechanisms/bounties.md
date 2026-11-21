@@ -7,7 +7,7 @@ tags:
   - task-based
   - execution
   - open
-lastUpdated: '2026-02-25'
+lastUpdated: '2026-05-16'
 relatedMechanisms:
 
 relatedApps: []
@@ -42,6 +42,7 @@ Bounties create a direct link between defined work and compensation.
 - Not suited for long-term relationship building
 - Poorly handles ambiguous or evolving requirements
 - Requires clear scope — if the task can't be well-defined, bounties won't work
+- Agent-executed work needs explicit guardrails around eligibility, deadlines, submission formats, prohibited behavior, and payment-claim steps
 
 ## Best Used When
 
@@ -49,6 +50,7 @@ Bounties create a direct link between defined work and compensation.
 - Fast-paced funding requiring minimal governance overhead
 - New contributor onboarding through low-commitment opportunities
 - Execution-heavy tasks where scope is clearly defined and outcomes are verifiable
+- Agent-compatible tasks where the deliverable can be reviewed in public and any human approval, identity, or payment step is stated up front
 
 ## Examples and Use Cases
 
@@ -61,6 +63,10 @@ Community labs fund multi-language resource translations via bounties, allowing 
 ### Design and Graphics
 DAOs issue bounties for protocol explanatory graphics, social media assets, and UI/UX improvements.
 
+### Agent-Compatible Tasks
+As AI agents become capable of producing reviewable artifacts, bounties can separate bounded execution from human accountability. Good fits include documentation updates, passive code review, public data analysis, ecosystem maps, and research briefs. These tasks work best when the bounty states who may submit, what evidence is required, which actions are off limits, how reviewers will evaluate the work, and how any payout claim is completed.
+
 ## Further Reading
 
 - [Allo Capital — Bounties](https://www.allo.capital/mechanisms/bounties)
+- [Gitcoin — AI Agents and Public Goods: The Emerging Agentic Economy](https://gitcoin.co/research/ai-agents-and-public-goods-the-emerging-agentic-economy)
