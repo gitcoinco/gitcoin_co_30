@@ -2,7 +2,43 @@ const test = require("node:test");
 const assert = require("node:assert/strict");
 const { parseSafeMatter } = require("../src/lib/safe-matter.ts");
 const { serializeJsonLd } = require("../src/lib/json-ld.ts");
-const { parseChatMessages } = require("../src/lib/chat-messages.ts");
+const { parseChatMessages, getRecentChatMessages } = require("../src/lib/chat-messages.ts");
+
+test("chat continues past 15 exchanges without discarding visible history", () => {
+  const history = Array.from({ length: 101 }, (_, index) => ({
+    id: String(index),
+    role: index % 2 === 0 ? "user" : "assistant",
+    parts: [{ type: "text", text: `Message ${index}` }],
+  }));
+  for (const count of [29, 30, 31, 61, 101]) {
+    const request = getRecentChatMessages(history.slice(0, count));
+    assert.ok(request.length <= 30);
+    assert.equal(request[0].role, "user");
+    assert.equal(request.at(-1).id, String(count - 1));
+    assert.doesNotThrow(() => parseChatMessages(request));
+  }
+  assert.equal(history.length, 101);
+  assert.equal(history[0].id, "0");
+});
+
+test("chat trims cumulative text while keeping the latest question and security checks", () => {
+  const history = Array.from({ length: 9 }, (_, index) => ({
+    id: String(index),
+    role: index % 2 === 0 ? "user" : "assistant",
+    parts: [{ type: "text", text: "x".repeat(5_000) }],
+  }));
+  const recent = getRecentChatMessages(history);
+  assert.equal(recent[0].role, "user");
+  assert.equal(recent.at(-1).id, "8");
+  assert.doesNotThrow(() => parseChatMessages(recent));
+  assert.equal(history.length, 9);
+  const hugeReply = { id: "huge", role: "assistant", parts: [{ type: "text", text: "x".repeat(30_001) }] };
+  assert.deepEqual(getRecentChatMessages([...history, hugeReply, history[8]]), [history[8]]);
+  assert.throws(() => parseChatMessages(getRecentChatMessages([
+    { id: "attachment", role: "user", parts: [{ type: "file", url: "https://example.test/file" }] },
+  ])));
+  assert.throws(() => parseChatMessages(history));
+});
 
 test("YAML content parses without executing JavaScript front matter", () => {
   assert.equal(parseSafeMatter("---\nname: Safe\n---\nBody").data.name, "Safe");

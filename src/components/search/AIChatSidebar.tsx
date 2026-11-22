@@ -4,6 +4,7 @@ import { useState, useRef, useEffect, useCallback } from "react";
 import { useRouter } from "next/navigation";
 import { useChat } from "@ai-sdk/react";
 import { DefaultChatTransport } from "ai";
+import { getRecentChatMessages, MAX_CHAT_TEXT_LENGTH } from "@/lib/chat-messages";
 import { MessageResponse } from "@/components/ai-elements/message";
 import {
   X,
@@ -35,12 +36,16 @@ export default function AIChatSidebar() {
     messages,
     status,
     error,
+    clearError,
     sendMessage,
     regenerate,
     stop,
   } = useChat({
     transport: new DefaultChatTransport({
       api: "/api/chat",
+      prepareSendMessagesRequest: ({ messages }) => ({
+        body: { messages: getRecentChatMessages(messages) },
+      }),
     }),
   });
 
@@ -102,6 +107,7 @@ export default function AIChatSidebar() {
   function handleSend() {
     const text = input.trim();
     if (!text || isLoading) return;
+    clearError();
     setInput("");
     sendMessage({ text });
   }
@@ -328,7 +334,7 @@ export default function AIChatSidebar() {
             value={input}
             onChange={(e) => setInput(e.target.value)}
             onKeyDown={handleKeyDown}
-            disabled={error != null}
+            maxLength={MAX_CHAT_TEXT_LENGTH}
             placeholder="Ask a question..."
             className="flex-1 bg-transparent text-base sm:text-sm text-gray-25 placeholder:text-gray-500 outline-none border-none shadow-none focus:shadow-none p-0"
           />
