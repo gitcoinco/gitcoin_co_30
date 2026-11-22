@@ -1,5 +1,10 @@
 const BASE_URL = "https://gitcoin.co";
 
+// JSON in a script element must not contain literal HTML tag openers.
+export function serializeJsonLd(value: unknown): string {
+  return JSON.stringify(value).replace(/</g, "\\u003c");
+}
+
 export const organizationJsonLd = {
   "@context": "https://schema.org",
   "@type": "Organization",

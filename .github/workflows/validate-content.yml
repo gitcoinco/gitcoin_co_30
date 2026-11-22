@@ -23,6 +23,9 @@ jobs:
         uses: tj-actions/changed-files@v44
         with:
           files: 'src/content/**/*.md'
+          json: true
+          escape_json: false
+          safe_output: false  # JSON is passed through env and argv, never shell interpolation
 
       - uses: actions/setup-node@v4
         if: github.event_name == 'workflow_dispatch' || steps.changed.outputs.any_changed == 'true'
@@ -36,10 +39,10 @@ jobs:
         id: validate
         if: github.event_name == 'pull_request' && steps.changed.outputs.any_changed == 'true'
         continue-on-error: true
-        shell: bash
+        env:
+          CHANGED_FILES_JSON: ${{ steps.changed.outputs.all_changed_files }}
         run: |
-          set -o pipefail
-          npx tsx scripts/validate-content.ts ${{ steps.changed.outputs.all_changed_files }} 2>&1 | tee /tmp/validate-output.txt
+          node -e 'const {spawnSync}=require("node:child_process"); const files=JSON.parse(process.env.CHANGED_FILES_JSON); if (!Array.isArray(files) || files.some(f => typeof f !== "string" || !/^src\/content\/(apps|mechanisms|research|case-studies|campaigns)\/.+\.md$/.test(f))) process.exit(2); const r=spawnSync("npx",["tsx","scripts/validate-content.ts",...files],{encoding:"utf8"}); require("node:fs").writeFileSync("/tmp/validate-output.txt",(r.stdout||"")+(r.stderr||"")); process.stdout.write((r.stdout||"")+(r.stderr||"")); process.exit(r.status ?? 1)'
 
       - name: Validate all files
         if: github.event_name == 'workflow_dispatch'
@@ -50,15 +53,20 @@ jobs:
       # even when validation fails.
       - name: Save PR metadata for comment workflow
         if: github.event_name == 'pull_request'
+        env:
+          PR_NUMBER: ${{ github.event.pull_request.number }}
+          PR_BRANCH: ${{ github.event.pull_request.head.ref }}
+          CHANGED: ${{ steps.changed.outputs.any_changed }}
+          VALIDATION_OUTCOME: ${{ steps.validate.outcome }}
         run: |
           mkdir -p /tmp/pr-info
-          echo "${{ github.event.pull_request.number }}" > /tmp/pr-info/pr-number.txt
-          echo "${{ github.event.pull_request.head.ref }}"  > /tmp/pr-info/branch.txt
-          if [ "${{ steps.changed.outputs.any_changed }}" != "true" ]; then
+          printf '%s\n' "$PR_NUMBER" > /tmp/pr-info/pr-number.txt
+          printf '%s\n' "$PR_BRANCH" > /tmp/pr-info/branch.txt
+          if [ "$CHANGED" != "true" ]; then
             echo "skip" > /tmp/pr-info/outcome.txt
             echo ""     > /tmp/pr-info/output.txt
           else
-            echo "${{ steps.validate.outcome }}" > /tmp/pr-info/outcome.txt
+            printf '%s\n' "$VALIDATION_OUTCOME" > /tmp/pr-info/outcome.txt
             cp /tmp/validate-output.txt /tmp/pr-info/output.txt 2>/dev/null || echo "" > /tmp/pr-info/output.txt
           fi
 

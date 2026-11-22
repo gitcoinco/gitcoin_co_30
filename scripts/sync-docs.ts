@@ -18,7 +18,7 @@ import path from "node:path";
 import crypto from "node:crypto";
 import { glob } from "node:fs/promises";
 import OpenAI from "openai";
-import matter from "gray-matter";
+import { parseSafeMatter } from "../src/lib/safe-matter";
 
 const CONTENT_DIR = path.resolve(process.cwd(), "src/content");
 const GREENPILL_DIR = path.resolve(process.cwd(), "src/content/research/greenpill-books");
@@ -162,7 +162,7 @@ async function main() {
     const slug = path.basename(filePath, ".md");
 
     const pageUrl = `/${contentType}/${slug}`;
-    const { data: fm } = matter(content);
+    const { data: fm } = parseSafeMatter(content);
     const authors = Array.isArray(fm.authors) && fm.authors.length
       ? ` [Authors: ${fm.authors.join(", ")}]`
       : "";

@@ -17,7 +17,7 @@ import { getFeaturedCampaigns } from "@/content/campaigns";
 import { getFeaturedResearch } from "@/content/research";
 import SectionHeader from "@/components/ui/SectionHeader";
 import ContributeCard from "@/components/cards/ContributeCard";
-import { organizationJsonLd } from "@/lib/json-ld";
+import { organizationJsonLd, serializeJsonLd } from "@/lib/json-ld";
 
 export const metadata: Metadata = pageSeo.home;
 
@@ -90,12 +90,12 @@ export default function HomePage() {
       <div className="bg-gray-900 text-gray-25" data-node-id="551:2185">
         <script
           type="application/ld+json"
-          dangerouslySetInnerHTML={{ __html: JSON.stringify(websiteJsonLd) }}
+          dangerouslySetInnerHTML={{ __html: serializeJsonLd(websiteJsonLd) }}
         />
         <script
           type="application/ld+json"
           dangerouslySetInnerHTML={{
-            __html: JSON.stringify(organizationJsonLd),
+            __html: serializeJsonLd(organizationJsonLd),
           }}
         />
         <section className="relative overflow-hidden -mt-[70px] pt-[70px]">

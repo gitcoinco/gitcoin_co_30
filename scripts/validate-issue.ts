@@ -7,6 +7,7 @@
  */
 
 import fs from "node:fs";
+import { isAllowedImageUrl } from "./image-url-policy";
 import {
   parseMetadata,
   parseSection,
@@ -132,9 +133,34 @@ if (metadata.sensemakingFor) {
 /** Read PNG dimensions from the first 24 bytes of the image at url. Returns null on error or non-PNG. */
 async function getPngDimensions(url: string): Promise<{ width: number; height: number } | null> {
   try {
-    const res = await fetch(url, { headers: { Range: "bytes=0-23" } });
-    if (!res.ok) return null;
-    const buf = Buffer.from(await res.arrayBuffer());
+    let target = new URL(url);
+    let res: Response | undefined;
+    for (let redirects = 0; redirects <= 3; redirects++) {
+      if (!isAllowedImageUrl(target)) return null;
+      res = await fetch(target, {
+        headers: { Range: "bytes=0-23" },
+        redirect: "manual",
+        signal: AbortSignal.timeout(5000),
+      });
+      if (![301, 302, 303, 307, 308].includes(res.status)) break;
+      const location = res.headers.get("location");
+      if (!location) return null;
+      target = new URL(location, target);
+      res.body?.cancel();
+      res = undefined;
+    }
+    if (!res?.ok || !res.body) return null;
+    const reader = res.body.getReader();
+    const chunks: Uint8Array[] = [];
+    let size = 0;
+    while (size < 24) {
+      const { done, value } = await reader.read();
+      if (done) break;
+      chunks.push(value);
+      size += value.length;
+    }
+    await reader.cancel();
+    const buf = Buffer.concat(chunks).subarray(0, 24);
     // PNG signature: 89 50 4E 47 0D 0A 1A 0A
     if (buf.length >= 24 && buf[0] === 0x89 && buf[1] === 0x50 && buf[2] === 0x4e && buf[3] === 0x47) {
       return { width: buf.readUInt32BE(16), height: buf.readUInt32BE(20) };

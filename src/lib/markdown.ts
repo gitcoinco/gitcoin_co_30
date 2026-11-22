@@ -1,6 +1,6 @@
 import fs from 'fs'
 import path from 'path'
-import matter from 'gray-matter'
+import { parseSafeMatter } from './safe-matter'
 import type { CaseStudy, App, Mechanism, Research, Campaign } from './types'
 import { RESEARCH_TYPES } from './types'
 
@@ -24,7 +24,7 @@ function readMarkdownFiles<T>(directory: string, parser: (data: any, content: st
     const slug = fileName.replace(/\.md$/, '')
     const fullPath = path.join(directory, fileName)
     const fileContents = fs.readFileSync(fullPath, 'utf8')
-    const { data, content } = matter(fileContents)
+    const { data, content } = parseSafeMatter(fileContents)
     return parser(data, content.trim(), slug)
   })
 }
@@ -38,7 +38,7 @@ function readMarkdownFile<T>(directory: string, slug: string, parser: (data: any
   }
 
   const fileContents = fs.readFileSync(filePath, 'utf8')
-  const { data, content } = matter(fileContents)
+  const { data, content } = parseSafeMatter(fileContents)
   return parser(data, content.trim(), slug)
 }
 
