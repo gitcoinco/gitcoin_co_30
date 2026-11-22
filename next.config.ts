@@ -39,6 +39,14 @@ const nextConfig: NextConfig = {
   async headers() {
     return [
       {
+        source: "/content-images/:path*.svg",
+        headers: [
+          { key: "Content-Security-Policy", value: "sandbox" },
+          { key: "Content-Disposition", value: "attachment" },
+          { key: "X-Content-Type-Options", value: "nosniff" },
+        ],
+      },
+      {
         source: "/(.*)",
         headers: [
           { key: "X-Frame-Options", value: "DENY" },

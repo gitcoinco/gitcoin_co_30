@@ -1,4 +1,4 @@
-import matter from "gray-matter";
+import { parseSafeMatter } from "@/lib/safe-matter";
 import {
   parseMetadata,
   parseSection,
@@ -56,7 +56,7 @@ async function getPRMeta(pr: string, headers: Record<string, string>) {
   // Paginate through all PR files (default page size is 30)
   const allFiles: { filename: string }[] = [];
   let page = 1;
-  while (true) {
+  while (page <= 30) {
     const filesRes = await fetch(
       `https://api.github.com/repos/${REPO}/pulls/${pr}/files?per_page=100&page=${page}`,
       { headers, next: { revalidate: 0 } },
@@ -67,6 +67,7 @@ async function getPRMeta(pr: string, headers: Record<string, string>) {
     if (batch.length < 100) break;
     page++;
   }
+  if (page > 30) throw new Error("PR has too many files");
 
   const contentFiles = allFiles
     .map((f) => f.filename)
@@ -74,7 +75,11 @@ async function getPRMeta(pr: string, headers: Record<string, string>) {
       /^src\/content\/(apps|mechanisms|research|case-studies|campaigns)\/.+\.md$/.test(f),
     );
 
-  return { ref: prData.head.sha as string, contentFiles };
+  const ref = prData.head?.sha;
+  if (typeof ref !== "string" || !/^[a-f0-9]{40}$/.test(ref)) {
+    throw new Error("Invalid PR commit");
+  }
+  return { ref, contentFiles };
 }
 
 async function parseContentFile(filename: string, ref: string, headers: Record<string, string>) {
@@ -85,7 +90,7 @@ async function parseContentFile(filename: string, ref: string, headers: Record<s
   if (!fileRes.ok) throw new Error(`GitHub API error: ${fileRes.status}`);
   const fileData = await fileRes.json();
   const raw = Buffer.from(fileData.content, "base64").toString("utf8").replace(/\r\n/g, "\n");
-  const { data, content: description } = matter(raw);
+  const { data, content: description } = parseSafeMatter(raw);
 
   const relatedAppSlugs: string[] = data.relatedApps ?? [];
   const relatedMechanismSlugs: string[] = data.relatedMechanisms ?? [];
@@ -123,6 +128,13 @@ export async function GET(req: Request) {
   const issue = searchParams.get("issue");
   const type = searchParams.get("type");
   const ghToken = process.env.GITHUB_TOKEN;
+
+  if (pr && !/^[1-9]\d{0,9}$/.test(pr)) {
+    return Response.json({ error: "Invalid PR number" }, { status: 400 });
+  }
+  if (issue && !/^[1-9]\d{0,9}$/.test(issue)) {
+    return Response.json({ error: "Invalid issue number" }, { status: 400 });
+  }
 
   // --- PR mode: fetch .md file(s) directly from the branch ---
   if (pr) {

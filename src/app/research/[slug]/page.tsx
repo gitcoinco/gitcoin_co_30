@@ -9,7 +9,7 @@ import { getMechanismBySlug } from '@/content/mechanisms'
 import { getCaseStudyBySlug } from '@/content/case-studies'
 import { getCampaignBySlug } from '@/content/campaigns'
 import { generateDetailPageMetadata } from '@/lib/metadata'
-import { breadcrumbJsonLd } from '@/lib/json-ld'
+import { breadcrumbJsonLd, serializeJsonLd } from '@/lib/json-ld'
 
 interface PageProps {
   params: Promise<{ slug: string }>
@@ -72,10 +72,10 @@ export default async function ResearchDetailPage({ params }: PageProps) {
 
   return (
     <>
-      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumb) }} />
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: serializeJsonLd(breadcrumb) }} />
       <script
         type="application/ld+json"
-        dangerouslySetInnerHTML={{ __html: JSON.stringify(articleJsonLd) }}
+        dangerouslySetInnerHTML={{ __html: serializeJsonLd(articleJsonLd) }}
       />
       <ContentDetailPage
         sidebar={<AppSidebar />}

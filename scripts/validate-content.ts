@@ -8,7 +8,7 @@
 
 import fs from "node:fs";
 import path from "node:path";
-import matter from "gray-matter";
+import { parseSafeMatter } from "../src/lib/safe-matter";
 import {
   DATE_REGEX,
   validateResearchType,
@@ -106,7 +106,7 @@ function validateFile(filePath: string, contentType: ContentDir): { errors: stri
 
   let data: Record<string, unknown>;
   try {
-    ({ data } = matter(raw));
+    ({ data } = parseSafeMatter(raw));
   } catch {
     return { errors: ["Could not parse frontmatter YAML"], warnings: [] };
   }

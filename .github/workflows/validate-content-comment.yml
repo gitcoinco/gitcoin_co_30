@@ -40,15 +40,30 @@ jobs:
             const marker = '<!-- validate-content-bot -->';
             const fs = require('fs');
 
-            const prNumber = parseInt(fs.readFileSync('pr-number.txt', 'utf8').trim(), 10);
-            const branch   = fs.readFileSync('branch.txt',    'utf8').trim();
-            const outcome  = fs.readFileSync('outcome.txt',   'utf8').trim();
+            const prNumber = Number(fs.readFileSync('pr-number.txt', 'utf8').trim());
+            if (!Number.isSafeInteger(prNumber) || prNumber < 1) return;
+            const { data: pr } = await github.rest.pulls.get({
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              pull_number: prNumber,
+            });
+            const run = context.payload.workflow_run;
+            const runSha = run.head_sha;
+            // The artifact is untrusted. It must refer to the PR and commit
+            // that actually triggered this workflow run.
+            if (pr.base.repo.id !== context.payload.repository.id ||
+                pr.head.repo?.id !== run.head_repository?.id ||
+                pr.head.ref !== run.head_branch ||
+                (run.pull_requests.length > 0 && !run.pull_requests.some(p => p.number === prNumber)) ||
+                (runSha !== pr.head.sha && runSha !== pr.merge_commit_sha)) return;
+            const branch = pr.head.ref;
+            const artifactOutcome = fs.readFileSync('outcome.txt', 'utf8').trim();
 
             // No content files changed in this PR — nothing to comment on
-            if (outcome === 'skip') return;
+            if (artifactOutcome === 'skip') return;
 
             let output = '';
-            try { output = fs.readFileSync('output.txt', 'utf8').trim(); } catch {}
+            try { output = fs.readFileSync('output.txt', 'utf8').trim().slice(0, 8000).replace(/`/g, "'"); } catch {}
 
             // Detect if this PR was auto-generated from an issue
             const issueMatch  = branch.match(/^publish\/issue-(\d+)$/);
@@ -60,14 +75,15 @@ jobs:
 
             const successBody = `${marker}\n✅ **Content validation passed!**`;
             const failureBody = `${marker}\n## ❌ Content Validation Failed\n\n\`\`\`\n${output}\n\`\`\`${fixNote}`;
-            const body = outcome === 'failure' ? failureBody : successBody;
+            const body = context.payload.workflow_run.conclusion === 'success'
+              ? successBody : failureBody;
 
             const { data: issueComments } = await github.rest.issues.listComments({
               owner: context.repo.owner,
               repo: context.repo.repo,
               issue_number: prNumber,
             });
-            const existing = issueComments.find(c => c.body?.includes(marker));
+            const existing = issueComments.find(c => c.user?.type === 'Bot' && c.body?.includes(marker));
 
             if (existing) {
               await github.rest.issues.deleteComment({

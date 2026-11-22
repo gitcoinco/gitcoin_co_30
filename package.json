@@ -4,6 +4,7 @@
   "description": "Fund What Matters",
   "scripts": {
     "dev": "next dev",
+    "test:security": "node --import tsx --test tests/security.cjs",
     "build": "next build",
     "start": "next start",
     "lint": "next lint",

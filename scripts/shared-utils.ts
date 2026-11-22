@@ -8,6 +8,7 @@ import fs from "node:fs";
 import path from "node:path";
 import https from "node:https";
 import sharp from "sharp";
+import { isAllowedImageUrl } from "./image-url-policy";
 
 // Re-export all parsing functions from the shared module
 export {
@@ -26,13 +27,6 @@ import {
   type ParsedImage,
 } from "../src/lib/parse-issue";
 
-const ALLOWED_HOSTS = [
-  "github.com",
-  "user-images.githubusercontent.com",
-  "raw.githubusercontent.com",
-  "objects.githubusercontent.com",
-  "avatars.githubusercontent.com",
-];
 const MAX_REDIRECTS = 5;
 const MAX_FILE_SIZE = 10 * 1024 * 1024;   // 10 MB for images
 
@@ -46,12 +40,15 @@ function contentTypeToExt(contentType: string): string {
   return ".png";
 }
 
-/** Convert an SVG file to PNG in-place, returns the new filepath */
-async function convertSvgToPng(svgPath: string): Promise<string> {
-  const pngPath = svgPath.replace(/\.svg$/i, ".png");
-  await sharp(svgPath, { density: 144 }).png().toFile(pngPath);
-  fs.unlinkSync(svgPath);
-  return pngPath;
+function isSvgFile(filepath: string): boolean {
+  const fd = fs.openSync(filepath, "r");
+  try {
+    const header = Buffer.alloc(512);
+    const length = fs.readSync(fd, header, 0, header.length, 0);
+    return /<(?:\?xml[^>]*>\s*)?svg[\s>]/i.test(header.toString("utf8", 0, length));
+  } finally {
+    fs.closeSync(fd);
+  }
 }
 
 /** Download an image from a URL to a local file. Returns the detected content-type. */
@@ -65,14 +62,7 @@ export async function downloadImage(
   }
 
   const parsed = new URL(url);
-  const isAllowed =
-    ALLOWED_HOSTS.some(
-      (h) => parsed.hostname === h || parsed.hostname.endsWith(`.${h}`),
-    ) ||
-    // GitHub stores issue-uploaded images on S3
-    (parsed.hostname.startsWith("github-production-") &&
-      parsed.hostname.endsWith(".s3.amazonaws.com"));
-  if (!isAllowed) {
+  if (!isAllowedImageUrl(parsed)) {
     throw new Error(`Blocked download from untrusted host: ${parsed.hostname}`);
   }
 
@@ -194,19 +184,30 @@ export async function processImages(
       ? img.alt.toLowerCase().replace(/[^a-z0-9]+/g, "-")
       : defaultBase;
 
-    let filename = `${baseFilename}${ext}`;
-    let counter = 1;
-    while (usedFilenames.has(filename)) {
-      filename = `${baseFilename}-${counter}${ext}`;
-      counter++;
+    // Download to a separate temporary file: SVG uploads can have a .png URL.
+    const tempDir = fs.mkdtempSync(path.join(dir, ".image-"));
+    const filepath = path.join(tempDir, "source");
+    let filename: string;
+    try {
+      const detectedType = await downloadImage(img.url, filepath);
+      const svg = ext.toLowerCase() === ".svg" || detectedType.toLowerCase().includes("image/svg+xml") || isSvgFile(filepath);
+      const finalExt = svg ? ".png" : ext;
+      filename = `${baseFilename}${finalExt}`;
+      let counter = 1;
+      while (usedFilenames.has(filename) || ["banner.png", "logo.png"].includes(filename)) {
+        filename = `${baseFilename}-${counter++}${finalExt}`;
+      }
+      usedFilenames.add(filename);
+      const destination = path.join(dir, filename);
+      if (svg) {
+        await sharp(filepath, { density: 144 }).png().toFile(destination);
+      } else {
+        fs.renameSync(filepath, destination);
+      }
+    } finally {
+      fs.rmSync(tempDir, { recursive: true, force: true });
     }
-    usedFilenames.add(filename);
-
-    const filepath = path.join(dir, filename);
-    const publicPath = `${publicPrefix}/${filename}`;
-
-    await downloadImage(img.url, filepath);
-    return { filename, publicPath };
+    return { filename, publicPath: `${publicPrefix}/${filename}` };
   }
 
   // Process banner image — saved as {slug}/banner.png (converted from SVG if needed)
@@ -216,11 +217,12 @@ export async function processImages(
     const tempPath = path.join(imagesDir, `banner_tmp`);
     const detectedType = await downloadImage(img.url, tempPath);
     let ext = urlExt || contentTypeToExt(detectedType);
-    let finalPath = path.join(imagesDir, `banner${ext}`);
-    fs.renameSync(tempPath, finalPath);
-    if (ext === ".svg") {
-      finalPath = await convertSvgToPng(finalPath);
+    if (ext.toLowerCase() === ".svg" || detectedType.toLowerCase().includes("image/svg+xml") || isSvgFile(tempPath)) {
+      await sharp(tempPath, { density: 144 }).png().toFile(path.join(imagesDir, "banner.png"));
+      fs.unlinkSync(tempPath);
       ext = ".png";
+    } else {
+      fs.renameSync(tempPath, path.join(imagesDir, `banner${ext}`));
     }
     banner = `/content-images/${contentType}/${slug}/banner${ext}`;
     console.log(`  ✓ banner${ext} (banner)`);
@@ -233,11 +235,12 @@ export async function processImages(
     const tempPath = path.join(imagesDir, `logo_tmp`);
     const detectedType = await downloadImage(img.url, tempPath);
     let ext = urlExt || contentTypeToExt(detectedType);
-    let finalPath = path.join(imagesDir, `logo${ext}`);
-    fs.renameSync(tempPath, finalPath);
-    if (ext === ".svg") {
-      finalPath = await convertSvgToPng(finalPath);
+    if (ext.toLowerCase() === ".svg" || detectedType.toLowerCase().includes("image/svg+xml") || isSvgFile(tempPath)) {
+      await sharp(tempPath, { density: 144 }).png().toFile(path.join(imagesDir, "logo.png"));
+      fs.unlinkSync(tempPath);
       ext = ".png";
+    } else {
+      fs.renameSync(tempPath, path.join(imagesDir, `logo${ext}`));
     }
     logo = `/content-images/${contentType}/${slug}/logo${ext}`;
     console.log(`  ✓ logo${ext} (logo)`);

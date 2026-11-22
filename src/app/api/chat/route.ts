@@ -3,6 +3,7 @@ import { openai } from "@ai-sdk/openai";
 import OpenAI from "openai";
 import fs from "node:fs";
 import path from "node:path";
+import { parseChatMessages } from "@/lib/chat-messages";
 
 export const maxDuration = 30;
 
@@ -116,6 +117,14 @@ async function buildSearchQuery(messages: UIMessage[]): Promise<string> {
 
 export async function POST(req: Request) {
   try {
+    let messages: UIMessage[];
+    try {
+      const body: unknown = await req.json();
+      messages = parseChatMessages((body as { messages?: unknown } | null)?.messages);
+    } catch {
+      return Response.json({ error: "Invalid text messages" }, { status: 400 });
+    }
+
     if (!process.env.OPENAI_API_KEY) {
       return new Response(
         JSON.stringify({ error: "Chat is not configured. Missing OPENAI_API_KEY." }),
@@ -125,8 +134,6 @@ export async function POST(req: Request) {
         },
       );
     }
-
-    const { messages }: { messages: UIMessage[] } = await req.json();
 
     console.log("[chat] Received", messages.length, "messages");
 
