@@ -1,7 +1,7 @@
 ---
 id: '1774470387337'
-slug: aiim
-name: "AI Internet-Meritocracy"
+slug: sciward
+name: "SciWard"
 shortDescription: "The app asks AI, how much a given person should be paid. Prompt injections are handled by human voting."
 banner: /content-images/apps/aiim/banner.png
 logo: /content-images/apps/aiim/logo.png
@@ -32,7 +32,7 @@ relatedCampaigns: []
 - **Blockchains**: Ethereum, Celo, Polygon, Arbitrum, Optimism, Base, Mezo, Hedera, Solana, Bitcoin, Bitcoin Cash, Cosmos, Polkadot, Stellar, ICP
 - **Social Links**: [X](https://x.com/SalariesScience) | [GitHub](https://github.com/vporton/meritocracy) | [LinkedIn](https://www.linkedin.com/company/88047718/) | [Facebook](https://www.facebook.com/SaalariesScience) | [Insta](https://www.instagram.com/salariesscience)
 
-**AI Internet-Meritocracy (AIIM)** built by Victor Porton is a direct funding platform for researchers/scientists and open source developers. It distributes incoming funding according to AI’s decisions.
+**SciWard** built by Victor Porton is a direct funding platform for researchers/scientists and open source developers. It distributes incoming funding according to AI’s decisions.
 
 The app verifies users using secure authentication methods like GitHub and ORCID and using this information about the user asks AI how much salary this user is worth. Then it distributes (weekly) the salaries between users proportionally to the AI’s recommended salaries. It uses crypto with multiple tokens supported.
 
@@ -58,7 +58,7 @@ This is a **beta** release. It needs:
 - **No grant writing:** Grant writing is replaced by once registering a few Web accounts (about 5min time once).
 - **The scientific publication crisis solution:** The prompt to pay to marketers of under-represented products.
 - **Human voting:** Prompt injection is contained by human voting.
-- **Open-source implementation:** The AIIM platform code is open-source and available on GitHub.
+- **Open-source implementation:** The SciWard platform code is open-source and available on GitHub.
 
 ### Verification and Accountability
 
@@ -88,7 +88,7 @@ See also the article [AI Shouldn’t Judge Itself: Why Human Independence Is Ess
 
 ## How It Works
 
-The current version of AIIM is a Node.js Web application with a remote PostgreSQL database and OpenAI models for AI. It holds a number of custodial crypto wallets.
+The current version of SciWard is a Node.js Web application with a remote PostgreSQL database and OpenAI models for AI. It holds a number of custodial crypto wallets.
 
 AI calls and other operations are stored in the DB as a directed graph, in order to be able to use both batch (untested) or batch mode of OpenAI.
 
@@ -117,7 +117,7 @@ The model addresses the scientific publication crisis by rewarding marketers for
 
 ### Science or Free Software Projects Seeking Sustainable Funding
 
-Open-source infrastructure teams, governance research organizations, and ecosystem tools can use AIIM as a renewable funding source. Unlike one-time grant rounds, AIIM provides a continuous stream of funding.
+Open-source infrastructure teams, governance research organizations, and ecosystem tools can use SciWard as a renewable funding source. Unlike one-time grant rounds, SciWard provides a continuous stream of funding.
 
 ### Underrepresented Scientific Projects
 
@@ -125,11 +125,11 @@ Underrepresented scientific projects like ordered semicategory actions and under
 
 ### Mechanism Designers Testing Governance Experiments
 
-AIIM functions as a live testing environment for public goods funding mechanisms. Epoch-level experiments may adjust voting mechanics, matching logic, or allocation structures. Participation and allocation data contribute to broader research in decentralized funding design.
+SciWard functions as a live testing environment for public goods funding mechanisms. Epoch-level experiments may adjust voting mechanics, matching logic, or allocation structures. Participation and allocation data contribute to broader research in decentralized funding design.
 
 ### Ecosystem Organizations Co-Sponsoring Public Goods
 
-Organizations aligned with AIIM's mission may propose themed epochs or collaborate on funding priorities.
+Organizations aligned with SciWard's mission may propose themed epochs or collaborate on funding priorities.
 
 Through the governance process, external stakeholders can influence project selection and allocation focus areas alongside the Victor Porton’s Foundation. (This will become true mostly after switching to ICP blockchain.)
 
@@ -138,4 +138,4 @@ Through the governance process, external stakeholders can influence project sele
 - **App:** [merit.science-dao.org](https://greengoods.app)
 - **Documentation:** [science-dao.org/category/docs/](https://science-dao.org/category/docs/)  
 - **Builder / Technical Docs:** [github.com/vporton/meritocracy/tree/main/docs](https://github.com/vporton/meritocracy/tree/main/docs)  
-- **Article:** [A New Economic Formation, AI Internet-Meritocracy](https://science-dao.org/economic-formation/) 
+- **Article:** [A New Economic Formation, SciWard](https://science-dao.org/economic-formation/) 
