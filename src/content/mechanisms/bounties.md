@@ -64,3 +64,4 @@ DAOs issue bounties for protocol explanatory graphics, social media assets, and 
 ## Further Reading
 
 - [Allo Capital — Bounties](https://www.allo.capital/mechanisms/bounties)
+- 
